@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>BIT CODE</title>
 </head>
 <body>
-	<c:redirect url="/main/test.do"/>
+	<c:redirect url="/main/main.do"/>
 </body>
 </html>
