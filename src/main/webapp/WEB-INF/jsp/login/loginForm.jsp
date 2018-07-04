@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/login/login.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/login/login.css" />
 </head>
 <body>
 	<form>
