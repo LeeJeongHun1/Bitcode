@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import kr.co.bitcode.main.service.TestService;
 
 @Controller
-@RequestMapping("/main")
+@RequestMapping("/test")
 public class TestController {
 	
 	@Autowired
