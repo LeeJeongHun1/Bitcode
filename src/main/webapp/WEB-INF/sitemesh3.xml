@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sitemesh>
 	<mapping path="/*" decorator="/WEB-INF/jsp/template/decorator.jsp" />
-<!-- 	<mapping path="/ajax/*" exclue="true"/> 해당 경로 사이트 매쉬 적용 x -->
+<!-- 	<mapping path="/login*" exclue="true"/> -->
 <!-- 	<mapping path="/config/*" exclue="true"/> -->
 </sitemesh>
