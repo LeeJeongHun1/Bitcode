@@ -12,7 +12,7 @@
 	        <%-- 메인링크 --%>
             <a href="/bitcode/main/main.do" id="start-menu"><i class="fab fa-windows"></i></a>
 	        <%-- 코드공유게시판 --%>
-            <a href="#" id="coding"></a>
+            <a href="/bitcode/codeboard/listBoard.do" id="coding"></a>
 	        <%-- 단체대화방 --%>
             <a href="#" id="chat"></a>
 	        <%-- 원격상담 --%>
