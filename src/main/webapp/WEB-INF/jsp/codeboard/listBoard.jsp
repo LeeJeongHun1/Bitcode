@@ -11,6 +11,7 @@
 </head>
 
 <body>
+	
     <div>
         <div class="container">
             <div class="row">
@@ -138,8 +139,7 @@
         <div class="container" style="margin-top:-13px;height:53px;"><span style="font-size:20px;margin-left:485px;">&lt; &nbsp;1 2 3 4 5 &nbsp;&gt;</span></div>
     </div>
     <div></div>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+
 </body>
 
 </html>

@@ -12,14 +12,14 @@
 	        <%-- 메인링크 --%>
             <a href="/bitcode/main/main.do" id="start-menu"><i class="fab fa-windows"></i></a>
 	        <%-- 코드공유게시판 --%>
-            <a href="/bitcode/codeboard/listBoard.do" id="coding"></a>
+            <a href="${pageContext.request.contextPath}/codeboard/listBoard.do" id="coding"></a>
 	        <%-- 단체대화방 --%>
             <a href="#" id="chat"></a>
 	        <%-- 원격상담 --%>
             <a href="#" id="remote"></a>
 	        <%-- Q&A 게시판 --%>
             <a href="${pageContext.request.contextPath}/qnaboard/viewDetail.do" id="question"></a>
-	        <%-- IT News --%>
+	        <%-- IT News --%>	
             <a href="#" id="news"></a>
 	        <%-- 학원찾기 --%>
             <a href="#" id="search"></a>
