@@ -9,14 +9,12 @@ hgroup,
 nav, 
 section {
     display: block;
-    
 }
 
 html {
     font-size: 100%;
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
-    
 }
 
 input:focus, 
@@ -36,18 +34,21 @@ input[type="button"] {
 
 h1 > #siciallogin:hover { cursor: pointer; }
 
-
-a:visited, 
-a:active {
-    text-decoration: none;
+/* #signup > a { */
+/* 	 color: #ccc; */
+/* 	  text-decoration: none; */
+/* } */
+/* a:visited,  */
+/* a:active { */
+/*     text-decoration: none; */
    
-}
+/* } */
 
-a:hover {
-    text-decoration: none;
-     color: #c0c0c0;
+/* a:hover { */
+/*     text-decoration: none; */
+/*      color: #c0c0c0; */
     
-}
+/* } */
 
 ::selection {
     background: #ed327b;
@@ -68,12 +69,8 @@ a:hover {
     box-sizing: border-box;
 }
 body {
-
-/* 	  margin-top: 10%; */
-/*   	background:#63b47a; */
-/* 	background-image: url("/bitcode/images/main.jpg"); */
-/* 	background-position: center; */
-/* 	background-size: cover; */
+/*   background:#63b47a; */
+/*   margin-top: 10%; */
 }
 
 * {
@@ -95,40 +92,30 @@ h5 > a:hover {
   text-decoration:none;
 }
 
-#loginUi {
-  margin-top:30%;
+form {
   background:#fff;
   border-radius:6px;
-  padding:50px;
-  padding-top:20px;
-  padding-bottom:60px;
-  width:350px;
-/*   Ui form  위치 설정*/
-  margin:200px auto;
+  padding:20px;
+  padding-top:30px;
+  width:300px;
+  margin:50px auto;
   box-shadow:15px 15px 0px rgba(0,0,0,.1);
-/*   height: 40% */
+  height: 650px;
 }
 
 h1 {
   text-align:center;
-  font-size:1.4em;
+  font-size:35px;
   font-weight:700;
-  color: #8c8c8c;
+  color:#929292;
   margin-bottom:24px;
-  padding-left: 55px;
 }
 
-h1 > #siciallogin {
-  color: #808080;
+span {
   font-size: 15px;
-  margin-left: 10%;
+  margin-right: 10%;
 }
-#signup > a {
-	font-size: 15px;
-	 color: #808080;
-	 text-decoration: none;
-	 margin-left: 17%;
-}
+
 
 input {
   width:100%;
@@ -154,6 +141,28 @@ input {
   box-shadow:0px 3px 0px #c1524e;
 }
 
+#submitBox {
+  text-align: center;
+  margin-top: 10%;
+/*   position:; */
+  width:260px;
+  height: 50px;
+  padding:15px;
+  border-radius:6px;
+  border:0;
+  background:#f26964;
+  font-size:1.2em;
+  color:#fff;
+  text-shadow:1px 1px 0px rgba(0,0,0,.1);
+  box-shadow:0px 3px 0px #c1524e;
+}
+div > #submitBtn {
+	  text-decoration:none;	
+}
+a > #signupbtn {
+	font-size: 20px;
+}
+
 .btn:active {
   top:3px;
   box-shadow:none;
@@ -173,12 +182,12 @@ h6 {
 
 .na {
   margin-top:15px;
-  background:#24c14b;
+  background:#28d754;
   box-shadow:0px 3px 0px #00c800;
 }
 
 .ka {
-  background:#f2f200;
+  background:#e3e300;
   box-shadow:0px 3px 0px #caca00;
 }
 
