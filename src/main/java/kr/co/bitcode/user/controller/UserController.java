@@ -9,7 +9,8 @@ public class UserController {
 	
 	@RequestMapping("/userInfo.do") 
 	public String joinForm() { 
-		return "login/userInfo";
+//		System.out.println("userInfo들어옴");
+		return "user/userInfo";
 	} 
 	
 }
