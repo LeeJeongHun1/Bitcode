@@ -9,7 +9,12 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main/main.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main/footer.css">
 
-		<title><sitemesh:write property="title" /></title>
+<%-- favicon --%>
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/images/favicon.ico" type="image/x-icon" />
+<link rel="icon" href="${pageContext.request.contextPath}/images/favicon.ico" type="image/x-icon" />
+
+
+<title><sitemesh:write property="title" /></title>
 <sitemesh:write property="head" />
 <style>
 .content{
