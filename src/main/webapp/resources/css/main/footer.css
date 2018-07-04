@@ -50,10 +50,65 @@ body {
   color: white;
 }
 
+/* IT News */
+.taskbar .icons-left #news {
+  height: 43px;
+  width: 49px;
+  background-image: url("/bitcode/images/news.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 26px 26px;
+}
+/* Q&A */
+.taskbar .icons-left #question {
+  height: 43px;
+  width: 49px;
+  background-image: url("/bitcode/images/question.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 26px 26px;
+}
+/* 마이인포 */
+.taskbar .icons-right #user {
+  height: 43px;
+  width: 49px;
+  background-image: url("/bitcode/images/user.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 26px 26px;
+}
+/* 원격 */
+.taskbar .icons-left #remote {
+  height: 43px;
+  width: 49px;
+  background-image: url("/bitcode/images/remote.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 26px 26px;
+}
+/* 단체대화 */
+.taskbar .icons-left #chat {
+  height: 43px;
+  width: 49px;
+  background-image: url("/bitcode/images/chat.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 26px 26px;
+}
+/* 학원찾기 */
 .taskbar .icons-left #search {
   height: 43px;
   width: 49px;
   background-image: url("/bitcode/images/search.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 26px 26px;
+}
+/* 코드공유 */
+.taskbar .icons-left #coding {
+  height: 43px;
+  width: 49px;
+  background-image: url("/bitcode/images/coding.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 26px 26px;
