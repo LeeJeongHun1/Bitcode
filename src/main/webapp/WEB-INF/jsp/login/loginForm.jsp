@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/login/login.css" />
 </head>
 <body>
-	<form id="loginUi">
+	<form id="loginUi" action="${pageContext.request.contextPath}/login/login.do" method="post" id="userForm">
 	  <h1>Hello Bit Code !!</h1>
 	  <input name="id" placeholder="UserId" type="text"/>
 	  <input name="poassword" placeholder="Password" type="password"/>

@@ -8,5 +8,8 @@
 </head>
 <body>
 	<c:redirect url="/main/main.do"/>
+
+		<!-- 로그인 임시경로 태그만 설정-->
+<%-- 		<c:redirect url="/login/loginForm.do" /> --%>
 </body>
 </html>
