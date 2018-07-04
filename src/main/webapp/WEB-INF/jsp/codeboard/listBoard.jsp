@@ -6,17 +6,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ListBoard</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
+<!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/codeboard/styles.css">
 </head>
 
 <body>
 	
+	<div class="container" style="color: white; background-color: red">
     <div>
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h1 class="text-center" style="margin:0px;margin-top:50px;margin-bottom:41px;">코드공유게시판</h1>
+                    <h1 class="text-center" style="margin:0px;width: 1170px;margin-top:50px;margin-bottom:41px;">코드공유게시판</h1>
                 </div>
             </div>
         </div>
@@ -138,7 +140,7 @@
                 type="search" style="margin-left:3px;"><button class="btn btn-primary" type="button" style="margin-left:277px;">글쓰기</button></div>
         <div class="container" style="margin-top:-13px;height:53px;"><span style="font-size:20px;margin-left:485px;">&lt; &nbsp;1 2 3 4 5 &nbsp;&gt;</span></div>
     </div>
-    <div></div>
+	</div>
 
 </body>
 

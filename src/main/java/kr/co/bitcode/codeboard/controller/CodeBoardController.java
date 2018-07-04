@@ -10,6 +10,6 @@ public class CodeBoardController {
 
 	@RequestMapping("/listBoard.do")
 	public void codeboard() {
-		System.out.println("22222");
+		
 	}
 }
