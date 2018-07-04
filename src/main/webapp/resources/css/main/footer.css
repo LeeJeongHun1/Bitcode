@@ -14,7 +14,7 @@ body {
 
 .content {
   height: 100vh;
-  background: url(/bitcode/images/main.jpg);
+  background: url(/bitcode/resources/images/main.jpg);
   background-position: center;
   background-size: cover;
 }
@@ -54,7 +54,7 @@ body {
 .taskbar .icons-left #news {
   height: 43px;
   width: 49px;
-  background-image: url("/bitcode/images/news.png");
+  background-image: url("/bitcode/resources/images/news.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 26px 26px;
@@ -63,7 +63,7 @@ body {
 .taskbar .icons-left #question {
   height: 43px;
   width: 49px;
-  background-image: url("/bitcode/images/question.png");
+  background-image: url("/bitcode/resources/images/question.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 26px 26px;
@@ -72,7 +72,7 @@ body {
 .taskbar .icons-right #user {
   height: 43px;
   width: 49px;
-  background-image: url("/bitcode/images/user.png");
+  background-image: url("/bitcode/resources/images/user.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 26px 26px;
@@ -81,7 +81,7 @@ body {
 .taskbar .icons-left #remote {
   height: 43px;
   width: 49px;
-  background-image: url("/bitcode/images/remote.png");
+  background-image: url("/bitcode/resources/images/remote.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 26px 26px;
@@ -90,7 +90,7 @@ body {
 .taskbar .icons-left #chat {
   height: 43px;
   width: 49px;
-  background-image: url("/bitcode/images/chat.png");
+  background-image: url("/bitcode/resources/images/chat.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 26px 26px;
@@ -99,7 +99,7 @@ body {
 .taskbar .icons-left #search {
   height: 43px;
   width: 49px;
-  background-image: url("/bitcode/images/search.png");
+  background-image: url("/bitcode/resources/images/search.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 26px 26px;
@@ -108,7 +108,7 @@ body {
 .taskbar .icons-left #coding {
   height: 43px;
   width: 49px;
-  background-image: url("/bitcode/images/coding.png");
+  background-image: url("/bitcode/resources/images/coding.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 26px 26px;
@@ -117,7 +117,7 @@ body {
 .taskbar .icons-left #start-menu {
   height: 43px;
   width: 49px;
-  background-image: url("/bitcode/images/windows.png");
+  background-image: url("/bitcode/resources/images/windows.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 26px 26px;
@@ -126,7 +126,7 @@ body {
 .taskbar .icons-left #folder {
   height: 43px;
   width: 49px;
-  background-image: url("/bitcode/images/File-Explorer.ico");
+  background-image: url("/bitcode/resources/images/File-Explorer.ico");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 21px 21px;
@@ -136,7 +136,7 @@ body {
 .taskbar .icons-left #chrome {
   height: 43px;
   width: 49px;
-  background-image: url("/bitcode/images/chrome.png");
+  background-image: url("/bitcode/resources/images/chrome.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 26px 26px;
@@ -145,7 +145,7 @@ body {
 .taskbar .icons-left #tabs-windows {
   height: 43px;
   width: 49px;
-  background-image: url("/bitcode/images/tabs.png");
+  background-image: url("/bitcode/resources/images/tabs.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 15px 15px;
@@ -155,7 +155,7 @@ body {
 .taskbar .icons-left #tabs-windows:hover {
   height: 43px;
   width: 49px;
-  background-image: url("/bitcode/images/tabs.png");
+  background-image: url("/bitcode/resources/images/tabs.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 15px 15px;
@@ -195,7 +195,7 @@ body {
 .taskbar .icons-right #wifi {
   height: 43px;
   width: 49px;
-  background-image: url("/bitcode/images/wifinotificationicon.png");
+  background-image: url("/bitcode/resources/images/wifinotificationicon.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 16px 16px;
@@ -204,7 +204,7 @@ body {
 .taskbar .icons-right #sound {
   height: 43px;
   width: 49px;
-  background-image: url("/bitcode/images/audiotoasticon.png");
+  background-image: url("/bitcode/resources/images/audiotoasticon.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 22px 22px;

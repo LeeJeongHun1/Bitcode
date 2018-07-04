@@ -39,7 +39,7 @@
 	            </span>
 	        </div>
 	        <%-- 마이인포 --%>
-	        <a href="#" id="user"></a>
+	        <a href="${pageContext.request.contextPath}/user/userInfo.do" id="user"></a>
 	        <a href="#notifications" id="notifications"><i class="far fa-bell"></i></a>
 	        <a href="#" class="clear disabled"></a>
 	        <a href="#" id="return"></a>
