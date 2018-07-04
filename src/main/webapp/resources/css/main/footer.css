@@ -14,7 +14,7 @@ body {
 
 .content {
   height: 100vh;
-  background: url(/bitcode/images/main.jpg);
+  background: url(/bitcode/resources/images/main.jpg);
   background-position: center;
   background-size: cover;
 }
