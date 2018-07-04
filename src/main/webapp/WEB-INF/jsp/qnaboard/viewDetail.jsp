@@ -11,12 +11,14 @@
 	background-color: #f3f3f3;
 	border: 1px solid #e6e6e6;
 	border-top: 1px solid #b3b3b3;
-	width: 100%;
+	width: 900px;
+	    margin: auto;
+	height:85px;
 }
 
 .contents_header>.title {
 	color: #1a1a1a;
-	font-size: 1.429em;
+	font-size: 17px;
 	font-weight: 600;
 	word-wrap: break-word;
 }
@@ -34,6 +36,7 @@
 	width: 900px;
 	height: 500px;
 	overflow-y: scroll;
+	    margin: auto;
 }
 .detail { min-height:240px;}
 .nowrap {
@@ -57,8 +60,9 @@
 	position: absolute;
 	color: #666666;
 	font-size: 15px;
-	right: 11px;
+	right: 20px;
 	font-weight: normal;
+	font-size: 13px;
 }
 
 .shell_writer {
@@ -69,9 +73,11 @@
 
 .shell_hits {
 	float: right;
-	margin-right: 20px;
+	color:#666666;
 	margin-top: 10px;
+	font-size: 13px;
 }
+.shell_hits > span {padding-left:5px;}
 .reHeader{
 }
 
@@ -83,7 +89,7 @@
 
 .reWriter {
 	display: inline-block;
-	margin-right: 6px;
+	margin:5px 0 0 6px;
 	vertical-align: top;
 	color: #666;
 	word-wrap: break-word;
@@ -93,8 +99,14 @@
 .reDay {
 	font-size: 11px;
 	font-family: '돋움', dotum, Helvetica, sans-serif;
-	margin: 2px 0 0 1px;
+	margin: 6px 0 0 1px;
+    display: inline-block;
 }
+.recomment{    padding-left: 10px;
+    background: url(../images/arrow.png) no-repeat 0 0;
+    background-size:21px;
+    }
+.comment { margin:5px;}
 </style>
 </head>
 <body>
@@ -107,7 +119,7 @@
 				</div>
 
 				<div class="header_info">
-					<span class="shell_writer">홍길동</span> <span class="shell_hits">4</span>
+					<span class="shell_writer">홍길동</span><span class="shell_hits">조회<span>4</span></span>
 
 				</div>
 			</div>
