@@ -3,7 +3,6 @@
 	padding:0;margin:0;
 }
 body {
-  font-family: 'Open Sans', sans-serif;
   background: #efefef;
   text-transform: uppercase;
 }
@@ -29,10 +28,15 @@ a {
   font-weight: 400;
 }
 
-.table {
+.remote {
   width: 75%;
   margin: 0 auto;
   margin-top: 10%;
+}
+
+.remoteList {
+  width: 100%;
+  margin-bottom: 20px;
 }
 
 tr {

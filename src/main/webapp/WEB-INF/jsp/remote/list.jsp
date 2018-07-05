@@ -12,8 +12,9 @@
 </head>
 <body>
 <body>
-  
-   <table cellspacing="0" class="table">
+
+  <div class="remote">
+   <table cellspacing="0" class="remoteList">
      <tbody>
        <tr>
          <td class="head">문의주제</td>
@@ -28,25 +29,27 @@
        </tr>
        
        <tr>
-        <td><a class="file" href="index.php">이클립스 오류 문의</a></td>
+        <td><a class="file" href="#">이클립스 오류 문의</a></td>
         <td>정훈</td>
         <td>대기중</td>
        </tr>
        
        <tr>
-         <td><a class="folder" href="folder">톰캣 에러</a></td>
+         <td><a class="folder" href="#">톰캣 에러</a></td>
          <td>종민</td>
          <td>상담중</td>
        </tr>
 
        <tr>
-         <td><a class="file" href="style.css">컴퓨터가 느려요</a></td>
+         <td><a class="file" href="#">컴퓨터가 느려요</a></td>
          <td>선영</td>
          <td>대기중</td>
        </tr>
       </tbody>
   </table>
-
+  <button type="button" class="btn btn-default btn-group-xs">상담신청</button>
+</div>
+	
   </body>
 
 </body>
