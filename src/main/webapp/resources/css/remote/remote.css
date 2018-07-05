@@ -16,21 +16,6 @@
   src: url('https://adrienzaganelli.com/projects/video-player/fonts/WorkSans-Light.woff') format('woff'), url('https://adrienzaganelli.com/projects/video-player/fonts/WorkSans-Light.ttf') format('truetype');
 }
 
-body {
-  color: white;
-  background: -webkit-linear-gradient(90deg, #360033 10%, #0b8793 90%), black;
-  /* Chrome 10+, Saf5.1+ */
-  background: -moz-linear-gradient(90deg, #360033 10%, #0b8793 90%), black;
-  /* FF3.6+ */
-  background: -ms-linear-gradient(90deg, #360033 10%, #0b8793 90%), black;
-  /* IE10 */
-  background: -o-linear-gradient(90deg, #360033 10%, #0b8793 90%), black;
-  /* Opera 11.10+ */
-  background: linear-gradient(90deg, #360033 10%, #0b8793 90%), black;
-  /* W3C */
-  font-family: "Works Sans", sans-serif;
-}
-
 .embedded-container {
   width: 80%;
   margin-right: auto;
