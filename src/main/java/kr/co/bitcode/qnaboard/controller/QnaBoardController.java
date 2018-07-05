@@ -16,5 +16,11 @@ public class QnaBoardController {
 		ModelAndView mav = new ModelAndView("/qnaboard/viewDetail");
 		return mav;
 	}
+	
+	@RequestMapping("/editQna.do")
+	public ModelAndView editQna() {
+		ModelAndView mav = new ModelAndView("/qnaboard/editQna");
+		return mav;
+	}
 
 }

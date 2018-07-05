@@ -1,16 +1,20 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/qnaboard/detail.css">
 <style>
+a {color:#333333}
 
 </style>
 </head>
 <body>
 	<div class="container">
 		<div class="shell-container">
+		<!-- <h2 class="shell_title">QnA질문게시판</h2> -->
 			<div class="contents_header">
 				<div class="title">
 					제목입니다.<span class="nowrap">|</span><span class="cf">JAVA</span> <span
@@ -81,33 +85,15 @@
 						</div>
 					</li>
 				</ul>
-				<!-- <div class="reBody">
-					<div class="reHeader">
-						<p class="reWriter">김기영</p>
-						<span class="reDay">2018.02.30 11:20</span> <span
-							class="recomment"> <a href="#">답글</a>
-						</span>
-					</div>
-					<div class="comment">이 코드는 이런이런 형식입니다.</div>
-				</div> -->
-
 			</div>
-
+			<div class="contents_btn">
+    		<a href='<c:url value="/qnaboard/editQna.do" />'><button>목록</button></a>
+			<a href='#'><button>답변</button></a>
+			<a href="#"><button>수정</button></a>
+			<a href="#"><button>삭제</button></a>
+			</div>
 		</div>
-		<!--  <div class="shell-container">
-    <div class="header-shell">
-      <img class="cli-img" src="https://upload.wikimedia.org/wikipedia/en/e/ef/Command_prompt_icon_%28windows%29.png" alt="windows_cli.png" />
-      <p class="shell-title">C:\\Windows\system32\cmd.exe</p>
-      <span class="minimize"></span>
-      <span class="maximize"></span>
-      <span class="close"></span>
-    </div>
-    <div class="body-shell">
-    <p class="microsoft-label">Microsoft Windows [version 10.0.10586]</p>
-    <p class="microsoft-label">(c) 2015 Microsoft Corporation. All rights reserved.</p>
-      <p class="input">C:\Users\Guest> I am in love with codepen <3 <span class="ping"></span> </p>    
-    </div>
-  </div> -->
+
 	</div>
 </body>
 </html>
