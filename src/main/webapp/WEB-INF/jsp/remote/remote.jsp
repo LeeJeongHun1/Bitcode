@@ -18,12 +18,17 @@
 <div class="embedded-container">
     <div class="embedded-player-az">
       <!-- the main interactions will be in the .core div-->
-      <div class="media">
+      <div class="media" style="position: relative;">
         <%-- 화면창 --%>
         <div class="screen media-left">
+        
         </div>
 		<%-- 대화창 --%>
 		<div class="chat media-right">
+			<div class="bottom-bar">
+				<input type="text" name="msg" id="msg" />
+				<button id="msgBtn">메세지 전송</button>
+			</div>
 		</div>
       </div>
     </div>

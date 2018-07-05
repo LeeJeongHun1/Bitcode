@@ -17,26 +17,28 @@
 		height: 750px;
 	}
 	.chat {
+		margin: 8px;
 		width: 20%;
 		height: 730px;
+		bottom: 0px;
 	}
 </style>
 </head>
 <body>
-	<div class="a">
+	<div class=	"a">
 		<div class="remoteScale">
 	<%-- 		<img src="${pageContext.request.contextPath}/images/error.PNG" > --%>
 			<img src="<c:url value="/resources/images/error.PNG"/>" width="100%">
 		</div>
 		<div class="chat">
 			<input type="text" id="msg" />
-			<button id="Btn">메세지 전송</button>
+			<button id="msgBtn">메세지 전송</button>
 		</div>
 	</div>
-<!-- 	<script> -->
-<!--  		$("#msgBtn").click(function () { -->
-<!--  			$.notify("Hello World", "success"); -->
-<!--  		}) -->
-<!-- 	</script> -->
+	<script>
+		$("#msgBtn").click(function () {
+			$.notify("Hello World");
+		})
+	</script>
 </body>
 </html>

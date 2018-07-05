@@ -37,8 +37,8 @@
   -moz-transition: filter 0.5s;
   -o-transition: filter 0.5s;
   z-index: 2;
-  width: 800px;
-  height: 500px;
+  width: 900px;
+  height: 600px;
   background: black;
   border-radius: 5px;
   /*  
@@ -49,11 +49,18 @@
 }
 
 .chat{
-  width: 200px;
-  height: 500px;
+  width: 330px;
+  height: 600px;
   background: white;
   border-radius: 5px;
-	
+}
+.bottom-bar{
+	bottom: 6px;
+	color: black;
+	position: absolute;
+}
+.bottom-bar input{
+	width: 220px;
 }
 .embedded-player-az .buttons button {
   font-family: "Glyphter";
