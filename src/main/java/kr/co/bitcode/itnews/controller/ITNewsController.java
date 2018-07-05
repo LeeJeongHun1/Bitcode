@@ -11,5 +11,10 @@ public class ITNewsController {
 	public String itnews() { 
 		return "itnews/itNewsForm";
 	} 
-
+	
+	
+	@RequestMapping("/itnewsDetail.do") 
+	public String itnewsDetail() { 
+		return "itnews/itnewsDetailForm";
+	} 
 }
