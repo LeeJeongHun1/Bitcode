@@ -47,7 +47,7 @@
        </tr>
       </tbody>
   </table>
-  <button type="button" class="btn btn-default btn-group-xs">상담신청</button>
+  <button type="button" class="btn btn-default btn-group-xs" onclick="location.href='${pageContext.request.contextPath}/remote/remoteForm.do'">상담신청</button>
 </div>
 	
   </body>
