@@ -26,15 +26,17 @@
 	<div class="a">
 		<div class="remoteScale">
 	<%-- 		<img src="${pageContext.request.contextPath}/images/error.PNG" > --%>
-			<img src="<c:url value="/images/error.PNG"/>" width="100%">
+			<img src="<c:url value="/resources/images/error.PNG"/>" width="100%">
 		</div>
 		<div class="chat">
 			<input type="text" id="msg" />
-			<button id="msgBtn">메세지 전송</button>
+			<button id="Btn">메세지 전송</button>
 		</div>
 	</div>
-<%-- 	${test.size()} --%>
-<%-- 	${test[0].name} --%>
-<%-- 	<fmt:formatDate value="${test[0].day}" pattern="yyyy-MM-dd"/> --%>
+<!-- 	<script> -->
+<!--  		$("#msgBtn").click(function () { -->
+<!--  			$.notify("Hello World", "success"); -->
+<!--  		}) -->
+<!-- 	</script> -->
 </body>
 </html>
