@@ -46,14 +46,13 @@ body{
 	transform: translateX(0px);
 	animation: text 400ms 800ms linear forwards;
 }
-h1{
+.mainText{
 	float: right;
-	font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+	font-family: Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
 	font-weight: normal;
 	color: #fff;
 	padding: 0;
 	margin: 0;
-	width: 320px;
 	height: 60px;
 	font-size: 60px;
 	line-height: 60px;
