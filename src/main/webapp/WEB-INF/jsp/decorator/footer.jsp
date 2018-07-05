@@ -16,7 +16,7 @@
 	        <%-- 단체대화방 --%>
             <a href="#" id="chat"></a>
 	        <%-- 원격상담 --%>
-            <a href="#" id="remote"></a>
+            <a href="${pageContext.request.contextPath}/remote/list.do" id="remote"></a>
 	        <%-- Q&A 게시판 --%>
             <a href="${pageContext.request.contextPath}/qnaboard/viewDetail.do" id="question"></a>
 	        <%-- IT News --%>	
