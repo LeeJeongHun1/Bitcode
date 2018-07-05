@@ -14,7 +14,8 @@
 <body>
 
 <div class="remoteForm">
- <form class="form-wrapper">
+ <form class="form-wrapper" action="${pageContext.request.contextPath}/remote/remote.do" method="post">
+ 	<!-- 세션기능 완성 후 ID값 설정 추가 -->
  	<input type="text" id="id" hidden="hidden" value="">
     <input type="text" id="question" placeholder="문의내용을 입력하세요." required>
     <input type="submit" value="상담신청" id="remoteSend">

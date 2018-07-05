@@ -13,12 +13,16 @@ public class RemoteController {
 	@Autowired
 	private RemoteService service;
 	
-	@RequestMapping("/list.do")
+	@RequestMapping("/remoteList.do")
 	public void remoteList() {
 	}
 	
 	@RequestMapping("/remoteForm.do")
 	public void remoteForm() {
+	}
+	
+	@RequestMapping("/remote.do")
+	public void remote() {
 	}
 
 }
