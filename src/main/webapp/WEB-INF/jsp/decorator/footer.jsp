@@ -20,7 +20,7 @@
 	        <%-- Q&A 게시판 --%>
             <a href="${pageContext.request.contextPath}/qnaboard/viewDetail.do" id="question"></a>
 	        <%-- IT News --%>	
-            <a href="#" id="news"></a>
+            <a href="${pageContext.request.contextPath}/itnews/itnews.do" id="news"></a>
 	        <%-- 학원찾기 --%>
             <a href="${pageContext.request.contextPath}/searchcenter/searchCenter.do" id="search"></a>
         </div>

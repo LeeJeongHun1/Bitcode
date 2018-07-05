@@ -80,7 +80,7 @@
 		<div></div>
 		
 	  <div id="calendar">
-	    <div id="calendar_header"><i class="icon-chevron-left"></i>          <h1></h1><i class="icon-chevron-right"></i>         </div>
+	    <div id="calendar_header"><i class="icon-chevron-left"></i>          <h4></h4><i class="icon-chevron-right"></i>         </div>
 	    <div id="calendar_weekdays"></div>
 	    <div id="calendar_content"></div>
 	  </div>
@@ -120,7 +120,7 @@ $(function() {
 	    var y = o[n - 1];
 	    a
 	      .css("background-color", y)
-	      .find("h1")
+	      .find("h4")
 	      .text(i[n - 1] + " " + t);
 	    f.find("div").css("color", y);
 	    l.find(".today").css("background-color", y);
