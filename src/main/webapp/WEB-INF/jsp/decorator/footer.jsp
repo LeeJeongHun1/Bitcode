@@ -12,9 +12,9 @@
 	        <%-- 메인링크 --%>
             <a href="/bitcode/main/main.do" id="start-menu"><i class="fab fa-windows"></i></a>
 	        <%-- 코드공유게시판 --%>
-            <a href="${pageContext.request.contextPath}/codeboard/Board.do" id="coding"></a>
+            <a href="${pageContext.request.contextPath}/codeboard/board.do" id="coding"></a>
 	        <%-- 단체대화방 --%>
-            <a href="${pageContext.request.contextPath}/chat/Chat.do" id="chat"></a>
+            <a href="${pageContext.request.contextPath}/chat/chat.do" id="chat"></a>
 	        <%-- 원격상담 --%>
             <a href="${pageContext.request.contextPath}/remote/list.do" id="remote"></a>
 	        <%-- Q&A 게시판 --%>
@@ -22,7 +22,7 @@
 	        <%-- IT News --%>	
             <a href="#" id="news"></a>
 	        <%-- 학원찾기 --%>
-            <a href="${pageContext.request.contextPath}/searchCenter/searchCenter.do" id="search"></a>
+            <a href="${pageContext.request.contextPath}/searchcenter/searchCenter.do" id="search"></a>
         </div>
         
         <%-- 마이인포 --%>

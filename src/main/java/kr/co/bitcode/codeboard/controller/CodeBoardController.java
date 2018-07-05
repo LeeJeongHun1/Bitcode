@@ -10,19 +10,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/codeboard")
 public class CodeBoardController {
 
-	@RequestMapping(value="/{pageNo}/Board.do", method=RequestMethod.GET)
+	@RequestMapping(value="/{pageNo}/board.do", method=RequestMethod.GET)
 	public void listboard(@PathVariable String PageNo) {
 		System.out.println(PageNo);
 	}
-	@RequestMapping(value="/Board.do", method=RequestMethod.GET)
+	@RequestMapping(value="/board.do", method=RequestMethod.GET)
 	public String detailboard() {
 		return "codeboard/listBoard";
 	}
-	@RequestMapping(value="/Board.do", method=RequestMethod.PATCH)
+	@RequestMapping(value="/board.do", method=RequestMethod.PATCH)
 	public void updateboard() {
 		
 	}
-	@RequestMapping(value="/Board.do", method=RequestMethod.DELETE)
+	@RequestMapping(value="/board.do", method=RequestMethod.DELETE)
 	public void deleteboard() {
 		
 	}
