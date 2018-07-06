@@ -11,13 +11,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class CodeBoardController {
 
 	@RequestMapping(value="/{pageNo}/board.do", method=RequestMethod.GET)
-	public void listboard(@PathVariable String PageNo) {
+	public void listboardpage(@PathVariable String PageNo) {
 		System.out.println(PageNo);
 	}
 	@RequestMapping(value="/board.do", method=RequestMethod.GET)
-	public String detailboard() {
+	public String listboard() {
 		return "codeboard/listBoard";
 	}
+	@RequestMapping(value="/detail.do", method=RequestMethod.GET)
+	public String detailBoard() {
+		return "codeboard/detailBoard";
+	}
+	@RequestMapping(value="/insertForm.do", method=RequestMethod.GET)
+	public String insertBoardForm() {
+		return "codeboard/insertForm";
+	}
+	
 	@RequestMapping(value="/board.do", method=RequestMethod.PATCH)
 	public void updateboard() {
 		

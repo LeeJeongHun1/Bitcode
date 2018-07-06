@@ -12,9 +12,9 @@
 </head>
 
 <body>
-	<div class="container" style="background-color: red">
+	<div class="container" style="color:#80FF00; background-color: black;">
     <div class="container" style="height:146px;">
-        <h1 class="text-center" style="margin-top:59px;">현재 위치에서 가장 가까운 센터</h1>
+        <h1 class="text-center" style="margin-top:59px;margin-right: 50px">현재 위치에서 가장 가까운 센터</h1>
     </div>
     <div class="container" style="height:510px;width:543px;"><img style="width:497px;height:479px;"></div>
     <script src="assets/js/jquery.min.js"></script>
