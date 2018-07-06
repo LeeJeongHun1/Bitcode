@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ListBoard</title>
 <!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/board/styles.css">
 </head>
 
@@ -22,10 +23,8 @@
     </div>
     <div>
         <div class="container" style="height:402px;">
-            <div class="col-md-12" style="height:380px;">-74
-            
-            10
-6                <div class="table-responsive">
+            <div class="col-md-12" style="height:380px;">
+            	<div class="table-responsive">
                     <table class="table">
                         <thead>
                             <tr>
