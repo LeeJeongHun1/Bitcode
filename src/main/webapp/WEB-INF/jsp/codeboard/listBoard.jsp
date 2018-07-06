@@ -22,7 +22,7 @@
     <div>
         <div class="container">
                 <div class="col-md-12">
-                    <h1 class="text-center" style="margin:0px;width: 1170px;margin-top:50px;margin-bottom:41px;">코드공유게시판</h1>
+                    <h1 class="text-center" style="margin:0px;margin-top:50px;margin-bottom:41px;">코드공유게시판</h1>
                 </div>
         </div>
     </div>

@@ -8,7 +8,9 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/board/detail.css">
 <style>
 a {color:#333333}
-
+button{
+color:#80FF00;
+background-color: black;}
 </style>
 <style type="text/css">
  a:link { color: #80FF00; text-decoration: none;}
@@ -76,11 +78,11 @@ a {color:#333333}
 					</li>
 
 					<li class="reWrite">
-						<div class="reWriteDiv">
+						<div class="reWriteDiv" style="background-color: black">
 							<table>
 								<tbody>
 									<tr>
-										<td><textarea></textarea></td>
+										<td><textarea style="background-color: black"></textarea></td>
 									</tr>
 								</tbody>
 							</table>

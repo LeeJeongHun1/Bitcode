@@ -17,7 +17,8 @@
         <h1 class="text-center" style="margin-top:50px;">대화방</h1>
         <h1 style="width:140px;margin-left:800px;font-size:20px;">사용자 목록</h1>
     </div>
-    <div class="container" style="width:900px;height:392px;"><textarea style="width:605px;height:374px;"></textarea><textarea style="height:374px;margin-left:54px;"></textarea></div><input type="text" style="margin-left:140px;width:603px;">
+    <div class="container" style="width:900px;height:392px;"><img style="width:605px;height:374px;"></img><img style="height:374px;margin-left:54px;"></img></div><input type="text" style="background-color:black; margin-left:140px;width:520px;">
+    <button style="margin-left:25px; background-color: black">전송</button>
     <button class="btn btn-default" onclick="location.href='${pageContext.request.contextPath}/main/main.do'" type="button" style="margin-left:100px;">나가기</button>
     <script
         src="assets/js/jquery.min.js"></script>
