@@ -4,6 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <title>BIT CODE</title>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main/main.css">
 </head>
 <body>
 <div class="wrapp">

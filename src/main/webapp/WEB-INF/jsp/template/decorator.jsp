@@ -8,7 +8,8 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/notify/notify.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/waitme/waitMe.min.js"></script>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main/main.css">
+
+<%-- 하단메뉴 --%>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main/footer.css">
 
 <%-- favicon --%>
