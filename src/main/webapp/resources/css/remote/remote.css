@@ -49,6 +49,11 @@
 iframe {
 	height: 600px;
 }
+#chat{
+  width: 330px;
+  height: 600px;
+  border-radius: 5px;
+}
 .chat{
   width: 330px;
   height: 600px;
