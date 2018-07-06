@@ -60,6 +60,8 @@ function refreshNotifications(items, today) {
     .find('.js-count').attr('data-count', items.length).html(items.length).end()
     .on('click', '.js-show-notifications', function(event) {
       $(event.currentTarget).closest('.js-show-notifications').toggleClass('active').blur();
+      container.find('.js-notifications').toggleClass('myshow')
+
       return true;
     })
     .on('click', '.js-dismiss', function(event) {
