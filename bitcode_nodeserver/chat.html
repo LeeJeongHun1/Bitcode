@@ -1,0 +1,63 @@
+<style>
+body {
+	margin: 0px;
+	padding: 0px;
+}
+.chatBox{
+  width: 330px;
+  height: 600px;
+  max-height: 600px;
+  background: white;
+  border-radius: 5px;
+  overflow: hidden;
+  overflow-y: auto;
+}
+.bottom-bar{
+	bottom: 6px;
+	color: black;
+	position: absolute;
+	position: fixed;
+}
+#msg{
+	width: 230px;
+	height: 30px;
+}
+</style>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="http://192.168.0.104:10001/socket.io/socket.io.js"></script>
+
+<div id="chatBox"></div>
+<div class="bottom-bar">
+	<input type="text" id="msg" />
+	<input type="button" value="메세지 전송" id="msgBtn"/>
+</div>
+
+	<script>
+	$(document).ready(function () {
+		// 소켓서버에 접속
+	  var socket = io.connect();
+		// var socket = io.connect("http://192.168.0.179:10001");
+	  // msg 등록
+	  socket.on("msg", function (data) {
+		$("#chatBox").before(data + "<br>");
+	  });
+	  
+	  $("[type=button]").click(function () {
+	    // id가 msg 인 텍스트 창에 입력된 데이터를 소켓서버에 전송
+			console.log("서버로 전송함");
+			// msg 호출
+	    socket.emit("msg", $("#msg").val());
+	  });
+	});
+	</script>
+
+
+
+
+
+
+
+
+
+
+
