@@ -1,188 +1,147 @@
-html, body{
-	width: 100%;
-	height: 100%;
-	margin:0;
-	padding: 0;
-/* 	background-color: #ddd; */
-  font-family: 'Arimo', sans-serif;
-}
-/* 글씨 h1, h3 */
-form > #userInformation {
-	color: #408080;
-	font-size: 23px;
-/* 	margin-bottom: 35px; */
-	margin-top: 10px;
-/* 	background-color:#91c8c8;  */
-	height: 50px;
-	text-align: center;
-}
-div .userInformation {
-	margin-top:30px;
-	margin-bottom:30px;
-	color: #408080;
-	text-align: center;
-	font-size: 23px;
+
+:root {
+  --color: #3c3163;
+  --transition-time: 0.5s;
 }
 
-.title1{
-  color:#408080;
-  text-align: center;
-  margin-bottom: 2%;
-  margin-top: 8%
+* {
+  box-sizing: border-box;
 }
 
-/* CONTAINERS  max-width: 940px;*/ 
 
-.container1 { width: 80%; margin: 0 auto; } 
-.twelve { width: 100%; } 
-.eleven { width: 91.53%; } 
-.ten { width: 83.06%; } 
-.nine { width: 74.6%; } 
-.eight { width: 66.13%; } 
-.seven { width: 57.66%; } 
-.six { width: 49.2%; } 
-.five { width: 40.73%; } 
-.four { width: 32.26%;} 
-.three { width: 23.8%; } 
-.two { width: 15.33%; } 
-.one{ width: 6.866%;}
+.clear {
+  clear: both;
+  margin: 0 0 8px 0
+}
 
-.four1{ width: 6%}
-.ten1{ width: 30% }
-.five1{ width: 10%}
 
- /* COLUMNS */ 
+#h1ITNews {
+  color: #ffffff;
+  backgound: inherit;
+  padding: 0;
+  font-size: 50px;
+  margin-top: 6%;
+  margin-left: 37%;
+  text-decoration: underline;
+}
 
-.col { 
-	display: block; 
-	float:left;
-	margin: 1% 0 1% 1.6%; 
-	box-shadow:15px 15px 0px rgba(0,0,0,.1);
-} 
 
-.col:first-of-type { margin-left: 0; }
+/* 사진 */
+.cardITNewsDetail {
+  font-family: 'Heebo';
+  --bg-filter-opacity: 0.5;
+  width: 400px;
+  height: 200px;
+  font-size: 1.5em;
+  border-radius: 0.5em;
+  padding: 0.2em;
+  margin: 1em;
+  display: flex;
+  align-items: flex-end;
+  box-shadow: 0 0 5em -1em black;
+  position: relative;
+  overflow: hidden;
+  border: 4px solid #ccc;
+  text-decoration: none;
+  
+}
+/* 사진 */
+ .card-grid-space {
+  margin-left: 25%;
 
-/* PROFILES */
+}
 
-.card{
-	max-width: 100%;
-	height: 600px;
-	background-color: #f7f7f7;
-	font-family: 'Arimo', sans-serif;
-	font-size: 14px;
-	box-shadow:15px 15px 0px rgba(0,0,0,.1);
+
+
+/* 기사내용 */
+.cardITNewsDetail1 {
+  font-family: 'Heebo';
+  --bg-filter-opacity: 0.5;
+  background-color: white;
+  width: 900px;
+  height: 500px;
+  font-size: 1.5em;
+  border-radius: 0.5em;
+  padding: 0.2em;
+  margin: 0.5em;
+  display: flex;
+  box-shadow: 0 0 5em -1em black;
+  position: relative;
+  overflow: scroll;
+  border: 4px solid #ccc;
+  text-decoration: none;
+   	word-wrap:break-word; 
+ 	overflow:auto; 
+ 	overflow-x:hidden;
+ 	overflow-y:yes; 
+  
+}
+/* 기사내용 */
+ .card-grid-space1 {
+  margin-left: 25%;
+
+}
+
+/* 사진 이미지 */
+.cardITNewsDetail > img {
+	width: 400px;
+	height: 200px; 
 	
 }
 
-.userCard {
-	max-width: 100%;
-	margin-left:20px;
-	margin-bottom: 5px;
-	height: 15px; 
-	font-family: 'Arimo', sans-serif;
-	font-size: 18px;
-	}
-#card1 > img {
-	width: 100%;
-	height: 100%
+
+.cardITNewsDetail h1 {
+  margin: 0;
+  font-size: 1.5em;
+  line-height: 1.2em;
+}
+
+.cardITNewsDetail p {
+  font-size: 0.75em;
+  font-family: 'Open Sans';
+  margin-top: 0.5em;
+  line-height: 2em;
 }
 
 
-/* CARD ! */
-#card1{
-	text-align: center;
-	color: #2c3e50;
-/* 	padding: 15px; */
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-	box-shadow:15px 15px 0px rgba(0,0,0,.1);
-	border-radius:6px;
+.info h1 {
+  font-size: 1em;
+  font-weight: normal;
 }
 
 
+/* 댓글 *********************댓글************댓글***********댓글*****댓글********** */
 
 
-
-
-
-/* CARD 2 */
-#card2{
-	overflow: hidden;
-	color: #2c3e50;
-	border-radius:6px;
+.container-fluidIT {
+	/* width가 지정되지 않아 내용의 크기만큼 영역 */
+	/* 간격 15px씩 */
+	padding-right: 15px;
+	padding-left: 15px;
+	/* 가운데 위치하게 설정 */
+	margin-right: auto;
+	margin-left: auto;
 }
 
 
-/* CARD 3 */
-
-#card3{
-	color: #2c3e50;
-	border-radius:6px;
+.container-boardIT {
+	width: 1000px;
+	/* 간격 15px씩 */
+	padding-right: 15px;
+	padding-left: 15px;
+	/* 가운데 위치하게 설정 */
+	margin-right: auto;
+	margin-left: 25%;
 }
+.form-control {width:100%; height: 40px}
 
+.form-control-input-wp1 {width:100%; height: 40px;}
 
-
-
-
-
-
-/* 회원정보수정 */
-
-div > #submitBtn {
-	  text-decoration:none;	
+.rowIT {
+	/* magin에 -를 하여 전체칸을 다 쓰게 됨*/
+	margin-right: -15px;
+	margin-left: -15px;
 }
-a > #userInfoUpdate {
-	font-size: 16px;
-	text-decoration:none;
-	color: white;	
-/* 	padding-top: 1px; */
-}
-#submitBox {
-  text-align: center;
-  margin-top: 4%;
-/*   position:; */
-  width:90%;
-  height: 50px;
-  padding:15px;
-  border-radius:6px;
-  border:0;
-  margin-left:20px;
-  background:#df736a;
-  font-size:1.2em;
-  color:#fff;
-  text-shadow:1px 1px 0px rgba(0,0,0,.1);
-  box-shadow:0px 3px 0px #c0c0c0;
-  ext-decoration:none;	
-}
-
-input {
-  width:95%;
-  background:#f5f5f5;
-  border:0;
-  padding:18px;
-  border-radius:6px;
-  margin-bottom:10px;
-  border:1px solid #eee;
-}
-
-input:focus, 
-textarea:focus {
-    outline: none;
-}
-
-button, 
-input[type="submit"], 
-input[type="radio"], 
-input[type="checkbox"] 
-input[type="button"] {
-    cursor: pointer;
-}
-
-
-
-/* table */
-
 
 .col-md-1 { width: 8.3333333% } /* 12개의 엘리먼트들이 부모의 영역중 8.3 정도를 영역으로 차지 */
 .col-md-2 { width: 16.6666667% } /* 6개 */
@@ -231,169 +190,62 @@ td, th { padding: 0; }
 	background-color: #f5f5f5;
 }
 
-/* //  */
-.swatches{
-		float: left;
-		background: #333;
-	}
-	.swatches span{
-		display: block;
-		float: left;
-		width: 10px;
-		height: 10px;
-		cursor: pointer;
-		margin: 5px;
-	}
-	.red{
-		background: #ad3025;
-		opacity: 0.9;
-	}
-	.orange{
-		background: #f27937;
-		opacity: 0.8;
-	}
-	.yellow{
-		background: #f0b500;
-		opacity: 0.8;
-	}
-	.green{
-		background: #22a86d;
-		opacity: 0.8;
-	}
-	.blue{
-		background: #2279a4;
-		opacity: 0.8;
-	}
-	.maxbtn span{
-		display: block;
-		border: 1px solid #333;
-		border-top: 3px solid #333;
-		width: 11px;
-		height: 11px;
-		margin-top: 7px;
-	}
-	.maxbtn:hover span, .maximized .maxbtn span{
-		border-color: #e7e7e7;
-	}
 
-	.xbtn:hover{
-		color: #e7e7e7;
-	}
-	.topbar {
-    border-radius: 3px 3px 0 0;
-    padding: 5px;
-    text-align: right;
-    cursor: default;
-	}
-	span { color: #e7e7e7;}
-	
-	.xbtn, .maxbtn {
-    padding: 2px 4px;
-    text-align: center;
-    border-radius: 2px;
-    color: #333;
-    display: inline-block;
-    zoom: 1.0;
-    vertical-align: top;
-    font-family: 'Days One', sans-serif;
-    font-size: 16px;
-    margin-top: -3px;
+/* 버튼 */
+/* 버튼 디자인 */
+.btn1 {
+	/* 버튼끼리의 위 아래 좌 우 간격 설정 */
+/* 	padding: 6px 12px; */
+	/* 커서 모양 */
+	cursor: pointer;
+	/* 부모 색상과 일치하게 해서 투명해 보이게 */
+	border: 1px solid transparent;
+	/* 둥근 테두리 */
+	border-radius: 4px;
+	background-color: #383838;
+	width:50px;
+	height: 40px; 
+	margin-left: -25px;
 }
 
 
-/* //캘린더 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
-
-
-#calendar{
-	margin-top:30px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 320px;
-  font-family: 'Lato', sans-serif;
-}
-#calendar_weekdays div{
-  display:inline-block;
-  vertical-align:top;
-}
-#calendar_content, #calendar_weekdays, #calendar_header{
-  position: relative;
-  width: 320px;
-  overflow: hidden;
-  float: left;
-  z-index: 10;
-}
-#calendar_weekdays div, #calendar_content div{
-  width:40px;
-  height: 40px;
-  overflow: hidden;
-  text-align: center;
-  background-color: #FFFFFF;
-  color: #787878;
-}
-#calendar_content{
-  -webkit-border-radius: 0px 0px 12px 12px;
-  -moz-border-radius: 0px 0px 12px 12px; 
-  border-radius: 0px 0px 12px 12px;
-}
-#calendar_content div{
-  float: left;
-}
-#calendar_content div:hover{
-  background-color: #F8F8F8;
-}
-#calendar_content div.blank{
-  background-color: #E8E8E8;
-}
-#calendar_header, #calendar_content div.today{
-  zoom: 1;
-  filter: alpha(opacity=70);
-  opacity: 0.7;
-}
-#calendar_content div.today{
-  color: #FFFFFF;
-}
-#calendar_header{
-  width: 100%;
-  height: 50px;
-  text-align: center;
-  background-color: #FF6860;
-  padding: 0;
-  -webkit-border-radius: 12px 12px 0px 0px;
-  -moz-border-radius: 12px 12px 0px 0px; 
-  border-radius: 12px 12px 0px 0px;
-}
-#calendar_header h4{
-  font-size: 10px;
-  color: #FFFFFF;
-  float:left;
-  width:30%;
-}
-i[class^=icon-chevron]{
-  color: #FFFFFF;
-  float: left;
-  width:15%;
-  border-radius: 50%;
+.btn-primary1 {
+	color: #fff;
+	background-color: #383838;
 }
 
-/* /////// title */
-
-div >  #profileName {
-  text-align: center;
-  font-family: 'Oswald', Helvetica, sans-serif;
-  font-size: 40px;
-  transform: skewY(-0deg);
-  letter-spacing: 4px;
-  word-spacing: -8px;
-  color: #ffffff;
-  text-shadow: 
-    -1px -1px 0 #65b1b1,
-    -1px -1px 0 #65b1b1,
-    -1px -1px 0 #65b1b1,
-    -1px -1px 0 #65b1b1,
-    -1px -1px 0 #65b1b1,
-    -1px -1px 0 #65b1b1,
-    -1px -1px 0 #65b1b1,
-    -1px -1px 0 #65b1b1,
-    -30px 20px 40px dimgrey
+/* 버튼을 마우스 클릭시 */
+.btn1:active {
+	/* 그림자를 안쪽으로 */
+	box-shadow: 0 3px 5px rgba(0, 0, 0, .125) inset;
 }
+/* 포커스 및 마우스오버시 */
+.btn1:focus, .btn1:hover {
+	color: #0080ff;
+	text-decoration: none; 
+}
+
+
+/* .btnITList { */
+/* 	width: 100%; */
+/* 	height: 40px; */
+/* } */
+.btnITList > .ITList {
+	cursor: pointer;
+	/* 부모 색상과 일치하게 해서 투명해 보이게 */
+	border: 1px solid transparent;
+	/* 둥근 테두리 */
+	border-radius: 4px;
+	background-color: #383838;
+	width: 50px;
+	height: 40px; 
+	margin-left:70%;
+	color: white;
+	text-decoration: none;
+/* 	font-size: 30px; */
+} 
+
+
+
+
 
