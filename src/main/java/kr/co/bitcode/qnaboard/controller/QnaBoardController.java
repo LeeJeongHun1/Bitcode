@@ -11,6 +11,12 @@ public class QnaBoardController {
 	//@Autowired
 	//private TestService testService;
 	
+	@RequestMapping("/listBoard.do")
+	public ModelAndView listBoard() {
+		ModelAndView mav = new ModelAndView("/qnaboard/listBoard");
+		return mav;
+	}
+	
 	@RequestMapping("/viewDetail.do")
 	public ModelAndView viewDeatil() {
 		ModelAndView mav = new ModelAndView("/qnaboard/viewDetail");
