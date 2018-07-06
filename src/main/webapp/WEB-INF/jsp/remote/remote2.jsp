@@ -9,7 +9,7 @@
 <title>Remote</title>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/remote/remote.css">
-<script src="http://192.168.0.104:10001/socket.io/socket.io.js"></script>
+<script src="http://localhost:10001/socket.io/socket.io.js"></script>
 <style>
 video{
 	box-sizing: border-box;
@@ -24,7 +24,7 @@ video{
       <div class="media" style="position: relative;">
         <%-- 화면창 --%>
         <div class="screen media-left">
-        <video></video>
+        <video class="remoteScreen"></video>
         </div>
         
 		<%-- 대화창 --%>
@@ -38,7 +38,7 @@ video{
 		 -->
 	
 		<div class="chat media-right">
-		<iframe src="http://192.168.0.104:10001">
+		<iframe src="http://localhost:10001">
 		</iframe>
 		</div>
 		
@@ -54,7 +54,7 @@ video{
 		alert(1);
 		var msg = $("#msg");
 		$.ajax({
-			url: "http://192.168.0.104:10001",
+			url: "http://localhost:10001",
 			data: msg,
 			success: function (result){
 				console.log(result);

@@ -45,6 +45,12 @@
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     */
+   vertical-align: middle;
+}
+.remoteScreen{
+	width:100%; 
+   max-width:600px; 
+   line-heighth: 600px;
 }
 iframe {
 	height: 600px;
