@@ -10,6 +10,11 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/remote/remote.css">
 <script src="http://192.168.0.104:10001/socket.io/socket.io.js"></script>
+<style>
+video{
+	box-sizing: border-box;
+}
+</style>
 </head>
 <body>
 
@@ -19,7 +24,7 @@
       <div class="media" style="position: relative;">
         <%-- 화면창 --%>
         <div class="screen media-left">
-        
+        <video></video>
         </div>
         
 		<%-- 대화창 --%>
@@ -40,6 +45,9 @@
       </div>
     </div>
   </div>
+  
+  <script src="https://cdn.rawgit.com/muaz-khan/getScreenId/master/getScreenId.js"></script>
+  
 	<script>
 	
 	$("#msgBtn").click(function() {
@@ -53,6 +61,39 @@
 				$("#chat").html(result);
 			}
 		});
+	});
+	
+	const gotStream = screenStream => {
+	    const videoElement = document.getElementById('video');
+	    videoElement.src = URL.createObjectURL(screenStream);
+	    videoElement.play();
+	};
+
+	const onFail = err => {
+	    console.log(err);
+	};
+
+	window.addEventListener('message', event => {
+	    const streamId = event.data.streamId;
+
+	    if (streamId) {
+	        navigator.mediaDevices.getUserMedia({
+	            audio: false, // or true
+	            video: {
+	                mandatory: {
+	                    chromeMediaSourceId: streamId,
+	                    chromeMediaSource: 'desktop',
+	                    maxWidth: window.screen.width,
+	                    maxHeight: window.screen.height
+	                    //...
+	              }
+	            }
+	        })
+	        .then(gotStream)
+	        .catch(onFail);
+	    } else {
+	      //... stream Id 가져오기 실패
+	    }
 	});
 	
 	</script>

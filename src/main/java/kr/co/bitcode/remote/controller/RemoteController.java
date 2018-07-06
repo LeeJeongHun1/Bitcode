@@ -26,5 +26,13 @@ public class RemoteController {
 	@RequestMapping("/remote.do")
 	public void remote() {
 	}
+	
+	@RequestMapping("/remote2.do")
+	public void remote2() {
+	}
+	
+	@RequestMapping("/remote3.do")
+	public void remote3() {
+	}
 
 }
