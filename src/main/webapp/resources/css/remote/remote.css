@@ -48,6 +48,11 @@
 }
 iframe {
 	height: 600px;
+	width: 330px;
+	border-radius: 5px;
+}
+.media-right {
+	padding-left: 0px;	
 }
 #chat{
   width: 330px;
