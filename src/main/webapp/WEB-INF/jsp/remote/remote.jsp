@@ -9,11 +9,9 @@
 <title>Remote</title>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/remote/remote.css">
+<script src="http://192.168.0.104:10001/socket.io/socket.io.js"></script>
 </head>
 <body>
-<body>
-
-
 
 <div class="embedded-container">
     <div class="embedded-player-az">
@@ -23,21 +21,39 @@
         <div class="screen media-left">
         
         </div>
+        
 		<%-- 대화창 --%>
+		<!-- 
 		<div class="chat media-right">
 			<div class="bottom-bar">
 				<input type="text" name="msg" id="msg" />
 				<button id="msgBtn">메세지 전송</button>
 			</div>
 		</div>
-		<iframe src="http://192.168.0.165:10001">
-		
+		 -->
+		 
+		<div class="chat media-right">
+		<iframe src="http://192.168.0.104:10001">
 		</iframe>
+		</div>
+		
+		 
       </div>
     </div>
   </div>
 	
-</body>
-
+	<script>
+	$("#msgBtn").click(function() {
+		var msg = $("#msg");
+		$.ajax({
+			url: "http://192.168.0.104:10001",
+			success: function (result){
+				console.log(result);
+				$("#chat").html(result);
+			}
+		});
+	});
+	
+	</script>
 </body>
 </html>
