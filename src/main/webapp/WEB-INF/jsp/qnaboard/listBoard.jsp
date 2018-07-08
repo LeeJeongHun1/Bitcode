@@ -10,14 +10,20 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/board/styles.css">
 <style type="text/css">
- a:link { color: #80FF00; text-decoration: none;}
- a:visited { color: #80FF00; text-decoration: none;}
- a:hover { color: #80FF00; text-decoration: underline;}
+.table-responsive{clear: both;
+    border-top: 1px solid #b3b3b3;
+    border-bottom: 1px solid #e6e6e6;
+    text-align: center;}
+/*  a:link { color: #80FF00; text-decoration: none;} */
+/*  a:visited { color: #80FF00; text-decoration: none;}*/ 
+/*  a:hover { color: #80FF00; text-decoration: underline;} */
  .container {color:#727272; background-color:#fff;}
- table {color:#727272;}
+ .table {color:#727272; margin-bottom:0}
  table thead tr { background:#f3f3f3;    }
+ .table>thead>tr>th {border-bottom: 1px solid #ddd;}
  table thead tr th {height: 40px;
-    padding: 10px 8px;}
+    padding: 10px 8px; }
+.table tr:hover td{background-color:#fcf9ce}
  
 </style>
 </head>
@@ -35,7 +41,7 @@
     <div>
         <div class="container" style="height:430px;">
             <div class="col-md-12" style="height:380px;">
-            	<div class="table-responsive">
+            	<div class="table-responsive" >
                     <table class="table">
                         <thead>
                             <tr>
@@ -145,8 +151,7 @@
             </div>
         </div>
         <div class="container" style="height:64px;"><select style="margin-left:395px;width:121px;margin-top:12px;"><optgroup label="This is a group"><option value="12" selected="">This is item 1</option><option value="13">This is item 2</option><option value="14">This is item 3</option></optgroup></select>
-            <input
-                type="search" style="margin-left:3px;"><button class="btn btn-primary" type="button" onclick="location.href='insertForm.do'" style="margin-left:277px;">글쓰기</button></div>
+            <input type="search" style="margin-left:3px;"><button class="btn btn-primary" type="button" onclick="location.href='editQna.do'" style="margin-left:277px;">글쓰기</button></div>
         <div class="container" style="    margin-top: -14px;
     height: 89px;"><span style="font-size:20px;margin-left:485px;">&lt; &nbsp;1 2 3 4 5 &nbsp;&gt;</span></div>
     </div>

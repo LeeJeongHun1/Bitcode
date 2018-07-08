@@ -47,10 +47,33 @@
        </tr>
       </tbody>
   </table>
-  <button type="button" class="btn btn-default btn-group-xs" onclick="location.href='${pageContext.request.contextPath}/remote/remoteForm.do'">상담신청</button>
+<%--   <button type="button" class="order btn btn-default btn-group-xs" onclick="location.href='${pageContext.request.contextPath}/remote/remoteForm.do'">상담신청</button>
+ --%>  
+  <button type="button" class="order btn btn-default btn-group-xs">상담신청</button>
 </div>
-	
-  </body>
+<script>
+$(".order").click(function(){
+	  swal({
+	    title: '결제하시겠습니까',
+	    text: "상담을 위해서는 결제가 필요한 서비스입니다",
+	    type: 'warning',
+	    showCancelButton: true,
+	    confirmButtonColor: '#3085d6',
+	    cancelButtonColor: '#d33',
+	    cancelButtonText: '아니오',
+	    confirmButtonText: '네,결제를 진행하겠습니다.'
+	  }).then((result) => {
+	    if (result.value) {
+	    	location.href='remoteForm.do'
+	   /*    swal(
+	        '결제페이지로 이동합니다.',
+	        location.href='remoteForm.do',
+	        'success'
+	      ) */
+	    }
+	  })
+	})
 
+</script>
 </body>
 </html>

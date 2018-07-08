@@ -11,7 +11,6 @@
 <script src="${pageContext.request.contextPath}/resources/js/notify/index.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/notify/notify.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/waitme/waitMe.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/sweetalertFile/sweetalert2.all.min.js"></script>
 
 <%-- 하단메뉴 --%>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main/footer.css">

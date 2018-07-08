@@ -20,7 +20,7 @@
 	        <%-- 원격상담 --%>
             <a href="${pageContext.request.contextPath}/remote/remoteList.do" id="remote"></a>
 	        <%-- Q&A 게시판 --%>
-            <a href="${pageContext.request.contextPath}/qnaboard/viewDetail.do" id="question"></a>
+            <a href="${pageContext.request.contextPath}/qnaboard/listBoard.do" id="question"></a>
 	        <%-- IT News --%>	
             <a href="${pageContext.request.contextPath}/itnews/itnews.do" id="news"></a>
 	        <%-- 학원찾기 --%>
@@ -41,7 +41,7 @@
 	            </span>
 	        </div>
 	        <%-- 알람 --%>
-	             <a href="#notifications" id="notifications"><button style="position: absolute;top: 7px; right: 11px;"type="button" class="button-default show-notifications active js-show-notifications">
+	             <a href="#notifications" id="notifications"><button style="position: absolute;top: 7px; right:0;"type="button" class="button-default show-notifications active js-show-notifications">
              	<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="32" viewBox="0 0 30 32">
             		<defs>
       					<g id="icon-bell">
@@ -68,38 +68,5 @@
     </div>
 </div>
 
-<script>
-const swalWithBootstrapButtons = swal.mixin({
-	  confirmButtonClass: 'btn btn-success',
-	  cancelButtonClass: 'btn btn-danger',
-	  buttonsStyling: false,
-	})
-
-	swalWithBootstrapButtons({
-	  title: 'Are you sure?',
-	  text: "You won't be able to revert this!",
-	  type: 'warning',
-	  showCancelButton: true,
-	  confirmButtonText: 'Yes, delete it!',
-	  cancelButtonText: 'No, cancel!',
-	  reverseButtons: true
-	}).then((result) => {
-	  if (result.value) {
-	    swalWithBootstrapButtons(
-	      'Deleted!',
-	      'Your file has been deleted.',
-	      'success'
-	    )
-	  } else if (
-	    // Read more about handling dismissals
-	    result.dismiss === swal.DismissReason.cancel
-	  ) {
-	    swalWithBootstrapButtons(
-	      'Cancelled',
-	      'Your imaginary file is safe :)',
-	      'error'
-	    )
-	  }
-	})
-
-</script>
+<script src="${pageContext.request.contextPath}/resources/sweetalertFile/sweetalert2.all.min.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/sweetalertFile/sweetalert2.all.min.css">
