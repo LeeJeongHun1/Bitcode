@@ -77,7 +77,9 @@
 			<div class="maxbtn"><span></span></div>
 			<div class="xbtn">x</div>
 		</div>
-		<div></div>
+		<div>
+			<p class="userInfoPoint">초보<span class="userInfobattery"><img class="userInfobattery1" src="${pageContext.request.contextPath}/resources/images/1battery.png"></span> (500 P)</p>
+		</div>
 		<div></div>
 		<div></div>
 <!-- 		캘린더 -->
