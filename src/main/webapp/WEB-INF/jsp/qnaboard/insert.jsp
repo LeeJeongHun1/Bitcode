@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,7 +35,7 @@
 			</tbody>			
 			</table>
 			<div class="contents_btn">
-			<button>목록</button>
+			<a href='<c:url value="/qnaboard/listBoard.do" />'><button>목록</button></a>
 			<button>답변</button>
 			<button>수정</button>
 			<button>삭제</button>

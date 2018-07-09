@@ -39,7 +39,7 @@ function refreshNotifications(items, today) {
     
   var template = 
       '<div class="notifications js-notifications">' +
-        '<h3>Notifications</h3>' +
+        '<h3>알림</h3>' +
         '<ul class="notifications-list">' +
           '<li class="item no-data">You don\'t have notifications</li>' +
           '{{#items}}' +
@@ -94,8 +94,8 @@ function refreshNotifications(items, today) {
 function generateItems(today) {
   today = today || newDate();
   return [
-    { id: 1, title: 'Meeting with Ben\'s agent.', date: randomDate() },
-    { id: 2, title: 'Papers review with Tonny.', date: randomDate(addMinutes(today, -60), addMinutes(today, 60)) },
+    { id: 1, title: 'qna게시판에 답글이 등록되었습니다.', date: randomDate() },
+    { id: 2, title: '포인트가 적립되었습니다.', date: randomDate(addMinutes(today, -60), addMinutes(today, 60)) },
     { id: 3, title: 'Annual party at Eric\'s house.', date: randomDate() },
     { id: 4, title: 'Last day to pay off auto credit.', date: randomDate() },
     { id: 5, title: 'Call and schedule another meeting with Amanda.', date: randomDate(addMinutes(today, -360), addMinutes(today, 360)) },
