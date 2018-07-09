@@ -131,11 +131,18 @@ h1 {
 	font-size: 15px;
 	color: #717171;
 	text-decoration: none;
-	margin-left: 25%;
+	margin-left: 30%;
 	font-weight: bold;
-/* 	margin-bottom: 20px; */
+/* 	margin-right: 10%; */
+
 }
 
+/* #signup { */
+/* 	background-image: url("/bitcode/resources/images/signupIcon2.png"); */
+/* 	background-position: right; */
+/* 	background-repeat: no-repeat; */
+/*   	background-size: 25px 30px; */
+/* } */
 #forgetid {
 	color: #808080;
 	font-size: 13px;
@@ -147,7 +154,7 @@ h1 {
 #forgetpass {
 	color: #808080;
 	font-size: 13px;
-	margin-left: 25%;
+	margin-left: 30%;
 	text-decoration: none;
 	cursor: pointer;
 }
