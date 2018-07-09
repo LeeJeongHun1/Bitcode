@@ -193,6 +193,8 @@ create table tb_document (
     `ori_name`     varchar(100)    not null    comment '원본이름', 
     `system_name`  varchar(100)    not null    comment '시스템이름', 
     `file_size`    int(10)         not null    comment '파일크기'
+    `file_size`    int(10)         not null    comment '파일크기'
+    `share_yn`     VARCHAR(2)      NOT NULL    COMMENT '공유여부', 
 ) default charset=utf8;
 
 alter table tb_document comment '내문서(클라우드)';
