@@ -47,7 +47,8 @@
        </tr>
       </tbody>
   </table>
-<%--   <button type="button" class="order btn btn-default btn-group-xs" onclick="location.href='${pageContext.request.contextPath}/remote/remoteForm.do'">상담신청</button>
+<%--
+  <button type="button" class="order btn btn-default btn-group-xs" onclick="location.href='${pageContext.request.contextPath}/remote/insertForm.do'">상담신청</button>
  --%>  
   <button type="button" class="order btn btn-default btn-group-xs">상담신청</button>
 </div>
@@ -64,7 +65,7 @@ $(".order").click(function(){
 	    confirmButtonText: '네,결제를 진행하겠습니다.'
 	  }).then((result) => {
 	    if (result.value) {
-	    	location.href='remoteForm.do'
+	    	location.href='insertForm.do'
 	   /*    swal(
 	        '결제페이지로 이동합니다.',
 	        location.href='remoteForm.do',

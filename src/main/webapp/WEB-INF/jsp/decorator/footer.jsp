@@ -14,15 +14,15 @@
 	        <%-- 메인링크 --%>
             <a href="/bitcode/main/main.do" id="start-menu"><i class="fab fa-windows"></i></a>
 	        <%-- 코드공유게시판 --%>
-            <a href="${pageContext.request.contextPath}/codeboard/board.do" id="coding"></a>
+            <a href="${pageContext.request.contextPath}/codeboard/list.do" id="coding"></a>
 	        <%-- 단체대화방 --%>
             <a href="${pageContext.request.contextPath}/chat/chat.do" id="chat"></a>
 	        <%-- 원격상담 --%>
-            <a href="${pageContext.request.contextPath}/remote/remoteList.do" id="remote"></a>
+            <a href="${pageContext.request.contextPath}/remote/list.do" id="remote"></a>
 	        <%-- Q&A 게시판 --%>
-            <a href="${pageContext.request.contextPath}/qnaboard/listBoard.do" id="question"></a>
+            <a href="${pageContext.request.contextPath}/qnaboard/list.do" id="question"></a>
 	        <%-- IT News --%>	
-            <a href="${pageContext.request.contextPath}/itnews/itnews.do" id="news"></a>
+            <a href="${pageContext.request.contextPath}/itnews/list.do" id="news"></a>
 	        <%-- 학원찾기 --%>
             <a href="${pageContext.request.contextPath}/searchcenter/searchCenter.do" id="search"></a>
         </div>
