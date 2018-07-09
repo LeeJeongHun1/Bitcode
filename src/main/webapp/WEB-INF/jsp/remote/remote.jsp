@@ -9,7 +9,7 @@
 <title>Remote</title>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/remote/remote.css">
-<script src="http://localhost:10001/socket.io/socket.io.js"></script>
+<script src="http://192.168.0.104:10001/socket.io/socket.io.js"></script>
 </head>
 <body>
 
@@ -33,7 +33,7 @@
 		 -->
 	
 		<div class="chat media-right">
-		<iframe src="http://localhost:10001">
+		<iframe src="http://192.168.0.104:10001">
 		</iframe>
 		</div>
 		
@@ -46,7 +46,7 @@
 		alert(1);
 		var msg = $("#msg");
 		$.ajax({
-			url: "http://localhost:10001",
+			url: "http://192.168.0.104:10001",
 			data: msg,
 			success: function (result){
 				console.log(result);
