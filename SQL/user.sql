@@ -2,7 +2,7 @@ create table tb_user (
     `id`         varchar(30)    primary key    comment '아이디', 
     `name`       varchar(30)    not null       comment '이름', 
     `nick_name`  varchar(30)    not null       comment '닉네임', 
-    `password`   varchar(30)    not null       comment '비밀번호', 
+    `password`   varchar(200)    not null       comment '비밀번호', 
     `email`      varchar(50)    not null       comment '이메일', 
     `point`      int(10)        default 0      comment '포인트', 
     `auth`       char(1)        not null       comment '권한', 
@@ -11,16 +11,26 @@ create table tb_user (
 
 alter table tb_user comment '회원정보';
 -----------------------------------------------------------------------------------------------------
--- insert 유저
+--  유저
+
+select * from tb_user;
 -----------------------------------------------------------------------------------------------------
+INSERT INTO tb_user(id, name, nick_name, password, email, point, auth, birthday)
+	VALUES('id1', 'hong', 'hongGilDong', 'id1', 'hong@naver.com', 10, 'U', 19880101);
+
+INSERT INTO tb_user(id, name, nick_name, password, email, point, auth, birthday)
+	VALUES('id2', '홍길동', '길동이', 'id2', 'hong2@naver.com', 10, 'U', 19880102);
 
 
-
-
-
+   
+ select * from tb_user
+ 	where id = 'id1';
 
 -----------------------------------------------------------------------------------------------------
-
+--delete 유저
+delete from tb_user
+	where id = 'id1';
+	
 -- 전체 테이블 조회
 show tables;
 

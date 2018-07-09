@@ -11,7 +11,7 @@
 	<form id="loginUi" action="${pageContext.request.contextPath}/login/login.do" method="post" id="userForm">
 	  <h1>Hello Bit Code !!</h1>
 	  <input name="id" placeholder="UserId" type="text"/>
-	  <input name="poassword" placeholder="Password" type="password"/>
+	  <input name="password" placeholder="Password" type="password"/>
 	  <button class="btn">Log in</button>
 	  <span id="forgetid">Forget ID?</span>
 	  <span id="forgetpass">Forget Password?</span><br><br>
@@ -24,13 +24,19 @@
 	</form>
 	
 	<script>
+	
+	//로그인 실패시 alert창 뜸.
+	if ("${msg}") { 
+		swal("${msg}");
+	} 
+		
 	$(document).ready(function(e){
 		   $("#siciallogin").on('click',function(){
 		      $('.social').stop().slideToggle();
 		   });
 		})
-	
-	
+
+		
 	//ID 찾기
 	var findId;
 	$("#forgetid").on('click',function () {
