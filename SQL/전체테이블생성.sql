@@ -5,25 +5,30 @@ show tables;
 select * from tb_user;
 
 -- 테이블 삭제
-drop table tb_user purge;
+drop table tb_user;
 
-drop table tb_code_table purge;
+drop table tb_rank_code;
+drop table tb_stsfc_code;
+drop table tb_rank_code;
 
-drop table tb_code_board purge;
-drop table tb_code_comment purge;
-drop table tb_code_file purge;
+drop table tb_code_board;
+drop table tb_code_comment;
+drop table tb_language_code;
 
-drop table tb_qna_board purge;
-drop table tb_qna_comment purge;
-drop table tb_qna_file purge;
+drop table tb_qna_board;
+drop table tb_qna_comment;
+drop table tb_qna_file;
 
-drop table tb_attendance purge;
+drop table tb_attendance;
 
-drop table tb_news purge;
+drop table tb_news;
 
-drop table tb_document purge;
+drop table tb_document;
 --------------------------------------------------------------------
 -- fk 항목에는 on delete cascade on update cascade 옵션 붙이기
+--------------------------------------------------------------------
+-- 컬럼 변경
+alter table [테이블명] change [컬럼명] [변경할컬럼명] int(2);
 --------------------------------------------------------------------
 -- 회원정보 테이블
 --------------------------------------------------------------------
@@ -42,26 +47,36 @@ alter table tb_user comment '회원정보';
 --------------------------------------------------------------------
 -- 코드테이블
 --------------------------------------------------------------------
-create table tb_code_table (
-    `rank_code`      char(2)        not null    comment '등급코드', 
-    `rank_name`      varchar(30)    not null    comment '등급명', 
-    `stsfc_code`     char(2)        not null    comment '만족도코드', 
-    `stsfc_step`     varchar(30)    not null    comment '만족도', 
-    `language_code`  char(2)        not null    comment '언어코드', 
+create table tb_rank_code (
+    `rank_code`  char(2)        primary key    comment '회원등급코드', 
+    `rank_name`  varchar(30)    not null    comment '회원등급명' 
+);
+
+alter table tb_rank_code comment '회원등급 코드표';
+--------------------------------------------------------------------
+create table tb_stsfc_code (
+    `stsfc_code`  char(2)        primary key    comment '만족도코드', 
+    `stsfc_step`  varchar(30)    not null    comment '만족도' 
+);
+
+alter table tb_stsfc_code comment '답변만족도 코드표';
+--------------------------------------------------------------------
+create table tb_language_code (
+    `language_code`  char(2)        primary key    comment '언어코드', 
     `language_name`  varchar(30)    not null    comment '언어명' 
 );
 
-alter table tb_code_table comment '코드테이블';
+alter table tb_language_code comment '언어종류 코드표';
 --------------------------------------------------------------------
 -- 코드공유 게시판 테이블
 --------------------------------------------------------------------
 create table tb_code_board (
     `no`             int(10)          auto_increment primary key                        comment '글번호', 
     `group_no`       int(10)          not null                                          comment '글그룹번호', 
-    `group_order`    int(10)          default 0                                          comment '그룹내에서순서', 
-    `depth`          int(10)          default 0                                          comment '답글의깊이', 
+    `group_order`    int(2)          default 0                                          comment '그룹내에서순서', 
+    `depth`          int(2)          default 0                                          comment '답글의깊이', 
     `id`             varchar(30)      comment '아이디' references  `tb_user` (`id`) on delete cascade on update cascade, 
-    `language_code`  char(2)          comment '언어종류'       references tb_code_board (language_code)  on delete cascade on update cascade, 
+    `language_code`  char(2)          comment '언어코드'       references tb_language_code (language_code)  on delete cascade on update cascade, 
     `title`          varchar(100)     not null                                          comment '제목', 
     `content`        varchar(4000)    not null                                          comment '내용', 
     `reg_date`       datetime         default now()                                     comment '등록일', 
@@ -104,10 +119,10 @@ alter table tb_news comment '코드공유 게시판 첨부파일';
 create table tb_qna_board (
     `no`             int(10)          auto_increment primary key        comment '글번호', 
     `group_no`       int(10)          not null           comment '글그룹번호', 
-    `group_order`    int(10)          default 0          comment '그룹내에서순서', 
-    `depth`          int(10)          default 0          comment '답글의깊이', 
+    `group_order`    int(2)          default 0          comment '그룹내에서순서', 
+    `depth`          int(2)          default 0          comment '답글의깊이', 
     `id`             varchar(30)      comment '아이디'        references tb_user (id)  on delete cascade on update cascade, 
-    `language_code`  char(2)          comment '언어종류'       references tb_code_board (language_code)  on delete cascade on update cascade, 
+    `language_code`  char(2)          comment '언어코드'       references tb_language_code (language_code)  on delete cascade on update cascade, 
     `title`          varchar(100)     not null           comment '제목', 
     `content`        varchar(4000)    not null           comment '내용', 
     `reg_date`       datetime         default now()      comment '등록일', 
@@ -127,8 +142,8 @@ create table tb_qna_comment (
     `comment_no`   int(10)          auto_increment primary key    comment '댓글번호', 
     `reg_date`     datetime         default now()                 comment '댓글등록일', 
     `group_no`     int(10)          not null                      comment '댓글그룹번호', 
-    `group_order`  int(10)          default 0                     comment '그룹내에서순서', 
-    `depth`        int(10)          default 0                     comment '댓글의깊이'
+    `group_order`  int(2)          default 0                     comment '그룹내에서순서', 
+    `depth`        int(2)          default 0                     comment '댓글의깊이'
 ) default charset=utf8;
 
 alter table tb_qna_comment comment 'Q&A게시판 댓글';
