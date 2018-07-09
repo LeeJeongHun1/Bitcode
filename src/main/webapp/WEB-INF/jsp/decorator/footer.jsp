@@ -56,6 +56,7 @@
 			</button></a>
 	        <%-- 마이인포 --%>
 	        <a href="${pageContext.request.contextPath}/user/userInfo.do" id="user"></a>
+	        <a href="${pageContext.request.contextPath}/login/login.do" id="login"></a>
 	   
 	        <a href="#" class="clear disabled"></a>
 	        <a href="#" id="return"></a>

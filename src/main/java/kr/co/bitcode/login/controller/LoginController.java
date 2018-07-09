@@ -23,7 +23,7 @@ public class LoginController {
 	//로그인 된 후 메인화면 이동
 	@RequestMapping("/login.do")
 	public String login() {
-		return "redirect:/main/main.do";
+		return "login/loginForm";
 	}
 	// 회원가입후 로그인화면 이동
 	@RequestMapping("/signup.do")
