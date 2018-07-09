@@ -6,7 +6,22 @@ select * from tb_user;
 
 -- 테이블 삭제
 drop table tb_user purge;
+
+drop table tb_code_table purge;
+
 drop table tb_code_board purge;
+drop table tb_code_comment purge;
+drop table tb_code_file purge;
+
+drop table tb_qna_board purge;
+drop table tb_qna_comment purge;
+drop table tb_qna_file purge;
+
+drop table tb_attendance purge;
+
+drop table tb_news purge;
+
+drop table tb_document purge;
 --------------------------------------------------------------------
 -- fk 항목에는 on delete cascade on update cascade 옵션 붙이기
 --------------------------------------------------------------------
