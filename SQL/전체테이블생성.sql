@@ -36,7 +36,7 @@ create table tb_user (
     `id`         varchar(30)    primary key    comment '아이디', 
     `name`       varchar(30)    not null       comment '이름', 
     `nick_name`  varchar(30)    not null       comment '닉네임', 
-    `password`   varchar(30)    not null       comment '비밀번호', 
+    `password`   varchar(200)   not null       comment '비밀번호', 
     `email`      varchar(50)    not null       comment '이메일', 
     `point`      int(10)        default 0      comment '포인트', 
     `auth`       char(1)        default 'U'    comment '권한', 
