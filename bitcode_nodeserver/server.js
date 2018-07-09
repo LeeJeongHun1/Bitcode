@@ -9,10 +9,15 @@ app.get('/', function(req, res) {
 
 io.on("connection", function (socket) {
   console.log(socket.id);
+
+  socket.on("join", function (data){
+    socket.join("room" + data.roomid);
+  })
+
   socket.on("msg", function (data) {
     // 개별통신 : 데이터를 보낸 사용자에게만 보내기
     // socket.emit("msg", data);
-    
+    io.sockets.in("room" + data.roomid).emit("msg")
     // server.socket으로 접속한 사용자 모두에게 데이터 전송
 	  io.emit("msg", data);
     

@@ -35,6 +35,7 @@
 			<button id="msgBtn">메세지 전송</button>
 		</div>
 	</div>
+	
 	<script>
 		$("#msgBtn").click(function () {
 			$.notify("Hello World");

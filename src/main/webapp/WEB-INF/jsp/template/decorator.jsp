@@ -15,9 +15,6 @@
 <%-- 하단메뉴 --%>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main/footer.css">
 
-
-
-
 <%-- favicon --%>
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/favicon.ico" type="image/x-icon" />
 <link rel="icon" href="${pageContext.request.contextPath}/resources/images/favicon.ico" type="image/x-icon" />

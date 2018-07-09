@@ -25,6 +25,8 @@
             <a href="${pageContext.request.contextPath}/itnews/itnews.do" id="news"></a>
 	        <%-- 학원찾기 --%>
             <a href="${pageContext.request.contextPath}/searchcenter/searchCenter.do" id="search"></a>
+            <%-- 디렉토리 --%>
+            <a href="#chrome-pop-up" id="chrome" class="border"></a>
         </div>
         
         <%-- 마이인포 --%>
@@ -70,4 +72,4 @@
 </div>
 
 <script src="${pageContext.request.contextPath}/resources/sweetalertFile/sweetalert2.all.min.js"></script>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/sweetalertFile/sweetalert2.all.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/sweetalertFile/sweetalert2.min.css">
