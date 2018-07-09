@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 
@@ -43,6 +44,17 @@
                             </tr>
                         </thead>
                         <tbody>
+                        <c:forEach var="cb" items="${list}">
+                            <tr style="height:13px; type:text/css;">
+                                <td style="font-size:14px;">${cb.no}</td>
+                                <td style="font-size:14px;">${cb.languageCode}</td>
+                                <td style="font-size:14px;"><a href="detail.do">${cb.title}</a></td>
+                                <td style="font-size:14px;">${cb.id}</td>
+                                <td style="font-size:14px;">${cb.regDate}</td>
+                                <td style="font-size:14px;">${cb.likeCnt}</td>
+                                <td style="font-size:14px;">${cb.viewCnt}</td>
+                            </tr>
+                        </c:forEach>
                             <tr style="height:13px; type:text/css;">
                                 <td style="font-size:14px;">10</td>
                                 <td style="font-size:14px;">JAVA</td>
