@@ -16,11 +16,11 @@ public class CodeBoardController {
 	}
 	@RequestMapping(value="/board.do", method=RequestMethod.GET)
 	public String listboard() {
-		return "codeboard/listBoard";
+		return "codeboard/list";
 	}
 	@RequestMapping(value="/detail.do", method=RequestMethod.GET)
 	public String detailBoard() {
-		return "codeboard/detailBoard";
+		return "codeboard/detail";
 	}
 	@RequestMapping(value="/insertForm.do", method=RequestMethod.GET)
 	public String insertBoardForm() {
