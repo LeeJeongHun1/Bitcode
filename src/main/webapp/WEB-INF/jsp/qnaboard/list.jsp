@@ -58,7 +58,7 @@
                             <tr style="height:13px; type:text/css;">
                                 <td style="font-size:14px;">10</td>
                                 <td style="font-size:14px;">JAVA</td>
-                                <td style="font-size:14px;"><a href="viewDetail.do">안녕하세요</a></td>
+                                <td style="font-size:14px;"><a href="detail.do">안녕하세요</a></td>
                                 <td style="font-size:14px;">임</td>
                                 <td style="font-size:14px;">2018.07.04</td>
                                 <td style="font-size:14px;">1</td>
@@ -151,7 +151,7 @@
             </div>
         </div>
         <div class="container" style="height:64px;"><select style="margin-left:395px;width:121px;margin-top:12px;"><optgroup label="This is a group"><option value="12" selected="">This is item 1</option><option value="13">This is item 2</option><option value="14">This is item 3</option></optgroup></select>
-            <input type="search" style="margin-left:3px;"><button class="btn btn-primary" type="button" onclick="location.href='editQna.do'" style="margin-left:277px;">글쓰기</button></div>
+            <input type="search" style="margin-left:3px;"><button class="btn btn-primary" type="button" onclick="location.href='insert.do'" style="margin-left:277px;">글쓰기</button></div>
         <div class="container" style="    margin-top: -14px;
     height: 89px;"><span style="font-size:20px;margin-left:485px;">&lt; &nbsp;1 2 3 4 5 &nbsp;&gt;</span></div>
     </div>

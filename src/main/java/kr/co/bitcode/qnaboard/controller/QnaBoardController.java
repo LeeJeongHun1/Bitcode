@@ -11,21 +11,21 @@ public class QnaBoardController {
 	//@Autowired
 	//private TestService testService;
 	
-	@RequestMapping("/listBoard.do")
+	@RequestMapping("/list.do")
 	public ModelAndView listBoard() {
-		ModelAndView mav = new ModelAndView("/qnaboard/listBoard");
+		ModelAndView mav = new ModelAndView("/qnaboard/list");
 		return mav;
 	}
 	
-	@RequestMapping("/viewDetail.do")
+	@RequestMapping("/detail.do")
 	public ModelAndView viewDeatil() {
-		ModelAndView mav = new ModelAndView("/qnaboard/viewDetail");
+		ModelAndView mav = new ModelAndView("/qnaboard/detail");
 		return mav;
 	}
 	
-	@RequestMapping("/editQna.do")
+	@RequestMapping("/insert.do")
 	public ModelAndView editQna() {
-		ModelAndView mav = new ModelAndView("/qnaboard/editQna");
+		ModelAndView mav = new ModelAndView("/qnaboard/insertForm");
 		return mav;
 	}
 

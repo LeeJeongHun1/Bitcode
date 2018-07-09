@@ -87,7 +87,7 @@ a {color:#333333}
 				</ul>
 			</div>
 			<div class="contents_btn">
-    		<a href='<c:url value="/qnaboard/listBoard.do" />'><button>목록</button></a>
+    		<a href='<c:url value="/qnaboard/list.do" />'><button>목록</button></a>
 			<a href='#'><button>답변</button></a>
 			<a href="#"><button>수정</button></a>
 			<a href="#"><button>삭제</button></a>
