@@ -39,7 +39,7 @@ create table tb_user (
     `password`   varchar(30)    not null       comment '비밀번호', 
     `email`      varchar(50)    not null       comment '이메일', 
     `point`      int(10)        default 0      comment '포인트', 
-    `auth`       char(1)        not null       comment '권한', 
+    `auth`       char(1)        default 'U'    comment '권한', 
     `birthday`   varchar(8)     not null       comment '생년월일'
 ) default charset=utf8;
 
@@ -50,21 +50,21 @@ alter table tb_user comment '회원정보';
 create table tb_rank_code (
     `rank_code`  char(2)        primary key    comment '회원등급코드', 
     `rank_name`  varchar(30)    not null    comment '회원등급명' 
-);
+) default charset=utf8;
 
 alter table tb_rank_code comment '회원등급 코드표';
 --------------------------------------------------------------------
 create table tb_stsfc_code (
     `stsfc_code`  char(2)        primary key    comment '만족도코드', 
     `stsfc_step`  varchar(30)    not null    comment '만족도' 
-);
+) default charset=utf8;
 
 alter table tb_stsfc_code comment '답변만족도 코드표';
 --------------------------------------------------------------------
 create table tb_language_code (
     `language_code`  char(2)        primary key    comment '언어코드', 
     `language_name`  varchar(30)    not null    comment '언어명' 
-);
+) default charset=utf8;
 
 alter table tb_language_code comment '언어종류 코드표';
 --------------------------------------------------------------------
