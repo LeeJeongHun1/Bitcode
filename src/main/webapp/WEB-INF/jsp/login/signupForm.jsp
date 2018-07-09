@@ -20,13 +20,13 @@
 	  <p class="innerText"></p>
 	  <input name="password" placeholder="Password" type="password" id="userPass" data-flag="no" class="inputDetail" maxlength="16"/>
 	  <p class="innerText"></p>
-	  <input name="conformpass" placeholder="confirm password" type="password" id="userPassCheck" class="inputDetail" maxlength="16"/>
+	  <input name="conformpass" placeholder="confirm password" type="password" id="userPassCheck" data-flag="no" class="inputDetail" maxlength="16"/>
 	  <p class="innerText"></p>	  
 	  <input name="email" placeholder="Email" type="text" id="userEmail" data-flag="no" class="emailDetail" maxlength="16"/>
 	  <p class="innerText"></p>
 <!-- 	  <button class="btn" id="submitBtn">Sign UP</button> -->
 	  <div id="submitBox">
-	 	 <a href="#1" id="submitBtn"><span id="signupbtn">Sign UP</span></a>
+	 	 <a href="#1" id="submitBtn"><span class="signupbtn">Sign UP</span></a>
 	  </div>
 	</form>
 
@@ -48,11 +48,11 @@ $("#userPassCheck").keyup(function(){
 		return;
 	}
 	if($(this).val() == $("#userPass").val()){
-		$("#userPass").next().text("비밀번호가 일치합니다.");
-		$("#userPass").data("flag","yes");
+		$("#userPassCheck").next().text("비밀번호가 일치합니다.");
+		$("#userPassCheck").data("flag","yes");
 	}else{
-		$("#userPass").next().text("비밀번호가 일치하지 않습니다.");
-		$("#userPass").data("flag","no");
+		$("#userPassCheck").next().text("비밀번호가 일치하지 않습니다.");
+		$("#userPassCheck").data("flag","no");
 	}
 });
 $("#userPass").keyup(function(){

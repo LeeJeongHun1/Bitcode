@@ -102,9 +102,9 @@ h5 > a:hover {
   padding:50px;
   padding-top:20px;
   padding-bottom:60px;
-  width:350px;
+  width:400px;
 /*   Ui form  위치 설정*/
-  margin:200px auto;
+  margin:185px auto;
   box-shadow:15px 15px 0px rgba(0,0,0,.1);
 /*   height: 40% */
 }
@@ -118,17 +118,40 @@ h1 {
   padding-left: 55px;
 }
 
-h1 > #siciallogin {
-  color: #808080;
+#siciallogin {
+  color: #717171;
   font-size: 15px;
-  margin-left: 10%;
+  margin-left: 5%;
+  cursor: pointer;
+  font-weight: bold;
+/*   margin-bottom: 20px; */
 }
+/*   회원가입 태그 */
 #signup > a {
 	font-size: 15px;
-	 color: #808080;
-	 text-decoration: none;
-	 margin-left: 17%;
+	color: #717171;
+	text-decoration: none;
+	margin-left: 25%;
+	font-weight: bold;
+/* 	margin-bottom: 20px; */
 }
+
+#forgetid {
+	color: #808080;
+	font-size: 13px;
+	margin-left: 5%;
+	text-decoration: none;
+	cursor: pointer;
+	
+}
+#forgetpass {
+	color: #808080;
+	font-size: 13px;
+	margin-left: 25%;
+	text-decoration: none;
+	cursor: pointer;
+}
+
 
 input {
   width:100%;
@@ -136,7 +159,7 @@ input {
   border:0;
   padding:20px;
   border-radius:6px;
-  margin-bottom:10px;
+  margin-bottom:20px;
   border:1px solid #eee;
 }
 
