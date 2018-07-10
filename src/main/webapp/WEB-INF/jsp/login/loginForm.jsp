@@ -8,32 +8,34 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/login/login.css" />
 </head>
 <body>
-	<form id="loginUi" action="${pageContext.request.contextPath}/login/login.do" method="post" id="userForm">
-	  <h1>Hello Bit Code !!</h1>
-	  <input name="id" placeholder="UserId" type="text"/>
-	  <input name="password" placeholder="Password" type="password"/>
-	  <button class="btn">Log in</button>
-	  <span id="forgetid">Forget ID?</span>
-	  <span id="forgetpass">Forget Password?</span><br><br>
-	  <span id="siciallogin">social login ?</span>
-	  <span id="signup"><a href="${pageContext.request.contextPath}/login/signupForm.do">회원가입</a></span><br>
-	  <div class="social">
-	  <button class="na btn">Naver</button>
-	  <button class="ka btn">KaKaoTalk</button>
-	  </div>
-	</form>
-	
+	<div id="loginUi">
+		<form action="${pageContext.request.contextPath}/login/login.do" method="post" id="userForm">
+		  <h1>Hello Bit Code !!</h1>
+		  <input name="id" placeholder="UserId" type="text"/>
+		  <input name="password" placeholder="Password" type="password"/>
+		  <button class="btn">Log in</button>
+		  <span id="forgetid">Forget ID?</span>
+		  <span id="forgetpass">Forget Password?</span><br><br>
+		  <span id="siciallogin">social login ?</span>
+		  <span id="signup"><a href="${pageContext.request.contextPath}/login/signupForm.do">회원가입</a></span><br>
+		</form>
+		<div class="social">
+		<button class="na btn">Naver</button>
+		<button class="ka btn">KaKaoTalk</button>
+		</div>
+		</div>	
 	<script>
 	
 	//로그인 실패시 alert창 뜸.
-	if ("${msg}") { 
-		swal("${msg}");
-	} 
+		if ("${msg}") { 
+			alter("${msg}");
+		} 
 		
 	$(document).ready(function(e){
 		   $("#siciallogin").on('click',function(){
 		      $('.social').stop().slideToggle();
 		   });
+		   
 		})
 
 		

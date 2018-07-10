@@ -2,9 +2,7 @@ package kr.co.bitcode.login.controller;
 
 
 
-
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -38,30 +36,22 @@ public class LoginController {
 	//로그인 (ID, Pass 입력 후)
 	@RequestMapping("/login.do")
 	public String login(User user, HttpSession session,  RedirectAttributes attr) throws Exception{
-
 		
 		User userInfo = loginService.selectUserById(user.getId());
-//		System.out.println(user.getPassword());
-//		System.out.println(passCode.encode(userInfo.getPassword()));
-		
-		if( passCode.matches(user.getPassword(), userInfo.getPassword())) {
-			System.out.println(user.getPassword());
+		if(userInfo != null && passCode.matches(user.getPassword(), userInfo.getPassword())) {
 			session.setAttribute("user", userInfo);
 			return "redirect:/main/main.do";
 		}else {
 			attr.addFlashAttribute("msg", "아이디 또는 비밀번호가 맞지 않습니다");
 			return "login/loginForm";
 		}
-		
-//		System.out.println(passCode.encode("12345"));
-//		passCode.matches("12345", passCode.encode("12345"));
-//		System.out.println(passCode.matches("12345", passCode.encode("1234")));
 	}	
 	
 	
-	
-	
-	
+//		System.out.println(user.getPassword());
+//		System.out.println(passCode.encode(userInfo.getPassword()));
+//	System.out.println(user.getPassword());
+//	passCode.matches(user.getPassword(), userInfo.getPassword())
 	
 	//회원가입
 	@RequestMapping("/signupForm.do") 
