@@ -107,7 +107,7 @@
 	                        </div>
 	                        <div class="search-bar">
 	                            <span class="info"><i class="fas fa-lock"></i> Securised</span>
-	                            <input type="text" value="http://codepen.io/Guklam">
+	                            <input type="text" id="url" value="http://codepen.io/Guklam">
 	                            <span class="star"><i class="far fa-star"></i></span>
 	                        </div>
 	                        <div class="points-bar">
@@ -138,8 +138,22 @@
 	            </div>
 	            <!-- 폴더일 경우 div class='frame' -->
 	            <div class="frame">
-	            
-	            </div>
+	            	<div class="col-sm-12">
+		            	<div class="col-sm-2">
+							<i class='fas fa-cloud'> 현재 용량</i>
+		            	</div>
+		            	<div class="col-sm-10">
+<!-- 			            	<table> -->
+<!-- 			            		<tr> -->
+<!-- 				            		<th>파일명 ↑</th> -->
+<!-- 				            		<th></th> -->
+<!-- 				            		<th>최종 수정일</th> -->
+<!-- 				            		<th>파일크기</th> -->
+<!-- 			            		</tr> -->
+<!-- 			            	</table> -->
+		            	</div>
+		            </div>
+	            	</div>
 	            <!-- 크롬 브라우저일 경우 iframe -->
 	       		<iframe src="http://localhost/bitcode/main/main.do" frameborder="0" width="895px" height="404px"></iframe>
 	        </div> 
@@ -160,6 +174,7 @@
 		$("iframe").hide();
 		$(".text-tabs").text('id 님의 전용 폴더')
 		$(".icons-tabs").find("i").removeClass().addClass("fas fa-folder-open");
+		$("#url").val('https://drive.bitcode.com/my-drive');
 		$(".frame").show();
 	})
 </script>
