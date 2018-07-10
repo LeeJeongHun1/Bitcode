@@ -6,6 +6,8 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/login/login.css" />
+<link rel="stylesheet" href="/bitcode/sweetalertFile/sweetalert2.css" />
+<script src="${pageContext.request.contextPath}/resources/sweetalertFile/sweetalert2.all.min.js"></script>
 </head>
 <body>
 	<div id="loginUi">
@@ -19,16 +21,16 @@
 		  <span id="siciallogin">social login ?</span>
 		  <span id="signup"><a href="${pageContext.request.contextPath}/login/signupForm.do">회원가입</a></span><br>
 		</form>
-		<div class="social">
-		<button class="na btn">Naver</button>
-		<button class="ka btn">KaKaoTalk</button>
-		</div>
-		</div>	
+	<div class="social">
+	<button class="na btn">Naver</button>
+	<button class="ka btn">KaKaoTalk</button>
+	</div>
+</div>	
 	<script>
 	
 	//로그인 실패시 alert창 뜸.
 		if ("${msg}") { 
-			alter("${msg}");
+			swal("${msg}");
 		} 
 		
 	$(document).ready(function(e){
@@ -54,8 +56,7 @@
 		  },
 		  '이메일을 입력하세요',
 		]).then(function(result){
-			findId = result;
-			fnFindId(findId);
+			fnFindId(result);
 		
 		})
 	});
@@ -67,12 +68,17 @@
 				"name" : data.value[0],
 				"email": data.value[1]
 			},
-		}).done(function (val) {
-			swal("회원의 아이디는 "+val.id + "입니다");
-			console.log(val);
-		}).fail(function () {
-			swal('이름과 이메일의 정보가 일치 하지 않습니다.!')
-		});
+			success : function(data){
+				console.log(data)
+				console.log(data.id)
+				if(data.id == null){
+					swal("이름과 이메일이 일치 하지 않습니다.");
+				}else{
+					swal("아이디는 " + data.id + "입니다.");
+				}
+			},
+		})
+	
 	}		
 	</script>
 </body>
