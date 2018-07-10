@@ -24,4 +24,5 @@ public interface QnaMapper {
 	// 첨부파일 
 	public void insertQnaFile(QnaFile qnafile);
 	public List<Qna> selectQnaFileByNo(int no);
+	
 }

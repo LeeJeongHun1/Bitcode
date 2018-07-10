@@ -19,36 +19,51 @@
 					<tbody>
 						<tr>
 							<th>제목</th>
-							<td><input class="editTitle" type="text" name="title" /> <select
-								class="editSelect" name="code">
-									<option>분류</option>
-									<option></option>
+							<td><input class="editTitle" type="text" name="title" /> 
+							<select class="editSelect" name="code">
+									<option value="">분류</option>
+									<!-- <option value="21">c</option>
+									<option value="22">JAVA</option>
+									<option value="23">JavaScript</option>
+									<option value="24">Python</option>
+									<option value="25">ASP</option>
+									<option value="26">PHP</option> -->
 							</select></td>
 						</tr>
 						<tr>
 							<th>작성자</th>
-							<td><input type="text" /></td>
+							<td><input type="text" name="writer"/></td>
 						</tr>
 
 						<tr style="height: 90%;">
 							<th>내용</th>
-							<td><textarea style="width: 100%; height: 100%; min-height: 232px;"></textarea></td>
+							<td><textarea name="content" style="width: 100%; height: 100%; min-height: 232px;"></textarea></td>
 						</tr>
 						<tr>
 							<th>파일첨부</th>
-							<td><input type="file"></td>
+							<td><input type="file" name="file"></td>
 						</tr>
 					</tbody>
 				</table>
 			</form>
 			<div class="contents_btn">
-				<a href='<c:url value="/qnaboard/list.do" />'><button>목록</button></a>
-				<button>답변</button>
-				<button>수정</button>
-				<button>삭제</button>
+				<a href='<c:url value="/qnaboard/list.do" />'><button type="button">목록</button></a>
+				<button type="submit">등록</button>
 			</div>
 		</div>
-
 	</div>
+	<script>
+	window.onload = function(){
+		code();
+	}
+	function code(){
+		$.ajax({
+			url:`${pageContext.request.contextPath}/qnaboard/selectLanguage.json`,
+			dataType:"json",
+			success:function(result){
+				console.log(result)
+			}
+		});
+	}
+	</script>
 </body>
-</html>
