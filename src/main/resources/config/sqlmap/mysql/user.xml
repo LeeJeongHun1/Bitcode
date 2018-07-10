@@ -20,7 +20,13 @@
     	  from tb_user
     	 where id = #{id}
     </select>	
-
+	
+	<select id="selectUserByNameEmail" parameterType="user" resultMap="userMap">
+    	select *
+    	  from tb_user
+    	 where name = #{name} and
+    	 	   email = #{email}		
+	</select>
 	
     <select id="selectUserByIdPass" parameterType="string" resultMap="userMap">
     	select *

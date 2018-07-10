@@ -7,6 +7,12 @@ public interface UserMapper {
 	
 	public void insertUser(User user) throws Exception;
 	
+	//ID 찾기
+	public User selectUserByNameEmail(User user) throws Exception;
+	
+	
+	
+	
 	public User selectUserByIdPass (User user) throws Exception;
 	
 	

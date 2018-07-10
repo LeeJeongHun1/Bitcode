@@ -21,10 +21,28 @@ public class LoginServiceImpl implements LoginService{
 		userMapper.insertUser(user);
 	}
 	@Override
+	public User selectUserByNameEmail(User user) throws Exception {
+		return userMapper.selectUserByNameEmail(user);
+	}
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	@Override
 	public User selectUserByIdPass(User user) throws Exception {
 		
 		return userMapper.selectUserByIdPass(user);
 	}
-	
-	
 }
