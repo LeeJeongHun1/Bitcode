@@ -52,8 +52,11 @@ video{
 	
 	// 비디오 수신
 	getScreenId((error, sourceId, screenConstraints) => {
+		// 확장프로그램 미설치시
 	    if (error === 'not-installed') return alert('The extension is not installed');
-	    if (error === 'permission-denied') return alert('Permission is denied.');
+		// 화면 공유 취소시
+	    //if (error === 'permission-denied') return alert('Permission is denied.');
+		// 크롬 아닐경우
 	    if (error === 'not-chrome') return alert('Please use chrome.');
 
 	    navigator.mediaDevices.getUserMedia(screenConstraints)
@@ -63,6 +66,10 @@ video{
 	            video.autoplay = true;
 	            video.controls = true;
 	            video.play();
+	            
+            console.dir(stream);
+            console.log(stream.id);
+            
 	        })
 	        .catch(err => {
 	            console.log(err);
@@ -74,6 +81,7 @@ video{
     port.onMessage.addListener(msg => {
         if (msg.type === 'REQUEST_SCREEN_STREAM_ID') {
             requestScreenStreamId(port, msg);
+            alert(port);
         }
         // ...
     });
@@ -85,7 +93,7 @@ video{
     const tab = port.sender.tab;
     tab.url = msg.url;
 	// chooseDesktopMedia 호출
-    chrome.desktopCapture.chooseDesktopMedia(['screen'], tab, streamId => {
+    chrome.desktopCapture.chooseDesktopMedia(['screen', 'window', 'tab'], tab, streamId => {
         if (streamId) {
             sendMessage.streamId = streamId;
             //...
@@ -95,6 +103,28 @@ video{
     });
     port.postMessage(sendMessage);
 	}
+	
+	window.addEventListener('message', event => {
+	    const streamId = event.data.streamId;
+
+	    if (streamId) {
+	        navigator.mediaDevices.getUserMedia({
+	            audio: true, // or true
+	            video: {
+	                mandatory: {
+	                    chromeMediaSourceId: streamId,
+	                    chromeMediaSource: 'desktop',
+	                    maxWidth: window.screen.width,
+	                    maxHeight: window.screen.height
+	              }
+	            }
+	        })
+	        .then(gotStream)
+	        .catch(onFail);
+	    } else {
+	      //... stream Id 가져오기 실패
+	    }
+	});
 
 	</script>
 </body>

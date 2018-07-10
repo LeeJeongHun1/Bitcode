@@ -3,6 +3,8 @@ show tables;
 
 -- 특정 테이블 조회
 select * from tb_user;
+select * from tb_code_board;
+select * from tb_qna_board;
 
 -- 테이블 삭제
 drop table tb_user;
