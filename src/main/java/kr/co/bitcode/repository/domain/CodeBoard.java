@@ -8,7 +8,7 @@ public class CodeBoard {
 	private int groupOrder;
 	private int depth;
 	private String id;
-	private char languageCode;
+	private String languageCode;
 	private String title;
 	private String content;
 	private Date regDate;
@@ -44,10 +44,10 @@ public class CodeBoard {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public char getLanguageCode() {
+	public String getLanguageCode() {
 		return languageCode;
 	}
-	public void setLanguageCode(char languageCode) {
+	public void setLanguageCode(String languageCode) {
 		this.languageCode = languageCode;
 	}
 	public String getTitle() {

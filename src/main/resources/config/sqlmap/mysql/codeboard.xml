@@ -21,4 +21,42 @@
 			  from tb_code_board
 			 order by no desc
 		</select>
+		
+		<insert id="insertBoard" parameterType="codeBoard">
+		   <selectKey keyProperty="no" resultType="int" order="AFTER">
+    		SELECT LAST_INSERT_ID()
+  		   </selectKey>
+			insert into tb_code_board (
+						  group_no,
+                          id,
+                          language_code,
+                          title,
+                          content
+                            ) values (
+                            #{no},
+                            #{id},
+                            #{languageCode},
+                            #{title},
+                            #{content}
+                            );
+		</insert>
+		
+		<select id="selectBoardByNo" parameterType="int" resultMap="codeBoardMap">
+	    	select *
+	    	  from tb_code_board
+	    	 where no = #{no} 
+	    </select>	
+	    
+	    <update id="updateBoardViewCnt" parameterType="int">
+	    	update tb_code_board
+	    	   set view_cnt = view_cnt + 1
+	    	 where no = #{no}
+	    </update>
+	
+	
+	
+	
+	
+		
+
 </mapper>
