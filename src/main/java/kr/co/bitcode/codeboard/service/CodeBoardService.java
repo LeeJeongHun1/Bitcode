@@ -2,6 +2,7 @@ package kr.co.bitcode.codeboard.service;
 
 import java.util.List;
 
+import kr.co.bitcode.repository.domain.Code;
 import kr.co.bitcode.repository.domain.CodeBoard;
 
 public interface CodeBoardService {
@@ -11,4 +12,5 @@ public interface CodeBoardService {
 	public void updateBoard(CodeBoard cb);
 	public void deleteBoard(CodeBoard cb);
 	public void updateBoardViewCnt(int no);
+	public List<Code> selectLanguage();
 }

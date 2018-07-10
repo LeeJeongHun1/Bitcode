@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 
@@ -48,103 +49,13 @@
                             <tr style="height:13px; type:text/css;">
                                 <td style="font-size:14px;">${cb.no}</td>
                                 <td style="font-size:14px;">${cb.languageCode}</td>
-                                <td style="font-size:14px;"><a href="detail.do">${cb.title}</a></td>
+                                <td style="font-size:14px;"><a href="detail.do?no=${cb.no}">${cb.title}</a></td>
                                 <td style="font-size:14px;">${cb.id}</td>
-                                <td style="font-size:14px;">${cb.regDate}</td>
+                                <td style="font-size:12px;"><fmt:formatDate value="${cb.regDate}" pattern="yyyy-MM-dd" /></td>
                                 <td style="font-size:14px;">${cb.likeCnt}</td>
                                 <td style="font-size:14px;">${cb.viewCnt}</td>
                             </tr>
                         </c:forEach>
-                            <tr style="height:13px; type:text/css;">
-                                <td style="font-size:14px;">10</td>
-                                <td style="font-size:14px;">JAVA</td>
-                                <td style="font-size:14px;"><a href="detail.do">안녕하세요</a></td>
-                                <td style="font-size:14px;">임</td>
-                                <td style="font-size:14px;">2018.07.04</td>
-                                <td style="font-size:14px;">1</td>
-                                <td style="font-size:14px;">22</td>
-                            </tr>
-                            <tr>
-                                <td style="font-size:14px;">9</td>
-                                <td style="font-size:14px;">JAVA<br></td>
-                                <td style="font-size:14px;">안녕하세요<br></td>
-                                <td style="font-size:14px;">임</td>
-                                <td style="font-size:14px;">2018.07.04<br></td>
-                                <td style="font-size:14px;">0</td>
-                                <td style="font-size:14px;">1</td>
-                            </tr>
-                            <tr>
-                                <td style="font-size:14px;">8</td>
-                                <td style="font-size:14px;">C</td>
-                                <td style="font-size:14px;">안녕하세요<br></td>
-                                <td style="font-size:14px;">임</td>
-                                <td style="font-size:14px;">2018.07.04<br></td>
-                                <td style="font-size:14px;">0</td>
-                                <td style="font-size:14px;">0</td>
-                            </tr>
-                            <tr>
-                                <td style="font-size:14px;">7</td>
-                                <td style="font-size:14px;">JAVA<br></td>
-                                <td style="font-size:14px;">안녕하세요</td>
-                                <td style="font-size:14px;">임</td>
-                                <td style="font-size:14px;">2018.07.04<br></td>
-                                <td style="font-size:14px;">0</td>
-                                <td style="font-size:14px;">0</td>
-                            </tr>
-                            <tr>
-                                <td style="font-size:14px;">6</td>
-                                <td style="font-size:14px;">C++</td>
-                                <td style="font-size:14px;">안녕</td>
-                                <td style="font-size:14px;">임</td>
-                                <td style="font-size:14px;">2018.07.04<br></td>
-                                <td style="font-size:14px;">0</td>
-                                <td style="font-size:14px;">0</td>
-                            </tr>
-                            <tr>
-                                <td style="font-size:14px;">5</td>
-                                <td style="font-size:14px;">C</td>
-                                <td style="font-size:14px;">안녕</td>
-                                <td style="font-size:14px;">임</td>
-                                <td style="font-size:14px;">2018.07.04<br></td>
-                                <td style="font-size:14px;">0</td>
-                                <td style="font-size:14px;">3</td>
-                            </tr>
-                            <tr>
-                                <td style="font-size:14px;">4</td>
-                                <td style="font-size:14px;">C</td>
-                                <td style="font-size:14px;">안녕</td>
-                                <td style="font-size:14px;">임</td>
-                                <td style="font-size:14px;">2018.07.04<br></td>
-                                <td style="font-size:14px;">0</td>
-                                <td style="font-size:14px;">0</td>
-                            </tr>
-                            <tr>
-                                <td style="font-size:14px;">3</td>
-                                <td style="font-size:14px;">C</td>
-                                <td style="font-size:14px;">안녕</td>
-                                <td style="font-size:14px;">임</td>
-                                <td style="font-size:14px;">2018.07.04<br></td>
-                                <td style="font-size:14px;">0</td>
-                                <td style="font-size:14px;">2</td>
-                            </tr>
-                            <tr>
-                                <td style="font-size:14px;">2</td>
-                                <td style="font-size:14px;">C</td>
-                                <td style="font-size:14px;">안냥</td>
-                                <td style="font-size:14px;">임</td>
-                                <td style="font-size:14px;">2018.07.04<br></td>
-                                <td style="font-size:14px;">22</td>
-                                <td style="font-size:14px;">0</td>
-                            </tr>
-                            <tr>
-                                <td style="font-size:14px;">1</td>
-                                <td style="font-size:14px;">C#</td>
-                                <td style="font-size:14px;">안녕</td>
-                                <td style="font-size:14px;">임</td>
-                                <td style="font-size:14px;">2018.07.04<br></td>
-                                <td style="font-size:14px;">0</td>
-                                <td style="font-size:14px;">3</td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>
