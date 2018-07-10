@@ -9,11 +9,11 @@ drop table tb_user;
 
 drop table tb_rank_code;
 drop table tb_stsfc_code;
-drop table tb_rank_code;
+drop table tb_language_code;
 
 drop table tb_code_board;
 drop table tb_code_comment;
-drop table tb_language_code;
+drop table tb_code_file;
 
 drop table tb_qna_board;
 drop table tb_qna_comment;
@@ -104,7 +104,7 @@ alter table tb_code_comment comment '코드공유게시판 댓글';
 -- 코드공유 게시판 첨부파일 테이블
 --------------------------------------------------------------------
 create table tb_code_file (
-    `file_no`      int(10)         primary key    comment '파일번호', 
+    `file_no`      int(10)         auto_increment primary key    comment '파일번호', 
     `no`           int(10)         comment '글번호' references tb_code_board (no)  on delete cascade on update cascade, 
     `file_path`    varchar(100)    not null    comment '파일경로', 
     `ori_name`     varchar(100)    not null    comment '원본이름', 
@@ -119,8 +119,8 @@ alter table tb_news comment '코드공유 게시판 첨부파일';
 create table tb_qna_board (
     `no`             int(10)          auto_increment primary key        comment '글번호', 
     `group_no`       int(10)          not null           comment '글그룹번호', 
-    `group_order`    int(2)          default 0          comment '그룹내에서순서', 
-    `depth`          int(2)          default 0          comment '답글의깊이', 
+    `group_order`    int(2)           default 0          comment '그룹내에서순서', 
+    `depth`          int(2)           default 0          comment '답글의깊이', 
     `id`             varchar(30)      comment '아이디'        references tb_user (id)  on delete cascade on update cascade, 
     `language_code`  char(2)          comment '언어코드'       references tb_language_code (language_code)  on delete cascade on update cascade, 
     `title`          varchar(100)     not null           comment '제목', 
@@ -151,13 +151,12 @@ alter table tb_qna_comment comment 'Q&A게시판 댓글';
 -- Q&A 게시판 첨부파일 테이블
 --------------------------------------------------------------------
 create table tb_qna_file (
-    `file_no`      int(10)         not null    comment '파일번호', 
+    `file_no`      int(10)         auto_increment primary key    comment '파일번호', 
     `no`           int(10)         comment '글번호' references tb_qna_board (no)  on delete cascade on update cascade, 
     `file_path`    varchar(100)    not null    comment '파일경로', 
     `ori_name`     varchar(100)    not null    comment '원본이름', 
     `system_name`  varchar(100)    not null    comment '시스템이름', 
-    `file_size`    int(10)         not null    comment '파일크기', 
-    primary key (file_no)
+    `file_size`    int(10)         not null    comment '파일크기' 
 ) default charset=utf8;
 
 alter table tb_qna_file comment 'Q&A 게시판 첨부파일';
