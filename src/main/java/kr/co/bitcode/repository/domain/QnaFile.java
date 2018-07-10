@@ -1,5 +1,7 @@
 package kr.co.bitcode.repository.domain;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class QnaFile {
 	private int fileNo;
 	private int no;

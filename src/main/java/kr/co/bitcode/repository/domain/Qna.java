@@ -2,19 +2,55 @@ package kr.co.bitcode.repository.domain;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Qna {
 	private int no;
 	private int groupNo;
 	private int groupOrder;
 	private int depth;
 	private String id;
-	private String languageCode;
 	private String title;
 	private String content;
 	private Date regDate;
 	private int viewCnt;
+	private String code;
+	private String filePath;
+	private String oriName;
+	private String systemName;
+	public String getOriName() {
+		return oriName;
+	}
+	public void setOriName(String oriName) {
+		this.oriName = oriName;
+	}
+	public String getSystemName() {
+		return systemName;
+	}
+	public void setSystemName(String systemName) {
+		this.systemName = systemName;
+	}
+	public String getFilePath() {
+		return filePath;
+	}
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
+	}
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
+	}
 	private int likeCnt;
 	private String stsfcCode;
+	private MultipartFile[] file;
+	public MultipartFile[] getFile() {
+		return file;
+	}
+	public void setFile(MultipartFile[] file) {
+		this.file = file;
+	}
 	public int getNo() {
 		return no;
 	}
@@ -44,12 +80,6 @@ public class Qna {
 	}
 	public void setId(String id) {
 		this.id = id;
-	}
-	public String getLanguageCode() {
-		return languageCode;
-	}
-	public void setLanguageCode(String languageCode) {
-		this.languageCode = languageCode;
 	}
 	public String getTitle() {
 		return title;

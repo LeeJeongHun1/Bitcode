@@ -8,5 +8,6 @@ import kr.co.bitcode.repository.domain.QnaFile;
 
 public interface QnaBoardService {
 	public void insertQna(Qna qna,QnaFile qnafile) throws Exception;
+	public Qna detailQna(int no) throws Exception;
 	public List<Code> selectLanguage() throws Exception;
 }

@@ -17,19 +17,22 @@ a {color:#333333}
 		<!-- <h2 class="shell_title">QnA질문게시판</h2> -->
 			<div class="contents_header">
 				<div class="title">
-					제목입니다.<span class="nowrap">|</span><span class="cf">JAVA</span> <span
+				<c:if test="${empty qna}" >
+				안
+				</c:if>
+					<c:out value="${qna.title}" /><span class="nowrap">|</span><span class="cf"><c:out value="${qna.code}" /></span> <span
 						class="day">2018-02-10</span>
 				</div>
 
-				<div class="header_info">
-					<span class="shell_writer">홍길동</span><span class="shell_hits">조회<span>4</span></span>
+ 				<div class="header_info">
+					<span class="shell_writer">${qna.id}</span><span class="shell_hits">조회<span>4</span></span>
 
 				</div>
 			</div>
 			<div class="contents_body">
 				<div class="detail">
-					<!-- <img src="../images/test.png">  -->
-					코드 관련 질문입니다.
+					<img src="C:\java-lec\upload\if_icon-ios7-bell_211694.png"> 
+					${qna.content}
 				</div>
 				<ul class="reBody">
 					<li>

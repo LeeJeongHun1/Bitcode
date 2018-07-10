@@ -22,17 +22,11 @@
 							<td><input class="editTitle" type="text" name="title" /> 
 							<select class="editSelect" name="code">
 									<option value="">분류</option>
-									<!-- <option value="21">c</option>
-									<option value="22">JAVA</option>
-									<option value="23">JavaScript</option>
-									<option value="24">Python</option>
-									<option value="25">ASP</option>
-									<option value="26">PHP</option> -->
 							</select></td>
 						</tr>
 						<tr>
 							<th>작성자</th>
-							<td><input type="text" name="writer"/></td>
+							<td><input type="text" name="id" value="bbbb"/></td>
 						</tr>
 
 						<tr style="height: 90%;">
@@ -41,15 +35,15 @@
 						</tr>
 						<tr>
 							<th>파일첨부</th>
-							<td><input type="file" name="file"></td>
+							<td><input type="file" name="file" multiple="multiple"></td>
 						</tr>
 					</tbody>
 				</table>
-			</form>
 			<div class="contents_btn">
 				<a href='<c:url value="/qnaboard/list.do" />'><button type="button">목록</button></a>
 				<button type="submit">등록</button>
 			</div>
+			</form>
 		</div>
 	</div>
 	<script>
@@ -58,11 +52,13 @@
 	code();
 	function code(){
 		$.ajax({
-			url: `${pageContext.request.contextPath}/qnaboard/selectLanguage.json`,
+			url: "<c:url value='/qnaboard/selectLanguage.json' />",
 			dataType: "json"
 		})
 		.done(function (data){
-			console.log(data.length)
+			for(var i=0; i<data.length; i++){
+				$("select[name='code']").append('<option value="'+data[i].code+'">'+data[i].name+'</option>');
+			}
 		})
 	}
 	</script>

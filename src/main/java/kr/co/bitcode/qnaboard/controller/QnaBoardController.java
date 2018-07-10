@@ -5,11 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.bitcode.qnaboard.service.QnaBoardService;
 import kr.co.bitcode.repository.domain.Code;
+import kr.co.bitcode.repository.domain.Qna;
+import kr.co.bitcode.repository.domain.QnaFile;
 
 @Controller
 @RequestMapping("/qnaboard")
@@ -25,23 +28,31 @@ public class QnaBoardController {
 	}
 	
 	@RequestMapping("/detail.do")
-	public ModelAndView viewDeatil() {
+	public ModelAndView viewDeatil(int no) throws Exception {
 		ModelAndView mav = new ModelAndView("/qnaboard/detail");
+		mav.addObject("qna", qnaBoardService.detailQna(no));
+		return mav;
+	}	
+	
+	@RequestMapping(value="/insert.do", method=RequestMethod.POST)
+	public ModelAndView editQna(Qna qna,QnaFile qnafile) throws Exception {
+		qnaBoardService.insertQna(qna, qnafile);
+		ModelAndView mav = new ModelAndView("/qnaboard/list");
 		return mav;
 	}
 	
-	@RequestMapping("/insert.do")
-	public ModelAndView editQna() {
-		ModelAndView mav = new ModelAndView("/qnaboard/insertForm");
-		return mav;
+	@RequestMapping(value="/insert.do", method=RequestMethod.GET)
+	public String editQna() throws Exception {
+		return "qnaboard/insertForm";
 	}
 	
+
 	@RequestMapping("/selectLanguage.json")
 	@ResponseBody
 	public List<Code> selectLanguage() throws Exception{
 		List<Code> list = qnaBoardService.selectLanguage();
-		System.out.println(list.size());
+		//System.out.println(list.get(1).getCode());
 		return list;
 	}
-
+	
 }
