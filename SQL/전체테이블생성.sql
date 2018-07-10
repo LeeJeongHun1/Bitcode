@@ -128,7 +128,8 @@ create table tb_qna_board (
     `reg_date`       datetime         default now()      comment '등록일', 
     `view_cnt`       int(10)          default 0          comment '조회수', 
     `like_cnt`       int(10)          default 0          comment '추천수', 
-    `stsfc_code`     char(2)          comment '만족도코드'      references tb_code_board (stsfc_code)  on delete cascade on update cascade
+    `stsfc_code`     char(2)          comment '만족도코드'      references tb_code_board (stsfc_code)  on delete cascade on update cascade,
+    `answer_at`      char(1)          default 'N'        comment '답변여부'
 ) default charset=utf8;
 
 alter table tb_qna_board comment 'q&a게시판';
