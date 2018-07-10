@@ -9,7 +9,8 @@ public interface UserMapper {
 	
 	//ID 찾기
 	public User selectUserByNameEmail(User user) throws Exception;
-	
+	//유저정보 수정
+	public void updateUser(User user) throws Exception;
 	
 	
 	

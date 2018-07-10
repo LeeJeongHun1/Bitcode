@@ -7,18 +7,9 @@ html, body{
   font-family: 'Arimo', sans-serif;
 }
 /* 글씨 h1, h3 */
-form > #userInformation {
-	color: #408080;
-	font-size: 23px;
-/* 	margin-bottom: 35px; */
-	margin-top: 10px;
-/* 	background-color:#91c8c8;  */
-	height: 50px;
-	text-align: center;
-}
 div .userInformation {
-	margin-top:30px;
-	margin-bottom:30px;
+	margin-top:20px;
+	margin-bottom:5px;
 	color: #408080;
 	text-align: center;
 	font-size: 23px;
@@ -30,9 +21,9 @@ div .userInformation {
 /*   margin: 0 0 10px 6px; */
   padding: 0;
   font-size: 50px;
-  margin-top: 6%;
+  margin-top: 4%;
   margin-left: 37%;
-  margin-bottom: 4%;
+  margin-bottom: 2%;
 }
 
 /* CONTAINERS  max-width: 940px;*/ 
@@ -70,7 +61,7 @@ div .userInformation {
 
 .card{
 	max-width: 100%;
-	height: 620px;
+	height: 670px;
 	background-color: #f7f7f7;
 	font-family: 'Arimo', sans-serif;
 	font-size: 14px;
@@ -100,6 +91,12 @@ div .userInformation {
 	border-radius:6px;
 }
 
+#pName {
+	color: #305f5f;
+	text-align: left; 
+	margin-left: 11px;
+	font-weight: bold;
+}
 
 
 
@@ -128,26 +125,30 @@ div .userInformation {
 
 
 /* 회원정보수정 */
+.updateBtns {
+	margin-top: 8%;
+	margin-left: -10%;
+}
 
-div > #submitBtn {
-	  text-decoration:none;	
+span > #submitBtn {
+	text-decoration:none;	
 }
 a > #userInfoUpdate {
-	font-size: 16px;
+	font-size: 13px;
 	text-decoration:none;
 	color: white;	
 /* 	padding-top: 1px; */
 }
 #submitBox {
   text-align: center;
-  margin-top: 6%;
+/*   margin-top: 30%; */
 /*   position:; */
-  width:82%;
-  height: 50px;
-  padding:11px;
+  width:45%;
+  height: 40px;
+  padding:10px;
   border-radius:6px;
   border:0;
-  margin-left:25px;
+  margin-left:30px;
   background:#df736a;
   font-size:1.2em;
   color:#fff;
@@ -162,7 +163,7 @@ input {
   border:0;
   padding:16px;
   border-radius:6px;
-  margin-bottom:10px;
+  margin-bottom:5px;
   border:1px solid #eee;
 }
 

@@ -6,8 +6,6 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/user/user.css" />
-<!-- <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'> -->
-<!-- <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'> -->
 <link href='https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css' rel='stylesheet' type='text/css'>
 
 </head>
@@ -21,21 +19,25 @@
 			<div class="maxbtn"><span></span></div>
 			<div class="xbtn">x</div>
 		</div>    
-	    <form id="userInfoUI" action="${pageContext.request.contextPath}/user/user.do" method="post" id="userInfoChanged">
-		  <h3 id="userInformation">Information</h3>
-		  <input name="name" type="text" id="userName" value="name" readonly="readonly"/>
-		  <input name="nickName" type="text" id="nickName" data-flag="no" class="inputDetail" maxlength="15" value="nickName"/>
-		  <input name="id" type="text" id="userId" value="id" readonly="readonly"/>
-		  <input name="password" type="password" id="userPass" data-flag="no" class="inputDetail" maxlength="16" value="password"/>
-		  <p class="innerText"></p>
-		  <input name="conformpass" type="password" id="userPassCheck" class="inputDetail" maxlength="16" value="conformpass"/>
-		  <p class="innerText"></p>	  
-		  <input name="email" placeholder="Email" type="text" id="userEmail" data-flag="no" class="emailDetail" maxlength="16"/>
-		  <p class="innerText"></p>
-		  <div id="submitBox">
-		  	<a href="#1" id="submitBtn"><span id="userInfoUpdate">수정 Click</span></a>
-		  </div>
-		</form>
+		  <h3 class="userInformation">Information</h3>
+		  <p id="pName">이름</p>
+		  <input name="name" type="text" id="userName" value="${user.name}" readonly="readonly"/>
+		  <p id="pName">별명</p>
+		  <input name="nickName" type="text" id="nickName" data-flag="no" class="inputDetail" value="${user.nickName}" readonly="readonly"/>
+		 <p id="pName">ID</p>
+		  <input name="id" type="text" id="userId" value="${user.id}" readonly="readonly"/>
+		 <p id="pName">Birthday</p>
+		  <input name="birthday" type="text" id="birthday" data-flag="no" class="inputDetail" value="${user.birthday}" readonly="readonly"/>
+		 <p id="pName">Email</p>
+		  <input name="email" type="text" id="userEmail" data-flag="no" class="emailDetail" value="${user.email}" readonly="readonly"/>
+		 <div class="updateBtns">
+		  <span id="submitBox">
+		  	<a href="${pageContext.request.contextPath}/user/updateUserForm.do" id="submitBtn"><span id="userInfoUpdate">나의 정보 수정</span></a>
+		  </span>
+		  <span id="submitBox">
+		  	<a href="${pageContext.request.contextPath}/user/updatePassForm.do" id="submitBtn"><span id="userInfoUpdate">비밀번호 수정</span></a>
+  		  </span>
+ 		 </div>   
     </div>
 
     <div id="card2" class="card six col">
@@ -96,6 +98,9 @@
 
 
 <script>
+
+//달력
+
 $(function() {
 	  function c() {
 		    p();
