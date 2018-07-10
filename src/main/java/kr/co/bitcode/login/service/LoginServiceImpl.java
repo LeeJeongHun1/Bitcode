@@ -39,10 +39,4 @@ public class LoginServiceImpl implements LoginService{
 	
 	
 	
-	
-	@Override
-	public User selectUserByIdPass(User user) throws Exception {
-		
-		return userMapper.selectUserByIdPass(user);
-	}
 }

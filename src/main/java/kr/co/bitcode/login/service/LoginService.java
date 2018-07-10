@@ -12,6 +12,5 @@ public interface LoginService {
 	
 	
 	
-	public User selectUserByIdPass (User user) throws Exception;
 	
 }

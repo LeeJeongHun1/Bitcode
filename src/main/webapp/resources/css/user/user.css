@@ -133,6 +133,12 @@ div .userInformation {
 span > #submitBtn {
 	text-decoration:none;	
 }
+
+
+span > #submitPassBtn{
+	text-decoration:none;	
+}
+
 a > #userInfoUpdate {
 	font-size: 13px;
 	text-decoration:none;

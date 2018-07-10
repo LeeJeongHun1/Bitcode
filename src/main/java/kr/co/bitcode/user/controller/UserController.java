@@ -25,33 +25,47 @@ public class UserController {
 	@Autowired
 	private LoginService loginService;
 	
-	
 	// PassWord 암호화
 	@Autowired
 	BCryptPasswordEncoder passCode;
 	
+	//회원정보
 	@RequestMapping("/userInfo.do") 
 	public String joinForm() { 
 		return "user/userInfo";
 	} 
-	//수정
+	//수정 클릭시
 	@RequestMapping("/updateUserForm.do") 
 	public String updateUserForm()  { 
 		return "user/userUpdate";
 	} 
-	//비번수정
-	@RequestMapping("/updatePassForm.do") 
-	@ResponseBody
-	public String updatePassForm()  { 
-		return "user/userUpdate";
-	} 
+	//일반 유저 수정
 	@RequestMapping("/updateUser.do") 
 	public String updateUser(User user, RedirectAttributes attr, HttpSession session) throws Exception { 
 		userService.updateUser(user);
-		
 		User userInfo = loginService.selectUserById(user.getId());	
 		session.setAttribute("user", userInfo);
 		return "redirect:/user/userInfo.do";
 	} 
+	
+	//비번수정 JSON
+	@RequestMapping("/updatePassForm.json") 
+	@ResponseBody
+	public User updatePassForm(User user, HttpSession session)  throws Exception{ 
+		user.setPassword(passCode.encode(user.getPassword()));
+		userService.updateUserPass(user);
+		User userInfo = loginService.selectUserById(user.getId());	
+		session.setAttribute("user", userInfo);
+		
+		return user;
+	} 
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

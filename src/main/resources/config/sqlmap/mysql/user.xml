@@ -28,13 +28,6 @@
     	 	   email = #{email}		
 	</select>
 	
-    <select id="selectUserByIdPass" parameterType="string" resultMap="userMap">
-    	select *
-    	  from tb_user
-    	 where id = #{id} and
-    	 	   password = #{password} 
-    </select>	    
-	
 	<insert id="insertUser"  parameterType="user">
 	insert into tb_user(
 		id, 
@@ -61,4 +54,12 @@
                email = #{email}
          where id = #{id}  
     </update>
+    
+    <update id="updateUserPass" parameterType="user">
+        update tb_user
+           set password = #{password}
+         where id = #{id}  
+    </update>    
+    
+    
 </mapper>

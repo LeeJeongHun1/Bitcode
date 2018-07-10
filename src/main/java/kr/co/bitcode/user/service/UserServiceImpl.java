@@ -9,11 +9,16 @@ import kr.co.bitcode.repository.mapper.UserMapper;
 @Service("userService")
 public class UserServiceImpl implements UserService{
 	@Autowired
-	private UserMapper userMApper;
+	private UserMapper userMapper;
 	
 	@Override
 	public void updateUser(User user) throws Exception {
-		userMApper.updateUser(user);
+		userMapper.updateUser(user);
+	}
+
+	@Override
+	public void updateUserPass(User user) throws Exception {
+		userMapper.updateUserPass(user);
 	}
 
 }
