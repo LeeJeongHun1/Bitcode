@@ -1,6 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 
 <div>
 	<div class="footer-area">
@@ -26,8 +25,10 @@
             <a href="${pageContext.request.contextPath}/itnews/itnews.do" id="news"></a>
 	        <%-- 학원찾기 --%>
             <a href="${pageContext.request.contextPath}/searchcenter/searchCenter.do" id="search"></a>
-            <%-- 디렉토리 --%>
+            <%-- 크롬 브라우저 --%>
             <a href="#chrome-pop-up" id="chrome" class="border"></a>
+            <%-- 폴더 --%>
+            <a href="#chrome-pop-up" id="folder" class="border"></a>
         </div>
         
         <%-- 마이인포 --%>
@@ -59,25 +60,108 @@
 			</button></a>
 	        <%-- 마이인포 --%>
 	        <a href="${pageContext.request.contextPath}/user/userInfo.do" id="user"></a>
-			<c:choose>
-				<c:when test="${sessionScope.user.id == null}">	        
-		        	<a href="${pageContext.request.contextPath}/login/loginForm.do" id="login"></a>
-		   		</c:when>
-		   		<c:otherwise>
-		        	<a href="${pageContext.request.contextPath}/login/logout.do" id="logout"></a>	   		
-		        </c:otherwise>
-	        </c:choose>
+	        <a href="${pageContext.request.contextPath}/login/loginForm.do" id="login"></a>
+	   
 	        <a href="#" class="clear disabled"></a>
 	        <a href="#" id="return"></a>
 	         
         </div>
         </div>
     </div>
+    
+    
+	    <!-- Chrome -->
+	    <div class="chrome" id="chrome-pop-up">
+	        <div class="pop-up">
 	
-	
+	            <!-- Taskbar chrome-->
+	            
+	            <!-- Top -->
+	            <div class="chrome-top">
+	                <div class="chrome-tabs">
+	                    <div class="triangle"></div>
+	                    <div class="tabs">
+	                        <span class="icons-tabs">
+	                            <i class="fab fa-codepen"></i>
+	                        </span>
+	                        <span class="text-tabs">CodePen</span>
+	                        <span class="close-tabs">x</span>
+	                    </div>
+	                    <div class="triangle-2"></div>
+	                    <div class="new-tabs"></div>
+	                </div>
+	                <div class="chrome-close">
+	                    <a href="#"><i class="fas fa-minus"></i></a>
+	                    <a href="#"><i class="far fa-window-restore"></i></a>
+	                    <a href="#"><i class="fas fa-times"></i></a>
+	                </div>
+	            </div>
+	            <!-- Bottom -->
+	            <div class="chrome-bottom">
+	                <div class="options-bar">
+	                    <div class="icons-bar">
+	                        <div class="arrows">
+	                            <a href="#"><i class="fas fa-arrow-left"></i></a>
+	                            <a href="#"><i class="fas fa-arrow-right"></i></a>
+	                            <a href="#"><i class="fas fa-sync"></i></a>
+	                        </div>
+	                        <div class="search-bar">
+	                            <span class="info"><i class="fas fa-lock"></i> Securised</span>
+	                            <input type="text" value="http://codepen.io/Guklam">
+	                            <span class="star"><i class="far fa-star"></i></span>
+	                        </div>
+	                        <div class="points-bar">
+	                            <div class="points">
+	                                <span>•</span>
+	                                <span>•</span>
+	                                <span>•</span>
+	                            </div>
+	                        </div>
+	                    </div>
+	                    <div class="bookmarks">
+	                            <div class="folder-book">
+	                                <a target="_blank" href="https://purecss.io/"><span>P</span> Pure</a>
+	                            </div>
+	                            <div class="folder-book">
+	                                <a target="_blank" href="https://developer.mozilla.org/fr/docs/Web/CSS"><i class="fab fa-css3-alt"></i> CSS</a>
+	                            </div>
+	                            <div class="folder-book">
+	                                <a target="_blank" href="https://www.microsoft.com/fr-fr/windows"><i class="fab fa-windows"></i> Windows 10</a>
+	                            </div>
+	                            <div class="folder-book">
+	                                <a target="_blank" href="https://www.naver.com"><i class="fab fa-windows"></i> NAVER</a>
+	                            </div>
+	                    </div>
+	                </div>
+	                <!-- Bookmarks -->
+	                
+	            </div>
+	            <!-- 폴더일 경우 div class='frame' -->
+	            <div class="frame">
+	            
+	            </div>
+	            <!-- 크롬 브라우저일 경우 iframe -->
+	       		<iframe src="http://localhost/bitcode/main/main.do" frameborder="0" width="895px" height="404px"></iframe>
+	        </div> 
+	    </div>
     </div>
 </div>
 
 <script src="${pageContext.request.contextPath}/resources/sweetalertFile/sweetalert2.all.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/sweetalertFile/sweetalert2.min.css">
+<script>
+	$("#chrome").click(function (){
+		$(".frame").hide();
+		$(".text-tabs").text('Chrome')
+		$(".icons-tabs").find("i").removeClass().addClass("fab fa-chrome");
+		$("iframe").show();
+	})
+	$("#folder").click(function (){
+		$("iframe").hide();
+		$(".text-tabs").text('id 님의 전용 폴더')
+		$(".icons-tabs").find("i").removeClass().addClass("fas fa-folder-open");
+		$(".frame").show();
+	})
+</script>
+
+

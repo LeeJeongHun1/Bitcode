@@ -34,5 +34,8 @@ public class RemoteController {
 	@RequestMapping("/remote3.do")
 	public void remote3() {
 	}
+	@RequestMapping("/remoteTest.do")
+	public void remote4() {
+	}
 
 }
