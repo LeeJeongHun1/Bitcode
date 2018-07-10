@@ -9,7 +9,7 @@
 <title>Remote</title>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/remote/remote.css">
-<script src="http://192.168.0.104:10001/socket.io/socket.io.js"></script>
+<script src="https://192.168.0.104:10001/socket.io/socket.io.js"></script>
 <style>
 video{
 	box-sizing: border-box;
@@ -38,7 +38,7 @@ video{
 		 -->
 	
 		<div class="chat media-right">
-		<iframe src="http://192.168.0.104:10001">
+		<iframe src="https://192.168.0.104:10001">
 		</iframe>
 		</div>
 		
@@ -49,19 +49,6 @@ video{
   <script src="https://cdn.rawgit.com/muaz-khan/getScreenId/master/getScreenId.js"></script>
   
 	<script>
-	
-	$("#msgBtn").click(function() {
-		alert(1);
-		var msg = $("#msg");
-		$.ajax({
-			url: "http://192.168.0.104:10001",
-			data: msg,
-			success: function (result){
-				console.log(result);
-				$("#chat").html(result);
-			}
-		});
-	});
 	
 	// 비디오 수신
 	getScreenId((error, sourceId, screenConstraints) => {
