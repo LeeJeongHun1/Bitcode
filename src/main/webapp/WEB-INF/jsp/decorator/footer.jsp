@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div>
 	<div class="footer-area">
@@ -59,8 +59,18 @@
   			<div class="notifications-count js-count"></div>
 			</button></a>
 	        <%-- 마이인포 --%>
-	        <a href="${pageContext.request.contextPath}/user/userInfo.do" id="user"></a>
-	        <a href="${pageContext.request.contextPath}/login/loginForm.do" id="login"></a>
+	        <c:if test="${sessionScope.user.id != null}">
+	       		<a href="${pageContext.request.contextPath}/user/userInfo.do" id="user"></a>
+	        </c:if>
+            <c:choose>	
+                <c:when test="${sessionScope.user.id == null}">            
+                    <a href="${pageContext.request.contextPath}/login/loginForm.do" id="login"></a>
+                </c:when>
+                <c:otherwise>
+                    <a href="${pageContext.request.contextPath}/login/logout.do" id="logout"></a>               
+                </c:otherwise>
+            </c:choose>
+<%-- 	        <a href="${pageContext.request.contextPath}/login/loginForm.do" id="login"></a> --%>
 	   
 	        <a href="#" class="clear disabled"></a>
 	        <a href="#" id="return"></a>
