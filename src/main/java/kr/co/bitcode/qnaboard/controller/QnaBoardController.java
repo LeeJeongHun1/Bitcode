@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.bitcode.qnaboard.service.QnaBoardService;
@@ -36,6 +37,7 @@ public class QnaBoardController {
 	}
 	
 	@RequestMapping("/selectLanguage.json")
+	@ResponseBody
 	public List<Code> selectLanguage() throws Exception{
 		List<Code> list = qnaBoardService.selectLanguage();
 		System.out.println(list.size());

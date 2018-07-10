@@ -54,16 +54,16 @@
 	</div>
 	<script>
 	window.onload = function(){
-		code();
 	}
+	code();
 	function code(){
 		$.ajax({
-			url:`${pageContext.request.contextPath}/qnaboard/selectLanguage.json`,
-			dataType:"json",
-			success:function(result){
-				console.log(result)
-			}
-		});
+			url: `${pageContext.request.contextPath}/qnaboard/selectLanguage.json`,
+			dataType: "json"
+		})
+		.done(function (data){
+			console.log(data.length)
+		})
 	}
 	</script>
 </body>
