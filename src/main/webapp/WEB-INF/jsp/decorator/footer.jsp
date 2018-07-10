@@ -60,13 +60,13 @@
 	        <%-- 마이인포 --%>
 	        <a href="${pageContext.request.contextPath}/user/userInfo.do" id="user"></a>
 			<c:choose>
-			<c:when test="${sessionScope.user.id == null}">	        
-	        	<a href="${pageContext.request.contextPath}/login/loginForm.do" id="login"></a>
-	   		</c:when>
-	   		<c:otherwise>
-	        	<a href="${pageContext.request.contextPath}/login/logout.do" id="logout"></a>	   		
-	        </c:otherwise>
-	       </c:choose>
+				<c:when test="${sessionScope.user.id == null}">	        
+		        	<a href="${pageContext.request.contextPath}/login/loginForm.do" id="login"></a>
+		   		</c:when>
+		   		<c:otherwise>
+		        	<a href="${pageContext.request.contextPath}/login/logout.do" id="logout"></a>	   		
+		        </c:otherwise>
+	        </c:choose>
 	        <a href="#" class="clear disabled"></a>
 	        <a href="#" id="return"></a>
 	         

@@ -222,7 +222,7 @@ body {
 .taskbar .icons-right #logout {
   height: 43px;
   width: 49px;
-  background-image: url("/bitcode/resources/images/logout1.png");
+  background-image: url("/bitcode/resources/images/logoutIcon.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 22px 22px;
