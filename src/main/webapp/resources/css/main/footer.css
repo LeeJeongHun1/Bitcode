@@ -219,6 +219,18 @@ body {
   background-size: 22px 22px;
 }
 
+.taskbar .icons-right #logout {
+  height: 43px;
+  width: 49px;
+  background-image: url("/bitcode/resources/images/logoutIcon.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 22px 22px;
+}
+
+
+
+
 .taskbar .icons-right #return {
   width: 4px;
   border-left: 1px solid grey;

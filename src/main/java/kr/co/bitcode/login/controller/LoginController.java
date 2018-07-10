@@ -47,6 +47,15 @@ public class LoginController {
 			return "redirect:/login/loginForm.do";
 		}
 	}	
+
+	//로그 아웃
+	@RequestMapping("/logout.do")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/login/loginForm.do";
+	}	
+	
+	
 	
 	
 //		System.out.println(user.getPassword());

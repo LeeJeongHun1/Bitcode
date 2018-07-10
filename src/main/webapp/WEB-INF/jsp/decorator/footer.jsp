@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <div>
 	<div class="footer-area">
@@ -58,8 +59,14 @@
 			</button></a>
 	        <%-- 마이인포 --%>
 	        <a href="${pageContext.request.contextPath}/user/userInfo.do" id="user"></a>
-	        <a href="${pageContext.request.contextPath}/login/loginForm.do" id="login"></a>
-	   
+			<c:choose>
+				<c:when test="${sessionScope.user.id == null}">	        
+		        	<a href="${pageContext.request.contextPath}/login/loginForm.do" id="login"></a>
+		   		</c:when>
+		   		<c:otherwise>
+		        	<a href="${pageContext.request.contextPath}/login/logout.do" id="logout"></a>	   		
+		        </c:otherwise>
+	        </c:choose>
 	        <a href="#" class="clear disabled"></a>
 	        <a href="#" id="return"></a>
 	         
@@ -72,4 +79,5 @@
 </div>
 
 <script src="${pageContext.request.contextPath}/resources/sweetalertFile/sweetalert2.all.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/sweetalertFile/sweetalert2.min.css">
