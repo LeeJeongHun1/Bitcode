@@ -31,7 +31,8 @@ a {color:#333333}
 			</div>
 			<div class="contents_body">
 				<div class="detail">
-					<img src="C:\java-lec\upload\if_icon-ios7-bell_211694.png"> 
+				 파일명 : <a href="fileDown.do?filePath=${qna.filePath}&systemFileName=${qna.systemName}&originalFileName=${qna.oriName}">${qna.oriName}</a> 크기 : ${file.fileSize}(bytes) <br>
+        미리보기 : <img src="fileDown.do?filePath=${qna.filePath}&systemFileName=${qna.systemName}&originalFileName=${qna.oriName}" style="width: 150px; height: 150px "><br>
 					${qna.content}
 				</div>
 				<ul class="reBody">
