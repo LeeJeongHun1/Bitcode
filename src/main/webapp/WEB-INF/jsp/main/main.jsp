@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +10,6 @@
 <script src="//static.codepen.io/assets/editor/live/console_runner-ce3034e6bde3912cc25f83cccb7caa2b0f976196f2f2d52303a462c826d54a73.js"></script>
 <script src="//static.codepen.io/assets/editor/live/css_live_reload_init-890dc39bb89183d4642d58b1ae5376a0193342f9aed88ea04330dc14c8d52f55.js"></script>
 <meta name="robots" content="noindex">
-<link rel="shortcut icon" type="image/x-icon" href="//static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico">
 <link rel="mask-icon" type="" href="//static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111">
 <link rel="canonical" href="https://codepen.io/MohamedElGhandour/pen/GEbwEW">
 
@@ -28,11 +29,12 @@
 </div>
 
 <div id="window" class="windows" style="height: 734px;">
-    <div class="icon-computer text-center" id="icon-computer" ondblclick="opencom()">
-        <img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500502735/if_folder-blue_285658_f5jeko.svg" class="img-responsive" style="margin: auto;">
-<%--         <img src="${pageContext.request.contextPath}/resources/images/open-folder.PNG"> --%>
-        <p>공유 폴더</p>
-    </div>
+	<c:if test="${!empty sessionScope.user }">
+		<div class="icon-computer text-center" id="icon-computer" ondblclick="opencom()">
+			<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500502735/if_folder-blue_285658_f5jeko.svg" class="img-responsive" style="margin: auto;">
+			<p>공유 폴더</p>
+		</div>
+	</c:if>
     <div class="overlay-computer" id="overlay-computer" style="transform: scale(0); left: 142px; top: 29px; z-index: 1000;s">
         <div class="fluid-container">
             <div class="first-row-win" id="first-row-win">
@@ -182,10 +184,14 @@
 						<!-- 폴더 ajax 추가 -->
                         <div class="col-xs-2 folders text-center">
                             <p class="contain"><img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500502735/if_folder-blue_285658_f5jeko.svg" class="img-responsive  center-block" style="height: 64px;" alt=""></p>
-                            <span>Folder</span>
+                            <span>Share Folder</span>
                         </div>
                         <div class="col-xs-2 folders text-center">
                             <p class="contain"><img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500502735/if_folder-blue_285658_f5jeko.svg" class="img-responsive  center-block" style="height: 64px;" alt=""></p>
+                            <span>Folder</span>
+                        </div>
+                        <div class="col-xs-2 folders text-center">
+                            <p class="contain"><img src="" class="img-responsive  center-block" style="height: 64px;" alt=""></p>
                             <span>Folder</span>
                         </div>
 <!--                         <div class="clearfix"></div> -->
@@ -215,7 +221,6 @@
             </div>
         </div>
     </footer>
-
 </div>
 
 <script>

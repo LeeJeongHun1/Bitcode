@@ -14,7 +14,6 @@
 
 <meta charset="UTF-8">
 
-
  <%-- 하단메뉴 --%> 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main/footer.css">
 
