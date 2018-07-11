@@ -27,7 +27,7 @@
     <span class="bottom-right"></span>
   </div>
 </div>
-
+<input type="hidden" id="sId" value="${sessionScope.user.id}" />
 <div id="window" class="windows" style="height: 734px;">
 	<c:if test="${!empty sessionScope.user }">
 		<div class="icon-computer text-center" id="icon-computer" ondblclick="opencom()">
@@ -42,7 +42,7 @@
                     <i class="fa fa-hdd-o"></i>
                     <i class="fa fa-file-o"></i>
                     <i class="fa fa-folder"></i>
-                    <span>id님의 Share Folder</span>
+                    <span>${sessionScope.user.id}님의 Share Folder</span>
                 </div>
                 <!-- 닫기, 최소화, 최대화 -->
                 <div class="right">
@@ -137,7 +137,7 @@
                 </div>
                 <div class="col-xs-7">
                 	<!-- 폴더 경로 -->
-                    <div class="path-input">
+                    <div class="path-input" id="share-path">
                         <span class="path-icon-input">This pc</span>
                         <span class="path-icon-input">Mohamed Yahya (E:)</span>
                         <span class="path-icon-input">programming</span>
@@ -224,6 +224,25 @@
 </div>
 
 <script>
+	//Setup the dnd listeners.
+	var dropZone = document.getElementById('overlay-computer');
+	dropZone.addEventListener('dragover', handleDragOver, false);
+	dropZone.addEventListener('drop', handleFileSelect, false);	
+	var fDiv = $("#folder-area");
+	$.ajax({
+		url: "selectFolder.json",
+		data: {
+			id: $("#sId").val()
+		},
+		dataType: "json"
+	})
+	.done(function (data) {
+		var path = data.split("\\");
+		console.log(path);
+// 		$("#share-path")
+	})
+	//<span class="path-icon-input">This pc</span>
+
 	function error(e) {
 	    console.log('error');
 	    console.log(e);
@@ -235,33 +254,51 @@
 	}
 	
 	function traverseFileTree(item, path) {
-	    path = path || "";
-	    if (item.isFile) {
-	        // Get file
-	        item.file(function(file) {
-	        	if(path == ''){
-	        		console.log("파일만 올림")
-		            console.log("File: " + path + file.name);
-	                var html = '';
-	                html += '<div class="col-xs-2 folders text-center">';
-	                html += '	<p class="contain"><img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500502735/if_folder-blue_285658_f5jeko.svg" class="img-responsive  center-block" style="height: 64px;" alt=""></p>';
-	                html += '	<span>Folder</span>';
-	                html += '</div>';
-	                fDiv.append(html);
-	        	}else{
-	        		console.log("폴더포함 올림")
-		            console.log("File: " + path + file.name);
-	        	}
-	        }, error);
-	    } else if (item.isDirectory) {
-	        // Get folder contents
-	        var dirReader = item.createReader();
-	        dirReader.readEntries(function(entries) {
-	            for (var i=0; i<entries.length; i++) {
-	                traverseFileTree(entries[i], path + item.name + "/")
-	            }
-	        }, error_from_readentries);
-	    }
+		path = path || "";
+		if (item.isFile) {
+			// Get file
+			item.file(function(file) {
+				if(path == ''){
+					console.log("파일만 올림")
+					console.log("File: " + path + file.name);
+					console.log("File정보 " + file);
+					var html = '';
+					html += '<div class="col-xs-2 folders text-center">';
+					html += '	<p class="contain"><img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500502735/if_folder-blue_285658_f5jeko.svg" class="img-responsive  center-block" style="height: 64px;" alt=""></p>';
+					html += '	<span>Folder</span>';
+					html += '</div>';
+					fDiv.append(html);
+					sendFile(file);
+			}else{
+				console.log("폴더포함 올림")
+			console.log("File: " + path + file.name);
+			}
+		}, error);
+		} else if (item.isDirectory) {
+			// Get folder contents
+			var dirReader = item.createReader();
+			dirReader.readEntries(function(entries) {
+				for (var i=0; i<entries.length; i++) {
+					traverseFileTree(entries[i], path + item.name + "/")
+				}
+			}, error_from_readentries);
+		}
+	}
+	
+	function sendFile(file) {
+		var fd = new FormData();
+		fd.append("attach", file);
+		fd.append("id", $("#sId").val());
+		$.ajax({
+			url: "upload.do",
+			data: fd,
+			type: "POST",
+			contentType: false,
+			processData: false
+		})
+		.done(function (result) {
+// 			console.log(result)
+		})
 	}
 	
 	function handleFileSelect(evt) {
@@ -282,12 +319,6 @@
 	    evt.dataTransfer.dropEffect = 'copy';
 	}
 	
-	//Setup the dnd listeners.
-	var dropZone = document.getElementById('overlay-computer');
-	dropZone.addEventListener('dragover', handleDragOver, false);
-	dropZone.addEventListener('drop', handleFileSelect, false);	
-    var fDiv = $("#folder-area");
-
 //     div.ondragover = function (e) {
 //         return false;
 //     }
