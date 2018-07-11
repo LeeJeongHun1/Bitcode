@@ -103,6 +103,7 @@ h5 > a:hover {
   padding-top:20px;
   padding-bottom:60px;
   width:400px;
+  min-width:400px;
 /*   Ui form  위치 설정*/
   margin:185px auto;
   box-shadow:15px 15px 0px rgba(0,0,0,.1);

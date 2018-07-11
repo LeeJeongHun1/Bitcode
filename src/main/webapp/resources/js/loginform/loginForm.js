@@ -1,4 +1,3 @@
-
 	//Pass 찾기
 	$("#forgetpass").on('click',function () {
 		swal.mixin({
@@ -28,7 +27,7 @@
 		});	
 		
 		$.ajax({
-			url : "${pageContext.request.contextPath}/sendMail/findPass.json",
+			url : "/bitcode/sendMail/findPass.json",
 			type: "POST",
 			data : {
 				"email" : data.value[0],
@@ -45,10 +44,7 @@
 		});
 	
 	}		
-	//로그인 실패시 alert창 뜸.
-//		if (${msg}) { 
-//			swal(${msg});
-//		} 
+
 		
 	$(document).ready(function(e){
 		   $("#siciallogin").on('click',function(){
@@ -86,7 +82,7 @@
 			
 		});	
 		$.ajax({
-			url : "${pageContext.request.contextPath}/login/fogetId.json",
+			url : "/bitcode/login/fogetId.json",
 			type: "POST",
 			data : {
 				"name" : data.value[0],

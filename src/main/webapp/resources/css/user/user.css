@@ -28,7 +28,8 @@ div .userInformation {
 
 /* CONTAINERS  max-width: 940px;*/ 
 
-.container1 { width: 80%; margin: 0 auto; } 
+/* .container1 { width: 80%; margin: 0 auto; }  */
+.container1 { width: 1500px; margin: 0 auto; } 
 .twelve { width: 100%; } 
 .eleven { width: 91.53%; } 
 .ten { width: 83.06%; } 
@@ -38,7 +39,7 @@ div .userInformation {
 .six { width: 49.2%; } 
 .five { width: 40.73%; } 
 .four { width: 32.26%;} 
-.three { width: 23.8%; } 
+.three { width: 23.8%;} 
 .two { width: 15.33%; } 
 .one{ width: 6.866%;}
 
@@ -81,6 +82,7 @@ div .userInformation {
 
 /* CARD ! */
 #card1{
+	min-width:23.8%;
 	text-align: center;
 	color: #2c3e50;
 /* 	padding: 15px; */

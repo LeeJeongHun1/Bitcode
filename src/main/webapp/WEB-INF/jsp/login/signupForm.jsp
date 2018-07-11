@@ -34,5 +34,10 @@
 	  </div>
 	</form>
 <script src="${pageContext.request.contextPath}/resources/js/signUp/signUp.js"></script>
+<script>
+if("${msg}") {
+	swal("${msg}")
+}
+</script>
 </body>
 </html>
