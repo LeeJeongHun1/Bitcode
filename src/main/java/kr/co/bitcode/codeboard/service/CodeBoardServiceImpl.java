@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.bitcode.repository.domain.Code;
 import kr.co.bitcode.repository.domain.CodeBoard;
+import kr.co.bitcode.repository.domain.CodeBoardFile;
 import kr.co.bitcode.repository.mapper.CodeBoardMapper;
 import kr.co.bitcode.repository.mapper.CodeListMapper;
 
@@ -54,6 +55,16 @@ public class CodeBoardServiceImpl implements CodeBoardService{
 	public List<Code> selectLanguage() {
 		List<Code> list = Cmapper.selectLanguage();
 		return list;
+	}
+
+	@Override
+	public CodeBoardFile selectBoardFileByNo(int no) {
+		return mapper.selectBoardFileByNo(no);
+	}
+
+	@Override
+	public void insertBoardFile(CodeBoardFile cbFile) {
+		mapper.insertBoardFile(cbFile);
 	}
 
 }

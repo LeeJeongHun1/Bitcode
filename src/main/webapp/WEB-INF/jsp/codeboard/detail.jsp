@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
@@ -38,6 +38,9 @@ background-color: black;}
 			<div class="contents_body" style="color:#80FF00; background-color: black;">
 				<div class="detail">
 					<c:out value="${cb.content}" />
+				</div>
+				<div>
+					<c:out value="${cbFile.oriName}"/>
 				</div>
 				<ul class="reBody" style="color:#80FF00; background-color: black;">
 					<li>
@@ -97,7 +100,7 @@ background-color: black;}
 			<div class="contents_btn">
     		<a href='<c:url value="list.do" />'><button>목록</button></a>
 			<a href='#'><button>답변</button></a>
-			<a href="#"><button>수정</button></a>
+			<a href='<c:url value="updateForm.do?no=${cb.no}" />'><button>수정</button></a>
 			<a href="#"><button>삭제</button></a>
 			</div>
 		</div>

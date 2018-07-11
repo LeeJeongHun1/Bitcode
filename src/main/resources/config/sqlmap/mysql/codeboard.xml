@@ -41,6 +41,14 @@
                             );
 		</insert>
 		
+		<update id="updateBoard" parameterType="codeBoard">
+			update tb_code_board
+			   set title = #{title},
+			   	   language_code = #{languageCode},
+			       content = #{content}
+			 where no = #{no}
+		</update>
+		
 		<select id="selectBoardByNo" parameterType="int" resultMap="codeBoardMap">
 	    	select *
 	    	  from tb_code_board
@@ -53,7 +61,28 @@
 	    	 where no = #{no}
 	    </update>
 	
+		<resultMap id="codeBoardFileMap" type="codeBoardFile">
+		<result column="file_no" property="fileNo" />
+		<result column="no" property="no" />
+		<result column="file_path" property="filePath" />
+		<result column="ori_name" property="oriName" />
+		<result column="system_name" property="systemName" />
+		<result column="file_size" property="fileSize" />
+		</resultMap>
 	
+		<insert id="insertBoardFile" parameterType="codeBoardFile">
+			insert into tb_code_file (
+				file_no, no, file_path, ori_name, system_name, file_size
+			) values (
+				s_code_file_no.nextval, #{no}, #{filePath}, #{oriName}, #{systemName}, #{fileSize}		
+			)
+		</insert>
+		 
+		<select id="selectBoardFileByNo" parameterType="int" resultMap="codeBoardFileMap">
+			select *
+			  from tb_code_file
+			 where no = #{no} 
+		</select>
 	
 	
 	

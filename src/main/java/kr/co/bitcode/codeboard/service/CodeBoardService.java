@@ -4,6 +4,7 @@ import java.util.List;
 
 import kr.co.bitcode.repository.domain.Code;
 import kr.co.bitcode.repository.domain.CodeBoard;
+import kr.co.bitcode.repository.domain.CodeBoardFile;
 
 public interface CodeBoardService {
 	public List<CodeBoard> selectBoard();
@@ -13,4 +14,6 @@ public interface CodeBoardService {
 	public void deleteBoard(CodeBoard cb);
 	public void updateBoardViewCnt(int no);
 	public List<Code> selectLanguage();
+	public CodeBoardFile selectBoardFileByNo(int no);
+	public void insertBoardFile(CodeBoardFile cbFile);
 }

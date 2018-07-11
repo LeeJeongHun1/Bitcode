@@ -6,7 +6,7 @@ public class CodeBoardFile {
 	private String filePath;
 	private String oriName;
 	private String systemName;
-	private int fileSize;
+	private long fileSize;
 	public int getFileNo() {
 		return fileNo;
 	}
@@ -37,10 +37,10 @@ public class CodeBoardFile {
 	public void setSystemName(String systemName) {
 		this.systemName = systemName;
 	}
-	public int getFileSize() {
+	public long getFileSize() {
 		return fileSize;
 	}
-	public void setFileSize(int fileSize) {
-		this.fileSize = fileSize;
+	public void setFileSize(long fileSize2) {
+		this.fileSize = fileSize2;
 	}
 }
