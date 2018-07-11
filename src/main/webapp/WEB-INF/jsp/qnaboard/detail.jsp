@@ -20,7 +20,7 @@ a {color:#333333}
 				<c:if test="${empty qna}" >
 				안
 				</c:if>
-					<c:out value="${qna.title}" /><span class="nowrap">|</span><span class="cf"><c:out value="${qna.code}" /></span> <span
+					<c:out value="${qna.title}" /><span class="nowrap">|</span><span class="cf"><c:out value="${qna.codeName}" /></span> <span
 						class="day">2018-02-10</span>
 				</div>
 
@@ -31,8 +31,8 @@ a {color:#333333}
 			</div>
 			<div class="contents_body">
 				<div class="detail">
-				 파일명 : <a href="fileDown.do?filePath=${qna.filePath}&systemFileName=${qna.systemName}&originalFileName=${qna.oriName}">${qna.oriName}</a> 크기 : ${file.fileSize}(bytes) <br>
-        미리보기 : <img src="fileDown.do?filePath=${qna.filePath}&systemFileName=${qna.systemName}&originalFileName=${qna.oriName}" style="width: 150px; height: 150px "><br>
+				 파일명 : <a href="${pageContext.request.contextPath}/fileDown.do?filePath=${qna.filePath}&systemFileName=${qna.systemName}&originalFileName=${qna.oriName}">${qna.oriName}</a>
+        미리보기 : <img src="${pageContext.request.contextPath}/fileDown.do?filePath=${qna.filePath}&systemFileName=${qna.systemName}&originalFileName=${qna.oriName}" style="width: 150px; height: 150px "><br>
 					${qna.content}
 				</div>
 				<ul class="reBody">

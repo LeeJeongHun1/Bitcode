@@ -9,6 +9,7 @@
 		<result column="depth" property="depth" />
 		<result column="id" property="id" />
 		<result column="language_code" property="code" />
+		<result column="language_name" property="codeName" />
 		<result column="title" property="title" />
 		<result column="content" property="content" />
 		<result column="reg_date" property="regDate" />
@@ -19,13 +20,24 @@
 		<result column="ori_name" property="oriName" />
 		<result column="system_name" property="systemName" />
 	</resultMap>
+	<select id="selectBoard" resultMap="qnaMap">
+	   select *
+         from tb_qna_board q
+         inner 
+         join  tb_language_code l
+          on q.language_code = l.language_code
+         order by no desc
+	</select>
 	<select id="selectBoardByNo" parameterType="int" resultMap="qnaMap">
-	   select * 
+	    select * 
         from tb_qna_board b
         inner 
 		join tb_qna_file f
         on b.no = f.no
-	   where b.no = #{no}
+        inner
+        join tb_language_code c
+		on b.language_code = c.language_code
+        where b.no = #{no}
 	</select>
 	<insert id="insertBoard" parameterType="qna">
 	   <selectKey keyProperty="no" resultType="int" order="AFTER">

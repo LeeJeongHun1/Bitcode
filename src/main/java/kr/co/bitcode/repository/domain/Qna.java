@@ -15,9 +15,23 @@ public class Qna {
 	private Date regDate;
 	private int viewCnt;
 	private String code;
+	private String codeName;
 	private String filePath;
 	private String oriName;
 	private String systemName;
+	private long fileSize;
+	public String getCodeName() {
+		return codeName;
+	}
+	public void setCodeName(String codeName) {
+		this.codeName = codeName;
+	}
+	public long getFileSize() {
+		return fileSize;
+	}
+	public void setFileSize(long fileSize) {
+		this.fileSize = fileSize;
+	}
 	public String getOriName() {
 		return oriName;
 	}

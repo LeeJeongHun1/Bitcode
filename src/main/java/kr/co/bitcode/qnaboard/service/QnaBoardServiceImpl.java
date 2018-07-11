@@ -50,6 +50,17 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 		System.out.println(qna.getFilePath() +"파일");
 		return qna;
 	}
+
+	@Override
+	public List<Qna> selectQnaBoard() throws Exception {
+		List<Qna> list = mapper.selectBoard();
+		return list;
+	}
+
+	@Override
+	public void updateQna(Qna qna, QnaFile qnafile) throws Exception {
+		mapper.updateBoard(qna);
+	}
 	
 	
 	

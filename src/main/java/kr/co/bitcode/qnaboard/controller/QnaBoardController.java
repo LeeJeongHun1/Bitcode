@@ -22,8 +22,9 @@ public class QnaBoardController {
 	private QnaBoardService qnaBoardService;
 	
 	@RequestMapping("/list.do")
-	public ModelAndView listBoard() {
+	public ModelAndView listBoard() throws Exception {
 		ModelAndView mav = new ModelAndView("/qnaboard/list");
+		mav.addObject("list", qnaBoardService.selectQnaBoard());
 		return mav;
 	}
 	

@@ -19,7 +19,7 @@ import kr.co.bitcode.repository.domain.FileVO;
 public class DownloadController {
 	
 	@RequestMapping("/fileDown.do")
-	public void fileDown(FileVO file, int no, HttpServletResponse response, Model model) throws Exception{
+	public void fileDown(FileVO file,HttpServletResponse response, Model model) throws Exception{
 		File f = new File("C:\\java-lec\\upload\\"+file.getOriginalFileName());
 		String dName = file.getOriginalFileName();
 		if(dName == null){
