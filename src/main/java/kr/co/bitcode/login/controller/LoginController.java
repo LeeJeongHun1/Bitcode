@@ -2,6 +2,9 @@ package kr.co.bitcode.login.controller;
 
 
 
+import java.util.List;
+
+
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -54,10 +57,6 @@ public class LoginController {
 		session.invalidate();
 		return "redirect:/login/loginForm.do";
 	}	
-	
-	
-	
-	
 //		System.out.println(user.getPassword());
 //		System.out.println(passCode.encode(userInfo.getPassword()));
 //	System.out.println(user.getPassword());
@@ -69,6 +68,21 @@ public class LoginController {
 		return "login/signupForm";
 	
 	} 
+	
+	
+	
+	//ID 중복 체크
+	@RequestMapping("/signUpIdCheck.json") 
+	public @ResponseBody boolean signUpForm(User user) throws Exception { 
+		List<User> list = loginService.selectAllUser();
+		for (User users : list) {
+			if(user.getId().equals(users.getId())) {
+				return true;
+			}
+		}
+		return false;
+	} 	
+	
 	
 	// 회원가입후 로그인화면 이동
 	@RequestMapping("/signup.do") 
@@ -88,6 +102,11 @@ public class LoginController {
 		}
 		return user;
 	}
+	
+	
+	
+	
+	
 	
 	//Pass 찾기
 	@RequestMapping("/findPassForm.do")

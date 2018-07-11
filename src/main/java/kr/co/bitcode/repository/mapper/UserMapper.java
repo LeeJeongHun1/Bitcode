@@ -1,5 +1,7 @@
 package kr.co.bitcode.repository.mapper;
 
+import java.util.List;
+
 import kr.co.bitcode.repository.domain.User;
 
 public interface UserMapper {
@@ -16,6 +18,8 @@ public interface UserMapper {
 	
 	//비번수정하기
 	public void updateUserPass (User user) throws Exception;
+	//모든 유저들 List뽑기
+	public List<User> selectAllUser() throws Exception;
 	
 	
 	

@@ -1,5 +1,7 @@
 package kr.co.bitcode.login.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +25,10 @@ public class LoginServiceImpl implements LoginService{
 	@Override
 	public User selectUserByNameEmail(User user) throws Exception {
 		return userMapper.selectUserByNameEmail(user);
+	}
+	@Override
+	public List<User> selectAllUser() throws Exception {
+		return userMapper.selectAllUser();
 	}
 	
 
