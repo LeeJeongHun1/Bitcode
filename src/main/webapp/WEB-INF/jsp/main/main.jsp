@@ -237,6 +237,12 @@
 	        	if(path == ''){
 	        		console.log("파일만 올림")
 		            console.log("File: " + path + file.name);
+	                var html = '';
+	                html += '<div class="col-xs-2 folders text-center">';
+	                html += '	<p class="contain"><img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500502735/if_folder-blue_285658_f5jeko.svg" class="img-responsive  center-block" style="height: 64px;" alt=""></p>';
+	                html += '	<span>Folder</span>';
+	                html += '</div>';
+	                fDiv.append(html);
 	        	}else{
 	        		console.log("폴더포함 올림")
 		            console.log("File: " + path + file.name);
@@ -277,24 +283,24 @@
 	dropZone.addEventListener('drop', handleFileSelect, false);	
     var fDiv = $("#folder-area");
 
-    div.ondragover = function (e) {
-        return false;
-    }
+//     div.ondragover = function (e) {
+//         return false;
+//     }
     
-    div.ondrop = function (e) {
-        var files = e.dataTransfer.files;
-        console.log(files)
-        for(var i of files){
-            console.log(i.name, i.size);
-            var html = '';
-            html += '<div class="col-xs-2 folders text-center">';
-            html += '	<p class="contain"><img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500502735/if_folder-blue_285658_f5jeko.svg" class="img-responsive  center-block" style="height: 64px;" alt=""></p>';
-            html += '	<span>Folder</span>';
-            html += '</div>';
-            fDiv.append(html);
-        }
-        return false;
-    }
+//     div.ondrop = function (e) {
+//         var files = e.dataTransfer.files;
+//         console.log(files)
+//         for(var i of files){
+//             console.log(i.name, i.size);
+//             var html = '';
+//             html += '<div class="col-xs-2 folders text-center">';
+//             html += '	<p class="contain"><img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500502735/if_folder-blue_285658_f5jeko.svg" class="img-responsive  center-block" style="height: 64px;" alt=""></p>';
+//             html += '	<span>Folder</span>';
+//             html += '</div>';
+//             fDiv.append(html);
+//         }
+//         return false;
+//     }
 </script>
 </body>
 </html>

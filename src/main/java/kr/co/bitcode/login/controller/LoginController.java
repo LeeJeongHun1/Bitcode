@@ -2,10 +2,11 @@ package kr.co.bitcode.login.controller;
 
 
 
+import java.io.File;
 import java.util.List;
 
-
 import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -89,6 +90,7 @@ public class LoginController {
 	public String signup(User user, RedirectAttributes attr, HttpSession session) throws Exception{ 
 		 user.setPassword(passCode.encode(user.getPassword()));
 		 loginService.insertMemberInfo(user);
+		 new File("c:\\java-lec\\upload\\" + user.getId());
 		return "login/loginForm";
 	} 
 

@@ -30,4 +30,7 @@ public class TestController {
 	@RequestMapping("/test1.do")
 	public void test1(Model model) {
 	}
+	@RequestMapping("/folder.do")
+	public void folder(Model model) {
+	}
 }
