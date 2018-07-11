@@ -1,6 +1,4 @@
-if("${msg}") {
-	swal("${msg}")
-}
+
 //ID 중복 체크
 
 $("#userId").keyup(function () {
@@ -28,7 +26,6 @@ $("#userId").keyup(function () {
 		}
 	});
 });
-
 
 
 //비번 체크

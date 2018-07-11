@@ -22,12 +22,12 @@ public class RemoteController {
 	public ModelAndView remoteList(String nickName, String question, String link, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("remote/list");
-		session.setAttribute("nickName", nickName);
-		session.setAttribute("question", question);
-		session.setAttribute("link", link);
-		System.out.println(nickName);
-		System.out.println(question);
-		System.out.println(link);
+//		session.setAttribute("nickName", nickName);
+//		session.setAttribute("question", question);
+//		session.setAttribute("link", link);
+//		System.out.println(nickName);
+//		System.out.println(question);
+//		System.out.println(link);
 		return mav;
 	}
 	

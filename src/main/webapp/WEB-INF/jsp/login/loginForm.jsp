@@ -17,17 +17,23 @@
 		  <h1>Hello Bit Code !!</h1>
 		  <input name="id" placeholder="UserId" type="text"/>
 		  <input name="password" placeholder="Password" type="password"/>
-		  <button class="btn">Log in</button>
+		  <button class="btn" id="loginBtn">Log in</button>
+		</form>
 		  <span id="forgetid">Forget ID?</span>
 		  <span id="forgetpass">Forget Password?</span><br><br>
 		  <span id="siciallogin">social login ?</span>
 		  <span id="signup"><a href="${pageContext.request.contextPath}/login/signupForm.do">회원가입</a></span><br>
-		</form>
 	<div class="social">
 	<button class="na btn">Naver</button>
 	<button class="ka btn">KaKaoTalk</button>
 	</div>
 </div>	
 <script src="${pageContext.request.contextPath}/resources/js/loginform/loginForm.js"></script>
+<script> 
+//로그인 실패시 alert창 뜸.
+if ("${msg}") { 
+	swal("${msg}");
+} 
+</script>
 </body>
 </html>
