@@ -12,6 +12,8 @@
 <script src="${pageContext.request.contextPath}/resources/js/notify/notify.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/waitme/waitMe.min.js"></script>
 
+<meta charset="UTF-8">
+
 
  <%-- 하단메뉴 --%> 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main/footer.css">
@@ -23,6 +25,8 @@
 <%-- 크롬 팝업 --%>
 <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main/cloud.css">
+
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main/folder.css">
 
 <%-- 부트스트랩  --%> 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> 
@@ -55,7 +59,8 @@
 		
 		
 		
-		
+<script src="${pageContext.request.contextPath}/resources/js/folderjs/folder.js"></script>
+
 </body>
 
 
