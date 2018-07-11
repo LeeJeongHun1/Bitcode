@@ -4,12 +4,11 @@ import javax.servlet.http.HttpSession;
 
 import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import kr.co.bitcode.login.service.LoginService;
 import kr.co.bitcode.mail.service.MailService;
 import kr.co.bitcode.repository.domain.User;
 import kr.co.bitcode.user.service.UserService;
@@ -17,6 +16,9 @@ import kr.co.bitcode.user.service.UserService;
 @Controller
 @RequestMapping("/sendMail")
 public class MailController {
+	// PassWord 암호화
+	@Autowired
+	BCryptPasswordEncoder passCode;	
 	
 	@Autowired
 	private UserService userservice;
@@ -50,15 +52,16 @@ public class MailController {
         		}
         	}
         	String password = String.valueOf(buf);
-        	user.setPassword(password);
-        	userservice.updateUserPass(user);; // 해당 유저의 비밀번호 db 변경
+//        	user.setPassword(password);
+        	userInfo.setPassword(passCode.encode(password)); // 임시비밀번호 암호화 
+        	userservice.updateUserPass(userInfo);; // 해당 유저의 비밀번호 db 변경
         	
         	StringBuilder sb = new StringBuilder();
         	String subject = "bitCode 임시 비밀번호 발급 안내 입니다.";
         	sb.append("귀하의 임시 비밀번호는 " + password + " 입니다.");
         	sb.append("로그인 후 나의 회원정보 페이지에서 변경해주세요");
-        	mailService.send(subject, sb.toString(), "jiyeonyoomoon@gmail.com", user.getEmail(), null);
-        	return user;
+        	mailService.send(subject, sb.toString(), "bitcodeProject1@gmail.com", user.getEmail(), null);
+        	return userInfo;
         
         } else {
             return null;
