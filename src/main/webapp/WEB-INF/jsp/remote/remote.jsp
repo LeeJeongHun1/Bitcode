@@ -18,14 +18,12 @@ if(!location.hash.replace('#', '').length) {
 }
 </script>
 
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/remote/remote.css">
 <style>
 video {
     box-sizing: border-box;
 }
 </style>
 
-<link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/ajhifddimkapgcifgcodmmfdlknahffk">
 <!-- scripts used for screen-sharing -->
 <script src="https://cdn.webrtc-experiment.com/socket.io.js"> </script>
 <script src="${pageContext.request.contextPath}/resources/js/remote/detectRTC.js"></script>
@@ -39,18 +37,15 @@ video {
 <script src="${pageContext.request.contextPath}/resources/js/remote/screen.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/remote/embed.js"></script>
 
-<link rel="preload" as="style" href="https://c.disquscdn.com/next/embed/styles/lounge.3999ac261b914f8b8b5e85df0ff3eaea.css">
 <link rel="preload" as="script" href="https://c.disquscdn.com/next/embed/common.bundle.5f8e47303ecf1055cd7c6905466d140a.js">
 <link rel="preload" as="script" href="https://c.disquscdn.com/next/embed/lounge.bundle.33067ddbd4792de0b384ceb588602715.js">
 <link rel="preload" as="script" href="https://disqus.com/next/config.js">
 </head>
-<script>
-if(!location.hash.replace('#', '').length) {
-    location.href = location.href.split('#')[0] + '#' + (Math.random() * 100).toString().replace('.', '');
-    location.reload();
+<style>
+#strong, .link a {
+	display: none;
 }
-</script>
-
+</style>
 </head>
 
 <body>
@@ -59,9 +54,14 @@ if(!location.hash.replace('#', '').length) {
 	<h3 id="number-of-participants">연결 대기중입니다..</h3>
 	<!-- 화면 공유 페이지 링크 주소 -->
 	<div class="hide-after-join">
+	
 	    <!-- 문의 주제 -->
-	    <input type="text" id="user-name" value="문의주제" hidden="hidden">
-	    <button id="share-screen" class="screenShare order btn btn-default btn-group-xs">화면 공유</button>
+	    <form id="qForm" action="${pageContext.request.contextPath}/remote/list.do">
+	    <input type="text" id="nickName" name="nickName" value="${sessionScope.nickName}" hidden="hidden">
+	    <input type="text" id="question" name="question" value="${sessionScope.question}" hidden="hidden">
+	    <input type="text" id="link" name="link" value="" hidden="hidden">
+	    </form>
+	    <button id="shareScreen" class="screenShare order btn btn-default btn-group-xs">화면 공유</button>
 	</div>
 
 	<!-- 화면 공유 대기 리스트 -->
@@ -85,17 +85,24 @@ if(!location.hash.replace('#', '').length) {
     </div>
   </div>
   
-  
-  
-  
-  
 <script>
+//alert("${sessionScope.nickName}");
+//alert("${sessionScope.question}");
+
 var videosContainer = document.getElementById("videos-container") || document.body;
 var roomsList = document.getElementById('rooms-list');
 var screensharing = new Screen();
 var channel = location.href.replace(/\/|:|#|%|\.|\[|\]/g, '');
+
+//alert(channel);
+
+if(channel){
+	var link = document.querySelector('#link');
+	link.setAttribute('value', location.href);
+}
+
 var sender = Math.round(Math.random() * 999999999) + 999999999;
-// https://github.com/muaz-khan/WebRTC-Experiment/tree/master/socketio-over-nodejs
+
 var SIGNALING_SERVER = 'https://socketio-over-nodejs2.herokuapp.com:443/';
 io.connect(SIGNALING_SERVER).emit('new-channel', {
     channel: channel,
@@ -162,22 +169,23 @@ screensharing.onuserleft = function(userid) {
 
 // 화면 공유
 screensharing.check();
-document.getElementById('share-screen').onclick = function() {
-    var username = document.getElementById('user-name');
+document.getElementById('shareScreen').onclick = function() {
+    var username = document.getElementById('nickName');
     username.disabled = this.disabled = true;
     screensharing.isModerator = true;
     screensharing.userid = username.value;
     screensharing.share();
 };
 
-/* 
+// 상담 리스트에 출력하기 위한 링크
+
 (function() {
     var uniqueToken = document.getElementById('unique-token');
     if (uniqueToken)
         if (location.hash.length > 2) uniqueToken.parentNode.parentNode.parentNode.innerHTML = '<h2 style="text-align:center; display: block"><a href="' + location.href + '" target="_blank">Right click to copy & share this private link</a></h2>';
         else uniqueToken.innerHTML = uniqueToken.parentNode.parentNode.href = '#' + (Math.random() * new Date().getTime()).toString(36).toUpperCase().replace( /\./g , '-');
 })();
- */
+
 // 공유화면 접속자 수 출력
 screensharing.onNumberOfParticipantsChnaged = function(numberOfParticipants) {
     if(!screensharing.isModerator) return;
@@ -276,6 +284,21 @@ window.addEventListener('message', function (event) {
     DetectRTC.screen.onMessageCallback(event.data);
 });
 console.log('current chromeMediaSource', DetectRTC.screen.chromeMediaSource);
+
+// 화면공유시 상담신청 List에 정보 전달
+$("#shareScreen").click(function() {
+	var formData = $("#qForm").serialize();
+	console.log(formData);
+		$.ajax({
+			type : "POST",
+			url : "/bitcode/remote/list.do",
+			cache : false,
+			data : formData,
+			success : function() {
+				
+			}
+	});
+});
 </script>
 
 </body>

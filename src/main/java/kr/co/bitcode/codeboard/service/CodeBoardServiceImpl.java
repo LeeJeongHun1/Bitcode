@@ -40,8 +40,8 @@ public class CodeBoardServiceImpl implements CodeBoardService{
 	}
 
 	@Override
-	public void deleteBoard(CodeBoard cb) {
-		mapper.deleteBoard(cb);
+	public void deleteBoard(int no) {
+		mapper.deleteBoard(no);
 		
 	}
 

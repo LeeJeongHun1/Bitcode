@@ -32,14 +32,15 @@
         <div class="container" style="height:402px;">
             <div class="col-md-12" style="height:380px;">
             	<div class="table-responsive">
+                    <div class="list" style="height:380px;">
                     <table class="table">
                         <thead>
                             <tr>
                                 <th style="width:74px;font-size:14px;">&nbsp;글번호</th>
                                 <th style="width:56px;font-size:14px;">분류</th>
-                                <th style="width:356px;font-size:14px;">제목</th>
+                                <th style="width:340px;font-size:14px;">제목</th>
                                 <th style="width:123px;font-size:14px;">작성자</th>
-                                <th style="width:42px;font-size:14px;">등록일</th>
+                                <th style="width:58px;font-size:14px;">등록일</th>
                                 <th style="width:60px;font-size:14px;">추천수</th>
                                 <th style="width:71px;font-size:14px;">조회수</th>
                             </tr>
@@ -58,6 +59,7 @@
                         </c:forEach>
                         </tbody>
                     </table>
+                        </div>
                 </div>
             </div>
         </div>

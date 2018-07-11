@@ -10,7 +10,7 @@ public interface CodeBoardMapper {
 	public CodeBoard selectBoardByNo(int no);
 	public void insertBoard(CodeBoard cb);
 	public void updateBoard(CodeBoard cb);
-	public void deleteBoard(CodeBoard cb);
+	public void deleteBoard(int no);
 	public void updateBoardViewCnt(int no);
 	public CodeBoardFile selectBoardFileByNo(int no);
 	public void insertBoardFile(CodeBoardFile cbFile);

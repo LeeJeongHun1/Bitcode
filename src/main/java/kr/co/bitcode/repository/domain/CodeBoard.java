@@ -2,6 +2,8 @@ package kr.co.bitcode.repository.domain;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class CodeBoard {
 	private int no;
 	private int groupNo;
@@ -14,6 +16,34 @@ public class CodeBoard {
 	private Date regDate;
 	private int viewCnt;
 	private int likeCnt;
+	private MultipartFile[] file;
+	private String filePath;
+	private String oriName;
+	private String systemName;
+	public String getFilePath() {
+		return filePath;
+	}
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
+	}
+	public String getOriName() {
+		return oriName;
+	}
+	public void setOriName(String oriName) {
+		this.oriName = oriName;
+	}
+	public String getSystemName() {
+		return systemName;
+	}
+	public void setSystemName(String systemName) {
+		this.systemName = systemName;
+	}
+	public MultipartFile[] getFile() {
+		return file;
+	}
+	public void setFile(MultipartFile[] file) {
+		this.file = file;
+	}
 	public int getNo() {
 		return no;
 	}

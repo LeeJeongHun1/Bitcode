@@ -81,7 +81,7 @@ $("#userName").keyup(function(){
 	}
 })
 
-//별명 중복확인(디비 만들어진 후에)
+//별명 
 $("#nickName").keyup(function(){
 	if($(this).val() == ""){
 		$(this).data("flag","no");
@@ -91,13 +91,13 @@ $("#nickName").keyup(function(){
 })
 
 //ID 중복확인(디비 만들어진 후에)
-$("#userId").keyup(function(){
-	if($(this).val() == ""){
-		$(this).data("flag","no");
-	}else{
-		$(this).data("flag","yes");
-	}
-})
+//$("#userId").keyup(function(){
+//	if($(this).val() == ""){
+//		$(this).data("flag","no");
+//	}else{
+//		$(this).data("flag","yes");
+//	}
+//})
 
 
 //공백 체크

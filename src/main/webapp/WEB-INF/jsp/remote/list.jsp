@@ -23,9 +23,9 @@
        </tr>
        
        <tr>
-        <td><a class="folder" href="#">글씨 출력이 안되요!!</a></td>
-        <td>지연</td>
-        <td>대기</td>
+        <td><a class="folder" href="#">${sessionScope.question}</a></td>
+        <td>${sessionScope.nickName}</td>
+        <td><a href="${sessionScope.link}">상담</a></td>
        </tr>
        
        <tr>
@@ -53,6 +53,8 @@
   <button type="button" class="order btn btn-default btn-group-xs">상담신청</button>
 </div>
 <script>
+alert("${sessionScope.link}");
+
 $(".order").click(function(){
 	  swal({
 	    title: '결제하시겠습니까',

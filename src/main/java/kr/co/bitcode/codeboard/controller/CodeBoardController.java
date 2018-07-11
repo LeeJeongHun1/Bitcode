@@ -63,48 +63,19 @@ public class CodeBoardController {
 	}
 	
 	@RequestMapping(value="/insert.do", method=RequestMethod.POST)
-	public String insertBoard(CodeBoard cb, MultipartHttpServletRequest mRequest) throws Exception {		
-//		String uploadDir = servletContext.getRealPath("/upload");
-//		ModelAndView mav = new ModelAndView("redirect:/codeboard/detail.do?no=" +no);
-		
-		Iterator<String> iter = mRequest.getFileNames();
-		while(iter.hasNext()) {
-			
-			String formFileName = iter.next();
-			SimpleDateFormat sdf = new SimpleDateFormat("/yyyy/MM/dd/HH");
-			String datePath = sdf.format(new Date());
-			MultipartFile mFile = mRequest.getFile(formFileName);
-			
-			String oriFileName = mFile.getOriginalFilename();
-			System.out.println("원본 파일명 : " + oriFileName);
-			
-			if(oriFileName != null && !oriFileName.equals("")) {
-			
-				
-				String ext = "";
-				int index = oriFileName.lastIndexOf(".");
-				if (index != -1) {
-					ext = oriFileName.substring(index);
-				}				
-				long fileSize = mFile.getSize();
-				System.out.println("파일 사이즈 : " + fileSize);
-				
-				String saveFileName = "mlec-" + UUID.randomUUID().toString() + ext;
-				System.out.println("저장할 파일명 : " + saveFileName);
-			
-				mFile.transferTo(new File("d:/java-lec/upload/" + saveFileName));
-				
-				CodeBoardFile cbFile = new CodeBoardFile();
-				cbFile.setFileNo(cb.getNo());
-				cbFile.setFilePath(datePath);
-				cbFile.setOriName(oriFileName);
-				cbFile.setSystemName(saveFileName);
-				cbFile.setFileSize(fileSize);
-				service.insertBoardFile(cbFile);
-			} 
-		}
-		
+	public String insertBoard(CodeBoard cb, CodeBoardFile cbFile) throws Exception {		
 		service.insertBoard(cb);
+		for(MultipartFile file:cb.getFile()) {
+			file.transferTo(new File("c:/java-lec/upload/"+file.getOriginalFilename()));
+			cbFile.setNo(cb.getNo());
+			System.out.println(cb.getNo());
+			cbFile.setFilePath("c:/java-lec/upload/"+file.getOriginalFilename());
+			cbFile.setOriName(file.getOriginalFilename());
+			cbFile.setSystemName(file.getName());
+			cbFile.setFileSize((int)file.getSize());	
+		}
+		service.insertBoardFile(cbFile);
+		
 		 int no = cb.getNo();
 		return "redirect:/codeboard/detail.do?no=" +no;
 	}
@@ -123,9 +94,10 @@ public class CodeBoardController {
 		return "codeboard/updateForm";
 	}
 	
-	@RequestMapping(value="/board.do", method=RequestMethod.DELETE)
-	public void deleteboard() {
-		
+	@RequestMapping(value="/delete.do", method=RequestMethod.GET)
+	public String deleteboard(int no) {
+		service.deleteBoard(no);
+		return "redirect:/codeboard/list.do";
 	}
 	
 	@RequestMapping("/selectLanguage.json")

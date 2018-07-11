@@ -17,7 +17,7 @@ background-color: black;}
 	<div class="container">
 		<div class="shell-container" style="color:#80FF00; background-color: black;">
 			<form method='post' action='${pageContext.request.contextPath}/codeboard/update.do'
-			>
+			enctype="multipart/form-data">
 			<input type='hidden' name='no' value='${cb.no}' />
 		<h2 class="shell_title" style="color:#80FF00;">코드공유게시판</h2>
 			<table class="editTable" >

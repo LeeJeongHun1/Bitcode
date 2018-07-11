@@ -40,7 +40,7 @@ public class CodeBoardFile {
 	public long getFileSize() {
 		return fileSize;
 	}
-	public void setFileSize(long fileSize2) {
-		this.fileSize = fileSize2;
+	public void setFileSize(long fileSize) {
+		this.fileSize = fileSize;
 	}
 }

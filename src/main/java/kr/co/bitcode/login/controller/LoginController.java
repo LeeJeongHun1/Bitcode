@@ -46,6 +46,7 @@ public class LoginController {
 		User userInfo = loginService.selectUserById(user.getId());
 		if(userInfo != null && passCode.matches(user.getPassword(), userInfo.getPassword())) {
 			session.setAttribute("user", userInfo);
+			session.setMaxInactiveInterval(60 * 60);
 			return "redirect:/main/main.do";
 		}else {
 			attr.addFlashAttribute("msg", "아이디 또는 비밀번호가 일치 하지 않습니다");
@@ -57,7 +58,7 @@ public class LoginController {
 	@RequestMapping("/logout.do")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "redirect:/login/loginForm.do";
+		return "redirect:/main/main.do";
 	}	
 //		System.out.println(user.getPassword());
 //		System.out.println(passCode.encode(userInfo.getPassword()));
@@ -96,7 +97,6 @@ public class LoginController {
 		return "redirect:/login/loginForm.do";
 		
 	} 
-
 	// ID찾기
 	@RequestMapping("/fogetId.json") 
 	@ResponseBody
@@ -105,7 +105,7 @@ public class LoginController {
 		if(userInfo != null){
 			return userInfo;
 		}
-		return user;
+		return null;
 	}
 
 	
