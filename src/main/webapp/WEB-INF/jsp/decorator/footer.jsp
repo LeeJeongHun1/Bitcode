@@ -28,7 +28,9 @@
             <%-- 크롬 브라우저 --%>
             <a href="#chrome-pop-up" id="chrome" class="border"></a>
             <%-- 폴더 --%>
-			<a href="#folder" id="folder" ondblclick="opencom()"></a>
+            <c:if test="${!empty sessionScope.user}">
+				<a href="#folder" id="folder" ondblclick="opencom()"></a>
+            </c:if>
         </div>
         
         <%-- 마이인포 --%>
