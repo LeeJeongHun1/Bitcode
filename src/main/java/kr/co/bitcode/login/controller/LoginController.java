@@ -3,6 +3,7 @@ package kr.co.bitcode.login.controller;
 
 
 import java.io.File;
+
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -91,7 +92,9 @@ public class LoginController {
 		 user.setPassword(passCode.encode(user.getPassword()));
 		 loginService.insertMemberInfo(user);
 		 new File("c:\\java-lec\\upload\\" + user.getId()).mkdirs();
-		return "login/loginForm";
+		 attr.addFlashAttribute("msg", "회원가입이 되었습니다.");
+		return "redirect:/login/loginForm.do";
+		
 	} 
 
 	// ID찾기

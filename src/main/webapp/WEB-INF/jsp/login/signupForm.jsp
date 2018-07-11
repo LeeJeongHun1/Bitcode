@@ -6,8 +6,10 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/login/signup.css" />
-<link rel="stylesheet" href="/bitcode/sweetalertFile/sweetalert2.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/sweetalertFile/sweetalert2.css" />
 <script src="${pageContext.request.contextPath}/resources/sweetalertFile/sweetalert2.all.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/waitme/waitMe.min.css" />
+<script src="${pageContext.request.contextPath}/resources/js/waitme/waitMe.min.js"></script>
 </head>
 <body>
 	<form action="${pageContext.request.contextPath}/login/signup.do" method="post" id="userForm">

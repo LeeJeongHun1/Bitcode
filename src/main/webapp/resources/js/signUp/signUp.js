@@ -1,3 +1,6 @@
+if("${msg}") {
+	swal("${msg}")
+}
 //ID 중복 체크
 
 $("#userId").keyup(function () {
@@ -125,4 +128,6 @@ function isEmpty(obj, flag ,msg) {
 		return false;
 	}
 	return true;
-}	
+}
+
+
