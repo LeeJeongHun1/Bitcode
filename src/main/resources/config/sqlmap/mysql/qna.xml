@@ -39,6 +39,7 @@
 		on b.language_code = c.language_code
         where b.no = #{no}
 	</select>
+	
 	<insert id="insertBoard" parameterType="qna">
 	   <selectKey keyProperty="no" resultType="int" order="AFTER">
     	SELECT LAST_INSERT_ID()
@@ -47,9 +48,29 @@
 		tb_qna_board(group_no,id,language_code,title,content)
 		values(#{no},#{id},#{code},#{title},#{content})
 	</insert>
+	
+	<update id="updateBoard" parameterType="qna">
+         update tb_qna_board
+           set  title=#{title},
+                content=#{content}
+		  where no=#{no}
+	</update>
+	
+	<!-- 파일 등록,수정 -->
 	<insert id="insertQnaFile" parameterType="qnaFile">
 		insert into tb_qna_file(no,file_path,ori_name,system_name,file_size)
 		values(#{no},#{filePath},#{oriName},#{systemName},#{fileSize})
 	</insert>
+	
+	<update id="updateQnaFile" parameterType="qnaFile">
+         update tb_qna_file
+           set  file_path=#{filePath},
+				ori_name=#{oriName}',
+				system_name=#{systemName},
+                file_size=#{fileSize}
+		  where file_no= #{fieNo}
+            and no=#{no}
+	
+	</update>
 
 </mapper>

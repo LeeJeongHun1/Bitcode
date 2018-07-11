@@ -26,6 +26,10 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 	public void insertQna(Qna qna, QnaFile qnafile) throws Exception {
 		mapper.insertBoard(qna);
 		System.out.println("번호"+ qna.getNo());
+		System.out.println(qna.getFile()[0].getSize() +"갯수");
+		if(qna.getFile()[0].getSize() == 0) {
+			System.out.println("파일없음");
+		}else {
 		for(MultipartFile file:qna.getFile()) {
 		file.transferTo(new File("c:/java-lec/upload/"+file.getOriginalFilename()));
 		qnafile.setNo(qna.getNo());
@@ -34,7 +38,7 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 		qnafile.setSystemName(file.getName());
 		qnafile.setFileSize((int)file.getSize());	
 		} 	
-		mapper.insertQnaFile(qnafile);
+		mapper.insertQnaFile(qnafile);}
 	}
 
 	@Override
@@ -46,6 +50,7 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 	@Override
 	public Qna detailQna(int no) throws Exception {
 		Qna qna = mapper.selectBoardByNo(no);
+		mapper.selectQnaFileByNo(no);
 		System.out.println(qna.getContent() +"내용");
 		System.out.println(qna.getFilePath() +"파일");
 		return qna;
@@ -60,6 +65,24 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 	@Override
 	public void updateQna(Qna qna, QnaFile qnafile) throws Exception {
 		mapper.updateBoard(qna);
+		if(qna.getFile()[0].getSize() == 0) {
+			System.out.println("파일없음");
+		}else {
+		for(MultipartFile file:qna.getFile()) {
+		file.transferTo(new File("c:/java-lec/upload/"+file.getOriginalFilename()));
+		qnafile.setNo(qna.getNo());
+		qnafile.setFilePath("c:/java-lec/upload/"+file.getOriginalFilename());
+		qnafile.setOriName(file.getOriginalFilename());
+		qnafile.setSystemName(file.getName());
+		qnafile.setFileSize((int)file.getSize());	
+		} 	
+		mapper.updateQnaFile(qnafile);}
+	}
+
+	@Override
+	public void updateQnaView(int no) throws Exception {
+		mapper.selectBoardByNo(no);
+		mapper.selectQnaFileByNo(no);		
 	}
 	
 	

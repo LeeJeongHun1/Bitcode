@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -23,23 +25,23 @@ public class QnaBoardController {
 	
 	@RequestMapping("/list.do")
 	public ModelAndView listBoard() throws Exception {
-		ModelAndView mav = new ModelAndView("/qnaboard/list");
+		ModelAndView mav = new ModelAndView("qnaboard/list");
 		mav.addObject("list", qnaBoardService.selectQnaBoard());
 		return mav;
 	}
 	
 	@RequestMapping("/detail.do")
 	public ModelAndView viewDeatil(int no) throws Exception {
-		ModelAndView mav = new ModelAndView("/qnaboard/detail");
+		ModelAndView mav = new ModelAndView("qnaboard/detail");
+		System.out.println(no +"글번호");
 		mav.addObject("qna", qnaBoardService.detailQna(no));
 		return mav;
 	}	
 	
 	@RequestMapping(value="/insert.do", method=RequestMethod.POST)
-	public ModelAndView editQna(Qna qna,QnaFile qnafile) throws Exception {
+	public String editQna(Qna qna,QnaFile qnafile) throws Exception {
 		qnaBoardService.insertQna(qna, qnafile);
-		ModelAndView mav = new ModelAndView("/qnaboard/list");
-		return mav;
+		return "redirect:/qnaboard/list.do";
 	}
 	
 	@RequestMapping(value="/insert.do", method=RequestMethod.GET)
@@ -47,7 +49,12 @@ public class QnaBoardController {
 		return "qnaboard/insertForm";
 	}
 	
-
+	@RequestMapping(value="/update.do", method=RequestMethod.POST)
+	public String updateQna(int no,Model model) throws Exception {
+		model.addAttribute("qna", qnaBoardService.detailQna(no));
+		return "qnaboard/updateForm";
+	}
+	
 	@RequestMapping("/selectLanguage.json")
 	@ResponseBody
 	public List<Code> selectLanguage() throws Exception{

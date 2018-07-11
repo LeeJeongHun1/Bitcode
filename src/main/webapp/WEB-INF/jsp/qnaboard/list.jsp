@@ -45,6 +45,7 @@
         <div class="container" style="height:430px;">
             <div class="col-md-12" style="height:380px;">
             	<div class="table-responsive" >
+            	<div style="height:380px;">
                     <table class="table">
                         <thead>
                             <tr>
@@ -64,13 +65,14 @@
                                 <td style="font-size:14px;">${i.codeName}</td>
                                 <td style="font-size:14px;"><a href="detail.do?no=${i.no}">${i.title}</a></td>
                                 <td style="font-size:14px;">${i.id}</td>
-                                <td style="font-size:14px;">${i.regDate}</td>
+                                <td style="font-size:14px;"><fmt:formatDate value="${i.regDate}" pattern="yyyy-MM-dd HH-mm-ss" /></td>
                                 <td style="font-size:14px;">${i.likeCnt}</td>
                                 <td style="font-size:14px;">${i.viewCnt}</td>
                             </tr>
                             </c:forEach>
                         </tbody>
                     </table>
+                    </div>
                 </div>
             </div>
         </div>
