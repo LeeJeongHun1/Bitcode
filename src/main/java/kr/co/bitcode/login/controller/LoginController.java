@@ -96,7 +96,6 @@ public class LoginController {
 		return "redirect:/login/loginForm.do";
 		
 	} 
-
 	// ID찾기
 	@RequestMapping("/fogetId.json") 
 	@ResponseBody
@@ -105,7 +104,7 @@ public class LoginController {
 		if(userInfo != null){
 			return userInfo;
 		}
-		return user;
+		return null;
 	}
 
 	

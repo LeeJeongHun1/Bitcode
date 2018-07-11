@@ -44,8 +44,9 @@
 		  },
 		  'ID를 입력하세요',
 		]).then(function(result){
-			fnFindPass(result);
-		
+			if(result.value != undefined){
+				fnFindPass(result);
+			}
 		})
 	});
 	function fnFindPass(data) {
@@ -75,19 +76,6 @@
 		});
 	
 	}		
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	//로그인 실패시 alert창 뜸.
 		if ("${msg}") { 
 			swal("${msg}");
@@ -101,7 +89,6 @@
 		})
 		
 	//ID 찾기
-	var findId;
 	$("#forgetid").on('click',function () {
 		swal.mixin({
 		  input: 'text',
@@ -115,28 +102,35 @@
 		  },
 		  '이메일을 입력하세요',
 		]).then(function(result){
-			fnFindId(result);
-		
+			if(result.value != undefined){
+				fnFindId(result);
+			}
 		})
 	});
+	
 	function fnFindId(data) {
+		$("body").waitMe({
+			effect: "ios",
+			text: "Loding.. :D",
+			bg: 'rgba(255,255,255, 0.7)',
+			color: '#000'
+			
+		});	
 		$.ajax({
 			url : "${pageContext.request.contextPath}/login/fogetId.json",
 			type: "POST",
 			data : {
 				"name" : data.value[0],
 				"email": data.value[1]
-			},
-			success : function(data){
-				console.log(data)
-				console.log(data.id)
+			}
+		}).done(function(result) {
 				if(data.id == null){
 					swal("이름과 이메일이 일치 하지 않습니다.");
 				}else{
 					swal("아이디는 " + data.id + "입니다.");
 				}
-			},
-		})
+			$("body").waitMe("hide");
+		});
 	
 	}		
 	</script>
