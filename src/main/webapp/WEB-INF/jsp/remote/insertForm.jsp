@@ -16,16 +16,14 @@
 
 <div class="remoteForm">
  <form class="form-wrapper" action="${pageContext.request.contextPath}/remote/remote.do" method="post">
-     <!-- 세션기능 완성 후 ID값 설정 추가 -->
-     <input type="text" id="id" hidden="hidden" value="">
-     
     <div class="window">
       <div class="middle">
       </div>
     </div>
     <h1 id="title">실시간 상담</h1>
     <p id="subject">회원님의 화면이 공유되며 상담이 진행됩니다.</p>
-    <input type="text" id="question" placeholder="문의 내용을 입력하세요." required>
+	<input type="text" name="nickName" hidden="hidden" value="${sessionScope.user.nickName}">
+    <input type="text" name="question" id="question" placeholder="문의 내용을 입력하세요." required>
     <input type="submit" value="➔" id="remoteSend">
 </form>
 </div>    
