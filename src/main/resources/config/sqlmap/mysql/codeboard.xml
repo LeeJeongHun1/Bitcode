@@ -49,6 +49,11 @@
 			 where no = #{no}
 		</update>
 		
+		<delete id="deleteBoard" parameterType="int">
+			delete from tb_code_board
+		     where no = #{no}
+		</delete>
+		
 		<select id="selectBoardByNo" parameterType="int" resultMap="codeBoardMap">
 	    	select *
 	    	  from tb_code_board
@@ -72,9 +77,9 @@
 	
 		<insert id="insertBoardFile" parameterType="codeBoardFile">
 			insert into tb_code_file (
-				file_no, no, file_path, ori_name, system_name, file_size
+				no, file_path, ori_name, system_name, file_size
 			) values (
-				s_code_file_no.nextval, #{no}, #{filePath}, #{oriName}, #{systemName}, #{fileSize}		
+				#{no}, #{filePath}, #{oriName}, #{systemName}, #{fileSize}		
 			)
 		</insert>
 		 
