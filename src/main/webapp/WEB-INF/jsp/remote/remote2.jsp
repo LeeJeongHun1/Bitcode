@@ -10,6 +10,7 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/remote/remote.css">
 <script src="https://192.168.0.104:10001/socket.io/socket.io.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/remote/screen.js"></script>
 <style>
 video{
 	box-sizing: border-box;
@@ -106,7 +107,6 @@ video{
 	
 	window.addEventListener('message', event => {
 	    const streamId = event.data.streamId;
-
 	    if (streamId) {
 	        navigator.mediaDevices.getUserMedia({
 	            audio: true, // or true

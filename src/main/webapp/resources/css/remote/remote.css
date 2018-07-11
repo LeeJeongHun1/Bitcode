@@ -14,7 +14,13 @@
   font-family: "Work Sans";
   src: url('https://adrienzaganelli.com/projects/video-player/fonts/WorkSans-Light.woff') format('woff'), url('https://adrienzaganelli.com/projects/video-player/fonts/WorkSans-Light.ttf') format('truetype');
 }
-
+.shareTitle {
+	margin: 0 auto;
+	text-align: center;
+	text-decoration: none;
+	color: white;
+	width: 70%;
+}
 .embedded-container {
   width: 80%;
   margin-right: auto;
@@ -23,7 +29,10 @@
   box-sizing: border-box;
   display: inline-block;
 }
-
+.hide-after-join a{
+	font-size: 12px;
+	color: white;
+}
 .embedded-container .embedded-player-az {
   height: 100px;
   max-width: 100%;
@@ -78,6 +87,10 @@ iframe {
 }
 .bottom-bar input{
 	width: 220px;
+}
+.screenShare{
+  height: 30px;
+  width: 100px;
 }
 .embedded-player-az .buttons button {
   font-family: "Glyphter";

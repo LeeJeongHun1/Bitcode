@@ -1,5 +1,3 @@
-@charset "UTF-8";
-
 td, a {
   transition: color 333ms ease-in-out;
   vertical-align: middle;
