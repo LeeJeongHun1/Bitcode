@@ -6,8 +6,10 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/login/login.css" />
-<link rel="stylesheet" href="/bitcode/sweetalertFile/sweetalert2.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/sweetalertFile/sweetalert2.css" />
 <script src="${pageContext.request.contextPath}/resources/sweetalertFile/sweetalert2.all.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/waitme/waitMe.min.css" />
+<script src="${pageContext.request.contextPath}/resources/js/waitme/waitMe.min.js"></script>
 </head>
 <body>
 	<div id="loginUi">
@@ -47,22 +49,30 @@
 		})
 	});
 	function fnFindPass(data) {
+		$("body").waitMe({
+			effect: "ios",
+			text: "Loding.. :D",
+			bg: 'rgba(255,255,255, 0.7)',
+			color: '#000'
+			
+		});	
+		
 		$.ajax({
 			url : "${pageContext.request.contextPath}/sendMail/findPass.json",
 			type: "POST",
 			data : {
 				"email" : data.value[0],
 				"id": data.value[1]
-			},
-			success : function(data){
-				console.log(data.id)
-				if(data.id == null){
-					swal("입력하신 이메일의 회원정보와 가입된 아이디가 일치하지 않습니다.");
-				}else{
-					swal("귀하의 이메일 주소로 새로운 임시 비밀번호를 발송 하였습니다.");
-				}
-			},
-		})
+			}
+		}).done(function(data) {
+			console.log(data.id)
+			if(data.id == null){
+				swal("입력하신 이메일의 회원정보와 가입된 아이디가 일치하지 않습니다.");
+			}else{
+				swal("귀하의 이메일 주소로 새로운 임시 비밀번호를 발송 하였습니다.");
+			}
+			$("body").waitMe("hide");
+		});
 	
 	}		
 	

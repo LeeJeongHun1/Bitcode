@@ -90,7 +90,7 @@ public class LoginController {
 	public String signup(User user, RedirectAttributes attr, HttpSession session) throws Exception{ 
 		 user.setPassword(passCode.encode(user.getPassword()));
 		 loginService.insertMemberInfo(user);
-		 new File("c:\\java-lec\\upload\\" + user.getId());
+		 new File("c:\\java-lec\\upload\\" + user.getId()).mkdirs();
 		return "login/loginForm";
 	} 
 
