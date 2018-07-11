@@ -13,15 +13,12 @@ body{
 	-webkit-perspective: 30px;
 	-webkit-transform: translateX(0px);
 	-webkit-animation: wrapp 400ms 800ms ease-in forwards;
-
 	-moz-perspective: 30px;
 	-moz-transform: translateX(0px);
 	-moz-animation: wrapp 400ms 800ms ease-in forwards;
-
 	-ms-perspective: 30px;
 	-ms-transform: translateX(0px);
 	-ms-animation: wrapp 400ms 800ms ease-in forwards;
-
 	perspective: 30px;
 	transform: translateX(0px);
 	animation: wrapp 400ms 800ms ease-in forwards;
@@ -36,25 +33,24 @@ body{
 	overflow: hidden;
 	-webkit-transform: translateX(0px);
 	-webkit-animation: text 400ms 800ms linear forwards;
-
 	-moz-transform: translateX(0px);
 	-moz-animation: text 400ms 800ms linear forwards;
-
 	-ms-transform: translateX(0px);
 	-ms-animation: text 400ms 800ms linear forwards;
-
 	transform: translateX(0px);
 	animation: text 400ms 800ms linear forwards;
 }
 .mainText{
 	float: right;
-	font-family: Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+	font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;
+	/* font-family: Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif; */
+	text-shadow: 0 1px 2px #c4b59d, 0px -2px 1px #fff;
 	font-weight: normal;
 	color: #fff;
 	padding: 0;
 	margin: 0;
 	height: 60px;
-	font-size: 60px;
+	font-size: 65px;
 	line-height: 60px;
 }
 .logo{
@@ -67,13 +63,10 @@ body{
 	background-color: #fff;
 	-webkit-transform: translateX(0px) rotateY(10deg);
 	-webkit-animation: logo 500ms 300ms ease-out forwards;
-
 	-moz-transform: translateX(0px) rotateY(10deg);
 	-moz-animation: logo 500ms 300ms ease-out forwards;
-
 	-ms-transform: translateX(0px) rotateY(10deg);
 	-ms-animation: logo 500ms 300ms ease-out forwards;
-
 	transform: translateX(0px) rotateY(10deg);
 	animation: logo 500ms 300ms ease-out forwards;
 }
