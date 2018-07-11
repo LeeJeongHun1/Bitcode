@@ -1,5 +1,8 @@
 package kr.co.bitcode.remote.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,26 +12,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.bitcode.remote.service.RemoteService;
+import kr.co.bitcode.repository.domain.Remote;
 
 @Controller
 @CrossOrigin(origins = "*")
 @RequestMapping("/remote")
 public class RemoteController {
+	private static List<Remote> remoteList = new ArrayList<>();
 	
 	@Autowired
 	private RemoteService service;
 	
 	@RequestMapping("/list.do")
-	public ModelAndView remoteList(String nickName, String question, String link, HttpSession session) {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("remote/list");
-//		session.setAttribute("nickName", nickName);
-//		session.setAttribute("question", question);
-//		session.setAttribute("link", link);
-//		System.out.println(nickName);
-//		System.out.println(question);
-//		System.out.println(link);
-		return mav;
+	public void remoteList() {
 	}
 	
 	@RequestMapping("/insertForm.do")
@@ -36,11 +32,13 @@ public class RemoteController {
 	}
 	
 	@RequestMapping("/remote.do")
-	public ModelAndView remote(String nickName, String question, HttpSession session) {
+	public ModelAndView remote(Remote remote, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("remote/remote");
-		session.setAttribute("nickName", nickName);
-		session.setAttribute("question", question);
+		
+		if(remote != null) remoteList.add(remote);
+		
+		session.setAttribute("remoteList", remoteList);
 		return mav;
 	}
 	

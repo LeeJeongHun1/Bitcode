@@ -291,11 +291,11 @@ $("#shareScreen").click(function() {
 	console.log(formData);
 		$.ajax({
 			type : "POST",
-			url : "/bitcode/remote/list.do",
+			url : "/bitcode/remote/remote.do",
 			cache : false,
 			data : formData,
 			success : function() {
-				
+				console.log("상담신청 리스트 등록");
 			}
 	});
 });
