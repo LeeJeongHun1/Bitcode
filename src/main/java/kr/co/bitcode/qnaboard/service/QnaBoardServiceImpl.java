@@ -50,7 +50,7 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 	@Override
 	public Qna detailQna(int no) throws Exception {
 		Qna qna = mapper.selectBoardByNo(no);
-		mapper.selectQnaFileByNo(no);
+		//mapper.selectQnaFileByNo(no);
 		System.out.println(qna.getContent() +"내용");
 		System.out.println(qna.getFilePath() +"파일");
 		return qna;

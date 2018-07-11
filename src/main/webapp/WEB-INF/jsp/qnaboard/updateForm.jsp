@@ -27,7 +27,7 @@
 						</tr>
 						<tr>
 							<th>작성자</th>
-							<td><input type="text" name="writer" value="${qna.writer}"/></td>
+							<td><input type="text" name="writer" value="${qna.id}"/></td>
 						</tr>
 
 						<tr style="height: 90%;">
@@ -63,6 +63,7 @@
 			dataType: "json"
 		})
 		.done(function (data){
+			cosnole.log(data);
 			for(var i=0; i<data.length; i++){
 				$("select[name='code']").append('<option value="'+data[i].code+'">'+data[i].name+'</option>');
 			}

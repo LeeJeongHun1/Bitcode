@@ -21,7 +21,7 @@
 							<th>제목</th>
 							<td><input class="editTitle" type="text" name="title" /> 
 							<select class="editSelect" name="code">
-									<option value="">분류</option>
+									<option>분류</option>
 							</select></td>
 						</tr>
 						<tr>

@@ -44,12 +44,12 @@ public class QnaBoardController {
 		return "redirect:/qnaboard/list.do";
 	}
 	
-	@RequestMapping(value="/insert.do", method=RequestMethod.GET)
+	@RequestMapping(value="/insertForm.do", method=RequestMethod.GET)
 	public String editQna() throws Exception {
 		return "qnaboard/insertForm";
 	}
 	
-	@RequestMapping(value="/update.do", method=RequestMethod.POST)
+	@RequestMapping(value="/updateForm.do", method=RequestMethod.GET)
 	public String updateQna(int no,Model model) throws Exception {
 		model.addAttribute("qna", qnaBoardService.detailQna(no));
 		return "qnaboard/updateForm";
