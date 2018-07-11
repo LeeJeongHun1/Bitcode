@@ -28,7 +28,7 @@
             <%-- 크롬 브라우저 --%>
             <a href="#chrome-pop-up" id="chrome" class="border"></a>
             <%-- 폴더 --%>
-            <a href="#chrome-pop-up" id="folder" class="border"></a>
+			<a href="#folder" id="folder" ondblclick="opencom()"></a>
         </div>
         
         <%-- 마이인포 --%>

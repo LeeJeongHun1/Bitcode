@@ -178,7 +178,7 @@
                     </div>
                 </div>
                 <div class="col-xs-9 ">
-                    <div class="row main-folders">
+                    <div class="row main-folders" id="folder-area">
 						<!-- 폴더 ajax 추가 -->
                         <div class="col-xs-2 folders text-center">
                             <p class="contain"><img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500502735/if_folder-blue_285658_f5jeko.svg" class="img-responsive  center-block" style="height: 64px;" alt=""></p>
@@ -188,7 +188,7 @@
                             <p class="contain"><img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500502735/if_folder-blue_285658_f5jeko.svg" class="img-responsive  center-block" style="height: 64px;" alt=""></p>
                             <span>Folder</span>
                         </div>
-                        <div class="clearfix"></div>
+<!--                         <div class="clearfix"></div> -->
                     </div>
                 </div>
             </div>
@@ -217,5 +217,84 @@
     </footer>
 
 </div>
+
+<script>
+	function error(e) {
+	    console.log('error');
+	    console.log(e);
+	}
+	
+	function error_from_readentries(e) {
+	    console.log('error_from_readentries');
+	    console.log(e);
+	}
+	
+	function traverseFileTree(item, path) {
+	    path = path || "";
+	    if (item.isFile) {
+	        // Get file
+	        item.file(function(file) {
+	        	if(path == ''){
+	        		console.log("파일만 올림")
+		            console.log("File: " + path + file.name);
+	        	}else{
+	        		console.log("폴더포함 올림")
+		            console.log("File: " + path + file.name);
+	        	}
+	        }, error);
+	    } else if (item.isDirectory) {
+	        // Get folder contents
+	        var dirReader = item.createReader();
+	        dirReader.readEntries(function(entries) {
+	            for (var i=0; i<entries.length; i++) {
+	                traverseFileTree(entries[i], path + item.name + "/")
+	            }
+	        }, error_from_readentries);
+	    }
+	}
+	
+	function handleFileSelect(evt) {
+	    evt.stopPropagation();
+	    evt.preventDefault();
+	        var items = evt.dataTransfer.items;
+	    for (var i = 0; i < items.length; i++) {
+	        var item = items[i].webkitGetAsEntry();
+	        if (item) {
+	            traverseFileTree(item);
+	        }
+	    }
+	}
+	
+	function handleDragOver(evt) {
+	    evt.stopPropagation();
+	    evt.preventDefault();
+	    evt.dataTransfer.dropEffect = 'copy';
+	}
+	
+	//Setup the dnd listeners.
+	var dropZone = document.getElementById('overlay-computer');
+	dropZone.addEventListener('dragover', handleDragOver, false);
+	dropZone.addEventListener('drop', handleFileSelect, false);	
+    var fDiv = $("#folder-area");
+
+    div.ondragover = function (e) {
+        return false;
+    }
+    
+    div.ondrop = function (e) {
+        var files = e.dataTransfer.files;
+        console.log(files)
+        for(var i of files){
+            console.log(i.name, i.size);
+            var html = '';
+            html += '<div class="col-xs-2 folders text-center">';
+            html += '	<p class="contain"><img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500502735/if_folder-blue_285658_f5jeko.svg" class="img-responsive  center-block" style="height: 64px;" alt=""></p>';
+            html += '	<span>Folder</span>';
+            html += '</div>';
+            fDiv.append(html);
+        }
+        return false;
+    }
+</script>
 </body>
 </html>
