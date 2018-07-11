@@ -7,4 +7,7 @@ public interface UserService {
 	public void updateUser(User user) throws Exception; 
 	//비번수정
 	public void updateUserPass (User user) throws Exception;
+	
+	// ID 와 Email 매칭 유저 찾기
+	public User selectbyIdEmail(User user) throws Exception;
 }

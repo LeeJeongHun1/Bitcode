@@ -21,6 +21,7 @@ public interface UserMapper {
 	//모든 유저들 List뽑기
 	public List<User> selectAllUser() throws Exception;
 	
-	
+	//이메일 인증 위해 ID 와 Email 매칭 유저 찾기
+	public User selectbyIdEmail(User user) throws Exception;
 	
 }

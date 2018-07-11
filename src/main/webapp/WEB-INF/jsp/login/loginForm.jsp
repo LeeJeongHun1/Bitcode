@@ -27,6 +27,56 @@
 	</div>
 </div>	
 	<script>
+
+	//Pass 찾기
+	$("#forgetpass").on('click',function () {
+		swal.mixin({
+		  input: 'text',
+		  confirmButtonText: '전송',
+		  showCancelButton: true,
+		  progressSteps: ['1', '2']
+		}).queue([
+		  {
+		    title: '이메일를 입력하세요',
+		    text: '이메일로 임시비밀번호가 전송되니 정확하게 기입해주세요'
+		  },
+		  'ID를 입력하세요',
+		]).then(function(result){
+			fnFindPass(result);
+		
+		})
+	});
+	function fnFindPass(data) {
+		$.ajax({
+			url : "${pageContext.request.contextPath}/sendMail/findPass.json",
+			type: "POST",
+			data : {
+				"email" : data.value[0],
+				"id": data.value[1]
+			},
+			success : function(data){
+				console.log(data.id)
+				if(data.id == null){
+					swal("입력하신 이메일의 회원정보와 가입된 아이디가 일치하지 않습니다.");
+				}else{
+					swal("귀하의 이메일 주소로 새로운 임시 비밀번호를 발송 하였습니다.");
+				}
+			},
+		})
+	
+	}		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	//로그인 실패시 alert창 뜸.
 		if ("${msg}") { 
@@ -39,7 +89,6 @@
 		   });
 		   
 		})
-
 		
 	//ID 찾기
 	var findId;

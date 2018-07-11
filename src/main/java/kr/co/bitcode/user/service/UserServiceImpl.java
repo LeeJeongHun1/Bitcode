@@ -21,4 +21,11 @@ public class UserServiceImpl implements UserService{
 		userMapper.updateUserPass(user);
 	}
 
+	
+		@Override
+		public User selectbyIdEmail(User user) throws Exception {
+			return userMapper.selectbyIdEmail(user);
+		}
+
+	
 }
