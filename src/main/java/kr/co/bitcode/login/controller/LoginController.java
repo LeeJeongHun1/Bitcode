@@ -102,22 +102,6 @@ public class LoginController {
 		}
 		return user;
 	}
-	
-	
-	
-	
-	
-	
-	//Pass 찾기
-	@RequestMapping("/findPassForm.do")
-	public String findPassForm() {
-		return "login/findPassForm";
-	}
-	
-	@RequestMapping("/findPass.do")
-	public String findPass() {
-		return "login/loginForm";
-	}
-	
+
 	
 }
