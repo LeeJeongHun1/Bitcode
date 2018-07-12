@@ -30,9 +30,12 @@ background-color: black;}
 			</tr>
 			<tr>
 			<th style="color:#80FF00; background-color: black;">작성자</th>
-			<td><input style="color:#80FF00; background-color: black;" type="text" name="id"/></td>
+			<td><input style="color:#80FF00; background-color: black;" type="text" name="id"/>
+			<input type="hidden" name="groupOrder" value="${cb.groupOrder}" /> 
+			<input type="hidden" name="depth" value="${cb.depth}" />
+			<input type="hidden" name="groupNo" value="${cb.groupNo}" />
+			</td>
 			</tr>
-
 			<tr style="height:90%;">
 			<th style="color:#80FF00; background-color: black;">내용</th>
 			<td><textarea name="content" style="width: 100%; color:#80FF00; background-color: black;

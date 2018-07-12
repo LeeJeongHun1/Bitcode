@@ -25,8 +25,12 @@ background-color: black;}
 		<!-- <h2 class="shell_title">QnA질문게시판</h2> -->
 			<div class="contents_header" style="color:#80FF00; background-color: black;">
 				<div class="title" style="color:#80FF00; background-color: black;">
-					<c:out value="${cb.title}" /><span class="nowrap">|</span><span class="cf" style="color:#80FF00; background-color: black;">JAVA</span> <span
-						class="day" style="color:#80FF00; background-color: black;">2018-02-10</span>
+					<c:out value="${cb.title}" /><span class="nowrap">|</span>
+					<span class="cf" style="color:#80FF00; background-color: black;">JAVA</span> 
+					<span class="day" style="color:#80FF00; background-color: black;">2018-02-10</span>
+			<input type="hidden" name="groupOrder" value="${cb.groupOrder}" /> 
+			<input type="hidden" name="depth" value="${cb.depth}" />
+			<input type="hidden" name="groupNo" value="${cb.groupNo}" />
 				</div>
 
 				<div class="header_info">

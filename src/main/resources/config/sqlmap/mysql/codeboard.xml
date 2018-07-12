@@ -45,13 +45,13 @@
                             );
 		</insert>
 		
-		<update id="updateGroupNo" parameterType="codeBoard">
+		<update id="updateGroupNo" parameterType="int">
 		 update tb_code_board
 		 	set group_no = #{no}
 		  where no = #{no}
 		</update>
 		
-		<update id="updateBoard" parameterType="int">
+		<update id="updateBoard" parameterType="codeBoard">
 			update tb_code_board
 			   set title = #{title},
 			   	   language_code = #{languageCode},
@@ -109,7 +109,7 @@
         <insert id="replyBoard" parameterType="codeBoard">
                insert into tb_code_board (title,content,id,group_order,depth,group_no)
                values(#{title}, #{content}, #{id}
-               ,#{groupOrder}+1,#{depth}+1,#{no})
+               ,#{groupOrder}+1,#{depth}+1,#{groupNo})
         </insert>
 
 </mapper>
