@@ -54,7 +54,7 @@ video {
 	<h3 id="number-of-participants">연결 대기중입니다..</h3>
 	<!-- 화면 공유 페이지 링크 주소 -->
 	<div class="hide-after-join">
-	<input type="text" id="user-name" placeholder="Your Name" hidden="hidden">
+		<input type="text" id="user-name" placeholder="Your Name" hidden="hidden">
 	
 	    <!-- 문의 주제 -->
 	    <form id="qForm">
@@ -180,8 +180,8 @@ screensharing.onuserleft = function(userid) {
 // 화면 공유
 screensharing.check();
 document.getElementById('shareScreen').onclick = function() {
-    //var username = document.getElementById('user-name');
-    //username.disabled = this.disabled = true;
+    var username = document.getElementById('user-name');
+    username.disabled = this.disabled = true;
     screensharing.isModerator = true;
     screensharing.userid = username.value;
     screensharing.share();
