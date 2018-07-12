@@ -16,6 +16,13 @@ public class Qna {
 	private int viewCnt;
 	private String code;
 	private String codeName;
+	private int fileNo;
+	public int getFileNo() {
+		return fileNo;
+	}
+	public void setFileNo(int fileNo) {
+		this.fileNo = fileNo;
+	}
 	private String filePath;
 	private String oriName;
 	private String systemName;

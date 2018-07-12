@@ -16,8 +16,8 @@ public interface QnaMapper {
 	public void deleteBoard(int no);
 	
 	// 답글 
-	public void updateReBoard(int no);
-	public void insertReBoard(Qna qna);
+	//public void updateReBoard(int no);
+	//public void insertReBoard(Qna qna);
 	
 	// 페이징
 	public int selectBoardCount(Qna qna);	
