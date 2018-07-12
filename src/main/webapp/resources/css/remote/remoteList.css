@@ -18,8 +18,11 @@ a {
 .remoteList {
   width: 100%;
   margin-bottom: 20px;
+  text-align: center;
 }
-
+.remoteList td {
+  text-align: center;
+}
 tr {
   height: 40px;
   transition: background 333ms ease-in-out;
@@ -53,7 +56,7 @@ tr td:first-child {
 }
 tr td:last-child {
   padding-right: 25px;
-  text-align: right;
+  /* text-align: right; */
 }
 
 /* Icons */

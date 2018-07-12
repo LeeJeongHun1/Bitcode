@@ -54,12 +54,14 @@ video {
 	<h3 id="number-of-participants">연결 대기중입니다..</h3>
 	<!-- 화면 공유 페이지 링크 주소 -->
 	<div class="hide-after-join">
+	<input type="text" id="user-name" placeholder="Your Name" hidden="hidden">
 	
 	    <!-- 문의 주제 -->
-	    <form id="qForm" action="${pageContext.request.contextPath}/remote/list.do">
-	    <input type="text" id="nickName" name="nickName" value="${sessionScope.nickName}" hidden="hidden">
+	    <form id="qForm">
+	    <input type="text" id="id" name="id" value="${sessionScope.user.id}" hidden="hidden">
+	    <input type="text" id="nickName" name="nickName" value="${sessionScope.user.nickName}" hidden="hidden">
 	    <input type="text" id="question" name="question" value="${sessionScope.question}" hidden="hidden">
-	    <input type="text" id="link" name="link" value="" hidden="hidden">
+	    <input type="text" id="link" name="link" hidden="hidden">
 	    </form>
 	    <button id="shareScreen" class="screenShare order btn btn-default btn-group-xs">화면 공유</button>
 	</div>
@@ -95,11 +97,19 @@ var screensharing = new Screen();
 var channel = location.href.replace(/\/|:|#|%|\.|\[|\]/g, '');
 
 //alert(channel);
-
+/* 
 if(channel){
 	var link = document.querySelector('#link');
 	link.setAttribute('value', location.href);
 }
+ */
+//
+$(document).ready(function() {
+	if(channel){
+		var link = document.querySelector('#link');
+		link.setAttribute('value', location.href);
+	}
+});
 
 var sender = Math.round(Math.random() * 999999999) + 999999999;
 
@@ -170,22 +180,22 @@ screensharing.onuserleft = function(userid) {
 // 화면 공유
 screensharing.check();
 document.getElementById('shareScreen').onclick = function() {
-    var username = document.getElementById('nickName');
-    username.disabled = this.disabled = true;
+    //var username = document.getElementById('user-name');
+    //username.disabled = this.disabled = true;
     screensharing.isModerator = true;
     screensharing.userid = username.value;
     screensharing.share();
 };
 
 // 상담 리스트에 출력하기 위한 링크
-
+/* 
 (function() {
     var uniqueToken = document.getElementById('unique-token');
     if (uniqueToken)
         if (location.hash.length > 2) uniqueToken.parentNode.parentNode.parentNode.innerHTML = '<h2 style="text-align:center; display: block"><a href="' + location.href + '" target="_blank">Right click to copy & share this private link</a></h2>';
         else uniqueToken.innerHTML = uniqueToken.parentNode.parentNode.href = '#' + (Math.random() * new Date().getTime()).toString(36).toUpperCase().replace( /\./g , '-');
 })();
-
+ */
 // 공유화면 접속자 수 출력
 screensharing.onNumberOfParticipantsChnaged = function(numberOfParticipants) {
     if(!screensharing.isModerator) return;

@@ -21,30 +21,26 @@
          <td class="head">신청자</td>
          <td class="head">진행상태</td>
        </tr>
-       
-       <tr>
-        <td><a class="folder" href="#">${sessionScope.question}</a></td>
-        <td>${sessionScope.nickName}</td>
-        <td><a href="${sessionScope.link}">상담</a></td>
-       </tr>
-       
-       <tr>
-        <td><a class="file" href="#">이클립스 오류 문의</a></td>
-        <td>정훈</td>
-        <td>대기중</td>
-       </tr>
-       
-       <tr>
-         <td><a class="folder" href="#">톰캣 에러</a></td>
-         <td>종민</td>
-         <td>상담중</td>
-       </tr>
 
+	<c:choose>
+       
+       <c:when test="${not empty remoteList}">
+       <c:forEach var="remote" items="${remoteList}">
        <tr>
-         <td><a class="file" href="#">컴퓨터가 느려요</a></td>
-         <td>선영</td>
-         <td>대기중</td>
+        <td>${remote.question}</td>
+        <td>${remote.nickName}</td>
+        <td><a href="${remote.link}">상담</a></td>
        </tr>
+       </c:forEach>
+       </c:when>
+       
+       <c:otherwise>
+        <tr>
+        <td colspan="3">대기중인 상담이 없습니다.</td>
+       </tr>
+		</c:otherwise>
+	</c:choose>       
+       
       </tbody>
   </table>
 <%--
@@ -53,7 +49,7 @@
   <button type="button" class="order btn btn-default btn-group-xs">상담신청</button>
 </div>
 <script>
-alert("${sessionScope.link}");
+//alert("${sessionScope.link}");
 
 $(".order").click(function(){
 	  swal({
