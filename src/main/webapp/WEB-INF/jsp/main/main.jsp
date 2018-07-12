@@ -138,10 +138,10 @@
                 <div class="col-xs-7">
                 	<!-- 폴더 경로 -->
                     <div class="path-input" id="share-path">
-                        <span class="path-icon-input">This pc</span>
-                        <span class="path-icon-input">Mohamed Yahya (E:)</span>
-                        <span class="path-icon-input">programming</span>
-                        <span class="path-icon-input">Front End</span>
+                        <span class="path-icon-input">Share:</span>
+<!--                         <span class="path-icon-input">Mohamed Yahya (E:)</span> -->
+<!--                         <span class="path-icon-input">programming</span> -->
+<!--                         <span class="path-icon-input">Front End</span> -->
                     </div>
                     <!-- 폴더 경로 부분 아이콘 새로고침 -->
                     <i class="fa fa-hdd-o path-icon"></i>
@@ -190,10 +190,6 @@
                             <p class="contain"><img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500502735/if_folder-blue_285658_f5jeko.svg" class="img-responsive  center-block" style="height: 64px;" alt=""></p>
                             <span>Folder</span>
                         </div>
-                        <div class="col-xs-2 folders text-center">
-                            <p class="contain"><img src="" class="img-responsive  center-block" style="height: 64px;" alt=""></p>
-                            <span>Folder</span>
-                        </div>
 <!--                         <div class="clearfix"></div> -->
                     </div>
                 </div>
@@ -237,8 +233,12 @@
 		dataType: "json"
 	})
 	.done(function (data) {
-		var path = data.split("\\");
-		console.log(path);
+// 		var path = data.split($("#sId").val());
+// 		console.log(path);
+		console.log(data);
+		for(let f of data){
+			f
+		}
 // 		$("#share-path")
 	})
 	//<span class="path-icon-input">This pc</span>

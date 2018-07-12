@@ -20,7 +20,7 @@ public class MainController {
 	
 	@RequestMapping("/selectFolder.json")
 	@ResponseBody
-	public String selectFolder(String id) {
+	public File[] selectFolder(String id) {
 		String folderPath = "c:\\java-lec\\upload\\";
 		File f = new File(folderPath + id);
 		System.out.println(folderPath + id);
@@ -32,11 +32,14 @@ public class MainController {
 				System.out.println("파일 크기 : " + ff.length());
 			}
 			if(ff.isDirectory()){
+				for (File df : ff.listFiles()) {
+					System.out.println("파일 경로 : " + ff.getPath() + df.getPath());
+				}
 				System.out.println("폴더 이름 : " + ff.getName());
 				System.out.println("폴더 크기 : " + ff.length());
 			}
 		}
-		return f.getAbsolutePath();
+		return f.listFiles();
 	}
 	
 	@RequestMapping("/upload.do")
