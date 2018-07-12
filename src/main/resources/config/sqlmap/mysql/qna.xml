@@ -92,9 +92,9 @@
 
 	<insert id="insertReBoard" parameterType="qna">
 		INSERT INTO tb_qna_board
-		(group_no,group_order,depth,title,content)
+		(group_no,group_order,depth,title,content,id)
 		VALUES
-		(#{no}, (#{groupOrder} +1), (#{depth} +1) , #{title},#{content});
+		(#{groupNo}, #{groupOrder} +1, #{depth} +1,#{title},#{content},#{id});
 	</insert>
 
 </mapper>
