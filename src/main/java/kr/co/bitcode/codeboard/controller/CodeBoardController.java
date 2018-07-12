@@ -62,10 +62,6 @@ public class CodeBoardController {
 		return "codeboard/insertForm";
 	}
 	
-	@RequestMapping(value="/replyForm.do", method=RequestMethod.GET)
-	public String replyForm() {
-		return "codeboard/replyForm";
-	}
 	
 	@RequestMapping(value="/insert.do", method=RequestMethod.POST)
 	public String insertBoard(CodeBoard cb, CodeBoardFile cbFile) throws Exception {
@@ -109,6 +105,19 @@ public class CodeBoardController {
 	public String deleteboard(int no) {
 		service.deleteBoard(no);
 		return "redirect:/codeboard/list.do";
+	}
+	
+//	@RequestMapping(value="/reply/{no}", method=RequestMethod.GET)
+//	public String prereply(@PathVariable String no, Model model) {
+//		CodeBoard cb = service.selectBoardByNo(no);
+//		return "codeboard/update";
+//	}
+	
+	@RequestMapping(value="/replyForm.do", method=RequestMethod.GET)
+	public String replyForm(int no, Model model) {
+		CodeBoard cb = service.selectBoardByNo(no);
+		model.addAttribute("cb", cb);
+		return "codeboard/replyForm";
 	}
 	
 	@RequestMapping(value="/reply.do", method=RequestMethod.POST)
