@@ -15,84 +15,86 @@
 		<result column="reg_date" property="regDate" />
 		<result column="view_cnt" property="viewCnt" />
 		<result column="like_cnt" property="likeCnt" />
-		<result column="file_no" property="fileNo" />		
+		<result column="file_no" property="fileNo" />
 		<result column="stsfc_code" property="stsfcCode" />
 		<result column="file_path" property="filePath" />
 		<result column="ori_name" property="oriName" />
 		<result column="system_name" property="systemName" />
 	</resultMap>
 	<select id="selectBoard" resultMap="qnaMap">
-	   select *
-         from tb_qna_board q
-         inner 
-         join  tb_language_code l
-          on q.language_code = l.language_code
-         order by no desc
+		select *
+		from tb_qna_board q
+		inner
+		join tb_language_code l
+		on q.language_code = l.language_code
+		order by no desc
 	</select>
 	<select id="selectBoardByNo" parameterType="int" resultMap="qnaMap">
-	    select * 
-        from tb_qna_board b
-        inner 
+		select *
+		from tb_qna_board b
+		inner
 		join tb_qna_file f
-        on b.no = f.no
-        inner
-        join tb_language_code c
+		on b.no = f.no
+		inner
+		join tb_language_code c
 		on b.language_code = c.language_code
-        where b.no = #{no}
+		where b.no = #{no}
 	</select>
-	
+
 	<insert id="insertBoard" parameterType="qna">
-	   <selectKey keyProperty="no" resultType="int" order="AFTER">
-    	SELECT LAST_INSERT_ID()
-  	</selectKey>
-	<!-- 	insert into
-		tb_qna_board(group_no,id,language_code,title,content)
-		values((select LAST_INSERT_ID() +0 limit 1),#{id},#{code},#{title},#{content}) -->
+		<selectKey keyProperty="no" resultType="int" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		<!-- insert into tb_qna_board(group_no,id,language_code,title,content) 
+			values((select LAST_INSERT_ID() +0 limit 1),#{id},#{code},#{title},#{content}) -->
 		insert into
 		tb_qna_board(group_no,id,language_code,title,content)
 		values(#{no},#{id},#{code},#{title},#{content})
 	</insert>
-	
+
 	<update id="updateGroupNo" parameterType="int">
-         update tb_qna_board
-           set  group_no =#{no}
-		  where no=#{no}
+		update tb_qna_board
+		set group_no =#{no}
+		where no=#{no}
 	</update>
 	<update id="updateBoard" parameterType="qna">
- 		update tb_qna_board            
-    		set  title=#{title},                 
-    	       content=#{content}     
-    		where no=#{no}
-	</update>
-	
-	<!-- 파일 등록,수정 -->
-	<insert id="insertQnaFile" parameterType="qnaFile">
-		insert into tb_qna_file(no,file_path,ori_name,system_name,file_size)
-		values(#{no},#{filePath},#{oriName},#{systemName},#{fileSize})
-	</insert>
-	
-	<update id="updateQnaFile" parameterType="qnaFile">
-         update tb_qna_file
-           set  file_path=#{filePath},
-				ori_name=#{oriName},
-				system_name=#{systemName},
-                file_size=#{fileSize}
-		  where no=#{no}
-	
+		update tb_qna_board
+		set title=#{title},
+		content=#{content}
+		where no=#{no}
 	</update>
 
-	<!--  답글쿼리 -->
-	
-	<update id="updateReBoard" parameterType="qna">
-	 update tb_qna_board
-           set group_order = group_order +1
-		where group_no = group_no and group_order &gt; group_order
-	</update>
-	
-	<insert id="insertReBoard" parameterType="qna">
-	insert into tb_qna_board 
-        (id,group_no,group_order,depth,title,content)
-        values (#{id},#{groupNo},#{groupOrder}+ 1, #{depth}+ 1,#{title},#{content})
+	<!-- 파일 등록,수정 -->
+	<insert id="insertQnaFile" parameterType="qnaFile">
+		insert into
+		tb_qna_file(no,file_path,ori_name,system_name,file_size)
+		values(#{no},#{filePath},#{oriName},#{systemName},#{fileSize})
 	</insert>
-	
+
+	<update id="updateQnaFile" parameterType="qnaFile">
+		update tb_qna_file
+		set file_path=#{filePath},
+		ori_name=#{oriName},
+		system_name=#{systemName},
+		file_size=#{fileSize}
+		where no=#{no}
+
+	</update>
+
+	<!-- 답글쿼리 -->
+
+	<update id="updateReBoard" parameterType="qna">
+		update tb_qna_board
+		set group_order = group_order +1
+		where group_no = #{groupNo}
+		and group_order &gt; #{groupOrder}
+	</update>
+
+	<insert id="insertReBoard" parameterType="qna">
+		INSERT INTO tb_qna_board
+		(group_no,group_order,depth,title,content)
+		VALUES
+		(#{no}, (#{groupOrder} +1), (#{depth} +1) , #{title},#{content});
+	</insert>
+
 </mapper>

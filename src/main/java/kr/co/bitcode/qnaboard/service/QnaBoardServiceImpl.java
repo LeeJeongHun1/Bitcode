@@ -90,9 +90,10 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 
 	@Override
 	public void insertReQna(Qna qna, QnaFile qnafile) throws Exception {
+		mapper.updateReBoard(qna);
+		System.out.println(qna.getGroupNo() +"그룹번호");
 		mapper.insertReBoard(qna);
 		mapper.insertQnaFile(qnafile);
-		mapper.updateReBoard(qna.getGroupNo());
 	}
 	
 	

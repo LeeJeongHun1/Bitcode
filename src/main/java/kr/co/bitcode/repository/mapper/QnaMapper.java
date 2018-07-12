@@ -16,7 +16,7 @@ public interface QnaMapper {
 	public void deleteBoard(int no);
 	
 	// 답글 
-	public void updateReBoard(int no);
+	public void updateReBoard(Qna qna);
 	public void insertReBoard(Qna qna);
 	
 	// 페이징
