@@ -69,8 +69,8 @@
 
                     var video = document.createElement('video');
                     video.id = 'self';
-                    video.muted = true;
-                    video.volume = 0;
+                    video.muted = false;
+                    video.volume = 1;
 
                     try {
                         video.setAttributeNode(document.createAttribute('autoplay'));
@@ -104,7 +104,7 @@
 
             getScreenId(function(error, sourceId, screen_constraints) {
                 if (IsAndroidChrome) {
-                    screen_constraints = {
+                	screen_constraints = {
                         mandatory: {
                             chromeMediaSource: 'screen'
                         },
@@ -114,7 +114,10 @@
                     screen_constraints = {
                         video: screen_constraints
                     };
-
+                    screen_constraints = {
+                		audio: screen_constraints
+                    };
+                    
                     error = null;
                 }
 
@@ -128,8 +131,8 @@
 
                     var video = document.createElement('video');
                     video.id = 'self';
-                    video.muted = true;
-                    video.volume = 0;
+                    video.muted = false;
+                    video.volume = 1;
 
                     try {
                         video.setAttributeNode(document.createAttribute('autoplay'));

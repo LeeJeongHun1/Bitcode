@@ -54,8 +54,8 @@ public class RemoteController {
 		remote.setLink(link);
 		
 		if(remote != null) {
-			System.out.println(remote);
 			if(remote.getId() != null && remote.getNickName() != null && remote.getQuestion() != null && remote.getLink() != null) {
+				System.out.println(remote);
 				remoteList.add(remote);
 			}
 		}

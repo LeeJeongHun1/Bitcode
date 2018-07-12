@@ -16,6 +16,11 @@ if(!location.hash.replace('#', '').length) {
     location.href = location.href.split('#')[0] + '#' + (Math.random() * 100).toString().replace('.', '');
     location.reload();
 }
+
+
+function abc() {
+    alert("sss");
+}
 </script>
 
 <style>
@@ -54,7 +59,7 @@ video {
 	<h3 id="number-of-participants">연결 대기중입니다..</h3>
 	<!-- 화면 공유 페이지 링크 주소 -->
 	<div class="hide-after-join">
-		<input type="text" id="user-name" placeholder="Your Name" hidden="hidden">
+		<input type="text" id="user-name" placeholder="Your Name" hidden="hidden" value="${sessionScope.user.id}">
 	
 	    <!-- 문의 주제 -->
 	    <form id="qForm">
@@ -79,7 +84,7 @@ video {
         </div>
 	
 		<div class="chat media-right">
-		<iframe src="https://192.168.0.104:10001">
+		<iframe id="chatIframe" src="https://192.168.0.104:10001">
 		</iframe>
 		</div>
 		
@@ -118,10 +123,12 @@ io.connect(SIGNALING_SERVER).emit('new-channel', {
     channel: channel,
     sender: sender
 });
+
 var socket = io.connect(SIGNALING_SERVER + channel);
 socket.on('connect', function () {
     // setup peer connection & pass socket object over the constructor!
 });
+
 socket.send = function (message) {
     socket.emit('message', {
         sender: sender,
@@ -196,7 +203,7 @@ document.getElementById('shareScreen').onclick = function() {
         else uniqueToken.innerHTML = uniqueToken.parentNode.parentNode.href = '#' + (Math.random() * new Date().getTime()).toString(36).toUpperCase().replace( /\./g , '-');
 })();
  */
-// 공유화면 접속자 수 출력
+// 공유화면 접속자 수 출력/상담 연결시
 screensharing.onNumberOfParticipantsChnaged = function(numberOfParticipants) {
     if(!screensharing.isModerator) return;
     document.title = numberOfParticipants + ' users are viewing your screen!';
@@ -309,6 +316,9 @@ $("#shareScreen").click(function() {
 			}
 	});
 });
+setTimeout(function () {
+	document.querySelector("#chatIframe").contentWindow.postMessage(JSON.stringify({"sender": "${sessionScope.user.id}", "recv": "bbb"}), "*");	
+}, 2000);
 </script>
 
 </body>
