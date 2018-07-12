@@ -15,6 +15,7 @@
 		<result column="reg_date" property="regDate" />
 		<result column="view_cnt" property="viewCnt" />
 		<result column="like_cnt" property="likeCnt" />
+		<result column="file_no" property="fileNo" />		
 		<result column="stsfc_code" property="stsfcCode" />
 		<result column="file_path" property="filePath" />
 		<result column="ori_name" property="oriName" />
@@ -58,10 +59,10 @@
 		  where no=#{no}
 	</update>
 	<update id="updateBoard" parameterType="qna">
-         update tb_qna_board
-           set  title=#{title},
-                content=#{content}
-		  where no=#{no}
+ 		update tb_qna_board            
+    		set  title=#{title},                 
+    	       content=#{content}     
+    		where no=#{no}
 	</update>
 	
 	<!-- 파일 등록,수정 -->
@@ -73,11 +74,10 @@
 	<update id="updateQnaFile" parameterType="qnaFile">
          update tb_qna_file
            set  file_path=#{filePath},
-				ori_name=#{oriName}',
+				ori_name=#{oriName},
 				system_name=#{systemName},
                 file_size=#{fileSize}
-		  where file_no= #{fieNo}
-            and no=#{no}
+		  where no=#{no}
 	
 	</update>
 

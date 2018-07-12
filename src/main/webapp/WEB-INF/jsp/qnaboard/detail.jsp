@@ -15,27 +15,28 @@ a {color:#333333}
 	<div class="container">
 		<div class="shell-container">
 		<!-- <h2 class="shell_title">QnA질문게시판</h2> -->
-				<c:forEach var="qna" items="${list}">
 			<div class="contents_header">
 				<div class="title">
-				<c:if test="${empty qna}" >
+				<c:if test="${empty list}" >
 				안
 				</c:if>
-					<c:out value="${qna.title}" /><span class="nowrap">|</span><span class="cf"><c:out value="${qna.codeName}" /></span> <span
+					<c:out value="${list[0].title}" /><span class="nowrap">|</span><span class="cf"><c:out value="${list[0].codeName}" /></span> <span
 						class="day">2018-02-10</span>
 				</div>
 
  				<div class="header_info">
-					<span class="shell_writer">${qna.id}</span><span class="shell_hits">조회<span>4</span></span>
+					<span class="shell_writer">${list[0].id}</span><span class="shell_hits">조회<span>4</span></span>
 
 				</div>
 				
 			</div>
 			<div class="contents_body">
 				<div class="detail">
+					<c:forEach var="qna" items="${list}">
 				 파일명 : <a href="${pageContext.request.contextPath}/fileDown.do?filePath=${qna.filePath}&systemFileName=${qna.systemName}&originalFileName=${qna.oriName}">${qna.oriName}</a>
         미리보기 : <img src="${pageContext.request.contextPath}/fileDown.do?filePath=${qna.filePath}&systemFileName=${qna.systemName}&originalFileName=${qna.oriName}" style="width: 150px; height: 150px "><br>
 					${qna.content}
+			</c:forEach>
 				</div>
 				<ul class="reBody">
 					<li>
@@ -92,13 +93,14 @@ a {color:#333333}
 					</li>
 				</ul>
 			</div>
+			
 			<div class="contents_btn">
     		<a href='<c:url value="/qnaboard/list.do" />'><button>목록</button></a>
 			<a href='#'><button>답변</button></a>
-			<a href='<c:url value="/qnaboard/updateForm.do?no=${qna.no}" />'><button>수정</button></a>
+			<a href='<c:url value="/qnaboard/updateForm.do?no=${list[0].no}" />'><button>수정</button></a>
 			<a href="#"><button>삭제</button></a>
 			</div>
-			</c:forEach>
+			
 		</div>
 
 	</div>

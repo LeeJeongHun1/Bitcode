@@ -15,6 +15,5 @@ public interface QnaBoardService {
 	public List<Code> selectLanguage() throws Exception;
 	
 	// 답글
-	public void updateReQna(Qna qna,QnaFile qnafile) throws Exception;
-	public void insertReQna(Qna qna,QnaFile qnafile) throws Exception;
+	//public void insertReQna(Qna qna,QnaFile qnafile) throws Exception;
 }

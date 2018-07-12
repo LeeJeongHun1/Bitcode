@@ -49,10 +49,15 @@ public class QnaBoardController {
 		return "qnaboard/insertForm";
 	}
 	
+	@RequestMapping(value="/update.do", method=RequestMethod.POST)
+	public String updateQna(Qna qna,QnaFile qnafile) throws Exception {
+		qnaBoardService.updateQna(qna, qnafile);
+		return "redirect:/qnaboard/list.do";
+	}
 	
 	@RequestMapping(value="/updateForm.do", method=RequestMethod.GET)
 	public String updateQna(int no,Model model) throws Exception {
-		model.addAttribute("qna", qnaBoardService.detailQna(no));
+		model.addAttribute("list", qnaBoardService.detailQna(no));
 		return "qnaboard/updateForm";
 	}
 	
