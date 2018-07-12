@@ -29,7 +29,7 @@ INSERT INTO tb_user(id, name, nick_name, password, email, point, auth, birthday)
 -----------------------------------------------------------------------------------------------------
 --delete 유저
 delete from tb_user
-	where id = 'id1';
+	where id = 'bbbb';
 	
 -- 전체 테이블 조회
 show tables;

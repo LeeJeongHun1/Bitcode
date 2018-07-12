@@ -1,3 +1,12 @@
+$(".inputDetail, #userEmail").focus(function(){
+		$(this).prev().addClass("show");
+});
+$(".inputDetail,  #userEmail").blur(function(){
+	if(!$(this).val()){
+		$(this).prev().removeClass("show");
+	}
+});
+
 
 //ID 중복 체크
 
@@ -27,6 +36,35 @@ $("#userId").keyup(function () {
 	});
 });
 
+//email 중복 체크
+$("#userEmail").keyup(function () {
+	if($(this).val() == ""){
+		$("#userEmail").next().text("정확한 이메일를 기입해주세요 ");
+		return;
+	}
+	console.log("이메일 중복 체크 작동중..");
+	$.ajax({
+		url: "/bitcode/login/emailCheck.json",
+		data: {
+			"email" : $(this).val()	
+		},
+		dataType: "json",
+		success: function (data) {
+			var	result = "";
+			if (data == false) {
+				result = "사용가능한 이메일 입니다.";
+				$("#userEmail").data("flag","yes");
+			}else{
+				result = "사용 불가능한 또는 중복된 이메일입니다. ";
+				$("#userEmail").data("flag","no");
+			}
+			$("#userEmail").next().text(result);
+		}
+	});
+});
+
+
+
 
 //비번 체크
 $("#userPassCheck").keyup(function(){
@@ -44,25 +82,12 @@ $("#userPassCheck").keyup(function(){
 	}
 });
 
-//이메일
-$("#userEmail").keyup(function(){
-	if($("#userEmail").val() == ""){
-		$("#userEmail").data("flag","no");
-// 		$("#emailResult > p").text("이메일을 입력하세요");
-	}else{
-		$("#userEmail").data("flag","yes");
-// 		$("#emailResult > p").text("");
-	}
-});
-
 //생년원일
 $("#userBirth").keyup(function(){
 	if($("#userBirth").val() == ""){
 		$("#userBirth").data("flag","no");
-// 		$("#emailResult > p").text("이메일을 입력하세요");
 	}else{
 		$("#userBirth").data("flag","yes");
-// 		$("#emailResult > p").text("");
 	}
 });
 
@@ -86,15 +111,6 @@ $("#nickName").keyup(function(){
 		$(this).data("flag","yes");
 	}
 })
-
-//ID 중복확인(디비 만들어진 후에)
-//$("#userId").keyup(function(){
-//	if($(this).val() == ""){
-//		$(this).data("flag","no");
-//	}else{
-//		$(this).data("flag","yes");
-//	}
-//})
 
 
 //공백 체크

@@ -24,7 +24,7 @@
 	  <p class="innerText"></p>
 	  <input name="conformpass" placeholder="비밀번호를  재입력하세요" type="password" id="userPassCheck" data-flag="no" class="inputDetail" maxlength="16"/>
 	  <p class="innerText"></p>	  
-	  <input name="email" placeholder="Email을 입력하세요" type="text" id="userEmail" data-flag="no" class="emailDetail"/>
+	  <input name="email" placeholder="Email을 입력하세요" type="text" id="userEmail" data-flag="no" class="inputDetail"/>
 	  <p class="innerText"></p>
 	  <input name="birthday" placeholder="생년월일 입력하세요" type="text" id="userBirth" data-flag="no" class="inputDetail" />
 	  <p class="innerText"></p>

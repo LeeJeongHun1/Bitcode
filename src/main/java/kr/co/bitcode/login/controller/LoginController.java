@@ -85,7 +85,18 @@ public class LoginController {
 		}
 		return false;
 	} 	
-	
+
+	//email 중복 체크
+	@RequestMapping("/emailCheck.json") 
+	public @ResponseBody boolean emailCheck(User user) throws Exception { 
+		List<User> list = loginService.selectAllUser();
+		for (User users : list) {
+			if(user.getEmail().equals(users.getEmail())) {
+				return true;
+			}
+		}
+		return false;
+	} 	
 	
 	// 회원가입후 로그인화면 이동
 	@RequestMapping("/signup.do") 
