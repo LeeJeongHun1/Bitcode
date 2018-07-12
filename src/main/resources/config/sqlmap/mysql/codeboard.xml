@@ -19,7 +19,7 @@
 		<select id="selectBoard" resultMap="codeBoardMap">
 			select *
 			  from tb_code_board
-			 order by no desc
+			 order by group_no desc, group_order asc
 		</select>
 		
 		<insert id="insertBoard" parameterType="codeBoard">
@@ -40,7 +40,7 @@
                             #{languageCode},
                             #{title},
                             #{content},
-                            0,
+                            1,
                             0
                             );
 		</insert>

@@ -22,6 +22,7 @@
 							<input type="hidden" name="no" value="${list[0].no}">
 							<input type="hidden" name="groupNo" value="${list[0].groupNo}">
 							<input type="hidden" name="depth" value="${list[0].depth}">
+							<input type="hidden" name="groupOrder" value="${list[0].groupOrder}">
 							<td><input class="editTitle" type="text" name="title" value="${list[0].title}"/> 
 							<select class="editSelect" name="code">
 									<option>분류</option>

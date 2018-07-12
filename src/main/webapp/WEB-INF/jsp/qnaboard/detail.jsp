@@ -12,6 +12,9 @@ a {color:#333333}
 </style>
 </head>
 <body>
+<input type="hidden" name="groupNo" value="${list[0].groupNo}">
+<input type="hidden" name="depth" value="${list[0].depth}">
+<input type="hidden" name="groupOrder" value="${list[0].groupOrder}">
 	<div class="container">
 		<div class="shell-container">
 		<!-- <h2 class="shell_title">QnA질문게시판</h2> -->
