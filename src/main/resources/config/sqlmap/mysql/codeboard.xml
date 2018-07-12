@@ -31,17 +31,27 @@
                           id,
                           language_code,
                           title,
-                          content
+                          content,
+                          group_order,
+                          depth
                             ) values (
                             #{no},
                             #{id},
                             #{languageCode},
                             #{title},
-                            #{content}
+                            #{content},
+                            0,
+                            0
                             );
 		</insert>
 		
-		<update id="updateBoard" parameterType="codeBoard">
+		<update id="updateGroupNo" parameterType="codeBoard">
+		 update tb_code_board
+		 	set group_no = #{no}
+		  where no = #{no}
+		</update>
+		
+		<update id="updateBoard" parameterType="int">
 			update tb_code_board
 			   set title = #{title},
 			   	   language_code = #{languageCode},
@@ -89,8 +99,17 @@
 			 where no = #{no} 
 		</select>
 	
-	
-	
-		
+<!-- 		답글파티 -->
+       <update id="updateGroupOrder" parameterType="codeBoard">
+               update tb_code_board
+                  set group_order = group_order + 1
+               where group_no = #{groupNo} and group_order &gt; #{groupOrder}
+        </update>
+
+        <insert id="replyBoard" parameterType="codeBoard">
+               insert into tb_code_board (title,content,id,group_order,depth,group_no)
+               values(#{title}, #{content}, #{id}
+               ,#{groupOrder}+1,#{depth}+1,#{no})
+        </insert>
 
 </mapper>

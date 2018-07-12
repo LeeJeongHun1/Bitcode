@@ -40,9 +40,11 @@ background-color: black;}
 					<c:out value="${cb.content}" />
 				</div>
 				<div>
+				<c:forEach var="cbFile" items="${cbFileList}">
 				파일명 : <a href="${pageContext.request.contextPath}/fileDown.do?filePath=${cbFile.filePath}&systemFileName=${cbFile.systemName}&originalFileName=${cbFile.oriName}">${cbFile.oriName}</a> 크기 : ${cbFile.fileSize}(bytes) <br>
         		미리보기 : <img src="${pageContext.request.contextPath}/fileDown.do?filePath=${cbFile.filePath}&systemFileName=${cbFile.systemName}&originalFileName=${cbFile.oriName}" style="width: 150px; height: 150px "><br>
 					${cbFile.filePath}
+				</c:forEach>
 				</div>
 				<ul class="reBody" style="color:#80FF00; background-color: black;">
 					<li>
@@ -100,7 +102,7 @@ background-color: black;}
 			</div>
 			<div class="contents_btn">
     		<a href='<c:url value="list.do" />'><button>목록</button></a>
-			<a href='#'><button>답변</button></a>
+			<a href='<c:url value="replyForm.do?no=${cb.no}" />'><button>답변</button></a>
 			<a href='<c:url value="updateForm.do?no=${cb.no}" />'><button>수정</button></a>
 			<a href='<c:url value="delete.do?no=${cb.no}"/>'><button>삭제</button></a>
 			</div>

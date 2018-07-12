@@ -14,6 +14,8 @@ public interface CodeBoardService {
 	public void deleteBoard(int no);
 	public void updateBoardViewCnt(int no);
 	public List<Code> selectLanguage();
-	public CodeBoardFile selectBoardFileByNo(int no);
+	public List<CodeBoardFile> selectBoardFileByNo(int no);
 	public void insertBoardFile(CodeBoardFile cbFile);
-}
+	public void replyBoard(CodeBoard cb);
+	public void updateGroupNo(int no);
+};

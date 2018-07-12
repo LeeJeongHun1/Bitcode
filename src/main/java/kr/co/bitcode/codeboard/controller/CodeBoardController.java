@@ -50,9 +50,9 @@ public class CodeBoardController {
 	@RequestMapping(value="/detail.do", method=RequestMethod.GET)
 	public String detailBoard(int no, Model model) {
 		CodeBoard cb = service.selectBoardByNo(no);
-		CodeBoardFile cbFile = service.selectBoardFileByNo(no);
+		List<CodeBoardFile> cbFileList = service.selectBoardFileByNo(no);
 		model.addAttribute("cb", cb);
-		model.addAttribute("cbFile", cbFile);
+		model.addAttribute("cbFileList", cbFileList);
 		service.updateBoardViewCnt(no);
 		return "codeboard/detail";
 	}
@@ -62,9 +62,19 @@ public class CodeBoardController {
 		return "codeboard/insertForm";
 	}
 	
+	@RequestMapping(value="/replyForm.do", method=RequestMethod.GET)
+	public String replyForm() {
+		return "codeboard/replyForm";
+	}
+	
 	@RequestMapping(value="/insert.do", method=RequestMethod.POST)
-	public String insertBoard(CodeBoard cb, CodeBoardFile cbFile) throws Exception {		
+	public String insertBoard(CodeBoard cb, CodeBoardFile cbFile) throws Exception {
 		service.insertBoard(cb);
+		service.updateGroupNo(cb.getNo());
+		if(cb.getFile()[0].getSize() == 0) {
+			System.out.println("파일없음");
+		}else {
+			
 		for(MultipartFile file:cb.getFile()) {
 			file.transferTo(new File("c:/java-lec/upload/"+file.getOriginalFilename()));
 			cbFile.setNo(cb.getNo());
@@ -73,8 +83,9 @@ public class CodeBoardController {
 			cbFile.setOriName(file.getOriginalFilename());
 			cbFile.setSystemName(file.getName());
 			cbFile.setFileSize((int)file.getSize());	
+			service.insertBoardFile(cbFile);
+			}
 		}
-		service.insertBoardFile(cbFile);
 		
 		 int no = cb.getNo();
 		return "redirect:/codeboard/detail.do?no=" +no;
@@ -100,10 +111,17 @@ public class CodeBoardController {
 		return "redirect:/codeboard/list.do";
 	}
 	
+	@RequestMapping(value="/reply.do", method=RequestMethod.POST)
+	public String replyBoard(CodeBoard cb, CodeBoardFile cbFile) {
+		service.replyBoard(cb);
+		return "redirect:/codeboard/list.do";
+	}
+	
 	@RequestMapping("/selectLanguage.json")
 	@ResponseBody
 	public List<Code> selectLanguage() throws Exception{
 		List<Code> list = service.selectLanguage();
 		return list;
 	}
+	
 }

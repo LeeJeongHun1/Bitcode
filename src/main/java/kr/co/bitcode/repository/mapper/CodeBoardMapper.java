@@ -12,6 +12,9 @@ public interface CodeBoardMapper {
 	public void updateBoard(CodeBoard cb);
 	public void deleteBoard(int no);
 	public void updateBoardViewCnt(int no);
-	public CodeBoardFile selectBoardFileByNo(int no);
+	public List<CodeBoardFile> selectBoardFileByNo(int no);
 	public void insertBoardFile(CodeBoardFile cbFile);
+	public void updateGroupNo(int no);
+	public void updateGroupOrder(CodeBoard cb);
+	public void replyBoard(CodeBoard cb);
 }

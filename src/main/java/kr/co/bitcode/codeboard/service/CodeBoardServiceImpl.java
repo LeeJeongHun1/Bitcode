@@ -58,13 +58,26 @@ public class CodeBoardServiceImpl implements CodeBoardService{
 	}
 
 	@Override
-	public CodeBoardFile selectBoardFileByNo(int no) {
+	public List<CodeBoardFile> selectBoardFileByNo(int no) {
 		return mapper.selectBoardFileByNo(no);
 	}
 
 	@Override
 	public void insertBoardFile(CodeBoardFile cbFile) {
 		mapper.insertBoardFile(cbFile);
+	}
+
+	@Override
+	public void replyBoard(CodeBoard cb) {
+		mapper.updateGroupOrder(cb);
+		mapper.replyBoard(cb);
+		
+	}
+
+	@Override
+	public void updateGroupNo(int no) {
+		mapper.updateGroupNo(no);
+		
 	}
 
 }
