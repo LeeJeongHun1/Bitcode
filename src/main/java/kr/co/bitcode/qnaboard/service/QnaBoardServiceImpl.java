@@ -88,12 +88,12 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 		mapper.selectQnaFileByNo(no);		
 	}
 
-	/*@Override
+	@Override
 	public void insertReQna(Qna qna, QnaFile qnafile) throws Exception {
 		mapper.insertReBoard(qna);
 		mapper.insertQnaFile(qnafile);
 		mapper.updateReBoard(qna.getGroupNo());
-	}*/
+	}
 	
 	
 	

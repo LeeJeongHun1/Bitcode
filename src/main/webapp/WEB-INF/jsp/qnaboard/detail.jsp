@@ -96,7 +96,7 @@ a {color:#333333}
 			
 			<div class="contents_btn">
     		<a href='<c:url value="/qnaboard/list.do" />'><button>목록</button></a>
-			<a href='#'><button>답변</button></a>
+			<a href='<c:url value="/qnaboard/insertReForm.do?no=${list[0].no}"/>'><button>답변</button></a>
 			<a href='<c:url value="/qnaboard/updateForm.do?no=${list[0].no}" />'><button>수정</button></a>
 			<a href="#"><button>삭제</button></a>
 			</div>

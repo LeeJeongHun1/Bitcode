@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -59,6 +58,18 @@ public class QnaBoardController {
 	public String updateQna(int no,Model model) throws Exception {
 		model.addAttribute("list", qnaBoardService.detailQna(no));
 		return "qnaboard/updateForm";
+	}
+	
+	@RequestMapping(value="/insertRe.do",method=RequestMethod.POST)
+	public String editReQna(Qna qna,QnaFile qnafile) throws Exception {
+		qnaBoardService.insertReQna(qna, qnafile);
+		return "redirect:/qnaboard/list.do";
+	}
+	
+	@RequestMapping(value="/insertReForm.do", method=RequestMethod.GET)
+	public String editReQna(int no,Model model) throws Exception{
+		model.addAttribute("list", qnaBoardService.detailQna(no));
+		return "qnaboard/insertReForm";
 	}
 	
 	@RequestMapping("/selectLanguage.json")

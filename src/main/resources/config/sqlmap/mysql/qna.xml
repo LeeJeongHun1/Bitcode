@@ -83,4 +83,16 @@
 
 	<!--  답글쿼리 -->
 	
+	<update id="updateReBoard" parameterType="qna">
+	 update tb_qna_board
+           set group_order = group_order +1
+		where group_no = group_no and group_order &gt; group_order
+	</update>
+	
+	<insert id="insertReBoard" parameterType="qna">
+	insert into tb_qna_board 
+        (id,group_no,group_order,depth,title,content)
+        values (#{id},#{groupNo},#{groupOrder}+ 1, #{depth}+ 1,#{title},#{content})
+	</insert>
+	
 </mapper>
