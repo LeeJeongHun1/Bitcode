@@ -67,14 +67,14 @@ a:hover {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
-body {
+/* body { */
 
 /* 	  margin-top: 10%; */
 /*   	background:#63b47a; */
 /* 	background-image: url("/bitcode/images/main.jpg"); */
 /* 	background-position: center; */
 /* 	background-size: cover; */
-}
+/* } */
 
 * {
   font-family:"Helvetica Neue", Helvetica, Arial;
@@ -102,8 +102,8 @@ h5 > a:hover {
   padding:50px;
   padding-top:20px;
   padding-bottom:60px;
-  width:400px;
-  min-width:400px;
+  width:360px;
+  min-width:360px;
 /*   Ui form  위치 설정*/
   margin:185px auto;
   box-shadow:15px 15px 0px rgba(0,0,0,.1);
@@ -111,10 +111,10 @@ h5 > a:hover {
 }
 
 h1 {
-  text-align:center;
+/*   text-align:center; */
   font-size:1.4em;
   font-weight:700;
-  color: #8c8c8c;
+  color: #686868;
   margin-bottom:24px;
   padding-left: 55px;
 }
@@ -171,23 +171,27 @@ input {
   border:1px solid #eee;
 }
 
-.btn {
+.btnL {
   margin-bottom: 5%;
   position:relative;
   width:100%;
-  padding:20px;
+  height: 50px;
+  padding:16px;
   border-radius:6px;
   border:0;
   background:#f26964;
-  font-size:1.2em;
+  font-size:1.3em;
   color:#fff;
   text-shadow:1px 1px 0px rgba(0,0,0,.1);
-  box-shadow:0px 3px 0px #c1524e;
+/*   box-shadow:0px 3px 0px #c1524e; */
+  text-align: center;
 }
 
-.btn:active {
+.btnL:active {
   top:3px;
-  box-shadow:none;
+}
+.btnL:hover {
+	font-weight: bolder;
 }
 
 h6 {
@@ -201,17 +205,27 @@ h6 {
 .social {
   display:none;
 }
-
+/* 네이버 */
 .na {
   margin-top:15px;
   background:#24c14b;
-  box-shadow:0px 3px 0px #00c800;
 }
 
-.ka {
-  background:#f2f200;
-  box-shadow:0px 3px 0px #caca00;
+/* kakao */
+.social > .btnka {
+  position:relative;
+  width:100%;
+  height: 50px;
+  border-radius:6px;
+  border:0;
+  font-size:1.2em;
+  background:#f4f400;
 }
+#kakao-login-btnn {
+	margin-left: 20px;
+}
+
+
 
 /* .google { */
 /*   background:#db4a39; */

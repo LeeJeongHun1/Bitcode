@@ -4,13 +4,14 @@ package kr.co.bitcode.login.controller;
 
 import java.io.File;
 
+
+
 import java.util.List;
-
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -30,6 +31,31 @@ public class LoginController {
 	@Autowired
 	private LoginService loginService;
 	
+	
+	//카카오톡 로그인시 bitcode에 회원가입이 되어있는지 확인
+	@RequestMapping("/kakaoForm.do") 
+	public String kakaoForm(User user, Model model) throws Exception { 
+		System.out.println("kakaoForm 들어옴");
+		User users = loginService.selectUserById(user.getId());
+		if(users != null) {
+			return "redirect:/main/main.do";
+		}
+		System.out.println(user.getId());
+		model.addAttribute("id", user.getId());
+		model.addAttribute("email", user.getEmail());
+		return "login/socialSignupform";
+	} 
+	
+	//카카오톡
+	@RequestMapping("/kakao.json") 
+	public @ResponseBody User kakao(User user, Model model) throws Exception { 
+		User users = loginService.selectUserById(user.getId());
+		System.out.println("kakao 들어옴");
+		System.out.println(user.getName());
+		System.out.println(user.getId());
+		System.out.println(user.getEmail());
+		return users;
+	} 
 	
 	
 	
@@ -60,19 +86,12 @@ public class LoginController {
 		session.invalidate();
 		return "redirect:/main/main.do";
 	}	
-//		System.out.println(user.getPassword());
-//		System.out.println(passCode.encode(userInfo.getPassword()));
-//	System.out.println(user.getPassword());
-//	passCode.matches(user.getPassword(), userInfo.getPassword())
 	
 	//회원가입
 	@RequestMapping("/signupForm.do") 
 	public String signupForm() throws Exception{ 
 		return "login/signupForm";
-	
 	} 
-	
-	
 	
 	//ID 중복 체크
 	@RequestMapping("/signUpIdCheck.json") 
@@ -108,6 +127,7 @@ public class LoginController {
 		return "redirect:/login/loginForm.do";
 		
 	} 
+	
 	// ID찾기
 	@RequestMapping("/fogetId.json") 
 	@ResponseBody

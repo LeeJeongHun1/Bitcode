@@ -1,4 +1,27 @@
-	//Pass 찾기
+//카카오톡
+function kakao(res) {
+		var kakaoForm = $("#kakaoForm");
+		$("#kakaoId").val(res.id);
+		$("#kakaoEmail").val(res.kaccount_email);
+		kakaoForm.submit();
+	}
+    Kakao.init('key');  //여기서 아까 발급받은 키 중 javascript키를 사용해준다.( 키 정보는 개인정보)
+    Kakao.Auth.createLoginButton({
+	   container: '#kakao-login-btnn',
+	   success: function(authObj) {
+	     Kakao.API.request({
+	       url: '/v1/user/me',
+     	   success: function(res) {
+             kakao(res); 
+           }
+         })
+       },
+       fail: function(error) {
+         alert(JSON.stringify(error));
+       }
+     });
+
+//Pass 찾기
 	$("#forgetpass").on('click',function () {
 		swal.mixin({
 		  input: 'text',
