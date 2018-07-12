@@ -34,7 +34,7 @@ public class QnaBoardController {
 	public ModelAndView viewDeatil(int no) throws Exception {
 		ModelAndView mav = new ModelAndView("qnaboard/detail");
 		System.out.println(no +"글번호");
-		mav.addObject("qna", qnaBoardService.detailQna(no));
+		mav.addObject("list", qnaBoardService.detailQna(no));
 		return mav;
 	}	
 	
@@ -49,6 +49,7 @@ public class QnaBoardController {
 		return "qnaboard/insertForm";
 	}
 	
+	
 	@RequestMapping(value="/updateForm.do", method=RequestMethod.GET)
 	public String updateQna(int no,Model model) throws Exception {
 		model.addAttribute("qna", qnaBoardService.detailQna(no));
@@ -59,8 +60,9 @@ public class QnaBoardController {
 	@ResponseBody
 	public List<Code> selectLanguage() throws Exception{
 		List<Code> list = qnaBoardService.selectLanguage();
-		//System.out.println(list.get(1).getCode());
+		System.out.println(list.get(1).getCode());
 		return list;
 	}
+	
 	
 }

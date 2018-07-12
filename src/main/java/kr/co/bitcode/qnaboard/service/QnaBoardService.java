@@ -11,6 +11,10 @@ public interface QnaBoardService {
 	public void updateQna(Qna qna,QnaFile qnafile) throws Exception;
 	public void updateQnaView(int no) throws Exception;
 	public void insertQna(Qna qna,QnaFile qnafile) throws Exception;
-	public Qna detailQna(int no) throws Exception;
+	public List<Qna> detailQna(int no) throws Exception;
 	public List<Code> selectLanguage() throws Exception;
+	
+	// 답글
+	public void updateReQna(Qna qna,QnaFile qnafile) throws Exception;
+	public void insertReQna(Qna qna,QnaFile qnafile) throws Exception;
 }

@@ -15,6 +15,7 @@ a {color:#333333}
 	<div class="container">
 		<div class="shell-container">
 		<!-- <h2 class="shell_title">QnA질문게시판</h2> -->
+				<c:forEach var="qna" items="${list}">
 			<div class="contents_header">
 				<div class="title">
 				<c:if test="${empty qna}" >
@@ -28,6 +29,7 @@ a {color:#333333}
 					<span class="shell_writer">${qna.id}</span><span class="shell_hits">조회<span>4</span></span>
 
 				</div>
+				
 			</div>
 			<div class="contents_body">
 				<div class="detail">
@@ -96,6 +98,7 @@ a {color:#333333}
 			<a href='<c:url value="/qnaboard/updateForm.do?no=${qna.no}" />'><button>수정</button></a>
 			<a href="#"><button>삭제</button></a>
 			</div>
+			</c:forEach>
 		</div>
 
 	</div>

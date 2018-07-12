@@ -9,10 +9,16 @@ import kr.co.bitcode.repository.domain.QnaFile;
 public interface QnaMapper {
 	// 게시판 
 	public List<Qna> selectBoard();
-	public Qna selectBoardByNo(int no);
+	public List<Qna> selectBoardByNo(int no);
 	public void insertBoard(Qna qna);
+	public void updateGroupNo(int no);
 	public void updateBoard(Qna qna);
 	public void deleteBoard(int no);
+	
+	// 답글 
+	public void updateReBoard(int no);
+	public void insertReBoard(Qna qna);
+	
 	// 페이징
 	public int selectBoardCount(Qna qna);	
 	// 댓글 

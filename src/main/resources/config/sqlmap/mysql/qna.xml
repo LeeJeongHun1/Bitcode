@@ -44,11 +44,19 @@
 	   <selectKey keyProperty="no" resultType="int" order="AFTER">
     	SELECT LAST_INSERT_ID()
   	</selectKey>
+	<!-- 	insert into
+		tb_qna_board(group_no,id,language_code,title,content)
+		values((select LAST_INSERT_ID() +0 limit 1),#{id},#{code},#{title},#{content}) -->
 		insert into
 		tb_qna_board(group_no,id,language_code,title,content)
 		values(#{no},#{id},#{code},#{title},#{content})
 	</insert>
 	
+	<update id="updateGroupNo" parameterType="int">
+         update tb_qna_board
+           set  group_no =#{no}
+		  where no=#{no}
+	</update>
 	<update id="updateBoard" parameterType="qna">
          update tb_qna_board
            set  title=#{title},
@@ -73,4 +81,6 @@
 	
 	</update>
 
+	<!--  답글쿼리 -->
+	
 </mapper>

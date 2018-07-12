@@ -45,14 +45,12 @@
 			</form>
 			<div class="contents_btn">
 				<a href='<c:url value="/qnaboard/list.do" />'><button>목록</button></a>
-				<button>답변</button>
 				<button>수정</button>
 				<button>삭제</button>
 			</div>
 		</div>
 
 	</div>
-</body>
 	<script>
 	window.onload = function(){
 	}
@@ -63,11 +61,13 @@
 			dataType: "json"
 		})
 		.done(function (data){
-			cosnole.log(data);
+			console.log(data);
 			for(var i=0; i<data.length; i++){
 				$("select[name='code']").append('<option value="'+data[i].code+'">'+data[i].name+'</option>');
 			}
+		}).fail(function(result){
+			console.log('에러',result)
 		})
 	}
 	</script>
-</html>
+</body>
