@@ -116,8 +116,7 @@ public class CodeBoardController {
 	@RequestMapping(value="/replyForm.do", method=RequestMethod.GET)
 	public String replyForm(int no, Model model) {
 		CodeBoard cb = service.selectBoardByNo(no);
-		cb.setNo(0);
-		cb.setTitle("RE: "+cb.getTitle());
+		cb.setTitle(cb.getTitle());
 		cb.setContent(cb.getContent());
 		model.addAttribute("cb", cb);
 		return "codeboard/replyForm";

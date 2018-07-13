@@ -63,7 +63,15 @@
                             <tr style="height:13px; type:text/css;">
                             	<td style="font-size:14px;"></td>
                                 <td style="font-size:14px;">${cb.languageName}</td>
-                                <td style="font-size:14px; text-align:left;"><a href="detail.do?no=${cb.no}">${cb.title}</a></td>
+                                
+                                <td style="font-size:14px; text-align:left;">
+                                <c:forEach var="i" begin="1" end="${cb.depth}">
+                                	<span>&nbsp;&nbsp;&nbsp;</span>
+                                </c:forEach>
+                                <span>RE:</span>
+                                <a href="detail.do?no=${cb.no}">${cb.title}</a>
+                                </td>
+                                
                                 <td style="font-size:14px;">${cb.id}</td>
                                 <td style="font-size:12px;"><fmt:formatDate value="${cb.regDate}" pattern="yyyy-MM-dd" /></td>
                                 <td style="font-size:14px;">${cb.likeCnt}</td>
@@ -85,6 +93,9 @@
     </div>
 	</div>
 
+	<script>
+		
+	</script>
 </body>
 
 </html>
