@@ -82,5 +82,12 @@ public class QnaBoardController {
 		return list;
 	}
 	
+	@RequestMapping("/search.json")
+	@ResponseBody
+	public List<Qna> search(Search search) throws Exception{
+		System.out.println();
+		return qnaBoardService.search(search);
+	}
+	
 	
 }

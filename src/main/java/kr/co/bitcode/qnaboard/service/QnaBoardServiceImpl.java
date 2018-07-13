@@ -123,6 +123,16 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 		mapper.updateQnaFile(qnafile);}
 		} 	
 	}
+
+	@Override
+	public List<Qna> search(Search search) throws Exception {
+		List<Qna> list = mapper.selectBoard(search);
+		for(Qna qna:list) {
+			System.out.println(qna.getContent() +"내용");
+		}
+		return list;
+	
+	}
 	
 	
 	

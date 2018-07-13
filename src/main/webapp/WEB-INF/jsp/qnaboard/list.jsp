@@ -99,7 +99,7 @@
         <option value="content">내용</option>
         <option value="writer">글쓴이</option>
          </select> -->
-            <input type="text" name="keyword" style="margin-left:3px;">
+            <input type="text" id="search" name="keyword" style="margin-left:3px;">
             <button type="submit">검색</button>
             </form>
             <button class="btn btn-primary" type="button" onclick="location.href='insertForm.do'" style="margin-left:277px;">글쓰기</button></div>
@@ -107,6 +107,69 @@
     height: 89px;"><span style="font-size:20px;margin-left:485px;">&lt; &nbsp;1 2 3 4 5 &nbsp;&gt;</span></div>
     </div>
 	</div>
+	<script>
+	doAction();
+	function doAction(){
+		$.ajax({
+			type:'post',
+			url:"<c:url value='/qnaboard/search.json'/>",
+			data:$("#search").val(),
+			success:function(data){
+			 	console.log(data);
+			}
+		});
+		
+	}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	});
+	</script>
 
 </body>
 
