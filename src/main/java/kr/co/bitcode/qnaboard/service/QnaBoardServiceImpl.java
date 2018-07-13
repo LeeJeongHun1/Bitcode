@@ -49,9 +49,12 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 	}
 
 	@Override
-	public List<Qna> detailQna(int no) throws Exception {
-		List<Qna> list = mapper.selectBoardByNo(no);
-		return list;
+	public Qna detailQna(int no) throws Exception {
+		System.out.println("파일리스트");
+		Qna qna = mapper.selectBoardByNo(no);
+		qna.setFileList(mapper.selectQnaFile(no));
+		System.out.println("테스트");
+		return qna;
 	}
 
 	@Override
@@ -90,10 +93,22 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 
 	@Override
 	public void insertReQna(Qna qna, QnaFile qnafile) throws Exception {
+		System.out.println("가냐");
 		mapper.updateReBoard(qna);
 		System.out.println(qna.getGroupNo() +"그룹번호");
 		mapper.insertReBoard(qna);
-		mapper.insertQnaFile(qnafile);
+		if(qna.getFile()[0].getSize() == 0) {
+			System.out.println("파일없음");
+		}else {
+		for(MultipartFile file:qna.getFile()) {
+		file.transferTo(new File("c:/java-lec/upload/"+file.getOriginalFilename()));
+		qnafile.setNo(qna.getNo());
+		qnafile.setFilePath("c:/java-lec/upload/"+file.getOriginalFilename());
+		qnafile.setOriName(file.getOriginalFilename());
+		qnafile.setSystemName(file.getName());
+		qnafile.setFileSize((int)file.getSize());	
+		mapper.updateQnaFile(qnafile);}
+		} 	
 	}
 	
 	

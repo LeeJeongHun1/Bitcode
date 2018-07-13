@@ -1,6 +1,7 @@
 package kr.co.bitcode.repository.domain;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -16,46 +17,20 @@ public class Qna {
 	private int viewCnt;
 	private String code;
 	private String codeName;
-	private int fileNo;
-	public int getFileNo() {
-		return fileNo;
+	
+	private List<QnaFile> fileList;
+
+	public List<QnaFile> getFileList() {
+		return fileList;
 	}
-	public void setFileNo(int fileNo) {
-		this.fileNo = fileNo;
+	public void setFileList(List<QnaFile> fileList) {
+		this.fileList = fileList;
 	}
-	private String filePath;
-	private String oriName;
-	private String systemName;
-	private long fileSize;
 	public String getCodeName() {
 		return codeName;
 	}
 	public void setCodeName(String codeName) {
 		this.codeName = codeName;
-	}
-	public long getFileSize() {
-		return fileSize;
-	}
-	public void setFileSize(long fileSize) {
-		this.fileSize = fileSize;
-	}
-	public String getOriName() {
-		return oriName;
-	}
-	public void setOriName(String oriName) {
-		this.oriName = oriName;
-	}
-	public String getSystemName() {
-		return systemName;
-	}
-	public void setSystemName(String systemName) {
-		this.systemName = systemName;
-	}
-	public String getFilePath() {
-		return filePath;
-	}
-	public void setFilePath(String filePath) {
-		this.filePath = filePath;
 	}
 	public String getCode() {
 		return code;

@@ -62,6 +62,7 @@ public class QnaBoardController {
 	
 	@RequestMapping(value="/insertRe.do",method=RequestMethod.POST)
 	public String editReQna(Qna qna,QnaFile qnafile) throws Exception {
+		System.out.println("가는지");
 		qnaBoardService.insertReQna(qna, qnafile);
 		return "redirect:/qnaboard/list.do";
 	}

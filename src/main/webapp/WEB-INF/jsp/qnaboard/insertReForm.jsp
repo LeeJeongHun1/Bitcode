@@ -13,20 +13,18 @@
 	<div class="container">
 		<div class="shell-container">
 			<h2 class="shell_title">QnA질문게시판</h2>
-			<form action='<c:url value="/qnaboard/insert.do"/>' method="post"
+			<form action='<c:url value="/qnaboard/insertRe.do"/>' method="post"
 				enctype="multipart/form-data">
 				<table class="editTable">
 					<tbody>
 						<tr>
 							<th>제목</th>
-							<input type="hidden" name="no" value="${list[0].no}">
-							<input type="hidden" name="groupNo" value="${list[0].groupNo}">
-							<input type="hidden" name="depth" value="${list[0].depth}">
-							<input type="hidden" name="groupOrder" value="${list[0].groupOrder}">
-							<td><input class="editTitle" type="text" name="title" value="${list[0].title}"/> 
-							<select class="editSelect" name="code">
-									<option>분류</option>
-							</select></td>
+							<input type="hidden" name="no" value="${list.no}">
+							<input type="hidden" name="groupNo" value="${list.groupNo}">
+							<input type="hidden" name="depth" value="${list.depth}">
+							<input type="hidden" name="groupOrder" value="${list.groupOrder}">
+							<td><input class="editTitle" type="text" name="title" value="${list.title}"/> 
+							<input type="hidden" name="code" value="${list.code}"/> /${list.codeName}</td>
 						</tr>
 						<tr>
 							<th>작성자</th>

@@ -9,7 +9,7 @@ import kr.co.bitcode.repository.domain.QnaFile;
 public interface QnaMapper {
 	// 게시판 
 	public List<Qna> selectBoard();
-	public List<Qna> selectBoardByNo(int no);
+	public Qna selectBoardByNo(int no);
 	public void insertBoard(Qna qna);
 	public void updateGroupNo(int no);
 	public void updateBoard(Qna qna);
@@ -31,6 +31,6 @@ public interface QnaMapper {
 	public void insertQnaFile(QnaFile qnafile);
 	public void updateQnaFile(QnaFile qnafile);
 	public List<Qna> selectQnaFileByNo(int no);
-	//public List<QnaFile> selectQnaFile(int no);
+	public List<QnaFile> selectQnaFile(int no);
 	
 }

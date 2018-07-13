@@ -12,9 +12,9 @@ a {color:#333333}
 </style>
 </head>
 <body>
-<input type="hidden" name="groupNo" value="${list[0].groupNo}">
-<input type="hidden" name="depth" value="${list[0].depth}">
-<input type="hidden" name="groupOrder" value="${list[0].groupOrder}">
+<input type="hidden" name="groupNo" value="${qna.groupNo}">
+<input type="hidden" name="depth" value="${qna.depth}">
+<input type="hidden" name="groupOrder" value="${qna.groupOrder}">
 	<div class="container">
 		<div class="shell-container">
 		<!-- <h2 class="shell_title">QnA질문게시판</h2> -->
@@ -23,23 +23,23 @@ a {color:#333333}
 				<c:if test="${empty list}" >
 				안
 				</c:if>
-					<c:out value="${list[0].title}" /><span class="nowrap">|</span><span class="cf"><c:out value="${list[0].codeName}" /></span> <span
+					<c:out value="${list.title}" /><span class="nowrap">|</span><span class="cf"><c:out value="${list.codeName}" /></span> <span
 						class="day">2018-02-10</span>
 				</div>
 
  				<div class="header_info">
-					<span class="shell_writer">${list[0].id}</span><span class="shell_hits">조회<span>4</span></span>
+					<span class="shell_writer">${list.id}</span><span class="shell_hits">조회<span>4</span></span>
 
 				</div>
 				
 			</div>
 			<div class="contents_body">
 				<div class="detail">
-					<c:forEach var="qna" items="${list}">
+					<c:forEach var="qna" items="${list.fileList}">
 				 파일명 : <a href="${pageContext.request.contextPath}/fileDown.do?filePath=${qna.filePath}&systemFileName=${qna.systemName}&originalFileName=${qna.oriName}">${qna.oriName}</a>
         미리보기 : <img src="${pageContext.request.contextPath}/fileDown.do?filePath=${qna.filePath}&systemFileName=${qna.systemName}&originalFileName=${qna.oriName}" style="width: 150px; height: 150px "><br>
-					${qna.content}
 			</c:forEach>
+					${list.content}
 				</div>
 				<ul class="reBody">
 					<li>
@@ -99,8 +99,8 @@ a {color:#333333}
 			
 			<div class="contents_btn">
     		<a href='<c:url value="/qnaboard/list.do" />'><button>목록</button></a>
-			<a href='<c:url value="/qnaboard/insertReForm.do?no=${list[0].no}"/>'><button>답변</button></a>
-			<a href='<c:url value="/qnaboard/updateForm.do?no=${list[0].no}" />'><button>수정</button></a>
+			<a href='<c:url value="/qnaboard/insertReForm.do?no=${list.no}"/>'><button>답변</button></a>
+			<a href='<c:url value="/qnaboard/updateForm.do?no=${list.no}" />'><button>수정</button></a>
 			<a href="#"><button>삭제</button></a>
 			</div>
 			
