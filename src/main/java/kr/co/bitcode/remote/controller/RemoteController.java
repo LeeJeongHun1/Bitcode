@@ -1,6 +1,7 @@
 package kr.co.bitcode.remote.controller;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -53,14 +54,35 @@ public class RemoteController {
 		remote.setQuestion(question);
 		remote.setLink(link);
 		
-		if(remote != null) {
-			if(remote.getId() != null && remote.getNickName() != null && remote.getQuestion() != null && remote.getLink() != null) {
-				System.out.println(remote);
-				remoteList.add(remote);
+		// 모든 파라미터의 값이 있을 때
+		if(remote.getId() != null && remote.getNickName() != null && remote.getQuestion() != null && remote.getLink() != null) {
+			// ID가 같을 경우 기존 상담정보를 갱신
+			for(Remote r : remoteList) {
+				if(r.getId().equals(id)) {
+					r.setId(id);
+					r.setLink(link);
+					r.setNickName(nickName);
+					r.setQuestion(question);
+					System.out.println("상담신청 갱신");
+				}
+			}
+			remoteList.add(remote);
+		}
+		System.out.println(remote);
+		session.setAttribute("remoteList", remoteList);				
+		return mav;
+	}
+	
+	@RequestMapping("/remoteDel.do")
+	public void remoteDel(String id) {
+		System.out.println("idididididididiiddi");
+		// 상담 종료시 삭제
+		for(int i=0 ; i<remoteList.size() ; i++) {
+			Remote r = remoteList.get(i);
+			if(r.getId().equals(id)) {
+				remoteList.remove(i);
 			}
 		}
-		
-		return mav;
 	}
 	
 	@RequestMapping("/remote2.do")

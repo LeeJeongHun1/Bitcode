@@ -70,6 +70,7 @@ video {
 	    </form>
 	    <button id="shareScreen" class="screenShare order btn btn-default btn-group-xs">화면 공유</button>
 	</div>
+	    <button id="endScreen" class="screenShare order btn btn-default btn-group-xs">상담 종료</button>
 
 	<!-- 화면 공유 대기 리스트 -->
 	<table style="width: 100%;" id="rooms-list" class="hide-after-join"></table>
@@ -317,6 +318,19 @@ $("#shareScreen").click(function() {
 			}
 	});
 });
+
+// 상담종료시 상담신청 List에서 정보 삭제
+$("#endScreen").click(function() {
+		$.ajax({
+			type : "POST",
+			url : "/bitcode/remote/remoteDel.do",
+			data : {"id" : "${sessionScope.user.id}"},
+			success : function() {
+				console.log("상담신청 종료");
+			}
+	});
+});
+
 // 노드(채팅)서버로 방번호/아이디 보내기
 setTimeout(function () {
 	document.querySelector("#chatIframe").contentWindow.postMessage(JSON.stringify({"roomId": roomId, "sender": "${sessionScope.user.nickName}"}), "*");	
