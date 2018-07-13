@@ -11,10 +11,17 @@ public class CodeBoard {
 	private int depth;
 	private String id;
 	private String languageCode;
+	private String languageName;
 	private String title;
 	private String content;
 	private Date regDate;
 	private int viewCnt;
+	public String getLanguageName() {
+		return languageName;
+	}
+	public void setLanguageName(String languageName) {
+		this.languageName = languageName;
+	}
 	private int likeCnt;
 	private MultipartFile[] file;
 	private String filePath;

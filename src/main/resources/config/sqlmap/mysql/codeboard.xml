@@ -9,6 +9,7 @@
 		<result column="depth" property="depth" />
 		<result column="id" property="id" />
 		<result column="language_code" property="languageCode" />
+		<result column="language_name" property="languageName" />
 		<result column="title" property="title" />
 		<result column="content" property="content" />
 		<result column="reg_date" property="regDate" />
@@ -18,7 +19,9 @@
 		
 		<select id="selectBoard" resultMap="codeBoardMap">
 			select *
-			  from tb_code_board
+			  from tb_code_board cb
+	 	inner join tb_language_code lc
+	 			on cb.language_code = lc.language_code
 			 order by group_no desc, group_order asc
 		</select>
 		
@@ -66,7 +69,9 @@
 		
 		<select id="selectBoardByNo" parameterType="int" resultMap="codeBoardMap">
 	    	select *
-	    	  from tb_code_board
+	    	  from tb_code_board cb
+	    inner join tb_language_code lc
+	    		on cb.language_code = lc.language_code
 	    	 where no = #{no} 
 	    </select>	
 	    
@@ -107,8 +112,8 @@
         </update>
 
         <insert id="replyBoard" parameterType="codeBoard">
-               insert into tb_code_board (title,content,id,group_order,depth,group_no)
-               values(#{title}, #{content}, #{id}
+               insert into tb_code_board (language_code,title,content,id,group_order,depth,group_no)
+               values(#{languageCode},#{title}, #{content}, #{id}
                ,#{groupOrder}+1,#{depth}+1,#{groupNo})
         </insert>
 

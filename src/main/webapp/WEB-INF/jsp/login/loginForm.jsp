@@ -25,7 +25,7 @@
 		  <span id="siciallogin">social login ?</span>
 		  <span id="signup"><a href="${pageContext.request.contextPath}/login/signupForm.do">회원가입</a></span><br>
 	<div class="social">
-	<button class="na btnL">Naver</button>
+	<div class="na btnL"><a href="${naverurl}">Naver</a></div>
 	<div class="btnka"><a id="kakao-login-btnn" href="http://developers.kakao.com/logout"></a></div>
 	</div>
     <form name="kakaoForm" id="kakaoForm" method="post" action="${pageContext.request.contextPath}/login/kakaoForm.do">

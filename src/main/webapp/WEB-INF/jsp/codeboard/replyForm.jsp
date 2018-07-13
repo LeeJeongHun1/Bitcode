@@ -23,8 +23,9 @@ background-color: black;}
 			<tbody>
 			<tr>
 			<th style="color:#80FF00; background-color: black;">제목</th>
-			<td><input class="editTitle" name="title" style="color:#80FF00; background-color: black;"type="text"; value="${cb.title}"/>
+			<td><input class="editTitle" name="title" style="color:#80FF00; background-color: black;"type="text"; />
 			<select style="color:#80FF00; background-color: black;" class="editSelect" id="code" name="languageCode">
+				<option value='${cb.languageCode}'>${cb.languageName}</option>
 			</select>
 			</td>
 			</tr>
@@ -39,11 +40,9 @@ background-color: black;}
 			</tr>
 			<tr style="height:90%;">
 			<th style="color:#80FF00; background-color: black;">내용</th>
-			<td><textarea name="content" style="width: 100%; color:#80FF00; background-color: black;
+			<td>
+			<textarea name="content" style="width: 100%; color:#80FF00; background-color: black;
     		height: 100%;">
-    		------------------원본글---------------
-    		${cb.content}
-    		-----------------원본글끝--------------
     		</textarea></td>
 			</tr>
 			<tr>
@@ -61,22 +60,6 @@ background-color: black;}
 
 	</div>
 	
-	<script>
-	window.onload = function(){}
-	code();
-	function code(){
-		$.ajax({
-			url: `${pageContext.request.contextPath}/qnaboard/selectLanguage.json`,
-			dataType: "json"
-		})
-		.done(function (data){
 
-			for(var count=0; count<data.length; count++){
-				var option = $("<option>"+data[count].name+"</option>");
-				$('#code').append(option);
-			}
-		})
-	}
-	</script>
 </body>
 </html>

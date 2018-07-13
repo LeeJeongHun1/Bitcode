@@ -28,35 +28,44 @@ body {
 
 <div id="chatBox"></div>
 <div class="bottom-bar">
-	<input type="text" id="msg" />
+	<input type="text" id="message" />
 	<input type="button" value="메세지 전송" id="msgBtn"/>
-	<input type="button" value="부모" id="p"/>
 </div>
 
 	<script>
 	// 소켓서버에 접속
 	var socket = io.connect();
-	var roomid = '1번룸';
 	// var socket = io.connect("http://192.168.0.179:10001");
 	// msg 등록
     socket.on("msg", function (data) {
-	   $("#chatBox").before(data.msg + "<br>");
+    	console.dir(data);
+	   $("#chatBox").before(data.sender + " : " + data.msg + "<br>");
     });
   
+
     $("[type=button]").click(function () {
     // id가 msg 인 텍스트 창에 입력된 데이터를 소켓서버에 전송
 		console.log("서버로 전송함");
 		// msg 호출
-      socket.emit("msg", {"msg": $("#msg").val(), "roomid": roomid});
-      //socket.emit("msg", {recvId: id == "admin" ? , sendId: id, msg: $("#msg").val()});
+      	socket.emit("msg", {roomId: roomId, sender: sender, msg: $("#message").val()});
+	
+		// 방번호로 룸 조인
+    	socket.emit('joinroom',{room: roomId});
     });
 	
+    // 서버에서 전송받은 방번호와 닉네임
 	window.addEventListener("message", receiveMessage, false);
-	var id;
+	var sender = '';
+	var roomId = '';
+	var msg = '';
 	function receiveMessage(event) {
 		var obj = JSON.parse(event.data);
-		//alert(obj.sender);
-		socket.emit("sendId", obj.sender);
+		// 채팅 보내는 사람의 닉네임
+		sender = obj.sender;
+		// 방번호
+		roomId = obj.roomId;
+		// 메시지
+		msg = obj.msg;
 	}
 	</script>
 
