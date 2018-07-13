@@ -31,29 +31,30 @@ io.set('transports', [
 */
 
 var roomArr = [];
+var rooms = [];
 
 var io = require('socket.io')(server);
 
 io.on("connection", function (socket) {
   console.log(socket.id);
 
+  // 방번호로 룸 조인
+  socket.on('joinroom', function(data){
+	  console.log("룸번호 : " + data.room);
+	  socket.join(data.room);
+  })
+  
   socket.on("msg", function (data){
 	// 방번호
     console.log("roomId : " + data.roomId);
     console.log("sender : " + data.sender);
     console.log("msg : " + data.msg);
-    roomArr[data.roomId] = socket.id;
+    roomArr[data.roomId] = [socket.id];
   })
 
   socket.on("msg", function (data) {
     // 개별통신 : 데이터를 보낸 사용자에게만 보내기
 	  io.to(roomArr[data.roomId]).emit("msg", data);
-//    io.sockets.in("room" + data.roomid).emit("msg")
-//    // server.socket으로 접속한 사용자 모두에게 데이터 전송
-//	  io.emit("msg", data);
-    
-    // 나를 제외한 접속자 모두에게
-    // socket.broadcast.emit("msg", data);
   });
   
   socket.on('disconnect', function() {

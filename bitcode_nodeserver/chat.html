@@ -42,12 +42,15 @@ body {
 	   $("#chatBox").before(data.sender + " : " + data.msg + "<br>");
     });
   
+
     $("[type=button]").click(function () {
     // id가 msg 인 텍스트 창에 입력된 데이터를 소켓서버에 전송
 		console.log("서버로 전송함");
 		// msg 호출
-      socket.emit("msg", {roomId: roomId, sender: sender, msg: $("#message").val()});
-      //socket.emit("msg", {recvId: id == "admin" ? , sendId: id, msg: $("#msg").val()});
+      	socket.emit("msg", {roomId: roomId, sender: sender, msg: $("#message").val()});
+	
+		// 방번호로 룸 조인
+    	socket.emit('joinroom',{room: roomId});
     });
 	
     // 서버에서 전송받은 방번호와 닉네임
@@ -63,7 +66,6 @@ body {
 		roomId = obj.roomId;
 		// 메시지
 		msg = obj.msg;
-		//socket.emit("sendId", obj.sender);
 	}
 	</script>
 
