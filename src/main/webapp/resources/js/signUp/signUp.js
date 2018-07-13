@@ -68,11 +68,11 @@ $("#userEmail").keyup(function () {
 
 //비번 체크
 $("#userPassCheck").keyup(function(){
-//	console.log($(this).val().length)
-//	if($(this).val() == ""){
-//		$("#userPass").next().text("");
-//		return;
-//	}
+	console.log($(this).val().length)
+	if($(this).val() == ""){
+		$("#userPassCheck").next().text("");
+		return;
+	}
 	if($(this).val() == $("#userPass").val()){
 		$("#userPassCheck").next().text("비밀번호가 일치합니다.");
 		$("#userPassCheck").data("flag","yes");

@@ -3,9 +3,6 @@ package kr.co.bitcode.login.controller;
 
 
 import java.io.File;
-
-
-
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +10,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.github.scribejava.core.model.OAuth2AccessToken;
+import com.google.gson.Gson;
 
 import kr.co.bitcode.login.service.LoginService;
 import kr.co.bitcode.repository.domain.User;
@@ -31,16 +33,66 @@ public class LoginController {
 	@Autowired
 	private LoginService loginService;
 	
+	/* NaverLoginBO */
+	private NaverLoginBO naverLoginBO;
+	private String apiResult = null;
+	@Autowired
+	private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
+		this.naverLoginBO = naverLoginBO;
+	}	
 	
-	//카카오톡 로그인시 bitcode에 회원가입이 되어있는지 확인
+	//로그인 클릭시 
+	@RequestMapping(value = "/loginForm.do",  method = { RequestMethod.GET})
+	public String loginForm(Model model, HttpSession session) {
+		//네이버 
+		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+		model.addAttribute("naverurl", naverAuthUrl);
+		
+		/* 생성한 인증 URL을 View로 전달 */
+		return "login/loginForm";
+	}
+	
+    //네이버 로그인 성공시 callback호출 메소드
+    @RequestMapping(value = "/naver.do", method = { RequestMethod.GET})
+    public String navercallback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session)
+            throws Exception {
+    	System.out.println("네이버 로그인");
+        OAuth2AccessToken oauthToken;
+        oauthToken = naverLoginBO.getAccessToken(session, code, state);
+        //로그인 사용자 정보를 읽어온다.
+        apiResult = naverLoginBO.getUserProfile(oauthToken);
+        
+        Gson gson = new Gson();
+        NaverVO vo = gson.fromJson(apiResult, NaverVO.class);
+        NaverInfo info = vo.getResponse();
+        String id= info.getId();
+        System.out.println("id" + id);
+        
+        User userInfo = loginService.selectUserById(id);
+        if(userInfo != null) {
+        	session.setAttribute("user", userInfo);
+        	return "redirect:/main/main.do";
+        }else {
+        // 소셜 회원 폼으로 넘기기.	
+		model.addAttribute("id", info.getId());
+		model.addAttribute("email", info.getEmail());
+		model.addAttribute("nickName", info.getName());
+		model.addAttribute("nickName", info.getNickname());
+        return "login/socialSignupform";
+        }
+    }	
+	
+	
+	
+	//카카오톡 로그인시 bitcode에 회원가입이 되어있는지 확인, 회원 가입 안되있으면정보추가 위해 소셜로그인폼으로 이동
 	@RequestMapping("/kakaoForm.do") 
-	public String kakaoForm(User user, Model model) throws Exception { 
-		System.out.println("kakaoForm 들어옴");
-		User users = loginService.selectUserById(user.getId());
-		if(users != null) {
+	public String kakaoForm(User user, Model model, HttpSession session) throws Exception { 
+		User userinfo = loginService.selectUserById(user.getId());
+		if(userinfo != null) {
+			session.setAttribute("user", userinfo);
+			session.setMaxInactiveInterval(60 * 60);
 			return "redirect:/main/main.do";
 		}
-		System.out.println(user.getId());
 		model.addAttribute("id", user.getId());
 		model.addAttribute("email", user.getEmail());
 		model.addAttribute("nickName", user.getNickName());
@@ -57,14 +109,6 @@ public class LoginController {
 		return users;
 	} 
 	
-	
-	
-
-	//로그인 클릭시 
-	@RequestMapping("/loginForm.do")
-	public String loginForm() {
-		return "login/loginForm";
-	}
 	//로그인 (ID, Pass 입력 후)
 	@RequestMapping("/login.do")
 	public String login(User user, HttpSession session,  RedirectAttributes attr) throws Exception{

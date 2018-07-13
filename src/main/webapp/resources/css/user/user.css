@@ -61,7 +61,7 @@ div .userInformation {
 /* PROFILES */
 
 .card{
-	max-width: 100%;
+	max-width:90%;
 	height: 670px;
 	background-color: #f7f7f7;
 	font-family: 'Arimo', sans-serif;

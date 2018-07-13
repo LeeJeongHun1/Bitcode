@@ -21,13 +21,17 @@
 	  <p class="innerText"></p>
 	  <input name="nickName" placeholder="Nick name을 입력하세요" type="text" id="nickName" data-flag="no" class="inputDetail" value="${nickName}"/>
 	  <p class="innerText"></p>
+	  <input name="password" placeholder="비밀번호를 입력하세요" type="password" id="userPass" data-flag="no" class="inputDetail" maxlength="16"/>
+	  <p class="innerText"></p>
+	  <input name="conformpass" placeholder="비밀번호를  재입력하세요" type="password" id="userPassCheck" data-flag="no" class="inputDetail" maxlength="16"/>
+	  <p class="innerText"></p>	  
 	  <input name="email" placeholder="Email을 입력하세요" type="text" id="userEmail" data-flag="no" class="inputDetail" value="${email}"/>
 	  <p class="innerText"></p>
 	  <input name="birthday" placeholder="생년월일 입력하세요" type="text" id="userBirth" data-flag="no" class="inputDetail" />
 	  <p class="innerText"></p>
 <!-- 	  <button class="btn" id="submitBtn">Sign UP</button> -->
 	  <div id="submitBox">
-	 	 <a href="#1" id="submitBtn"><span class="signupbtn">Sign UP</span></a>
+	 	 <a href="#" id="submitBtn"><span class="signupbtn">Sign Up</span></a>
 	  </div>
 	</form>
 <script src="${pageContext.request.contextPath}/resources/js/signUp/socialSignup.js"></script>
