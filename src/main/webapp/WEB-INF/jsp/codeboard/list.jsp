@@ -50,7 +50,7 @@
                             <tr style="height:13px; type:text/css;">
                                 <td style="font-size:14px;">${cb.no}</td>
                                 <td style="font-size:14px;">${cb.languageCode}</td>
-                                <td style="font-size:14px;"><a href="detail.do?no=${cb.no}">${cb.title}</a></td>
+                                <td style="font-size:14px; text-align:left;"><a href="detail.do?no=${cb.no}">${cb.title}</a></td>
                                 <td style="font-size:14px;">${cb.id}</td>
                                 <td style="font-size:12px;"><fmt:formatDate value="${cb.regDate}" pattern="yyyy-MM-dd" /></td>
                                 <td style="font-size:14px;">${cb.likeCnt}</td>

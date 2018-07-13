@@ -23,7 +23,7 @@ background-color: black;}
 			<tbody>
 			<tr>
 			<th style="color:#80FF00; background-color: black;">제목</th>
-			<td><input class="editTitle" name="title" style="color:#80FF00; background-color: black;"type="text" />
+			<td><input class="editTitle" name="title" style="color:#80FF00; background-color: black;"type="text"; value="${cb.title}"/>
 			<select style="color:#80FF00; background-color: black;" class="editSelect" id="code" name="languageCode">
 			</select>
 			</td>
@@ -31,6 +31,7 @@ background-color: black;}
 			<tr>
 			<th style="color:#80FF00; background-color: black;">작성자</th>
 			<td><input style="color:#80FF00; background-color: black;" type="text" name="id"/>
+			<input type="hidden" name="no" value="${cb.no}" /> 
 			<input type="hidden" name="groupOrder" value="${cb.groupOrder}" /> 
 			<input type="hidden" name="depth" value="${cb.depth}" />
 			<input type="hidden" name="groupNo" value="${cb.groupNo}" />
@@ -39,7 +40,11 @@ background-color: black;}
 			<tr style="height:90%;">
 			<th style="color:#80FF00; background-color: black;">내용</th>
 			<td><textarea name="content" style="width: 100%; color:#80FF00; background-color: black;
-    		height: 100%;"></textarea></td>
+    		height: 100%;">
+    		------------------원본글---------------
+    		${cb.content}
+    		-----------------원본글끝--------------
+    		</textarea></td>
 			</tr>
 			<tr>
 			<th style="color:#80FF00; background-color: black;">파일첨부</th>

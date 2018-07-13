@@ -30,27 +30,34 @@ body {
 <div class="bottom-bar">
 	<input type="text" id="msg" />
 	<input type="button" value="메세지 전송" id="msgBtn"/>
+	<input type="button" value="부모" id="p"/>
 </div>
 
 	<script>
-	$(document).ready(function () {
-		// 소켓서버에 접속
-		var socket = io.connect();
-		var roomid = '1번룸';
-		// var socket = io.connect("http://192.168.0.179:10001");
-		// msg 등록
-		socket.emit("join", roomid);
-	  socket.on("msg", function (data) {
-		$("#chatBox").before(data.msg + "<br>");
-	  });
-	  
-	  $("[type=button]").click(function () {
-	    // id가 msg 인 텍스트 창에 입력된 데이터를 소켓서버에 전송
-			console.log("서버로 전송함");
-			// msg 호출
-	    socket.emit("msg", {"msg": $("#msg").val(), "roomid": roomid});
-	  });
-	});
+	// 소켓서버에 접속
+	var socket = io.connect();
+	var roomid = '1번룸';
+	// var socket = io.connect("http://192.168.0.179:10001");
+	// msg 등록
+    socket.on("msg", function (data) {
+	   $("#chatBox").before(data.msg + "<br>");
+    });
+  
+    $("[type=button]").click(function () {
+    // id가 msg 인 텍스트 창에 입력된 데이터를 소켓서버에 전송
+		console.log("서버로 전송함");
+		// msg 호출
+      socket.emit("msg", {"msg": $("#msg").val(), "roomid": roomid});
+      //socket.emit("msg", {recvId: id == "admin" ? , sendId: id, msg: $("#msg").val()});
+    });
+	
+	window.addEventListener("message", receiveMessage, false);
+	var id;
+	function receiveMessage(event) {
+		var obj = JSON.parse(event.data);
+		//alert(obj.sender);
+		socket.emit("sendId", obj.sender);
+	}
 	</script>
 
 

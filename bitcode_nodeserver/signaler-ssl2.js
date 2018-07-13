@@ -1,7 +1,9 @@
 var fs = require('fs');
-var cors = require('cors');
-var app = require('express')();
+var cors = require('cors')
+//var app = require('express')();
 var _static = require('node-static');
+
+/*app.use(cors())*/
 var file = new _static.Server('./static', {
     cache: false
 });
@@ -11,12 +13,50 @@ var options = {
     cert: fs.readFileSync('fake-keys/certificate.pem')
 };
 // SSL 서버 생성
-var server = require('https').createServer(options, app);
-app.use(cors());
+var app = require('https').createServer(options, handler),
+io = require('socket.io').listen(app);
+
+function handler(req, res) {
+    res.writeHead(200);
+    res.end("welcome sir!");
+}
+/*io.sockets.on('connection', function (socket) {
+    socket.on('message', function (data) {
+        socket.broadcast.emit('message', data);
+    });
+});*/
+io.on("connection", function (socket) {
+	  console.log(socket.id);
+
+	  socket.on("join", function (data){
+		  console.log("join : ", data);
+	    socket.join("room" + data.roomid);
+	    io.emit("msg", socket.id);
+	  })
+
+	  socket.on("msg", function (data) {
+	    // 개별통신 : 데이터를 보낸 사용자에게만 보내기
+	    // socket.emit("msg", data);
+		  console.log("data : ", data);
+	    io.sockets.in("room" + data.roomid).emit("msg")
+	    // server.socket으로 접속한 사용자 모두에게 데이터 전송
+		  io.emit("msg", data);
+	    
+	    // 나를 제외한 접속자 모두에게
+	    // socket.broadcast.emit("msg", data);
+	  });
+	  
+	  socket.on('disconnect', function() {
+	    // 새로고침, 페이지 종료시 자동 emit 발생
+		 console.log('연결 종료 : ' + socket.id);
+		 io.emit("msg", socket.id);
+	  });
+	});
+/*
 app.get('/', function(req, res) {
 	  res.header("Access-Control-Allow-Origin", "*");
 		res.sendFile(__dirname + '/chat.html');
-	});
+	});*/
 /*
 var io = require('socket.io').listen(server, {
     log: true,
@@ -29,37 +69,9 @@ io.set('transports', [
     'jsonp-polling'
 ]);
 */
+//var io = require('socket.io')(server);
 
-var idArr = [];
 
-var io = require('socket.io')(server);
-
-io.on("connection", function (socket) {
-  console.log(socket.id);
-
-  socket.on("sendId", function (data){
-    console.log("sendId : " + data);
-    idArr[data] = socket.id;
-  })
-
-  socket.on("msg", function (data) {
-    // 개별통신 : 데이터를 보낸 사용자에게만 보내기
-	  io.to(idArr[data.recvId]).emit(
-              "msg", 
-              data.sendId + "님이 당신에게 귓말을 보냈습니다.\n" + data.msg);
-//    io.sockets.in("room" + data.roomid).emit("msg")
-//    // server.socket으로 접속한 사용자 모두에게 데이터 전송
-//	  io.emit("msg", data);
-    
-    // 나를 제외한 접속자 모두에게
-    // socket.broadcast.emit("msg", data);
-  });
-  
-  socket.on('disconnect', function() {
-    // 새로고침, 페이지 종료시 자동 emit 발생
-	 console.log('연결 종료 : ' + socket.id);
-  });
-});
 
 
 /*
@@ -119,6 +131,6 @@ function onNewNamespace(channel, sender) {
 }
 */
 // 서버 구동
-server.listen(10001, function() {
+app.listen(10001, function() {
   console.log('SSL server listening on port 10001');
 });

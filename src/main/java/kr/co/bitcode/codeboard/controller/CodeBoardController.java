@@ -117,7 +117,8 @@ public class CodeBoardController {
 	public String replyForm(int no, Model model) {
 		CodeBoard cb = service.selectBoardByNo(no);
 		cb.setNo(0);
-		cb.setTitle("RE: " + cb.getTitle());
+		cb.setTitle("RE: "+cb.getTitle());
+		cb.setContent(cb.getContent());
 		model.addAttribute("cb", cb);
 		return "codeboard/replyForm";
 	}
