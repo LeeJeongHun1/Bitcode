@@ -30,7 +30,6 @@ body {
 <div class="bottom-bar">
 	<input type="text" id="message" />
 	<input type="button" value="메세지 전송" id="msgBtn"/>
-	<input type="button" value="부모" id="p"/>
 </div>
 
 	<script>
@@ -40,17 +39,14 @@ body {
 	// msg 등록
     socket.on("msg", function (data) {
     	console.dir(data);
-	   $("#chatBox").before(sender + " : " + data.msg + "<br>");
+	   $("#chatBox").before(data.sender + " : " + data.msg + "<br>");
     });
   
     $("[type=button]").click(function () {
     // id가 msg 인 텍스트 창에 입력된 데이터를 소켓서버에 전송
 		console.log("서버로 전송함");
-		console.dir(roomId);
-		console.dir(sender);
-    
 		// msg 호출
-      socket.emit("msg", {roomId: roomId, sender: sender, msg: $("#msg").val()});
+      socket.emit("msg", {roomId: roomId, sender: sender, msg: $("#message").val()});
       //socket.emit("msg", {recvId: id == "admin" ? , sendId: id, msg: $("#msg").val()});
     });
 	
@@ -58,13 +54,15 @@ body {
 	window.addEventListener("message", receiveMessage, false);
 	var sender = '';
 	var roomId = '';
-	
+	var msg = '';
 	function receiveMessage(event) {
 		var obj = JSON.parse(event.data);
 		// 채팅 보내는 사람의 닉네임
 		sender = obj.sender;
 		// 방번호
 		roomId = obj.roomId;
+		// 메시지
+		msg = obj.msg;
 		//socket.emit("sendId", obj.sender);
 	}
 	</script>
