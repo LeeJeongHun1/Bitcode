@@ -230,6 +230,11 @@
 							</div>
 						</div>
 						<div id="tree" style="overflow-x: auto;"></div>
+						<!-- 저장 용량 -->
+						<div class="saveSize" style="position: fixed; bottom: 40px; width: 145px;" >
+							<span>저장용량</span><img src="${pageContext.request.contextPath}/resources/images/cloud.PNG" style="width: 40px; margin-left: 8px;"><br>
+							<span></span>
+						</div>
 					</div>
 					<div class="col-xs-9 ">
 						<div class="row main-folders" id="folder-area">
@@ -338,14 +343,15 @@
 	//Setup the dnd listeners.
 	var dropZone = document.getElementById('overlay-computer');
 	dropZone.addEventListener('dragover', handleDragOver, false);
-	dropZone.addEventListener('drop', handleFileSelect, false);	
+	dropZone.addEventListener('drop', handleFileSelect, false);
 	var fDiv = $("#folder-area");
+	var loadingFolder = {
+			id: $("#sId").val(),
+	}
 	if($("#sId").val() != ''){
 		$.ajax({
 			url: "selectFolder.json",
-			data: {
-				id: $("#sId").val()
-			},
+			data: loadingFolder,
 			dataType: "json"
 		})
 		.done(function (data) {
@@ -359,8 +365,8 @@
 					console.log("폴더")
 // 					alert(f.title)
 // 					appendFile += '<div class="col-xs-2 folders text-center" ondblclick="test(\''+f.title + '\',\'' + f.parentPath+'\')">';
-					appendFile += '<div class="col-xs-2 folders text-center"';
-					appendFile += 'ondblclick="test(\'' + path + '\')">';
+// 					appendFile += '<div class="col-xs-2 folders text-center" id="'+f.key+'" data-path="'+f.parentPath+'">';
+					appendFile += '<div class="col-xs-2 folders text-center" id="'+f.key+'" data-path="'+f.parentPath+'" data-title="'+f.title+'" ondblclick="test('+f.key+')">';
 					appendFile += '<p class="contain">';
 					appendFile += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500502735/if_folder-blue_285658_f5jeko.svg"';
 					appendFile += '		class="img-responsive  center-block" style="height: 64px;"';
@@ -394,13 +400,28 @@
 // 					data.result = {url: ""}
 				}
 			});
+			$("#share-path").append("<span class='path-icon-input'>"+$("#sId").val()+"</span>")
 		})
 	}
-	//<span class="path-icon-input">This pc</span>
-// 	function test(a, b) {
-// 		console.log(a);
-// 		console.log(b);
-// 	}
+	function test(key) {
+// 		console.log(key)
+		var $div = $("#"+key);
+		console.log($div.data("path"));
+		$div.data("parent", "path");
+		console.log($div.data("title"));
+		console.log($div.data("parent"));
+		$.ajax({
+			url: "enterDirectory.json",
+			data: {
+				parentPath: $div.data("path")+"/"+$div.data("title"),
+				key: key
+			},
+			dataType: "json"
+		})
+		.done(function (result) {
+			console.log(result)
+		})
+	}
 	
 	function error(e) {
 	    console.log('error');
@@ -414,29 +435,28 @@
 	
 	function traverseFileTree(item, path) {
 		path = path || "";
+		console.dir(item)
 		if (item.isFile) {
 			// Get file
 			item.file(function(file) {
-				if(path == ''){
-					console.log("파일만 올림")
-					console.log("File: " + path + file.name);
-					console.log("File정보 " + file);
-					var html = '';
-					html += '<div class="col-xs-2 folders text-center">';
-					html += '	<p class="contain"><img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500502735/if_folder-blue_285658_f5jeko.svg" class="img-responsive  center-block" style="height: 64px;" alt=""></p>';
-					html += '	<span>Folder</span>';
-					html += '</div>';
-					fDiv.append(html);
-					sendFile(file);
-			}else{
-				console.log("폴더포함 올림")
-			console.log("File: " + path + file.name);
+			if(path == ''){
+				console.log("파일만 올림")
+				console.log("File: " + path + file.name);
+				console.dir(file);
+				var html = '';
+				html += '<div class="col-xs-2 folders text-center">';
+				html += '	<p class="contain"><img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500502735/if_folder-blue_285658_f5jeko.svg" class="img-responsive  center-block" style="height: 64px;" alt=""></p>';
+				html += '	<span>Folder</span>';
+				html += '</div>';
+				fDiv.append(html);
+				sendFile(file);
 			}
 		}, error);
 		} else if (item.isDirectory) {
 			// Get folder contents
 			var dirReader = item.createReader();
 			dirReader.readEntries(function(entries) {
+				console.dir(entries)
 				for (var i=0; i<entries.length; i++) {
 					traverseFileTree(entries[i], path + item.name + "/")
 				}
@@ -448,6 +468,7 @@
 		var fd = new FormData();
 		fd.append("attach", file);
 		fd.append("id", $("#sId").val());
+		fd.append("parentPath", $("#sId").val());
 		$.ajax({
 			url: "upload.do",
 			data: fd,
@@ -477,25 +498,6 @@
 	    evt.preventDefault();
 	    evt.dataTransfer.dropEffect = 'copy';
 	}
-	
-//     div.ondragover = function (e) {
-//         return false;
-//     }
-    
-//     div.ondrop = function (e) {
-//         var files = e.dataTransfer.files;
-//         console.log(files)
-//         for(var i of files){
-//             console.log(i.name, i.size);
-//             var html = '';
-//             html += '<div class="col-xs-2 folders text-center">';
-//             html += '	<p class="contain"><img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500502735/if_folder-blue_285658_f5jeko.svg" class="img-responsive  center-block" style="height: 64px;" alt=""></p>';
-//             html += '	<span>Folder</span>';
-//             html += '</div>';
-//             fDiv.append(html);
-//         }
-//         return false;
-//     }
 </script>
 </body>
 </html>
