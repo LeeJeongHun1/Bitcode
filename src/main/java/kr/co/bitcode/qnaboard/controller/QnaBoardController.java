@@ -44,8 +44,7 @@ public class QnaBoardController {
 	}
 	
 	@RequestMapping(value="/insertForm.do", method=RequestMethod.GET)
-	public String editQna() throws Exception {
-		return "qnaboard/insertForm";
+	public void editQna() throws Exception {
 	}
 	
 	@RequestMapping(value="/update.do", method=RequestMethod.POST)

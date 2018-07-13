@@ -61,13 +61,26 @@
                         <tbody>
                             <c:forEach var="i" items="${list}">
                             <tr style="height:13px; type:text/css;">
-                                <td style="font-size:14px;">${i.no}</td>
+                            <c:choose>
+                            <c:when test="${i.groupOrder == 0}">
+                              <td style="font-size:14px;">${i.no}</td>
                                 <td style="font-size:14px;">${i.codeName}</td>
                                 <td style="font-size:14px;"><a href="detail.do?no=${i.no}">${i.title}</a></td>
                                 <td style="font-size:14px;">${i.id}</td>
                                 <td style="font-size:14px;"><fmt:formatDate value="${i.regDate}" pattern="yyyy-MM-dd HH-mm-ss" /></td>
                                 <td style="font-size:14px;">${i.likeCnt}</td>
                                 <td style="font-size:14px;">${i.viewCnt}</td>
+                            </c:when>
+                            <c:otherwise>
+                                <td style="font-size:14px;"></td>
+                                <td style="font-size:14px;">${i.codeName}</td>
+                                <td style="font-size:14px;"><a href="detail.do?no=${i.no}">${i.title}</a></td>
+                                <td style="font-size:14px;">${i.id}</td>
+                                <td style="font-size:14px;"><fmt:formatDate value="${i.regDate}" pattern="yyyy-MM-dd HH-mm-ss" /></td>
+                                <td style="font-size:14px;">${i.likeCnt}</td>
+                                <td style="font-size:14px;">${i.viewCnt}</td>
+                            </c:otherwise>
+                            </c:choose>
                             </tr>
                             </c:forEach>
                         </tbody>

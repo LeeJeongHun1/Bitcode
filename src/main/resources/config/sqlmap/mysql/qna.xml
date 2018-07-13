@@ -27,7 +27,7 @@
 		join tb_language_code l
 		on q.language_code = l.language_code
 		order
-		by no desc
+		by group_no desc, group_order asc
 	</select>
 	<select id="selectBoardByNo" parameterType="int" resultMap="qnaMap">
 		select *
