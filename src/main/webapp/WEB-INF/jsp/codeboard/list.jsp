@@ -47,15 +47,30 @@
                         </thead>
                         <tbody>
                         <c:forEach var="cb" items="${list}">
+                        <c:choose>
+                        	<c:when test="${cb.groupOrder==1}">
                             <tr style="height:13px; type:text/css;">
                                 <td style="font-size:14px;">${cb.no}</td>
-                                <td style="font-size:14px;">${cb.languageCode}</td>
+                                <td style="font-size:14px;">${cb.languageName}</td>
                                 <td style="font-size:14px; text-align:left;"><a href="detail.do?no=${cb.no}">${cb.title}</a></td>
                                 <td style="font-size:14px;">${cb.id}</td>
                                 <td style="font-size:12px;"><fmt:formatDate value="${cb.regDate}" pattern="yyyy-MM-dd" /></td>
                                 <td style="font-size:14px;">${cb.likeCnt}</td>
-                                <td style="font-size:14px;">${cb.viewCnt}</td>
-                            </tr>
+                                <td style="font-size:14px;">${cb.viewCnt}</td>                        
+                            </tr>                        	
+                        	</c:when>
+                        	<c:otherwise>
+                            <tr style="height:13px; type:text/css;">
+                            	<td style="font-size:14px;"></td>
+                                <td style="font-size:14px;">${cb.languageName}</td>
+                                <td style="font-size:14px; text-align:left;"><a href="detail.do?no=${cb.no}">${cb.title}</a></td>
+                                <td style="font-size:14px;">${cb.id}</td>
+                                <td style="font-size:12px;"><fmt:formatDate value="${cb.regDate}" pattern="yyyy-MM-dd" /></td>
+                                <td style="font-size:14px;">${cb.likeCnt}</td>
+                                <td style="font-size:14px;">${cb.viewCnt}</td>                        
+                            </tr>                        	
+                        	</c:otherwise>
+                        </c:choose>
                         </c:forEach>
                         </tbody>
                     </table>

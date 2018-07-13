@@ -26,7 +26,7 @@ background-color: black;}
 			<div class="contents_header" style="color:#80FF00; background-color: black;">
 				<div class="title" style="color:#80FF00; background-color: black;">
 					<c:out value="${cb.title}" /><span class="nowrap">|</span>
-					<span class="cf" style="color:#80FF00; background-color: black;">JAVA</span> 
+					<span class="cf" style="color:#80FF00; background-color: black;">${cb.languageName}</span> 
 					<span class="day" style="color:#80FF00; background-color: black;">2018-02-10</span>
 			<input type="hidden" name="groupOrder" value="${cb.groupOrder}" /> 
 			<input type="hidden" name="depth" value="${cb.depth}" />

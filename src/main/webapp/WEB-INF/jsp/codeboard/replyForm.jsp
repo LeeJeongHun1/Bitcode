@@ -72,7 +72,7 @@ background-color: black;}
 		.done(function (data){
 
 			for(var count=0; count<data.length; count++){
-				var option = $("<option>"+data[count].name+"</option>");
+				var option = $("<option value='"+data[count].code+"'>"+data[count].name+"</option>");
 				$('#code').append(option);
 			}
 		})
