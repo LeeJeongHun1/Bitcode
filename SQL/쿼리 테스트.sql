@@ -11,7 +11,7 @@ drop table tb_news purge;
 delete from tb_user
 	where id = 'id1';
 	
--- insert 유저
+-- insert 유저 (비번은 암호화되서 들어가야 하기때문에 회원가입을 통해 데이터 생성 요망!!)
 insert into tb_user (
 	id, name, nick_name, password, email, birthday
 ) values (
@@ -22,4 +22,17 @@ insert into tb_user (
 delete from tb_user
 	where id = 'sun';
 
+-- update 유저
+update tb_user
+		set auth = 'S'
+		where id = 'admin';
+		
+		
+select *
+	from tb_code_board
+	order by group_no desc, group_order asc;
+	
+	select language_name as name, language_code as code
+   	from tb_language_code
+   	order by language_code;	
 commit;

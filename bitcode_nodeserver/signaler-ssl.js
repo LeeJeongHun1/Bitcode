@@ -30,23 +30,22 @@ io.set('transports', [
 ]);
 */
 
-var idArr = [];
+var roomArr = [];
 
 var io = require('socket.io')(server);
 
 io.on("connection", function (socket) {
   console.log(socket.id);
 
-  socket.on("sendId", function (data){
-    console.log("sendId : " + data);
-    idArr[data] = socket.id;
+  socket.on("msg", function (data){
+	// 방번호
+    console.log("roomId : " + data.roomId);
+    roomArr[data.roomId] = socket.id;
   })
 
   socket.on("msg", function (data) {
     // 개별통신 : 데이터를 보낸 사용자에게만 보내기
-	  io.to(idArr[data.recvId]).emit(
-              "msg", 
-              data.sendId + "님이 당신에게 귓말을 보냈습니다.\n" + data.msg);
+	  io.to(roomArr[data.roomId]).emit("msg", data.msg);
 //    io.sockets.in("room" + data.roomid).emit("msg")
 //    // server.socket으로 접속한 사용자 모두에게 데이터 전송
 //	  io.emit("msg", data);
