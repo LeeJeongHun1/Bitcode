@@ -12,8 +12,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.bitcode.qnaboard.service.QnaBoardService;
 import kr.co.bitcode.repository.domain.Code;
+import kr.co.bitcode.repository.domain.Page;
 import kr.co.bitcode.repository.domain.Qna;
 import kr.co.bitcode.repository.domain.QnaFile;
+import kr.co.bitcode.repository.domain.Search;
 
 @Controller
 @RequestMapping("/qnaboard")
@@ -23,9 +25,9 @@ public class QnaBoardController {
 	private QnaBoardService qnaBoardService;
 	
 	@RequestMapping("/list.do")
-	public ModelAndView listBoard() throws Exception {
+	public ModelAndView listBoard(Search search) throws Exception {
 		ModelAndView mav = new ModelAndView("qnaboard/list");
-		mav.addObject("list", qnaBoardService.selectQnaBoard());
+		mav.addObject("list", qnaBoardService.selectQnaBoard(search));
 		return mav;
 	}
 	
