@@ -242,34 +242,34 @@
 								</p>
 								<span class="ellipsis">Share Folder</span>
 							</div>
-							<div class="col-xs-2 folders text-center">
-								<p class="contain">
-									<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500505134/if_sticky-note_299111_px7waa.png"
-										class="img-responsive  center-block" style="height: 64px;" >
-								</p>
-								<span class="ellipsis">Folder</span>
-							</div>
-							<div class="col-xs-2 folders text-center">
-								<p class="contain">
-									<img src="https://image.noelshack.com/fichiers/2018/22/1/1527527145-logo-microsoft-powerpoint-2013.png"
-										class="img-responsive  center-block" style="height: 64px;" >
-								</p>
-								<span class="ellipsis">pptx</span>
-							</div>
-							<div class="col-xs-2 folders text-center">
-								<p class="contain">
-									<img src="https://image.noelshack.com/fichiers/2018/22/1/1527527145-logo-microsoft-excel-20132.png"
-										class="img-responsive  center-block" style="height: 64px;" >
-								</p>
-								<span class="ellipsis">exel</span>
-							</div>
-							<div class="col-xs-2 folders text-center">
-								<p class="contain">
-									<img src="https://image.noelshack.com/fichiers/2018/22/1/1527527145-logo-microsoft-word-20132.png"
-										class="img-responsive  center-block" style="height: 64px;" >
-								</p>
-								<span class="ellipsis">word</span>
-							</div>
+<!-- 							<div class="col-xs-2 folders text-center"> -->
+<!-- 								<p class="contain"> -->
+<!-- 									<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500505134/if_sticky-note_299111_px7waa.png" -->
+<!-- 										class="img-responsive  center-block" style="height: 64px;" > -->
+<!-- 								</p> -->
+<!-- 								<span class="ellipsis">Folder</span> -->
+<!-- 							</div> -->
+<!-- 							<div class="col-xs-2 folders text-center"> -->
+<!-- 								<p class="contain"> -->
+<!-- 									<img src="https://image.noelshack.com/fichiers/2018/22/1/1527527145-logo-microsoft-powerpoint-2013.png" -->
+<!-- 										class="img-responsive  center-block" style="height: 64px;" > -->
+<!-- 								</p> -->
+<!-- 								<span class="ellipsis">pptx</span> -->
+<!-- 							</div> -->
+<!-- 							<div class="col-xs-2 folders text-center"> -->
+<!-- 								<p class="contain"> -->
+<!-- 									<img src="https://image.noelshack.com/fichiers/2018/22/1/1527527145-logo-microsoft-excel-20132.png" -->
+<!-- 										class="img-responsive  center-block" style="height: 64px;" > -->
+<!-- 								</p> -->
+<!-- 								<span class="ellipsis">exel</span> -->
+<!-- 							</div> -->
+<!-- 							<div class="col-xs-2 folders text-center"> -->
+<!-- 								<p class="contain"> -->
+<!-- 									<img src="https://image.noelshack.com/fichiers/2018/22/1/1527527145-logo-microsoft-word-20132.png" -->
+<!-- 										class="img-responsive  center-block" style="height: 64px;" > -->
+<!-- 								</p> -->
+<!-- 								<span class="ellipsis">word</span> -->
+<!-- 							</div> -->
 							<!--                         <div class="clearfix"></div> -->
 						</div>
 					</div>
@@ -349,25 +349,46 @@
 			dataType: "json"
 		})
 		.done(function (data) {
-	// 		var path = data.split($("#sId").val());
-	// 		console.log(path);
-			console.log(data);
+// 			console.log(data);
+			for(let f of data){
+				console.log(f);
+				var appendFile = '';
+				if(f.folder){
+					console.log("폴더")
+					appendFile += '<div class="col-xs-2 folders text-center">';
+					appendFile += '<p class="contain">';
+					appendFile += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500502735/if_folder-blue_285658_f5jeko.svg"';
+					appendFile += '		class="img-responsive  center-block" style="height: 64px;"';
+					appendFile += '		alt="">';
+					appendFile += '	</p>';
+					appendFile += '	<span class="ellipsis">' + f.title + '</span>';
+					appendFile += '</div>';
+					$("#folder-area").append(appendFile);
+				}else{
+					appendFile += '<div class="col-xs-2 folders text-center">';
+					appendFile += '<p class="contain">';
+					appendFile += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500505134/if_sticky-note_299111_px7waa.png"';
+					appendFile += '		class="img-responsive  center-block" style="height: 64px;"';
+					appendFile += '		alt="">';
+					appendFile += '	</p>';
+					appendFile += '	<span class="ellipsis">' + f.title + '</span>';
+					appendFile += '</div>';
+					$("#folder-area").append(appendFile);
+				}
+			}
 			$("#tree").fancytree({
 				extensions: [],
 				source: data,
 				lazyLoad: function (e, data) {
 					console.dir(data);
 					$.ajax({
+						url: "",
 						
 					})
 // 					$.ajax... 선택된 폴더의 부모경로 보내
 // 					data.result = {url: ""}
 				}
 			});
-// 			for(let f of data){
-				
-// 			}
-	// 		$("#share-path")
 		})
 	}
 	//<span class="path-icon-input">This pc</span>

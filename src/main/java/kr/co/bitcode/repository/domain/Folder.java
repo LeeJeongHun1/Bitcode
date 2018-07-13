@@ -7,8 +7,8 @@ public class Folder {
 	private String type;
 	private boolean lazy;
 	private String parentPath;
-
 //	private List<Children> children;
+	
 	public int getKey() {
 		return key;
 	}
@@ -51,7 +51,5 @@ public class Folder {
 	public void setParentPath(String parentPath) {
 		this.parentPath = parentPath;
 	}
-
 	
-//	private 
 }

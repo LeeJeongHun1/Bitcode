@@ -45,14 +45,14 @@ public class MainController {
 				System.out.println("파일 크기 : " + ff.length());
 			}
 			if(ff.isDirectory()){
-				List<Children> cList = new ArrayList<>();
-				for (File df : ff.listFiles()) {
-					Children c = new Children(); 
-					System.out.println("파일 경로 : " + ff.getPath() + df.getPath());
-					c.setKey(i++);
-					c.setTitle(df.getName());
+//				List<Children> cList = new ArrayList<>();
+//				for (File df : ff.listFiles()) {
+//					Children c = new Children(); 
+//					System.out.println("파일 경로 : " + ff.getPath() + df.getPath());
+//					c.setKey(i++);
+//					c.setTitle(df.getName());
 //					cList.add(c);
-				}
+//				}
 //				folder.setChildren(cList);
 				folder.setKey(i++);
 				folder.setTitle(ff.getName());
