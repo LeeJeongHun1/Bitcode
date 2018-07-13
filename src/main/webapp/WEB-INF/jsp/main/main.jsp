@@ -350,12 +350,12 @@
 		})
 		.done(function (data) {
 // 			console.log(data);
-			for(let f of data){
+			for(var f of data){
 				console.log(f);
 				var appendFile = '';
 				if(f.folder){
 					console.log("폴더")
-					appendFile += '<div class="col-xs-2 folders text-center">';
+					appendFile += '<div class="col-xs-2 folders text-center" ondblclick="test('+f.title + ',' + f.parentPath+')">';
 					appendFile += '<p class="contain">';
 					appendFile += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500502735/if_folder-blue_285658_f5jeko.svg"';
 					appendFile += '		class="img-responsive  center-block" style="height: 64px;"';
@@ -365,7 +365,7 @@
 					appendFile += '</div>';
 					$("#folder-area").append(appendFile);
 				}else{
-					appendFile += '<div class="col-xs-2 folders text-center">';
+					appendFile += '<div class="col-xs-2 folders text-center ondblclick="test('+f+')">';
 					appendFile += '<p class="contain">';
 					appendFile += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500505134/if_sticky-note_299111_px7waa.png"';
 					appendFile += '		class="img-responsive  center-block" style="height: 64px;"';
@@ -392,7 +392,11 @@
 		})
 	}
 	//<span class="path-icon-input">This pc</span>
-
+	function test(a, b) {
+		console.log(a);
+		console.log(b);
+	}
+	
 	function error(e) {
 	    console.log('error');
 	    console.log(e);

@@ -67,6 +67,7 @@ public class MainController {
 			fList.add(folder);
 		}
 		return fList;
+//		return ListDirectory();
 	}
 	
 	@RequestMapping("/upload.do")
@@ -80,5 +81,10 @@ public class MainController {
 			e.printStackTrace();
 		}
 		return "success";
+	}
+	
+	private List<Folder> ListDirectory(){
+		
+		return new ArrayList<>();
 	}
 }
