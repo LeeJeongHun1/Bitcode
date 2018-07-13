@@ -19,16 +19,47 @@
 			property="stsfcCode" /> <result column="file_path" property="filePath" /> 
 			<result column="ori_name" property="oriName" /> <result column="system_name" 
 			property="systemName" /> -->
-	</resultMap>
-	<select id="selectBoard" resultMap="qnaMap">
-		select *
+	</resultMap> 
+	<select id="selectBoard" parameterType="search" resultMap="qnaMap">
+		select q.title,q.content,q.depth,q.group_no,q.group_order,q.id,q.language_code,q.like_cnt,q.no,q.reg_date,q.stsfc_code,q.view_cnt,l.language_name
+    	from tb_qna_board q
+		inner
+		join tb_language_code l
+		on q.language_code = l.language_code 
+		<where>
+ 		<if test="keyword != '' or keyword != null "  >
+		q.title like concat('%',#{keyword},'%') 	
+		</if> 
+	<!-- 	<if test="search != '' and search != null and type == 'content'" >
+		AND  q.content like '%' || #{search} || '%'	
+		</if> -->
+		</where> 
+<!-- 		order
+		by q.group_no desc, q.group_order asc -->
+	
+<!-- 		select *
 		from tb_qna_board q
 		inner
 		join tb_language_code l
-		on q.language_code = l.language_code
+		on q.language_code =
+		l.language_code
+		where q.title like '%테%'
+		and q.content like '%ㅂ%'
 		order
-		by group_no desc, group_order asc
+		by group_no desc, group_order asc; -->
 	</select>
+<!-- 	<select id="selectBoardCount" parameterType="page" resultType="int">
+	  	SELECT count(*) 
+        from tb_qna_board
+        <where>
+ 		<if test="search != '' and search != null and searchS == 'title' "  >
+		AND  q.title like '%' || #{title} || '%'	
+		</if> 
+		<if test="search != '' and search != null and searchS == 'content'" >
+		AND  q.content like '%' || #{content} || '%'	
+		</if>
+		</where> 
+	</select> -->
 	<select id="selectBoardByNo" parameterType="int" resultMap="qnaMap">
 		select *
 		from tb_qna_board b
@@ -48,7 +79,8 @@
 	</resultMap>
 
 	<select id="selectQnaFile" parameterType="int" resultMap="fileMap">
-		select *
+		select
+		*
 		from tb_qna_file
 		where no=#{no}
 	</select>

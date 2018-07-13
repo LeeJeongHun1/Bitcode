@@ -1,15 +1,20 @@
 package kr.co.bitcode.qnaboard.service;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.bitcode.repository.domain.Code;
+import kr.co.bitcode.repository.domain.Page;
+import kr.co.bitcode.repository.domain.PageResult;
 import kr.co.bitcode.repository.domain.Qna;
 import kr.co.bitcode.repository.domain.QnaFile;
+import kr.co.bitcode.repository.domain.Search;
 import kr.co.bitcode.repository.mapper.CodeListMapper;
 import kr.co.bitcode.repository.mapper.QnaMapper;
 
@@ -58,9 +63,17 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 	}
 
 	@Override
-	public List<Qna> selectQnaBoard() throws Exception {
-		List<Qna> list = mapper.selectBoard();
-		return list;
+	public Map<String,Object> selectQnaBoard(Search search) throws Exception {
+		System.out.println(search.getKeyword() +"검색어");
+		System.out.println(search.getContent()+"??");
+		Map<String,Object> map = new HashMap<>();
+		map.put("list", mapper.selectBoard(search));
+		for(String value:map.keySet()) {
+			System.out.println("값"+value);
+		}
+		System.out.println(map.get("list") +"넘어오는지");
+		//map.put("pageResult",new PageResult(page.getPageNo(),mapper.selectBoardCount(search,page)));
+		return map;
 	}
 
 	@Override
