@@ -1,25 +1,66 @@
 //카카오톡
-function kakao(res) {
-		var kakaoForm = $("#kakaoForm");
-		$("#kakaoId").val(res.id);
-		$("#kakaoEmail").val(res.kaccount_email);
-		kakaoForm.submit();
-	}
-    Kakao.init('key');  //여기서 아까 발급받은 키 중 javascript키를 사용해준다.( 키 정보는 개인정보)
-    Kakao.Auth.createLoginButton({
-	   container: '#kakao-login-btnn',
-	   success: function(authObj) {
-	     Kakao.API.request({
-	       url: '/v1/user/me',
-     	   success: function(res) {
-             kakao(res); 
-           }
-         })
-       },
-       fail: function(error) {
-         alert(JSON.stringify(error));
-       }
-     });
+
+$(document).ready(function(e){
+	   $("#siciallogin").on('click',function(){
+	      $('.social').stop().slideToggle();
+	   });
+})   
+	   
+	   Kakao.init('261ddb106831fa19db04277afbb2fa75');  //여기서 발급받은 키  javascript키를 사용해준다.( 키 정보는 개인정보)
+	   Kakao.Auth.createLoginButton({
+		   container: '#kakao-login-btnn',
+		   success: function(authObj) {
+			   Kakao.API.request({
+				   url: '/v1/user/me',
+				   success: function(res) {
+					   kakao(res); 
+					   console.log(res.properties.nickname);
+					   console.log(authObj.access_token);
+
+				   }
+			   })
+		   },
+		   fail: function(error) {
+			   alert(JSON.stringify(error));
+		   }
+	   });
+	   
+	   function kakao(res) {
+		   var kakaoForm = $("#kakaoForm");
+		   $("#kakaoId").val(res.id);
+		   $("#kakaoEmail").val(res.kaccount_email);
+		   $("#kakaoNickname").val(res.properties_nickname);
+		   
+		   kakaoForm.submit();
+          
+		   Kakao.Auth.logout();
+		   
+	   }
+	   
+	//   
+//	   function getKakaotalkUserProfile(){
+//	        Kakao.API.request({
+//			url: '/v1/user/me',
+//			success: function(res) {
+//		                var sPerson = JSON.stringify(res);
+//				var oPerson = JSON.parse(sPerson);
+//                  // 사용자 정보
+//                  console.log(oPerson.kaccount_email);
+//                  Kakao.Auth.logout(function () {
+//                	  var frm = document.applicationJoinForm;
+//                	  frm.submit();
+//                	});
+//	           },
+//			fail: function(error) {
+//				// console.log(error);
+//			
+//			}
+//		});
+//	}	   
+	   
+
+     
+     
 
 //Pass 찾기
 	$("#forgetpass").on('click',function () {
@@ -69,12 +110,7 @@ function kakao(res) {
 	}		
 
 		
-	$(document).ready(function(e){
-		   $("#siciallogin").on('click',function(){
-		      $('.social').stop().slideToggle();
-		   });
-		   
-		})
+
 		
 	//ID 찾기
 	$("#forgetid").on('click',function () {

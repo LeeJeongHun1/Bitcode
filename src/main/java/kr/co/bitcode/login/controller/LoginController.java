@@ -43,14 +43,14 @@ public class LoginController {
 		System.out.println(user.getId());
 		model.addAttribute("id", user.getId());
 		model.addAttribute("email", user.getEmail());
+		model.addAttribute("nickName", user.getNickName());
 		return "login/socialSignupform";
 	} 
 	
-	//카카오톡
+	//카카오톡 ?????
 	@RequestMapping("/kakao.json") 
 	public @ResponseBody User kakao(User user, Model model) throws Exception { 
 		User users = loginService.selectUserById(user.getId());
-		System.out.println("kakao 들어옴");
 		System.out.println(user.getName());
 		System.out.println(user.getId());
 		System.out.println(user.getEmail());

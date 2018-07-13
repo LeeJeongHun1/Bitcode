@@ -31,6 +31,7 @@
     <form name="kakaoForm" id="kakaoForm" method="post" action="${pageContext.request.contextPath}/login/kakaoForm.do">
 		<input type="hidden" name="id" id="kakaoId" />
 		<input type="hidden" name="email"  id="kakaoEmail"/>
+		<input type="hidden" name="nickname"  id="kakaoNickname"/>
 	</form>	
 </div>	
 <script src="${pageContext.request.contextPath}/resources/js/loginform/loginForm.js"></script>
