@@ -23,7 +23,7 @@ background-color: black;}
 			<tbody>
 			<tr>
 			<th style="color:#80FF00; background-color: black;">제목</th>
-			<td><input class="editTitle" name="title" style="color:#80FF00; background-color: black;"type="text" value="${cb.title}"/>
+			<td><input class="editTitle" name="title" style="color:#80FF00; background-color: black;"type="text"; value="${cb.title}"/>
 			<select style="color:#80FF00; background-color: black;" class="editSelect" id="code" name="languageCode">
 			</select>
 			</td>
