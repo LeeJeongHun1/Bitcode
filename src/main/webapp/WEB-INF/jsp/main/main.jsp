@@ -353,9 +353,14 @@
 			for(var f of data){
 				console.log(f);
 				var appendFile = '';
+				var path = JSON.stringify(f);
+				console.log("json : " + path)
 				if(f.folder){
 					console.log("폴더")
-					appendFile += '<div class="col-xs-2 folders text-center" ondblclick="test('+f.title + ',' + f.parentPath+')">';
+// 					alert(f.title)
+// 					appendFile += '<div class="col-xs-2 folders text-center" ondblclick="test(\''+f.title + '\',\'' + f.parentPath+'\')">';
+					appendFile += '<div class="col-xs-2 folders text-center"';
+					appendFile += 'ondblclick="test(\'' + path + '\')">';
 					appendFile += '<p class="contain">';
 					appendFile += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500502735/if_folder-blue_285658_f5jeko.svg"';
 					appendFile += '		class="img-responsive  center-block" style="height: 64px;"';
@@ -392,10 +397,10 @@
 		})
 	}
 	//<span class="path-icon-input">This pc</span>
-	function test(a, b) {
-		console.log(a);
-		console.log(b);
-	}
+// 	function test(a, b) {
+// 		console.log(a);
+// 		console.log(b);
+// 	}
 	
 	function error(e) {
 	    console.log('error');

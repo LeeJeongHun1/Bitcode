@@ -30,7 +30,7 @@ public class MainController {
 		File f = new File(folderPath + id);
 		System.out.println(folderPath + id);
 		System.out.println(f.getAbsolutePath());
-		System.out.println(f.listFiles().length);
+//		System.out.println(f.listFiles().length);
 		int i = 1;
 		List<Folder> fList = new ArrayList<>(); 
 		for (File ff : f.listFiles()) {
