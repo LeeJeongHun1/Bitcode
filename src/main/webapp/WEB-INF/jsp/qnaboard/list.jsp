@@ -59,7 +59,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <c:forEach var="i" items="${list}">
+                            <c:forEach var="i" items="${list.list}">
                             <tr style="height:13px; type:text/css;">
                             <c:choose>
                             <c:when test="${i.groupOrder == 0}">
@@ -89,8 +89,20 @@
                 </div>
             </div>
         </div>
-        <div class="container" style="height:64px;"><select style="margin-left:395px;width:121px;margin-top:12px;"><optgroup label="This is a group"><option value="12" selected="">This is item 1</option><option value="13">This is item 2</option><option value="14">This is item 3</option></optgroup></select>
-            <input type="search" style="margin-left:3px;"><button class="btn btn-primary" type="button" onclick="location.href='insertForm.do'" style="margin-left:277px;">글쓰기</button></div>
+        <div class="container" style="height:64px;">
+   		<form action='<c:url value="/qnaboard/list.do"/>'>
+<!--         <select style="margin-left:395px;width:121px;margin-top:12px;height: 35px;
+    border: 1px solid #d1d0cf;
+    background-color: #fff;
+    line-height: 29px;" name="type">
+        <option value="title">제목</option>
+        <option value="content">내용</option>
+        <option value="writer">글쓴이</option>
+         </select> -->
+            <input type="text" name="keyword" style="margin-left:3px;">
+            <button type="submit">검색</button>
+            </form>
+            <button class="btn btn-primary" type="button" onclick="location.href='insertForm.do'" style="margin-left:277px;">글쓰기</button></div>
         <div class="container" style="    margin-top: -14px;
     height: 89px;"><span style="font-size:20px;margin-left:485px;">&lt; &nbsp;1 2 3 4 5 &nbsp;&gt;</span></div>
     </div>
