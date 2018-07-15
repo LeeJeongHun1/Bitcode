@@ -62,19 +62,13 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 		return qna;
 	}
 
-	@Override
+/*	@Override
 	public Map<String,Object> selectQnaBoard(Search search) throws Exception {
-		System.out.println(search.getKeyword() +"검색어");
-		System.out.println(search.getContent()+"??");
 		Map<String,Object> map = new HashMap<>();
 		map.put("list", mapper.selectBoard(search));
-		for(String value:map.keySet()) {
-			System.out.println("값"+value);
-		}
-		System.out.println(map.get("list") +"넘어오는지");
 		//map.put("pageResult",new PageResult(page.getPageNo(),mapper.selectBoardCount(search,page)));
 		return map;
-	}
+	}*/
 
 	@Override
 	public void updateQna(Qna qna, QnaFile qnafile) throws Exception {
@@ -126,12 +120,27 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 
 	@Override
 	public List<Qna> search(Search search) throws Exception {
-		List<Qna> list = mapper.selectBoard(search);
+		System.out.println("서비스도 확인" + mapper.selectBoardSearch(search));
+		System.out.println(search.getType() +"타입은");
+		System.out.println(search.getKeyword() +"내용");
+		List<Qna> list = mapper.selectBoardSearch(search);
 		for(Qna qna:list) {
+			System.out.println(qna.getTitle() +"제목");
 			System.out.println(qna.getContent() +"내용");
 		}
 		return list;
 	
+	}
+
+	@Override
+	public Map<String,Object> list(Page page) throws Exception {
+		Map<String,Object> map = new HashMap<>();
+		map.put("list", mapper.selectboard());
+		System.out.println("키 확인"+ map.get("list"));
+		map.put("pageResult", new PageResult(page.getPageNo(),mapper.selectBoardCount(page)));
+		System.out.println("키 확인"+ map.get("pageResult"));
+		return map;
+		
 	}
 	
 	

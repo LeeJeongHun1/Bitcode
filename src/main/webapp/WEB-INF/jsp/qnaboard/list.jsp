@@ -59,7 +59,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <c:forEach var="i" items="${list.list}">
+                        <%--    <c:forEach var="i" items="${list}">
                             <tr style="height:13px; type:text/css;">
                             <c:choose>
                             <c:when test="${i.groupOrder == 0}">
@@ -82,7 +82,7 @@
                             </c:otherwise>
                             </c:choose>
                             </tr>
-                            </c:forEach>
+                            </c:forEach>  --%>
                         </tbody>
                     </table>
                     </div>
@@ -90,17 +90,18 @@
             </div>
         </div>
         <div class="container" style="height:64px;">
-   		<form action='<c:url value="/qnaboard/list.do"/>'>
-<!--         <select style="margin-left:395px;width:121px;margin-top:12px;height: 35px;
+   		<form id="test" action='' >
+<select style="margin-left:395px;width:121px;margin-top:12px;height: 35px;
     border: 1px solid #d1d0cf;
     background-color: #fff;
     line-height: 29px;" name="type">
         <option value="title">제목</option>
         <option value="content">내용</option>
         <option value="writer">글쓴이</option>
-         </select> -->
+        <option value="code">분류</option>
+         </select> 
             <input type="text" id="search" name="keyword" style="margin-left:3px;">
-            <button type="submit">검색</button>
+            <button id="btn" type="submit">검색</button>
             </form>
             <button class="btn btn-primary" type="button" onclick="location.href='insertForm.do'" style="margin-left:277px;">글쓰기</button></div>
         <div class="container" style="    margin-top: -14px;
@@ -108,67 +109,104 @@
     </div>
 	</div>
 	<script>
-	doAction();
-	function doAction(){
-		$.ajax({
-			type:'post',
-			url:"<c:url value='/qnaboard/search.json'/>",
-			data:$("#search").val(),
-			success:function(data){
-			 	console.log(data);
-			}
-		});
-		
+ 	window.onload = function(){
+	list();
 	}
+ 	
+ 	// 리스트 출력
+	function list(){
+		$.ajax({
+			url: "<c:url value='/qnaboard/list.json' />",
+			dataType: "json"
+		})
+		.done(function (data){
+			var html="";
+			$(".table tbody").html("");
+				for(let i of data){
+					if(i.groupOrder == 0){
+						html+='<tr style="height:13px; type:text/css;">';
+						html+='<td style="font-size:14px;">'+i.no+'</td>';
+						html+='<td style="font-size:14px;">'+i.codeName+'</td>';
+						html+='<td style="font-size:14px;"><a href="detail.do?no='+i.no+'">'+i.title+'</a></td>';
+						html+='<td style="font-size:14px;">'+i.id+'</td>';
+						var date = new Date(i.regDate);
+						var time = date.getFullYear() + "-" 
+						         + (date.getMonth() + 1) + "-" 
+						         + date.getDate() + " "
+						         + date.getHours() + ":"
+						         + date.getMinutes() + ":"
+						         + date.getSeconds();
+						html+= '<td>' + time + '</td>'; 
+						html+= '<td style="font-size:14px;">'+i.likeCnt+'</td>';
+	                    html+= '<td style="font-size:14px;">'+i.viewCnt+'</td>'; 
+						html+= '<tr>'	
+					}else{
+						html+='<tr style="height:13px; type:text/css;">';
+						html+='<td style="font-size:14px;"></td>';
+						html+='<td style="font-size:14px;">'+i.codeName+'</td>';
+						html+='<td style="font-size:14px;"><a href="detail.do?no='+i.no+'">'+i.title+'</a></td>';
+						html+='<td style="font-size:14px;">'+i.id+'</td>';
+						var date = new Date(i.regDate);
+						var time = date.getFullYear() + "-" 
+						         + (date.getMonth() + 1) + "-" 
+						         + date.getDate() + " "
+						         + date.getHours() + ":"
+						         + date.getMinutes() + ":"
+						         + date.getSeconds();
+						html+= '<td>' + time + '</td>'; 
+						html+= '<td style="font-size:14px;">'+i.likeCnt+'</td>';
+	                    html+= '<td style="font-size:14px;">'+i.viewCnt+'</td>'; 
+						html+= '<tr>'	
+						
+					}
+					
+	 		}	
+			$(".table tbody").html(html);
+		});
+		return false;
+		}
 		
+	
+	 
+	
+	// 검색 
+	
+	$("#btn").click(function(){
+		$.ajax({
+			//type:'post',
+			url:"<c:url value='/qnaboard/search.json'/>",
+			data:{type: $("select[name='type']").val(), 
+				  keyword: $("input[name='keyword']").val()},
+			dataType: "json"
+		}).done(function(data){
+			var html="";
+			$(".table tbody").html("");
+				for(let i of data){
+			alert(i.codeName);
+					html+='<tr style="height:13px; type:text/css;">';
+					html+='<td style="font-size:14px;">'+i.no+'</td>';
+					html+='<td style="font-size:14px;">'+i.codeName+'</td>';
+					html+='<td style="font-size:14px;"><a href="detail.do?no='+i.no+'">'+i.title+'</a></td>';
+					html+='<td style="font-size:14px;">'+i.id+'</td>';
+					var date = new Date(i.regDate);
+					var time = date.getFullYear() + "-" 
+					         + (date.getMonth() + 1) + "-" 
+					         + date.getDate() + " "
+					         + date.getHours() + ":"
+					         + date.getMinutes() + ":"
+					         + date.getSeconds();
+					html+= '<td>' + time + '</td>'; 
+					html+= '<td style="font-size:14px;">'+i.likeCnt+'</td>';
+                    html+= '<td style="font-size:14px;">'+i.viewCnt+'</td>'; 
+					html+= '<tr>'	
+	 		}	
+			$(".table tbody").html(html);
+		});
+		return false;
+		})
 		
+	
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	});
 	</script>
 
 </body>

@@ -10,7 +10,8 @@ import kr.co.bitcode.repository.domain.Search;
 
 public interface QnaMapper {
 	// 게시판 
-	public List<Qna> selectBoard(Search search);
+	public List<Qna> selectboard();
+	public List<Qna> selectBoardSearch(Search search);
 	public Qna selectBoardByNo(int no);
 	public void insertBoard(Qna qna);
 	public void updateGroupNo(int no);
@@ -22,7 +23,7 @@ public interface QnaMapper {
 	public void insertReBoard(Qna qna);
 	
 	// 페이징
-	//public int selectBoardCount(Search search,Page page);	
+	public int selectBoardCount(Page page);	
 	// 댓글 
 	public void insertComment(QnaComment comment);
 	public void updateComment(QnaComment comment);

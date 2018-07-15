@@ -1,6 +1,7 @@
 package kr.co.bitcode.qnaboard.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,12 +26,20 @@ public class QnaBoardController {
 	private QnaBoardService qnaBoardService;
 	
 	@RequestMapping("/list.do")
+	public void listBoard(Search search) throws Exception {
+		/*ModelAndView mav = new ModelAndView("qnaboard/list");
+		mav.addObject("list", qnaBoardService.list());
+		//mav.addObject("list", qnaBoardService.search(search));
+		return mav;*/
+	}
+	
+/*	@RequestMapping("/list.do")
 	public ModelAndView listBoard(Search search) throws Exception {
 		ModelAndView mav = new ModelAndView("qnaboard/list");
 		mav.addObject("list", qnaBoardService.selectQnaBoard(search));
 		return mav;
 	}
-	
+*/	
 	@RequestMapping("/detail.do")
 	public ModelAndView viewDeatil(int no) throws Exception {
 		ModelAndView mav = new ModelAndView("qnaboard/detail");
@@ -74,6 +83,14 @@ public class QnaBoardController {
 		return "qnaboard/insertReForm";
 	}
 	
+	@RequestMapping("/list.json")
+	@ResponseBody
+	public Map<String,Object> list(Page page) throws Exception{
+		System.out.println("리스트컨트롤러확인");
+		return qnaBoardService.list(page);
+		
+	}
+	
 	@RequestMapping("/selectLanguage.json")
 	@ResponseBody
 	public List<Code> selectLanguage() throws Exception{
@@ -85,7 +102,7 @@ public class QnaBoardController {
 	@RequestMapping("/search.json")
 	@ResponseBody
 	public List<Qna> search(Search search) throws Exception{
-		System.out.println();
+		System.out.println("컨트롤러여부");
 		return qnaBoardService.search(search);
 	}
 	
