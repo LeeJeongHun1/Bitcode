@@ -35,8 +35,8 @@ background-color: black;}
 
 			<tr style="height:90%;">
 			<th style="color:#80FF00; background-color: black;">내용</th>
-			<td><textarea name="content" style="width: 100%; color:#80FF00; background-color: black;
-    		height: 100%;"></textarea></td>
+			<td><div style="width:670px;height:240px;" ><textarea name="content" style="width: 100%; color:#80FF00; background-color: black;
+    		height: 230px;"></textarea></div></td>
 			</tr>
 			<tr>
 			<th style="color:#80FF00; background-color: black;">파일첨부</th>

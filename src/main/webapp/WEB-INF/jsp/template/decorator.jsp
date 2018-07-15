@@ -11,6 +11,7 @@
 <script src="${pageContext.request.contextPath}/resources/js/notify/index.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/notify/notify.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/waitme/waitMe.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/codeboard/codeBoardList.js"></script>
 
 <meta charset="UTF-8">
 

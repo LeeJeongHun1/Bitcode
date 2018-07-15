@@ -4,9 +4,10 @@ import java.util.List;
 
 import kr.co.bitcode.repository.domain.CodeBoard;
 import kr.co.bitcode.repository.domain.CodeBoardFile;
+import kr.co.bitcode.repository.domain.CodeSearch;
 
 public interface CodeBoardMapper {
-	public List<CodeBoard> selectBoard();
+	public List<CodeBoard> selectBoard(CodeSearch cs);
 	public CodeBoard selectBoardByNo(int no);
 	public void insertBoard(CodeBoard cb);
 	public void updateBoard(CodeBoard cb);

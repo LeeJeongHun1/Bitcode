@@ -3,7 +3,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -45,57 +44,72 @@
                                 <th style="width:71px;font-size:14px;">조회수</th>
                             </tr>
                         </thead>
-                        <tbody>
-                        <c:forEach var="cb" items="${list}">
-                        <c:choose>
-                        	<c:when test="${cb.groupOrder==1}">
-                            <tr style="height:13px; type:text/css;">
-                                <td style="font-size:14px;">${cb.no}</td>
-                                <td style="font-size:14px;">${cb.languageName}</td>
-                                <td style="font-size:14px; text-align:left;"><a href="detail.do?no=${cb.no}">${cb.title}</a></td>
-                                <td style="font-size:14px;">${cb.id}</td>
-                                <td style="font-size:12px;"><fmt:formatDate value="${cb.regDate}" pattern="yyyy-MM-dd" /></td>
-                                <td style="font-size:14px;">${cb.likeCnt}</td>
-                                <td style="font-size:14px;">${cb.viewCnt}</td>                        
-                            </tr>                        	
-                        	</c:when>
-                        	<c:otherwise>
-                            <tr style="height:13px; type:text/css;">
-                            	<td style="font-size:14px;"></td>
-                                <td style="font-size:14px;">${cb.languageName}</td>
+                        <tbody id="listTbody">
+<%--                         <c:forEach var="cb" items="${list}"> --%>
+<%--                         <c:choose> --%>
+<%--                         	<c:when test="${cb.groupOrder==1}"> --%>
+<!--                             <tr style="height:13px; type:text/css;"> -->
+<%--                                 <td style="font-size:14px;">${cb.no}</td> --%>
+<%--                                 <td style="font-size:14px;">${cb.languageName}</td> --%>
+<%--                                 <td style="font-size:14px; text-align:left;"><a href="detail.do?no=${cb.no}">${cb.title}</a></td> --%>
+<%--                                 <td style="font-size:14px;">${cb.id}</td> --%>
+<%--                                 <td style="font-size:12px;"><fmt:formatDate value="${cb.regDate}" pattern="yyyy-MM-dd" /></td> --%>
+<%--                                 <td style="font-size:14px;">${cb.likeCnt}</td> --%>
+<%--                                 <td style="font-size:14px;">${cb.viewCnt}</td>                         --%>
+<!--                             </tr>                        	 -->
+<%--                         	</c:when> --%>
+<%--                         	<c:otherwise> --%>
+<!--                             <tr style="height:13px; type:text/css;"> -->
+<!--                             	<td style="font-size:14px;"></td> -->
+<%--                                 <td style="font-size:14px;">${cb.languageName}</td> --%>
                                 
-                                <td style="font-size:14px; text-align:left;">
-                                <c:forEach var="i" begin="1" end="${cb.depth}">
-                                	<span>&nbsp;&nbsp;&nbsp;</span>
-                                </c:forEach>
-                                <span>RE:</span>
-                                <a href="detail.do?no=${cb.no}">${cb.title}</a>
-                                </td>
+<!--                                 <td style="font-size:14px; text-align:left;"> -->
+<%--                                 <c:forEach var="i" begin="1" end="${cb.depth}"> --%>
+<!--                                 	<span>&nbsp;&nbsp;&nbsp;</span> -->
+<%--                                 </c:forEach> --%>
+<!--                                 <span>RE:</span> -->
+<%--                                 <a href="detail.do?no=${cb.no}">${cb.title}</a> --%>
+<!--                                 </td> -->
                                 
-                                <td style="font-size:14px;">${cb.id}</td>
-                                <td style="font-size:12px;"><fmt:formatDate value="${cb.regDate}" pattern="yyyy-MM-dd" /></td>
-                                <td style="font-size:14px;">${cb.likeCnt}</td>
-                                <td style="font-size:14px;">${cb.viewCnt}</td>                        
-                            </tr>                        	
-                        	</c:otherwise>
-                        </c:choose>
-                        </c:forEach>
+<%--                                 <td style="font-size:14px;">${cb.id}</td> --%>
+<%--                                 <td style="font-size:12px;"><fmt:formatDate value="${cb.regDate}" pattern="yyyy-MM-dd" /></td> --%>
+<%--                                 <td style="font-size:14px;">${cb.likeCnt}</td> --%>
+<%--                                 <td style="font-size:14px;">${cb.viewCnt}</td>                         --%>
+<!--                             </tr>                        	 -->
+<%--                         	</c:otherwise> --%>
+<%--                         </c:choose> --%>
+<%--                         </c:forEach> --%>
                         </tbody>
                     </table>
                         </div>
                 </div>
             </div>
         </div>
-        <div class="container" style="margin-top:11px;height:64px;width:1093px;"><select style="margin-left:395px;width:121px;margin-top:12px; color:#80FF00; background-color: black;"><optgroup label="This is a group"><option value="12" selected="">This is item 1</option><option value="13">This is item 2</option><option value="14">This is item 3</option></optgroup></select>
+        
+<%--         <form name="form1" method="post" action="${pageContext.request.contextPath}/codeboard/list.json"> --%>
+        <form name="form1">
+        <select id="option" name="searchOption" style="color:#80FF00; background-color: black;">
+        	<option value="0"></option>
+        	<option value="1">이름</option>
+        	<option value="2">내용</option>
+        	<option value="3">제목</option>
+        </select>
+        <input style="color:#80FF00; background-color: black;" name="keyword" id="input">
+        <input id="search" style="color:#80FF00; background-color: black;" type="button" value="조회">
+        </form>
+        <div style="margin-top:11px;height:64px;width:1093px;">
+        <select style="margin-left:395px;width:121px;margin-top:12px; color:#80FF00; background-color: black;">
+        <optgroup label="This is a group">
+        <option value="12" selected="">This is item 1</option>
+        <option value="13">This is item 2</option>
+        <option value="14">This is item 3</option>
+        </optgroup>
+        </select>
             <input
                 type="search" style="margin-left:3px; color:#80FF00; background-color: black;"><button class="btn btn-primary" type="button" onclick="location.href='insertForm.do'" style="margin-left:277px;">글쓰기</button></div>
-        <div class="container" style="margin-top:-13px;height:53px;"><span style="font-size:20px;margin-left:485px;">&lt; &nbsp;1 2 3 4 5 &nbsp;&gt;</span></div>
+        <div id="paging" style="margin-top:-13px;height:53px;text-align:center;"></div>
     </div>
 	</div>
 
-	<script>
-		
-	</script>
 </body>
-
 </html>

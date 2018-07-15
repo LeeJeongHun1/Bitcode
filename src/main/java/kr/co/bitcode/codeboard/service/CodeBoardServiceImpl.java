@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import kr.co.bitcode.repository.domain.Code;
 import kr.co.bitcode.repository.domain.CodeBoard;
 import kr.co.bitcode.repository.domain.CodeBoardFile;
+import kr.co.bitcode.repository.domain.CodeSearch;
 import kr.co.bitcode.repository.mapper.CodeBoardMapper;
 import kr.co.bitcode.repository.mapper.CodeListMapper;
 
@@ -17,11 +18,6 @@ public class CodeBoardServiceImpl implements CodeBoardService{
 	private CodeBoardMapper mapper;
 	private CodeListMapper Cmapper;
 	
-	@Override
-	public List<CodeBoard> selectBoard(){
-		return mapper.selectBoard();
-	}
-
 	@Override
 	public CodeBoard selectBoardByNo(int no) {
 		return mapper.selectBoardByNo(no);
@@ -78,6 +74,14 @@ public class CodeBoardServiceImpl implements CodeBoardService{
 	public void updateGroupNo(int no) {
 		mapper.updateGroupNo(no);
 		
+	}
+
+	@Override
+	public List<CodeBoard> boardListInfo(CodeSearch cs) {
+		List<CodeBoard> list = mapper.selectBoard(cs);
+		System.out.println("lsssssssssssssss"+list.size());
+		
+		return list;
 	}
 
 }

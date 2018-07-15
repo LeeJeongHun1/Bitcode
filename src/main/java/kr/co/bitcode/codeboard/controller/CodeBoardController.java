@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -28,6 +29,7 @@ import kr.co.bitcode.codeboard.service.CodeBoardService;
 import kr.co.bitcode.repository.domain.Code;
 import kr.co.bitcode.repository.domain.CodeBoard;
 import kr.co.bitcode.repository.domain.CodeBoardFile;
+import kr.co.bitcode.repository.domain.CodeSearch;
 
 @Controller
 @RequestMapping("/codeboard")
@@ -41,12 +43,25 @@ public class CodeBoardController {
 	public void listboardpage(@PathVariable String PageNo) {
 		System.out.println(PageNo);
 	}
+//	@RequestMapping(value="/list.do", method=RequestMethod.GET)
+//	public String listBoard(CodeBoard cb, Model model) {
+//		List<CodeBoard> listBoard = service.selectBoard();
+//		model.addAttribute("list", listBoard);
+//		return "codeboard/list";
+//	}
+	
 	@RequestMapping(value="/list.do", method=RequestMethod.GET)
-	public String listBoard(CodeBoard cb, Model model) {
-		List<CodeBoard> listBoard = service.selectBoard();
-		model.addAttribute("list", listBoard);
+	public String listBoard() {
 		return "codeboard/list";
 	}
+	
+	@RequestMapping("/list.json")
+	@ResponseBody
+	public List<CodeBoard> list(CodeSearch cs)throws Exception{
+		return service.boardListInfo(cs);
+		
+	}
+	
 	@RequestMapping(value="/detail.do", method=RequestMethod.GET)
 	public String detailBoard(int no, Model model) {
 		CodeBoard cb = service.selectBoardByNo(no);
@@ -134,5 +149,6 @@ public class CodeBoardController {
 		List<Code> list = service.selectLanguage();
 		return list;
 	}
+	
 	
 }

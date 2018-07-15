@@ -16,12 +16,41 @@
 		<result column="view_cnt" property="viewCnt" />
 		<result column="like_cnt" property="likeCnt" />
 	</resultMap>
+	<resultMap type="codeSearch" id="codeSearchMap">
+		<result column="searchInput" property="searchInput"/>
+		<result column="searchOption" property="searchOption"/>
+	</resultMap>
 		
-		<select id="selectBoard" resultMap="codeBoardMap">
+		<sql id="searchOption">
+			<if test="searchOption != 0">
+				<if test="searchOption == 1">
+				and id like concat("%", #{searchInput},"%")
+				</if>
+				<if test="searchOption == 2">
+				and content like concat("%", #{searchInput},"%")
+				</if>
+				<if test="searchOption == 3">
+				and title like concat("%", #{searchInput},"%")
+				</if>
+			</if>
+		</sql>
+		
+		<select id="selectBoard" parameterType="codeSearch" resultMap="codeBoardMap">
 			select *
 			  from tb_code_board cb
 	 	inner join tb_language_code lc
 	 			on cb.language_code = lc.language_code
+	 	<where>
+				<if test="searchOption == 1">
+				and id like concat("%", #{searchInput},"%")
+				</if>
+				<if test="searchOption == 2">
+				and content like concat("%", #{searchInput},"%")
+				</if>
+				<if test="searchOption == 3">
+				and title like concat("%", #{searchInput},"%")
+				</if>
+	 	</where>
 			 order by group_no desc, group_order asc
 		</select>
 		
