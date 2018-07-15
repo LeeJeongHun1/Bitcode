@@ -1,23 +1,32 @@
 package kr.co.bitcode.main.controller;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.print.attribute.standard.PageRanges;
+import javax.servlet.http.HttpServletResponse;
+
+import org.aspectj.util.FileUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import kr.co.bitcode.repository.domain.Children;
+import kr.co.bitcode.repository.domain.FileVO;
 import kr.co.bitcode.repository.domain.Folder;
 
 @Controller
 @RequestMapping("/main")
 public class MainController {
 	
-	private static final String DELETE_PATH = "c:\\java-lec\\upload\\delete";
+	private static final String DELETE_PATH = "c:\\java-lec\\upload\\delete\\";
+	private static final String PATH = "c:\\java-lec\\upload\\";
 	
 	@RequestMapping("/main.do")
 	public void main(Model model) {
@@ -29,81 +38,70 @@ public class MainController {
 	public List<Folder> selectFolder(String parentPath, String id) {
 		String folderPath = "";
 		if(parentPath == null){
-			folderPath = "c:\\java-lec\\upload\\" + id;
+			folderPath = PATH + id;
 		}else{
 			folderPath = parentPath;
 		}
+		System.out.println("경로 : " + folderPath);
 		File f = new File(folderPath);
-//		System.out.println(f.listFiles().length);
-//		int i = 1;
-//		List<Folder> fList = new ArrayList<>(); 
-//		for (File ff : f.listFiles()) {
-//			Folder folder = new Folder();
-//			if(ff.isFile()){
-//				folder.setKey(i++);
-//				folder.setTitle(ff.getName());
-//				folder.setParentPath(ff.getParent());
-////				ff.ex
-////				folder.setType(type);
-//				System.out.println("파일 이름 : " + ff.getName());
-//				System.out.println("파일 크기 : " + ff.length());
-//			}
-//			if(ff.isDirectory()){
-////				List<Children> cList = new ArrayList<>();
-////				for (File df : ff.listFiles()) {
-////					Children c = new Children(); 
-////					System.out.println("파일 경로 : " + ff.getPath() + df.getPath());
-////					c.setKey(i++);
-////					c.setTitle(df.getName());
-////					cList.add(c);
-////				}
-////				folder.setChildren(cList);
-//				folder.setKey(i++);
-//				folder.setTitle(ff.getName());
-//				folder.setFolder(true);
-//				folder.setParentPath(ff.getParent());
-//				if(ff.listFiles().length != 0){
-//					folder.setLazy(true);
-//				}
-//				System.out.println("폴더 이름 : " + ff.getName());
-//				System.out.println("폴더 크기 : " + ff.length());
-//			}
-//			fList.add(folder);
-//		}
-//		return fList;
 		return ListDirectory(f);
 	}
 	
-	@RequestMapping("/upload.do")
+	@RequestMapping("/createFolder.json")
 	@ResponseBody
-	public String upload(MultipartFile attach, String id, String parentPath){
-		System.out.println("사용자가 올린 파일 정보 : " + attach.getOriginalFilename());
-		try {
-			// 실제 서버에 저장하기
-			attach.transferTo(new File("c:/java-lec/upload/" + id, attach.getOriginalFilename()));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return "c:/java-lec/upload/" + id;
+	public String createFolder(String path, String id) {
+		new File(PATH + id + "/" + path).mkdirs();
+		return "";
 	}
-	
 	
 	@RequestMapping("/enterDirectory.json")
 	@ResponseBody
-	public String enterDirectory(String parentPath, String key){
-		return parentPath;
+	public List<Folder> enterDirectory(String parentPath, String key){
+		System.out.println(parentPath);
+		System.out.println(key);
+		
+		return ListDirectory(new File(parentPath), Integer.parseInt(key));
 	}
 	
+	@RequestMapping("/lazyLoad.json")
+	@ResponseBody
+	public List<Folder> lazyLoad(String parentPath, String key, String title){
+		System.out.println(parentPath);
+		System.out.println(key);
+		return ListDirectory(new File(parentPath + "\\" + title), Integer.parseInt(key));
+	}
+	
+	@RequestMapping("/upload.json")
+	@ResponseBody
+	public String upload(MultipartFile attach, String id, String parentPath){
+		System.out.println("사용자가 올린 파일 이름 : " + attach.getOriginalFilename());
+		System.out.println("사용자가 올린 파일 이름1 : " + attach.getName());
+		System.out.println("사용자가 올린 파일 타입 : " + attach.getContentType());
+		System.out.println("경로 : " + parentPath);
+		try {
+			// 실제 서버에 저장하기
+			if(parentPath == null) {
+				attach.transferTo(new File(PATH + id, attach.getOriginalFilename()));
+				return "";
+			}else {
+				File create = new File(PATH + id + "/" + parentPath, attach.getOriginalFilename());
+				create.mkdirs();
+				attach.transferTo(create);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return PATH + id;
+	}
 	
 	private List<Folder> ListDirectory(File file, int...args){
 //		file.renameTo(dest) 파일 무브 삭제개념
 		int i;
 		if(args.length == 0){
-			i = 0;
+			i = 1;
 		}else{
 			i = args[0];
 		}
-//		System.out.println(file.length());
 		long size = 0;
 		List<Folder> fList = new ArrayList<>(); 
 		for (File ff : file.listFiles()) {
@@ -113,20 +111,8 @@ public class MainController {
 				folder.setKey(i++);
 				folder.setTitle(ff.getName());
 				folder.setParentPath(ff.getParent());
-//				folder.setType(type);
-//				System.out.println("파일 이름 : " + ff.getName());
-//				System.out.println("파일 크기 : " + ff.length());
 			}
 			if(ff.isDirectory()){
-//				List<Children> cList = new ArrayList<>();
-//				for (File df : ff.listFiles()) {
-//					Children c = new Children(); 
-//					System.out.println("파일 경로 : " + ff.getPath() + df.getPath());
-//					c.setKey(i++);
-//					c.setTitle(df.getName());
-//					cList.add(c);
-//				}
-//				folder.setChildren(cList);
 				folder.setKey(i++);
 				folder.setTitle(ff.getName());
 				folder.setFolder(true);
@@ -134,11 +120,41 @@ public class MainController {
 				if(ff.listFiles().length != 0){
 					folder.setLazy(true);
 				}
-//				System.out.println("폴더 이름 : " + ff.getName());
-//				System.out.println("폴더 크기 : " + ff.length());
 			}
 			fList.add(folder);
 		}
 		return fList;
+	}
+	
+	@RequestMapping("/download.do")
+	public void download(FileVO file,HttpServletResponse response, Model model) throws Exception{
+		File f = new File(PATH + "aaaa\\Koala.jpg");
+		String dName = file.getOriginalFileName();
+		if(dName == null){
+//			헤더값의 설정을 통해서 처리
+			response.setHeader("content-Type", "image/jpg");
+		}
+//		파일의 종류에 상관없이 무조건 다운로드
+		else{
+//			타입을 모른다. 다운로드 하세요...
+			response.setHeader("content-Type", "application/octet-stream");
+//			다운로드 받을 이름을 설정
+//			dName 한글처리
+			dName = new String(dName.getBytes("utf-8"), "8859_1");
+			response.setHeader("content-Disposition", "attachment;filename="+dName);
+		}
+		FileInputStream fis = new FileInputStream(f);
+		BufferedInputStream bis = new BufferedInputStream(fis);
+		OutputStream out = response.getOutputStream();
+		BufferedOutputStream bos = new BufferedOutputStream(out);
+		while(true){
+			int ch = bis.read();
+			if (ch == -1) break;
+			bos.write(ch);
+		}
+		bis.close();
+		fis.close();
+		bos.close();
+		out.close();
 	}
 }

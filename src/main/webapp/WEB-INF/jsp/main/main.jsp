@@ -239,14 +239,15 @@
 					<div class="col-xs-9 ">
 						<div class="row main-folders" id="folder-area">
 							<!-- 폴더 ajax 추가 -->
-							<div class="col-xs-2 folders text-center">
-								<p class="contain">
-									<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500502735/if_folder-blue_285658_f5jeko.svg"
-										class="img-responsive  center-block" style="height: 64px;"
-										alt="">
-								</p>
-								<span class="ellipsis">Share Folder</span>
-							</div>
+							<!-- 공유 폴더 -->
+<!-- 							<div class="col-xs-2 folders text-center" id="99999" data-path="" data-title="shareFolder" ondblclick='test(9999)'> -->
+<!-- 								<p class="contain"> -->
+<!-- 									<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500502735/if_folder-blue_285658_f5jeko.svg" -->
+<!-- 										class="img-responsive  center-block" style="height: 64px;" -->
+<!-- 										alt=""> -->
+<!-- 								</p> -->
+<!-- 								<span class="ellipsis">Share Folder</span> -->
+<!-- 							</div> -->
 <!-- 							<div class="col-xs-2 folders text-center"> -->
 <!-- 								<p class="contain"> -->
 <!-- 									<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500505134/if_sticky-note_299111_px7waa.png" -->
@@ -313,6 +314,17 @@
 //           extensions: [],
 //           source: d
 //         });
+	    $.contextMenu({
+	    	selector: "#folder-area  div",
+	    	items: {
+	    		"delete": {name: "Delete", icon: "delete", disabled: true },
+	    		"copy": {name: "Copy", icon: "copy"}
+	    	},
+	    	callback: function () {
+	    		
+	    	}
+	    });
+    
     
         $.contextMenu({
           selector: "#tree span.fancytree-title",
@@ -326,7 +338,7 @@
             "copy": {name: "Copy", icon: "copy"},
             "paste": {name: "Paste", icon: "paste", disabled: false },
             "sep1": "----",
-            "edit": {name: "Edit", icon: "edit", disabled: true },
+            "edit": {name: "Edit", icon: "edit", disabled: false },
             "delete": {name: "Delete", icon: "delete", disabled: true },
             "more": {name: "More", items: {
               "sub1": {name: "Sub 1"},
@@ -334,7 +346,8 @@
               }}
             },
           callback: function(itemKey, opt) {
-            var node = $.ui.fancytree.getNode(opt.$trigger);
+           var node = $.ui.fancytree.getNode(opt.$trigger);
+           console.dir(node)
             alert("select " + itemKey + " on " + node);
           }
         });
@@ -344,7 +357,11 @@
 	var dropZone = document.getElementById('overlay-computer');
 	dropZone.addEventListener('dragover', handleDragOver, false);
 	dropZone.addEventListener('drop', handleFileSelect, false);
+	
+	var rootFolderName = '';
 	var fDiv = $("#folder-area");
+	var fileList;
+	var id;
 	var loadingFolder = {
 			id: $("#sId").val(),
 	}
@@ -355,6 +372,9 @@
 			dataType: "json"
 		})
 		.done(function (data) {
+			console.dir(data)
+			fileList = data;
+			id = Number(data.length);
 // 			console.log(data);
 			for(var f of data){
 				console.log(f);
@@ -371,16 +391,18 @@
 					appendFile += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500502735/if_folder-blue_285658_f5jeko.svg"';
 					appendFile += '		class="img-responsive  center-block" style="height: 64px;"';
 					appendFile += '		alt="">';
+// 					appendFile += '	<img src="download.do?filePath='+f.parentPath+'&systemFileName=attach&originalFileName='+f.title+'" style="height: 64px;">';
 					appendFile += '	</p>';
 					appendFile += '	<span class="ellipsis">' + f.title + '</span>';
 					appendFile += '</div>';
 					$("#folder-area").append(appendFile);
 				}else{
-					appendFile += '<div class="col-xs-2 folders text-center ondblclick="test('+f+')">';
+					appendFile += '<div class="col-xs-2 folders text-center" id="'+f.key+'" data-path="'+f.parentPath+'" data-title="'+f.title+'" ondblclick="test1()">';
 					appendFile += '<p class="contain">';
 					appendFile += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500505134/if_sticky-note_299111_px7waa.png"';
 					appendFile += '		class="img-responsive  center-block" style="height: 64px;"';
 					appendFile += '		alt="">';
+// 					appendFile += '	<img src="download.do?filePath='+f.parentPath+'&systemFileName=attach&originalFileName='+f.title+'" style="height: 64px;">';
 					appendFile += '	</p>';
 					appendFile += '	<span class="ellipsis">' + f.title + '</span>';
 					appendFile += '</div>';
@@ -389,19 +411,37 @@
 			}
 			$("#tree").fancytree({
 				extensions: [],
+				autoScroll: true,
 				source: data,
 				lazyLoad: function (e, data) {
 					console.dir(data);
+					console.dir(e);
 					$.ajax({
-						url: "",
-						
+						url: "lazyLoad.json",
+						data: {
+							parentPath: data.node.data.parentPath,
+							key: data.node.key,
+							title: data.node.title
+						},
+						dataType: "json"
 					})
-// 					$.ajax... 선택된 폴더의 부모경로 보내
-// 					data.result = {url: ""}
+					.done(function (result){
+						console.dir(result)
+	// 					$.ajax... 선택된 폴더의 부모경로 보내
+						data.result = {
+							url: JSON.stringify(result)
+						}
+					})
 				}
 			});
+			$("#share-path").data("root","c:/java-lec/upload/"+$("#sId").val())
+// 			alert($("#share-path").data("root"))
 			$("#share-path").append("<span class='path-icon-input'>"+$("#sId").val()+"</span>")
 		})
+	}
+	function test1 () {
+		alert("더블 클릭 파일")
+		location.href = "download.do";
 	}
 	function test(key) {
 // 		console.log(key)
@@ -410,17 +450,62 @@
 		$div.data("parent", "path");
 		console.log($div.data("title"));
 		console.log($div.data("parent"));
+		var parentPath = $div.data("path")+'\\'+$div.data("title");
+		var selectInfo = {
+				parentPath: parentPath,
+				title: $div.data("title")
+		}
 		$.ajax({
 			url: "enterDirectory.json",
 			data: {
-				parentPath: $div.data("path")+"/"+$div.data("title"),
+				parentPath: parentPath,
 				key: key
 			},
 			dataType: "json"
 		})
 		.done(function (result) {
 			console.log(result)
+			reload(result, selectInfo)
 		})
+	}
+	
+	function reload(data, selectInfo){
+		console.dir(selectInfo)
+		$("#folder-area").html('');
+		if(data.length == 0){
+			$("#share-path").data("root", selectInfo.parentPath)
+			$("#share-path").append("<span class='path-icon-input'>"+selectInfo.title+"</span>")
+			alert($("#share-path").data("root"))
+			return;
+		}
+		for(var f of data){
+			var appendFile = '';
+			if(f.folder){
+				console.log("폴더")
+				appendFile += '<div class="col-xs-2 folders text-center" id="'+f.key+'" data-path="'+f.parentPath+'" data-title="'+f.title+'" ondblclick="test('+f.key+')">';
+				appendFile += '<p class="contain">';
+				appendFile += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500502735/if_folder-blue_285658_f5jeko.svg"';
+				appendFile += '		class="img-responsive  center-block" style="height: 64px;"';
+				appendFile += '		alt="">';
+				appendFile += '	</p>';
+				appendFile += '	<span class="ellipsis">' + f.title + '</span>';
+				appendFile += '</div>';
+				$("#folder-area").append(appendFile);
+			}else{
+				appendFile += '<div class="col-xs-2 folders text-center" id="'+f.key+'" data-path="'+f.parentPath+'" data-title="'+f.title+'" ondblclick="test1()">';
+				appendFile += '<p class="contain">';
+				appendFile += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500505134/if_sticky-note_299111_px7waa.png"';
+				appendFile += '		class="img-responsive  center-block" style="height: 64px;"';
+				appendFile += '		alt="">';
+				appendFile += '	</p>';
+				appendFile += '	<span class="ellipsis">' + f.title + '</span>';
+				appendFile += '</div>';
+				$("#folder-area").append(appendFile);
+			}
+		}
+		$("#share-path").data("root", selectInfo.parentPath)
+		alert($("#share-path").data("root"))
+		$("#share-path").append("<span class='path-icon-input'>"+selectInfo.title+"</span>")
 	}
 	
 	function error(e) {
@@ -439,38 +524,64 @@
 		if (item.isFile) {
 			// Get file
 			item.file(function(file) {
-			if(path == ''){
-				console.log("파일만 올림")
-				console.log("File: " + path + file.name);
-				console.dir(file);
 				var html = '';
-				html += '<div class="col-xs-2 folders text-center">';
-				html += '	<p class="contain"><img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500502735/if_folder-blue_285658_f5jeko.svg" class="img-responsive  center-block" style="height: 64px;" alt=""></p>';
-				html += '	<span>Folder</span>';
-				html += '</div>';
-				fDiv.append(html);
-				sendFile(file);
-			}
-		}, error);
+				if(path == ''){
+					console.log("파일만 올림")
+					console.log("File: " + file.name);
+					console.log("path: " + path);
+					console.dir(file);
+					html += '<div class="col-xs-2 folders text-center" id="'+ ++id +'" data-path="'+$("#share-path").data("root")+'" data-title="'+file.name+'" ondblclick="test1()">';
+					html += '	<p class="contain"><img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500505134/if_sticky-note_299111_px7waa.png" class="img-responsive  center-block" style="height: 64px;" alt=""></p>';
+					html += '	<span class="ellipsis">'+file.name+'</span>';
+					html += '</div>';
+					fDiv.append(html);
+					sendFile(file);
+				}else{
+// 					console.log("File: " + file.name);
+// 					console.log("path: " + path);
+// 					console.dir("폴더에 파일객체: " + file);
+// 					html += '<div class="col-xs-2 folders text-center">';
+// 					html += '	<p class="contain"><img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500502735/if_folder-blue_285658_f5jeko.svg" class="img-responsive  center-block" style="height: 64px;" alt=""></p>';
+// 					html += '	<span class="ellipsis">Folder</span>';
+// 					html += '</div>';
+// 					fDiv.append(html);
+					console.log("디렉토리 path : " + path)
+					sendFile(file, path);
+				}
+			}, error);
 		} else if (item.isDirectory) {
+			console.log("최상위 폴더 이름 : " + item.fullPath.split('/')[1])
+			console.dir(item)
+			rootFolderName = item.fullPath.split('/')[1];
 			// Get folder contents
 			var dirReader = item.createReader();
 			dirReader.readEntries(function(entries) {
 				console.dir(entries)
-				for (var i=0; i<entries.length; i++) {
-					traverseFileTree(entries[i], path + item.name + "/")
+				if(entries.length == 0){
+					console.log('빈폴더')
+					console.dir(item)
+					createFolder(item);
+				}else{
+					for (var i=0; i<entries.length; i++) {
+						console.dir(entries[i])
+						traverseFileTree(entries[i], path + item.name + "/")
+	// 					sendFile(entries[i], path + item.name + "/");
+					}
 				}
-			}, error_from_readentries);
+			}, error_from_readentries); 
 		}
 	}
 	
-	function sendFile(file) {
+	function sendFile(file, path) {
 		var fd = new FormData();
+		console.log(path)
 		fd.append("attach", file);
 		fd.append("id", $("#sId").val());
-		fd.append("parentPath", $("#sId").val());
+		if(path){
+			fd.append("parentPath", path);
+		}
 		$.ajax({
-			url: "upload.do",
+			url: "upload.json",
 			data: fd,
 			type: "POST",
 			contentType: false,
@@ -481,15 +592,76 @@
 		})
 	}
 	
+	function createFolder(item){
+		$.ajax({
+			url: "createFolder.json",
+			data: {
+				path: item.fullPath,
+				id: $("#sId").val()
+			},
+			dataType: "json"
+		})
+		.done(function (result) {
+// 			var html = '';
+// 			html += '<div class="col-xs-2 folders text-center" id="'+ ++id +'" data-path="'+$("#share-path").data("root")+'" data-title="'+rootFolderName+'" ondblclick="test('+id+')">';
+// 			html += '	<p class="contain"><img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500502735/if_folder-blue_285658_f5jeko.svg" class="img-responsive  center-block" style="height: 64px;" alt=""></p>';
+// 			html += '	<span>'+rootFolderName+'</span>';
+// 			html += '</div>';
+// 			fDiv.append(html);
+		})
+	}
+	
 	function handleFileSelect(evt) {
-	    evt.stopPropagation();
-	    evt.preventDefault();
-	        var items = evt.dataTransfer.items;
+		console.log("언제들어오나")
+		evt.stopPropagation();
+		evt.preventDefault();
+		var items = evt.dataTransfer.items;
+		console.dir(items[0].webkitGetAsEntry());
+		console.dir(fileList);
+		for(let checkFile of fileList){
+			if(checkFile.title == items[0].webkitGetAsEntry().name){
+				swal(	'warning',
+						'이 위치에 이름이 같은 파일이 존재합니다.',
+						'question');
+				return;
+// 				swal({
+// 					title: '이 위치에 이름이 같은 파일이 존재합니다.',
+// 					text: "이동하는 파일로 덮어 쓰시겠습니까??",
+// 					type: 'warning',
+// 					showCancelButton: true,
+// 					confirmButtonColor: '#3085d6',
+// 					cancelButtonColor: '#d33',
+// 					cancelButtonText: '취소',
+// 					confirmButtonText: '덮어쓰기'
+// 					})
+// 					.then((result) => {
+// 						if (result.value) {
+// 							result = result.value;
+// 							swal(
+// 							'success!',
+// 							'해당 파일로 덮어쓰기 하였습니다.',
+// 							'success'
+// 							)
+// 							for (var i = 0; i < items.length; i++) {
+// 								var item = items[i].webkitGetAsEntry();
+// 								if (item) { traverseFileTree(item); }
+// 							}
+// 						}
+// 					})
+			}
+		}
+		if(items[0].webkitGetAsEntry().isDirectory){
+			createFolder(items[0].webkitGetAsEntry());
+			var html = '';
+			html += '<div class="col-xs-2 folders text-center" id="'+ ++id +'" data-path="'+$("#share-path").data("root")+'" data-title="'+items[0].webkitGetAsEntry().name+'" ondblclick="test('+id+')">';
+			html += '	<p class="contain"><img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500502735/if_folder-blue_285658_f5jeko.svg" class="img-responsive  center-block" style="height: 64px;" alt=""></p>';
+			html += '	<span>'+items[0].webkitGetAsEntry().name+'</span>';
+			html += '</div>';
+			fDiv.append(html);
+	    }
 	    for (var i = 0; i < items.length; i++) {
 	        var item = items[i].webkitGetAsEntry();
-	        if (item) {
-	            traverseFileTree(item);
-	        }
+	        if (item) { traverseFileTree(item); }
 	    }
 	}
 	
