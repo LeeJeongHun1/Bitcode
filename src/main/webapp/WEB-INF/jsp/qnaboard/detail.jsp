@@ -80,7 +80,7 @@ a {color:#333333}
 						</div>
 					</li>
 					<li class="reWrite">
-					<form id="commentR" action=<c:url value="/qnaboard/commentRegist.json"/>' method="post">
+					<form id="commentR" action='<c:url value="/qnaboard/commentRegist.json"/>' method="post">
 								<input type="hidden" name="no" value="${qna.no}">
 								<input type="hidden" name="groupNo" value="${qna.groupNo}">
 						<div class="reWriteDiv">
@@ -116,15 +116,17 @@ a {color:#333333}
 
 	</div>
 	<script>
-	$("#commentR").submit(function(e){
+	$("#Rbtn").click(function(e){
 		e.preventDefault();
 		alert("감ㅓㅗㅓㅗ");
+		alert($("input[name='no']").val())
 		alert($("#commentR").serialize());
+		var formData = $("#commentR").serialize();	
 	$.ajax({
 		url: "<c:url value='/qnaboard/commentRegist.json'/>",
 		type:"POST",
-		data: $("#commentR").serialize(),
-		dataType: "json"
+		cache: false,
+		data: formData
 	}).done(function(result){
 		console.log(result);
 	})

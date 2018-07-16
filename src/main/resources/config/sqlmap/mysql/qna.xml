@@ -207,6 +207,5 @@
        (no,id,content,group_no)
        values(
        #{no},#{id},#{content},#{groupNo})
-       ;
 	</insert>
 </mapper>
