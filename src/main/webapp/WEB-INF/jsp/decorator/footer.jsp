@@ -1,8 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page import="java.util.Date" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
 <div>
 	<div class="footer-area">
 	
@@ -42,10 +42,13 @@
 	        <a href="#wifi-modal" id="wifi" class="small-icons"></a>
 	        <div class="datetime">
 	            <span class="hour">
-	                23:58
+	            	<c:set var="today" value="<%=new Date() %>" />
+	                <fmt:formatDate value="${today}" pattern="HH:mm" var="toDayTime"/>
+	                ${toDayTime}
 	            </span>
 	            <span class="date">
-	                03/05/2018
+	                <fmt:formatDate value="${today}" pattern="dd/MM/yyyy" var="toDay"/>
+	                ${toDay}
 	            </span>
 	        </div>
 	        <%-- 알람 --%>

@@ -666,6 +666,7 @@
 	}
 	
 	function createFolder(item){
+		console.dir(item)
 		$.ajax({
 			url: "createFolder.json",
 			data: {
@@ -675,12 +676,7 @@
 			dataType: "json"
 		})
 		.done(function (result) {
-// 			var html = '';
-// 			html += '<div class="col-xs-2 folders text-center" id="'+ ++id +'" data-path="'+$("#share-path").data("root")+'" data-title="'+rootFolderName+'" ondblclick="test('+id+')">';
-// 			html += '	<p class="contain"><img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500502735/if_folder-blue_285658_f5jeko.svg" class="img-responsive  center-block" style="height: 64px;" alt=""></p>';
-// 			html += '	<span>'+rootFolderName+'</span>';
-// 			html += '</div>';
-// 			fDiv.append(html);
+			$('#tree').fancytree('option', 'source', result);
 		})
 	}
 	
@@ -790,7 +786,6 @@
 					$("#folder-area").append(appendFile);
 				}
 			}
-// 			loadFancytree(data);
 			$('#tree').fancytree('option', 'source', data);
 			$("#share-path").data("root","c:/java-lec/upload/"+$("#sId").val());
 			$("#share-path").html('<span class="path-icon-input">Share:</span><span class="path-icon-input">${sessionScope.user.id}</span>');

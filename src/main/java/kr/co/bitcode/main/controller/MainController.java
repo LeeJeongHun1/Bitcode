@@ -44,9 +44,10 @@ public class MainController {
 	
 	@RequestMapping("/createFolder.json")
 	@ResponseBody
-	public String createFolder(String path, String id) {
-		new File(PATH + id + "/" + path).mkdirs();
-		return "";
+	public List<Folder> createFolder(String path, String id) {
+		File f = new File(PATH + id + "/" + path);
+		f.mkdirs();
+		return ListDirectory(f, Integer.parseInt(id));
 	}
 	
 	@RequestMapping("/enterDirectory.json")
