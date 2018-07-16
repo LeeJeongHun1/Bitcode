@@ -13,4 +13,11 @@
 	select count(distinct group_no)
 		from tb_qna_board
 	</select>
+	
+	<!-- 총 Q&A에 대한 답글 갯수 -->
+	<select id="selectQnAAllAnswerCnt" resultType="int">
+	select count(distinct group_no)
+		from tb_qna_board
+		where answer_at = 'Y'
+	</select>
 </mapper> 

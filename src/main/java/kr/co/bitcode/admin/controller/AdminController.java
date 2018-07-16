@@ -17,9 +17,12 @@ public class AdminController {
 	@RequestMapping("/management.do") 
 	public ModelAndView updateUserForm()  {
 		ModelAndView mav = new ModelAndView();
-		int cnt = service.selectQnAAllCnt();
+		int allCnt = service.selectQnAAllCnt();
+		int ansCnt = service.selectQnAAllAnswerCnt();
+		
 		mav.setViewName("admin/management");
-		mav.addObject("cnt", cnt);
+		mav.addObject("allCnt", allCnt);
+		mav.addObject("ansCnt", ansCnt);
 		return mav;
 	} 
 }

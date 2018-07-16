@@ -15,5 +15,9 @@ public class AdminServiceImpl implements AdminService {
 	public int selectQnAAllCnt() {
 		return mapper.selectQnAAllCnt();
 	}
+	// 총 Q&A에 대한 답글 갯수
+	public int selectQnAAllAnswerCnt() {
+		return mapper.selectQnAAllAnswerCnt();
+	}
 
 }

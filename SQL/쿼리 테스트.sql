@@ -37,6 +37,11 @@ update tb_qna_board
 select count(distinct group_no)
 	from tb_qna_board;
 	
+-- 문의글에 대한 답변 갯수 (답글 제외)	
+select count(distinct group_no)
+	from tb_qna_board
+	where answer_at = 'Y';
+	
 select *
 	from tb_code_board
 	order by group_no desc, group_order asc;
