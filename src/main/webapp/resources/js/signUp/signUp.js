@@ -136,8 +136,10 @@ $("#birth2").keyup(function(){
 //
 $("#birth3").keyup(function(){
 	date = $("#birth3").val();
+	month = $("#birth2").val();
+	year = $("#birth1").val();
 //	if (date < 1 || date > 31) {
-		if ($("#birth3").val() == "") {
+		if ($("#birth3").val() == "" || date < 1 || date > 31) {
 		$("#birth3").data("flag","no");
 //		$("#birth3").next().text("일은 1일부터 31일까지 입력가능합니다. ");
 		return;
@@ -147,28 +149,28 @@ $("#birth3").keyup(function(){
 		
 	}	
 	
-//	if ((month==4 || month==6 || month==9 || month==11) && date==31) {
-//		$("#birth3").data("flag","no");
-////		$("#birth3").next().text(month +"월은 31일이 존재하지 않습니다.");
-//		return;
-//	}else{
-//		$("#birth3").data("flag","yes");
-////		$("#birth3").next().text("");
-//		
-//	} 	
-//	
-//	if (month == 2) {
-//		var isleap = (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0));
-//		if (date>29 || (date==29 && !isleap)) {
-//			$("#birth3").data("flag","no");
-////			$("#birth3").next().text(year + "년 2월은  " + day + "일이 없습니다.");
-//			return;
-//		}
-//	}else{
-//		$("#birth3").data("flag","yes");
-////		$("#birth3").next().text("");
+	if ((month==4 || month==6 || month==9 || month==11) && date==31) {
+		$("#birth3").data("flag","no");
+//		$("#birth3").next().text(month +"월은 31일이 존재하지 않습니다.");
+		return;
+	}else{
+		$("#birth3").data("flag","yes");
+//		$("#birth3").next().text("");
 		
-//	}	
+	} 	
+//	
+	if (month == 2) {
+		var isleap = (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0));
+		if (date>29 || (date==29 && !isleap)) {
+			$("#birth3").data("flag","no");
+//			$("#birth3").next().text(year + "년 2월은  " + day + "일이 없습니다.");
+			return;
+		}
+	}else{
+		$("#birth3").data("flag","yes");
+//		$("#birth3").next().text("");
+		
+	}	
 	
 	
 });		     
