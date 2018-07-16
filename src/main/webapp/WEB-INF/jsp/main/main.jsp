@@ -169,9 +169,8 @@
 				<div class="third-row-win">
 					<!-- 뒤로가기 앞으로가기 화살표  -->
 					<div class="col-xs-2">
-						<i class="fa fa-long-arrow-left"></i> <i
-							class="fa fa-long-arrow-right"></i> <i class="fa fa-chevron-down"></i>
-						<i class="fa fa-arrow-up"></i>
+						<i class="fa fa-long-arrow-left" id="forward"></i>
+						<i class="fa fa-long-arrow-right" id="backwards"></i>
 					</div>
 					<div class="col-xs-7">
 						<!-- 폴더 경로 -->
@@ -229,7 +228,7 @@
 								</div>
 							</div>
 						</div>
-						<div id="tree" style="overflow-x: auto;"></div>
+						<div id="tree" style="overflow-x: auto; height: 420px;"></div>
 						<!-- 저장 용량 -->
 						<div class="saveSize" style="position: fixed; bottom: 40px; width: 145px;" >
 							<span>저장용량</span><img src="${pageContext.request.contextPath}/resources/images/cloud.PNG" style="width: 40px; margin-left: 8px;"><br>
@@ -315,7 +314,7 @@
 //           source: d
 //         });
 	    $.contextMenu({
-	    	selector: "#folder-area  div",
+	    	selector: "#folder-area div",
 	    	items: {
 	    		"delete": {name: "Delete", icon: "delete", disabled: true },
 	    		"copy": {name: "Copy", icon: "copy"}
@@ -324,8 +323,6 @@
 	    		
 	    	}
 	    });
-    
-    
         $.contextMenu({
           selector: "#tree span.fancytree-title",
           items: {
@@ -413,10 +410,29 @@
 				extensions: [],
 				autoScroll: true,
 				source: data,
+				click: function(event, data) {
+					var node = data.node,
+					// Only for click and dblclick events:
+					// 'title' | 'prefix' | 'expander' | 'checkbox' | 'icon'
+					targetType = data.targetType;
+
+					// we could return false to prevent default handling, i.e. generating
+					// activate, expand, or select events
+					
+					if(node.folder){
+						console.log("폴더 선택");
+						console.log(node);
+						test(node.key)
+					}
+				},
 				lazyLoad: function (e, data) {
 					console.dir(data);
 					console.dir(e);
-					$.ajax({
+					
+				    var dfd = new $.Deferred();
+				    data.result = dfd.promise();
+				    
+			        $.ajax({
 						url: "lazyLoad.json",
 						data: {
 							parentPath: data.node.data.parentPath,
@@ -426,12 +442,9 @@
 						dataType: "json"
 					})
 					.done(function (result){
-						console.dir(result)
-	// 					$.ajax... 선택된 폴더의 부모경로 보내
-						data.result = {
-							url: JSON.stringify(result)
-						}
-					})
+						dfd.resolve(result);
+					});
+					
 				}
 			});
 			$("#share-path").data("root","c:/java-lec/upload/"+$("#sId").val())
@@ -466,11 +479,15 @@
 		.done(function (result) {
 			console.log(result)
 			reload(result, selectInfo)
+			console.log($div.data("path"));
+			console.log($div.data("title"));
 		})
 	}
 	
 	function reload(data, selectInfo){
 		console.dir(selectInfo)
+		fileList = data
+		console.dir(fileList)
 		$("#folder-area").html('');
 		if(data.length == 0){
 			$("#share-path").data("root", selectInfo.parentPath)
@@ -521,6 +538,7 @@
 	function traverseFileTree(item, path) {
 		path = path || "";
 		console.dir(item)
+		console.log($("#share-path").data("root"));
 		if (item.isFile) {
 			// Get file
 			item.file(function(file) {
@@ -573,13 +591,12 @@
 	}
 	
 	function sendFile(file, path) {
+		console.log($("#share-path").data("root"));
 		var fd = new FormData();
-		console.log(path)
+		path = $("#share-path").data("root");
 		fd.append("attach", file);
 		fd.append("id", $("#sId").val());
-		if(path){
-			fd.append("parentPath", path);
-		}
+		fd.append("parentPath", path);
 		$.ajax({
 			url: "upload.json",
 			data: fd,
@@ -670,6 +687,16 @@
 	    evt.preventDefault();
 	    evt.dataTransfer.dropEffect = 'copy';
 	}
+	
+	// 뒤로가기 기능
+	$("#forward").click(function () {
+		alert('뒤로가기')
+	})
+	
+	// 앞으로가기 기능
+	$("#backwards").click(function () {
+		alert('앞으로가기')
+	})
 </script>
 </body>
 </html>
