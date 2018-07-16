@@ -36,30 +36,6 @@ $(document).ready(function(e){
 		   Kakao.Auth.logout();
 		   
 	   }
-	   
-	//   
-//	   function getKakaotalkUserProfile(){
-//	        Kakao.API.request({
-//			url: '/v1/user/me',
-//			success: function(res) {
-//		                var sPerson = JSON.stringify(res);
-//				var oPerson = JSON.parse(sPerson);
-//                  // 사용자 정보
-//                  console.log(oPerson.kaccount_email);
-//                  Kakao.Auth.logout(function () {
-//                	  var frm = document.applicationJoinForm;
-//                	  frm.submit();
-//                	});
-//	           },
-//			fail: function(error) {
-//				// console.log(error);
-//			
-//			}
-//		});
-//	}	   
-	   
-
-     
      
 
 //Pass 찾기
