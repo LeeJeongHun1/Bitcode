@@ -324,7 +324,7 @@
 	// fancyTree
 	$(function() {
 		$.contextMenu({
-			selector: "#folder-area",
+			selector: "#folder-area > div.col-xs-2 folders text-center",
 			items: {
 				"add": {name: "AddFolder", icon: "add" },
 				"copy": {name: "Copy", icon: "copy"},
@@ -520,11 +520,19 @@
 		console.dir(selectInfo)
 		fileList = data
 		console.dir(fileList)
+		
+		$("#share-path").data("root", selectInfo.parentPath)
+		alert($("#share-path").data("root"))
+		var r = $("#share-path").data("root").split($("#sId").val()+'\\')[1].split('\\');
+		$("#share-path").html('');
+		for(let path of r){
+			$("#share-path").append("<span class='path-icon-input'>"+path+"</span>");
+		}
 		$("#folder-area").html('');
 		if(data.length == 0){
-			$("#share-path").data("root", selectInfo.parentPath)
-			$("#share-path").append("<span class='path-icon-input'>"+selectInfo.title+"</span>")
-			alert($("#share-path").data("root"))
+// 			$("#share-path").data("root", selectInfo.parentPath)
+// // 			alert($("#share-path").data("root"))
+// 			$("#share-path").append("<span class='path-icon-input'>"+selectInfo.title+"</span>")
 			return;
 		}
 		for(var f of data){
@@ -552,9 +560,9 @@
 				$("#folder-area").append(appendFile);
 			}
 		}
-		$("#share-path").data("root", selectInfo.parentPath)
-		alert($("#share-path").data("root"))
-		$("#share-path").append("<span class='path-icon-input'>"+selectInfo.title+"</span>");
+// 		$("#share-path").data("root", selectInfo.parentPath)
+// 		alert($("#share-path").data("root"))
+// 		$("#share-path").append("<span class='path-icon-input'>"+selectInfo.title+"</span>");
 	}
 	
 	function error(e) {
