@@ -19,8 +19,8 @@ function codeList(searchInput,searchOption){
 	if(searchOption == ""){
 		searchOption == 0;
 	}
-	console.log(searchOption);
-	console.log(searchInput);
+//	console.log(searchOption);
+//	console.log(searchInput);
 	$.ajax({
 		url:"list.json",
 		data:{"searchInput" : searchInput, "searchOption" : searchOption},
@@ -30,10 +30,6 @@ function codeList(searchInput,searchOption){
 	.done(function(data){
 		makeCodeList(data);
 	})
-	.fail(function(e){
-		console.dir(e);
-	});
-	
 }
 
 function makeCodeList(data){

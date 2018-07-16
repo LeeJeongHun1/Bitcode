@@ -99,16 +99,15 @@
         <input id="search" style="color:#80FF00; background-color: black;" type="button" value="조회">
         </form>
         <div style="margin-top:11px;height:64px;width:1093px;">
-        <select style="margin-left:395px;width:121px;margin-top:12px; color:#80FF00; background-color: black;">
-        <optgroup label="This is a group">
-        <option value="12" selected="">This is item 1</option>
-        <option value="13">This is item 2</option>
-        <option value="14">This is item 3</option>
-        </optgroup>
-        </select>
-            <input
-                type="search" style="margin-left:3px; color:#80FF00; background-color: black;"><button class="btn btn-primary" type="button" onclick="location.href='insertForm.do'" style="margin-left:277px;">글쓰기</button></div>
-        <div id="paging" style="margin-top:-13px;height:53px;text-align:center;"></div>
+
+        <c:if test="${user.id!=null}">
+            <button class="btn btn-primary" type="button" onclick="location.href='insertForm.do'" style="margin-left:277px;">글쓰기</button>
+        </c:if>
+
+        </div>
+        <div id="page" style="margin-top:-13px;height:53px;text-align:center;">
+        	<ul class="paging"></ul>
+        </div>
     </div>
 	</div>
 

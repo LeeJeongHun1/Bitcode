@@ -2,6 +2,8 @@ package kr.co.bitcode.codeboard.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +27,10 @@ public class CodeBoardServiceImpl implements CodeBoardService{
 	
 	@Override
 	public void insertBoard(CodeBoard cb) {
+//		System.out.println("sessionnnnnnnnnnnnn"+session);
+//		String id = (String) session.getAttribute("id");
+//		System.out.println("idddddddddddddddddddddddddddd"+id);
+//		cb.setId(id);
 		mapper.insertBoard(cb);
 		
 	}

@@ -2,6 +2,8 @@ package kr.co.bitcode.codeboard.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import kr.co.bitcode.repository.domain.Code;
 import kr.co.bitcode.repository.domain.CodeBoard;
 import kr.co.bitcode.repository.domain.CodeBoardFile;
