@@ -15,6 +15,7 @@ import kr.co.bitcode.qnaboard.service.QnaBoardService;
 import kr.co.bitcode.repository.domain.Code;
 import kr.co.bitcode.repository.domain.Page;
 import kr.co.bitcode.repository.domain.Qna;
+import kr.co.bitcode.repository.domain.QnaComment;
 import kr.co.bitcode.repository.domain.QnaFile;
 import kr.co.bitcode.repository.domain.Search;
 
@@ -32,6 +33,13 @@ public class QnaBoardController {
 		//mav.addObject("list", qnaBoardService.search(search));
 		return mav;*/
 	}
+	
+/*	@RequestMapping("/list.do")
+	public ModelAndView listBoard(Page page) throws Exception {
+		ModelAndView mav = new ModelAndView("qnaboard/list");
+		mav.addObject("list", qnaBoardService.list(page));
+		return mav;
+	}*/
 	
 /*	@RequestMapping("/list.do")
 	public ModelAndView listBoard(Search search) throws Exception {
@@ -101,9 +109,18 @@ public class QnaBoardController {
 	
 	@RequestMapping("/search.json")
 	@ResponseBody
-	public List<Qna> search(Search search) throws Exception{
+	public Map<String,Object> search(Search search) throws Exception{
 		System.out.println("컨트롤러여부");
 		return qnaBoardService.search(search);
+	}
+	
+	// 댓글 
+	
+	@RequestMapping("/commentRegist.json")
+	@ResponseBody
+	public List<QnaComment> commentRegist(QnaComment comment) throws Exception{
+		System.out.println("댓글등록");
+		return qnaBoardService.commentRegist(comment);
 	}
 	
 	

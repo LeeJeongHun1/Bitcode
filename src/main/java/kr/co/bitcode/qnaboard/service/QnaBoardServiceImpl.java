@@ -13,6 +13,7 @@ import kr.co.bitcode.repository.domain.Code;
 import kr.co.bitcode.repository.domain.Page;
 import kr.co.bitcode.repository.domain.PageResult;
 import kr.co.bitcode.repository.domain.Qna;
+import kr.co.bitcode.repository.domain.QnaComment;
 import kr.co.bitcode.repository.domain.QnaFile;
 import kr.co.bitcode.repository.domain.Search;
 import kr.co.bitcode.repository.mapper.CodeListMapper;
@@ -31,8 +32,6 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 	public void insertQna(Qna qna, QnaFile qnafile) throws Exception {
 		mapper.insertBoard(qna);
 		mapper.updateGroupNo(qna.getNo());
-		System.out.println("번호"+ qna.getNo());
-		System.out.println(qna.getFile()[0].getSize() +"갯수");
 		if(qna.getFile()[0].getSize() == 0) {
 			System.out.println("파일없음");
 		}else {
@@ -55,10 +54,8 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 
 	@Override
 	public Qna detailQna(int no) throws Exception {
-		System.out.println("파일리스트");
 		Qna qna = mapper.selectBoardByNo(no);
 		qna.setFileList(mapper.selectQnaFile(no));
-		System.out.println("테스트");
 		return qna;
 	}
 
@@ -73,10 +70,6 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 	@Override
 	public void updateQna(Qna qna, QnaFile qnafile) throws Exception {
 		//mapper.updateReBoard(qna.getNo());
-		System.out.println(qna.getContent() +"컨텐츠");
-		System.out.println(qna.getTitle() +"제목");
-		System.out.println(qna.getCode() + "코드번호");
-		System.out.println(qna.getFile().length +"파일 갯수");
 		mapper.updateBoard(qna);
 		if(qna.getFile()[0].getSize() == 0) {
 			System.out.println("파일없음");
@@ -100,9 +93,7 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 
 	@Override
 	public void insertReQna(Qna qna, QnaFile qnafile) throws Exception {
-		System.out.println("가냐");
 		mapper.updateReBoard(qna);
-		System.out.println(qna.getGroupNo() +"그룹번호");
 		mapper.insertReBoard(qna);
 		if(qna.getFile()[0].getSize() == 0) {
 			System.out.println("파일없음");
@@ -119,28 +110,36 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 	}
 
 	@Override
-	public List<Qna> search(Search search) throws Exception {
-		System.out.println("서비스도 확인" + mapper.selectBoardSearch(search));
-		System.out.println(search.getType() +"타입은");
-		System.out.println(search.getKeyword() +"내용");
+	public Map<String,Object> search(Search search) throws Exception {
+		Map<String,Object> map = new HashMap<>();
+		map.put("list", mapper.selectBoardSearch(search));
+		map.put("pageResult", new PageResult(search.getPageNo(),mapper.searchBoardCount(search)));
 		List<Qna> list = mapper.selectBoardSearch(search);
 		for(Qna qna:list) {
 			System.out.println(qna.getTitle() +"제목");
 			System.out.println(qna.getContent() +"내용");
 		}
-		return list;
+		return map;
 	
 	}
 
 	@Override
 	public Map<String,Object> list(Page page) throws Exception {
 		Map<String,Object> map = new HashMap<>();
-		map.put("list", mapper.selectboard());
-		System.out.println("키 확인"+ map.get("list"));
+		map.put("list", mapper.selectboard(page));
 		map.put("pageResult", new PageResult(page.getPageNo(),mapper.selectBoardCount(page)));
-		System.out.println("키 확인"+ map.get("pageResult"));
+		System.out.println(page.getBegin() +"시작");
+		System.out.println(page.getEnd() +"끝");
+		System.out.println(page.getPageNo());
 		return map;
 		
+	}
+
+	@Override
+	public List<QnaComment> commentRegist(QnaComment comment) throws Exception {
+		mapper.insertComment(comment);
+		System.out.println("댓글적용");
+		return mapper.selectComment(comment.getNo());
 	}
 	
 	

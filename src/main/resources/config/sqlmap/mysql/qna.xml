@@ -20,27 +20,27 @@
 			<result column="ori_name" property="oriName" /> <result column="system_name" 
 			property="systemName" /> -->
 	</resultMap>
-	<select id="selectboard"  resultMap="qnaMap">
-		select *
+	<select id="selectboard" parameterType="page" resultMap="qnaMap">
+  		SELECT SQL_CALC_FOUND_ROWS A.* 
+  		FROM (
+		select q.title,q.content,q.depth,q.group_no,q.group_order,q.id,q.language_code,q.like_cnt,q.no,q.reg_date,q.stsfc_code,q.view_cnt,l.language_name
     	from tb_qna_board q
 		inner
 		join tb_language_code l
 		on q.language_code = l.language_code 
+		order
+		by group_no desc, group_order asc) A 
+		LIMIT #{begin},#{end} 
 	</select>  
 	<select id="selectBoardSearch" parameterType="search" resultMap="qnaMap">
+		SELECT SQL_CALC_FOUND_ROWS A.* 
+  		FROM (
 		select q.title,q.content,q.depth,q.group_no,q.group_order,q.id,q.language_code,q.like_cnt,q.no,q.reg_date,q.stsfc_code,q.view_cnt,l.language_name
     	from tb_qna_board q
 		inner
 		join tb_language_code l
 		on q.language_code = l.language_code 
 		<where>
-<!--  	 	<if test="keyword != '' or keyword != null and type.equals('title')"  >
-		AND q.title like concat('%',#{keyword},'%') 	
-		</if>  -->
-		<!-- <if test="keyword != '' or keyword != null and type != '' or type != null" >
-		AND q.content like concat('%',#{keyword},'%')
-		OR  q.title like concat('%',#{keyword},'%') 	
-		</if> -->
 				<choose>
 				<when test="type.equals('title')">
 					AND q.title like concat('%',#{keyword},'%') 
@@ -52,12 +52,13 @@
 					AND q.id like concat('%',#{keyword},'%')
 				</when>
 				<when test="type.equals('code')">
-					ANd l.codeName like concat('%',#{keyword},'%')
+					ANd l.language_name like concat('%',#{keyword},'%')
 				</when>
 			</choose>
 		</where> 
  		order
-		by q.group_no desc, q.group_order asc 
+		by q.group_no desc, q.group_order asc ) A 
+		LIMIT #{begin},#{end} 
 	
 <!-- 		select *
 		from tb_qna_board q
@@ -70,18 +71,34 @@
 		order
 		by group_no desc, group_order asc; -->
 	</select>
-<!-- 	<select id="selectBoardCount" parameterType="page" resultType="int">
-	  	SELECT count(*) 
+	<select id="selectBoardCount" resultType="int">
+	  	select count(*) 
         from tb_qna_board
-        <where>
- 		<if test="search != '' and search != null and searchS == 'title' "  >
-		AND  q.title like '%' || #{title} || '%'	
-		</if> 
-		<if test="search != '' and search != null and searchS == 'content'" >
-		AND  q.content like '%' || #{content} || '%'	
-		</if>
+	</select>
+	<!-- 검색 카운트 -->
+	<select id="searchBoardCount" parameterType="search" resultType="int">
+	  	select count(*) 
+       	from tb_qna_board q
+		inner
+		join tb_language_code l
+		on q.language_code = l.language_code 
+		<where>
+				<choose>
+				<when test="type.equals('title')">
+					AND q.title like concat('%',#{keyword},'%') 
+				</when>
+				<when test="type.equals('content')">
+					AND q.content like concat('%',#{keyword},'%')
+				</when>
+				<when test="type.equals('writer')">
+					AND q.id like concat('%',#{keyword},'%')
+				</when>
+				<when test="type.equals('code')">
+					ANd l.language_name like concat('%',#{keyword},'%')
+				</when>
+			</choose>
 		</where> 
-	</select> -->
+	</select>
 	<select id="selectBoardByNo" parameterType="int" resultMap="qnaMap">
 		select *
 		from tb_qna_board b
@@ -170,4 +187,13 @@
 		+1,#{title},#{content},#{id},#{code});
 	</insert>
 
+
+	<!-- 댓글쿼리 -->
+	<insert id="insertComment" parameterType="qnaComment">
+		insert into tb_qna_comment 
+       (no,id,content,group_no)
+       values(
+       #{no},#{id},#{content},#{groupNo})
+       ;
+	</insert>
 </mapper>

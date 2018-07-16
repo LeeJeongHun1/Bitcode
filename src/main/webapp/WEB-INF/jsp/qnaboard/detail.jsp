@@ -79,20 +79,27 @@ a {color:#333333}
 
 						</div>
 					</li>
-
 					<li class="reWrite">
+					<form id="commentR" action=<c:url value="/qnaboard/commentRegist.json"/>' method="post">
+								<input type="hidden" name="no" value="${qna.no}">
+								<input type="hidden" name="groupNo" value="${qna.groupNo}">
 						<div class="reWriteDiv">
 							<table>
 								<tbody>
+										<tr>
+							<th>작성자</th>
+							<td><input type="text" name="id" value="bbbb"/></td>
+								</tr>
 									<tr>
-										<td><textarea></textarea></td>
+										<td><textarea name="content"></textarea></td>
 									</tr>
 								</tbody>
 							</table>
 						</div>
 						<div class="reBtn">
-							<button class="resubmit">등록</button>
+							<button id="Rbtn"class="resubmit">등록</button>
 						</div>
+					</form>
 					</li>
 				</ul>
 			</div>
@@ -107,5 +114,21 @@ a {color:#333333}
 		</div>
 
 	</div>
+	<script>
+	$("#commentR").submit(function(e){
+		e.preventDefault();
+		alert("감ㅓㅗㅓㅗ");
+		alert($("#commentR").serialize());
+	$.ajax({
+		url: "<c:url value='/qnaboard/commentRegist.json'/>",
+		type:"POST",
+		data: $("#commentR").serialize(),
+		dataType: "json"
+	}).done(function(result){
+		console.log(result);
+	})
+	});
+	
+	</script>
 </body>
 </html>
