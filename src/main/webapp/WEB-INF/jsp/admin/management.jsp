@@ -35,7 +35,7 @@
 			<div class="xbtn">x</div>
 		</div>     
     	<h3 class="userInformation">Q&A 답변률</h3>
-    	
+    	<div>총 Q&A ${cnt}개</div>
 	</div>	
 
     <div id="card3" class="card six col">
@@ -53,5 +53,8 @@
   </div>
 </div>
 <script src="${pageContext.request.contextPath}/resources/js/userInfo/userInfo.js"></script>
+<script>
+
+</script>
 </body>
 </html>

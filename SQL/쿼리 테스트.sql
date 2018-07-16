@@ -32,13 +32,19 @@ update tb_user
 update tb_qna_board
 	set answer_at = 'Y'
 	where no = 38;
-		
-		
+
+-- 문의글 갯수 (답글 제외)	
+select count(distinct group_no)
+	from tb_qna_board;
+	
 select *
 	from tb_code_board
 	order by group_no desc, group_order asc;
-	
-	select language_name as name, language_code as code
+
+select language_name as name, language_code as code
    	from tb_language_code
    	order by language_code;	
-commit;
+
+   	
+   	
+ commit;

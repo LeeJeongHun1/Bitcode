@@ -3,6 +3,7 @@ package kr.co.bitcode.admin.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.bitcode.admin.service.AdminService;
 
@@ -14,6 +15,11 @@ public class AdminController {
 	private AdminService service;
 	
 	@RequestMapping("/management.do") 
-	public void updateUserForm()  { 
+	public ModelAndView updateUserForm()  {
+		ModelAndView mav = new ModelAndView();
+		int cnt = service.selectQnAAllCnt();
+		mav.setViewName("admin/management");
+		mav.addObject("cnt", cnt);
+		return mav;
 	} 
 }
