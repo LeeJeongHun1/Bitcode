@@ -106,7 +106,7 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 		qnafile.setSystemName(file.getName());
 		qnafile.setFileSize((int)file.getSize());	
 		mapper.updateQnaFile(qnafile);}
-		} 	
+		}mapper.updateAnswerChange(qna.getNo());
 	}
 
 	@Override

@@ -200,6 +200,14 @@
 		+1,#{title},#{content},#{id},#{code});
 	</insert>
 
+   <!-- 답변 여부  -->
+
+   <update id="updateAnswerChange" parameterType="int">
+   update tb_qna_board
+      set answer_at = 'Y'
+      where no = #{no}
+   </update>
+   
 
 	<!-- 댓글쿼리 -->
 	<insert id="insertComment" parameterType="qnaComment">
@@ -208,4 +216,5 @@
        values(
        #{no},#{id},#{content},#{groupNo})
 	</insert>
+      
 </mapper>

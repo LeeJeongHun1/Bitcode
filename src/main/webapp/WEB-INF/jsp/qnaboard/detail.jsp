@@ -12,9 +12,9 @@ a {color:#333333}
 </style>
 </head>
 <body>
-<input type="hidden" name="groupNo" value="${qna.groupNo}">
-<input type="hidden" name="depth" value="${qna.depth}">
-<input type="hidden" name="groupOrder" value="${qna.groupOrder}">
+<input type="hidden" name="groupNo" value="${list.groupNo}">
+<input type="hidden" name="depth" value="${list.depth}">
+<input type="hidden" name="groupOrder" value="${list.groupOrder}">
 	<div class="container">
 		<div class="shell-container">
 		<!-- <h2 class="shell_title">QnA질문게시판</h2> -->
@@ -81,8 +81,8 @@ a {color:#333333}
 					</li>
 					<li class="reWrite">
 					<form id="commentR" action='<c:url value="/qnaboard/commentRegist.json"/>' method="post">
-								<input type="hidden" name="no" value="${qna.no}">
-								<input type="hidden" name="groupNo" value="${qna.groupNo}">
+								<input type="hidden" name="no" value="${list.no}">
+								<input type="hidden" name="groupNo" value="${list.groupNo}">
 						<div class="reWriteDiv">
 							<table>
 								<tbody>
@@ -127,10 +127,38 @@ a {color:#333333}
 		type:"POST",
 		cache: false,
 		data: formData
-	}).done(function(result){
-		console.log(result);
+	}).done(function(data){
+		console.log(data);
 	})
 	});
+	
+	
+	function  commentList(data){
+	var html ="";
+	$("ul.reBody li").html("");
+	for(let i of data.list){
+	html+='<p class="reWriter">'+i.title+'</p>';
+	//html+='<td>'+r.airEvalScore+'</td>';
+	html+='<td>'+r.userEmail+'</td>';
+	var date = new Date(r.regDate);
+	var time = date.getFullYear() + "년" 
+	         + (date.getMonth() + 1) + "울" 
+	         + date.getDate() + "일"
+	         + date.getHours() + ":"
+	         + date.getMinutes() + ":"
+	         + date.getSeconds();
+	html += '	<td>' + time + '</td>';  
+	html+='</tr>';
+	html+='<tr class="view">';
+	html+='<td colspan="4">';
+	html+='<div>'+r.content+'</div></td></tr>'; 
+	}if(data.length == 0){
+		html += '<tr class="review_list"><td colspan="4">리뷰가 존재하지 않습니다.</td></tr>';
+	}
+	$(".review tbody").html(html);
+	
+}
+
 	
 	</script>
 </body>

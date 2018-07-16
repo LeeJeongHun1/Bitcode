@@ -20,15 +20,17 @@ public interface QnaMapper {
 	
 	// 답글 
 	public void updateReBoard(Qna qna);
+	public void updateAnswerChange(int no);
 	public void insertReBoard(Qna qna);
 	
 	// 페이징
 	public int searchBoardCount(Search search);
 	public int selectBoardCount(Page page);	
+	
 	// 댓글 
 	public void insertComment(QnaComment comment);
 	public void updateComment(QnaComment comment);
-	public void deleteComment(int commentNo);
+	public void deleteComment(QnaComment comment);
 	public List<QnaComment> selectComment(int no);
 	
 	// 첨부파일 
@@ -37,5 +39,7 @@ public interface QnaMapper {
 	public List<Qna> selectQnaFileByNo(int no);
 	public List<QnaFile> selectQnaFile(int no);
 	public void deleteQnaFile(int no);
+	
+	
 	
 }
