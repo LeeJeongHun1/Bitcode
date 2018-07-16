@@ -4,6 +4,7 @@ show tables;
 -- 특정 테이블 조회
 select * from tb_user;
 select * from tb_qna_board;
+select * from tb_code_board;
 
 -- 테이블 삭제
 drop table tb_user purge;
@@ -22,6 +23,10 @@ insert into tb_user (
 -- delete 유저
 delete from tb_user
 	where id = 'sun';
+	
+-- delete Q&A 게시판
+delete from tb_qna_board
+	where no = 47;
 
 -- update 유저
 update tb_user
@@ -36,11 +41,42 @@ update tb_qna_board
 -- 문의글 갯수 (답글 제외)	
 select count(distinct group_no)
 	from tb_qna_board;
+
+-- C 문의글 갯수 (답글 제외)	
+select count(distinct group_no)
+	from tb_qna_board
+	where language_code ='21';
+
+-- Java 문의글 갯수 (답글 제외)	
+select count(distinct group_no)
+	from tb_qna_board
+	where language_code ='22';
+
+-- JavaScript 문의글 갯수 (답글 제외)	
+select count(distinct group_no)
+	from tb_qna_board
+	where language_code ='23';
+
+-- Python 문의글 갯수 (답글 제외)	
+select count(distinct group_no)
+	from tb_qna_board
+	where language_code ='24';
+
+-- ASP 문의글 갯수 (답글 제외)	
+select count(distinct group_no)
+	from tb_qna_board
+	where language_code ='25';
+
+-- PHP 문의글 갯수 (답글 제외)	
+select count(distinct group_no)
+	from tb_qna_board
+	where language_code ='26';
 	
 -- 문의글에 대한 답변 갯수 (답글 제외)	
 select count(distinct group_no)
 	from tb_qna_board
 	where answer_at = 'Y';
+	
 	
 select *
 	from tb_code_board
