@@ -48,6 +48,12 @@ public class QnaBoardController {
 		return mav;
 	}
 */	
+	@RequestMapping("/delete.do")
+	public String delete(int no) throws Exception {
+		qnaBoardService.delete(no);
+		return "redirect:/qnaboard/list.do";
+	}
+	
 	@RequestMapping("/detail.do")
 	public ModelAndView viewDeatil(int no) throws Exception {
 		ModelAndView mav = new ModelAndView("qnaboard/detail");

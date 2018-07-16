@@ -141,6 +141,13 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 		System.out.println("댓글적용");
 		return mapper.selectComment(comment.getNo());
 	}
+
+	@Override
+	public void delete(int no) throws Exception {
+		System.out.println("게시판 삭제 기능 구현 ");
+		mapper.deleteBoard(no);
+		mapper.deleteQnaFile(no);
+	}
 	
 	
 	

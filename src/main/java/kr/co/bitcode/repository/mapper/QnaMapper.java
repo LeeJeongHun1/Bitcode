@@ -36,5 +36,6 @@ public interface QnaMapper {
 	public void updateQnaFile(QnaFile qnafile);
 	public List<Qna> selectQnaFileByNo(int no);
 	public List<QnaFile> selectQnaFile(int no);
+	public void deleteQnaFile(int no);
 	
 }

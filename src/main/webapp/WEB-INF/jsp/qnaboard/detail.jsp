@@ -108,6 +108,7 @@ a {color:#333333}
     		<a href='<c:url value="/qnaboard/list.do" />'><button>목록</button></a>
 			<a href='<c:url value="/qnaboard/insertReForm.do?no=${list.no}"/>'><button>답변</button></a>
 			<a href='<c:url value="/qnaboard/updateForm.do?no=${list.no}" />'><button>수정</button></a>
+			<a href='<c:url value="/qnaboard/delete.do?no=${list.no}"/>'><button>삭제</button></a>
 			<a href="#"><button>삭제</button></a>
 			</div>
 			

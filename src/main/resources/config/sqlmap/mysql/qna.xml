@@ -108,6 +108,13 @@
 		b.language_code = c.language_code
 		where b.no = #{no}
 	</select>
+	
+	<delete id="deleteBoard" parameterType="int">
+       delete 
+       from tb_qna_board
+	   where group_no=#{no}
+	</delete>
+	
 	<resultMap id="fileMap" type="qnaFile">
 		<result column="no" property="no" />
 		<result column="file_no" property="fileNo" />
@@ -166,6 +173,12 @@
 		file_size=#{fileSize}
 		where no=#{no}
 	</update>
+	
+	<delete id="deleteQnaFile" parameterType="int">
+	    delete 
+        from tb_qna_file
+	    where no = #{no}
+	</delete>
 
 	<!-- 답글쿼리 -->
 
