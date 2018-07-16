@@ -26,7 +26,7 @@
 						</tr>
 						<tr>
 							<th>작성자</th>
-							<td><input type="text" name="id" value="bbbb"/></td>
+							<td><input type="text" name="id" value="${sessionScope.user.id}"/></td>
 						</tr>
 
 						<tr style="height: 90%;">

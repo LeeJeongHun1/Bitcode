@@ -4,9 +4,15 @@ import java.util.Date;
 
 public class QnaComment {
 	private int no;
+	private int commentNo;
+	public int getCommentNo() {
+		return commentNo;
+	}
+	public void setCommentNo(int commentNo) {
+		this.commentNo = commentNo;
+	}
 	private String id;
 	private String content;
-	private String commentNo;
 	private Date regDate;
 	private int groupNo;
 	private int groupOrder;
@@ -28,12 +34,6 @@ public class QnaComment {
 	}
 	public void setId(String id) {
 		this.id = id;
-	}
-	public String getCommentNo() {
-		return commentNo;
-	}
-	public void setCommentNo(String commentNo) {
-		this.commentNo = commentNo;
 	}
 	public Date getRegDate() {
 		return regDate;

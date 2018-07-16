@@ -21,71 +21,35 @@
 			property="systemName" /> -->
 	</resultMap>
 	<select id="selectboard" parameterType="page" resultMap="qnaMap">
-  		SELECT SQL_CALC_FOUND_ROWS A.* 
-  		FROM (
-		select q.title,q.content,q.depth,q.group_no,q.group_order,q.id,q.language_code,q.like_cnt,q.no,q.reg_date,q.stsfc_code,q.view_cnt,l.language_name
-    	from tb_qna_board q
-		inner
-		join tb_language_code l
-		on q.language_code = l.language_code 
-		order
-		by group_no desc, group_order asc) A 
-		LIMIT #{begin},#{end} 
-	</select>  
-	<select id="selectBoardSearch" parameterType="search" resultMap="qnaMap">
-		SELECT SQL_CALC_FOUND_ROWS A.* 
-  		FROM (
-		select q.title,q.content,q.depth,q.group_no,q.group_order,q.id,q.language_code,q.like_cnt,q.no,q.reg_date,q.stsfc_code,q.view_cnt,l.language_name
-    	from tb_qna_board q
-		inner
-		join tb_language_code l
-		on q.language_code = l.language_code 
-		<where>
-				<choose>
-				<when test="type.equals('title')">
-					AND q.title like concat('%',#{keyword},'%') 
-				</when>
-				<when test="type.equals('content')">
-					AND q.content like concat('%',#{keyword},'%')
-				</when>
-				<when test="type.equals('writer')">
-					AND q.id like concat('%',#{keyword},'%')
-				</when>
-				<when test="type.equals('code')">
-					ANd l.language_name like concat('%',#{keyword},'%')
-				</when>
-			</choose>
-		</where> 
- 		order
-		by q.group_no desc, q.group_order asc ) A 
-		LIMIT #{begin},#{end} 
-	
-<!-- 		select *
+		SELECT
+		SQL_CALC_FOUND_ROWS A.*
+		FROM (
+		select
+		q.title,q.content,q.depth,q.group_no,q.group_order,q.id,q.language_code,q.like_cnt,q.no,q.reg_date,q.stsfc_code,q.view_cnt,l.language_name
 		from tb_qna_board q
 		inner
 		join tb_language_code l
 		on q.language_code =
 		l.language_code
-		where q.title like '%테%'
-		and q.content like '%ㅂ%'
 		order
-		by group_no desc, group_order asc; -->
+		by group_no desc, group_order asc) A
+		LIMIT
+		#{begin},10
 	</select>
-	<select id="selectBoardCount" resultType="int">
-	  	select count(*) 
-        from tb_qna_board
-	</select>
-	<!-- 검색 카운트 -->
-	<select id="searchBoardCount" parameterType="search" resultType="int">
-	  	select count(*) 
-       	from tb_qna_board q
+	<select id="selectBoardSearch" parameterType="search" resultMap="qnaMap">
+		SELECT SQL_CALC_FOUND_ROWS A.*
+		FROM (
+		select
+		q.title,q.content,q.depth,q.group_no,q.group_order,q.id,q.language_code,q.like_cnt,q.no,q.reg_date,q.stsfc_code,q.view_cnt,l.language_name
+		from tb_qna_board q
 		inner
 		join tb_language_code l
-		on q.language_code = l.language_code 
+		on q.language_code =
+		l.language_code
 		<where>
-				<choose>
+			<choose>
 				<when test="type.equals('title')">
-					AND q.title like concat('%',#{keyword},'%') 
+					AND q.title like concat('%',#{keyword},'%')
 				</when>
 				<when test="type.equals('content')">
 					AND q.content like concat('%',#{keyword},'%')
@@ -97,7 +61,45 @@
 					ANd l.language_name like concat('%',#{keyword},'%')
 				</when>
 			</choose>
-		</where> 
+		</where>
+		order
+		by q.group_no desc, q.group_order asc ) A
+		LIMIT #{begin},10
+
+		<!-- select * from tb_qna_board q inner join tb_language_code l on q.language_code 
+			= l.language_code where q.title like '%테%' and q.content like '%ㅂ%' order 
+			by group_no desc, group_order asc; -->
+	</select>
+	<select id="selectBoardCount" resultType="int">
+		select count(*)
+		from
+		tb_qna_board
+	</select>
+	<!-- 검색 카운트 -->
+	<select id="searchBoardCount" parameterType="search" resultType="int">
+		select count(*)
+		from tb_qna_board q
+		inner
+		join tb_language_code l
+		on
+		q.language_code =
+		l.language_code
+		<where>
+			<choose>
+				<when test="type.equals('title')">
+					AND q.title like concat('%',#{keyword},'%')
+				</when>
+				<when test="type.equals('content')">
+					AND q.content like concat('%',#{keyword},'%')
+				</when>
+				<when test="type.equals('writer')">
+					AND q.id like concat('%',#{keyword},'%')
+				</when>
+				<when test="type.equals('code')">
+					ANd l.language_name like concat('%',#{keyword},'%')
+				</when>
+			</choose>
+		</where>
 	</select>
 	<select id="selectBoardByNo" parameterType="int" resultMap="qnaMap">
 		select *
@@ -108,13 +110,13 @@
 		b.language_code = c.language_code
 		where b.no = #{no}
 	</select>
-	
+
 	<delete id="deleteBoard" parameterType="int">
-       delete 
-       from tb_qna_board
-	   where group_no=#{no}
+		delete
+		from tb_qna_board
+		where group_no=#{no}
 	</delete>
-	
+
 	<resultMap id="fileMap" type="qnaFile">
 		<result column="no" property="no" />
 		<result column="file_no" property="fileNo" />
@@ -173,11 +175,11 @@
 		file_size=#{fileSize}
 		where no=#{no}
 	</update>
-	
+
 	<delete id="deleteQnaFile" parameterType="int">
-	    delete 
-        from tb_qna_file
-	    where no = #{no}
+		delete
+		from tb_qna_file
+		where no = #{no}
 	</delete>
 
 	<!-- 답글쿼리 -->
@@ -200,21 +202,54 @@
 		+1,#{title},#{content},#{id},#{code});
 	</insert>
 
-   <!-- 답변 여부  -->
+	<!-- 답변 여부 -->
 
-   <update id="updateAnswerChange" parameterType="int">
-   update tb_qna_board
-      set answer_at = 'Y'
-      where no = #{no}
-   </update>
-   
+	<update id="updateAnswerChange" parameterType="int">
+		update
+		tb_qna_board
+		set answer_at = 'Y'
+		where no = #{no}
+	</update>
 
+	<resultMap id="commentMap" type="qnaComment">
+		<result column="no" property="no"/>
+		<result column="id" property="id"/>
+		<result column="content" property="content" />
+		<result column="comment_no" property="commentNo" />
+		<result column="reg_date" property="regDate" />
+		<result column="group_no" property="groupNo" />
+		<result column="group_order" property="groupOrder" />
+		<result column="depth" property="depth" />
+	</resultMap>
 	<!-- 댓글쿼리 -->
+	<select id="selectComment" parameterType="int" resultMap="commentMap">
+		select *
+		from
+		tb_qna_comment
+		where no = #{no}
+		order by comment_no asc
+	</select>
+
+	<update id="updateComment" parameterType="qnaComment">
+		update tb_qna_comment
+		set content = #{content}
+		where comment_no = #{commentNo}
+	</update>
+
 	<insert id="insertComment" parameterType="qnaComment">
-		insert into tb_qna_comment 
-       (no,id,content,group_no)
-       values(
-       #{no},#{id},#{content},#{groupNo})
+		insert into
+		tb_qna_comment
+		(no,id,content,group_no)
+		values(
+		#{no},#{id},#{content},#{groupNo})
 	</insert>
-      
+
+	<delete id="deleteComment" parameterType="int">
+		delete
+		from
+		tb_qna_comment
+		where comment_no = #{commentNo}
+	</delete>
+
+
 </mapper>

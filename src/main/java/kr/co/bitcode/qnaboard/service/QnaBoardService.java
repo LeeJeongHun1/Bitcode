@@ -25,5 +25,8 @@ public interface QnaBoardService {
 	public void insertReQna(Qna qna,QnaFile qnafile) throws Exception;
 	
 	// 댓글
+	public List<QnaComment> commentList(int no) throws Exception;
 	public List<QnaComment> commentRegist(QnaComment comment) throws Exception;
+	public List<QnaComment> commentUpdate(QnaComment comment) throws Exception;
+	public List<QnaComment> commentDelete(QnaComment comment) throws Exception;
 }

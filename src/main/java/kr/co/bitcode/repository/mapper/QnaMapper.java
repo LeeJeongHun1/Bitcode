@@ -30,7 +30,7 @@ public interface QnaMapper {
 	// 댓글 
 	public void insertComment(QnaComment comment);
 	public void updateComment(QnaComment comment);
-	public void deleteComment(QnaComment comment);
+	public void deleteComment(int commentNo);
 	public List<QnaComment> selectComment(int no);
 	
 	// 첨부파일 

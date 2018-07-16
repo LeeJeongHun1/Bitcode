@@ -66,6 +66,12 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 		//map.put("pageResult",new PageResult(page.getPageNo(),mapper.selectBoardCount(search,page)));
 		return map;
 	}*/
+	@Override
+	public void delete(int no) throws Exception {
+		System.out.println("게시판 삭제 기능 구현 ");
+		mapper.deleteBoard(no);
+		mapper.deleteQnaFile(no);
+	}
 
 	@Override
 	public void updateQna(Qna qna, QnaFile qnafile) throws Exception {
@@ -115,10 +121,7 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 		map.put("list", mapper.selectBoardSearch(search));
 		map.put("pageResult", new PageResult(search.getPageNo(),mapper.searchBoardCount(search)));
 		List<Qna> list = mapper.selectBoardSearch(search);
-		for(Qna qna:list) {
-			System.out.println(qna.getTitle() +"제목");
-			System.out.println(qna.getContent() +"내용");
-		}
+		System.out.println(search.getBegin());
 		return map;
 	
 	}
@@ -142,11 +145,24 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 		return mapper.selectComment(comment.getNo());
 	}
 
+
 	@Override
-	public void delete(int no) throws Exception {
-		System.out.println("게시판 삭제 기능 구현 ");
-		mapper.deleteBoard(no);
-		mapper.deleteQnaFile(no);
+	public List<QnaComment> commentUpdate(QnaComment comment) throws Exception {
+		System.out.println(comment.getCommentNo() +"댓글업데이트서비스");
+		mapper.updateComment(comment);
+		return mapper.selectComment(comment.getNo()); 
+	}
+
+	@Override
+	public List<QnaComment> commentDelete(QnaComment comment) throws Exception {
+		mapper.deleteComment(comment.getCommentNo());
+		return mapper.selectComment(comment.getNo());
+	}
+
+	@Override
+	public List<QnaComment> commentList(int no) throws Exception {
+		System.out.println("댓글리스트 확인중");
+		return mapper.selectComment(no);
 	}
 	
 	

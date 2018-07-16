@@ -122,11 +122,32 @@ public class QnaBoardController {
 	
 	// 댓글 
 	
+	@RequestMapping("/commentList.json")
+	@ResponseBody
+	public List<QnaComment> commentList(int no) throws Exception{
+		System.out.println("댓글리스트호출");
+		return qnaBoardService.commentList(no);
+	}
+	
 	@RequestMapping("/commentRegist.json")
 	@ResponseBody
 	public List<QnaComment> commentRegist(QnaComment comment) throws Exception{
 		System.out.println("댓글등록");
 		return qnaBoardService.commentRegist(comment);
+	}
+	
+	@RequestMapping("/commentDelete.json")
+	@ResponseBody
+	public List<QnaComment> commentDelete(QnaComment comment) throws Exception {
+		System.out.println("댓글삭제확인");
+		return qnaBoardService.commentDelete(comment);
+	}
+	
+	@RequestMapping("/commentUpdate.json")
+	@ResponseBody
+	public List<QnaComment> commentUpdate(QnaComment comment) throws Exception {
+		System.out.println("댓글업뎃확인");
+		return qnaBoardService.commentUpdate(comment);
 	}
 	
 	
