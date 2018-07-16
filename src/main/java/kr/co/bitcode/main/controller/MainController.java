@@ -79,15 +79,15 @@ public class MainController {
 		System.out.println("사용자가 올린 파일 타입 : " + attach.getContentType());
 		System.out.println("경로 : " + parentPath);
 		try {
-			// 실제 서버에 저장하기
-			if(parentPath == null) {
-				attach.transferTo(new File(PATH + id, attach.getOriginalFilename()));
-				return "";
-			}else {
-				File create = new File(PATH + id + "/" + parentPath, attach.getOriginalFilename());
-				create.mkdirs();
-				attach.transferTo(create);
-			}
+//			if(parentPath == null) {
+//				attach.transferTo(new File(PATH + id, attach.getOriginalFilename()));
+//				return "";
+//			}else {
+//			}
+			// 실제 서버에 업로드 (경로없으면 폴더 생성 후 파일 업로드)
+			File create = new File(parentPath, attach.getOriginalFilename());
+			create.mkdirs();
+			attach.transferTo(create);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -102,10 +102,10 @@ public class MainController {
 		}else{
 			i = args[0];
 		}
-		long size = 0;
+//		long size = 0; 용량 체크
 		List<Folder> fList = new ArrayList<>(); 
 		for (File ff : file.listFiles()) {
-			size += ff.length();
+//			size += ff.length();
 			Folder folder = new Folder();
 			if(ff.isFile()){
 				folder.setKey(i++);
