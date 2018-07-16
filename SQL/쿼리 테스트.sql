@@ -3,6 +3,7 @@ show tables;
 
 -- 특정 테이블 조회
 select * from tb_user;
+select * from tb_qna_board;
 
 -- 테이블 삭제
 drop table tb_user purge;
@@ -26,6 +27,11 @@ delete from tb_user
 update tb_user
 		set auth = 'S'
 		where id = 'admin';
+		
+-- update 답글여부
+update tb_qna_board
+	set answer_at = 'Y'
+	where no = 38;
 		
 		
 select *

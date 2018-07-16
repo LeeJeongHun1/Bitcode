@@ -17,20 +17,7 @@ app.get('/', function(req, res) {
 	  res.header("Access-Control-Allow-Origin", "*");
 		res.sendFile(__dirname + '/chat.html');
 	});
-/*
-var io = require('socket.io').listen(server, {
-    log: true,
-    origins: '*:*'
-});
 
-io.set('transports', [
-    // 'websocket',
-    'xhr-polling',
-    'jsonp-polling'
-]);
-*/
-
-var roomArr = [];
 var rooms = [];
 
 var io = require('socket.io')(server);
@@ -50,7 +37,7 @@ io.on("connection", function (socket) {
     console.log("roomId : " + data.roomId);
     console.log("sender : " + data.sender);
     console.log("msg : " + data.msg);
-    roomArr[data.roomId] = [socket.id];
+    rooms[data.roomId] = [socket.id];
   })
 
   socket.on("msg", function (data) {
@@ -66,63 +53,6 @@ io.on("connection", function (socket) {
   });
 });
 
-
-/*
-var channels = {};
-// 소켓 페이지 접속
-io.sockets.on('connection', function (socket) {
-    var initiatorChannel = '';
-    if (!io.isConnected) {
-        io.isConnected = true;
-    }
-
-    socket.on('new-channel', function (data) {
-        if (!channels[data.channel]) {
-            initiatorChannel = data.channel;
-        }
-
-        channels[data.channel] = data.channel;
-        onNewNamespace(data.channel, data.sender);
-    });
-
-    socket.on('presence', function (channel) {
-        var isChannelPresent = !! channels[channel];
-        socket.emit('presence', isChannelPresent);
-    });
-
-    socket.on('disconnect', function (channel) {
-        if (initiatorChannel) {
-            delete channels[initiatorChannel];
-        }
-    });
-});
-*/
-/*
-function onNewNamespace(channel, sender) {
-    io.of('/' + channel).on('connection', function (socket) {
-        var username;
-        if (io.isConnected) {
-            io.isConnected = false;
-            socket.emit('connect', true);
-        }
-
-        socket.on('message', function (data) {
-            if (data.sender == sender) {
-                if(!username) username = data.data.sender;
-                
-                socket.broadcast.emit('message', data.data);
-            }
-        });
-        
-        socket.on('disconnect', function() {
-            if(username) {
-                socket.broadcast.emit('user-left', username);
-                username = null;
-            }
-        });
-    });
-}
-*/
 // 서버 구동
 server.listen(10001, function() {
   console.log('SSL server listening on port 10001');

@@ -24,6 +24,7 @@ public class RemoteController {
 	@Autowired
 	private RemoteService service;
 	
+	/** 상담신청 리스트 */
 	@RequestMapping("/list.do")
 	public ModelAndView remoteList() {
 		ModelAndView mav = new ModelAndView();
@@ -32,10 +33,12 @@ public class RemoteController {
 		return mav;
 	}
 	
+	/** 상담신청 폼 */
 	@RequestMapping("/insertForm.do")
 	public void remoteForm(HttpSession session) {
 	}
 	
+	/** 상담화면 */
 	@RequestMapping("/remote.do")
 	public ModelAndView remote(String question, String nickName, String id, String link, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
@@ -73,6 +76,7 @@ public class RemoteController {
 		return mav;
 	}
 	
+	/** 상담종료시 리스트에서 삭제 */
 	@RequestMapping("/remoteDel.do")
 	public void remoteDel(String id) {
 		System.out.println("idididididididiiddi");
@@ -85,13 +89,6 @@ public class RemoteController {
 		}
 	}
 	
-	@RequestMapping("/remote2.do")
-	public void remote2() {
-	}
-	
-	@RequestMapping("/remote3.do")
-	public void remote3() {
-	}
 	@RequestMapping("/remoteTest.do")
 	public void remote4() {
 	}
