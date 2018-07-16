@@ -26,8 +26,14 @@
 	  <p class="innerText"></p>	  
 	  <input name="email" placeholder="Email을 입력하세요" type="text" id="userEmail" data-flag="no" class="inputDetail"/>
 	  <p class="innerText"></p>
-	  <input name="birthday" placeholder="생년월일 입력하세요" type="text" id="userBirth" data-flag="no" class="inputDetail" />
-	  <p class="innerText"></p>
+  <div class="birthday">
+<!--   	<input type="date" name="birthday" id="userBirth"> -->
+    <input type="text" name="year" id="birth1" size="4" data-flag="no" class="inputDetail1" placeholder="Year"/>
+    <input type="text" name="month" id="birth2"  size="2" data-flag="no" class="inputDetail1" placeholder="Month" />
+    <input type="text" name="date" id="birth3"  size="2" data-flag="no" class="inputDetail1" placeholder="date"/>  
+  	<p class="innerText"></p>
+  </div>
+  <input name="birthday" type="hidden" class="inputDetail" />
 <!-- 	  <button class="btn" id="submitBtn">Sign UP</button> -->
 	  <div id="submitBox">
 	 	 <a href="#1" id="submitBtn"><span class="signupbtn">Sign UP</span></a>
