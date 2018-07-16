@@ -9,9 +9,28 @@
     <title>chat</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/styles.css">
+    <script src="${pageContext.request.contextPath}/resources/js/chat/chat.js"></script>
 </head>
 
 <body>
+	<div id="loginBox">
+		<input type="text" id="id" name="id" />
+		<input type="password" id="pass" name="pass" />
+	<button id="loginBtn">로그인</button>
+	</div>
+	<div id="logoutBox">
+		<span></span>님 접속중입니다.
+		<button id="logoutBtn">로그아웃</button>
+	</div>
+	<div id="msgBox">
+		<input type="text" id="message" name="message" />
+		<button id="sendBtn">메세지 보내기</button>
+	</div>
+	
+	<div id="result"></div>
+	
+	
+	
 	<div class="container" style="color:#80FF00; background-color: black; height:600px">
     <div class="container" style="height:150px;">
         <h1 class="text-center" style="margin-top:50px;">대화방</h1>
