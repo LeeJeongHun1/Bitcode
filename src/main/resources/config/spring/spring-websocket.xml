@@ -14,7 +14,7 @@
     http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
 	<websocket:handlers>
-		<websocket:mapping handler="test01" path="/test01.do"/>
+		<websocket:mapping handler="chat" path="/chat.do"/>
 		<websocket:handshake-interceptors>
 	    	<bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor" />
 	    </websocket:handshake-interceptors>		
