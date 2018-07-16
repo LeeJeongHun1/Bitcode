@@ -10,6 +10,7 @@
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/board/styles.css">
+<script src="${pageContext.request.contextPath}/resources/js/codeboard/codeBoardList.js"></script>
 <style type="text/css">
  a:link { color: #80FF00; text-decoration: none;}
  a:visited { color: #80FF00; text-decoration: none;}
