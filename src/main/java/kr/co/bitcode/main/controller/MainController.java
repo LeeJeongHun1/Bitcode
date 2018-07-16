@@ -35,13 +35,8 @@ public class MainController {
 	
 	@RequestMapping("/selectFolder.json")
 	@ResponseBody
-	public List<Folder> selectFolder(String parentPath, String id) {
-		String folderPath = "";
-		if(parentPath == null){
-			folderPath = PATH + id;
-		}else{
-			folderPath = parentPath;
-		}
+	public List<Folder> selectFolder(String id) {
+		String folderPath = PATH + id;
 		System.out.println("경로 : " + folderPath);
 		File f = new File(folderPath);
 		return ListDirectory(f);
@@ -73,7 +68,7 @@ public class MainController {
 	
 	@RequestMapping("/upload.json")
 	@ResponseBody
-	public String upload(MultipartFile attach, String id, String parentPath){
+	public List<Folder> upload(MultipartFile attach, String id, String parentPath){
 		System.out.println("사용자가 올린 파일 이름 : " + attach.getOriginalFilename());
 		System.out.println("사용자가 올린 파일 이름1 : " + attach.getName());
 		System.out.println("사용자가 올린 파일 타입 : " + attach.getContentType());
@@ -91,7 +86,7 @@ public class MainController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return PATH + id;
+		return ListDirectory(new File(PATH + id));
 	}
 	
 	private List<Folder> ListDirectory(File file, int...args){

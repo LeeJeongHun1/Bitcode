@@ -1,6 +1,8 @@
 	var computer = document.getElementById('icon-computer');
 
 	var computerOverlay = document.getElementById('overlay-computer');
+	var musicOverlay = document.getElementById('overlay-computer-music');
+	var shareOverlay = document.getElementById('overlay-computer-share');
 
 	function opencom() {
 		computerOverlay.style.transform = "scale(1)";
