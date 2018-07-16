@@ -36,6 +36,7 @@ body {
 	// 소켓서버에 접속
 	var socket = io.connect();
 	// var socket = io.connect("http://192.168.0.179:10001");
+	
 	// msg 등록
     socket.on("msg", function (data) {
     	console.dir(data);
@@ -49,10 +50,11 @@ body {
 		// msg 호출
       	socket.emit("msg", {roomId: roomId, sender: sender, msg: $("#message").val()});
 	
-		// 방번호로 룸 조인
-    	socket.emit('joinroom',{room: roomId});
     });
 	
+	// 룸번호로 조인
+	socket.emit('join:room', {roomId: roomId});
+    
     // 서버에서 전송받은 방번호와 닉네임
 	window.addEventListener("message", receiveMessage, false);
 	var sender = '';
@@ -66,7 +68,11 @@ body {
 		roomId = obj.roomId;
 		// 메시지
 		msg = obj.msg;
+		
+		// 방번호로 룸 조인
+    	socket.emit("joinroom", {roomId: roomId});
 	}
+	
 	</script>
 
 

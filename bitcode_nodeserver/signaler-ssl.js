@@ -35,13 +35,14 @@ var rooms = [];
 
 var io = require('socket.io')(server);
 
+// 소켓 io 연결
 io.on("connection", function (socket) {
   console.log(socket.id);
 
   // 방번호로 룸 조인
   socket.on('joinroom', function(data){
-	  console.log("룸번호 : " + data.room);
-	  socket.join(data.room);
+	  console.log("룸번호 : " + data.roomId);
+	  socket.join("room" + data.roomId);
   })
   
   socket.on("msg", function (data){
@@ -54,7 +55,9 @@ io.on("connection", function (socket) {
 
   socket.on("msg", function (data) {
     // 개별통신 : 데이터를 보낸 사용자에게만 보내기
-	  io.to(roomArr[data.roomId]).emit("msg", data);
+	// io.to(roomArr[data.roomId]).emit("msg", data);
+	// 룸에 메시지 전송
+	  io.sockets.in('room' + data.roomId).emit("msg", data);
   });
   
   socket.on('disconnect', function() {
