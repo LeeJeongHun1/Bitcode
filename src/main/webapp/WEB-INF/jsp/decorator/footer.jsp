@@ -1,5 +1,7 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <div>
 	<div class="footer-area">
@@ -60,10 +62,22 @@
   				</svg>
   			<div class="notifications-count js-count"></div>
 			</button></a>
+			
 	        <%-- 마이인포 --%>
-	        <c:if test="${sessionScope.user.id != null}">
-	       		<a href="${pageContext.request.contextPath}/user/userInfo.do" id="user"></a>
-	        </c:if>
+	        	<c:choose>
+	      			<c:when test="${sessionScope.user.auth == 'U'}">
+		       		<a href="${pageContext.request.contextPath}/user/userInfo.do" id="user"></a>
+					</c:when>
+						
+		        	<c:when test="${sessionScope.user.auth == 'S'}">
+		       		<a href="${pageContext.request.contextPath}/admin/management.do" id="user"></a>
+		        	</c:when>
+		        	
+		        	<c:otherwise>
+		        	</c:otherwise>
+	       		</c:choose>
+	        
+	        <%-- 로그인&아웃 --%>
             <c:choose>	
                 <c:when test="${sessionScope.user.id == null}">            
                     <a href="${pageContext.request.contextPath}/login/loginForm.do" id="login"></a>

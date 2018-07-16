@@ -8,7 +8,7 @@ public class User {
 	private String email;
 	private String birthday;
 	private int point;
-	private char auth;
+	private String auth;
 	
 	
 	
@@ -54,14 +54,12 @@ public class User {
 	public void setPoint(int point) {
 		this.point = point;
 	}
-	public char getAuth() {
+	public String getAuth() {
 		return auth;
 	}
-	public void setAuth(char auth) {
+	public void setAuth(String auth) {
 		this.auth = auth;
 	}
-	
-	
 	
 	
 }
