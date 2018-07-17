@@ -25,7 +25,7 @@ public class ChatSocketHandler extends TextWebSocketHandler{
 		User u = (User)attrs.get("user");
 		
 		// 요청한 사용자 정보를 관리
-		users.put(u.getId(), session);
+		users.put(u.getNickName(), session);
 		
 		System.out.println("------------------------------");
 		System.out.println("접속한 사용자 관리 목록");
