@@ -11,24 +11,26 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/itnews/itnewsdetail.css" />
 </head>
 <body>
-<!-- 이미지 부분 -->
-	  <div class="card-grid-space">
-	    <div class="cardITNewsDetail"><img src="${article.articleThumb}"></div>
-	  </div>
 	<!--   기사 내용부분 -->
 	  <div class="card-grid-space1">
 		<div class="cardITNewsDetail1">  
 	      <div>
-	        <h1>${article.articleTitle}</h1>
-	        <h1>${article.articleReporter}</h1>
-	        ${fn:replace(article.articleContent, newLine, "<br/>")}
-	     
+	        <h1 id="articleTitle">${article.articleTitle}</h1>
+	        <hr>
+		    <span id="articleReport">${article.articleReporter}</span><span id="articleReport">${article.articleDate}</span>
+		    <a href="${article.articleUrl}" id="articleUrl">원본 기사 보기 클릭...</a>
+	<!-- 이미지 부분 -->
+	<!-- 	<div class="card-grid-space"> -->
+		    <div class="cardITNewsDetail"><img src="${article.articleThumb}"></div>
+	<!-- 	  </div> -->
+			<hr>
+			<p id="articleContent">${fn:replace(article.articleContent, '다.', "다.<br/>")}</p>
+			<a href="${article.articleUrl}" id="articleUrl">원본 기사 보기 클릭...</a>
 	      </div>
 	    </div>  
 	  </div> 
 	  <div class="btnITList">
 	  <a href='${pageContext.request.contextPath}/itnews/itnews.do' class="ITList" role="button" >목록</a>
-<!-- 	  	<button class="ITList" >목록</button>  -->
 	  </div>	
 <!--   댓글부분 -->
 <!--  
