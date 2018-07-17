@@ -50,7 +50,7 @@
 
 			</table>
 			</div>
-		<button type="button" class="btn btn-default btn-group-xs pull-right">상담신청</button>
+		<button type="button" class="btn btn-default btn-group-xs pull-right order">상담신청</button>
 		</div>
 
 	</div>
