@@ -13,7 +13,8 @@
         <result column = "point" property = "point" />
         <result column = "auth" property = "auth" />
     </resultMap>
-	
+    
+    	
     <select id="selectbyIdEmail" parameterType="user" resultMap="userMap">
     	select *
     	  from tb_user

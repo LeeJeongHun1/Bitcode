@@ -20,16 +20,21 @@ INSERT INTO tb_user(id, name, nick_name, password, email, point, auth, birthday)
 
 INSERT INTO tb_user(id, name, nick_name, password, email, point, auth, birthday)
 	VALUES('id2', '홍길동', '길동이', 'id2', 'hong2@naver.com', 10, 'U', 19880102);
-
+INSERT INTO tb_user(id, name, nick_name, password, email, point, auth, birthday)
+	VALUES('id3', '홍길동', '길동이', 'id3', 'hong2@naver.com', 250, 'U', 19880102);
 
    
  select * from tb_user
- 	where id = 'id1';
-
+ 	where id = 'id3';
+ 	
+ 	
+update tb_user
+   set point = 250
+ where id = 'id1';  
 -----------------------------------------------------------------------------------------------------
 --delete 유저
 delete from tb_user
-	where id = 'bitcode';
+	where id = 'id3';
 	
 -- 전체 테이블 조회
 show tables;
