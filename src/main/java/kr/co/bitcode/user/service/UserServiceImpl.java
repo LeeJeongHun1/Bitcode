@@ -1,5 +1,7 @@
 package kr.co.bitcode.user.service;
 
+
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,12 +36,13 @@ public class UserServiceImpl implements UserService{
 		return userMapper.selectbyIdEmail(user);
 	}
 
+	@Override
+	public List<Qna> selectmyQuestion(String id) throws Exception {
+		return userInfoMapper.selectmyQuestion(id);
+	}
+
 	
 	//유저 질문 목록
-	@Override
-	public List<Qna> selectmyQuestion() throws Exception {
-		return userInfoMapper.selectmyQuestion();
-	}
 
 
 	

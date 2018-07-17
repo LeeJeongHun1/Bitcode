@@ -69,7 +69,7 @@
 	        <%-- 마이인포 --%>
 	        	<c:choose>
 	      			<c:when test="${sessionScope.user.auth == 'U'}">
-		       		<a href="${pageContext.request.contextPath}/user/userInfo.do" id="user"></a>
+		       		<a href="${pageContext.request.contextPath}/user/userInfo.do?id=${sessionScope.user.id}" id="user"></a>
 					</c:when>
 						
 		        	<c:when test="${sessionScope.user.auth == 'S'}">

@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/user/user.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/user/userInfo.css" />
 <link href='https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/sweetalertFile/sweetalert2.css" />
 <script src="${pageContext.request.contextPath}/resources/sweetalertFile/sweetalert2.all.min.js"></script>
@@ -57,13 +57,13 @@
     	
 		<table class="table table-hover">
 			<tr>
-				<th>번호</th><th>글쓴이</th><th colspan="2">제목</th><th colspan="2">만족도</th>
+				<th colspan="1">번호</th><th colspan="1">글쓴이</th><th colspan="4">제목</th><th colspan="3">만족도</th>
 			</tr>
 			<c:forEach var="qnaList" items="${qnaList}">
 			<c:if test="${qnaList.id == user.id}">
 			<tr>
 				<td>${qnaList.no}</td>			
-				<td>${qnaList.id}</td>				
+				<td>${user.nickName}</td>				
 				<td colspan="4"><a id="board_title" href='${pageContext.request.contextPath}/qnaboard/detail.do?no=${qnaList.no}'>${qnaList.title}</a></td>				
 				<td>${qnaList.stsfcCode}</td>
 			</tr>
@@ -79,19 +79,19 @@
 			<div class="xbtn">x</div>
 		</div>
 		<div>
-		<c:forEach var="userList" items="${userList}">
+<%-- 		<c:forEach var="userList" items="${userList}"> --%>
 			<c:choose>
-				<c:when test="${userList.id == user.id && 100 >= userList.point }">
-				<p class="userInfoPoint"><img class="lelvel" src="${pageContext.request.contextPath}/resources/images/level2.png">초보&nbsp;<span class="userInfobattery"><img class="userInfobattery1" src="${pageContext.request.contextPath}/resources/images/1battery.png"></span>&nbsp;${userList.point}Point</p>
+				<c:when test="${100 >= userInfo.point }">
+				<p class="userInfoPoint"><img class="lelvel" src="${pageContext.request.contextPath}/resources/images/level2.png">초보&nbsp;<span class="userInfobattery"><img class="userInfobattery1" src="${pageContext.request.contextPath}/resources/images/1battery.png"></span>&nbsp;${userInfo.point}Point</p>
 				</c:when>
-				<c:when test="${userList.id == user.id && userList.point >= 201 }">
-				<p class="userInfoPoint"><img class="lelvel" src="${pageContext.request.contextPath}/resources/images/level2.png">고수&nbsp;<span class="userInfobattery"><img class="userInfobattery1" src="${pageContext.request.contextPath}/resources/images/4battery.png"></span>&nbsp;${userList.point}Point</p>
+				<c:when test="${userInfo.point >= 201 }">
+				<p class="userInfoPoint"><img class="lelvel" src="${pageContext.request.contextPath}/resources/images/level2.png">고수&nbsp;<span class="userInfobattery"><img class="userInfobattery1" src="${pageContext.request.contextPath}/resources/images/4battery.png"></span>&nbsp;${userInfo.point}Point</p>
 				</c:when>			
-	        	<c:when test="${userList.id == user.id && userList.point >= 101 && 201 >= userList.point}">
-	        	<p class="userInfoPoint"><img class="lelvel" src="${pageContext.request.contextPath}/resources/images/level2.png">중수&nbsp;<span class="userInfobattery"><img class="userInfobattery1" src="${pageContext.request.contextPath}/resources/images/3battery.png"></span>&nbsp;${userList.point}Point</p>
+	        	<c:when test="${userInfo.point >= 101 && 201 >= userInfo.point}">
+	        	<p class="userInfoPoint"><img class="lelvel" src="${pageContext.request.contextPath}/resources/images/level2.png">중수&nbsp;<span class="userInfobattery"><img class="userInfobattery1" src="${pageContext.request.contextPath}/resources/images/3battery.png"></span>&nbsp;${userInfo.point}Point</p>
 	        	</c:when>		
 			</c:choose>
-		</c:forEach>
+<%-- 		</c:forEach> --%>
 		</div>
 		<div></div>
 		<div></div>
