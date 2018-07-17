@@ -70,12 +70,6 @@
 			</c:if>
 			</c:forEach>
 		</table>
-
-
-
-
-
-
 	</div>	
 
     <div id="card3" class="card three col">
@@ -85,7 +79,19 @@
 			<div class="xbtn">x</div>
 		</div>
 		<div>
-			<p class="userInfoPoint">초보<span class="userInfobattery"><img class="userInfobattery1" src="${pageContext.request.contextPath}/resources/images/1battery.png"></span> (500 P)</p>
+		<c:forEach var="userList" items="${userList}">
+			<c:choose>
+				<c:when test="${userList.id == user.id && 100 >= userList.point }">
+				<p class="userInfoPoint"><img class="lelvel" src="${pageContext.request.contextPath}/resources/images/level2.png">초보&nbsp;<span class="userInfobattery"><img class="userInfobattery1" src="${pageContext.request.contextPath}/resources/images/1battery.png"></span>&nbsp;${userList.point}Point</p>
+				</c:when>
+				<c:when test="${userList.id == user.id && userList.point >= 201 }">
+				<p class="userInfoPoint"><img class="lelvel" src="${pageContext.request.contextPath}/resources/images/level2.png">고수&nbsp;<span class="userInfobattery"><img class="userInfobattery1" src="${pageContext.request.contextPath}/resources/images/4battery.png"></span>&nbsp;${userList.point}Point</p>
+				</c:when>			
+	        	<c:when test="${userList.id == user.id && userList.point >= 101 && 201 >= userList.point}">
+	        	<p class="userInfoPoint"><img class="lelvel" src="${pageContext.request.contextPath}/resources/images/level2.png">중수&nbsp;<span class="userInfobattery"><img class="userInfobattery1" src="${pageContext.request.contextPath}/resources/images/3battery.png"></span>&nbsp;${userList.point}Point</p>
+	        	</c:when>		
+			</c:choose>
+		</c:forEach>
 		</div>
 		<div></div>
 		<div></div>

@@ -37,7 +37,9 @@ public class UserController {
 	@RequestMapping("/userInfo.do") 
 	public String joinForm(Model model) throws Exception{ 
 		List<Qna> qnaList= userService.selectmyQuestion();
+		List<User> userList = loginService.selectAllUser();
 		model.addAttribute("qnaList", qnaList);
+		model.addAttribute("userList", userList);
 		return "user/userInfo";
 	} 
 	//수정 클릭시
