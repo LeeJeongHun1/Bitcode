@@ -16,52 +16,16 @@
 <a href="${pageContext.request.contextPath}/crawling.do" class="crawlingBtn"><img src="${pageContext.request.contextPath}/resources/images/crawinfNews.png"></a>
 </c:if>
 <section class="cards-wrapper">
-  <div class="card-grid-space">
-    <a class="cardITNews" href="${pageContext.request.contextPath}/itnews/itnewsDetail.do" style="--bg-img: url(https://images1-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&resize_w=1500&url=https://codetheweb.blog/assets/img/posts/html-syntax/cover.jpg)">
-      <div>
-        <h1>HTML News1</h1><p>The syntax of a language is how it works. How to actually write it. Learn HTML syntax…</p>
-      </div>
-    </a>
-  </div>
+	<c:forEach var="newList" items="${newList}">
+	  <div class="card-grid-space">
+	    <a class="cardITNews" href="${pageContext.request.contextPath}/itnews/itnewsDetail.do?articleNo=${newList.articleNo}" style="--bg-img: url(https://images1-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&resize_w=1500&url=https://codetheweb.blog/assets/img/posts/html-syntax/cover.jpg)">
+	      <div><h3>IT News</h3><p>${newList.articleReporter}</p><p>${newList.articleTitle}</p></div>
+	    </a>
+	  </div>
+  </c:forEach>
   
-  <div class="card-grid-space">
-    <a class="cardITNews" href="${pageContext.request.contextPath}/itnews/itnewsDetail.do" style="--bg-img: url(https://images1-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&resize_w=1500&url=https://codetheweb.blog/assets/img/posts/html-syntax/cover.jpg)">
-      <div>
-        <h1>HTML News2</h1><p>The syntax of a language is how it works. How to actually write it. Learn HTML syntax…</p>
-      </div>
-    </a>
-  </div>  
-  <div class="card-grid-space">
-    <a class="cardITNews" href="${pageContext.request.contextPath}/itnews/itnewsDetail.do" style="--bg-img: url(https://images1-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&resize_w=1500&url=https://codetheweb.blog/assets/img/posts/html-syntax/cover.jpg)">
-      <div>
-        <h1>HTML News3</h1><p>The syntax of a language is how it works. How to actually write it. Learn HTML syntax…</p>
-      </div>
-    </a>
-  </div>  
 <!--   <div class="clear"></div> -->
-  
-  <div class="card-grid-space">
-    <a class="cardITNews" href="${pageContext.request.contextPath}/itnews/itnewsDetail.do" style="--bg-img: url(https://images1-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&resize_w=1500&url=https://codetheweb.blog/assets/img/posts/html-syntax/cover.jpg)">
-      <div>
-        <h1>News Syntax3</h1>
-        <p>The syntax of a language is how it works. How to actually write it. Learn HTML syntax…</p>
-      </div>
-    </a>
-  </div>   
-  <div class="card-grid-space">
-    <a class="cardITNews" href="${pageContext.request.contextPath}/itnews/itnewsDetail.do" style="--bg-img: url(https://images1-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&resize_w=1500&url=https://codetheweb.blog/assets/img/posts/html-syntax/cover.jpg)">
-      <div>
-        <h1>News Syntax4</h1><p>The syntax of a language is how it works. How to actually write it. Learn HTML syntax…</p>
-      </div>
-    </a>
-  </div>   
-  <div class="card-grid-space">
-    <a class="cardITNews" href="${pageContext.request.contextPath}/itnews/itnewsDetail.do" style="--bg-img: url(https://images1-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&resize_w=1500&url=https://codetheweb.blog/assets/img/posts/html-syntax/cover.jpg)">
-      <div>
-        <h1>News Syntax35</h1><p>The syntax of a language is how it works. How to actually write it. Learn HTML syntax…</p>
-      </div>
-    </a>
-  </div>   
+ 
 <!--   페이징 할 곳.. -->
   <div> 1 2 3 4 5 6 7 </div>
   
