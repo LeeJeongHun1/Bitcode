@@ -31,11 +31,16 @@ public class ChatSocketHandler extends TextWebSocketHandler{
 		System.out.println("접속한 사용자 관리 목록");
 		System.out.println("------------------------------");
 		Set<String> keys = users.keySet();
+		String userList = "userList:";
 		for(String key : keys) {
 			System.out.println(key);
-//			WebSocketSession wss = users.get(key);
-//			wss.sendMessage(new TextMessage(key+"님 입장"));
+			userList = userList + key + ":";			
 		}
+		for(String key : keys) {
+			WebSocketSession wss = users.get(key);
+			wss.sendMessage(new TextMessage(userList));
+		}
+		
 		System.out.println("------------------------------");
 	}
 

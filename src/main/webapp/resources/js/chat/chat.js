@@ -6,7 +6,7 @@ var ws = null;
 
 
 $(function () {
-	ws = new WebSocket('ws://192.168.10.101/bitcode/chat.do');
+	ws = new WebSocket('ws://localhost/bitcode/chat.do');
 	ws.onopen = function() {
 		console.log("웹소켓 접속 성공");
 		ws.send(loginId + "님 입장");
@@ -15,14 +15,18 @@ $(function () {
 		console.log(loginId);
 	};
 	ws.onmessage = function(evt) {
-//		if((evt.data).endsWith("입장")){
-//			$("#entranceUser").append(evt.data+"님");
-//			$("#result").scrollTop($("#result").height());			
-//		}
-//		else{
+		if((evt.data).startsWith("userList")){	
+			var subId = (evt.data).split(":");
+			
+			$("#entranceUser").html("");
+			$("#entranceUser").append(subId);
+			$("#result").scrollTop($("#result").height());			
+		}
+		else{
+			
 			$("#result").append(evt.data + "<br>");
 			$("#result").scrollTop($("#result").height());			
-//		}
+		}
 
 	};
 	ws.onerror = function(evt) {
