@@ -49,14 +49,17 @@
 </style>
 </head>
 <body>
-	<div class="wrapp">
-		<div class="text">
-			<span class="mainText">BIT CODE</span>
+	<c:if test="${empty sessionScope.user}">
+		<div class="wrapp">
+			<div class="text">
+				<span class="mainText">BIT CODE</span>
+			</div>
+			<div class="logo">
+				<span class="top-left"></span> <span class="bottom-right"></span>
+			</div>
 		</div>
-		<div class="logo">
-			<span class="top-left"></span> <span class="bottom-right"></span>
-		</div>
-	</div>
+	</c:if>
+	
 	<input type="hidden" id="sId" value="${sessionScope.user.id}" />
 	<div id="window" class="windows" style="height: 734px;">
 		<c:if test="${!empty sessionScope.user }">
@@ -260,7 +263,7 @@
 	// fancyTree
 	$(function() {
 		$.contextMenu({
-			selector: "#folder-area > div.col-xs-2 folders text-center",
+			selector: "#folder-area p",
 			items: {
 				"add": {name: "AddFolder", icon: "add" },
 				"copy": {name: "Copy", icon: "copy"},
@@ -269,6 +272,7 @@
 			callback: function (itemKey, opt) {
 				var node = $.ui.fancytree.getNode(opt.$trigger);
 				console.dir(opt)
+				console.dir(this)
 				alert("select " + itemKey + " on " + opt);
 				
 			}
@@ -355,7 +359,7 @@
 				}
 			}
 			loadFancytree(data);
-			$("#share-path").data("root","c:/java-lec/upload/"+$("#sId").val())
+			$("#share-path").data("root","c:/java-lec/upload/"+$("#sId").val());
 		})
 	}
 	
@@ -703,6 +707,7 @@
 	// 앞으로가기 기능
 	$("#backwards").click(function () {
 		alert('앞으로가기')
+		alert($("#share-path").data("root"))
 	})
 	
 	// 홈으로 이동
