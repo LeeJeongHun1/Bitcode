@@ -26,7 +26,6 @@ public class ChatSocketHandler extends TextWebSocketHandler{
 		
 		// 요청한 사용자 정보를 관리
 		users.put(u.getNickName(), session);
-		
 		System.out.println("------------------------------");
 		System.out.println("접속한 사용자 관리 목록");
 		System.out.println("------------------------------");
@@ -40,7 +39,6 @@ public class ChatSocketHandler extends TextWebSocketHandler{
 			WebSocketSession wss = users.get(key);
 			wss.sendMessage(new TextMessage(userList));
 		}
-		
 		System.out.println("------------------------------");
 	}
 
@@ -62,8 +60,10 @@ public class ChatSocketHandler extends TextWebSocketHandler{
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
 		System.out.println(session.getId() + "연결 종료됨");
+		Map<String, Object> attrs = session.getAttributes();
+		User u = (User)attrs.get("user");
 		// 종료된 사용자 정보를 삭제
-		users.remove(session.getId());
+		users.remove(u.getNickName());
 	}
 	
 }

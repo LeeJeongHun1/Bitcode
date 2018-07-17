@@ -17,13 +17,11 @@ $(function () {
 	ws.onmessage = function(evt) {
 		if((evt.data).startsWith("userList")){	
 			var subId = (evt.data).split(":");
-			
 			$("#entranceUser").html("");
 			$("#entranceUser").append(subId);
 			$("#result").scrollTop($("#result").height());			
 		}
 		else{
-			
 			$("#result").append(evt.data + "<br>");
 			$("#result").scrollTop($("#result").height());			
 		}

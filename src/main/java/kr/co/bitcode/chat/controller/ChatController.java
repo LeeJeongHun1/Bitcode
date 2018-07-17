@@ -19,17 +19,17 @@ public class ChatController {
 		
 	}
 	
-	@RequestMapping("/login.do")
-	@ResponseBody
-	public String login(HttpSession session, User u) {
-		session.setAttribute("user", u);
-		return "success";
-	}
-
-	@RequestMapping("/logout.do")
-	@ResponseBody
-	public String logout(HttpSession session) {
-		session.invalidate();
-		return "success";
-	}
+//	@RequestMapping("/login.do")
+//	@ResponseBody
+//	public String login(HttpSession session, User u) {
+//		session.setAttribute("user", u);
+//		return "success";
+//	}
+//
+//	@RequestMapping("/logout.do")
+//	@ResponseBody
+//	public String logout(HttpSession session) {
+//		session.invalidate();
+//		return "success";
+//	}
 }
