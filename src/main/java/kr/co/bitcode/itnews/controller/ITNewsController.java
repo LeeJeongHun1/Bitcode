@@ -27,11 +27,13 @@ public class ITNewsController {
 		mav.addObject("newList", newList);
 		return mav;
 	}
-	
-	
-	
+	//IT 상세페이지 출력
 	@RequestMapping("/itnewsDetail.do") 
-	public String itnewsDetail(int articleNo) { 
-		return "itnews/detail";
+	public ModelAndView itnewsDetail(int articleNo) { 
+		ModelAndView mav = new ModelAndView();
+		Article article = crawlingService.selectITNewsByNo(articleNo);
+		mav.setViewName("itnews/detail");
+		mav.addObject("article", article);
+		return mav;
 	} 
 }

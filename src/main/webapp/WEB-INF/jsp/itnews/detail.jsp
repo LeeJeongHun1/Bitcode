@@ -1,4 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,21 +12,24 @@
 </head>
 <body>
 <!-- 이미지 부분 -->
-  <div class="card-grid-space">
-    <div class="cardITNewsDetail"><img src="${pageContext.request.contextPath}/resources/images/Itimage22.jpg"></div>
-  </div>
-<!--   기사 내용부분 -->
-  <div class="card-grid-space1">
-	<div class="cardITNewsDetail1">  
-      <div>
-        <h1>HTML News1</h1><p>The syntax of a language is how it works. How to actually write it. Learn HTML syntax…</p>
-      </div>
-    </div>  
-  </div> 
-  <div class="btnITList">
-<%--   <a href='${pageContext.request.contextPath}/itnews/itnews.do' class="ITList" role="button" >목록</a> --%>
-  	<button class="ITList">목록</button> 
-  </div>	
+	  <div class="card-grid-space">
+	    <div class="cardITNewsDetail"><img src="${article.articleThumb}"></div>
+	  </div>
+	<!--   기사 내용부분 -->
+	  <div class="card-grid-space1">
+		<div class="cardITNewsDetail1">  
+	      <div>
+	        <h1>${article.articleTitle}</h1>
+	        <h1>${article.articleReporter}</h1>
+	        ${fn:replace(article.articleContent, newLine, "<br/>")}
+	     
+	      </div>
+	    </div>  
+	  </div> 
+	  <div class="btnITList">
+	  <a href='${pageContext.request.contextPath}/itnews/itnews.do' class="ITList" role="button" >목록</a>
+<!-- 	  	<button class="ITList" >목록</button>  -->
+	  </div>	
 <!--   댓글부분 -->
 <!--  
 		<div class="container-boardIT">

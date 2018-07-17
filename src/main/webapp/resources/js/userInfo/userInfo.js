@@ -31,6 +31,8 @@ $(function() {
 		    l.find(".today").css("background-color", y);
 		    d();
 		  }
+	  
+	  
 		  function h() {
 		    var e = [];
 		    for (var r = 1; r < v(t, n) + 1; r++) {
@@ -146,6 +148,8 @@ $(function() {
 		    }
 		  });
 		});
+
+
 //유저인포
 
 //Pass 찾기

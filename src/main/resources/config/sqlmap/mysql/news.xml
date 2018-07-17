@@ -40,9 +40,14 @@
 		)
 	</insert>
 	
-	
 	<select id="selectITNews" resultMap="articleMap">
 		select *
     	  from tb_news
+	</select>	
+
+	<select id="selectITNewsByNo" parameterType="int" resultMap="articleMap">
+		select *
+    	  from tb_news
+    	 where  article_no = #{articleNo}
 	</select>	
 </mapper>

@@ -32,6 +32,10 @@ public class CrawlingServiceImpl implements CrawlingService{
 	public List<Article> selectITNews() {
 		return mapper.selectITNews();
 	}
+	@Override
+	public Article selectITNewsByNo(int articleNo) {
+		return mapper.selectITNewsByNo(articleNo);
+	}
 	
 	
 	

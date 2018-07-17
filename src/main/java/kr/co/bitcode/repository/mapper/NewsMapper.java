@@ -10,4 +10,6 @@ public interface NewsMapper {
 	public void insertNews(Article article);
 	// 기사 리스트 출력
 	public List<Article> selectITNews();
+	// 기사 번호로 select 출력하기
+	public Article selectITNewsByNo(int articleNo);
 }
