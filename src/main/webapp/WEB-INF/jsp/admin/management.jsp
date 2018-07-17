@@ -17,8 +17,7 @@
 
 </head>
 <body>
-<div class="container1">
-  <h1 class="title1 twelve" id="profileName">관리</h1>
+<div class="managementBody">
   <div class="row cf">
   
     <div id="card1" class="card six col">
@@ -29,6 +28,8 @@
 		</div>    
 		  <h3 class="userInformation">문의글 통계</h3>
 		  
+		<%-- 문의율 그래프 --%>
+        <div id="donutchart"></div>  
     </div>
 <%-- ${pageContext.request.contextPath}/user/updatePassForm.do --%>
     <div id="card2" class="card six col">
@@ -38,10 +39,9 @@
 			<div class="xbtn">x</div>
 		</div>     
     	<h3 class="userInformation">Q&A 답변률</h3>
-    	<div class="allCnt">총 Q&A 0개</div>
-    	<div class="ansCnt">총 Q&A 답변 0개</div>
-		<%-- 문의율 그래프 --%>
-        <div id="donutchart"></div>
+    	<!-- <div class="allCnt">총 Q&A 0개</div>
+    	<div class="ansCnt">총 Q&A 답변 0개</div> -->
+		
 		<%-- 답변율 그래프 --%>
         <div id="columnchart_material"></div>
 	</div>	
@@ -100,8 +100,8 @@
 		php = result.php;
 		php_ans = result.php_ans;
 
-		$(".allCnt").html("총 Q&A " + allCnt + "개");
-		$(".ansCnt").html("총 Q&A 답변 " + ansCnt + "개");
+		//$(".allCnt").html("총 Q&A " + allCnt + "개");
+		//$(".ansCnt").html("총 Q&A 답변 " + ansCnt + "개");
 
 		// 문의율 그래프
 		google.charts.load("current", {

@@ -8,47 +8,54 @@
 <meta charset="UTF-8">
 <title>Remote</title>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/remote/remoteList.css">
 </head>
 <body>
-<body>
 
-  <div class="remote">
-   <table cellspacing="0" class="remoteList">
-     <tbody>
-       <tr>
-         <td class="head">문의주제</td>
-         <td class="head">신청자</td>
-         <td class="head">진행상태</td>
-       </tr>
+	<div class="remoteBody">
+		<div id="card1" class="card six col">
+			<div class="topbar blue">
+			<div class="swatches"><span class="red"></span><span class="orange"></span><span class="yellow"></span><span class="green"></span><span class="blue"></span></div>
+			<div class="maxbtn"><span></span></div>
+			<div class="xbtn" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">x</div>
+			</div> 
+			
+			<h3 class="userInformation">상담 신청 목록</h3>
+			
+			<div class="remote">
+			<table class="remoteList table table-hover">
+				<tr>
+					<th>문의주제</th>
+					<th>신청자</th>
+					<th>진행상태</th>
+				</tr>
 
-	<c:choose>
-       
-       <c:when test="${not empty remoteList}">
-       <c:forEach var="remote" items="${remoteList}">
-       <tr>
-        <td>${remote.question}</td>
-        <td>${remote.nickName}</td>
-        <td><a href="${remote.link}">상담</a></td>
-       </tr>
-       </c:forEach>
-       </c:when>
-       
-       <c:otherwise>
-        <tr>
-        <td colspan="3">대기중인 상담이 없습니다.</td>
-       </tr>
-		</c:otherwise>
-	</c:choose>       
-       
-      </tbody>
-  </table>
-<%--
-  <button type="button" class="order btn btn-default btn-group-xs" onclick="location.href='${pageContext.request.contextPath}/remote/insertForm.do'">상담신청</button>
- --%>  
-  <button type="button" class="order btn btn-default btn-group-xs">상담신청</button>
-</div>
-<script>
+				<c:choose>
+					<c:when test="${not empty remoteList}">
+						<c:forEach var="remote" items="${remoteList}">
+							<tr>
+								<td>${remote.question}</td>
+								<td>${remote.nickName}</td>
+								<td><a href="${remote.link}">상담</a></td>
+							</tr>
+						</c:forEach>
+					</c:when>
+
+					<c:otherwise>
+						<tr>
+							<td colspan="3">대기중인 상담이 없습니다.</td>
+						</tr>
+					</c:otherwise>
+				</c:choose>
+
+			</table>
+			</div>
+		<button type="button" class="order btn btn-default btn-group-xs">상담신청</button>
+		</div>
+
+	</div>
+	<script>
 //alert("${sessionScope.link}");
 
 $(".order").click(function(){
@@ -72,6 +79,8 @@ $(".order").click(function(){
 	    }
 	  })
 	})
+
+$(".remoteBody").draggable();
 
 </script>
 </body>

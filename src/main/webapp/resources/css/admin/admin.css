@@ -29,71 +29,29 @@ div .userInformation {
 /* CONTAINERS  max-width: 940px;*/
 
 /* .container1 { width: 80%; margin: 0 auto; }  */
-.container1 {
-	width: 1500px;
+.managementBody {
+	width: 1200px;
 	margin: 0 auto;
-	margin-left: 15%;
+	margin-top: 10%;
+	margin-left: 10%;
+	
 }
-
-.twelve {
-	width: 100%;
-}
-
-.eleven {
-	width: 91.53%;
-}
-
-.ten {
-	width: 83.06%;
-}
-
-.nine {
-	width: 74.6%;
-}
-
-.eight {
-	width: 66.13%;
-}
-
-.seven {
-	width: 57.66%;
-}
-
-.six {
-	width: 49.2%;
-}
-
-.five {
-	width: 40.73%;
-}
-
-.four {
-	width: 32.26%;
-}
-
-.three {
-	width: 23.8%;
-}
-
-.two {
-	width: 15.33%;
-}
-
-.one {
-	width: 6.866%;
-}
-
-.four1 {
-	width: 6%
-}
-
-.ten1 {
-	width: 30%
-}
-
-.five1 {
-	width: 10%
-}
+/* col 비율 */
+.twelve { width: 100%; }
+.eleven { width: 91.53%; }
+.ten { width: 83.06%; }
+.nine { width: 74.6%; }
+.eight { width: 66.13%; }
+.seven { width: 57.66%; }
+.six { width: 49.2%; }
+.five { width: 40.73%; }
+.four { width: 32.26%; }
+.three { width: 23.8%; }
+.two { width: 15.33%; }
+.one { width: 6.866%; }
+.four1 { width: 6% }
+.ten1 { width: 30% }
+.five1 { width: 10% }
 
 /* COLUMNS */
 .col {
@@ -110,7 +68,7 @@ div .userInformation {
 /* PROFILES */
 .card {
 	max-width: 90%;
-	height: 670px;
+	height: 500px;
 	background-color: #f7f7f7;
 	font-family: 'Arimo', sans-serif;
 	font-size: 14px;
@@ -220,59 +178,6 @@ input[type="button"] {
 	cursor: pointer;
 }
 
-/* table @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
-.col-md-1 {
-	width: 8.3333333%
-} /* 12개의 엘리먼트들이 부모의 영역중 8.3 정도를 영역으로 차지 */
-.col-md-2 {
-	width: 16.6666667%
-} /* 6개 */
-.col-md-3 {
-	width: 25%
-} /* 4개 */
-.col-md-4 {
-	width: 33.3333333%
-} /* 3개 */
-.col-md-5 {
-	width: 41.6666667%
-}
-
-.col-md-6 {
-	width: 50%
-} /* 2개 */
-.col-md-7 {
-	width: 58.3333333%
-}
-
-.col-md-8 {
-	width: 66.6666667%
-}
-
-.col-md-9 {
-	width: 75%
-}
-
-.col-md-10 {
-	width: 83.333333%
-}
-
-.col-md-11 {
-	width: 91.666667%
-}
-
-.col-md-12 {
-	width: 100%
-}
-
-.col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6,
-	.col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11 .col-md-12 {
-	float: left;
-	position: relative; /* 본래 자기 위치 기준에서 */
-	min-height: 1px;
-	padding-left: 15px; /* 자기 영역 내에서의 간격 */
-	padding-right: 15px;
-}
-
 table {
 	border-collapse: collapse;
 }
@@ -280,10 +185,6 @@ table {
 .table {
 	width: 100%;
 	margin-bottom: 20px;
-}
-
-th {
-	text-align: left;
 }
 
 td, th {
@@ -331,22 +232,18 @@ td, th {
 	background: #ad3025;
 	opacity: 0.9;
 }
-
 .orange {
 	background: #f27937;
 	opacity: 0.8;
 }
-
 .yellow {
 	background: #f0b500;
 	opacity: 0.8;
 }
-
 .green {
 	background: #22a86d;
 	opacity: 0.8;
 }
-
 .blue {
 	background: #2279a4;
 	opacity: 0.8;
@@ -391,103 +288,4 @@ span {
 	font-family: 'Days One', sans-serif;
 	font-size: 16px;
 	margin-top: -3px;
-}
-/* 등급 */
-.userInfoPoint {
-	margin-left: 45px;
-	/* 	margin-top	:5px; */
-	/* 	text-align:right; 	 	 */
-	font-size: 20px;
-	color: #353535;
-	text-shadow: 1px 1px 1px rgba(1, 1, 0, .1);
-}
-
-.userInfobattery1 {
-	/* 	margin-top:-30px;  */
-	vertical-align: sub;
-}
-/* //캘린더 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
-#calendar {
-	margin-left: auto;
-	margin-right: auto;
-	width: 320px;
-	font-family: 'Lato', sans-serif;
-	margin-top: 30px;
-}
-
-#calendar_weekdays div {
-	display: inline-block;
-	vertical-align: top;
-}
-
-#calendar_content, #calendar_weekdays, #calendar_header {
-	position: relative;
-	width: 320px;
-	overflow: hidden;
-	float: left;
-	z-index: 10;
-}
-
-#calendar_weekdays div, #calendar_content div {
-	width: 40px;
-	height: 40px;
-	overflow: hidden;
-	text-align: center;
-	background-color: #FFFFFF;
-	color: #787878;
-}
-
-#calendar_content {
-	-webkit-border-radius: 0px 0px 12px 12px;
-	-moz-border-radius: 0px 0px 12px 12px;
-	border-radius: 0px 0px 12px 12px;
-}
-
-#calendar_content div {
-	float: left;
-}
-
-#calendar_content div:hover {
-	background-color: #F8F8F8;
-}
-
-#calendar_content div.blank {
-	background-color: #E8E8E8;
-}
-
-#calendar_header, #calendar_content div.today {
-	zoom: 1;
-	filter: alpha(opacity = 70);
-	opacity: 0.7;
-}
-
-#calendar_content div.today {
-	color: #FFFFFF;
-}
-
-#calendar_header {
-	width: 100%;
-	height: 37px;
-	text-align: center;
-	background-color: #FF6860;
-	padding: 18px 0;
-	-webkit-border-radius: 12px 12px 0px 0px;
-	-moz-border-radius: 12px 12px 0px 0px;
-	border-radius: 12px 12px 0px 0px;
-}
-
-#calendar_header h1 {
-	font-size: 1.5em;
-	color: #FFFFFF;
-	float: left;
-	width: 70%;
-	margin-top: -10px;
-}
-
-i[class^=icon-chevron] {
-	color: #FFFFFF;
-	float: left;
-	width: 15%;
-	border-radius: 50%;
-	margin-top: -20px;
 }
