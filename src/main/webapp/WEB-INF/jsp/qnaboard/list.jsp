@@ -7,7 +7,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ListBoard</title>
+<title>BIT CODE</title>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <!-- 합쳐지고 최소화된 최신 CSS -->
@@ -260,7 +260,7 @@
 				html+='<td>'+i.no+'</td>';
 				html+='<td>'+i.codeName+'</td>';
 				html+='<td><a href="detail.do?no='+i.no+'">'+i.title+'</a></td>';
-				html+='<td>'+i.id+'</td>';
+				html+='<td>'+i.nickName+'</td>';
 				var date = new Date(i.regDate);
 				var time = date.getFullYear() + "-" 
 				         + (date.getMonth() + 1) + "-" 
@@ -274,7 +274,7 @@
 				html+= '</tr>'	
 			}else{
 				html+='<tr>';
-				html+='<td></td>';
+				html+='<td>⤷</td>';
 				html+='<td>'+i.codeName+'</td>';
 				html+='<td><a href="detail.do?no='+i.no+'">'+i.title+'</a></td>';
 				html+='<td>'+i.id+'</td>';
