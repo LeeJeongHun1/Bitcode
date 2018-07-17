@@ -38,9 +38,12 @@
 			<div class="xbtn">x</div>
 		</div>     
     	<h3 class="userInformation">Q&A 답변률</h3>
-    	<div class="allCnt">총 Q&A ${allCnt}개</div>
-    	<div class="ansCnt">총 Q&A 답변 ${ansCnt}개</div>
+    	<div class="allCnt">총 Q&A 0개</div>
+    	<div class="ansCnt">총 Q&A 답변 0개</div>
+		<%-- 문의율 그래프 --%>
         <div id="donutchart"></div>
+		<%-- 답변율 그래프 --%>
+        <div id="columnchart_material"></div>
 	</div>	
 
     <div id="card3" class="card six col">
@@ -67,59 +70,85 @@
 	cnt();
 	function cnt() {
 		$.ajax({
-			url: "/bitcode/admin/answerCnt.json",
-			dataType: "json",
-			success: answerCnt
+			url : "/bitcode/admin/answerCnt.json",
+			dataType : "json",
+			success : answerCnt
 		});
 	};
-	
-	var allCnt = 0;
-	var ansCnt = 0;
-	var cCnt = 0;
-	var javaCnt = 0;
-	var javascriptCnt = 0;
-	var pythonCnt = 0;
-	var aspCnt = 0;
-	var phpCnt = 0;
+
+	var allCnt, ansCnt;
+	var c, c_ans, java, java_ans;
+	var jscript, jscript_ans, python, python_ans;
+	var asp, asp_ans, php, php_ans;
 	
 	// 답변률 통계 카운트출력
-	function answerCnt (result) {
-		allCnt = result.allCnt;
-		ansCnt = result.ansCnt;
-		cCnt = result.cCnt;
-		javaCnt = result.javaCnt;
-		javascriptCnt = result.javascriptCnt;
-		pythonCnt = result.pythonCnt;
-		aspCnt = result.aspCnt;
-		phpCnt = result.phpCnt;
+	function answerCnt(result) {
+		
+		result = result[0];
+		allCnt = result.qna;
+		ansCnt = result.qna_ans;
+		c = result.c;
+		c_ans = result.c_ans;
+		java = result.java;
+		java_ans = result.java_ans;
+		jscript = result.jscript;
+		jscript_ans = result.jscript_ans;
+		python = result.python;
+		python_ans = result.python_ans;
+		asp = result.asp;
+		asp_ans = result.asp_ans;
+		php = result.php;
+		php_ans = result.php_ans;
 
 		$(".allCnt").html("총 Q&A " + allCnt + "개");
 		$(".ansCnt").html("총 Q&A 답변 " + ansCnt + "개");
-		
-		google.charts.load("current", {packages:["corechart"]});
-	    google.charts.setOnLoadCallback(drawChart);
-	    function drawChart() {
-	      var data = google.visualization.arrayToDataTable([
-	        ['Task', 'Hours per Day'],
-	        ['C', cCnt],
-	        ['Java', javaCnt],
-	        ['JavaScript', javascriptCnt],
-	        ['Python', pythonCnt],
-	        ['ASP', aspCnt],
-	        ['PHP', phpCnt]
-	      ]);
-	
-	      var options = {
-	        title: 'Q&A 문의 주제',
-	        pieHole: 0.4,
-	      };
-	
-	      var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
-	      chart.draw(data, options);
-	    }
-	}
-	
 
+		// 문의율 그래프
+		google.charts.load("current", {
+			packages : [ "corechart" ]
+		});
+		google.charts.setOnLoadCallback(drawChart);
+		function drawChart() {
+			var data = google.visualization.arrayToDataTable([
+					[ 'Task', 'Hours per Day' ], [ 'C', c ],
+					[ 'Java', java ], [ 'JavaScript', jscript ],
+					[ 'Python', python ], [ 'ASP', asp ],
+					[ 'PHP', php ] ]);
+
+			var options = {
+				title : 'Q&A 문의 주제',
+				pieHole : 0.4,
+			};
+
+			var chart = new google.visualization.PieChart(document
+					.getElementById('donutchart'));
+			chart.draw(data, options);
+
+		} // 문의율 그래프
+
+		// 답변율 그래프
+		google.charts.load('current', {
+			'packages' : [ 'bar' ]
+		});
+		google.charts.setOnLoadCallback(barChart);
+		function barChart() {
+			var data = google.visualization.arrayToDataTable([
+					[ '언어', 'Q', 'A' ], [ 'C', c, c_ans ],
+					[ 'Java', java, java_ans ], [ 'JavaScript', jscript, jscript_ans ],
+					[ 'Python', python, python_ans ], [ 'ASP', asp, asp_ans ],
+					[ 'PHP', php, php_ans ] ]);
+			var options = {
+				chart : {
+					title : 'Q&A 답변율'
+				}
+			};
+			var chart = new google.charts.Bar(document
+					.getElementById('columnchart_material'));
+			chart.draw(data, google.charts.Bar.convertOptions(options));
+		} // 답변율 그래프
+
+	}
 </script>
+
 </body>
 </html>

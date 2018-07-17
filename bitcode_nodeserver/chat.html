@@ -3,13 +3,13 @@ body {
 	margin: 0px;
 	padding: 0px;
 }
-.chatBox{
+#chatBox{
   width: 330px;
   height: 600px;
   max-height: 600px;
   background: white;
   border-radius: 5px;
-  overflow: hidden;
+  overflow-x: hidden;
   overflow-y: auto;
 }
 .bottom-bar{
@@ -41,6 +41,9 @@ body {
     socket.on("msg", function (data) {
     	console.dir(data);
 	   $("#chatBox").before(data.sender + " : " + data.msg + "<br>");
+	   
+	   $(document).scrollTop($(document).height());
+	   
     });
   
 

@@ -1,5 +1,6 @@
 package kr.co.bitcode.admin.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +24,10 @@ public class AdminController {
 	public void updateUserForm()  {
 	} 
 	
+	/** Q&A 주제별 등록 갯수 */
 	@RequestMapping("/answerCnt.json")
 	@ResponseBody
-	public Map<String, Integer> answerCnt() {
+	public List<Map> answerCnt() {
 		return service.answerCnt();
 	}
 	
