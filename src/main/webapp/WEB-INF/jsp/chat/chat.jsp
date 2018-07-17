@@ -40,7 +40,7 @@
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 	</div>
 <script>
-var loginId= '${sessionScope.user.id}';
+var loginId= '${sessionScope.user.nickName}';
 </script>
 <script src="${pageContext.request.contextPath}/resources/js/chat/chat.js"></script>
 </body>
