@@ -7,9 +7,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.co.bitcode.login.service.LoginService;
@@ -35,12 +35,19 @@ public class UserController {
 	
 	//회원정보
 	@RequestMapping("/userInfo.do") 
-	public String joinForm(Model model) throws Exception{ 
-		List<Qna> qnaList= userService.selectmyQuestion();
-		List<User> userList = loginService.selectAllUser();
-		model.addAttribute("qnaList", qnaList);
-		model.addAttribute("userList", userList);
-		return "user/userInfo";
+	public ModelAndView joinForm(String id) throws Exception{ 
+		ModelAndView mav = new ModelAndView();
+		//한 유저에 대한 질문 List 출력
+		List<Qna> qnaList= userService.selectmyQuestion(id);
+		// 유저 등급및 포인트 출력
+		User userInfo = loginService.selectUserById(id);
+		mav.setViewName("user/userInfo");
+		mav.addObject("qnaList", qnaList);
+		mav.addObject("userInfo", userInfo);
+		
+		return mav;
+		
+		
 	} 
 	//수정 클릭시
 	@RequestMapping("/updateUserForm.do") 
