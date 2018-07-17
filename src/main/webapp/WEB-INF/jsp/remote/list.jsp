@@ -8,6 +8,8 @@
 <meta charset="UTF-8">
 <title>Remote</title>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/remote/remoteList.css">
 </head>
 <body>
@@ -53,10 +55,11 @@
 		</div>
 
 	</div>
+	
+	
 	<script>
-//alert("${sessionScope.link}");
-
-$(".order").click(function(){
+	
+	$(".order").click(function(){
 	  swal({
 	    title: '결제하시겠습니까',
 	    text: "상담을 위해서는 결제가 필요한 서비스입니다",
@@ -78,8 +81,8 @@ $(".order").click(function(){
 	  })
 	})
 
-$(".remoteBody").draggable();
+	$(".remoteBody").draggable();
 
-</script>
+	</script>
 </body>
 </html>
