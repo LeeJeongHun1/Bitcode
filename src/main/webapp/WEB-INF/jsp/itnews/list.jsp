@@ -1,4 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,9 +11,10 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/itnews/itnews.css" />
 </head>
 <body>
-
-
 <h1 id="h1ITNews">IT News BIT CODE</h1>
+<c:if test="${sessionScope.user.auth == 'S'}">
+<a href="${pageContext.request.contextPath}/crawling.do" class="crawlingBtn"><img src="${pageContext.request.contextPath}/resources/images/crawinfNews.png"></a>
+</c:if>
 <section class="cards-wrapper">
   <div class="card-grid-space">
     <a class="cardITNews" href="${pageContext.request.contextPath}/itnews/itnewsDetail.do" style="--bg-img: url(https://images1-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&resize_w=1500&url=https://codetheweb.blog/assets/img/posts/html-syntax/cover.jpg)">

@@ -24,7 +24,9 @@
 	        <%-- Q&A 게시판 --%>
             <a href="${pageContext.request.contextPath}/qnaboard/list.do" id="question"></a>
 	        <%-- IT News --%>	
+	        <c:if test="${sessionScope.user.id != null}">
             <a href="${pageContext.request.contextPath}/itnews/itnews.do" id="news"></a>
+            </c:if>
 	        <%-- 학원찾기 --%>
             <a href="${pageContext.request.contextPath}/searchcenter/searchCenter.do" id="search"></a>
             <%-- 크롬 브라우저 --%>

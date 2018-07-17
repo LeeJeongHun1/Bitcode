@@ -6,6 +6,7 @@ select * from tb_user;
 select * from tb_code_board;
 select * from tb_qna_board;
 select * from tb_language_code;
+select * from tb_news;
 
 -- 테이블 삭제
 drop table tb_user;
@@ -174,10 +175,10 @@ create table tb_news (
     `article_summary`   varchar(4000)    not null    comment '뉴스요약', 
     `article_content`   varchar(4000)    not null    comment '뉴스내용', 
     `article_reporter`  varchar(100)     not null    comment '뉴스기자', 
-    `article_thumb`     varchar(100)     not null    comment '뉴스썸네일', 
+    `article_thumb`     varchar(100)    	 null    comment '뉴스썸네일', 
     `article_url`       varchar(100)     not null    comment '뉴스링크', 
     `article_date`      varchar(100)     not null    comment '뉴스날짜'
-);
+) default charset=utf8;
 
 alter table tb_news comment 'it뉴스 테이블';
 --------------------------------------------------------------------
