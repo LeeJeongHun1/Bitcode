@@ -20,36 +20,44 @@ import kr.co.bitcode.repository.mapper.QnaMapper;
 public class NotificationSocketHanler extends TextWebSocketHandler {
 
 	private Map<String, WebSocketSession> users = new HashMap<>();
-	private Map<String, Object> maps = new HashMap<>();
+	//private Map<String, Object> maps = new HashMap<>();
 	
 	@Autowired
 	private QnaMapper mapper;
 
 	@Override
+	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
+		System.out.println(session.getId() + "연결됨");
+		users.put(session.getId(),session);
+		System.out.println("세션 아이디 체크 "+ users.get(session.getId()));
+	}
+	
+
+	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-		System.out.println("연결여부" + session.getId());
-		System.out.println("보낸메세지" + message.getPayload());
-		String reMsg = message.getPayload();
-		users.put(reMsg, session);
-		System.out.println("사용자 정보 " + users);
 		
-		Map<String,Object> attr =  session.getAttributes();
-		User user = (User)attr.get("user");
-		List<Qna> ansList = mapper.selectNtf(user.getId());
-		for(Qna qna:ansList) {
-			System.out.println(qna.getId() +"아이디");
-			System.out.println(qna.getAnswerAt() +"답변");
+		String reMsg = message.getPayload();
+		System.out.println("메세지 잘 담겼는지 확인 " + reMsg);
+		List<Qna> ansList = mapper.selectNtf(reMsg);
+		List<Qna> readList = mapper.selectNoRead(reMsg);
+		for(Qna read:readList) {
+			System.out.println("읽음여부 아이디" + read.getId());
+			System.out.println("읽음여부 확인 " + read.getReadAns());
 		}
-		List<Qna> readList = mapper.selectNoRead(user.getId());
-		maps.put("qnaList", ansList);
-		maps.put("readList",readList);
-		String sendMsg = maps.get("qnaList").toString();
-		//System.out.println(sendMsg);
+		
 		Set<String> keys = users.keySet();
 		for (String key : keys) {
 			WebSocketSession wSession = users.get(key);
-				wSession.sendMessage(new TextMessage(ansList.size()+"개에 답변이 달렸습니다.")); //전체 사용자에게 텍스트 멧세지를 전송한ㄳ
-				wSession.sendMessage(new TextMessage(readList.size()+"개에 글을 읽었습니다.")); //전체 사용자에게 텍스트 멧세지를 전송한ㄳ
+			for(Qna qna:ansList) {
+				System.out.println("답변여부리스트 아이디 :" + qna.getId());
+				System.out.println("답변여부리스트  확인:" + qna.getAnswerAt());
+				System.out.println("답변여부리스트  글번호:" + qna.getNo());
+			System.out.println("답변여부길이 :" + ansList.size() );
+			System.out.println("읽음여부길이 :" + readList.size() );
+				//wSession.sendMessage(new TextMessage(qna.getNo()+"번게시글이 "+ ansList.size()+"개 답변이 달렸습니다.")); //전체 사용자에게 텍스트 멧세지를 전송한ㄳ
+				wSession.sendMessage(new TextMessage(":" + qna.getNo()+","+ ansList.size())); //전체 사용자에게 텍스트 멧세지를 전송한ㄳ
+				//wSession.sendMessage(new TextMessage(readList.size()+"개에 글을 읽었습니다.")); //전체 사용자에게 텍스트 멧세지를 전송한ㄳ
+			}
 				
 		}
 		
@@ -61,21 +69,19 @@ public class NotificationSocketHanler extends TextWebSocketHandler {
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
 		System.out.println(session.getId() + " 연결 종료됨");
-/*		Map<String,Object> attr =  session.getAttributes();
-		System.out.println(attr.toString() +"맵정보");
-		User user = (User)attr.get("user");
-		System.out.println(user.getId() +"유저아이디" );
-		System.out.println(user.getName() +"이름");
-		users.remove(user.getId());
-		System.out.println("종료");*/
+		users.remove(session.getId());
+		System.out.println("왔으면 찍어줘");
+//		Map<String,Object> attr =  session.getAttributes();
+//		System.out.println(attr.toString() +"맵정보");
+//		User user = (User)attr.get("user");
+//		System.out.println(user.getId() +"유저아이디" );
+//		System.out.println(user.getName() +"이름");
+//		users.remove(session);
 	
 	}
 	
 
-	@Override
-	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-		System.out.println(session.getId() + "연결됨");
-	}
+	
 
 	
 	
