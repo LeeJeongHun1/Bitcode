@@ -14,10 +14,9 @@
 <body>
 
 	<div class="remoteBody">
-		<div id="card1" class="card six col">
+		<div id="card1" class="card ten col">
 			<div class="topbar blue">
 			<div class="swatches"><span class="red"></span><span class="orange"></span><span class="yellow"></span><span class="green"></span><span class="blue"></span></div>
-			<div class="maxbtn"><span></span></div>
 			<div class="xbtn" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">x</div>
 			</div> 
 			
@@ -51,7 +50,7 @@
 
 			</table>
 			</div>
-		<button type="button" class="order btn btn-default btn-group-xs">상담신청</button>
+		<button type="button" class="btn btn-default btn-group-xs pull-right">상담신청</button>
 		</div>
 
 	</div>

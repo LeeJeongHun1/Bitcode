@@ -1,3 +1,10 @@
+.remoteBody {
+	width: 1200px;
+	margin: 0 auto;
+	margin-top: 10%;
+	margin-left: 10%;
+}
+
 th, td, a {
   transition: color 333ms ease-in-out;
   vertical-align: middle;
@@ -77,18 +84,10 @@ tr:first-child td {
   transition: none;
 }
 
-/* 카드스타일 CSS */
-html, body {
-	width: 100%;
-	height: 100%;
-	margin: 0 auto;
-	padding: 0 auto;
-	font-family: 'Arimo', sans-serif;
-}
 /* 글씨 h1, h3 */
 div .userInformation {
 	margin-top: 20px;
-	margin-bottom: 5px;
+	margin-bottom: 50px;
 	color: #408080;
 	text-align: center;
 	font-size: 23px;
@@ -105,28 +104,22 @@ div .userInformation {
 	margin-bottom: 2%;
 }
 
-.remoteBody {
-	width: 1200px;
-	margin: 0 auto;
-	margin-top: 10%;
-	margin-left: 10%;
-}
 /* col 비율 */
-.twelve { width: 100%; }
-.eleven { width: 91.53%; }
-.ten { width: 83.06%; }
-.nine { width: 74.6%; }
-.eight { width: 66.13%; }
-.seven { width: 57.66%; }
-.six { width: 49.2%; }
-.five { width: 40.73%; }
-.four { width: 32.26%; }
-.three { width: 23.8%; }
-.two { width: 15.33%; }
 .one { width: 6.866%; }
+.two { width: 15.33%; }
+.three { width: 23.8%; }
+.four { width: 32.26%; }
+.five { width: 40.73%; }
+.six { width: 49.2%; }
+.seven { width: 57.66%; }
+.eight { width: 66.13%; }
+.nine { width: 74.6%; }
+.ten { width: 83.06%; }
+.eleven { width: 91.53%; }
+.twelve { width: 100%; }
 .four1 { width: 6% }
-.ten1 { width: 30% }
 .five1 { width: 10% }
+.ten1 { width: 30% }
 
 /* COLUMNS */
 .col {
@@ -144,18 +137,10 @@ div .userInformation {
 	height: 500px;
 	background-color: #f7f7f7;
 	font-family: 'Arimo', sans-serif;
+	
 	font-size: 14px;
 	box-shadow: 15px 15px 0px rgba(0, 0, 0, .1);
 	box-sizing: border-box;
-}
-
-.userCard {
-	max-width: 100%;
-	margin-left: 20px;
-	margin-bottom: 5px;
-	height: 15px;
-	font-family: 'Arimo', sans-serif;
-	font-size: 18px;
 }
 
 /* CARD ! */
@@ -314,6 +299,9 @@ table {
 	width: 11px;
 	height: 11px;
 	margin-top: 7px;
+}
+.pull-right {
+	margin-right: 50px;
 }
 
 .maxbtn:hover span, .maximized .maxbtn span {

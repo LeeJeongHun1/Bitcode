@@ -8,6 +8,8 @@
 <meta charset="UTF-8">
 <title>BIT CODE</title>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin/admin.css" />
 <link href='https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/sweetalertFile/sweetalert2.css" />
@@ -23,20 +25,18 @@
     <div id="card1" class="card six col">
 		<div class="topbar red">
 			<div class="swatches"><span class="red"></span><span class="orange"></span><span class="yellow"></span><span class="green"></span><span class="blue"></span></div>
-			<div class="maxbtn"><span></span></div>
-			<div class="xbtn">x</div>
+			<div class="xbtn" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">x</div>
 		</div>    
 		  <h3 class="userInformation">문의글 통계</h3>
 		  
 		<%-- 문의율 그래프 --%>
         <div id="donutchart"></div>  
     </div>
-<%-- ${pageContext.request.contextPath}/user/updatePassForm.do --%>
+
     <div id="card2" class="card six col">
 		<div class="topbar blue">
 			<div class="swatches"><span class="red"></span><span class="orange"></span><span class="yellow"></span><span class="green"></span><span class="blue"></span></div>
-			<div class="maxbtn"><span></span></div>
-			<div class="xbtn">x</div>
+			<div class="xbtn" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">x</div>
 		</div>     
     	<h3 class="userInformation">Q&A 답변률</h3>
     	<!-- <div class="allCnt">총 Q&A 0개</div>
@@ -49,15 +49,13 @@
     <div id="card3" class="card six col">
 		<div class="topbar yellow">
 			<div class="swatches"><span class="red"></span><span class="orange"></span><span class="yellow"></span><span class="green"></span><span class="blue"></span></div>
-			<div class="maxbtn"><span></span></div>
-			<div class="xbtn">x</div>
+			<div class="xbtn" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">x</div>
 		</div>
 		<div>
 			<h3 class="userInformation">Q&A 답변 만족률</h3>
 		</div>
-
-				
     </div>
+    
   </div>
 </div>
 <script src="${pageContext.request.contextPath}/resources/js/userInfo/userInfo.js"></script>
@@ -148,6 +146,9 @@
 		} // 답변율 그래프
 
 	}
+
+	$(".managementBody").draggable();
+	
 </script>
 
 </body>
