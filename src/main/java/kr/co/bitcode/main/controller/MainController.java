@@ -8,6 +8,7 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.activation.MimetypesFileTypeMap;
 import javax.print.attribute.standard.PageRanges;
 import javax.servlet.http.HttpServletResponse;
 
@@ -45,9 +46,8 @@ public class MainController {
 	@RequestMapping("/createFolder.json")
 	@ResponseBody
 	public List<Folder> createFolder(String path, String id) {
-		File f = new File(PATH + id + "/" + path);
-		f.mkdirs();
-		return ListDirectory(f);
+		new File(PATH + id + "/" + path).mkdirs();
+		return ListDirectory(new File(PATH + id));
 	}
 	
 	@RequestMapping("/enterDirectory.json")
@@ -103,7 +103,11 @@ public class MainController {
 		for (File ff : file.listFiles()) {
 //			size += ff.length();
 			Folder folder = new Folder();
+			String type = new MimetypesFileTypeMap().getContentType(ff);
 			if(ff.isFile()){
+				if(type.equals("image/jpeg")){
+					folder.setType("img");
+				}
 				folder.setKey(i++);
 				folder.setTitle(ff.getName());
 				folder.setParentPath(ff.getParent());

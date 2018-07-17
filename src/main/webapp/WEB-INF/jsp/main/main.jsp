@@ -14,8 +14,7 @@
 	src="//static.codepen.io/assets/editor/live/css_live_reload_init-890dc39bb89183d4642d58b1ae5376a0193342f9aed88ea04330dc14c8d52f55.js"></script>
 <meta name="robots" content="noindex">
 <link rel="mask-icon" type=""
-	href="//static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg"
-	color="#111">
+	href="//static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111">
 <link rel="canonical"
 	href="https://codepen.io/MohamedElGhandour/pen/GEbwEW">
 
@@ -107,76 +106,13 @@
 						<ul class="nav nav-tabs" role="tablist">
 							<li role="presentation" class="active"><a class="home-a"
 								href="#home" aria-controls="home" role="tab" data-toggle="tab">File</a></li>
-							<li role="presentation"><a href="#profile"
-								aria-controls="profile" role="tab" data-toggle="tab">Home</a></li>
-							<li role="presentation"><a href="#messages"
-								aria-controls="messages" role="tab" data-toggle="tab">Share</a></li>
-							<li role="presentation"><a href="#settings"
-								aria-controls="settings" role="tab" data-toggle="tab">View</a></li>
+<!-- 							<li role="presentation"><a href="#profile" -->
+<!-- 								aria-controls="profile" role="tab" data-toggle="tab">Home</a></li> -->
+<!-- 							<li role="presentation"><a href="#messages" -->
+<!-- 								aria-controls="messages" role="tab" data-toggle="tab">Share</a></li> -->
+<!-- 							<li role="presentation"><a href="#settings" -->
+<!-- 								aria-controls="settings" role="tab" data-toggle="tab">View</a></li> -->
 						</ul>
-						<!-- Tab panes -->
-						<!--                     <div class="tab-content"> -->
-						<!--                         <div role="tabpanel" class="tab-pane active" id="home"> -->
-						<!--                             <div class="col-xs-1 text-center"> -->
-						<!--                                 <i class="fa fa-envelope-open fa-2x"></i> -->
-						<!--                                 <p>Mail</p> -->
-						<!--                             </div> -->
-						<!--                             <div class="col-xs-1 text-center"> -->
-						<!--                                 <i class="fa fa-file-code-o  fa-2x"></i> -->
-						<!--                                 <p>Code</p> -->
-						<!--                             </div> -->
-						<!--                             <div class="col-xs-1 text-center"> -->
-						<!--                                 <i class="fa fa-sticky-note-o fa-2x"></i> -->
-						<!--                                 <p>Note</p> -->
-						<!--                             </div> -->
-						<!--                             <div class="clearfix"></div> -->
-						<!--                         </div> -->
-						<!--                         <div role="tabpanel" class="tab-pane" id="profile"> -->
-						<!--                             <div class="col-xs-1 text-center"> -->
-						<!--                                 <i class="fa fa-user-circle fa-2x"></i> -->
-						<!--                                 <p>User</p> -->
-						<!--                             </div> -->
-						<!--                             <div class="col-xs-1 text-center"> -->
-						<!--                                 <i class="fa fa-battery-4  fa-2x"></i> -->
-						<!--                                 <p>battery</p> -->
-						<!--                             </div> -->
-						<!--                             <div class="col-xs-1 text-center"> -->
-						<!--                                 <i class="fa fa-book fa-2x"></i> -->
-						<!--                                 <p>Book</p> -->
-						<!--                             </div> -->
-						<!--                             <div class="clearfix"></div> -->
-						<!--                         </div> -->
-						<!--                         <div role="tabpanel" class="tab-pane" id="messages"> -->
-						<!--                             <div class="col-xs-1 text-center"> -->
-						<!--                                 <i class="fa fa-car fa-2x"></i> -->
-						<!--                                 <p>Car</p> -->
-						<!--                             </div> -->
-						<!--                             <div class="col-xs-1 text-center"> -->
-						<!--                                 <i class="fa fa-camera-retro  fa-2x"></i> -->
-						<!--                                 <p>cam</p> -->
-						<!--                             </div> -->
-						<!--                             <div class="col-xs-1 text-center"> -->
-						<!--                                 <i class="fa fa-building fa-2x"></i> -->
-						<!--                                 <p>build</p> -->
-						<!--                             </div> -->
-						<!--                             <div class="clearfix"></div> -->
-						<!--                         </div> -->
-						<!--                         <div role="tabpanel" class="tab-pane" id="settings"> -->
-						<!--                             <div class="col-xs-1 text-center"> -->
-						<!--                                 <i class="fa fa-cubes fa-2x"></i> -->
-						<!--                                 <p>cubes</p> -->
-						<!--                             </div> -->
-						<!--                             <div class="col-xs-1 text-center"> -->
-						<!--                                 <i class="fa fa-coffee fa-2x"></i> -->
-						<!--                                 <p>coffee</p> -->
-						<!--                             </div> -->
-						<!--                             <div class="col-xs-1 text-center"> -->
-						<!--                                 <i class="fa fa-film fa-2x"></i> -->
-						<!--                                 <p>film</p> -->
-						<!--                             </div> -->
-						<!--                             <div class="clearfix"></div> -->
-						<!--                         </div> -->
-						<!--                     </div> -->
 					</div>
 				</div>
 				<div class="third-row-win">
@@ -189,14 +125,15 @@
 					<div class="col-xs-7">
 						<!-- 폴더 경로 -->
 						<div class="path-input" id="share-path">
-							<span class="path-icon-input">Share:</span>
 							<span class="path-icon-input">${sessionScope.user.id}</span>
-							<!--                         <span class="path-icon-input">programming</span> -->
-							<!--                         <span class="path-icon-input">Front End</span> -->
+<!-- 							<span class="path-icon-input">aaaa/test/test1</span> -->
+							<!-- <span class="path-icon-input">programming</span> -->
+							<!-- <span class="path-icon-input">Front End</span> -->
 						</div>
 						<!-- 폴더 경로 부분 아이콘 새로고침 -->
-						<i class="fa fa-hdd-o path-icon"></i> <span
-							class="fa fa-repeat path-icon-1"></span> <i class="path-icon-2">|</i>
+						<i class="fa fa-hdd-o path-icon"></i>
+						<span class="fa fa-repeat path-icon-1"></span>
+						<i class="path-icon-2">|</i>
 					</div>
 					<div class="col-xs-3">
 						<input class="search-input" type="text" placeholder="Search">
@@ -210,7 +147,6 @@
 							aria-multiselectable="true">
 							<div class="panel panel-default">
 								<div class="panel-heading" role="tab" id="">
-
 									<!-- 왼쪽 영역  -->
 									<h4 class="panel-title">
 										<a class="collapsed" role="button" data-toggle="collapse"
@@ -222,23 +158,23 @@
 								</div>
 								<div id="collapseThree" class="panel-collapse collapse"
 									role="tabpanel" aria-labelledby="headingThree">
-									<div class="panel-body">
-										<p>
-											<span class="fa fa-desktop">Desktop</span>
-										</p>
-										<p>
-											<span class="fa fa-download">Downloads</span>
-										</p>
-										<p>
-											<span class="fa fa-file-text">documents</span>
-										</p>
-										<p>
-											<span class="fa fa-picture-o ">Picture</span>
-										</p>
-										<p>
-											<span class="fa fa-folder ">Folder</span>
-										</p>
-									</div>
+<!-- 									<div class="panel-body"> -->
+<!-- 										<p> -->
+<!-- 											<span class="fa fa-desktop">Desktop</span> -->
+<!-- 										</p> -->
+<!-- 										<p> -->
+<!-- 											<span class="fa fa-download">Downloads</span> -->
+<!-- 										</p> -->
+<!-- 										<p> -->
+<!-- 											<span class="fa fa-file-text">documents</span> -->
+<!-- 										</p> -->
+<!-- 										<p> -->
+<!-- 											<span class="fa fa-picture-o ">Picture</span> -->
+<!-- 										</p> -->
+<!-- 										<p> -->
+<!-- 											<span class="fa fa-folder ">Folder</span> -->
+<!-- 										</p> -->
+<!-- 									</div> -->
 								</div>
 							</div>
 						</div>
@@ -404,7 +340,11 @@
 				}else{
 					appendFile += '<div class="col-xs-2 folders text-center" id="'+f.key+'" data-path="'+f.parentPath+'" data-title="'+f.title+'" ondblclick="test1()">';
 					appendFile += '<p class="contain">';
-					appendFile += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500505134/if_sticky-note_299111_px7waa.png"';
+					if(f.type == 'img'){
+						appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/jpg-icon.png"`;
+					}else{
+						appendFile += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500505134/if_sticky-note_299111_px7waa.png"';
+					}
 					appendFile += '		class="img-responsive  center-block" style="height: 64px;"';
 					appendFile += '		alt="">';
 // 					appendFile += '	<img src="download.do?filePath='+f.parentPath+'&systemFileName=attach&originalFileName='+f.title+'" style="height: 64px;">';
@@ -587,9 +527,16 @@
 					console.log("파일만 올림")
 					console.log("File: " + file.name);
 					console.log("path: " + path);
+					console.log("확장자: " + file.type.split('\.')[1]);
 					console.dir(file);
 					html += '<div class="col-xs-2 folders text-center" id="'+ ++id +'" data-path="'+$("#share-path").data("root")+'" data-title="'+file.name+'" ondblclick="test1()">';
-					html += '	<p class="contain"><img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500505134/if_sticky-note_299111_px7waa.png" class="img-responsive  center-block" style="height: 64px;" alt=""></p>';
+					html += '	<p class="contain">';
+					if(file.type.split('\.')[1] == 'image'){
+						html += `	<img src="${pageContext.request.contextPath}/resources/images/jpg-icon.png" class="img-responsive  center-block" style="height: 64px;" alt="">`;
+					}else{
+						html += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500505134/if_sticky-note_299111_px7waa.png" class="img-responsive  center-block" style="height: 64px;" alt="">';
+					}
+					html += '	</p>';
 					html += '	<span class="ellipsis">'+file.name+'</span>';
 					html += '</div>';
 					fDiv.append(html);
@@ -785,7 +732,11 @@
 				}else{
 					appendFile += '<div class="col-xs-2 folders text-center" id="'+f.key+'" data-path="'+f.parentPath+'" data-title="'+f.title+'" ondblclick="test1()">';
 					appendFile += '<p class="contain">';
-					appendFile += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500505134/if_sticky-note_299111_px7waa.png"';
+					if(f.type == 'img'){
+						appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/jpg-icon.png"`;
+					}else{
+						appendFile += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500505134/if_sticky-note_299111_px7waa.png"';
+					}
 					appendFile += '		class="img-responsive  center-block" style="height: 64px;"';
 					appendFile += '		alt="">';
 					appendFile += '	</p>';
