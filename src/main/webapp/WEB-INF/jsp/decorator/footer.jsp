@@ -215,11 +215,25 @@
 		$(".frame").show();
 	})
 	
+	
 var ws = null;
 var loginId = '${sessionScope.user.id}';
-	
+//var cnt = 0;	
 	$(function(){
 		ws = new WebSocket("ws://localhost/bitcode/notification.do");
+		 ws.onerror = function(evt) {
+		   	    $(".details").prepend('웹소켓 에러 발생 : ' + evt.data)
+		 };
+		ws.onmessage = function(evt) {
+	        $(".details").html("");				
+	        $(".details").prepend(evt.data);				
+				
+			
+	        console.log("메세지 전송")
+	    };
+		 ws.onclose = function(){
+			 $(".details").prepend("웹소켓 연결이 종료됨");
+		 };
 		ws.onopen = function(){
 			console.log("웹소켓 서버 접속 성공");
 		    // 웹소켓 서버에 데이터 전송하기
@@ -227,15 +241,6 @@ var loginId = '${sessionScope.user.id}';
 			    ws.send(loginId);
 		    }
 		};
-		ws.onmessage = function(evt) {
-	        $(".details").prepend(evt.data + "<br>");
-	    };
-		 ws.onerror = function(evt) {
-		   	    $(".details").prepend('웹소켓 에러 발생 : ' + evt.data)
-		 };
-		 ws.onclose = function(){
-			// $(".details").prepend("웹소켓 연결이 종료됨");
-		 };
 		
 	}) 
 </script>
