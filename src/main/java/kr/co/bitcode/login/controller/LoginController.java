@@ -45,8 +45,8 @@ public class LoginController {
 	@RequestMapping(value = "/loginForm.do",  method = { RequestMethod.GET})
 	public String loginForm(Model model, HttpSession session) {
 		//네이버 
-		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
-		model.addAttribute("naverurl", naverAuthUrl);
+//		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+//		model.addAttribute("naverurl", naverAuthUrl);
 		
 		/* 생성한 인증 URL을 View로 전달 */
 		return "login/loginForm";
@@ -56,7 +56,6 @@ public class LoginController {
     @RequestMapping(value = "/naver.do", method = { RequestMethod.GET})
     public String navercallback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session)
             throws Exception {
-    	System.out.println("네이버 로그인");
         OAuth2AccessToken oauthToken;
         oauthToken = naverLoginBO.getAccessToken(session, code, state);
         //로그인 사용자 정보를 읽어온다.
@@ -66,7 +65,6 @@ public class LoginController {
         NaverVO vo = gson.fromJson(apiResult, NaverVO.class);
         NaverInfo info = vo.getResponse();
         String id= info.getId();
-        System.out.println("id" + id);
         
         User userInfo = loginService.selectUserById(id);
         if(userInfo != null) {
@@ -99,6 +97,14 @@ public class LoginController {
 		return "login/socialSignupform";
 	} 
 	
+	//로그 아웃
+	@RequestMapping("/logout.do")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/main/main.do";
+	}	
+	
+	
 	//카카오톡 ?????
 	@RequestMapping("/kakao.json") 
 	public @ResponseBody User kakao(User user, Model model) throws Exception { 
@@ -124,12 +130,6 @@ public class LoginController {
 		}
 	}	
 
-	//로그 아웃
-	@RequestMapping("/logout.do")
-	public String logout(HttpSession session) {
-		session.invalidate();
-		return "redirect:/main/main.do";
-	}	
 	
 	//회원가입
 	@RequestMapping("/signupForm.do") 

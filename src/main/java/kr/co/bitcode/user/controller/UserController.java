@@ -1,16 +1,19 @@
 package kr.co.bitcode.user.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.co.bitcode.login.service.LoginService;
+import kr.co.bitcode.repository.domain.Qna;
 import kr.co.bitcode.repository.domain.User;
 import kr.co.bitcode.user.service.UserService;
 
@@ -25,13 +28,16 @@ public class UserController {
 	@Autowired
 	private LoginService loginService;
 	
+	
 	// PassWord 암호화
 	@Autowired
 	BCryptPasswordEncoder passCode;
 	
 	//회원정보
 	@RequestMapping("/userInfo.do") 
-	public String joinForm() { 
+	public String joinForm(Model model) throws Exception{ 
+		List<Qna> qnaList= userService.selectmyQuestion();
+		model.addAttribute("qnaList", qnaList);
 		return "user/userInfo";
 	} 
 	//수정 클릭시

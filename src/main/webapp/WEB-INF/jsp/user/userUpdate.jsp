@@ -15,7 +15,7 @@
 	<form action="${pageContext.request.contextPath}/user/updateUser.do" method="post" id="userForm">
 	  <h1 id="#signup">나의 정보 수정 <img src="${pageContext.request.contextPath}/resources/images/signupIcon.png"></h1>
 	  <p id="pName">ID</p>	  
-	  <input name="id" type="text" id="userId" data-flag="no" class="inputDetail" readonly="readonly" value="${user.id}"/>
+	  <input name="id" type="text" id="userId" data-flag="no" class="inputDetail" readonly="readonly" value="${sessionScope.user.id}"/>
 	  <p id="pName">이름</p>
 	  <input name="name" type="text" id="userName" data-flag="no" class="inputDetail" readonly="readonly" value="${user.name}"/>
 	  <p id="pName">별명</p>	 

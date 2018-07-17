@@ -1,4 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,6 +35,7 @@
 		  <input name="id" type="text" id="userId" value="${user.id}" readonly="readonly"/>
 		 <p id="pName">Birthday</p>
 		  <input name="birthday" type="text" id="birthday" data-flag="no" class="inputDetail" value="${user.birthday}" readonly="readonly"/>
+
 		 <p id="pName">Email</p>
 		  <input name="email" type="text" id="userEmail" data-flag="no" class="emailDetail" value="${user.email}" readonly="readonly"/>
 		 <div class="updateBtns">
@@ -43,7 +47,6 @@
   		  </span>
  		 </div>   
     </div>
-<%-- ${pageContext.request.contextPath}/user/updatePassForm.do --%>
     <div id="card2" class="card six col">
 		<div class="topbar blue">
 			<div class="swatches"><span class="red"></span><span class="orange"></span><span class="yellow"></span><span class="green"></span><span class="blue"></span></div>
@@ -52,29 +55,27 @@
 		</div>     
     	<h3 class="userInformation">My Question</h3>
     	
-    	<table class="table table-hover">
-	    	<tr>
-				<th>NickName</th>
-				<th>Title</th>
-				<th>Answer 만족률</th>
-			</tr>
+		<table class="table table-hover">
 			<tr>
-				<td>홍길동</td>				
-				<td>자바스크립 질문</td>				
-				<td>****</td>				
+				<th>번호</th><th>글쓴이</th><th colspan="2">제목</th><th colspan="2">만족도</th>
 			</tr>
+			<c:forEach var="qnaList" items="${qnaList}">
+			<c:if test="${qnaList.id == user.id}">
 			<tr>
-				<td>홍길자</td>				
-				<td>자바 질문 있습니다!!!!!! </td>				
-				<td>**</td>				
+				<td>${qnaList.no}</td>			
+				<td>${qnaList.id}</td>				
+				<td colspan="4"><a id="board_title" href='${pageContext.request.contextPath}/qnaboard/detail.do?no=${qnaList.no}'>${qnaList.title}</a></td>				
+				<td>${qnaList.stsfcCode}</td>
 			</tr>
-			<tr>
-				<td>홍길군</td>				
-				<td>자바 & css 질문 있습니다!!!!!! </td>				
-				<td>**</td>				
-			</tr>			
-			
+			</c:if>
+			</c:forEach>
 		</table>
+
+
+
+
+
+
 	</div>	
 
     <div id="card3" class="card three col">

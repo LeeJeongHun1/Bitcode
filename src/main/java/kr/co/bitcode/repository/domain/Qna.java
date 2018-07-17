@@ -17,7 +17,23 @@ public class Qna {
 	private int viewCnt;
 	private String code;
 	private String codeName;
+	private char answerAt;
+	private String language_code;
 	
+	
+	
+	public char getAnswerAt() {
+		return answerAt;
+	}
+	public void setAnswerAt(char answerAt) {
+		this.answerAt = answerAt;
+	}
+	public String getLanguage_code() {
+		return language_code;
+	}
+	public void setLanguage_code(String language_code) {
+		this.language_code = language_code;
+	}
 	private List<QnaFile> fileList;
 
 	public List<QnaFile> getFileList() {
