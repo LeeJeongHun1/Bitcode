@@ -18,6 +18,7 @@ import kr.co.bitcode.repository.domain.Qna;
 import kr.co.bitcode.repository.domain.QnaComment;
 import kr.co.bitcode.repository.domain.QnaFile;
 import kr.co.bitcode.repository.domain.Search;
+import kr.co.bitcode.repository.domain.User;
 
 @Controller
 @RequestMapping("/qnaboard")
@@ -63,8 +64,8 @@ public class QnaBoardController {
 	}	
 	
 	@RequestMapping(value="/insert.do", method=RequestMethod.POST)
-	public String editQna(Qna qna,QnaFile qnafile) throws Exception {
-		qnaBoardService.insertQna(qna, qnafile);
+	public String editQna(Qna qna,QnaFile qnafile,User user) throws Exception {
+		qnaBoardService.insertQna(qna, qnafile, user);
 		return "redirect:/qnaboard/list.do";
 	}
 	

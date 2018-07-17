@@ -193,6 +193,10 @@
 <script src="${pageContext.request.contextPath}/resources/sweetalertFile/sweetalert2.all.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/sweetalertFile/sweetalert2.min.css">
 <script>
+
+
+
+
 	$("#chrome").click(function (){
 		$(".frame").hide();
 		$(".text-tabs").text('Chrome')
@@ -206,6 +210,30 @@
 		$("#url").val('https://drive.bitcode.com/my-drive');
 		$(".frame").show();
 	})
+	
+var ws = null;
+var loginId = '${sessionScope.user.id}';
+	
+	$(function(){
+		ws = new WebSocket("ws://localhost/bitcode/notification.do");
+		ws.onopen = function(){
+			console.log("웹소켓 서버 접속 성공");
+		    // 웹소켓 서버에 데이터 전송하기
+		    if(loginId){		    	
+			    ws.send(loginId);
+		    }
+		};
+		ws.onmessage = function(evt) {
+	        $(".details").prepend(evt.data + "<br>");
+	    };
+		 ws.onerror = function(evt) {
+		   	    $(".details").prepend('웹소켓 에러 발생 : ' + evt.data)
+		 };
+		 ws.onclose = function(){
+			// $(".details").prepend("웹소켓 연결이 종료됨");
+		 };
+		
+	}) 
 </script>
 
 

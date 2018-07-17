@@ -7,6 +7,7 @@ import kr.co.bitcode.repository.domain.Qna;
 import kr.co.bitcode.repository.domain.QnaComment;
 import kr.co.bitcode.repository.domain.QnaFile;
 import kr.co.bitcode.repository.domain.Search;
+import kr.co.bitcode.repository.domain.User;
 
 public interface QnaMapper {
 	// 게시판 
@@ -17,6 +18,7 @@ public interface QnaMapper {
 	public void updateGroupNo(int no);
 	public void updateBoard(Qna qna);
 	public void deleteBoard(int no);
+	public void updateViewCnt(int no);
 	
 	// 답글 
 	public void updateReBoard(Qna qna);
@@ -40,6 +42,13 @@ public interface QnaMapper {
 	public List<QnaFile> selectQnaFile(int no);
 	public void deleteQnaFile(int no);
 	
+	// 포인트 증가여부 
+	public void updatePoint(User user);
+	
+	//알림
+	//public Qna selectNotification(String id);
+	public List<Qna> selectNtf(String id);
+	public List<Qna> selectNoRead(String id);
 	
 	
 }

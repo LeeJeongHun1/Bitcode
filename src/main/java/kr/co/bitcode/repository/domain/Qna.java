@@ -18,6 +18,13 @@ public class Qna {
 	private String code;
 	private String codeName;
 	private char answerAt;
+	private char readAns;
+	public char getReadAns() {
+		return readAns;
+	}
+	public void setReadAns(char readAns) {
+		this.readAns = readAns;
+	}
 	private String language_code;
 	
 	

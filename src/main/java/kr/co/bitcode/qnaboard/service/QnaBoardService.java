@@ -9,12 +9,13 @@ import kr.co.bitcode.repository.domain.Qna;
 import kr.co.bitcode.repository.domain.QnaComment;
 import kr.co.bitcode.repository.domain.QnaFile;
 import kr.co.bitcode.repository.domain.Search;
+import kr.co.bitcode.repository.domain.User;
 
 public interface QnaBoardService {
 	//public Map<String,Object> selectQnaBoard(Search search) throws Exception;
 	public void updateQna(Qna qna,QnaFile qnafile) throws Exception;
 	public void updateQnaView(int no) throws Exception;
-	public void insertQna(Qna qna,QnaFile qnafile) throws Exception;
+	public void insertQna(Qna qna,QnaFile qnafile,User user) throws Exception;
 	public void delete(int no) throws Exception;
 	public Qna detailQna(int no) throws Exception;
 	public List<Code> selectLanguage() throws Exception;

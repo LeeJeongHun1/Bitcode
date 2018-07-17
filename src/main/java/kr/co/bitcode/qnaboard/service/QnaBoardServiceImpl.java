@@ -16,6 +16,7 @@ import kr.co.bitcode.repository.domain.Qna;
 import kr.co.bitcode.repository.domain.QnaComment;
 import kr.co.bitcode.repository.domain.QnaFile;
 import kr.co.bitcode.repository.domain.Search;
+import kr.co.bitcode.repository.domain.User;
 import kr.co.bitcode.repository.mapper.CodeListMapper;
 import kr.co.bitcode.repository.mapper.QnaMapper;
 
@@ -29,7 +30,7 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 	private CodeListMapper Cmapper;
 
 	@Override
-	public void insertQna(Qna qna, QnaFile qnafile) throws Exception {
+	public void insertQna(Qna qna, QnaFile qnafile,User user) throws Exception {
 		mapper.insertBoard(qna);
 		mapper.updateGroupNo(qna.getNo());
 		if(qna.getFile()[0].getSize() == 0) {
@@ -44,6 +45,7 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 		qnafile.setFileSize((int)file.getSize());	
 		mapper.insertQnaFile(qnafile);}
 		} 	
+		mapper.updatePoint(user);
 	}
 
 	@Override
@@ -54,6 +56,8 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 
 	@Override
 	public Qna detailQna(int no) throws Exception {
+		mapper.updateViewCnt(no);
+		System.out.println(no);
 		Qna qna = mapper.selectBoardByNo(no);
 		qna.setFileList(mapper.selectQnaFile(no));
 		return qna;

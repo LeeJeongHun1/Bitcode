@@ -15,6 +15,8 @@
 		<result column="reg_date" property="regDate" />
 		<result column="view_cnt" property="viewCnt" />
 		<result column="like_cnt" property="likeCnt" />
+		<result column="answer_at" property="answerAt"/>
+		<result column="read_ans" property="readAns"/>
 		<!-- <result column="file_no" property="fileNo" /> <result column="stsfc_code" 
 			property="stsfcCode" /> <result column="file_path" property="filePath" /> 
 			<result column="ori_name" property="oriName" /> <result column="system_name" 
@@ -145,6 +147,12 @@
 		values(#{no},#{id},#{code},#{title},#{content})
 	</insert>
 
+	<update id="updatePoint" parameterType="user">
+		update tb_user
+		set point =
+		point + 10
+		where id = #{id};
+	</update>
 	<update id="updateGroupNo" parameterType="int">
 		update tb_qna_board
 		set
@@ -158,6 +166,13 @@
 		content=#{content}
 		where no=#{no}
 	</update>
+
+	<update id="updateViewCnt" parameterType="int">
+		update tb_code_board
+		set view_cnt = view_cnt + 1
+		where no = #{no}
+	</update>
+
 
 	<!-- 파일 등록,수정 -->
 	<insert id="insertQnaFile" parameterType="qnaFile">
@@ -212,8 +227,8 @@
 	</update>
 
 	<resultMap id="commentMap" type="qnaComment">
-		<result column="no" property="no"/>
-		<result column="id" property="id"/>
+		<result column="no" property="no" />
+		<result column="id" property="id" />
 		<result column="content" property="content" />
 		<result column="comment_no" property="commentNo" />
 		<result column="reg_date" property="regDate" />
@@ -223,7 +238,8 @@
 	</resultMap>
 	<!-- 댓글쿼리 -->
 	<select id="selectComment" parameterType="int" resultMap="commentMap">
-		select *
+		select
+		*
 		from
 		tb_qna_comment
 		where no = #{no}
@@ -250,6 +266,25 @@
 		tb_qna_comment
 		where comment_no = #{commentNo}
 	</delete>
+
+	<!-- 알림 -->
+
+	<select id="selectNtf" parameterType="string" resultMap="qnaMap">
+		select *
+		from tb_qna_board
+		where id = #{id}
+		and depth = 0
+		and answer_at = 'Y'
+	</select>
+
+	<select id="selectNoRead" parameterType="string" resultMap="qnaMap">
+		select *
+		from tb_qna_board
+		where id=#{id}
+		and depth = 0
+		and group_no = #{groupNo}
+		and read_ans = 'N'
+	</select>
 
 
 </mapper>

@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,12 +28,12 @@ a {
 				</c:if>
 					<c:out value="${list.title}" />
 					<span class="nowrap">|</span><span class="cf"><c:out
-							value="${list.codeName}" /></span> <span class="day">2018-02-10</span>
+							value="${list.codeName}" /></span> <span class="day"><fmt:formatDate value="${list.regDate}" pattern="yyyy-MM-dd HH:mm:ss" /></span>
 				</div>
 
 				<div class="header_info">
-					<span class="shell_writer">${list.id}</span><span
-						class="shell_hits">조회<span>4</span></span>
+					<span class="shell_writer"><c:out value="${list.id}"/></span><span
+						class="shell_hits">조회<span><c:out value="${list.viewCnt}" /></span></span>
 
 				</div>
 
