@@ -6,6 +6,5 @@ public interface NewsMapper {
 
 	// 기사 크롤링후 DB 저장
 	public void insertNews(Article article);
-
 	
 }

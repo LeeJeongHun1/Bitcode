@@ -15,5 +15,5 @@ public interface UserService {
 	public User selectbyIdEmail(User user) throws Exception;
 	
 	//유저 질문 목록
-	public List<Qna> selectmyQuestion() throws Exception;
+	public List<Qna> selectmyQuestion(String id) throws Exception;
 }

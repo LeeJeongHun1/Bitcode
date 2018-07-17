@@ -1,7 +1,5 @@
 package kr.co.bitcode.repository.domain;
 
-import java.util.Date;
-
 public class Article {
 	
 	private int articleNo;
@@ -68,7 +66,5 @@ public class Article {
 	public void setArticleDate(String articleDate) {
 		this.articleDate = articleDate;
 	}
-	
-	
 	
 }

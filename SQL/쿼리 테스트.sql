@@ -5,6 +5,7 @@ show tables;
 select * from tb_user;
 select * from tb_qna_board;
 select * from tb_code_board;
+select * from tb_stsfc_code;
 
 -- 테이블 삭제
 drop table tb_user purge;
@@ -86,6 +87,19 @@ select language_name as name, language_code as code
    	from tb_language_code
    	order by language_code;	
 
-   	
-   	
- commit;
+-- 답글 여부 확인   	
+select *
+	from tb_qna_board
+	where id = 'sun'
+	and depth = 0
+	and answer_at = 'Y';
+	
+-- 읽지 않은 답글 확인
+select *
+	from tb_qna_board
+	where id = 'sun'
+	and depth = 0
+	and group_no = 91
+	and read_ans = 'N';
+	
+commit;
