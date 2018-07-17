@@ -13,7 +13,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -30,7 +29,7 @@ public class CrawlingController {
 	
 	@RequestMapping("/crawling.do")
 	public String mainCrawling(RedirectAttributes attr){
-		System.setProperty("webdriver.chrome.driver", new File("C:\\java-lec\\2nd_git\\mini_2nd\\chrome\\chromedriver.exe").getAbsolutePath()); //크롬 드라이버 파일 경로설정
+		System.setProperty("webdriver.chrome.driver", new File("C:\\java-lec\\chromedriver.exe").getAbsolutePath()); //크롬 드라이버 파일 경로설정
 		WebDriver driver = new ChromeDriver();
 		driver.get("http://www.hellodd.com/?md=news");
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS); //응답시간 5초설정
@@ -40,11 +39,13 @@ public class CrawlingController {
 		for (WebElement e : list) {
 			Article a = new Article();
 			String[] noArr = e.findElement(By.cssSelector("div.article > h3 > a")).getAttribute("href").split("pid=");
+//			http://www.hellodd.com/?md=news&mt=view&pid=65534
 //			Article no = mapper.selectArticleByNo(Integer.parseInt(noArr[1]));
 //			System.out.println("dbno :  scrapno : " + noArr[1]);
 			System.out.println("체크 시작!");
-//			if (no == null) a.setArticleNo(Integer.parseInt(noArr[1]));
+//			if (no == null) 
 //			else continue;
+			a.setArticleNo(Integer.parseInt(noArr[1]));
 			System.out.println("널값 으로 else 건너뜀 VO에 데이터 저장 ");
 			a.setArticleType("hellodd");
 			a.setArticleTitle(e.findElement(By.tagName("h3")).getText());
@@ -80,25 +81,25 @@ public class CrawlingController {
 	public String subCrawling(){
 		List<Article> aList = CrawlingController.list;
 //		System.out.println(list.size());
-		System.setProperty("webdriver.chrome.driver", "C:\\java-lec\\2nd_git\\mini_2nd\\chrome\\chromedriver.exe"); //크롬 드라이버 파일 경로설정
+		System.setProperty("webdriver.chrome.driver", "C:\\java-lec\\chromedriver.exe"); //크롬 드라이버 파일 경로설정
 		WebDriver driver = new ChromeDriver();
 		for (Article a : aList) {
-			System.out.println(a.getArticleTitle());
-			System.out.println(a.getArticleSummary());
+//			System.out.println(a.getArticleTitle());
+//			System.out.println(a.getArticleSummary());
 			driver.get(a.getArticleUrl());
 			driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS); //응답시간 5초설정
 			String content = driver.findElement(By.cssSelector("#newsvw > div.article_body")).getText().trim();
 			if(content.length() > 1100) a.setArticleContent(content.substring(0, 1100));
 			else a.setArticleContent(content);
-			System.out.println(a.getArticleContent().length());
-			System.out.println(a.getArticleContent());
-			System.out.println(a.toString());
-			System.out.println("-------------------------------------------------------------------------------------");
+//			System.out.println(a.getArticleContent().length());
+//			System.out.println(a.getArticleContent());
+//			System.out.println(a.toString());
+//			System.out.println("-------------------------------------------------------------------------------------");
 		}
 		driver.close();
 		System.out.println(aList.size());
-//		crawlingService.insertArticle(aList);
-		return "main/main";
+		crawlingService.insertArticle(aList);
+		return "redirect:main/main.do";
 	}
 
 }

@@ -13,7 +13,7 @@
 			article_reporter,
 			article_thumb,
 			article_url,
-			article_data
+			article_date
 		)values(
 			#{articleNo},
 			#{articleType},
@@ -25,7 +25,6 @@
 			#{articleUrl},
 			#{articleDate}
 		)
-	
 	</insert>
 	
 </mapper>
