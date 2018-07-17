@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.co.bitcode.repository.domain.User;
+
 
 
 @Controller
@@ -19,8 +21,8 @@ public class ChatController {
 	
 	@RequestMapping("/login.do")
 	@ResponseBody
-	public String login(HttpSession session, Member m) {
-		session.setAttribute("user", m);
+	public String login(HttpSession session, User u) {
+		session.setAttribute("user", u);
 		return "success";
 	}
 

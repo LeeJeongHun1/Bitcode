@@ -42,7 +42,7 @@ public class ChatSocketHandler extends TextWebSocketHandler{
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		System.out.println("보낸 아이디 : " + session.getId());
 		System.out.println("보낸 메세지 : " + message.getPayload());
-	
+		
 		
 		// 서버에 접속한 모든 사용자에게 메세지 전송하기
 		Set<String> keys = users.keySet();
@@ -50,7 +50,7 @@ public class ChatSocketHandler extends TextWebSocketHandler{
 			System.out.println(key);
 			WebSocketSession wss = users.get(key);
 			wss.sendMessage(
-					new TextMessage(session.getId() + " : " + message.getPayload()));
+					new TextMessage(message.getPayload()));
 		};
 	}
 	
