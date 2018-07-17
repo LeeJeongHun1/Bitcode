@@ -33,6 +33,10 @@
             <c:if test="${!empty sessionScope.user}">
 				<a href="#folder" id="folder" ondblclick="opencom()"></a>
             </c:if>
+            <%-- 플레이어 --%>
+            <c:if test="${!empty sessionScope.user}">
+				<a onclick="window.open('${pageContext.request.contextPath}/music/player.do?id=${sessionScope.user.id}', 'player', 'width=550 height=500')" id="wmplayer"></a>
+            </c:if>
         </div>
         
         <%-- 마이인포 --%>

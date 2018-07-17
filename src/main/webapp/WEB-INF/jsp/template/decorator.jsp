@@ -7,6 +7,8 @@
 <html>
 <head>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <script src='http://cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.2/mustache.min.js'></script>
 <script src="${pageContext.request.contextPath}/resources/js/notify/index.js"></script>
@@ -18,7 +20,7 @@
  <%-- 하단메뉴 --%> 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main/footer.css">
 
-<%-- <%-- favicon --%> 
+<%-- favicon --%> 
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/favicon.ico" type="image/x-icon" />
 <link rel="icon" href="${pageContext.request.contextPath}/resources/images/favicon.ico" type="image/x-icon" />
 

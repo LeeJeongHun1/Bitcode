@@ -5,30 +5,13 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ListBoard</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ListBoard</title>
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/board/styles.css">
-<style type="text/css">
-.table-responsive{clear: both;
-    border-top: 1px solid #b3b3b3;
-    border-bottom: 1px solid #e6e6e6;
-    text-align: center;}
-/*  a:link { color: #80FF00; text-decoration: none;} */
-/*  a:visited { color: #80FF00; text-decoration: none;}*/ 
-/*  a:hover { color: #80FF00; text-decoration: underline;} */
- .container {color:#727272; background-color:#fff;}
- .table {color:#727272; margin-bottom:0}
- table thead tr { background:#f3f3f3;    }
- .table>thead>tr>th {border-bottom: 1px solid #ddd;}
- table thead tr th {height: 40px;
-    padding: 10px 8px; }
-.table>tbody>tr>td{vertical-align: middle;}
-.table tr:hover td{background-color:#fcf9ce}
- 
-</style>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/card.css">
 </head>
 
 <body>
