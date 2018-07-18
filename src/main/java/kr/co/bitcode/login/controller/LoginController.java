@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,6 +24,7 @@ import kr.co.bitcode.repository.domain.User;
 
 
 @Controller
+@CrossOrigin(origins = "*")
 @RequestMapping("/login")
 public class LoginController {
 	
@@ -45,9 +47,9 @@ public class LoginController {
 	@RequestMapping(value = "/loginForm.do",  method = { RequestMethod.GET})
 	public String loginForm(Model model, HttpSession session) {
 		//네이버 
-//		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
-//		model.addAttribute("naverurl", naverAuthUrl);
-		
+		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+		model.addAttribute("naverurl", naverAuthUrl);
+//		
 		/* 생성한 인증 URL을 View로 전달 */
 		return "login/loginForm";
 	}

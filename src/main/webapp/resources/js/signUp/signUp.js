@@ -218,7 +218,7 @@ $("#submitBtn").click(function(){
 	date = isEmpty($("#birth3"), date , "정확한 날짜를 입력해주세요");
 //	birth = isEmpty($("#userBirth"), birth , "생년월일을 입력해주세요");
 	email = isEmpty($("#userEmail"), email , "이메일를 입력해주세요");
-	if(id == false || pass == false || name == false || nickName == false || year == false ||year == false ||month == false || date == false){
+	if(id == false || pass == false || name == false || nickName == false || email == false ||year == false ||month == false || date == false){
 		return;
 	}
 	
