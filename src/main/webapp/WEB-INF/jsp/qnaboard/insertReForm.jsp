@@ -9,7 +9,7 @@
 	href="${pageContext.request.contextPath}/resources/css/board/detail.css">
 
 </head>
-<body>
+<body> 
 	<div class="container">
 		<div class="shell-container">
 			<h2 class="shell_title">QnA질문게시판</h2>
