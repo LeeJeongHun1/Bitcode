@@ -2,18 +2,19 @@
  * 
  */
 
-var ws = null;
+//var ws = null;
 
 
 $(function () {
-	ws = new WebSocket('ws://192.168.0.104/bitcode/chat.do');
-	ws.onopen = function() {
-		console.log("웹소켓 접속 성공");
-		ws.send(loginId + "님 입장");
-		$("#result").scrollTop($("#result").height());
-//		$("#entranceUser").append(loginId+"님");
-		console.log(loginId);
-	};
+//	ws = new WebSocket('wss://192.168.0.104/bitcode/chat.do');
+//	ws.onopen = function() {
+//		console.log("웹소켓 접속 성공");
+//		$("#result").scrollTop($("#result").height());
+//		console.log(loginId);
+//	};
+
+	
+	ws.send(loginId + "님 입장");
 	ws.onmessage = function(evt) {
 		if((evt.data).startsWith("userList")){	
 			var subId = (evt.data).split(":");
