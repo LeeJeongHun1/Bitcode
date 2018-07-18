@@ -18,17 +18,19 @@
 	        <%-- 코드공유게시판 --%>
             <a href="${pageContext.request.contextPath}/codeboard/list.do" id="coding"></a>
 	        <%-- 단체대화방 --%>
-            <a href="${pageContext.request.contextPath}/chat/chat.do" id="chat"></a>
+            <a href="${pageContext.request.contextPath}/chat/chat.do" id="chat" class="chatLoginCheck"></a>
 	        <%-- 원격상담 --%>
             <a href="${pageContext.request.contextPath}/remote/list.do" id="remote"></a>
 	        <%-- Q&A 게시판 --%>
             <a href="${pageContext.request.contextPath}/qnaboard/list.do" id="question"></a>
 	        <%-- IT News --%>	
-            <a href="${pageContext.request.contextPath}/itnews/itnews.do" id="news"></a>
+            <a href="${pageContext.request.contextPath}/itnews/list.do" id="news"></a>
 	        <%-- 학원찾기 --%>
             <a href="${pageContext.request.contextPath}/searchcenter/searchCenter.do" id="search"></a>
             <%-- 크롬 브라우저 --%>
-            <a href="#chrome-pop-up" id="chrome" class="border"></a>
+            <c:if test="${!empty sessionScope.user}">
+           		<a href="#chrome-pop-up" id="chrome" class="border"></a>
+            </c:if>
             <%-- 폴더 --%>
             <c:if test="${!empty sessionScope.user}">
 				<a href="#folder" id="folder" ondblclick="opencom()"></a>
@@ -55,7 +57,9 @@
 	                ${toDay}
 	            </span>
 	        </div>
+	        
 	        <%-- 알람 --%>
+	        <c:if test="${!empty sessionScope.user}">
 	             <a href="#notifications" id="notifications"><button style="position: absolute;top: 7px; right:0;"type="button" class="button-default show-notifications active js-show-notifications">
              	<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="32" viewBox="0 0 30 32">
             		<defs>
@@ -69,6 +73,7 @@
   				</svg>
   			<div class="notifications-count js-count"></div>
 			</button></a>
+			</c:if>
 			
 	        <%-- 마이인포 --%>
 	        	<c:choose>
@@ -196,10 +201,8 @@
 
 <script src="${pageContext.request.contextPath}/resources/sweetalertFile/sweetalert2.all.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/sweetalertFile/sweetalert2.min.css">
+
 <script>
-
-
-
 
 	$("#chrome").click(function (){
 		$(".frame").hide();
@@ -214,7 +217,6 @@
 		$("#url").val('https://drive.bitcode.com/my-drive');
 		$(".frame").show();
 	})
-	
 	
 var ws = null;
 var loginId = '${sessionScope.user.id}';
@@ -244,6 +246,29 @@ var loginId = '${sessionScope.user.id}';
 // 		};
 		
 // 	}) 
+
+// 로그인 필요한 서비스 체크
+$(".chatLoginCheck").click(function(e){
+	e.preventDefault();
+	if("${sessionScope.user}" == ""){
+		swal({
+			  title: '로그인이 필요한 서비스 입니다.',
+			  text: "확인을 누르시면 로그인 페이지로 이동합니다.",
+			  type: 'warning',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  confirmButtonText: '확인'
+			}).then((result) => {
+			  if (result.value) {
+				  location.href='/bitcode/login/loginForm.do'
+			  }
+			})
+	} // if
+	else{
+		location.href='/bitcode/chat/chat.do';
+	}
+});
 </script>
 
 
