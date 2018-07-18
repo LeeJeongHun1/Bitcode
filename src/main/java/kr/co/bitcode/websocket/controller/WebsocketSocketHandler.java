@@ -1,4 +1,4 @@
-package kr.co.bitcode.notification.controller;
+package kr.co.bitcode.websocket.controller;
 
 import java.util.HashMap;
 import java.util.List;
@@ -17,7 +17,7 @@ import kr.co.bitcode.repository.domain.User;
 import kr.co.bitcode.repository.mapper.QnaMapper;
  
 @Component("notification")
-public class NotificationSocketHanler extends TextWebSocketHandler {
+public class WebsocketSocketHandler extends TextWebSocketHandler {
 
 	private Map<String, WebSocketSession> users = new HashMap<>();
 	private Map<String, WebSocketSession> chatUsers = new HashMap<>();
@@ -77,7 +77,7 @@ public class NotificationSocketHanler extends TextWebSocketHandler {
 			System.out.println("답변여부길이 :" + ansList.size() );
 			System.out.println("읽음여부길이 :" + readList.size() );
 				//wSession.sendMessage(new TextMessage(qna.getNo()+"번게시글이 "+ ansList.size()+"개 답변이 달렸습니다.")); //전체 사용자에게 텍스트 멧세지를 전송한ㄳ
-				wSession.sendMessage(new TextMessage(":" + qna.getNo()+","+ ansList.size())); //전체 사용자에게 텍스트 멧세지를 전송한ㄳ
+				wSession.sendMessage(new TextMessage("notice" + qna.getNo()+","+ ansList.size())); //전체 사용자에게 텍스트 멧세지를 전송한ㄳ
 				//wSession.sendMessage(new TextMessage(readList.size()+"개에 글을 읽었습니다.")); //전체 사용자에게 텍스트 멧세지를 전송한ㄳ
 			}
 				
