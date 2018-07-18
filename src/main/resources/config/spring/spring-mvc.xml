@@ -54,6 +54,25 @@
 		<mvc:jsp prefix="/WEB-INF/jsp/" suffix=".jsp" />
 	</mvc:view-resolvers>
 	
+	<!-- AuthInterceptor 로그인 세션 필터 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**/**" />
+			<mvc:exclude-mapping path="/main/main.do" />
+			<mvc:exclude-mapping path="/sendMail/*.json" />
+			<mvc:exclude-mapping path="/login/*.json" />
+			<mvc:exclude-mapping path="/login/*.do" />
+			<mvc:exclude-mapping path="/user/*.do" />
+			<mvc:exclude-mapping path="/user/*.json" />
+			<mvc:exclude-mapping path="/*/list.do" />
+			<mvc:exclude-mapping path="/*/list.json" />
+			<mvc:exclude-mapping path="/itnews/*.do" />
+			<mvc:exclude-mapping path="/itnews/*.json" />
+			<mvc:exclude-mapping path="/searchcenter/*.do" />
+			<mvc:exclude-mapping path="/searchcenter/*.json" />
+			<bean class="kr.co.bitcode.interceptor.AuthInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
 
 	<!-- 이메일 관련 -->
 	<bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">

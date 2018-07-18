@@ -1,6 +1,8 @@
 /**
  * 
  */
+
+$(".codeBody").draggable();
 window.onload = function(){
 	document.querySelector("#search").onclick=function(){
 		var target = document.getElementById("option");
@@ -34,15 +36,25 @@ function codeList(searchInput,searchOption){
 
 function makeCodeList(data){
 	console.log(data);
+	console.log("+++++++="+session);
 	var html="";
 	for(let codeBoard of data){
+		var date = new Date(codeBoard.regDate);
+		var day = date.getFullYear() + "-"
+		+ (date.getMonth() + 1) + "-"
+		+ date.getDate();
 		if(codeBoard.groupOrder==1){
 			html+='    <tr style="height:13px; type:text/css;">                                                                  ';
 			html+='        <td style="font-size:14px;">'+codeBoard.no+'</td>                                                             ';
 			html+='        <td style="font-size:14px;">'+codeBoard.languageName+'</td>                                                   ';
-			html+='        <td style="font-size:14px; text-align:left;"><a href="detail.do?no='+codeBoard.no+'">'+codeBoard.title+'</a></td>     ';
+			if(session!=""){
+			html+='        <td style="font-size:14px; text-align:left;"><a href="detail.do?no='+codeBoard.no+'">'+codeBoard.title+'</a></td>     ';				
+			}
+			else{
+			html+='        <td style="font-size:14px; text-align:left;">'+codeBoard.title+'</td>     ';					
+			}
 			html+='        <td style="font-size:14px;">'+codeBoard.id+'</td>                                                             ';
-			html+='        <td style="font-size:12px;"><fmt:formatDate value="'+codeBoard.regDate+'" pattern="yyyy-MM-dd" /></td>        ';
+			html+='        <td style="font-size:14px;">'+day+'</td>        ';
 			html+='        <td style="font-size:14px;">'+codeBoard.likeCnt+'</td>                                                        ';
 			html+='        <td style="font-size:14px;">'+codeBoard.viewCnt+'</td>                                                        ';
 			html+='    </tr>                        	                                                                         ';
@@ -51,15 +63,27 @@ function makeCodeList(data){
 			html+='    <tr style="height:13px; type:text/css;">                                                                  ';
 			html+='    	<td style="font-size:14px;"></td>                                                                        ';
 			html+='        <td style="font-size:14px;">'+codeBoard.languageName+'</td>                                                   ';
-			html+='        <td style="font-size:14px; text-align:left;">                                                         ';
-			for(var i = 1; i<codeBoard.depth; i++ ){
-				html+='        	<span>&nbsp;&nbsp;&nbsp;</span>                                                                      ';
+			if(session!=""){
+				html+='        <td style="font-size:14px; text-align:left;">                                                         ';				
+				for(var i = 1; i<codeBoard.depth; i++ ){
+					html+='        	<span>&nbsp;&nbsp;&nbsp;</span>                                                                      ';
+				}
+				html+='        <span style="color:black;">⤷</span>                                                                                      ';
+				html+='        <a href="detail.do?no='+codeBoard.no+'">'+codeBoard.title+'</a>                                                       ';
+				html+='        </td>                                                                                                 ';
 			}
-			html+='        <span>RE:</span>                                                                                      ';
-			html+='        <a href="detail.do?no='+codeBoard.no+'">'+codeBoard.title+'</a>                                                       ';
-			html+='        </td>                                                                                                 ';
+				else{
+					html+='        <td style="font-size:14px; text-align:left;">                                                         ';					
+					for(var i = 1; i<codeBoard.depth; i++ ){
+						html+='        	<span>&nbsp;&nbsp;&nbsp;</span>                                                                      ';
+					}
+					html+='        <span style="color:black;">⤷</span>                                                                                      ';
+					html+='      '+codeBoard.title+'                                                     ';
+					html+='        </td>                                                                                                 ';			
+				}
+                                                                                          
 			html+='        <td style="font-size:14px;">'+codeBoard.id+'</td>                                                             ';
-			html+='        <td style="font-size:12px;"><fmt:formatDate value="'+codeBoard.regDate+'" pattern="yyyy-MM-dd" /></td>        ';
+			html+='        <td style="font-size:14px;">'+day+'</td>        ';
 			html+='        <td style="font-size:14px;">'+codeBoard.likeCnt+'</td>                                                        ';
 			html+='        <td style="font-size:14px;">'+codeBoard.viewCnt+'</td>                                                        ';
 			html+='    </tr>                        	                                                                         ';

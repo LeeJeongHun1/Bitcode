@@ -6,28 +6,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Remote</title>
+<title>BIT CODE</title>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/remote/remote.css">
 <script src="https://192.168.0.104:10001/socket.io/socket.io.js"></script>
 
+<%-- 고유 링크 생성 스크립트 --%>
 <script>
 if(!location.hash.replace('#', '').length) {
     location.href = location.href.split('#')[0] + '#' + (Math.random() * 100).toString().replace('.', '');
     location.reload();
 }
-
-
-function abc() {
-    alert("sss");
-}
 </script>
-
-<style>
-video {
-    box-sizing: border-box;
-}
-</style>
 
 <!-- scripts used for screen-sharing -->
 <script src="https://cdn.webrtc-experiment.com/socket.io.js"> </script>
@@ -46,17 +36,17 @@ video {
 <link rel="preload" as="script" href="https://c.disquscdn.com/next/embed/lounge.bundle.33067ddbd4792de0b384ceb588602715.js">
 <link rel="preload" as="script" href="https://disqus.com/next/config.js">
 </head>
-<style>
-#strong, .link a {
-	display: none;
-}
-</style>
-</head>
 
 <body>
 
 <div class="shareTitle">
-	<h3 id="number-of-participants">연결 대기중입니다..</h3>
+	<c:if test="${sessionScope.user.auth eq 'U'}">
+	<span id="number-of-participants">화면 공유를 해주시면 상담 신청이 완료됩니다.</span>
+	
+	<button id="shareScreen" class="screenShare order btn btn-default btn-group-xs">화면 공유</button>
+    <button id="endScreen" class="screenShare order btn btn-default btn-group-xs">상담 종료</button>
+    </c:if>
+    
 	<!-- 화면 공유 페이지 링크 주소 -->
 	<div class="hide-after-join">
 		<input type="text" id="user-name" placeholder="Your Name" hidden="hidden" value="${sessionScope.user.id}">
@@ -68,12 +58,13 @@ video {
 	    <input type="text" id="question" name="question" value="${sessionScope.question}" hidden="hidden">
 	    <input type="text" id="link" name="link" hidden="hidden">
 	    </form>
-	    <button id="shareScreen" class="screenShare order btn btn-default btn-group-xs">화면 공유</button>
 	</div>
-	    <button id="endScreen" class="screenShare order btn btn-default btn-group-xs">상담 종료</button>
-
+	    
 	<!-- 화면 공유 대기 리스트 -->
-	<table style="width: 100%;" id="rooms-list" class="hide-after-join"></table>
+	<c:if test="${sessionScope.user.auth eq 'S'}">
+	<table style="width: 100%;" id="roomsList" class="hide-after-join"></table>
+    </c:if>
+	
 </div>
 
 <div class="embedded-container">
@@ -94,28 +85,20 @@ video {
   </div>
   
 <script>
-//alert("${sessionScope.nickName}");
-//alert("${sessionScope.question}");
 
 var videosContainer = document.getElementById("videos-container") || document.body;
-var roomsList = document.getElementById('rooms-list');
+var roomsList = document.getElementById('roomsList');
 var screensharing = new Screen();
 var channel = location.href.replace(/\/|:|#|%|\.|\[|\]/g, '');
 // 채팅방 번호
 var roomId = location.href.split("#")[1];
-//alert(channel);
-/* 
-if(channel){
-	var link = document.querySelector('#link');
-	link.setAttribute('value', location.href);
-}
- */
-//
+
 $(document).ready(function() {
 	if(channel){
 		var link = document.querySelector('#link');
 		link.setAttribute('value', location.href);
 	}
+	$("#endScreen").hide();
 });
 
 var sender = Math.round(Math.random() * 999999999) + 999999999;
@@ -140,14 +123,17 @@ socket.send = function (message) {
 screensharing.openSignalingChannel = function(callback) {
     return socket.on('message', callback);
 };
+
+// 공유된 화면 출력하기
 screensharing.onscreen = function(_screen) {
     var alreadyExist = document.getElementById(_screen.userid);
     if (alreadyExist) return;
     if (typeof roomsList === 'undefined') roomsList = document.body;
     var tr = document.createElement('tr');
     tr.id = _screen.userid;
-    tr.innerHTML = '<td>' + _screen.userid + ' shared his screen.</td>' +
-            '<td><button class="join">View</button></td>';
+    //tr.innerHTML = '<td>' + _screen.userid + ' 회원 화면 함께보기</td>' +
+    tr.innerHTML = '<td>회원 화면 함께보기</td>' +
+            '<td><button class="join screenShare order btn btn-default btn-group-xs">출력</button></td>';
     roomsList.insertBefore(tr, roomsList.firstChild);
     var button = tr.querySelector('.join');
     button.setAttribute('data-userid', _screen.userid);
@@ -190,7 +176,7 @@ screensharing.onuserleft = function(userid) {
 screensharing.check();
 document.getElementById('shareScreen').onclick = function() {
     var username = document.getElementById('user-name');
-    username.disabled = this.disabled = true;
+    //username.disabled = this.disabled = true;
     screensharing.isModerator = true;
     screensharing.userid = username.value;
     screensharing.share();
@@ -217,6 +203,7 @@ screensharing.onNumberOfParticipantsChnaged = function(numberOfParticipants) {
 };
 </script>
 
+<%-- 화면 공유 --%>
 <script>
 var isChrome = !!navigator.webkitGetUserMedia;
 var DetectRTC = {};
@@ -317,17 +304,23 @@ $("#shareScreen").click(function() {
 				console.log("상담신청 리스트 등록");
 			}
 	});
+	$("#shareScreen").toggle();
+	$("#endScreen").toggle();
 });
+
 
 // 상담종료시 상담신청 List에서 정보 삭제
 $("#endScreen").click(function() {
-		$.ajax({
-			type : "POST",
-			url : "/bitcode/remote/remoteDel.do",
-			data : {"id" : "${sessionScope.user.id}"},
-			success : function() {
-				console.log("상담신청 종료");
-			}
+	$("#videos-container").empty();
+	$("#shareScreen").toggle();
+	$("#endScreen").toggle();
+	$.ajax({
+		type : "POST",
+		url : "/bitcode/remote/remoteDel.do",
+		data : {"id" : "${sessionScope.user.id}"},
+		success : function() {
+			console.log("상담신청 종료");
+		}
 	});
 });
 

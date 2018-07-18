@@ -15,8 +15,8 @@
 		<result column="reg_date" property="regDate" />
 		<result column="view_cnt" property="viewCnt" />
 		<result column="like_cnt" property="likeCnt" />
-		<result column="answer_at" property="answerAt"/>
-		<result column="read_ans" property="readAns"/>
+		<result column="answer_at" property="answerAt" />
+		<result column="read_ans" property="readAns" />
 		<!-- <result column="file_no" property="fileNo" /> <result column="stsfc_code" 
 			property="stsfcCode" /> <result column="file_path" property="filePath" /> 
 			<result column="ori_name" property="oriName" /> <result column="system_name" 
@@ -282,9 +282,24 @@
 		from tb_qna_board
 		where id=#{id}
 		and depth = 0
-		and group_no = #{groupNo}
+		and group_no =
+		#{groupNo}
 		and read_ans = 'N'
 	</select>
 
-
+	<!-- 알림읽으면 업뎃 -->
+	<select id="readQna" parameterType="qna" resultMap="qnaMap">
+		select *
+		from tb_qna_board
+		where id = #{oriId}
+		and depth = 1
+		and group_no = #{groupNo}
+		and no = #{no}
+	</select>
+	
+	<update id="updateReadAns" parameterType="qna">
+	 update tb_qna_board
+         set read_ans = 'Y'
+		where no = #{no}	
+	</update>
 </mapper>

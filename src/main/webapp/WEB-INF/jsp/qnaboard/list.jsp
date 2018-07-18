@@ -87,15 +87,15 @@
 			<button id="btn" type="submit">검색</button>
 		</form>
 		
-		<button class="btn btn-default btn-group-xs pull-right"
-				 type="button" onclick="location.href='insertForm.do'">글쓰기</button>
+		<button class="btn btn-default btn-group-xs pull-right order"
+				 type="button">글쓰기</button>
+				 <!-- type="button" onclick="location.href='insertForm.do'">글쓰기</button> -->
 
 	<!-- <span style="font-size:20px;margin-left:485px;">&lt; &nbsp;1 2 3 4 5 &nbsp;&gt;</span> -->
 	
 	</div>
 	</div>
 	</div>
-	
 	
 	<script>
 	/*
@@ -116,7 +116,6 @@
 				clz = "disabled";
 			}
 			html += '<li class="' + clz + '">';
-			
 			var fn = "";
 			if (data.prev == true) {
 				console.log(data.beginPage +"개");
@@ -128,7 +127,6 @@
 			html += '    <span aria-hidden="true">&laquo;</span>';
 			html += '</a>';
 		    html += '</li>';
-			
 		    for (var i = data.beginPage; i <= data.endPage; i++) {
 		    	if (i == data.pageNo) {
 				    html += '<li class="active"><a href="#1">' + i + '</a></li>';
@@ -137,15 +135,12 @@
 		    		html += '<li><a href="javascript:pageList(' + i + ');">' + i + '</a></li>';
 		    	}
 		    }
-		    
 			clz = "";
 			if (data.next == false) {
 				clz = "disabled";
 			}
 			html += '<li class="' + clz + '">';
-			
 			fn = "";
-			
 			if (data.next == true) {
 				fn = "javascript:pageList(" + (data.endPage + 1) + ");";
 			}else{
@@ -156,11 +151,9 @@
 			html += '</a>';
 		    html += '</li>';
 		}
-		
 		$("nav > ul.pagination").html(html);
 	}
 	 // 리스트 출력
-	
 	function pageList(pageNo){
 		if (pageNo === undefined) {
 			pageNo = 1;
@@ -176,7 +169,6 @@
 		});
 		return false;
 		}
-		
 	
 	 //검색 페이징
 	  function searchMakePageLink(data) {
@@ -187,7 +179,6 @@
 				clz = "disabled";
 			}
 			html += '<li class="' + clz + '">';
-			
 			var fn = "";
 			if (data.prev == true) {
 				console.log(data.beginPage +"개");
@@ -208,15 +199,12 @@
 		    		html += '<li><a href="javascript:searchList(' + i + ');">' + i + '</a></li>';
 		    	}
 		    }
-		    
 			clz = "";
 			if (data.next == false) {
 				clz = "disabled";
 			}
 			html += '<li class="' + clz + '">';
-			
 			fn = "";
-			
 			if (data.next == true) {
 				fn = "javascript:searchList(" + (data.endPage + 1) + ");";
 			}else{
@@ -227,7 +215,6 @@
 			html += '</a>';
 		    html += '</li>';
 		}
-		
 		$("nav > ul.pagination").html(html);
 	}
 	
@@ -250,6 +237,8 @@
 		})
 		
 	}
+	
+	// Q&A 리스트 출력
 	function makeList(data){
 		var html="";
 		$(".table tbody").html("");
@@ -274,9 +263,9 @@
 				html+= '</tr>'	
 			}else{
 				html+='<tr>';
-				html+='<td>⤷</td>';
+				html+='<td></td>';
 				html+='<td>'+i.codeName+'</td>';
-				html+='<td><a href="detail.do?no='+i.no+'">'+i.title+'</a></td>';
+				html+='<td><a href="detail.do?no='+i.no+'">⤷ '+i.title+'</a></td>';
 				html+='<td>'+i.id+'</td>';
 				var date = new Date(i.regDate);
 				var time = date.getFullYear() + "-" 
@@ -293,9 +282,52 @@
  		}	
 		$(".table tbody").html(html);
 	}	
+	
 	searchList();
 		
-
+	// 글쓰기버튼 로그인/결제 확인
+		// 로그인 및 결제 확인창
+	$(".order").click(function(){
+		if("${sessionScope.user}" == ""){
+			swal({
+				  title: '로그인이 필요한 서비스 입니다.',
+				  text: "확인을 누르시면 로그인 페이지로 이동합니다.",
+				  type: 'warning',
+				  showCancelButton: true,
+				  confirmButtonColor: '#3085d6',
+				  cancelButtonColor: '#d33',
+				  confirmButtonText: '확인'
+				}).then((result) => {
+				  if (result.value) {
+					  location.href='/bitcode/login/loginForm.do'
+				  }
+				})
+		} // 로그인알림
+		else{
+		  swal({
+		    title: '결제하시겠습니까',
+		    text: "상담을 위해서는 결제가 필요한 서비스입니다",
+		    type: 'warning',
+		    showCancelButton: true,
+		    confirmButtonColor: '#3085d6',
+		    cancelButtonColor: '#d33',
+		    cancelButtonText: '아니오',
+		    confirmButtonText: '네,결제를 진행하겠습니다.'
+		  }).then((result) => {
+		    if (result.value) {
+		    	// 결제페이지 주소로 변경 필요
+		    	location.href='insertForm.do'
+		   /*    swal(
+		        '결제페이지로 이동합니다.',
+		        location.href='remoteForm.do',
+		        'success'
+		      ) */
+		    }
+		  })
+		} // 결제알림
+	  
+	})
+	
 	$(".qnaBody").draggable();
 
 	</script>

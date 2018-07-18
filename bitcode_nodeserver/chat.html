@@ -1,90 +1,91 @@
 <style>
 body {
-	margin: 0px;
-	padding: 0px;
+  margin: 0px;
+  padding: 0px;
+}
+#chatBody{
+  width: 330px;
+  max-height: 500px;
+  background: white;
+  border-radius: 5px;
+  overflow: hidden;
+  scroll: hidden;
+  box-sizing: border-box;
 }
 #chatBox{
   width: 330px;
-  height: 600px;
-  max-height: 600px;
+  height: 300px;
   background: white;
   border-radius: 5px;
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow: hidden;
+  box-sizing: border-box;
+  scroll-x: hidden;
+  scroll-y: auto;
 }
 .bottom-bar{
-	bottom: 6px;
-	color: black;
-	position: absolute;
-	position: fixed;
+  bottom: 10px;
+  color: black;
+  position: absolute;
+  position: fixed;
 }
 #msg{
-	width: 230px;
-	height: 30px;
+  width: 230px;
+  height: 30px;
 }
 </style>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://192.168.0.104:10001/socket.io/socket.io.js"></script>
 
-<div id="chatBox"></div>
-<div class="bottom-bar">
-	<input type="text" id="message" />
-	<input type="button" value="메세지 전송" id="msgBtn"/>
+<div id="chatBody">
+	<!-- 대화창 -->
+	<div id="chatBox"></div>
+	
+	<!-- 메시지 입력창 -->
+	<div class="bottom-bar">
+		<input type="text" id="message" />
+		<input type="button" value="메세지 전송" id="msgBtn"/>
+	</div>
 </div>
 
-	<script>
-	// 소켓서버에 접속
-	var socket = io.connect();
-	// var socket = io.connect("http://192.168.0.179:10001");
+<script>
+
+// 소켓서버에 접속
+var socket = io.connect();
+// var socket = io.connect("http://192.168.0.179:10001");
+
+// msg 등록
+   socket.on("msg", function (data) {
+   	console.dir(data);
+   $("#chatBody").before(data.sender + " : " + data.msg + "<br>");
+   $(document).scrollTop($(document).height());
+   });
+ 
+   $("[type=button]").click(function () {
+   // id가 msg 인 텍스트 창에 입력된 데이터를 소켓서버에 전송
+	console.log("서버로 전송함");
+	// msg 호출
+     	socket.emit("msg", {roomId: roomId, sender: sender, msg: $("#message").val()});
+   });
+
+// 룸번호로 조인
+socket.emit('join:room', {roomId: roomId});
+   
+   // 서버에서 전송받은 방번호와 닉네임
+window.addEventListener("message", receiveMessage, false);
+var sender = '';
+var roomId = '';
+var msg = '';
+function receiveMessage(event) {
+	var obj = JSON.parse(event.data);
+	// 채팅 보내는 사람의 닉네임
+	sender = obj.sender;
+	// 방번호
+	roomId = obj.roomId;
+	// 메시지
+	msg = obj.msg;
 	
-	// msg 등록
-    socket.on("msg", function (data) {
-    	console.dir(data);
-	   $("#chatBox").before(data.sender + " : " + data.msg + "<br>");
-	   
-	   $(document).scrollTop($(document).height());
-	   
-    });
-  
-
-    $("[type=button]").click(function () {
-    // id가 msg 인 텍스트 창에 입력된 데이터를 소켓서버에 전송
-		console.log("서버로 전송함");
-		// msg 호출
-      	socket.emit("msg", {roomId: roomId, sender: sender, msg: $("#message").val()});
+	// 방번호로 룸 조인
+   	socket.emit("joinroom", {roomId: roomId});
+}
 	
-    });
-	
-	// 룸번호로 조인
-	socket.emit('join:room', {roomId: roomId});
-    
-    // 서버에서 전송받은 방번호와 닉네임
-	window.addEventListener("message", receiveMessage, false);
-	var sender = '';
-	var roomId = '';
-	var msg = '';
-	function receiveMessage(event) {
-		var obj = JSON.parse(event.data);
-		// 채팅 보내는 사람의 닉네임
-		sender = obj.sender;
-		// 방번호
-		roomId = obj.roomId;
-		// 메시지
-		msg = obj.msg;
-		
-		// 방번호로 룸 조인
-    	socket.emit("joinroom", {roomId: roomId});
-	}
-	
-	</script>
-
-
-
-
-
-
-
-
-
-
-
+</script>

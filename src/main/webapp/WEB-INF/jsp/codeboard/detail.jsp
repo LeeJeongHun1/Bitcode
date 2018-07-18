@@ -7,39 +7,28 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/board/detail.css">
-<style>
-a {color:#333333}
-button{
-color:#80FF00;
-background-color: black;}
-</style>
-<style type="text/css">
- a:link { color: #80FF00; text-decoration: none;}
- a:visited { color: #80FF00; text-decoration: none;}
- a:hover { color: #80FF00; text-decoration: underline;}
-</style>
 </head>
 <body>
 	<div class="container">
-		<div class="shell-container" style="color:#80FF00; background-color: black;">
+		<div class="shell-container">
 		<!-- <h2 class="shell_title">QnA질문게시판</h2> -->
-			<div class="contents_header" style="color:#80FF00; background-color: black;">
-				<div class="title" style="color:#80FF00; background-color: black;">
+			<div class="contents_header" >
+				<div class="title" >
 					<c:out value="${cb.title}" /><span class="nowrap">|</span>
-					<span class="cf" style="color:#80FF00; background-color: black;">${cb.languageName}</span> 
-					<span class="day" style="color:#80FF00; background-color: black;">2018-02-10</span>
+					<span class="cf" >${cb.languageName}</span> 
+					<span class="day" >2018-02-10</span>
 			<input type="hidden" name="groupOrder" value="${cb.groupOrder}" /> 
 			<input type="hidden" name="depth" value="${cb.depth}" />
 			<input type="hidden" name="groupNo" value="${cb.groupNo}" />
 				</div>
 
 				<div class="header_info">
-					<span class="shell_writer" style="color:#80FF00; background-color: black;"><c:out value="${cb.id}" /></span>
-					<span class="shell_hits" style="color:#80FF00; background-color: black;">조회<span><c:out value="${cb.viewCnt}" /></span></span>
+					<span class="shell_writer" ><c:out value="${cb.id}" /></span>
+					<span class="shell_hits" >조회<span><c:out value="${cb.viewCnt}" /></span></span>
 
 				</div>
 			</div>
-			<div class="contents_body" style="color:#80FF00; background-color: black;">
+			<div class="contents_body" >
 				<div class="detail">
 					<c:out value="${cb.content}" />
 				</div>
@@ -50,24 +39,24 @@ background-color: black;}
 					${cbFile.filePath}
 				</c:forEach>
 				</div>
-				<ul class="reBody" style="color:#80FF00; background-color: black;">
+				<ul class="reBody" >
 					<li>
 						<div class="reHeader">
-							<p class="reWriter" style="color:#80FF00; background-color: black;">김기영</p>
+							<p class="reWriter" >a</p>
 							<span class="reDay"><fmt:formatDate value="${cb.regDate}" pattern="yyyy-MM-dd HH:mm:ss" /></span> 
-							<span class="recomment"> <a href="#" style="color:#80FF00;">답글</a>
+							<span class="recomment"> <a href="#" >답글</a>
 							</span>
 						</div>
-						<div class="comment">이 코드는 이런이런 형식입니다.</div>
+						<div class="comment">cmt</div>
 					</li>
 					<li class="reple">
 						<div class="reHeader">
-							<p class="reWriter" style="color:#80FF00; background-color: black;">김기영</p>
+							<p class="reWriter" >a</p>
 							<span class="reDay">2018.02.30 11:20</span> <span
-								class="recomment"> <a href="#" style="color:#80FF00;">답글</a>
+								class="recomment"> <a href="#" >답글</a>
 							</span>
 						</div>
-						<div class="comment">이 코드는 이런이런 형식입니다.</div>
+						<div class="comment">cmt</div>
 					</li>
 					<li class="repleW" style="display:none;">
 						<div class="comment">
@@ -89,17 +78,17 @@ background-color: black;}
 					</li>
 
 					<li class="reWrite">
-						<div class="reWriteDiv" style="background-color: black">
+						<div class="reWriteDiv" >
 							<table>
 								<tbody>
 									<tr>
-										<td><textarea style="background-color: black"></textarea></td>
+										<td><textarea ></textarea></td>
 									</tr>
 								</tbody>
 							</table>
 						</div>
 						<div class="reBtn">
-							<button class="resubmit" style="color:#80FF00; background-color: black;">등록</button>
+							<button class="resubmit">등록</button>
 						</div>
 					</li>
 				</ul>
