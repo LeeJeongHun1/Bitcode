@@ -6,7 +6,7 @@ var ws = null;
 
 
 $(function () {
-	ws = new WebSocket('ws://localhost/bitcode/chat.do');
+	ws = new WebSocket('ws://192.168.0.104/bitcode/chat.do');
 	ws.onopen = function() {
 		console.log("웹소켓 접속 성공");
 		ws.send(loginId + "님 입장");

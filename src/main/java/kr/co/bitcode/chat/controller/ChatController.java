@@ -3,6 +3,7 @@ package kr.co.bitcode.chat.controller;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -11,6 +12,7 @@ import kr.co.bitcode.repository.domain.User;
 
 
 @Controller
+@CrossOrigin(origins = "*")
 @RequestMapping("/chat")
 public class ChatController {
 	
