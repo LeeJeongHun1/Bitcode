@@ -18,31 +18,31 @@
 			<h2 class="shell_title">QnA질문게시판</h2>
 					<tbody>
 						<tr>
-							<input type="hidden" name="no" value="${list[0].no}"/>
+							<input type="hidden" name="no" value="${list.qna.no}"/>
 							<th>제목</th>
-							<td><input class="editTitle" type="text" name="title" value="${list[0].title}"/> 
+							<td><input class="editTitle" type="text" name="title" value="${list.qna.title}"/> 
 							<select class="editSelect" name="code">
 									<option>분류</option>
 							</select></td>
 						</tr>
 						<tr>
 							<th>작성자</th>
-							<td><input type="text" name="writer" value="${list[0].id}"/></td>
+							<td><input type="text" name="writer" value="${list.qna.id}"/></td>
 						</tr>
 
 						<tr style="height: 90%;">
 							<th>내용</th>
 							<td><textarea name="content" style="width: 100%; height: 100%; min-height: 232px;">
-							<c:out value="${list[0].content}"/>
+							<c:out value="${list.qna.content}"/>
 							</textarea></td>
 						</tr>
-						<tr>
+					 	<tr>
 							<th>파일첨부</th>
-							<c:forEach items="${list}" var="i">
-							<input type="hidden" name="fileNo" value="${i.fileNo}">
+							<c:forEach items="${fileList}" var="i">
+							<input type="hidden" name="fileNo" value="${i}">
 							</c:forEach>
-							<td><input type="file" name="file" multiple="multiple" value="${list[0].oriName}"></td>
-						</tr>
+							<td><input type="file" name="file" multiple="multiple" value="${i.oriName}"></td>
+						</tr> 
 					</tbody>
 				</table>
 			<div class="contents_btn">

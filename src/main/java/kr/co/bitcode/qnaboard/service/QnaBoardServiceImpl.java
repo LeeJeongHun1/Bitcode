@@ -54,22 +54,28 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 		return list;
 	}
 
-	@Override
+/*	@Override
 	public Qna detailQna(int no) throws Exception {
 		mapper.updateViewCnt(no);
 		System.out.println(no);
 		Qna qna = mapper.selectBoardByNo(no);
 		qna.setFileList(mapper.selectQnaFile(no));
 		return qna;
-	}
-
-/*	@Override
-	public Map<String,Object> selectQnaBoard(Search search) throws Exception {
-		Map<String,Object> map = new HashMap<>();
-		map.put("list", mapper.selectBoard(search));
-		//map.put("pageResult",new PageResult(page.getPageNo(),mapper.selectBoardCount(search,page)));
-		return map;
 	}*/
+	
+	@Override
+	public Map<String,Object> detailQna(int no) throws Exception {
+		mapper.updateViewCnt(no);
+		Map<String,Object> map= new HashMap<>();
+		Qna qna = mapper.selectBoardByNo(no);
+		qna.setFileList(mapper.selectQnaFile(no));
+		map.put("qna", qna);
+		map.put("ori", mapper.selectBoardByNo(qna.getGroupNo()).getId());	
+		// 게시판 읽었을 경우 Y로 변경되게
+		//mapper.readQna(qna);
+		//mapper.updateReadAns(qna);
+		return map;
+	}
 	@Override
 	public void delete(int no) throws Exception {
 		System.out.println("게시판 삭제 기능 구현 ");

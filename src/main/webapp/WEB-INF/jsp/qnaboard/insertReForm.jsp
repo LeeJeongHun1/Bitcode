@@ -19,16 +19,16 @@
 					<tbody>
 						<tr>
 							<th>제목</th>
-							<input type="hidden" name="no" value="${list.no}">
-							<input type="hidden" name="groupNo" value="${list.groupNo}">
-							<input type="hidden" name="depth" value="${list.depth}">
-							<input type="hidden" name="groupOrder" value="${list.groupOrder}">
-							<td><input class="editTitle" type="text" name="title" value="${list.title}"/> 
-							<input type="hidden" name="code" value="${list.code}"/> /${list.codeName}</td>
+							<input type="hidden" name="no" value="${list.qna.no}">
+							<input type="hidden" name="groupNo" value="${list.qna.groupNo}">
+							<input type="hidden" name="depth" value="${list.qna.depth}">
+							<input type="hidden" name="groupOrder" value="${list.qna.groupOrder}">
+							<td><input class="editTitle" type="text" name="title" value="${list.qna.title}"/> 
+							<input type="hidden" name="code" value="${list.qna.code}"/> /${list.qna.codeName}</td>
 						</tr>
 						<tr>
 							<th>작성자</th>
-							<td><input type="text" name="id" value="bbbb"/></td>
+							<td><input type="text" name="id" value="${list.qna.id}"/></td>
 						</tr>
 
 						<tr style="height: 90%;">
