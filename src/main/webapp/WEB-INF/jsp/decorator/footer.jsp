@@ -176,7 +176,7 @@
                 <!-- Bookmarks -->
 	            </div>
 	            <!-- 크롬 브라우저일 경우 iframe -->
- 	       		<iframe src="http://www.daum.net" frameborder="0" width="800px" height="400px" name="bitBrowser"></iframe>
+ 	       		<iframe src="http://www.daum.net" frameborder="0" width="800px" height="400px" name="bitBrowser" id="bitBrowser"></iframe>
 	        </div> 
 	    </div>
 	    <!-- Chrome end -->
@@ -260,7 +260,12 @@ $(".chromeBody").draggable();
 
 // 브라우저 주소표시줄 입력 이벤트설정
 //$("#bitUrl")
-
+ $("#bitUrl").keydown(function (key) {
+	if(key.keyCode == 13){//키가 13이면 실행 (엔터는 13)
+	    var url = $("#bitUrl").val();
+		$("#bitBrowser").attr('src', url);
+	}
+});
 </script>
 
 
