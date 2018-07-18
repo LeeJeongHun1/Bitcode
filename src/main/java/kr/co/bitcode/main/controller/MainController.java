@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.aspectj.util.FileUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -23,6 +24,7 @@ import kr.co.bitcode.repository.domain.FileVO;
 import kr.co.bitcode.repository.domain.Folder;
 
 @Controller
+@CrossOrigin(origins = "*")
 @RequestMapping("/main")
 public class MainController {
 	
@@ -39,8 +41,8 @@ public class MainController {
 	public List<Folder> selectFolder(String id) {
 		String folderPath = PATH + id;
 		System.out.println("경로 : " + folderPath);
-		File f = new File(folderPath);
-		return ListDirectory(f);
+		new File(folderPath + "\\새 폴더").mkdirs();
+		return ListDirectory(new File(folderPath));
 	}
 	
 	@RequestMapping("/createFolder.json")

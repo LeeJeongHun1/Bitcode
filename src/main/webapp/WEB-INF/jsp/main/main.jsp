@@ -466,7 +466,6 @@ $(function() {
  });
 });
 
-
 </script>
 
 
@@ -531,7 +530,8 @@ $(function() {
 		$.ajax({
 			url: "selectFolder.json",
 			data: loadingFolder,
-			dataType: "json"
+			dataType: "json",
+			type: "POST"
 		})
 		.done(function (data) {
 			console.dir(data)
