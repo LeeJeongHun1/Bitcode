@@ -94,12 +94,14 @@ function refreshNotifications(items, today) {
 function generateItems(today) {
   today = today || newDate();
   return [
-    { id: 1, title: 'qna게시판에 답글이 등록되었습니다.', date: randomDate() },
+	{ id: 1, title: '', date: randomDate() },
+	{ id: 2, title: '', date: randomDate(addMinutes(today, -60), addMinutes(today, 60)) },
+/*	{ id: 1, title: 'qna게시판에 답글이 등록되었습니다.', date: randomDate() },
     { id: 2, title: '포인트가 적립되었습니다.', date: randomDate(addMinutes(today, -60), addMinutes(today, 60)) },
     { id: 3, title: 'Annual party at Eric\'s house.', date: randomDate() },
     { id: 4, title: 'Last day to pay off auto credit.', date: randomDate() },
     { id: 5, title: 'Call and schedule another meeting with Amanda.', date: randomDate(addMinutes(today, -360), addMinutes(today, 360)) },
-    { id: 6, title: 'Don\'t forget to send in financial reports.', date: randomDate() }
+    { id: 6, title: 'Don\'t forget to send in financial reports.', date: randomDate() }*/
   ];
 }
 
