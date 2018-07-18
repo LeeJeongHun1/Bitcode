@@ -214,9 +214,34 @@ var loginId = '${sessionScope.user.id}';
 		   	    $(".details").prepend('웹소켓 에러 발생 : ' + evt.data)
 		 };
 		ws.onmessage = function(evt) {
-	        $(".details").html("");				
+			
+			// 알림 체크
+			
+			
+			// 유저리스트 체크
+			if((evt.data).startsWith("userList")){	
+				var subId = (evt.data).split(":");
+				$("#entranceUser").html("");
+				$("#entranceUser").append(subId);
+				$("#result").scrollTop($("#result").height());			
+			}
+			
+			// 입장 체크
+			if((evt.data).startsWith("in")){
+				$("#result").append(evt.data + "<br>");
+				$("#result").scrollTop($("#result").height());			
+			}						
+			
+			// 메시지 체크
+			if((evt.data).startsWith("chat")){
+				$("#result").append(evt.data + "<br>");
+				$("#result").scrollTop($("#result").height());			
+			}			
+			
+	
+			$(".details").html("");				
 	        $(".details").prepend(evt.data);				
-				
+
 			
 	        console.log("메세지 전송")
 	    };
