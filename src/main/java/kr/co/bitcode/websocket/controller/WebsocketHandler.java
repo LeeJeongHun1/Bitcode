@@ -16,8 +16,8 @@ import kr.co.bitcode.repository.domain.Qna;
 import kr.co.bitcode.repository.domain.User;
 import kr.co.bitcode.repository.mapper.QnaMapper;
  
-@Component("notification")
-public class WebsocketSocketHandler extends TextWebSocketHandler {
+@Component("websocket")
+public class WebsocketHandler extends TextWebSocketHandler {
 
 	private Map<String, WebSocketSession> users = new HashMap<>();
 	private Map<String, WebSocketSession> chatUsers = new HashMap<>();
