@@ -30,7 +30,7 @@
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 	</div>
 <script>
-var loginId= '${sessionScope.user.nickName}';
+var nick = '${sessionScope.user.nickName}';
 </script>
 <script src="${pageContext.request.contextPath}/resources/js/chat/chat.js"></script>
 </body>
