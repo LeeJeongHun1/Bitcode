@@ -25,7 +25,7 @@
 	  <p id="pName">Birthday</p>	
 	  <input name="birthday" type="text" id="userBirth" data-flag="no" class="inputDetail" value="${user.birthday}"/>
 	  <div id="submitBox">
-	 	 <a href="#1" id="submitBtn"><span class="signupbtn">Sign UP</span></a>
+	 	 <a href="#1" id="submitBtn"><span class="signupbtn">수정하기</span></a>
 	  </div>
 	</form>
 <script>
