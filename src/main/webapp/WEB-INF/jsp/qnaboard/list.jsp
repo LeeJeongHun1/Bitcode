@@ -263,9 +263,9 @@
 				html+= '</tr>'	
 			}else{
 				html+='<tr>';
-				html+='<td>⤷</td>';
+				html+='<td></td>';
 				html+='<td>'+i.codeName+'</td>';
-				html+='<td><a href="detail.do?no='+i.no+'">'+i.title+'</a></td>';
+				html+='<td><a href="detail.do?no='+i.no+'">⤷ '+i.title+'</a></td>';
 				html+='<td>'+i.id+'</td>';
 				var date = new Date(i.regDate);
 				var time = date.getFullYear() + "-" 
