@@ -120,7 +120,7 @@
 	                        <span class="icons-tabs">
 	                            <i class="fab fa-codepen"></i>
 	                        </span>
-	                        <span class="text-tabs">CodePen</span>
+	                        <span class="text-tabs">BIT Browser</span>
 	                        <span class="close-tabs">x</span>
 	                    </div>
 	                    <div class="triangle-2"></div>
@@ -141,9 +141,10 @@
                             <a href="#"><i class="fas fa-arrow-right"></i></a>
                             <a href="#"><i class="fas fa-sync"></i></a>
                         </div>
+                        <!-- 크롬브라우저 주소표시줄 -->
                         <div class="search-bar">
                             <span class="info"><i class="fas fa-lock"></i> Securised</span>
-                            <input type="text" id="url" value="http://codepen.io/Guklam">
+                            <input type="text" id="bitUrl" value="http://www.daum.net">
                             <span class="star"><i class="far fa-star"></i></span>
                         </div>
                         <div class="points-bar">
@@ -154,44 +155,28 @@
                             </div>
                         </div>
                     </div>
+                    
+                    <!-- 크롬브라우저 즐겨찾기 -->
                     <div class="bookmarks">
                             <div class="folder-book">
-                                <a target="_blank" href="https://purecss.io/"><span>P</span> Pure</a>
+                                <a target="bitBrowser" href="https://purecss.io/"><span>P</span> Pure</a>
                             </div>
                             <div class="folder-book">
-                                <a target="_blank" href="https://developer.mozilla.org/fr/docs/Web/CSS"><i class="fab fa-css3-alt"></i> CSS</a>
+                                <a target="bitBrowser" href="https://developer.mozilla.org/fr/docs/Web/CSS"><i class="fab fa-css3-alt"></i> CSS</a>
                             </div>
                             <div class="folder-book">
-                                <a target="_blank" href="https://www.microsoft.com/fr-fr/windows"><i class="fab fa-windows"></i> Windows 10</a>
+                                <a target="bitBrowser" href="https://www.microsoft.com/fr-fr/windows"><i class="fab fa-windows"></i> Windows 10</a>
                             </div>
                             <div class="folder-book">
-                                <a target="_blank" href="https://www.naver.com"><i class="fab fa-windows"></i> NAVER</a>
+                                <a target="bitBrowser" href="https://www.naver.com"><i class="fab fa-windows"></i> NAVER</a>
                             </div>
                     </div>
                 </div>
 	                
                 <!-- Bookmarks -->
 	            </div>
-	            <!-- 폴더일 경우 div class='frame' -->
- 	            <div class="frame">
- 	            	<div class="col-sm-12">
- 		            	<div class="col-sm-2">
- 							<i class='fas fa-cloud'> 현재 용량</i>
- 		            	</div>
- 		            	<div class="col-sm-10">
- 			            	<table>
- 			            		<tr>
- 				            		<th>파일명 ↑</th>
- 				            		<th></th>
- 				            		<th>최종 수정일</th>
- 				            		<th>파일크기</th>
- 			            		</tr>
- 			            	</table>
- 		            	</div>
-		            </div> 
- 	            </div>
 	            <!-- 크롬 브라우저일 경우 iframe -->
- 	       		<iframe src="http://localhost/bitcode/main/main.do" frameborder="0" width="895px" height="404px"></iframe>
+ 	       		<iframe src="http://www.daum.net" frameborder="0" width="800px" height="400px" name="bitBrowser"></iframe>
 	        </div> 
 	    </div>
 	    <!-- Chrome end -->
@@ -272,6 +257,9 @@ $(".chatLoginCheck").click(function(e){
 });
 	
 $(".chromeBody").draggable();
+
+// 브라우저 주소표시줄 입력 이벤트설정
+//$("#bitUrl")
 
 </script>
 
