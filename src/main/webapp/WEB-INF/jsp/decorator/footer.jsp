@@ -254,7 +254,7 @@ var loginId = '${sessionScope.user.id}';
 			console.log("웹소켓 서버 접속 성공");
 		    // 웹소켓 서버에 데이터 전송하기
 		    if(loginId){		    	
-			    ws.send(loginId);
+			    ws.send("notice:" + loginId);
 		    }
 		};
 		

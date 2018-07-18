@@ -285,8 +285,7 @@
 	
 	searchList();
 		
-	// 글쓰기버튼 로그인/결제 확인
-		// 로그인 및 결제 확인창
+	// 글쓰기버튼 로그인 확인
 	$(".order").click(function(){
 		if("${sessionScope.user}" == ""){
 			swal({
@@ -303,29 +302,6 @@
 				  }
 				})
 		} // 로그인알림
-		else{
-		  swal({
-		    title: '결제하시겠습니까',
-		    text: "상담을 위해서는 결제가 필요한 서비스입니다",
-		    type: 'warning',
-		    showCancelButton: true,
-		    confirmButtonColor: '#3085d6',
-		    cancelButtonColor: '#d33',
-		    cancelButtonText: '아니오',
-		    confirmButtonText: '네,결제를 진행하겠습니다.'
-		  }).then((result) => {
-		    if (result.value) {
-		    	// 결제페이지 주소로 변경 필요
-		    	location.href='insertForm.do'
-		   /*    swal(
-		        '결제페이지로 이동합니다.',
-		        location.href='remoteForm.do',
-		        'success'
-		      ) */
-		    }
-		  })
-		} // 결제알림
-	  
 	})
 	
 	$(".qnaBody").draggable();
