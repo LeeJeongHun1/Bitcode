@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Remote</title>
+<title>BIT CODE</title>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
@@ -59,26 +59,45 @@
 	
 	<script>
 	
+	// 로그인 및 결재 확인창
 	$(".order").click(function(){
-	  swal({
-	    title: '결제하시겠습니까',
-	    text: "상담을 위해서는 결제가 필요한 서비스입니다",
-	    type: 'warning',
-	    showCancelButton: true,
-	    confirmButtonColor: '#3085d6',
-	    cancelButtonColor: '#d33',
-	    cancelButtonText: '아니오',
-	    confirmButtonText: '네,결제를 진행하겠습니다.'
-	  }).then((result) => {
-	    if (result.value) {
-	    	location.href='insertForm.do'
-	   /*    swal(
-	        '결제페이지로 이동합니다.',
-	        location.href='remoteForm.do',
-	        'success'
-	      ) */
-	    }
-	  })
+		if("${sessionScope.user}" == ""){
+			swal({
+				  title: '로그인이 필요한 서비스 입니다.',
+				  text: "확인을 누르시면 로그인 페이지로 이동합니다.",
+				  type: 'warning',
+				  showCancelButton: true,
+				  confirmButtonColor: '#3085d6',
+				  cancelButtonColor: '#d33',
+				  confirmButtonText: '확인'
+				}).then((result) => {
+				  if (result.value) {
+					  location.href='/bitcode/login/loginForm.do'
+				  }
+				})
+		} // 로그인알림
+		else{
+		  swal({
+		    title: '결제하시겠습니까',
+		    text: "상담을 위해서는 결제가 필요한 서비스입니다",
+		    type: 'warning',
+		    showCancelButton: true,
+		    confirmButtonColor: '#3085d6',
+		    cancelButtonColor: '#d33',
+		    cancelButtonText: '아니오',
+		    confirmButtonText: '네,결제를 진행하겠습니다.'
+		  }).then((result) => {
+		    if (result.value) {
+		    	location.href='insertForm.do'
+		   /*    swal(
+		        '결제페이지로 이동합니다.',
+		        location.href='remoteForm.do',
+		        'success'
+		      ) */
+		    }
+		  })
+		} // 결제알림
+	  
 	})
 
 	$(".remoteBody").draggable();

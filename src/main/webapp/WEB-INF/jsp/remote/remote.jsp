@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Remote</title>
+<title>BIT CODE</title>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/remote/remote.css">
 <script src="https://192.168.0.104:10001/socket.io/socket.io.js"></script>

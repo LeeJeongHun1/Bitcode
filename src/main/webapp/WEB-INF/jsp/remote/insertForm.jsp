@@ -6,12 +6,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Remote</title>
+<title>BIT CODE</title>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/remote/remoteForm.css">
 <link href='https://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
 </head>
-<body>
 <body>
 
 <div class="remoteForm">
@@ -27,8 +26,11 @@
     <input type="submit" value="➔" id="remoteSend">
 </form>
 </div>    
+
     
-</body>
+<script>
+</script>
 
 </body>
+
 </html>
