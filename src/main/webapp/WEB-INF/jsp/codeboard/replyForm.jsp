@@ -31,7 +31,7 @@ background-color: black;}
 			</tr>
 			<tr>
 			<th style="color:#80FF00; background-color: black;">작성자</th>
-			<td><input style="color:#80FF00; background-color: black;" type="text" name="id"/>
+			<td><input style="color:#80FF00; background-color: black;" type="text" name="id" value='${user.id}' readonly="readonly"/>
 			<input type="hidden" name="no" value="${cb.no}" /> 
 			<input type="hidden" name="groupOrder" value="${cb.groupOrder}" /> 
 			<input type="hidden" name="depth" value="${cb.depth}" />
