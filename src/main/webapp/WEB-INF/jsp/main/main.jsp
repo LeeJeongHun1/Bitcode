@@ -272,19 +272,19 @@ $(function() {
    return false;
  }
 
- var recognition = new webkitSpeechRecognition();
- var isRecognizing = false;
- var ignoreOnend = false;
- var finalTranscript = '';
- var audio = document.getElementById('audio');
- var $btnMic = $('#btn-mic');
- var $folder = $('#icon-computer');
- var $result = $('#result');
- var $iconMusic = $('#icon-music');
- var $close = $("#closeMIC");
- console.dir(recognition)
- recognition.continuous = true;
- recognition.interimResults = true;
+var recognition = new webkitSpeechRecognition();
+var isRecognizing = false;
+var ignoreOnend = false;
+var finalTranscript = '';
+var audio = document.getElementById('audio');
+var $btnMic = $('#btn-mic');
+var $folder = $('#icon-computer');
+var $result = $('#result');
+var $iconMusic = $('#icon-music');
+var $close = $("#closeMIC");
+console.dir(recognition)
+recognition.continuous = true;
+recognition.interimResults = true;
 
  recognition.onstart = function() {
    console.log('onstart', arguments);
@@ -557,7 +557,7 @@ $(function() {
 					appendFile += '</div>';
 					$("#folder-area").append(appendFile);
 				}else{
-					appendFile += '<div class="col-xs-2 folders text-center" id="'+f.key+'" data-path="'+f.parentPath+'" data-title="'+f.title+'" ondblclick="test1()">';
+					appendFile += '<div class="col-xs-2 folders text-center" id="'+f.key+'" data-path="'+f.parentPath+'" data-title="'+f.title+'" ondblclick="test1('+f.key+')">';
 					appendFile += '<p class="contain">';
 					if(f.type == 'img'){
 						appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/jpg-icon.png"`;
@@ -579,9 +579,12 @@ $(function() {
 	}
 	
 	// file 더블클릭 -> img는 미리보여주기 후 다운
-	function test1 () {
-		alert("더블 클릭 파일")
-		location.href = "download.do";
+	function test1 (key) {
+		alert("더블 클릭 파일");
+		var fileName = $("#"+key).data("title");
+		console.log(fileName)
+		var path = $("#share-path").data("root");
+		location.href = "download.do?path="+encodeURI(path)+"&fileName="+fileName;
 	}
 	
 	function loadFancytree(data) {
@@ -708,7 +711,7 @@ $(function() {
 				appendFile += '</div>';
 				$("#folder-area").append(appendFile);
 			}else{
-				appendFile += '<div class="col-xs-2 folders text-center" id="'+f.key+'" data-path="'+f.parentPath+'" data-title="'+f.title+'" ondblclick="test1()">';
+				appendFile += '<div class="col-xs-2 folders text-center" id="'+f.key+'" data-path="'+f.parentPath+'" data-title="'+f.title+'" ondblclick="test1('+f.key+')">';
 				appendFile += '<p class="contain">';
 				appendFile += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500505134/if_sticky-note_299111_px7waa.png"';
 				appendFile += '		class="img-responsive  center-block" style="height: 64px;"';

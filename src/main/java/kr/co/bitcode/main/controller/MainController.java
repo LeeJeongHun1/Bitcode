@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import kr.co.bitcode.repository.domain.DownloadFile;
 import kr.co.bitcode.repository.domain.FileVO;
 import kr.co.bitcode.repository.domain.Folder;
 
@@ -129,22 +130,24 @@ public class MainController {
 	}
 	
 	@RequestMapping("/download.do")
-	public void download(FileVO file,HttpServletResponse response, Model model) throws Exception{
-		File f = new File(PATH + "aaaa\\Koala.jpg");
-		String dName = file.getOriginalFileName();
-		if(dName == null){
-//			헤더값의 설정을 통해서 처리
-			response.setHeader("content-Type", "image/jpg");
-		}
-//		파일의 종류에 상관없이 무조건 다운로드
-		else{
+	public void download(DownloadFile file, HttpServletResponse response) throws Exception{
+		File f = new File(file.getPath() + "\\" + file.getFileName());
+		System.out.println(file.getPath());
+		System.out.println(file.getFileName());
+		String dName = file.getFileName();
+//		if(dName == null){
+////			헤더값의 설정을 통해서 처리
+//			response.setHeader("content-Type", "image/jpg");
+//		}
+////		파일의 종류에 상관없이 무조건 다운로드
+//		else{
 //			타입을 모른다. 다운로드 하세요...
 			response.setHeader("content-Type", "application/octet-stream");
 //			다운로드 받을 이름을 설정
 //			dName 한글처리
 			dName = new String(dName.getBytes("utf-8"), "8859_1");
 			response.setHeader("content-Disposition", "attachment;filename="+dName);
-		}
+//		}
 		FileInputStream fis = new FileInputStream(f);
 		BufferedInputStream bis = new BufferedInputStream(fis);
 		OutputStream out = response.getOutputStream();

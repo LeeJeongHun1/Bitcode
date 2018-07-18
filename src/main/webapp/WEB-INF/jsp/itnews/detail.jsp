@@ -30,7 +30,7 @@
 	    </div>  
 	  </div> 
 	  <div class="btnITList">
-	  <a href='${pageContext.request.contextPath}/itnews/itnews.do' class="ITList" role="button" >목록</a>
+	  <a href='${pageContext.request.contextPath}/itnews/list.do' class="ITList" role="button" >목록</a>
 	  </div>	
 <!--   댓글부분 -->
 <!--  
