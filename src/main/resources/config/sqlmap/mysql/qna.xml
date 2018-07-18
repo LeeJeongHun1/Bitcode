@@ -22,32 +22,41 @@
 			<result column="ori_name" property="oriName" /> <result column="system_name" 
 			property="systemName" /> -->
 	</resultMap>
+	<!-- 리스트 조회 -->
 	<select id="selectboard" parameterType="page" resultMap="qnaMap">
 		SELECT
 		SQL_CALC_FOUND_ROWS A.*
 		FROM (
 		select
-		q.title,q.content,q.depth,q.group_no,q.group_order,q.id,q.language_code,q.like_cnt,q.no,q.reg_date,q.stsfc_code,q.view_cnt,l.language_name
+		q.no,u.name,u.nick_name,q.title,q.content,q.depth,q.group_no,q.group_order,q.id,q.language_code,q.like_cnt,q.reg_date,q.stsfc_code,q.view_cnt,l.language_name
 		from tb_qna_board q
 		inner
 		join tb_language_code l
 		on q.language_code =
 		l.language_code
+		inner
+		join tb_user u
+		on q.id = u.id
 		order
 		by group_no desc, group_order asc) A
 		LIMIT
 		#{begin},10
 	</select>
+	
+	<!--  검색 쿼리  -->
 	<select id="selectBoardSearch" parameterType="search" resultMap="qnaMap">
 		SELECT SQL_CALC_FOUND_ROWS A.*
 		FROM (
 		select
-		q.title,q.content,q.depth,q.group_no,q.group_order,q.id,q.language_code,q.like_cnt,q.no,q.reg_date,q.stsfc_code,q.view_cnt,l.language_name
+		q.no,u.name,u.nick_name,q.title,q.content,q.depth,q.group_no,q.group_order,q.id,q.language_code,q.like_cnt,q.reg_date,q.stsfc_code,q.view_cnt,l.language_name
 		from tb_qna_board q
 		inner
 		join tb_language_code l
 		on q.language_code =
 		l.language_code
+        inner 
+        join tb_user u
+        on q.id = u.id
 		<where>
 			<choose>
 				<when test="type.equals('title')">
@@ -72,6 +81,7 @@
 			= l.language_code where q.title like '%테%' and q.content like '%ㅂ%' order 
 			by group_no desc, group_order asc; -->
 	</select>
+	<!-- 게시글  카운트 -->
 	<select id="selectBoardCount" resultType="int">
 		select count(*)
 		from
@@ -168,7 +178,7 @@
 	</update>
 
 	<update id="updateViewCnt" parameterType="int">
-		update tb_code_board
+		update tb_qna_board
 		set view_cnt = view_cnt + 1
 		where no = #{no}
 	</update>

@@ -66,6 +66,7 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 	@Override
 	public Map<String,Object> detailQna(int no) throws Exception {
 		mapper.updateViewCnt(no);
+		System.out.println("감?");
 		Map<String,Object> map= new HashMap<>();
 		Qna qna = mapper.selectBoardByNo(no);
 		qna.setFileList(mapper.selectQnaFile(no));

@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class Qna {
 	private int no;
+	private String nickName;
 	private int groupNo;
 	private int groupOrder;
 	private int depth;
@@ -19,6 +20,12 @@ public class Qna {
 	private String codeName;
 	private char answerAt;
 	private char readAns;
+	public String getNickName() {
+		return nickName;
+	}
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
 	public char getReadAns() {
 		return readAns;
 	}
