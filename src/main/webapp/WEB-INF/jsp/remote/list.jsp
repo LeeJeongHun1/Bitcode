@@ -16,7 +16,7 @@
 
 	<div class="remoteBody">
 		<div id="card1" class="card ten col">
-			<div class="topbar blue">
+			<div class="topbar red">
 			<div class="swatches"><span class="red"></span><span class="orange"></span><span class="yellow"></span><span class="green"></span><span class="blue"></span></div>
 			<div class="xbtn" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">x</div>
 			</div> 
