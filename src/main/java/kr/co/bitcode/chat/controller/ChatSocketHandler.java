@@ -32,7 +32,10 @@ public class ChatSocketHandler extends TextWebSocketHandler{
 		System.out.println("접속한 사용자 관리 목록");
 		System.out.println("------------------------------");
 		Set<String> keys = users.keySet();
+		String entrance = "entrance:";
 		String userList = "userList:";
+		String message = "message:";
+		String out = "out:";
 		for(String key : keys) {
 			System.out.println(key);
 			userList = userList + key + ":";			
@@ -41,6 +44,7 @@ public class ChatSocketHandler extends TextWebSocketHandler{
 			WebSocketSession wss = users.get(key);
 			wss.sendMessage(new TextMessage(userList));
 		}
+		
 		System.out.println("------------------------------");
 	}
 
