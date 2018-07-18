@@ -34,7 +34,7 @@ a {
 			</div>
 
 			<div class="header_info">
-				<span class="shell_writer"><c:out value="${list.qna.id}"/></span><span
+				<span class="shell_writer"><c:out value="${list.qna.nickName}"/></span><span
 					class="shell_hits">조회<span><c:out value="${list.qna.viewCnt}" /></span></span>
 
 			</div>

@@ -142,6 +142,10 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 		Map<String,Object> map = new HashMap<>();
 		map.put("list", mapper.selectboard(page));
 		map.put("pageResult", new PageResult(page.getPageNo(),mapper.selectBoardCount(page)));
+		List<Qna> list = mapper.selectboard(page);
+		for(Qna qna:list) {
+			System.out.println("닉네임" +qna.getNickName());
+		}
 		System.out.println(page.getBegin() +"시작");
 		System.out.println(page.getEnd() +"끝");
 		System.out.println(page.getPageNo());

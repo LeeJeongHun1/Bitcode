@@ -8,6 +8,7 @@
 		<result column="group_order" property="groupOrder" />
 		<result column="depth" property="depth" />
 		<result column="id" property="id" />
+		<result column="nick_name" property="nickName" />		
 		<result column="language_code" property="code" />
 		<result column="language_name" property="codeName" />
 		<result column="title" property="title" />
@@ -115,12 +116,15 @@
 	</select>
 	<select id="selectBoardByNo" parameterType="int" resultMap="qnaMap">
 		select *
-		from tb_qna_board b
+		from tb_qna_board q
 		inner
 		join tb_language_code c
 		on
-		b.language_code = c.language_code
-		where b.no = #{no}
+		q.language_code = c.language_code
+		inner 
+		join tb_user u
+		on q.id = u.id
+		where q.no = #{no}
 	</select>
 
 	<delete id="deleteBoard" parameterType="int">
