@@ -59,7 +59,7 @@
 	
 	<script>
 	
-	// 로그인 및 결재 확인창
+	// 로그인 및 결제 확인창
 	$(".order").click(function(){
 		if("${sessionScope.user}" == ""){
 			swal({
@@ -88,6 +88,7 @@
 		    confirmButtonText: '네,결제를 진행하겠습니다.'
 		  }).then((result) => {
 		    if (result.value) {
+		    	// 결제페이지 주소로 변경 필요
 		    	location.href='insertForm.do'
 		   /*    swal(
 		        '결제페이지로 이동합니다.',
