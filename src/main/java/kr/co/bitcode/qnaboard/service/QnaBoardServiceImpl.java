@@ -55,12 +55,17 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 	}
 
 	@Override
-	public Qna detailQna(int no) throws Exception {
+	public Map<String,Object> detailQna(int no) throws Exception {
 		mapper.updateViewCnt(no);
-		System.out.println(no);
+		Map<String,Object> map= new HashMap<>();
 		Qna qna = mapper.selectBoardByNo(no);
 		qna.setFileList(mapper.selectQnaFile(no));
-		return qna;
+		map.put("qna", qna);
+		map.put("ori", mapper.selectBoardByNo(qna.getGroupNo()).getId());	
+		// 게시판 읽었을 경우 Y로 변경되게
+		mapper.readQna(qna);
+		mapper.updateReadAns(qna);
+		return map;
 	}
 
 /*	@Override

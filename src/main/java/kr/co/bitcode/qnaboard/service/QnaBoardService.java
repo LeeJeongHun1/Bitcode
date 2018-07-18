@@ -17,7 +17,7 @@ public interface QnaBoardService {
 	public void updateQnaView(int no) throws Exception;
 	public void insertQna(Qna qna,QnaFile qnafile,User user) throws Exception;
 	public void delete(int no) throws Exception;
-	public Qna detailQna(int no) throws Exception;
+	public Map<String,Object> detailQna(int no) throws Exception;
 	public List<Code> selectLanguage() throws Exception;
 	public Map<String,Object> list(Page page) throws Exception;
 	public Map<String,Object> search(Search search) throws Exception;
