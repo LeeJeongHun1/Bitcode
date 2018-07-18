@@ -9,8 +9,8 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-<script src='http://cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.2/mustache.min.js'></script>
+<!-- <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script> -->
+<!-- <script src='http://cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.2/mustache.min.js'></script> -->
 <script src="${pageContext.request.contextPath}/resources/js/notify/index.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/notify/notify.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/waitme/waitMe.min.js"></script>

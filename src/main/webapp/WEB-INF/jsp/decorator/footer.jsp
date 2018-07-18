@@ -170,25 +170,25 @@
 	                
 	            </div>
 	            <!-- 폴더일 경우 div class='frame' -->
-	            <div class="frame">
-	            	<div class="col-sm-12">
-		            	<div class="col-sm-2">
-							<i class='fas fa-cloud'> 현재 용량</i>
-		            	</div>
-		            	<div class="col-sm-10">
-<!-- 			            	<table> -->
-<!-- 			            		<tr> -->
-<!-- 				            		<th>파일명 ↑</th> -->
-<!-- 				            		<th></th> -->
-<!-- 				            		<th>최종 수정일</th> -->
-<!-- 				            		<th>파일크기</th> -->
-<!-- 			            		</tr> -->
-<!-- 			            	</table> -->
-		            	</div>
-		            </div>
-	            	</div>
+<!-- 	            <div class="frame"> -->
+<!-- 	            	<div class="col-sm-12"> -->
+<!-- 		            	<div class="col-sm-2"> -->
+<!-- 							<i class='fas fa-cloud'> 현재 용량</i> -->
+<!-- 		            	</div> -->
+<!-- 		            	<div class="col-sm-10"> -->
+<!-- <!-- 			            	<table> --> -->
+<!-- <!-- 			            		<tr> --> -->
+<!-- <!-- 				            		<th>파일명 ↑</th> --> -->
+<!-- <!-- 				            		<th></th> --> -->
+<!-- <!-- 				            		<th>최종 수정일</th> --> -->
+<!-- <!-- 				            		<th>파일크기</th> --> -->
+<!-- <!-- 			            		</tr> --> -->
+<!-- <!-- 			            	</table> --> -->
+<!-- 		            	</div> -->
+<!-- 		            </div> -->
+<!-- 	            </div> -->
 	            <!-- 크롬 브라우저일 경우 iframe -->
-	       		<iframe src="http://localhost/bitcode/main/main.do" frameborder="0" width="895px" height="404px"></iframe>
+<!-- 	       		<iframe src="http://localhost/bitcode/main/main.do" frameborder="0" width="895px" height="404px"></iframe> -->
 	        </div> 
 	    </div>
     </div>
@@ -219,31 +219,31 @@
 var ws = null;
 var loginId = '${sessionScope.user.id}';
 //var cnt = 0;	
-	$(function(){
-		//ws = new WebSocket("ws://localhost/bitcode/notification.do");
-		ws = new WebSocket("wss://192.168.0.104/bitcode/notification.do");
-		 ws.onerror = function(evt) {
-		   	    $(".details").prepend('웹소켓 에러 발생 : ' + evt.data)
-		 };
-		ws.onmessage = function(evt) {
-	        $(".details").html("");				
-	        $(".details").prepend(evt.data);				
+// 	$(function(){
+// 		//ws = new WebSocket("ws://localhost/bitcode/notification.do");
+// 		ws = new WebSocket("wss://192.168.0.104/bitcode/notification.do");
+// 		 ws.onerror = function(evt) {
+// 		   	    $(".details").prepend('웹소켓 에러 발생 : ' + evt.data)
+// 		 };
+// 		ws.onmessage = function(evt) {
+// 	        $(".details").html("");				
+// 	        $(".details").prepend(evt.data);				
 				
 			
-	        console.log("메세지 전송")
-	    };
-		 ws.onclose = function(){
-			 $(".details").prepend("웹소켓 연결이 종료됨");
-		 };
-		ws.onopen = function(){
-			console.log("웹소켓 서버 접속 성공");
-		    // 웹소켓 서버에 데이터 전송하기
-		    if(loginId){		    	
-			    ws.send(loginId);
-		    }
-		};
+// 	        console.log("메세지 전송")
+// 	    };
+// 		 ws.onclose = function(){
+// 			 $(".details").prepend("웹소켓 연결이 종료됨");
+// 		 };
+// 		ws.onopen = function(){
+// 			console.log("웹소켓 서버 접속 성공");
+// 		    // 웹소켓 서버에 데이터 전송하기
+// 		    if(loginId){		    	
+// 			    ws.send(loginId);
+// 		    }
+// 		};
 		
-	}) 
+// 	}) 
 </script>
 
 
