@@ -101,8 +101,8 @@
 						<i class="fa fa-window-minimize" onclick="closeopencom()"></i> <i
 							class="fa fa-window-restore" onclick="returncom()" id="returncam"
 							style="display: none;"></i> <i class="fa fa-window-maximize"
-							onclick="upercom()" id="upercam"></i> <i class="fa fa-times"
-							onclick="closecom()"></i>
+							onclick="upercom()" id="upercam"></i>
+							<i class="fa fa-times" id='closeMIC' onclick="closecom()"></i>
 					</div>
 					<div class="clearfix"></div>
 				</div>
@@ -285,7 +285,7 @@ $(function() {
  var $folder = $('#icon-computer');
  var $result = $('#result');
  var $iconMusic = $('#icon-music');
- var $close = $(".fa fa-times");
+ var $close = $("#closeMIC");
  recognition.continuous = true;
  recognition.interimResults = true;
 
@@ -369,9 +369,11 @@ $(function() {
 	     $folder.trigger('dblclick');
 	     console.log($folder);
      // opencom() 함수 호출
- 	}else if (string.endsWith('폴더 닫아') || string.endsWith('폴더 닫아줘') || string.endsWith('클로즈')){
+ 	}else if (string.endsWith('폴더 닫아') || string.endsWith('폴더 닫아줘') || string.endsWith('닫아')){
 	     console.log('closecom() 호출');
 	     $close.trigger('click');
+	     console.log($close)
+	     closecom();
  	}
  }
 	
