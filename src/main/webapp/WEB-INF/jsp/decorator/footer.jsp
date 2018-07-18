@@ -216,7 +216,10 @@ var loginId = '${sessionScope.user.id}';
 		ws.onmessage = function(evt) {
 			
 			// 알림 체크
-			
+			if((evt.data).startsWith("notice")){	
+				$(".details").html("");				
+		        $(".details").prepend(evt.data);				
+			}			
 			
 			// 유저리스트 체크
 			if((evt.data).startsWith("userList")){	
@@ -239,8 +242,7 @@ var loginId = '${sessionScope.user.id}';
 			}			
 			
 	
-			$(".details").html("");				
-	        $(".details").prepend(evt.data);				
+		
 
 			
 	        console.log("메세지 전송")
