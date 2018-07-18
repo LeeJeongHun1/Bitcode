@@ -1,12 +1,11 @@
 //카카오톡
-
 $(document).ready(function(e){
 	   $("#siciallogin").on('click',function(){
 	      $('.social').stop().slideToggle();
 	   });
 })   
 	   
-	   Kakao.init('261ddb106831fa19db04277afbb2fa75');  //여기서 발급받은 키  javascript키를 사용해준다.( 키 정보는 개인정보)
+	   Kakao.init('2acfbe2d572c39062b97a67d210c4923');  //여기서 발급받은 키  javascript키를 사용해준다.( 키 정보는 개인정보)
 	   Kakao.Auth.createLoginButton({
 		   container: '#kakao-login-btnn',
 		   success: function(authObj) {
@@ -33,7 +32,6 @@ $(document).ready(function(e){
 		   
 		   kakaoForm.submit();
           
-		   Kakao.Auth.logout();
 		   
 	   }
      

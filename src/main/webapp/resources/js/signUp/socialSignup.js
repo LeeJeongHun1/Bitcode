@@ -74,11 +74,97 @@ $(".inputDetail, #userEmail").focus(function(){
 
 //생년원일
 
-if($("#userBirth").val() == ""){
-	$("#userBirth").data("flag","no");
-}else{
-	$("#userBirth").data("flag","yes");
-}
+//if($("#userBirth").val() == ""){
+//	$("#userBirth").data("flag","no");
+//}else{
+//	$("#userBirth").data("flag","yes");
+//}
+
+
+
+
+
+//생년월일 체크
+var year = null;
+var month = null;
+var date = null;
+
+$("#birth1").keyup(function(){
+	year = $("#birth1").val();
+	if($("#birth1").val() == "" || year < 1899) {
+//		$("#birth3").next().text("정확한 년도를 기입해주세요 ");
+		$("#birth1").data("flag","no");
+		return;
+	}else{
+		$("#birth1").data("flag","yes");
+//		$("#birth3").next().text("");
+		return;
+	}
+});
+$("#birth2").keyup(function(){
+	 month = ($("#birth2").val());
+	if($("#birth2").val() == "" || month < 1 || month >= 13) {
+//		$("#birth3").next().text("1월부터 12월까지 입력 가능합니다. ");
+		$("#birth2").data("flag","no");
+		return;
+	}else{
+		$("#birth2").data("flag","yes");
+//		$("#birth3").next().text("");
+		return;
+	}
+
+});	     
+
+//
+$("#birth3").keyup(function(){
+	date = $("#birth3").val();
+	month = $("#birth2").val();
+	year = $("#birth1").val();
+//	if (date < 1 || date > 31) {
+		if ($("#birth3").val() == "" || date < 1 || date > 31) {
+		$("#birth3").data("flag","no");
+//		$("#birth3").next().text("일은 1일부터 31일까지 입력가능합니다. ");
+		return;
+	}else{
+		$("#birth3").data("flag","yes");
+//		$("#birth3").next().text("");
+		
+	}	
+	
+	if ((month==4 || month==6 || month==9 || month==11) && date==31) {
+		$("#birth3").data("flag","no");
+//		$("#birth3").next().text(month +"월은 31일이 존재하지 않습니다.");
+		return;
+	}else{
+		$("#birth3").data("flag","yes");
+//		$("#birth3").next().text("");
+		
+	} 	
+//	
+	if (month == 2) {
+		var isleap = (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0));
+		if (date>29 || (date==29 && !isleap)) {
+			$("#birth3").data("flag","no");
+//			$("#birth3").next().text(year + "년 2월은  " + day + "일이 없습니다.");
+			return;
+		}
+	}else{
+		$("#birth3").data("flag","yes");
+//		$("#birth3").next().text("");
+		
+	}	
+	
+	
+});		     
+
+
+
+
+
+
+
+
+
 
 
 //비번 체크
@@ -141,7 +227,9 @@ $("#submitBtn").click(function(){
 	if(id == false || name == false || nickName == false || pass == false  || birth == false || email == false){
 		return;
 	}
-	
+	birthday = $("#birthday").val();
+	$("#birthday").val($("#birth1").val() + $("#birth2").val() + $("#birth3").val());
+
 	$("#userSocialForm").submit();
 })
 

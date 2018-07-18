@@ -27,7 +27,7 @@
 <!--   <div class="clear"></div> -->
  
 <!--   페이징 할 곳.. -->
-  <div> 1 2 3 4 5 6 7 </div>
+<!--   <div> 1 2 3 4 5 6 7 </div> -->
   
 </section>
   
