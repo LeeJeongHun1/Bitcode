@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
@@ -14,6 +15,7 @@ import kr.co.bitcode.repository.domain.User;
 
 // 컴포넌트 정보 등록 : config/spring/spring-websocket.xml 파일에 등록처리함
 @Component("chat")
+@CrossOrigin(origins = "*")
 public class ChatSocketHandler extends TextWebSocketHandler{
 
 	private Map<String, WebSocketSession> users = new HashMap<>();
