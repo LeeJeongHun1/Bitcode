@@ -19,13 +19,6 @@ public class Qna {
 	private String codeName;
 	private char answerAt;
 	private char readAns;
-	private String oriId;
-	public String getOriId() {
-		return oriId;
-	}
-	public void setOriId(String oriId) {
-		this.oriId = oriId;
-	}
 	public char getReadAns() {
 		return readAns;
 	}

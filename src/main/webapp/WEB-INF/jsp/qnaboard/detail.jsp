@@ -16,39 +16,38 @@ a {
 </style>
 </head>
 <body>
-	<input type="hidden" name="groupNo" value="${list.qna.groupNo}">
-	<input type="hidden" name="depth" value="${list.qna.depth}">
-	<input type="hidden" name="groupOrder" value="${list.qna.groupOrder}">
-	<input type="hidden" name="oriId" value="${list.ori}">
+	<input type="hidden" name="groupNo" value="${list.groupNo}">
+	<input type="hidden" name="depth" value="${list.depth}">
+	<input type="hidden" name="groupOrder" value="${list.groupOrder}">
 	<div class="container">
 		<div class="shell-container">
 			<!-- <h2 class="shell_title">QnA질문게시판</h2> -->
 		<div class="contents_header">
 			<div class="title">
-				<c:if test="${empty list.qna}">
+				<c:if test="${empty list}">
 			안
 			</c:if>
-				<c:out value="${list.qna.title}" />
+				<c:out value="${list.title}" />
 				<span class="nowrap">|</span><span class="cf"><c:out
-						value="${list.qna.codeName}" /></span> <span class="day"><fmt:formatDate value="${list.qna.regDate}" pattern="yyyy-MM-dd HH:mm:ss" /></span>
+						value="${list.codeName}" /></span> <span class="day"><fmt:formatDate value="${list.regDate}" pattern="yyyy-MM-dd HH:mm:ss" /></span>
 			</div>
 
 			<div class="header_info">
-				<span class="shell_writer"><c:out value="${list.qna.id}"/></span><span
-					class="shell_hits">조회<span><c:out value="${list.qna.viewCnt}" /></span></span>
+				<span class="shell_writer"><c:out value="${list.id}"/></span><span
+					class="shell_hits">조회<span><c:out value="${list.viewCnt}" /></span></span>
 
 			</div>
 
 		</div>
 		<div class="contents_body">
 			<div class="detail">
-				<c:forEach var="qna" items="${list.qna.fileList}">
+				<c:forEach var="qna" items="${list.fileList}">
 			 파일명 : <a href="${pageContext.request.contextPath}/fileDown.do?filePath=${qna.filePath}&systemFileName=${qna.systemName}&originalFileName=${qna.oriName}">${qna.oriName}</a>
        		미리보기 : <img src="${pageContext.request.contextPath}/fileDown.do?filePath=${qna.filePath}&systemFileName=${qna.systemName}&originalFileName=${qna.oriName}"
 						style="width: 150px; height: 150px">
 					<br>
 				</c:forEach>
-				${list.qna.content}
+				${list.content}
 			</div>
 			<%-- 댓글 출력 --%>
 			<ul class="reBody">
@@ -61,8 +60,8 @@ a {
 			<form id="commentR"
 				action=''
 				method="post">
-				<input type="hidden" name="no" value="${list.qna.no}"> <input
-					type="hidden" name="groupNo" value="${list.qna.groupNo}">
+				<input type="hidden" name="no" value="${list.no}"> <input
+					type="hidden" name="groupNo" value="${list.groupNo}">
 				<div class="reWriteDiv">
 				<input type="text" name="id" value="${sessionScope.user.id}" hidden="hidden"/>
 				<table>
@@ -87,9 +86,9 @@ a {
 
 			<div class="contents_btn">
 				<a href='<c:url value="/qnaboard/list.do" />'><button>목록</button></a>
-				<a href='<c:url value="/qnaboard/insertReForm.do?no=${list.qna.no}"/>'><button>답변</button></a>
-				<a href='<c:url value="/qnaboard/updateForm.do?no=${list.qna.no}" />'><button>수정</button></a>
-				<a href='<c:url value="/qnaboard/delete.do?no=${list.qna.no}"/>'><button>삭제</button></a>
+				<a href='<c:url value="/qnaboard/insertReForm.do?no=${list.no}"/>'><button>답변</button></a>
+				<a href='<c:url value="/qnaboard/updateForm.do?no=${list.no}" />'><button>수정</button></a>
+				<a href='<c:url value="/qnaboard/delete.do?no=${list.no}"/>'><button>삭제</button></a>
 				<a href="#"><button>삭제</button></a>
 			</div>
 
@@ -227,8 +226,8 @@ a {
 	function selectComment(){
 		$.ajax({
 			url: "<c:url value='/qnaboard/commentList.json'/>",
-			data:{no:"${list.qna.no}"},
-			dataType:"json"
+			data:{no:"${list.no}"},
+			dataType:"json",
 		}).done(function(data){
 			commentList(data);
 		})
