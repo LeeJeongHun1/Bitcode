@@ -40,7 +40,13 @@ if(!location.hash.replace('#', '').length) {
 <body>
 
 <div class="shareTitle">
-	<h3 id="number-of-participants">연결 대기중입니다..</h3>
+	<c:if test="${sessionScope.user.auth eq 'U'}">
+	<span id="number-of-participants">화면 공유를 해주시면 상담 신청이 완료됩니다.</span>
+	
+	<button id="shareScreen" class="screenShare order btn btn-default btn-group-xs">화면 공유</button>
+    <button id="endScreen" class="screenShare order btn btn-default btn-group-xs">상담 종료</button>
+    </c:if>
+    
 	<!-- 화면 공유 페이지 링크 주소 -->
 	<div class="hide-after-join">
 		<input type="text" id="user-name" placeholder="Your Name" hidden="hidden" value="${sessionScope.user.id}">
@@ -53,11 +59,12 @@ if(!location.hash.replace('#', '').length) {
 	    <input type="text" id="link" name="link" hidden="hidden">
 	    </form>
 	</div>
-	    <button id="shareScreen" class="screenShare order btn btn-default btn-group-xs">화면 공유</button>
-	    <button id="endScreen" class="screenShare order btn btn-default btn-group-xs">상담 종료</button>
-
+	    
 	<!-- 화면 공유 대기 리스트 -->
+	<c:if test="${sessionScope.user.auth eq 'S'}">
 	<table style="width: 100%;" id="roomsList" class="hide-after-join"></table>
+    </c:if>
+	
 </div>
 
 <div class="embedded-container">
@@ -126,7 +133,7 @@ screensharing.onscreen = function(_screen) {
     tr.id = _screen.userid;
     //tr.innerHTML = '<td>' + _screen.userid + ' 회원 화면 함께보기</td>' +
     tr.innerHTML = '<td>회원 화면 함께보기</td>' +
-            '<td><button class="join">출력</button></td>';
+            '<td><button class="join screenShare order btn btn-default btn-group-xs">출력</button></td>';
     roomsList.insertBefore(tr, roomsList.firstChild);
     var button = tr.querySelector('.join');
     button.setAttribute('data-userid', _screen.userid);
