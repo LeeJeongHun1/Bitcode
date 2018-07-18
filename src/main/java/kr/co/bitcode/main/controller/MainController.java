@@ -29,7 +29,7 @@ import kr.co.bitcode.repository.domain.Folder;
 @RequestMapping("/main")
 public class MainController {
 	
-	private static final String DELETE_PATH = "c:\\java-lec\\upload\\delete\\";
+//	private static final String DELETE_PATH = "c:\\java-lec\\upload\\delete\\";
 	private static final String PATH = "c:\\java-lec\\upload\\";
 	
 	@RequestMapping("/main.do")
@@ -41,8 +41,10 @@ public class MainController {
 	@ResponseBody
 	public List<Folder> selectFolder(String id) {
 		String folderPath = PATH + id; 
+		String musicPath = PATH + "music_" + id;
 		System.out.println("경로 : " + folderPath);
 		new File(folderPath + "\\새 폴더").mkdirs();
+		new File(musicPath + "\\새 폴더").mkdirs();
 		return ListDirectory(new File(folderPath));
 	}
 	

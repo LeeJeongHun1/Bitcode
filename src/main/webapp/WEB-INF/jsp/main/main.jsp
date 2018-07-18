@@ -188,7 +188,7 @@
 						</div>
 					</div>
 					<div class="col-xs-9 ">
-						<div class="row main-folders" id="folder-area">
+						<div class="row main-folders" id="folder-area" style="height: 380px;">
 							<!-- 폴더 ajax 추가 -->
 							<!-- 공유 폴더 -->
 <!-- 							<div class="col-xs-2 folders text-center" id="99999" data-path="" data-title="shareFolder" ondblclick='test(9999)'> -->
@@ -349,7 +349,7 @@ recognition.interimResults = true;
   * changeColor
   *
   */
- /*
+ /*개덥 쑤지눌 폭력인데 나븐수지
 	  .red 		{ background: red; }
 		.blue 	{ background: blue; }
 		.green 	{ background: green; }
@@ -367,7 +367,7 @@ recognition.interimResults = true;
 	     $folder.trigger('dblclick');
 	     console.log($folder);
      // opencom() 함수 호출
- 	}else if (string.endsWith('다다') || string.endsWith('폴더 다다') || string.endsWith('폴더 닫아') || string.endsWith('폴더 닫아줘') || string.endsWith('닫아')){
+ 	}else if (string.endsWith('닫기') || string.endsWith('다다') || string.endsWith('폴더 다다') || string.endsWith('폴더 닫아') || string.endsWith('폴더 닫아줘') || string.endsWith('닫아')){
 	     console.log('closecom() 호출');
 	     $close.trigger('click');
 	     console.log($close)
@@ -477,18 +477,43 @@ recognition.interimResults = true;
 	// fancyTree
 	$(function() {
 		$.contextMenu({
-			selector: "#folder-area p",
+			selector: "#folder-area div",
 			items: {
 				"add": {name: "AddFolder", icon: "add" },
-				"copy": {name: "Copy", icon: "copy"},
-				"delete": {name: "Delete", icon: "delete", disabled: true }
+				"delete": {name: "Delete", icon: "delete" }
 			},
 			callback: function (itemKey, opt) {
 				var node = $.ui.fancytree.getNode(opt.$trigger);
 				console.dir(opt)
-				console.dir(this)
+				console.dir(this[0].dataset.path)
 				alert("select " + itemKey + " on " + opt);
-				
+				// 마우스 우클릭 > 폴더 생성 선택
+				if(itemKey == 'add'){
+					swal.mixin({
+							input: 'text',
+							confirmButtonText: 'confirm',
+							showCancelButton: true,
+							progressSteps: ['1']
+						}).queue([
+							{
+								title: '폴더 생성',
+								text: '폴더명을 입력하세요'
+							}
+						]).then((result) => {
+							console.dir(result)
+							if (result.value != '') {
+								swal({
+									title: 'Success',
+									confirmButtonText: 'Success!'
+								})
+							}
+						})
+				}
+				if(itemKey == 'delete'){
+					swal(	'warning',
+							'파일 삭제',
+							'question');
+				}
 			}
 		});
         $.contextMenu({
