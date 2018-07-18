@@ -8,14 +8,10 @@
 <title>BIT CODE</title>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/main/main.css">
-<script
-	src="//static.codepen.io/assets/editor/live/console_runner-ce3034e6bde3912cc25f83cccb7caa2b0f976196f2f2d52303a462c826d54a73.js"></script>
+<script src="//static.codepen.io/assets/editor/live/console_runner-ce3034e6bde3912cc25f83cccb7caa2b0f976196f2f2d52303a462c826d54a73.js"></script>
 <script src="//static.codepen.io/assets/editor/live/css_live_reload_init-890dc39bb89183d4642d58b1ae5376a0193342f9aed88ea04330dc14c8d52f55.js"></script>
 <meta name="robots" content="noindex">
-<link rel="mask-icon" type=""
-	href="//static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111">
-<link rel="canonical"
-	href="https://codepen.io/MohamedElGhandour/pen/GEbwEW">
+<link rel="canonical" href="https://codepen.io/MohamedElGhandour/pen/GEbwEW">
 
 <link rel="stylesheet prefetch"
 	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
@@ -280,12 +276,13 @@ $(function() {
  var isRecognizing = false;
  var ignoreOnend = false;
  var finalTranscript = '';
-	var audio = document.getElementById('audio');
+ var audio = document.getElementById('audio');
  var $btnMic = $('#btn-mic');
  var $folder = $('#icon-computer');
  var $result = $('#result');
  var $iconMusic = $('#icon-music');
  var $close = $("#closeMIC");
+ console.dir(recognition)
  recognition.continuous = true;
  recognition.interimResults = true;
 
@@ -298,6 +295,7 @@ $(function() {
 
  recognition.onend = function() {
    console.log('onend', arguments);
+	console.dir(event)
    isRecognizing = false;
 
    if (ignoreOnend) {
@@ -369,7 +367,7 @@ $(function() {
 	     $folder.trigger('dblclick');
 	     console.log($folder);
      // opencom() 함수 호출
- 	}else if (string.endsWith('폴더 닫아') || string.endsWith('폴더 닫아줘') || string.endsWith('닫아')){
+ 	}else if (string.endsWith('다다') || string.endsWith('폴더 다다') || string.endsWith('폴더 닫아') || string.endsWith('폴더 닫아줘') || string.endsWith('닫아')){
 	     console.log('closecom() 호출');
 	     $close.trigger('click');
 	     console.log($close)
@@ -380,7 +378,7 @@ $(function() {
 	
  recognition.onerror = function(event) {
    console.log('onerror', event);
-
+	console.dir(event)
    if (event.error == 'no-speech') {
      ignoreOnend = true;
    } else if (event.error == 'audio-capture') {

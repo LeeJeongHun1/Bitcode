@@ -18,7 +18,7 @@ public class ITNewsController {
 	private CrawlingService crawlingService;
 	
 	// IT 뉴스 출력하기
-	@RequestMapping("/itnews.do")
+	@RequestMapping("/list.do")
 	public ModelAndView newsList() throws Exception {
 		ModelAndView mav = new ModelAndView();
 		List<Article> newList = crawlingService.selectITNews();
