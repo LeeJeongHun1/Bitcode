@@ -108,12 +108,10 @@
     </div>
     
     
-	    <!-- Chrome -->
-	    <div class="chrome" id="chrome-pop-up">
+	    <!-- Chrome start -->
+	    <div class="chrome chromeBody" id="chrome-pop-up">
 	        <div class="pop-up">
-	
 	            <!-- Taskbar chrome-->
-	            
 	            <!-- Top -->
 	            <div class="chrome-top">
 	                <div class="chrome-tabs">
@@ -136,66 +134,70 @@
 	            </div>
 	            <!-- Bottom -->
 	            <div class="chrome-bottom">
-	                <div class="options-bar">
-	                    <div class="icons-bar">
-	                        <div class="arrows">
-	                            <a href="#"><i class="fas fa-arrow-left"></i></a>
-	                            <a href="#"><i class="fas fa-arrow-right"></i></a>
-	                            <a href="#"><i class="fas fa-sync"></i></a>
-	                        </div>
-	                        <div class="search-bar">
-	                            <span class="info"><i class="fas fa-lock"></i> Securised</span>
-	                            <input type="text" id="url" value="http://codepen.io/Guklam">
-	                            <span class="star"><i class="far fa-star"></i></span>
-	                        </div>
-	                        <div class="points-bar">
-	                            <div class="points">
-	                                <span>•</span>
-	                                <span>•</span>
-	                                <span>•</span>
-	                            </div>
-	                        </div>
-	                    </div>
-	                    <div class="bookmarks">
-	                            <div class="folder-book">
-	                                <a target="_blank" href="https://purecss.io/"><span>P</span> Pure</a>
-	                            </div>
-	                            <div class="folder-book">
-	                                <a target="_blank" href="https://developer.mozilla.org/fr/docs/Web/CSS"><i class="fab fa-css3-alt"></i> CSS</a>
-	                            </div>
-	                            <div class="folder-book">
-	                                <a target="_blank" href="https://www.microsoft.com/fr-fr/windows"><i class="fab fa-windows"></i> Windows 10</a>
-	                            </div>
-	                            <div class="folder-book">
-	                                <a target="_blank" href="https://www.naver.com"><i class="fab fa-windows"></i> NAVER</a>
-	                            </div>
-	                    </div>
-	                </div>
-	                <!-- Bookmarks -->
+                <div class="options-bar">
+                    <div class="icons-bar">
+                        <div class="arrows">
+                            <a href="#"><i class="fas fa-arrow-left"></i></a>
+                            <a href="#"><i class="fas fa-arrow-right"></i></a>
+                            <a href="#"><i class="fas fa-sync"></i></a>
+                        </div>
+                        <div class="search-bar">
+                            <span class="info"><i class="fas fa-lock"></i> Securised</span>
+                            <input type="text" id="url" value="http://codepen.io/Guklam">
+                            <span class="star"><i class="far fa-star"></i></span>
+                        </div>
+                        <div class="points-bar">
+                            <div class="points">
+                                <span>•</span>
+                                <span>•</span>
+                                <span>•</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bookmarks">
+                            <div class="folder-book">
+                                <a target="_blank" href="https://purecss.io/"><span>P</span> Pure</a>
+                            </div>
+                            <div class="folder-book">
+                                <a target="_blank" href="https://developer.mozilla.org/fr/docs/Web/CSS"><i class="fab fa-css3-alt"></i> CSS</a>
+                            </div>
+                            <div class="folder-book">
+                                <a target="_blank" href="https://www.microsoft.com/fr-fr/windows"><i class="fab fa-windows"></i> Windows 10</a>
+                            </div>
+                            <div class="folder-book">
+                                <a target="_blank" href="https://www.naver.com"><i class="fab fa-windows"></i> NAVER</a>
+                            </div>
+                    </div>
+                </div>
 	                
+                <!-- Bookmarks -->
 	            </div>
 	            <!-- 폴더일 경우 div class='frame' -->
-<!-- 	            <div class="frame"> -->
-<!-- 	            	<div class="col-sm-12"> -->
-<!-- 		            	<div class="col-sm-2"> -->
-<!-- 							<i class='fas fa-cloud'> 현재 용량</i> -->
-<!-- 		            	</div> -->
-<!-- 		            	<div class="col-sm-10"> -->
-<!-- <!-- 			            	<table> --> -->
-<!-- <!-- 			            		<tr> --> -->
-<!-- <!-- 				            		<th>파일명 ↑</th> --> -->
-<!-- <!-- 				            		<th></th> --> -->
-<!-- <!-- 				            		<th>최종 수정일</th> --> -->
-<!-- <!-- 				            		<th>파일크기</th> --> -->
-<!-- <!-- 			            		</tr> --> -->
-<!-- <!-- 			            	</table> --> -->
-<!-- 		            	</div> -->
-<!-- 		            </div> -->
-<!-- 	            </div> -->
+ 	            <div class="frame">
+ 	            	<div class="col-sm-12">
+ 		            	<div class="col-sm-2">
+ 							<i class='fas fa-cloud'> 현재 용량</i>
+ 		            	</div>
+ 		            	<div class="col-sm-10">
+ 			            	<table>
+ 			            		<tr>
+ 				            		<th>파일명 ↑</th>
+ 				            		<th></th>
+ 				            		<th>최종 수정일</th>
+ 				            		<th>파일크기</th>
+ 			            		</tr>
+ 			            	</table>
+ 		            	</div>
+		            </div> 
+ 	            </div>
 	            <!-- 크롬 브라우저일 경우 iframe -->
-<!-- 	       		<iframe src="http://localhost/bitcode/main/main.do" frameborder="0" width="895px" height="404px"></iframe> -->
+ 	       		<iframe src="http://localhost/bitcode/main/main.do" frameborder="0" width="895px" height="404px"></iframe>
 	        </div> 
 	    </div>
+	    <!-- Chrome end -->
+	    
+	    
+	    
     </div>
 </div>
 
@@ -221,7 +223,7 @@ var ws = null;
 var loginId = '${sessionScope.user.id}';
 //var cnt = 0;	
 	$(function(){
-		ws = new WebSocket("ws://localhost/bitcode/notification.do");
+		ws = new WebSocket("wss://192.168.0.104/bitcode/notification.do");
 		//ws = new WebSocket("wss://192.168.0.104/bitcode/notification.do");
 		 ws.onerror = function(evt) {
 		   	    $(".details").prepend('웹소켓 에러 발생 : ' + evt.data)
@@ -268,6 +270,9 @@ $(".chatLoginCheck").click(function(e){
 		location.href='/bitcode/chat/chat.do';
 	}
 });
+	
+$(".chromeBody").draggable();
+
 </script>
 
 
