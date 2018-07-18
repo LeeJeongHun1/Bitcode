@@ -34,8 +34,12 @@ update tb_user
 -----------------------------------------------------------------------------------------------------
 --delete 유저
 delete from tb_user
-	where id = 'id3';
-	
+	where id = '811325256';
+
+--
+
+select * from tb_user;
+
 -- 전체 테이블 조회
 show tables;
 

@@ -2,7 +2,9 @@ package kr.co.bitcode.repository.mapper;
 
 import java.util.List;
 
+
 import kr.co.bitcode.repository.domain.Article;
+import kr.co.bitcode.repository.domain.NewsComment;
 
 public interface NewsMapper {
 
@@ -12,4 +14,13 @@ public interface NewsMapper {
 	public List<Article> selectITNews();
 	// 기사 번호로 select 출력하기
 	public Article selectITNewsByNo(int articleNo);
+	//댓글출력
+	public List<NewsComment> selectCommByArticleNo(int articleNo);
+	//댓글 입력
+	public void insertArticleComment(NewsComment newsComment);
+	//댓글 수정
+	public void updateArticleComment(NewsComment newsComment);
+	//댓글 삭제
+	public void deleteArticleComment(int commentNo);
+	
 }

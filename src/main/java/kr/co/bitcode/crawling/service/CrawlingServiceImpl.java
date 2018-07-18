@@ -28,16 +28,6 @@ public class CrawlingServiceImpl implements CrawlingService{
 			mapper.insertNews(article);
 		}
 	}
-	@Override
-	public List<Article> selectITNews() {
-		return mapper.selectITNews();
-	}
-	@Override
-	public Article selectITNewsByNo(int articleNo) {
-		return mapper.selectITNewsByNo(articleNo);
-	}
-	
-	
 	
 	
 	

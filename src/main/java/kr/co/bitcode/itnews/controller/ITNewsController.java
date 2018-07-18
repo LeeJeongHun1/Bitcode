@@ -2,26 +2,30 @@ package kr.co.bitcode.itnews.controller;
 
 import java.util.List;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import kr.co.bitcode.crawling.service.CrawlingService;
+import kr.co.bitcode.itnews.service.ITService;
 import kr.co.bitcode.repository.domain.Article;
+import kr.co.bitcode.repository.domain.NewsComment;
 
 @Controller
 @RequestMapping("/itnews")
 public class ITNewsController {
 	
 	@Autowired
-	private CrawlingService crawlingService;
+	private ITService iTService;
 	
 	// IT 뉴스 출력하기
 	@RequestMapping("/list.do")
 	public ModelAndView newsList() throws Exception {
 		ModelAndView mav = new ModelAndView();
-		List<Article> newList = crawlingService.selectITNews();
+		List<Article> newList = iTService.selectITNews();
 		
 		mav.setViewName("itnews/list");
 		mav.addObject("newList", newList);
@@ -31,9 +35,38 @@ public class ITNewsController {
 	@RequestMapping("/itnewsDetail.do") 
 	public ModelAndView itnewsDetail(int articleNo) { 
 		ModelAndView mav = new ModelAndView();
-		Article article = crawlingService.selectITNewsByNo(articleNo);
+		Article article = iTService.selectITNewsByNo(articleNo);
 		mav.setViewName("itnews/detail");
 		mav.addObject("article", article);
 		return mav;
 	} 
+//	(value = "/naver.do", method = { RequestMethod.GET})
+	//댓글 출력
+	@RequestMapping("/commentList.json")
+	public @ResponseBody List<NewsComment> retrieveListComment(int articleNo) {
+		
+		return iTService.retrieveListComment(articleNo);
+	}
+	//댓글 입력
+	int commentNo = 0;
+	@RequestMapping("/commentWrite.json")
+	public @ResponseBody List<NewsComment> writeComment(NewsComment newsComment) {
+		commentNo++;
+		newsComment.setCommentNo(commentNo);
+		System.out.println("newsComment:" + newsComment.getCommentNo());
+		iTService.insertArticleComment(newsComment);
+		return iTService.retrieveListComment(newsComment.getArticleNo());
+	}
+	
+	@RequestMapping("/commentUpdate.json")
+	public @ResponseBody List<NewsComment> updateComment(NewsComment newsComment) {
+		iTService.updateArticleComment(newsComment);
+		return iTService.retrieveListComment(newsComment.getArticleNo());
+	}	
+	
+	@RequestMapping("/commentDelete.json")
+	public @ResponseBody List<NewsComment> deleteComment(NewsComment newsComment) {
+		iTService.deleteArticleComment(newsComment.getCommentNo());    
+		return iTService.retrieveListComment(newsComment.getArticleNo());
+	}
 }
