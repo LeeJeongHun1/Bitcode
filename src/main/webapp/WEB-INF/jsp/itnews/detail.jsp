@@ -12,8 +12,12 @@
 </head>
 <body>
 <!--   기사 내용부분 -->
- <div class="card-grid-space1">
-<!--  <div class="card ten col"> -->
+<div class="card-grid-space1">
+<div class="topbar red">
+	<div class="swatches"><span class="red"></span><span class="orange"></span><span class="yellow"></span><span class="green"></span><span class="blue"></span></div>
+	<div class="maxbtn"><span></span></div>
+	<div class="xbtn">x</div>
+</div>  	 
 	 <div class="cardITNewsDetail1">  
 		<div class="articleall"> 
 	 	<h1 id="articleTitle">${article.articleTitle}</h1>
@@ -22,14 +26,15 @@
 	    <a href="${article.articleUrl}" id="articleUrl">원본 기사 보기 클릭...</a>
 	    <div class="cardITNewsDetail"><img src="${article.articleThumb}"></div>
 		<hr>
-<!-- 		<p id="articleContent"></p> -->
+		<p id="articleContent">
 		${fn:replace(article.articleContent, '다.', "다.<br/>")}
 		<a href="${article.articleUrl}" id="articleUrl">원본 기사 보기 클릭...</a>
+		</p>
 		<!-- 댓글	-->
 			<div id="comment">
-				<hr><br>
+			<hr>
 				<div id="commentList"></div>
-				<div><br>
+				<div>
 					<form id="writeForm">
 						<h5>댓글쓰기</h5>
 						<textarea name="commentText"></textarea>
@@ -37,8 +42,8 @@
 					</form>
 					<div style="text-align: right;">
 						<c:if test="${sessionScope.user.id eq newsComment.id}">
-							<button class="btn" onclick="location.href='updateForm.do?articleNo=${user.id}'">수정</button>
-							<button class="btn" onclick="location.href='delete.do?articleNo=${user.id}'">삭제</button>
+							<button class="btn2" onclick="location.href='updateForm.do?articleNo=${user.id}'">수정</button>
+							<button class="btn2" onclick="location.href='delete.do?articleNo=${user.id}'">삭제</button>
 						</c:if>
 						<div class="btnITList"><a href='${pageContext.request.contextPath}/itnews/itnews.do' class="ITList" role="button" >목록</a></div>	
 					</div>
@@ -57,25 +62,16 @@
 		var html = "";
 		for (let i = 0; i < result.length; i++) {
 			var comment = result[i];
-// 		console.log("-------------")
 			html += '<div class="comment_box" id="comment'+comment.commentNo+'">';
-			html += '  <h5><span id="commentId">'+comment.id+'</span>';
-// 			if (${sessionScope.user.id} == comment.id) {
-			html += '    <button class="btn" onclick="commentUpdateForm('+comment.commentNo+');">수정</button>'
-			html += '    <button class="btn" onclick="commentDelete('+comment.commentNo+');">삭제</button></h5>';
-// 			}
+			html += '  <h5><span id="commentId">'+"${sessionScope.user.nickName}"+'</span>';
+			if ("${sessionScope.user.id}" == comment.id) {
+			html += '    <button class="btn2" onclick="commentUpdateForm('+comment.commentNo+');">수정</button>'
+			html += '    <button class="btn2" onclick="commentDelete('+comment.commentNo+');">삭제</button></h5>';
+			}
 			html += '  <div id="commentTextDiv">'+comment.content+'</div>';
-			html += '  <br>';
-// 			var date = new Date(comment.commentDate);
-// 			var time = date.getFullYear() + "-" 
-// 			         + (date.getMonth() + 1) + "-" 
-// 			         + date.getDate() + " "
-// 			         + date.getHours() + ":"
-// 			         + date.getMinutes() + ":"
-// 			         + date.getSeconds();
-// 			html += '  <span>'+ time +'</span>';
+// 			html += '  <br>';
 			html += '</div>';
-			html += '<br><br><hr><br>';
+			html += '<hr>';
 		}
 		if (result.length == 0) {
 			html += '<div class="comment_box">댓글이 존재하지 않습니다.</div>'
