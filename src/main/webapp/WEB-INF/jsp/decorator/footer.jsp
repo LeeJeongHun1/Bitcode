@@ -220,7 +220,8 @@ var ws = null;
 var loginId = '${sessionScope.user.id}';
 //var cnt = 0;	
 	$(function(){
-		ws = new WebSocket("ws://localhost/bitcode/notification.do");
+		//ws = new WebSocket("ws://localhost/bitcode/notification.do");
+		ws = new WebSocket("wss://192.168.0.104/bitcode/notification.do");
 		 ws.onerror = function(evt) {
 		   	    $(".details").prepend('웹소켓 에러 발생 : ' + evt.data)
 		 };
