@@ -39,7 +39,7 @@ public class MainController {
 	@RequestMapping("/selectFolder.json")
 	@ResponseBody
 	public List<Folder> selectFolder(String id) {
-		String folderPath = PATH + id;
+		String folderPath = PATH + id; 
 		System.out.println("경로 : " + folderPath);
 		new File(folderPath + "\\새 폴더").mkdirs();
 		return ListDirectory(new File(folderPath));
