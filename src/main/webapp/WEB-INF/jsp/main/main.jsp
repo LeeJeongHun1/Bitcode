@@ -283,8 +283,9 @@ $(function() {
 	var audio = document.getElementById('audio');
  var $btnMic = $('#btn-mic');
  var $folder = $('#icon-computer');
-	var $result = $('#result');
-	var $iconMusic = $('#icon-music');
+ var $result = $('#result');
+ var $iconMusic = $('#icon-music');
+ var $close = $(".fa fa-times");
  recognition.continuous = true;
  recognition.interimResults = true;
 
@@ -368,6 +369,9 @@ $(function() {
 	     $folder.trigger('dblclick');
 	     console.log($folder);
      // opencom() 함수 호출
+ 	}else if (string.endsWith('폴더 닫아') || string.endsWith('폴더 닫아줘') || string.endsWith('클로즈')){
+	     console.log('closecom() 호출');
+	     $close.trigger('click');
  	}
  }
 	
