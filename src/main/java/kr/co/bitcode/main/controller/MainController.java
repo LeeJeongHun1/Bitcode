@@ -31,6 +31,7 @@ public class MainController {
 	
 //	private static final String DELETE_PATH = "c:\\java-lec\\upload\\delete\\";
 	private static final String PATH = "c:\\java-lec\\upload\\";
+	private static final String MUSIC_PATH = "c:\\java-lec\\upload\\music_";
 	
 	@RequestMapping("/main.do")
 	public void main(Model model) {
@@ -51,8 +52,17 @@ public class MainController {
 	@RequestMapping("/createFolder.json")
 	@ResponseBody
 	public List<Folder> createFolder(String path, String id) {
+		//  폴더만 업로드 할 경우
 		new File(PATH + id + "/" + path).mkdirs();
 		return ListDirectory(new File(PATH + id));
+	}
+	
+	@RequestMapping("/contextFolder.json")
+	@ResponseBody
+	public List<Folder> contextFolder(String path, String name) {
+		// 우클릭으로 폴더 추가시
+		new File(path + "\\" + name).mkdirs();
+		return ListDirectory(new File(path));
 	}
 	
 	@RequestMapping("/enterDirectory.json")
@@ -94,6 +104,20 @@ public class MainController {
 		}
 		return ListDirectory(new File(PATH + id));
 	}
+	
+	//----------------------------------------music폴더 관리
+	@RequestMapping("/musicFolder.json")
+	@ResponseBody
+	public List<Folder> musicFolder(String id) {
+		// 우클릭으로 폴더 추가시
+//		new File(path + "\\" + name).mkdirs();
+		return ListDirectory(new File(MUSIC_PATH + id));
+	}
+	
+	
+	
+	
+	
 	
 	private List<Folder> ListDirectory(File file, int...args){
 //		file.renameTo(dest) 파일 무브 삭제개념

@@ -63,27 +63,27 @@
 	<div id="window" class="windows" style="height: 734px;">
 		<c:if test="${!empty sessionScope.user }">
 			<div class="icon-computer text-center" id="icon-computer"
-				ondblclick="opencom()">
+				ondblclick="folderOpen()">
 				<img
 					src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500502735/if_folder-blue_285658_f5jeko.svg"
 					class="img-responsive" style="margin: auto;">
 				<p>사용자 폴더</p>
 			</div>
+			<div class="icon-computer text-center" id="icon-computer-music"
+				ondblclick="musicOpen()">
+				<img
+					src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500502735/if_folder-blue_285658_f5jeko.svg"
+					class="img-responsive" style="margin: auto;">
+				<p>음악 폴더</p>
+			</div>
 		</c:if>
-		<div class="icon-computer text-center" id="icon-computer-share"
-			ondblclick="opencom()">
-			<img
-				src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500502735/if_folder-blue_285658_f5jeko.svg"
-				class="img-responsive" style="margin: auto;">
-			<p>공유 폴더</p>
-		</div>
-		<div class="icon-computer text-center" id="icon-computer-music"
-			ondblclick="opencom()">
-			<img
-				src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500502735/if_folder-blue_285658_f5jeko.svg"
-				class="img-responsive" style="margin: auto;">
-			<p>음악 폴더</p>
-		</div>
+<!-- 		<div class="icon-computer text-center" id="icon-computer-share" -->
+<!-- 			ondblclick="opencom()"> -->
+<!-- 			<img -->
+<!-- 				src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500502735/if_folder-blue_285658_f5jeko.svg" -->
+<!-- 				class="img-responsive" style="margin: auto;"> -->
+<!-- 			<p>공유 폴더</p> -->
+<!-- 		</div> -->
 		<div class="overlay-computer" id="overlay-computer"
 			style="transform: scale(0); left: 142px; top: 29px; z-index: 1000;">
 			<div class="fluid-container">
@@ -160,23 +160,6 @@
 								</div>
 								<div id="collapseThree" class="panel-collapse collapse"
 									role="tabpanel" aria-labelledby="headingThree">
-<!-- 									<div class="panel-body"> -->
-<!-- 										<p> -->
-<!-- 											<span class="fa fa-desktop">Desktop</span> -->
-<!-- 										</p> -->
-<!-- 										<p> -->
-<!-- 											<span class="fa fa-download">Downloads</span> -->
-<!-- 										</p> -->
-<!-- 										<p> -->
-<!-- 											<span class="fa fa-file-text">documents</span> -->
-<!-- 										</p> -->
-<!-- 										<p> -->
-<!-- 											<span class="fa fa-picture-o ">Picture</span> -->
-<!-- 										</p> -->
-<!-- 										<p> -->
-<!-- 											<span class="fa fa-folder ">Folder</span> -->
-<!-- 										</p> -->
-<!-- 									</div> -->
 								</div>
 							</div>
 						</div>
@@ -477,16 +460,16 @@ recognition.interimResults = true;
 	// fancyTree
 	$(function() {
 		$.contextMenu({
-			selector: "#folder-area div",
+			selector: "#folder-area div, #folder-area",
 			items: {
 				"add": {name: "AddFolder", icon: "add" },
 				"delete": {name: "Delete", icon: "delete" }
 			},
 			callback: function (itemKey, opt) {
 				var node = $.ui.fancytree.getNode(opt.$trigger);
-				console.dir(opt)
-				console.dir(this[0].dataset.path)
-				alert("select " + itemKey + " on " + opt);
+				var selPath = $("#share-path").data("root");
+				var fileName = '';
+// 				alert("select " + itemKey + " on " + opt);
 				// 마우스 우클릭 > 폴더 생성 선택
 				if(itemKey == 'add'){
 					swal.mixin({
@@ -502,11 +485,25 @@ recognition.interimResults = true;
 						]).then((result) => {
 							console.dir(result)
 							if (result.value != '') {
+								fileName = result.value
+							}else{
+								fileName = '새 폴더';
+							}
+							$.ajax({
+								url: "createFolder.json",
+								data: {
+									path: selPath,
+									name: result.value
+								},
+								dataType: "json"
+							})
+							.done(function (result) {
 								swal({
 									title: 'Success',
 									confirmButtonText: 'Success!'
 								})
-							}
+								$('#tree').fancytree('option', 'source', result);
+							})
 						})
 				}
 				if(itemKey == 'delete'){
@@ -516,6 +513,8 @@ recognition.interimResults = true;
 				}
 			}
 		});
+		
+		// fancyTree ContextMenu
         $.contextMenu({
           selector: "#tree span.fancytree-title",
           items: {
@@ -542,7 +541,6 @@ recognition.interimResults = true;
           }
         });
     });
-	var d = '';
 	//Setup the dnd listeners.
 	var dropZone = document.getElementById('overlay-computer');
 	dropZone.addEventListener('dragover', handleDragOver, false);
@@ -552,60 +550,61 @@ recognition.interimResults = true;
 	var fDiv = $("#folder-area");
 	var fileList;
 	var id;
-	var loadingFolder = {
-			id: $("#sId").val(),
-	}
-	if($("#sId").val() != ''){
-		$.ajax({
-			url: "selectFolder.json",
-			data: loadingFolder,
-			dataType: "json",
-			type: "POST"
-		})
-		.done(function (data) {
-			console.dir(data)
-			fileList = data;
-			id = Number(data.length);
-// 			console.log(data);
-			for(var f of data){
-				var appendFile = '';
-				if(f.folder){
-// 					console.log("폴더")
-					appendFile += '<div class="col-xs-2 folders text-center" id="'+f.key+'" data-path="'+f.parentPath+'" data-title="'+f.title+'" ondblclick="test('+f.key+')">';
-					appendFile += '<p class="contain">';
-					appendFile += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500502735/if_folder-blue_285658_f5jeko.svg"';
-					appendFile += '		class="img-responsive  center-block" style="height: 64px;"';
-					appendFile += '		alt="">';
-// 					appendFile += '	<img src="download.do?filePath='+f.parentPath+'&systemFileName=attach&originalFileName='+f.title+'" style="height: 64px;">';
-					appendFile += '	</p>';
-					appendFile += '	<span class="ellipsis">' + f.title + '</span>';
-					appendFile += '</div>';
-					$("#folder-area").append(appendFile);
-				}else{
-					appendFile += '<div class="col-xs-2 folders text-center" id="'+f.key+'" data-path="'+f.parentPath+'" data-title="'+f.title+'" ondblclick="test1('+f.key+')">';
-					appendFile += '<p class="contain">';
-					if(f.type == 'img'){
-						appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/jpg-icon.png"`;
+	function folderOpen(){
+		opencom();
+		$("#folder-area").html('');
+		if($("#sId").val() != ''){
+			$.ajax({
+				url: "selectFolder.json",
+				data: {id: $("#sId").val()},
+				dataType: "json",
+				type: "POST"
+			})
+			.done(function (data) {
+				console.dir(data)
+				fileList = data;
+				id = Number(data.length);
+	// 			console.log(data);
+				for(var f of data){
+					var appendFile = '';
+					if(f.folder){
+	// 					console.log("폴더")
+						appendFile += '<div class="col-xs-2 folders text-center" id="'+f.key+'" data-path="'+f.parentPath+'" data-title="'+f.title+'" ondblclick="test('+f.key+')">';
+						appendFile += '<p class="contain">';
+						appendFile += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500502735/if_folder-blue_285658_f5jeko.svg"';
+						appendFile += '		class="img-responsive  center-block" style="height: 64px;"';
+						appendFile += '		alt="">';
+	// 					appendFile += '	<img src="download.do?filePath='+f.parentPath+'&systemFileName=attach&originalFileName='+f.title+'" style="height: 64px;">';
+						appendFile += '	</p>';
+						appendFile += '	<span class="ellipsis">' + f.title + '</span>';
+						appendFile += '</div>';
+						$("#folder-area").append(appendFile);
 					}else{
-						appendFile += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500505134/if_sticky-note_299111_px7waa.png"';
+						appendFile += '<div class="col-xs-2 folders text-center" id="'+f.key+'" data-path="'+f.parentPath+'" data-title="'+f.title+'" ondblclick="test1('+f.key+')">';
+						appendFile += '<p class="contain">';
+						if(f.type == 'img'){
+							appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/jpg-icon.png"`;
+						}else{
+							appendFile += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500505134/if_sticky-note_299111_px7waa.png"';
+						}
+						appendFile += '		class="img-responsive  center-block" style="height: 64px;"';
+						appendFile += '		alt="">';
+	// 					appendFile += '	<img src="download.do?filePath='+f.parentPath+'&systemFileName=attach&originalFileName='+f.title+'" style="height: 64px;">';
+						appendFile += '	</p>';
+						appendFile += '	<span class="ellipsis">' + f.title + '</span>';
+						appendFile += '</div>';
+						$("#folder-area").append(appendFile);
 					}
-					appendFile += '		class="img-responsive  center-block" style="height: 64px;"';
-					appendFile += '		alt="">';
-// 					appendFile += '	<img src="download.do?filePath='+f.parentPath+'&systemFileName=attach&originalFileName='+f.title+'" style="height: 64px;">';
-					appendFile += '	</p>';
-					appendFile += '	<span class="ellipsis">' + f.title + '</span>';
-					appendFile += '</div>';
-					$("#folder-area").append(appendFile);
 				}
-			}
-			loadFancytree(data);
-			$("#share-path").data("root","c:/java-lec/upload/"+$("#sId").val());
-		})
+				loadFancytree(data);
+				$("#share-path").data("root","c:/java-lec/upload/"+$("#sId").val());
+			})
+		}
 	}
 	
 	// file 더블클릭 -> img는 미리보여주기 후 다운
 	function test1 (key) {
-		alert("더블 클릭 파일");
+// 		alert("더블 클릭 파일");
 		var fileName = $("#"+key).data("title");
 		console.log(fileName)
 		var path = $("#share-path").data("root");
@@ -709,9 +708,10 @@ recognition.interimResults = true;
 		console.dir(fileList)
 		
 		$("#share-path").data("root", selectInfo.parentPath)
-		alert($("#share-path").data("root"))
+// 		alert($("#share-path").data("root"))
 		var r = $("#share-path").data("root").split($("#sId").val()+'\\')[1].split('\\');
 		$("#share-path").html('');
+		$("#share-path").append("<span class='path-icon-input'>"+$("#sId").val()+"</span>");
 		for(let path of r){
 			$("#share-path").append("<span class='path-icon-input'>"+path+"</span>");
 		}
@@ -999,6 +999,60 @@ recognition.interimResults = true;
 			
 		});
 	})
+	
+	
+	//**************************************************************************************
+	// 음악폴더 관리
+
+	function musicOpen() {
+		opencom();
+		if($("#sId").val() != ''){
+			$.ajax({
+				url: "musicFolder.json",
+				data: {id: $("#sId").val()},
+				dataType: "json",
+				type: "POST"
+			})
+			.done(function (data) {
+				$("#folder-area").html('');
+				console.dir(data)
+				for(var f of data){
+					console.dir(f);
+					var appendFile = '';
+					if(f.folder){
+	// 					console.log("폴더")
+						appendFile += '<div class="col-xs-2 folders text-center" id="'+f.key+'" data-path="'+f.parentPath+'" data-title="'+f.title+'" ondblclick="test('+f.key+')">';
+						appendFile += '<p class="contain">';
+						appendFile += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500502735/if_folder-blue_285658_f5jeko.svg"';
+						appendFile += '		class="img-responsive  center-block" style="height: 64px;"';
+						appendFile += '		alt="">';
+	// 					appendFile += '	<img src="download.do?filePath='+f.parentPath+'&systemFileName=attach&originalFileName='+f.title+'" style="height: 64px;">';
+						appendFile += '	</p>';
+						appendFile += '	<span class="ellipsis">' + f.title + '</span>';
+						appendFile += '</div>';
+						$("#folder-area").append(appendFile);
+					}else{
+						appendFile += '<div class="col-xs-2 folders text-center" id="'+f.key+'" data-path="'+f.parentPath+'" data-title="'+f.title+'" ondblclick="test1('+f.key+')">';
+						appendFile += '<p class="contain">';
+						if(f.type == 'img'){
+							appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/jpg-icon.png"`;
+						}else{
+							appendFile += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500505134/if_sticky-note_299111_px7waa.png"';
+						}
+						appendFile += '		class="img-responsive  center-block" style="height: 64px;"';
+						appendFile += '		alt="">';
+	// 					appendFile += '	<img src="download.do?filePath='+f.parentPath+'&systemFileName=attach&originalFileName='+f.title+'" style="height: 64px;">';
+						appendFile += '	</p>';
+						appendFile += '	<span class="ellipsis">' + f.title + '</span>';
+						appendFile += '</div>';
+						$("#folder-area").append(appendFile);
+					}
+				}
+				$('#tree').fancytree('option', 'source', data);
+				$("#share-path").data("root","c:/java-lec/upload/music_"+$("#sId").val());
+			})
+		}
+	}
 	
 </script>
 </body>
