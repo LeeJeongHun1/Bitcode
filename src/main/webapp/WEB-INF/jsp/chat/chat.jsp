@@ -45,7 +45,7 @@ ws.send("in:"+nick + "님 입장");
 
 $(window).on("unload", function(e){
     if(nick != ""){
-       ws.send("out:" + nick + "님이 퇴장하셨습니다");
+       ws.send("out:" + nick + "님 퇴장");
      }   
  });
 </script>

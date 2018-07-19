@@ -102,7 +102,7 @@ public class WebsocketHandler extends TextWebSocketHandler {
 				
 			}
 			else if(reMsg.startsWith("out:")) {
-				String[] outmsg = reMsg.split("in:");
+				String[] outmsg = reMsg.split("out:");
 				String a = "";
 				for (String string : outmsg) {
 					a += string;
