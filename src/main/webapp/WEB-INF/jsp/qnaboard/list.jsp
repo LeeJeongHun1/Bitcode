@@ -87,8 +87,7 @@
 			<button id="btn" type="submit">검색</button>
 		</form>
 		
-		<button class="btn btn-default btn-group-xs pull-right order"
-				 type="button">글쓰기</button>
+		 <button class="btn btn-default btn-group-xs pull-right order" type="button" onclick="location.href='insertForm.do'">글쓰기</button>		 
 				 <!-- type="button" onclick="location.href='insertForm.do'">글쓰기</button> -->
 
 	<!-- <span style="font-size:20px;margin-left:485px;">&lt; &nbsp;1 2 3 4 5 &nbsp;&gt;</span> -->

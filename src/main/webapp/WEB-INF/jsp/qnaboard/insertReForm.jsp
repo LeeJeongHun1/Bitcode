@@ -28,7 +28,7 @@
 						</tr>
 						<tr>
 							<th>작성자</th>
-							<td><input type="text" name="id" value="${list.qna.id}"/></td>
+							<td><input type="text" name="id" value="<c:out value='${sessionScope.user.id}' />"/></td>
 						</tr>
 
 						<tr style="height: 90%;">
