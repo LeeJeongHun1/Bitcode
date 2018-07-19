@@ -3,7 +3,7 @@ package kr.co.bitcode.repository.domain;
 public class PageResultITNews {
 
 	private int listSize = 6;
-	private int tabSize  = 2;
+	private int tabSize  = 5;
 	private int pageNo;
 	private int count;
 	private int lastPage;
