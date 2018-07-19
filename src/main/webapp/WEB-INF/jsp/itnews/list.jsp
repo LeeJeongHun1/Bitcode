@@ -80,11 +80,16 @@ function makePageLink(data) {
 }	
 // 리스트 출력
 function pageList(pageNo){
-	
 	if (pageNo === undefined) {
 		pageNo = 1;
 	}
-		console.log(pageNo);
+	$("body").waitMe({
+		effect: "ios",
+		text: "Loding.. :D",
+		bg: 'rgba(255,255,255, 0.7)',
+		color: '#000'
+		
+	});	
 	$.ajax({
 		url: "/bitcode/itnews/list.json",
 		data: {pageNo: pageNo},
@@ -94,12 +99,13 @@ function pageList(pageNo){
 // 		console.log(data);
 		makeList(data)
 		makePageLink(data.PageResultITNews)
+		$("body").waitMe("hide");
+
 	});
 	return false;
-	}
+}
 // ITNew 리스트 출력
 function makeList(data){
-	
 	var html="";
 	$(".cards-wrapper").html("");
 	for (let i = 0; i < data.list.length; i++) {

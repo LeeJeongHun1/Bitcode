@@ -40,6 +40,9 @@
 
 <%-- 알림 --%> 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/notify/style.css">
+
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/waitme/waitMe.min.css" />
+
 <title><sitemesh:write property="title" /></title>
 <sitemesh:write property="head" />
 <style>
