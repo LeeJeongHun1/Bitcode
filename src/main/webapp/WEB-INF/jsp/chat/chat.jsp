@@ -31,7 +31,13 @@
 	</div>
 <script>
 var nick = '${sessionScope.user.nickName}';
+setTimeout(function(){
+ws.send("in:"+nick + "님 입장");
+}, 1000);
 </script>
-<script src="${pageContext.request.contextPath}/resources/js/chat/chat.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/websocket/websocket.js"></script>
+<script>
+
+</script>
 </body>
 </html>
