@@ -262,6 +262,7 @@ var finalTranscript = '';
 var audio = document.getElementById('audio');
 var $btnMic = $('#btn-mic');
 var $folder = $('#icon-computer');
+var $player = $('#wmplayer');
 var $result = $('#result');
 var $iconMusic = $('#icon-music');
 var $close = $("#closeMIC");
@@ -355,6 +356,9 @@ recognition.interimResults = true;
 	     $close.trigger('click');
 	     console.log($close)
 	     closecom();
+ 	}else if (string.endsWith('음악 켜줘') || string.endsWith('음악 틀어줘') || string.endsWith('재생') || string.endsWith('플레이')) {
+	     $player.trigger('click');
+	     console.log($close)
  	}
  }
 	
@@ -485,24 +489,27 @@ recognition.interimResults = true;
 						]).then((result) => {
 							console.dir(result)
 							if (result.value != '') {
-								fileName = result.value
+								fileName = result.value[0]
 							}else{
 								fileName = '새 폴더';
 							}
 							$.ajax({
-								url: "createFolder.json",
+								url: "contextFolder.json",
 								data: {
 									path: selPath,
-									name: result.value
+									name: fileName,
+									id: $("#sId").val()
 								},
-								dataType: "json"
+								dataType: "json",
+								type: "POST"
 							})
 							.done(function (result) {
 								swal({
 									title: 'Success',
 									confirmButtonText: 'Success!'
 								})
-								$('#tree').fancytree('option', 'source', result);
+								$('#tree').fancytree('option', 'source', result.fancyList);
+								Refresh(result.path);
 							})
 						})
 				}
@@ -583,7 +590,9 @@ recognition.interimResults = true;
 						appendFile += '<div class="col-xs-2 folders text-center" id="'+f.key+'" data-path="'+f.parentPath+'" data-title="'+f.title+'" ondblclick="test1('+f.key+')">';
 						appendFile += '<p class="contain">';
 						if(f.type == 'img'){
-							appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/jpg-icon.png"`;
+							appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/imageicon.png"`;
+						}else if(f.title.split('.')[1] == 'mp3') {
+							appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/mp3image.png"`;
 						}else{
 							appendFile += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500505134/if_sticky-note_299111_px7waa.png"';
 						}
@@ -602,7 +611,58 @@ recognition.interimResults = true;
 		}
 	}
 	
-	// file 더블클릭 -> img는 미리보여주기 후 다운
+	//새로고침
+	function Refresh(path){
+		$.ajax({
+			url: "enterDirectory.json",
+			data: {
+				parentPath: path,
+				key: 1
+			},
+			dataType: "json"
+		})
+		.done(function (data) {
+			fileList = data
+			$("#folder-area").html('');
+			if(data.length == 0){
+				return;
+			}
+			for(var f of data){
+				var appendFile = '';
+				if(f.folder){
+					appendFile += '<div class="col-xs-2 folders text-center" id="'+f.key+'" data-path="'+f.parentPath+'" data-title="'+f.title+'" ondblclick="test('+f.key+')">';
+					appendFile += '<p class="contain">';
+					appendFile += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500502735/if_folder-blue_285658_f5jeko.svg"';
+					appendFile += '		class="img-responsive  center-block" style="height: 64px;"';
+					appendFile += '		alt="">';
+					appendFile += '	</p>';
+					appendFile += '	<span class="ellipsis">' + f.title + '</span>';
+					appendFile += '</div>';
+					$("#folder-area").append(appendFile);
+				}else{
+					appendFile += '<div class="col-xs-2 folders text-center" id="'+f.key+'" data-path="'+f.parentPath+'" data-title="'+f.title+'" ondblclick="test1('+f.key+')">';
+					appendFile += '<p class="contain">';
+					if(f.type == 'img'){
+						appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/imageicon.png"`;
+					}else if(f.title.split('.')[1] == 'mp3') {
+						appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/mp3image.png"`;
+					}else{
+						appendFile += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500505134/if_sticky-note_299111_px7waa.png"';
+					}
+					appendFile += '		class="img-responsive  center-block" style="height: 64px;"';
+					appendFile += '		alt="">';
+					appendFile += '	</p>';
+					appendFile += '	<span class="ellipsis">' + f.title + '</span>';
+					appendFile += '</div>';
+					$("#folder-area").append(appendFile);
+				}
+			}
+		})
+	}
+	
+	
+	
+	// file 더블클릭 -> 다운
 	function test1 (key) {
 // 		alert("더블 클릭 파일");
 		var fileName = $("#"+key).data("title");
@@ -623,17 +683,14 @@ recognition.interimResults = true;
 				if(node.folder){
 					console.log("폴더 선택");
 					console.log(node);
-					node.setExpanded(); // 폴더 확장
+// 					node.setExpanded(true); // 폴더 확장
 					fancyTreeClick(node)
-				}
+					}
 			},
 			lazyLoad: function (e, data) {
 				console.dir(data);
-				console.dir(e);
-				
 			    var dfd = new $.Deferred();
 			    data.result = dfd.promise();
-			    
 		        $.ajax({
 					url: "lazyLoad.json",
 					data: {
@@ -738,7 +795,13 @@ recognition.interimResults = true;
 			}else{
 				appendFile += '<div class="col-xs-2 folders text-center" id="'+f.key+'" data-path="'+f.parentPath+'" data-title="'+f.title+'" ondblclick="test1('+f.key+')">';
 				appendFile += '<p class="contain">';
-				appendFile += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500505134/if_sticky-note_299111_px7waa.png"';
+				if(f.type == 'img'){
+					appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/imageicon.png"`;
+				}else if(f.title.split('.')[1] == 'mp3') {
+					appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/mp3image.png"`;
+				}else{
+					appendFile += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500505134/if_sticky-note_299111_px7waa.png"';
+				}
 				appendFile += '		class="img-responsive  center-block" style="height: 64px;"';
 				appendFile += '		alt="">';
 				appendFile += '	</p>';
@@ -774,12 +837,12 @@ recognition.interimResults = true;
 					console.log("파일만 올림")
 					console.log("File: " + file.name);
 					console.log("path: " + path);
-					console.log("확장자: " + file.type.split('\.')[1]);
+					console.log("확장자: " + file.type.split('/')[1]);
 					console.dir(file);
 					html += '<div class="col-xs-2 folders text-center" id="'+ ++id +'" data-path="'+$("#share-path").data("root")+'" data-title="'+file.name+'" ondblclick="test1()">';
 					html += '	<p class="contain">';
-					if(file.type.split('\.')[1] == 'image'){
-						html += `	<img src="${pageContext.request.contextPath}/resources/images/jpg-icon.png" class="img-responsive  center-block" style="height: 64px;" alt="">`;
+					if(file.type.split('/')[0] == 'image'){
+						html += `	<img src="${pageContext.request.contextPath}/resources/images/imageicon.png" class="img-responsive  center-block" style="height: 64px;" alt="">`;
 					}else{
 						html += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500505134/if_sticky-note_299111_px7waa.png" class="img-responsive  center-block" style="height: 64px;" alt="">';
 					}
@@ -981,7 +1044,7 @@ recognition.interimResults = true;
 					appendFile += '<div class="col-xs-2 folders text-center" id="'+f.key+'" data-path="'+f.parentPath+'" data-title="'+f.title+'" ondblclick="test1()">';
 					appendFile += '<p class="contain">';
 					if(f.type == 'img'){
-						appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/jpg-icon.png"`;
+						appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/imageicon.png"`;
 					}else{
 						appendFile += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500505134/if_sticky-note_299111_px7waa.png"';
 					}
@@ -1034,11 +1097,7 @@ recognition.interimResults = true;
 					}else{
 						appendFile += '<div class="col-xs-2 folders text-center" id="'+f.key+'" data-path="'+f.parentPath+'" data-title="'+f.title+'" ondblclick="test1('+f.key+')">';
 						appendFile += '<p class="contain">';
-						if(f.type == 'img'){
-							appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/jpg-icon.png"`;
-						}else{
-							appendFile += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500505134/if_sticky-note_299111_px7waa.png"';
-						}
+						appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/mp3image.png"`;
 						appendFile += '		class="img-responsive  center-block" style="height: 64px;"';
 						appendFile += '		alt="">';
 	// 					appendFile += '	<img src="download.do?filePath='+f.parentPath+'&systemFileName=attach&originalFileName='+f.title+'" style="height: 64px;">';

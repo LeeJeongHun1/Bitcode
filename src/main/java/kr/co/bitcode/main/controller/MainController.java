@@ -6,13 +6,12 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import javax.activation.MimetypesFileTypeMap;
-import javax.print.attribute.standard.PageRanges;
 import javax.servlet.http.HttpServletResponse;
 
-import org.aspectj.util.FileUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -21,7 +20,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.bitcode.repository.domain.DownloadFile;
-import kr.co.bitcode.repository.domain.FileVO;
 import kr.co.bitcode.repository.domain.Folder;
 
 @Controller
@@ -30,8 +28,10 @@ import kr.co.bitcode.repository.domain.Folder;
 public class MainController {
 	
 //	private static final String DELETE_PATH = "c:\\java-lec\\upload\\delete\\";
-	private static final String PATH = "c:\\java-lec\\upload\\";
-	private static final String MUSIC_PATH = "c:\\java-lec\\upload\\music_";
+	private final String PATH = "c:\\java-lec\\upload\\";
+	private final String MUSIC_PATH = "c:\\java-lec\\upload\\music_";
+	private final String[] EXT = { "jpg", "png", "gif",};
+
 	
 	@RequestMapping("/main.do")
 	public void main(Model model) {
@@ -53,16 +53,23 @@ public class MainController {
 	@ResponseBody
 	public List<Folder> createFolder(String path, String id) {
 		//  폴더만 업로드 할 경우
+		System.out.println(path);
+		System.out.println(id);
 		new File(PATH + id + "/" + path).mkdirs();
 		return ListDirectory(new File(PATH + id));
 	}
 	
 	@RequestMapping("/contextFolder.json")
 	@ResponseBody
-	public List<Folder> contextFolder(String path, String name) {
+	public Map<String, Object> contextFolder(String path, String name, String id) {
 		// 우클릭으로 폴더 추가시
+		System.out.println(path);
+		System.out.println(name);
 		new File(path + "\\" + name).mkdirs();
-		return ListDirectory(new File(path));
+		Map<String, Object> map = new HashMap<>();
+		map.put("fancyList", ListDirectory(new File(PATH + id)));
+		map.put("path", path);
+		return map;
 	}
 	
 	@RequestMapping("/enterDirectory.json")
@@ -132,10 +139,12 @@ public class MainController {
 		for (File ff : file.listFiles()) {
 //			size += ff.length();
 			Folder folder = new Folder();
-			String type = new MimetypesFileTypeMap().getContentType(ff);
+			String type = ff.getName().substring(ff.getName().lastIndexOf(".") + 1, ff.getName().length());
 			if(ff.isFile()){
-				if(type.equals("image/jpeg")){
-					folder.setType("img");
+				for(int j=0; j<EXT.length; j++){
+					if(type.equalsIgnoreCase(EXT[j])){
+						folder.setType("img");
+					}
 				}
 				folder.setKey(i++);
 				folder.setTitle(ff.getName());
@@ -157,22 +166,22 @@ public class MainController {
 	
 	@RequestMapping("/download.do")
 	public void download(DownloadFile file, HttpServletResponse response) throws Exception{
-		File f = new File(file.getPath() + "\\" + file.getFileName());
 		System.out.println(file.getPath());
 		System.out.println(file.getFileName());
+		File f = new File(file.getPath() + "\\" + file.getFileName());
 		String dName = file.getFileName();
 //		if(dName == null){
-////			헤더값의 설정을 통해서 처리
+//			헤더값의 설정을 통해서 처리
 //			response.setHeader("content-Type", "image/jpg");
 //		}
-////		파일의 종류에 상관없이 무조건 다운로드
+//			파일의 종류에 상관없이 무조건 다운로드
 //		else{
 //			타입을 모른다. 다운로드 하세요...
-			response.setHeader("content-Type", "application/octet-stream");
+		response.setHeader("content-Type", "application/octet-stream");
 //			다운로드 받을 이름을 설정
 //			dName 한글처리
-			dName = new String(dName.getBytes("utf-8"), "8859_1");
-			response.setHeader("content-Disposition", "attachment;filename="+dName);
+		dName = new String(dName.getBytes("utf-8"), "8859_1");
+		response.setHeader("content-Disposition", "attachment;filename="+dName);
 //		}
 		FileInputStream fis = new FileInputStream(f);
 		BufferedInputStream bis = new BufferedInputStream(fis);

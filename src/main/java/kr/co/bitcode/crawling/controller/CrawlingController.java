@@ -99,7 +99,7 @@ public class CrawlingController {
 		driver.close();
 		System.out.println(aList.size());
 		crawlingService.insertArticle(aList);
-		return "redirect:main/main.do";
+		return "redirect:itnews/list.do";
 	}
 
 }
