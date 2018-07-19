@@ -76,6 +76,9 @@
 				  }
 				})
 		} // 로그인알림
+		else{
+			location.href='/bitcode/remote/insertForm.do';
+		}
 	})
 
 	$(".remoteBody").draggable();
