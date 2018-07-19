@@ -37,22 +37,22 @@
 			
 			// 입장 체크
 			if((evt.data).startsWith("in")){
-				var inmsg = (evt.data).split("in:");
-				$("#result").append(inmsg + "<br>");
+				var inmsg = (evt.data).split(":");
+				$("#result").append(inmsg[1] + "<br>");
 				$("#result").scrollTop($("#result").height());			
 			}	
 			
 			// 퇴장 체크
 			if((evt.data).startsWith("out")){
-				var outmsg = (evt.data).split("out:");
-				$("#result").append(outmsg + "<br>");
+				var outmsg = (evt.data).split(":");
+				$("#result").append(outmsg[1] + "<br>");
 				$("#result").scrollTop($("#result").height());			
 			}						
 			
 			// 메시지 체크
 			if((evt.data).startsWith("chat")){
-				var msg = (evt.data).split("chat:");
-				$("#result").append(msg + "<br>");
+				var msg = (evt.data).split(":");
+				$("#result").append(msg[1] + "<br>");
 				$("#result").scrollTop($("#result").height());			
 			}			
 			
