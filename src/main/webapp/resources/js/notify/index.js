@@ -2,6 +2,10 @@ $(function () {
   var today = new Date();
   var items = generateItems(today);
   refreshNotifications(items, today);
+  $('li[class="notice2 item js-item expired"][data-id="1"]').remove();
+  $('li[class="notice item js-item expired"][data-id="2"]').remove();
+  // 데이터 내용이 없으면 안뜨게 
+  
 });
 
 function refreshNotifications(items, today) {
@@ -43,13 +47,20 @@ function refreshNotifications(items, today) {
         '<ul class="notifications-list">' +
           '<li class="item no-data">You don\'t have notifications</li>' +
           '{{#items}}' +
-            '<li class="item js-item {{#isExpired}}expired{{/isExpired}}" data-id="{{id}}">' +
+            '<li class="notice item js-item {{#isExpired}}expired{{/isExpired}}" data-id="{{id}}">' +
               '<div class="details">' +
                 '<span class="title">{{title}}</span>' +
                 '<span class="date">{{formattedDate}}</span>' +
               '</div>' +
               '<button type="button" class="button-default button-dismiss js-dismiss">×</button>' +
             '</li>' +
+            '<li class="notice2 item js-item {{#isExpired}}expired{{/isExpired}}" data-id="{{id}}">' +
+            '<div class="details">' +
+              '<span class="title">{{title}}</span>' +
+              '<span class="date">{{formattedDate}}</span>' +
+            '</div>' +
+            '<button type="button" class="button-default button-dismiss js-dismiss">×</button>' +
+          '</li>' +
           '{{/items}}' +
         '</ul>' +
         '<a href="#" class="show-all">Show all notifications</a>' +
@@ -96,7 +107,7 @@ function generateItems(today) {
   return [
 	{ id: 1, title: '', date: randomDate() },
 	{ id: 2, title: '', date: randomDate(addMinutes(today, -60), addMinutes(today, 60)) },
-/*	{ id: 1, title: 'qna게시판에 답글이 등록되었습니다.', date: randomDate() },
+	/*	{ id: 1, title: 'qna게시판에 답글이 등록되었습니다.', date: randomDate() },
     { id: 2, title: '포인트가 적립되었습니다.', date: randomDate(addMinutes(today, -60), addMinutes(today, 60)) },
     { id: 3, title: 'Annual party at Eric\'s house.', date: randomDate() },
     { id: 4, title: 'Last day to pay off auto credit.', date: randomDate() },

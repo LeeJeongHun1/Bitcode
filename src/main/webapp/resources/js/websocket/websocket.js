@@ -19,11 +19,25 @@
 		 ws.onmessage = function(evt) {
 			
 			// 알림 체크
-			if((evt.data).startsWith("notice")){	
-				var notice = (evt.data).split("notice:");
-				$(".details").html("");				
-		        $(".details").prepend(notice);				
+			if((evt.data).startsWith("noticeA")){	
+				var notice = (evt.data).split("noticeA:");
+				$(".notice .details .title").html("");				
+		        $(".notice .details .title").prepend(notice);
+		        $('li[class="notice2 item js-item expired"][data-id="1"]').remove();
+		        //$(".notice .details .title").data(id);
+		        //$("notice").attr('data-fruit','7');
+		       // $(".notice .details .title").append("<button type='button' class='noticeBtn button-default button-dismiss js-dismiss'>×</button>");
+		        
+			}
+			
+			if((evt.data).startsWith("noticeB")){	
+				var notice = (evt.data).split("noticeB:");
+				$(".notice2 .details .title").html("");				
+		        $(".notice2 .details .title").prepend(notice);	
+		        $('li[class="notice item js-item expired"][data-id="2"]').remove();
+		       // $(".notice2 .details .title").append("<button type='button' class='noticeBtn2 button-default button-dismiss js-dismiss'>×</button>");
 			}			
+			
 			
 			// 유저리스트 체크
 			if((evt.data).startsWith("userList")){	

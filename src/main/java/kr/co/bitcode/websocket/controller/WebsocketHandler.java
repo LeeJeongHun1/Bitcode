@@ -65,7 +65,7 @@ public class WebsocketHandler extends TextWebSocketHandler {
 						// 원글 쓴 사람에게만 답변갯수랑 읽은 갯수를 보냄.
 						if(read.getGroupNo() == qna.getNo()) {
 							wSession.sendMessage(
-									new TextMessage("notice:" + qna.getNo() + "안읽은갯수" + readList.size())); 						
+									new TextMessage("noticeA:" + qna.getNo() + "안읽은갯수" + readList.size())); 						
 						}
 					}	
 						
@@ -75,9 +75,9 @@ public class WebsocketHandler extends TextWebSocketHandler {
 				User user = mapper.selectUserPoint(reMsg.split(":")[1]);
 				// 포인트 101점 이상 200점 미만이거나 201이상일때 포인트 상승 .
 				if(user.getPoint() >= 101 && user.getPoint() < 200) { 
-					wSession.sendMessage(new TextMessage("notice:" + user.getPoint()+ "점이상입니다.")); 
+					wSession.sendMessage(new TextMessage("noticeB:" + user.getPoint()+ "점이상입니다.")); 
 				}else if(user.getPoint() >= 201) {
-					wSession.sendMessage(new TextMessage("notice:" + user.getPoint() + "점이상입니다.")); 				
+					wSession.sendMessage(new TextMessage("noticeB:" + user.getPoint() + "점이상입니다.")); 				
 				}
 				
 			} 
