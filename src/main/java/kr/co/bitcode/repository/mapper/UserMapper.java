@@ -24,4 +24,6 @@ public interface UserMapper {
 	//이메일 인증 위해 ID 와 Email 매칭 유저 찾기
 	public User selectbyIdEmail(User user) throws Exception;
 	
+
+	
 }

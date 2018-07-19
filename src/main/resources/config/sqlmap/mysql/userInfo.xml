@@ -27,4 +27,27 @@
 
 
 
+
+	<resultMap id="attendMap" type="attendance">
+		<result column="id" property="id" />
+		<result column="att_id" property="attID" />
+		<result column="att_date" property="attDate" />
+	</resultMap>
+	
+	<insert id="insertAttendance" parameterType="attendance">
+	insert into tb_attendance(
+		id,
+		att_date
+	) values (
+		#{id},
+		#{attDate}
+		)
+	</insert>
+	
+	<select id="selectAttendance" resultMap="attendMap" parameterType="string">
+		select *
+		  from tb_attendance
+		 where id = #{id} 
+	</select>
+
 </mapper>

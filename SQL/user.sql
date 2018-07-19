@@ -14,14 +14,15 @@ alter table tb_user comment '회원정보';
 --  유저
 
 select * from tb_user;
+
 -----------------------------------------------------------------------------------------------------
 INSERT INTO tb_user(id, name, nick_name, password, email, point, auth, birthday)
 	VALUES('id1', 'hong', 'hongGilDong', 'id1', 'hong@naver.com', 10, 'U', 19880101);
 
 INSERT INTO tb_user(id, name, nick_name, password, email, point, auth, birthday)
 	VALUES('id2', '홍길동', '길동이', 'id2', 'hong2@naver.com', 10, 'U', 19880102);
-INSERT INTO tb_user(id, name, nick_name, password, email, point, auth, birthday)
-	VALUES('id3', '홍길동', '길동이', 'id3', 'hong2@naver.com', 250, 'U', 19880102);
+	
+
 
    
  select * from tb_user
@@ -37,7 +38,9 @@ delete from tb_user
 	where id = '811325256';
 
 --
-
+delete from tb_attendance
+	where att_id = 12;
+	
 select * from tb_user;
 
 -- 전체 테이블 조회
@@ -50,8 +53,10 @@ select * from tb_user;
 drop table tb_user purge;
 drop table tb_news purge;
 
+select * from tb_attendance;
 
-
+INSERT INTO tb_attendance(att_id, id, att_date)
+	VALUES(11, 'id1', 20180715);
 ------------------------------------------------------------------------------------------------------
 -- 출석체크 테이블
 --------------------------------------------------------------------

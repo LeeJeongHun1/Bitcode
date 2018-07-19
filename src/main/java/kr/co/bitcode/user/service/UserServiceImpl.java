@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.co.bitcode.repository.domain.Attendance;
 import kr.co.bitcode.repository.domain.Qna;
 import kr.co.bitcode.repository.domain.User;
 import kr.co.bitcode.repository.mapper.UserInfoMapper;
@@ -19,6 +20,10 @@ public class UserServiceImpl implements UserService{
 	
 	@Autowired
 	private UserInfoMapper userInfoMapper;
+	
+	
+	
+	
 	
 	@Override
 	public void updateUser(User user) throws Exception {
@@ -40,9 +45,19 @@ public class UserServiceImpl implements UserService{
 	public List<Qna> selectmyQuestion(String id) throws Exception {
 		return userInfoMapper.selectmyQuestion(id);
 	}
+//출석
+	@Override
+	public void insertAttendance(Attendance attend) throws Exception {
+		 userInfoMapper.insertAttendance(attend);
+		
+	}
+
+	@Override
+	public List<Attendance> selectAttendance(String id) throws Exception {
+		return userInfoMapper.selectAttendance(id);
+	}
 
 	
-	//유저 질문 목록
 
 
 	

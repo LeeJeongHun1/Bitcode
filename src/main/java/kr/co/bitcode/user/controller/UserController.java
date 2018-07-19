@@ -1,5 +1,6 @@
 package kr.co.bitcode.user.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.co.bitcode.login.service.LoginService;
+import kr.co.bitcode.repository.domain.Attendance;
 import kr.co.bitcode.repository.domain.Qna;
 import kr.co.bitcode.repository.domain.User;
 import kr.co.bitcode.user.service.UserService;
@@ -35,6 +37,16 @@ public class UserController {
 	@Autowired
 	BCryptPasswordEncoder passCode;
 	
+	//출석체크
+	@RequestMapping("/attend.json")
+	@ResponseBody
+	public Attendance attend(String id) throws Exception {
+		Attendance attend = new Attendance();
+		attend.setId(id);
+		attend.setAttDate(new Date());
+		userService.insertAttendance(attend);
+		return attend;
+	}
 	//회원정보
 	@RequestMapping("/userInfo.do") 
 	public ModelAndView joinForm(String id) throws Exception{ 
@@ -43,9 +55,12 @@ public class UserController {
 		List<Qna> qnaList= userService.selectmyQuestion(id);
 		// 유저 등급및 포인트 출력
 		User userInfo = loginService.selectUserById(id);
+		//출첵
+		List<Attendance> attendList =  userService.selectAttendance(id);
 		mav.setViewName("user/userInfo");
 		mav.addObject("qnaList", qnaList);
 		mav.addObject("userInfo", userInfo);
+		mav.addObject("attendList", attendList);
 		
 		return mav;
 		
