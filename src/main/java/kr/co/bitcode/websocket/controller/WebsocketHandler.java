@@ -60,28 +60,28 @@ public class WebsocketHandler extends TextWebSocketHandler {
 		
 		String reMsg = message.getPayload();
 		System.out.println("메세지 잘 담겼는지 확인 " + reMsg);
-		List<Qna> ansList = mapper.selectNtf(reMsg);
-		List<Qna> readList = mapper.selectNoRead(reMsg);
-		for(Qna read:readList) {
-			System.out.println("읽음여부 아이디" + read.getId());
-			System.out.println("읽음여부 확인 " + read.getReadAns());
-		}
+		List<Qna> qnaList = mapper.selectNotification(reMsg);
+		for(Qna qna:qnaList) {
+			System.out.println("게시글 번호" + qna.getNo());
+			System.out.println("게시글 그룹번호" + qna.getGroupNo());
+			List<Qna> ansList = mapper.selectNtf(qna.getGroupNo());
+			List<Qna> readList = mapper.selectNoRead(qna.getGroupNo());
 		
 		Set<String> keys = users.keySet();
 		for (String key : keys) {
 			WebSocketSession wSession = users.get(key);
-			for(Qna qna:ansList) {
-				System.out.println("답변여부리스트 아이디 :" + qna.getId());
-				System.out.println("답변여부리스트  확인:" + qna.getAnswerAt());
-				System.out.println("답변여부리스트  글번호:" + qna.getNo());
+			for(Qna ans:ansList) {
+				System.out.println("답변여부리스트 아이디 :" + ans.getId());
+				System.out.println("답변여부리스트  확인:" + ans.getAnswerAt());
+				System.out.println("답변여부리스트  글번호:" + ans.getNo());
 			System.out.println("답변여부길이 :" + ansList.size() );
 			System.out.println("읽음여부길이 :" + readList.size() );
 				//wSession.sendMessage(new TextMessage(qna.getNo()+"번게시글이 "+ ansList.size()+"개 답변이 달렸습니다.")); //전체 사용자에게 텍스트 멧세지를 전송한ㄳ
-				wSession.sendMessage(new TextMessage("notice" + qna.getNo()+","+ ansList.size())); //전체 사용자에게 텍스트 멧세지를 전송한ㄳ
+				wSession.sendMessage(new TextMessage("notice" + qna.getNo()+","+ ansList.size()+"안읽은갯수"+readList.size())); //전체 사용자에게 텍스트 멧세지를 전송한ㄳ
 				//wSession.sendMessage(new TextMessage(readList.size()+"개에 글을 읽었습니다.")); //전체 사용자에게 텍스트 멧세지를 전송한ㄳ
 			}
 				
-		}
+		}}// QnaList 를 받음
 		// 채팅 부분
 		System.out.println("보낸 아이디 : " + session.getId());
 		System.out.println("보낸 메세지 : " + message.getPayload());		
