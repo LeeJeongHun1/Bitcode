@@ -53,7 +53,7 @@ public class RemoteController {
 				if(r.getId().equals(remote.getId())) {
 					remoteList.remove(i);
 					System.out.println("리스트 제거");
-					//mav.setViewName("remote/list");
+					mav.setViewName("remote/list");
 					//mav.setViewName("redirect:/remote/list.do");
 					session.setAttribute("remoteList", remoteList);				
 					return mav;

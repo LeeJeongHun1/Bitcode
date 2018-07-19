@@ -319,16 +319,13 @@ $("#endScreen").click(function() {
 		url : "/bitcode/remote/remote.do",
 		data : {"id" : "${sessionScope.user.id}", "remoteDel": "Y"}
 	}) // ajax
-	.error(function() {
+	.always(function() {
 		alert(1);
+		window.location.href("/bitcode/main/main.do");
+		//location.href = ("/bitcode/remote/list.do");
 		//location.href = "list.do";
 		//response.sendRedirect(request.getHeader("referer"));
-	})
-	.done(function() {
-		alert(2);
-		//location.href = "list.do";
-		//response.sendRedirect(request.getHeader("referer"));
-	})
+	});
 });
 
 // 페이지 이동시 상담신청 List에서 정보 삭제
@@ -338,12 +335,15 @@ $(window).on("unload", function(e){
 			type : "POST",
 			url : "/bitcode/remote/remote.do",
 			data : {"id" : "${sessionScope.user.id}", "remoteDel": "Y"},
-			error : function() {
-				alert(1);
-				//location.href = "list.do";
-				//response.sendRedirect(request.getHeader("referer"));
-			}
+		})
+		.always(function() {
+			alert(2);
+			window.location.href("/bitcode/main/main.do");
+			location.href = "/bitcode/main/main.do";
+			//location.href = "list.do";
+			//response.sendRedirect(request.getHeader("referer"));
 		}); // ajax
+		
 	} // if	
 });
 
