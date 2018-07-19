@@ -316,18 +316,43 @@ $("#endScreen").click(function() {
 	$("#endScreen").toggle();
 	$.ajax({
 		type : "POST",
-		url : "/bitcode/remote/remoteDel.do",
-		data : {"id" : "${sessionScope.user.id}"},
-		success : function() {
-			console.log("상담신청 종료");
-		}
-	});
+		url : "/bitcode/remote/remote.do",
+		data : {"id" : "${sessionScope.user.id}", "remoteDel": "Y"}
+	}) // ajax
+	.error(function() {
+		alert(1);
+		//location.href = "list.do";
+		//response.sendRedirect(request.getHeader("referer"));
+	})
+	.done(function() {
+		alert(2);
+		//location.href = "list.do";
+		//response.sendRedirect(request.getHeader("referer"));
+	})
+});
+
+// 페이지 이동시 상담신청 List에서 정보 삭제
+$(window).on("unload", function(e){
+	if(${sessionScope.user.id} != ""){
+		$.ajax({
+			type : "POST",
+			url : "/bitcode/remote/remote.do",
+			data : {"id" : "${sessionScope.user.id}", "remoteDel": "Y"},
+			error : function() {
+				alert(1);
+				//location.href = "list.do";
+				//response.sendRedirect(request.getHeader("referer"));
+			}
+		}); // ajax
+	} // if	
 });
 
 // 노드(채팅)서버로 방번호/아이디 보내기
 setTimeout(function () {
 	document.querySelector("#chatIframe").contentWindow.postMessage(JSON.stringify({"roomId": roomId, "sender": "${sessionScope.user.nickName}"}), "*");	
 }, 1000);
+
+
 </script>
 
 </body>

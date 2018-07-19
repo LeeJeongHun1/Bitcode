@@ -6,6 +6,7 @@ select * from tb_user;
 select * from tb_qna_board;
 select * from tb_code_board;
 select * from tb_stsfc_code;
+select * from tb_news;
 
 -- 테이블 삭제
 drop table tb_user purge;
