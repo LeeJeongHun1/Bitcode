@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.bitcode.repository.domain.DownloadFile;
 import kr.co.bitcode.repository.domain.Folder;
+import oracle.jdbc.proxy.annotation.Methods;
 
 @Controller
 @CrossOrigin(origins = "*")
@@ -72,6 +73,12 @@ public class MainController {
 		return map;
 	}
 	
+	@RequestMapping("/delete.json")
+	@ResponseBody
+	public void delete(String path, String title, String id) {
+		
+	}
+	
 	@RequestMapping("/enterDirectory.json")
 	@ResponseBody
 	public List<Folder> enterDirectory(String parentPath, String key){
@@ -111,6 +118,7 @@ public class MainController {
 		}
 		return ListDirectory(new File(PATH + id));
 	}
+	
 	
 	//----------------------------------------music폴더 관리
 	@RequestMapping("/musicFolder.json")

@@ -69,9 +69,11 @@ public class UserController {
 	@RequestMapping("/updatePassForm.json") 
 	@ResponseBody
 	public User updatePassForm(User user, HttpSession session)  throws Exception{ 
+		System.out.println(user.getId());
 		user.setPassword(passCode.encode(user.getPassword()));
 		userService.updateUserPass(user);
 		User userInfo = loginService.selectUserById(user.getId());	
+		System.out.println(userInfo.getPassword());
 		session.setAttribute("user", userInfo);
 		
 		return user;
