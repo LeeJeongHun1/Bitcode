@@ -19,8 +19,8 @@ a {
 	<input type="hidden" name="groupNo" value="${list.qna.groupNo}">
 	<input type="hidden" name="depth" value="${list.qna.depth}">
 	<input type="hidden" name="groupOrder" value="${list.qna.groupOrder}">
-	<%-- <input type="hidden" name="oriId" value="${list.ori}"> --%>
-	<div class="container">
+	<input type="hidden" name="oriId" value="${list.id}"> 
+	<div class="qnaBody">
 		<div class="shell-container">
 			<!-- <h2 class="shell_title">QnA질문게시판</h2> -->
 		<div class="contents_header">
@@ -90,7 +90,7 @@ a {
 				<a href='<c:url value="/qnaboard/insertReForm.do?no=${list.qna.no}"/>'><button>답변</button></a>
 				<a href='<c:url value="/qnaboard/updateForm.do?no=${list.qna.no}" />'><button>수정</button></a>
 				<a href='<c:url value="/qnaboard/delete.do?no=${list.qna.no}"/>'><button>삭제</button></a>
-				<a href="#"><button>삭제</button></a>
+				<!-- <a href="#"><button>삭제</button></a> -->
 			</div>
 
 		</div>

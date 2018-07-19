@@ -300,5 +300,19 @@
 		and read_ans = 'N'
 	</select>
 
+	<select id="readQna" parameterType="qna" resultMap="qnaMap">
+		select *
+		from tb_qna_board
+		where id = #{oriId}
+		and depth = 1
+		and group_no = #{groupNo}
+		and no = #{no}
+	</select>
+	
+	<update id="updateReadAns" parameterType="qna">
+	 update tb_qna_board
+         set read_ans = 'Y'
+		where no = #{no}	
+	</update> 
 
 </mapper>

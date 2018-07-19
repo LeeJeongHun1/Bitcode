@@ -49,6 +49,8 @@ public interface QnaMapper {
 	//public Qna selectNotification(String id);
 	public List<Qna> selectNtf(String id);
 	public List<Qna> selectNoRead(String id);
+	public Qna readQna(Qna qna);
+	public void updateReadAns(Qna qna);
 	
 	
 }

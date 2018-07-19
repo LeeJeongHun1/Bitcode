@@ -73,8 +73,8 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 		map.put("qna", qna);
 		map.put("ori", mapper.selectBoardByNo(qna.getGroupNo()).getId());	
 		// 게시판 읽었을 경우 Y로 변경되게
-		//mapper.readQna(qna);
-		//mapper.updateReadAns(qna);
+		mapper.readQna(qna);
+		mapper.updateReadAns(qna);
 		return map;
 	}
 	@Override
