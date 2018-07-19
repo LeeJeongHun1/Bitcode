@@ -34,10 +34,13 @@ var nick = '${sessionScope.user.nickName}';
 setTimeout(function(){
 ws.send("in:"+nick + "님 입장");
 }, 1000);
+
+$(window).on("unload", function(e){
+    if(nick != ""){
+       ws.send("out:" + nick + "님이 퇴장하셨습니다");
+     }   
+ });
 </script>
 <script src="${pageContext.request.contextPath}/resources/js/websocket/websocket.js"></script>
-<script>
-
-</script>
 </body>
 </html>

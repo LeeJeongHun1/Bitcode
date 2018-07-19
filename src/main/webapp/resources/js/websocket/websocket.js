@@ -16,7 +16,7 @@
 		   	    $(".details").prepend('웹소켓 에러 발생 : ' + evt.data)
 		 };
 		
-		ws.onmessage = function(evt) {
+		 ws.onmessage = function(evt) {
 			
 			// 알림 체크
 			if((evt.data).startsWith("notice")){	
@@ -60,7 +60,6 @@
 	        console.log("메세지 전송")
 	    };
 		 ws.onclose = function(){
-			 ws.send("out:나갓ㅆ");
 			 $(".details").prepend("웹소켓 연결이 종료됨");
 		 };
 		
