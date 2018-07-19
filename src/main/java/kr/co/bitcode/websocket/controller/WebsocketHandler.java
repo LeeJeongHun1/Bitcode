@@ -69,11 +69,16 @@ public class WebsocketHandler extends TextWebSocketHandler {
 		}}// QnaList 를 받음
 		// 채팅 부분
 		if(reMsg.startsWith("in:")) {
-			String[] nick = reMsg.split(":");
+			String[] inmsg = reMsg.split("in:");
+			String a = "";
+			for (String string : inmsg) {
+				a += string;
+			}
+			String[] nick = a.split("님 입장");
 			// 접속자리스트
 //			Map<String, Object> attrs = session.getAttributes();
 //			User u = (User)attrs.get("user");
-			chatUsers.put(nick[1], session);
+			chatUsers.put(nick[0], session);
 			System.out.println("------------------------------");
 			System.out.println("접속한 사용자 관리 목록");
 			System.out.println("------------------------------");		
