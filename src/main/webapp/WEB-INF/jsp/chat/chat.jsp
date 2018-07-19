@@ -6,30 +6,38 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>chat</title>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/styles.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/chat/chat.css">    
 </head>
 
 <body>
-	<div class="container" style="background-color: black; height:600px">
-    <div class="container" style="height:150px;">
-        <h1 class="text-center" style="color:#80FF00;margin-top:50px;">대화방</h1>
-        <h1 style="color:#80FF00;width:140px;margin-left:800px;font-size:20px;">사용자 목록</h1>
+	<div class="chatBody" style="height:600px">
+	<div id="card1" class="card ten col">
+		<div class="topbar yellow">
+		<div class="swatches"><span class="red"></span><span class="orange"></span><span class="yellow"></span><span class="green"></span><span class="blue"></span></div>
+		<div class="xbtn" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">x</div>
+		</div>
+		<h1 class="information">채팅방</h1>
+    <div class="chat" style="height:150px;">
+        <h1 style="width:140px;margin-left:777px;font-size:20px;">사용자 목록</h1>
+    <div id="result" style="overflow:auto;text-align:left;margin-left:100px;width:630px;height:392px;float:left;">
     </div>
-    <div id="result" style="color:#80FF00;overflow:auto;margin-left:120px;width:630px;height:392px;float:left;">
-    </div>
-	<div id="entranceUser" style="color:#80FF00;overflow:auto;width:200px;height:392px;float:left;margin-left:20px;"></div>
+	<div id="entranceUser" style="overflow:auto;width:200px;height:392px;float:left;margin-left:20px;"></div>
 
 	<div id="msgBox">
-		<input type="text" id="message" name="message" style="width:520px;margin-left:120px;"/>
+		<input type="text" id="message" name="message" style="width:520px;"/>
 		<button id="sendBtn">메세지 보내기</button>
     	<button class="btn btn-default" onclick="location.href='${pageContext.request.contextPath}/main/main.do'" type="button" style="margin-left:80px;" >나가기</button>
 	</div>
-    <script
-        src="assets/js/jquery.min.js"></script>
-        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    </div>
 	</div>
+	</div>
+<!--     <script src="assets/js/jquery.min.js"></script> -->
+<!--         <script src="assets/bootstrap/js/bootstrap.min.js"></script> -->
 <script>
+$(".chatBody").draggable();
 var nick = '${sessionScope.user.nickName}';
 setTimeout(function(){
 ws.send("in:"+nick + "님 입장");

@@ -41,98 +41,99 @@ public class WebsocketHandler extends TextWebSocketHandler {
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		
 		String reMsg = message.getPayload();
-		System.out.println("메세지 잘 담겼는지 확인 " + reMsg);
-		List<Qna> qnaList = mapper.selectNotification(reMsg);
-		for(Qna qna:qnaList) {
-			System.out.println("게시글 번호" + qna.getNo());
-			System.out.println("게시글 그룹번호" + qna.getGroupNo());
-			List<Qna> ansList = mapper.selectNtf(qna.getGroupNo());
-			List<Qna> readList = mapper.selectNoRead(qna.getGroupNo());
-		
-		Set<String> keys = users.keySet();
-		for (String key : keys) {
-			WebSocketSession wSession = users.get(key);
-			for(Qna ans:ansList) {
-				System.out.println("답변여부리스트 아이디 :" + ans.getId());
-				System.out.println("답변여부리스트  확인:" + ans.getAnswerAt());
-				System.out.println("답변여부리스트  글번호:" + ans.getNo());
-			System.out.println("답변여부길이 :" + ansList.size() );
-			System.out.println("읽음여부길이 :" + readList.size() );
-				//wSession.sendMessage(new TextMessage(qna.getNo()+"번게시글이 "+ ansList.size()+"개 답변이 달렸습니다.")); //전체 사용자에게 텍스트 멧세지를 전송한ㄳ
-				wSession.sendMessage(new TextMessage("notice" + qna.getNo()+","+ ansList.size()+"안읽은갯수"+readList.size())); //전체 사용자에게 텍스트 멧세지를 전송한ㄳ
-				//wSession.sendMessage(new TextMessage(readList.size()+"개에 글을 읽었습니다.")); //전체 사용자에게 텍스트 멧세지를 전송한ㄳ
-		/*		if(qna.getPoint() <= 101 ) {
+		//
+		if(reMsg.startsWith("notice")) {
+			System.out.println("메세지 잘 담겼는지 확인 " + reMsg);
+			List<Qna> qnaList = mapper.selectNotification(reMsg.split(":")[1]);
+			for(Qna qna:qnaList) {
+				System.out.println("게시글 번호" + qna.getNo());
+				System.out.println("게시글 그룹번호" + qna.getGroupNo());
+				List<Qna> ansList = mapper.selectNtf(qna.getGroupNo());
+				List<Qna> readList = mapper.selectNoRead(qna.getGroupNo());
+				
+				Set<String> keys = users.keySet();
+				for (String key : keys) {
+					WebSocketSession wSession = users.get(key);
+					for(Qna ans:ansList) {
+						System.out.println("답변여부리스트 아이디 :" + ans.getId());
+						System.out.println("답변여부리스트  확인:" + ans.getAnswerAt());
+						System.out.println("답변여부리스트  글번호:" + ans.getNo());
+						System.out.println("답변여부길이 :" + ansList.size() );
+						System.out.println("읽음여부길이 :" + readList.size() );
+						//wSession.sendMessage(new TextMessage(qna.getNo()+"번게시글이 "+ ansList.size()+"개 답변이 달렸습니다.")); //전체 사용자에게 텍스트 멧세지를 전송한ㄳ
+						wSession.sendMessage(new TextMessage("notice:" + qna.getNo()+","+ ansList.size()+"안읽은갯수"+readList.size())); //전체 사용자에게 텍스트 멧세지를 전송한ㄳ
+						//wSession.sendMessage(new TextMessage(readList.size()+"개에 글을 읽었습니다.")); //전체 사용자에게 텍스트 멧세지를 전송한ㄳ
+						/*		if(qna.getPoint() <= 101 ) {
 					wSession.sendMessage(new TextMessage("notice" + qna.getPoint()+ "점이상입니다.")); //전체 사용자에게 텍스트 멧세지를 전송한ㄳ					
 				}*/
-			}
-				
-		}}// QnaList 를 받음
-		
-		// 채팅 부분
-		if(reMsg.startsWith("in:")) {
-			String[] inmsg = reMsg.split("in:");
-			String a = "";
-			for (String string : inmsg) {
-				a += string;
-			}
-			String[] nick = a.split("님 입장");
-			// 접속자리스트
+					}
+					
+				}}// QnaList 를 받음
+			
+		}else {
+			// 채팅 부분
+			if(reMsg.startsWith("in:")) {
+				String[] inmsg = reMsg.split("in:");
+				String a = "";
+				for (String string : inmsg) {
+					a += string;
+				}
+				String[] nick = a.split("님 입장");
+				// 접속자리스트
 //			Map<String, Object> attrs = session.getAttributes();
 //			User u = (User)attrs.get("user");
-			chatUsers.put(nick[0], session);
-			System.out.println("------------------------------");
-			System.out.println("접속한 사용자 관리 목록");
-			System.out.println("------------------------------");		
+				chatUsers.put(nick[0], session);
+				System.out.println("------------------------------");
+				System.out.println("접속한 사용자 관리 목록");
+				System.out.println("------------------------------");		
+				Set<String> chatKeys = chatUsers.keySet();
+				String userList = "userList:";
+				for(String key : chatKeys) {
+					System.out.println(key);
+					userList = userList + key + ":";			
+				}
+				
+				for(String key : chatKeys) {
+					WebSocketSession wss = chatUsers.get(key);
+					wss.sendMessage(new TextMessage(userList));
+				}
+				
+				System.out.println("------------------------------");		
+				
+			}
+			else if(reMsg.startsWith("out:")) {
+				String[] outmsg = reMsg.split("in:");
+				String a = "";
+				for (String string : outmsg) {
+					a += string;
+				}
+				String[] nick = a.split("님 퇴장");
+				chatUsers.remove(nick[0], session);
+				Set<String> chatKeys = chatUsers.keySet();
+				String userList = "userList:";
+				for(String key : chatKeys) {
+					System.out.println(key);
+					userList = userList + key + ":";			
+				}
+				for(String key : chatKeys) {
+					WebSocketSession wss = chatUsers.get(key);
+					wss.sendMessage(new TextMessage(userList));
+				}			
+			}
+			// 메세지
+			System.out.println("보낸 아이디 : " + session.getId());
+			System.out.println("보낸 메세지 : " + message.getPayload());		
+			// 서버에 접속한 모든 사용자에게 메세지 전송하기
 			Set<String> chatKeys = chatUsers.keySet();
-			String userList = "userList:";
 			for(String key : chatKeys) {
 				System.out.println(key);
-				userList = userList + key + ":";			
-			}
-			
-			for(String key : chatKeys) {
 				WebSocketSession wss = chatUsers.get(key);
-				wss.sendMessage(new TextMessage(userList));
-			}
-			
-			System.out.println("------------------------------");		
+				wss.sendMessage(
+						new TextMessage(message.getPayload()));
+			};		
 			
 		}
-		else if(reMsg.startsWith("out:")) {
-			String[] outmsg = reMsg.split("in:");
-			String a = "";
-			for (String string : outmsg) {
-				a += string;
-			}
-			String[] nick = a.split("님 퇴장");
-			chatUsers.remove(nick[0], session);
-			Set<String> chatKeys = chatUsers.keySet();
-			String userList = "userList:";
-			for(String key : chatKeys) {
-				System.out.println(key);
-				userList = userList + key + ":";			
-			}
-			for(String key : chatKeys) {
-				WebSocketSession wss = chatUsers.get(key);
-				wss.sendMessage(new TextMessage(userList));
-			}			
-		}
-		// 메세지
-		System.out.println("보낸 아이디 : " + session.getId());
-		System.out.println("보낸 메세지 : " + message.getPayload());		
-		// 서버에 접속한 모든 사용자에게 메세지 전송하기
-		Set<String> chatKeys = chatUsers.keySet();
-		for(String key : chatKeys) {
-			System.out.println(key);
-			WebSocketSession wss = chatUsers.get(key);
-			wss.sendMessage(
-					new TextMessage(message.getPayload()));
-		};		
-		
 	}
-
-	
-
 
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
