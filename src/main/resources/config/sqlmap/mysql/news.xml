@@ -15,7 +15,29 @@
        <result column = "article_date" property = "articleDate" />	
 	</resultMap>
 	
+<!-- 	IT News Paging List-->
+	<select id="selectPagingCount" resultType="int">
+    	select count(*)
+          from tb_news
+    </select>	
+<!-- 	<select id="selectITNews" resultMap="articleMap"> -->
+<!-- 		select * -->
+<!--     	  from tb_news -->
+<!-- 	</select>	 -->
 	
+<!-- 	IT News Paging & List -->    
+    <select id="selectITNews" resultMap="articleMap" parameterType="pageITNews">
+	    SELECT 
+	    SQL_CALC_FOUND_ROWS A.*
+	    FROM (
+		select		
+		article_no, article_type, article_title, article_summary, article_content, article_reporter, article_thumb, article_url, article_date 
+		from tb_news 
+		) A
+		LIMIT
+		#{begin},6
+    </select>
+    	
 	<insert id="insertNews" parameterType="article">
 		insert into tb_news(
 			article_no,
@@ -40,10 +62,6 @@
 		)
 	</insert>
 	
-	<select id="selectITNews" resultMap="articleMap">
-		select *
-    	  from tb_news
-	</select>	
 
 	<select id="selectITNewsByNo" parameterType="int" resultMap="articleMap">
 		select *

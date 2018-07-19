@@ -1,12 +1,16 @@
 package kr.co.bitcode.itnews.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.bitcode.repository.domain.Article;
 import kr.co.bitcode.repository.domain.NewsComment;
+import kr.co.bitcode.repository.domain.PageITNews;
+import kr.co.bitcode.repository.domain.PageResultITNews;
 import kr.co.bitcode.repository.mapper.NewsMapper;
 
 @Service("ITService")
@@ -14,11 +18,21 @@ public class ITServiceImpl implements ITService{
 	
 	@Autowired
 	private NewsMapper mapper;
-
+	
 
 	@Override
-	public List<Article> selectITNews() {
-		return mapper.selectITNews();
+	public Map<String,Object> selectITNews(PageITNews pageITNews) {
+		Map<String,Object> map = new HashMap<>();
+		map.put("list", mapper.selectITNews(pageITNews));
+		map.put("PageResultITNews", new PageResultITNews(pageITNews.getPageNo(),mapper.selectPagingCount()));
+		List<Article> list= mapper.selectITNews(pageITNews);
+		for(Article article : list) {
+			System.out.println("article" + article.getArticleNo());
+		}
+		System.out.println("pageITNews" + pageITNews.getBegin());
+		System.out.println("pageITNews" + pageITNews.getEnd());
+		System.out.println("pageITNews" + pageITNews.getPageNo());
+		return map;
 	}
 	@Override
 	public Article selectITNewsByNo(int articleNo) {
@@ -47,7 +61,7 @@ public class ITServiceImpl implements ITService{
 	public void deleteArticleComment(int commentNo) {
 		mapper.deleteArticleComment(commentNo);
 	}
-	
+
 
 
 }

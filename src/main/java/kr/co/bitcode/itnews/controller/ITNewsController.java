@@ -2,7 +2,7 @@ package kr.co.bitcode.itnews.controller;
 
 import java.util.List;
 
-
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +13,8 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.co.bitcode.itnews.service.ITService;
 import kr.co.bitcode.repository.domain.Article;
 import kr.co.bitcode.repository.domain.NewsComment;
+import kr.co.bitcode.repository.domain.PageITNews;
+import kr.co.bitcode.repository.domain.Search;
 
 @Controller
 @RequestMapping("/itnews")
@@ -21,15 +23,16 @@ public class ITNewsController {
 	@Autowired
 	private ITService iTService;
 	
-	// IT 뉴스 출력하기
 	@RequestMapping("/list.do")
-	public ModelAndView newsList() throws Exception {
-		ModelAndView mav = new ModelAndView();
-		List<Article> newList = iTService.selectITNews();
-		
-		mav.setViewName("itnews/list");
-		mav.addObject("newList", newList);
-		return mav;
+	public String listBoard() throws Exception {
+		return "itnews/list";
+	}
+	
+	// IT 뉴스 출력하기
+	@RequestMapping("/list.json")
+	@ResponseBody
+	public Map<String,Object> newsList(PageITNews pageITNews) throws Exception {
+		return iTService.selectITNews(pageITNews);
 	}
 	//IT 상세페이지 출력
 	@RequestMapping("/itnewsDetail.do") 
