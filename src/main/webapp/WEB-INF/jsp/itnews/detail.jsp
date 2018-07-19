@@ -48,7 +48,7 @@
 							<button class="btn2" onclick="location.href='updateForm.do?articleNo=${user.id}'">수정</button>
 							<button class="btn2" onclick="location.href='delete.do?articleNo=${user.id}'">삭제</button>
 						</c:if>
-						<div class="btnITList"><a href='${pageContext.request.contextPath}/itnews/itnews.do' class="ITList" role="button" >목록</a></div>	
+						<div class="btnITList"><a href='${pageContext.request.contextPath}/itnews/list.do' class="ITList" role="button" >목록</a></div>	
 					</div>
 				</div>
 			</div>	 
