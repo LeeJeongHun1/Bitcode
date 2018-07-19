@@ -35,6 +35,10 @@
             <c:if test="${!empty sessionScope.user}">
 				<a href="#folder" id="folder" ondblclick="opencom()"></a>
             </c:if>
+            <%-- 메모장 --%>
+            <c:if test="${!empty sessionScope.user}">
+				<a href="#note" id="notepad" onclick="notepad()"></a>
+            </c:if>
             <%-- 플레이어 --%>
             <c:if test="${!empty sessionScope.user}">
 				<a onclick="window.open('${pageContext.request.contextPath}/music/player.do?id=${sessionScope.user.id}', 'player', 'width=550 height=500')" id="wmplayer"></a>
@@ -180,6 +184,90 @@
 	        </div> 
 	    </div>
 	    <!-- Chrome end -->
+    
+    
+    <!-- Notepad start -->
+    <div id="noteBody">
+	<div id="w-frame">
+		<div id="w-frame-white">
+			<div id="title">
+			<h4>BIT NOTE</h4>
+			<div id="button-wrap">
+				<div class="bt close" title="Close" id="noteClose"></div>
+				<div class="bt maximize" title="Maximize"></div>
+				<div class="bt minimize" title="Minimize"></div>
+			</div>
+			<div class="clear"></div>
+			</div>
+			<!-- title -->
+			<div id="container">
+			<div id="menu">
+				<ul>
+			<li><a href="#">File</a>
+				<div class="sub">
+				<ul>
+					<li><a href="#">New <span>Ctrl+N</span></a></li>
+					<li><a href="#">Open... <span>Ctrl+O</span></a></li>
+					<li><a href="#">Save <span>Ctrl+S</span></a></li>
+					<li class="topline"><a href="#">Save As...</a></li>
+					<li><a href="#">Page Setup...</a></li>
+					<li><a href="#">Print... <span>Ctrl+P</span></a></li>
+					<li class="topline"><a href="#">Exit</a></li>
+				</ul>
+				</div></li>
+			<li><a href="#">Edit</a>
+				<div class="sub">
+					<ul>
+					<li><a href="#">Undo <span>Ctrl+Z</span></a></li>
+					<li class="topline"><a href="#" class="disable">Cut <span>Ctrl+X</span></a></li>
+					<li><a href="#" class="disable">Copy <span>Ctrl+C</span></a></li>
+					<li><a href="#">Paste <span>Ctrl+V</span></a></li>
+					<li><a href="#">Delete <span>Del</span></a></li>
+					<li class="topline"><a href="#">Find... <span>Ctrl+F</span></a></li>
+					<li><a href="#">Find Next <span>F3</span></a></li>
+					<li><a href="#">Replace... <span>Ctrl+H</span></a></li>
+					<li><a href="#" class="disable">Go To... <span>Ctrl+G</span></a></li>
+					<li class="topline"><a href="#">Select All <span>Ctrl+A</span></a></li>
+					<li><a href="#">Time/Date <span>F5</span></a></li>
+				</ul>
+				</div></li>
+			<li><a href="#">Format</a>
+				<div class="sub min">
+					<ul>
+						<li><a href="#">Word Wrap</a></li>
+						<li><a href="#">Font... <span></span></a></li>
+					</ul>
+				</div></li>
+
+			<li><a href="#">View</a>
+				<div class="sub min">
+					<ul>
+					<li><a href="#" class="disable">Status bar</a></li>
+					</ul>
+				</div></li>
+
+			<li><a href="#">Help</a>
+				<div class="sub min">
+					<ul>
+					<li><a href="#">View Help</a></li>
+					<li class="topline"><a href="#">About Notepad</a></li>
+					</ul>
+				</div></li>
+			</ul>
+			</div>
+			<!-- end menu -->
+			
+			<!-- NOTEPAD CONTENTS -->
+			<textarea autofocus="autofocus" spellcheck="false"></textarea>
+			<!-- END NOTEPAD CONTENTS -->
+			</div>
+			<!-- container -->
+		</div>
+		<!-- w-frame white -->
+	</div>
+	</div>
+	<!-- w-frame -->
+	<!-- Notepad end -->
 	    
 	    
 	    
@@ -190,20 +278,20 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/sweetalertFile/sweetalert2.min.css">
 
 <script>
+$("#chrome").click(function (){
+	$(".frame").hide();
+	$(".text-tabs").text('Chrome')
+	$(".icons-tabs").find("i").removeClass().addClass("fab fa-chrome");
+	$("iframe").show();
+})
+$("#folder").click(function (){
+	$("iframe").hide();
+	$(".text-tabs").text('id 님의 전용 폴더')
+	$(".icons-tabs").find("i").removeClass().addClass("fas fa-folder-open");
+	$("#url").val('https://drive.bitcode.com/my-drive');
+	$(".frame").show();
+})
 
-	$("#chrome").click(function (){
-		$(".frame").hide();
-		$(".text-tabs").text('Chrome')
-		$(".icons-tabs").find("i").removeClass().addClass("fab fa-chrome");
-		$("iframe").show();
-	})
-	$("#folder").click(function (){
-		$("iframe").hide();
-		$(".text-tabs").text('id 님의 전용 폴더')
-		$(".icons-tabs").find("i").removeClass().addClass("fas fa-folder-open");
-		$("#url").val('https://drive.bitcode.com/my-drive');
-		$(".frame").show();
-	})
 var ws = null;
 var loginId = '${sessionScope.user.id}';
 
@@ -240,6 +328,20 @@ $(".chromeBody").draggable();
 		$("#bitBrowser").attr('src', url);
 	}
 });
+
+// 메모장 드래그
+$("#noteBody").draggable();
+
+$("#noteBody").hide();
+$("#noteClose").click(function(){
+	$("#noteBody").hide();
+});
+function notepad(){
+	$("#noteBody").toggle();
+};
+
 </script>
+
+<!-- 알림/단체대화 스크립트 -->
 <script src="${pageContext.request.contextPath}/resources/js/websocket/websocket.js"></script>
 

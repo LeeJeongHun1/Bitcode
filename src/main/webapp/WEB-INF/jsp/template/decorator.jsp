@@ -24,9 +24,13 @@
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/favicon.ico" type="image/x-icon" />
 <link rel="icon" href="${pageContext.request.contextPath}/resources/images/favicon.ico" type="image/x-icon" />
 
+
 <%-- 크롬 팝업 --%>
 <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main/cloud.css">
+
+<%-- 메모장 --%>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main/notepad.css">
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main/folder.css">
 
@@ -62,6 +66,7 @@
 		
 		
 <script src="${pageContext.request.contextPath}/resources/js/folderjs/folder.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/folderjs/notepad.js"></script>
 
 </body>
 

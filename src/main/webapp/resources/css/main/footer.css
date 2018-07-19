@@ -165,6 +165,15 @@ body {
   background-position: center;
   background-size: 26px 26px;
 }
+/* 작업표시줄 좌측 메뉴 - 메모장 */
+.taskbar .icons-left #notepad {
+  height: 43px;
+  width: 49px;
+  background-image: url("/bitcode/resources/images/notepad.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 26px 26px;
+}
 
 
 .taskbar .icons-left a {
