@@ -102,7 +102,7 @@ a {
 		$.ajax({
 			url: "<c:url value='/qnaboard/commentDelete.json'/>",
 			data: {
-				no: "${list.no}", 
+				no: "${list.qna.no}", 
 				commentNo: commentNo
 			},
 			dataType: "json",
@@ -110,84 +110,56 @@ a {
 		});
 	} 
 	
-		/*
-		<li class="reple">
-			<form id="commentU" action="" method="post">
-				<input type="hidden" name="no" value="${list.no}"> 
-				<input type="hidden" name="groupNo" value="${list.groupNo}">
-				<div class="reHeader">
-					<p class="reWriter"><input type="text" name="id" value="aa"></p>
-					<span class="reDay">2018.02.30 11:20</span> 
-					<span class="recomment"> <a href="#">답글</a></span>
-				</div>
-				<div class="comment"><textarea name="content">이 코드는 이런이런 형식입니다.</textarea></div>
-				<button id="Ubtn" class="resubmit" >수정</button>
-				</form>
-				<a href="">삭제</a>
-		</li> */
-
-					
 	//댓글 업데이트 폼
 	function commentUpdateForm(commentNo){
-		
 		$(".reBody li[id^=cN]").show();
 		$(".reBody li[id^=modCN]").remove();
-		var modId = $("#cN" + commentNo + " > p.reWriter").text();
-		var modContent = $("#cN" + commentNo + " > div.comment").text();
-		var html ="";
 		
-		/* 게시판 형태
-		html += '<tr id="modRow' + commentNo + '">';
-		html += '	<td>' + modId + '</td>';
-		html += '	<td>';
-		html += '		<div class="form-group">';
-		html += '			<input type="text" name="content" value="' + modContent + '" class="form-control input-wp2" placeholder="내용을 입력하세요">';
-		html += '		</div>';
-		html += '	</td>';
-		html += '	<td colspan="2">'; 
-		html += '		<a href="javascript:commentUpdate(' + commentNo + ');" class="btn btn-success btn-sm" role="button">수정</a>';
-		html += '		<a href="javascript:commentCancel(' + commentNo + ');" class="btn btn-warning btn-sm" role="button">취소</a>';
-		html += '	</td>';
-		html += '</tr>';
-		*/
-	
-		html += '<li id="cN' + commentNo + '" class="commentOr"><div class="reHeader"><p class="reWriter">'+ modId +'</p>';
-		html += '<a href="javascript:commentUpdate(' + commentNo + ')" id="cu' + commentNo + '" class="btn btn-success btn-sm" role="button">확인</a>';
-		html += '<div class="comment"><input type="text" name="" value= ' + modContent + '></div></li>'; 
-	
-		/* 
-		html+='<li id="cN' + commentNo + '" class="commentOr"><div class="reHeader"><p class="reWriter">'+ modId +'</p>';
-		html += '<a href="javascript:commentUpdate(' + commentNo + ')" id="cu' + commentNo + '" class="btn btn-success btn-sm" role="button">수정</a>';
-		html += '<a href="javascript:commentDelete(' + commentNo + ')" class="btn btn-success btn-sm" role="button">삭제</a>';
-		html += '<div id="cNum' + commentNo + '" class="comment">'+ modContent +'</div></li>';
-		*/
+		var modId = $("#cN" + commentNo + " > div.reHeader > p.reWriter").text();
+		var modContent = $("#cNum" + commentNo).text();
 		
-		$("ul.reBody li#cN" + commentNo + "").after(html);
-		$("ul.reBody li#cN" + commentNo + "").hide();
-					
-	}
+		var html = '';
+	
+		html += '<li id="cN' + commentNo + '" class="commentOr">';
+		html += '<div class="reHeader">';
+		html += '<p class="reWriter">'+ modId +'</p>';
+		html += '<span class="reDay"></span>';
+		html += '<a href="javascript:commentUpdate(' + commentNo + ');" id="cu' + commentNo + '" class="btn btn-success btn-sm" role="button">확인</a>';
+		html += '<a href="javascript:commentCancel(' + commentNo + ');" id="cu' + commentNo + '" class="btn btn-success btn-sm" role="button">취소</a>';
+		html += '<div id="cNum' + commentNo + '" class="comment"><input type="text" name="content" id="modComment' + commentNo + '" value="' + modContent + '"></div>'; 
+		html += '</li>';
+		
+		$("#cN" + commentNo).after(html);
+		$("#cN" + commentNo).hide();
+	} // 댓글 업데이트 폼
 					
 	// 댓글 업데이트
 	function commentUpdate(commentNo) {
-
 		$.ajax({
 		url: "<c:url value='/qnaboard/commentUpdate.json'/>",
 		type:"POST",
 		data :{
-			no:"${list.no}",
+			no:"${list.qna.no}",
 			commentNo:commentNo,
-		}
+			content: $("#modComment" + commentNo).val()
+			},
+		dataType: "json"
 	   })
 	.done(function(data){
-		
-	})
-	}
-					
+		commentList(data);
+	});
+	} // 댓글 업데이트
+	
+	// 댓글 수정 취소
+	function commentCancel(commentNo) {
+		$("#cN" + commentNo).show();
+		$("#modCN" + commentNo).remove();
+	} // 댓글 수정 취소
+	
 	// 댓글 등록
 	$("#Rbtn").click(function(e){
 		e.preventDefault();
 		var formData = $("#commentR").serialize();	
-		alert(formData)
 	$.ajax({
 		url: "<c:url value='/qnaboard/commentRegist.json'/>",
 		type:"POST",
