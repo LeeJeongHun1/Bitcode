@@ -168,7 +168,7 @@
 							<span>저장용량</span><img src="${pageContext.request.contextPath}/resources/images/cloud.PNG" style="width: 40px; margin-left: 8px;"><br>
 							<span>1GB 중 </span><span>20MB 사용</span>
 						</div>
-					</div>
+					</div> 
 					<div class="col-xs-9 ">
 						<div class="row main-folders" id="folder-area" style="height: 380px;">
 							<!-- 폴더 ajax 추가 -->
