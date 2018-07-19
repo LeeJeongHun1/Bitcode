@@ -7,8 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <title>BIT CODE</title>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/remote/remote.css">
 <script src="https://192.168.0.104:10001/socket.io/socket.io.js"></script>

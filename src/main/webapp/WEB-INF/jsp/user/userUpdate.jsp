@@ -3,8 +3,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<title>BIT CODE</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/user/userupdate.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/sweetalertFile/sweetalert2.css" />
 <script src="${pageContext.request.contextPath}/resources/sweetalertFile/sweetalert2.all.min.js"></script>

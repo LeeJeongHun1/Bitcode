@@ -6,8 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<title>BIT CODE</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/user/userInfo.css" />
 <link href='https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/sweetalertFile/sweetalert2.css" />

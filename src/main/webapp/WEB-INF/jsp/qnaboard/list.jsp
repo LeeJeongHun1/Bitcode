@@ -8,7 +8,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BIT CODE</title>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
