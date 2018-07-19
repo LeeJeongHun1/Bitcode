@@ -165,7 +165,7 @@
 						</div>
 						<div id="tree" style="overflow-x: auto; height: 420px;"></div>
 						<!-- 저장 용량 -->
-						<div class="saveSize" style="position: fixed; bottom: 40px; width: 145px;" >
+						<div class="saveSize" style="position: fixed; bottom: 20px; width: 145px;" >
 							<span>저장용량</span><img src="${pageContext.request.contextPath}/resources/images/cloud.PNG" style="width: 40px; margin-left: 8px;"><br>
 							<span></span>
 						</div>
@@ -464,7 +464,7 @@ recognition.interimResults = true;
 	// fancyTree
 	$(function() {
 		$.contextMenu({
-			selector: "#folder-area div, #folder-area",
+			selector: "#folder-area div",
 			items: {
 				"add": {name: "AddFolder", icon: "add" },
 				"delete": {name: "Delete", icon: "delete" }
@@ -473,6 +473,9 @@ recognition.interimResults = true;
 				var node = $.ui.fancytree.getNode(opt.$trigger);
 				var selPath = $("#share-path").data("root");
 				var fileName = '';
+				console.log(opt);
+				console.dir(this[0].dataset.title);
+				console.dir(typeof(this[0].dataset));
 // 				alert("select " + itemKey + " on " + opt);
 				// 마우스 우클릭 > 폴더 생성 선택
 				if(itemKey == 'add'){
@@ -514,9 +517,22 @@ recognition.interimResults = true;
 						})
 				}
 				if(itemKey == 'delete'){
-					swal(	'warning',
-							'파일 삭제',
-							'question');
+					console.dir(node);
+					$.ajax({
+						url: "delete.json",
+						dataType: "json",
+						type: "POST",
+						data: {
+							path: selPath,
+							name: this[0].dataset.title,
+							id: $("#sId").val()
+						}
+					})
+					.done(function (result) {
+						swal(	'warning',
+								'파일 삭제',
+								'question');
+					})
 				}
 			}
 		});
