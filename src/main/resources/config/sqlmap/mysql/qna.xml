@@ -282,22 +282,35 @@
 	</delete>
 
 	<!-- 알림 -->
-
-	<select id="selectNtf" parameterType="string" resultMap="qnaMap">
-		select *
+	<select id="selectNotification" parameterType="string" resultMap="qnaMap">
+	 select *
+	   from tb_qna_board
+	  where id=#{id}
+	</select>
+	<select id="selectNtf" parameterType="int" resultMap="qnaMap">
+	    select *
+		from tb_qna_board
+		where group_no = #{group_no}
+		and depth = 1
+	<!-- 	select *
 		from tb_qna_board
 		where id = #{id}
 		and depth = 0
-		and answer_at = 'Y'
+		and answer_at = 'Y' -->
 	</select>
 
-	<select id="selectNoRead" parameterType="string" resultMap="qnaMap">
+	<select id="selectNoRead" parameterType="int" resultMap="qnaMap">
 		select *
+		from tb_qna_board
+		where depth = 1
+		and group_no = #{groupNo}
+		and read_ans = 'N'
+	<!-- 	select *
 		from tb_qna_board
 		where id=#{id}
 		and depth = 0
 		and group_no = #{groupNo}
-		and read_ans = 'N'
+		and read_ans = 'N' -->
 	</select>
 
 	<select id="readQna" parameterType="qna" resultMap="qnaMap">
