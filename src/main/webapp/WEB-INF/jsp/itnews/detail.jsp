@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/itnews/itnewsdetail.css" />
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <body>
 <!--   기사 내용부분 -->
@@ -16,7 +17,7 @@
 <div class="topbar red">
 	<div class="swatches"><span class="red"></span><span class="orange"></span><span class="yellow"></span><span class="green"></span><span class="blue"></span></div>
 	<div class="maxbtn"><span></span></div>
-	<div class="xbtn">x</div>
+	<div class="xbtn" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">x</div>
 </div>  	 
 	 <div class="cardITNewsDetail1">  
 		<div class="articleall"> 
@@ -35,13 +36,15 @@
 			<hr>
 				<div id="commentList"></div>
 				<div>
+					<c:if test="${sessionScope.user.id != null}">
 					<form id="writeForm">
 						<h5>댓글쓰기</h5>
-						<textarea name="commentText"></textarea>
+						<textarea name="commentText" class="commentTextarea"></textarea>
 						<button>등록</button>
 					</form>
+					</c:if>	
 					<div style="text-align: right;">
-						<c:if test="${sessionScope.user.id eq newsComment.id}">
+						<c:if test="${sessionScope.user.id eq newsComment.id && sessionScope.user.id != null}">
 							<button class="btn2" onclick="location.href='updateForm.do?articleNo=${user.id}'">수정</button>
 							<button class="btn2" onclick="location.href='delete.do?articleNo=${user.id}'">삭제</button>
 						</c:if>
@@ -58,16 +61,20 @@
 
 <!--   댓글부분 -->
 <script>
+$(".card-grid-space1").draggable();
+
+
 	function makeCommentList(result) {
 		var html = "";
 		for (let i = 0; i < result.length; i++) {
 			var comment = result[i];
 			html += '<div class="comment_box" id="comment'+comment.commentNo+'">';
-			html += '  <h5><span id="commentId">'+"${sessionScope.user.nickName}"+'</span>';
+			html += '  <h5><span id="commentId">'+comment.id+'</span>';
 			if ("${sessionScope.user.id}" == comment.id) {
 			html += '    <button class="btn2" onclick="commentUpdateForm('+comment.commentNo+');">수정</button>'
 			html += '    <button class="btn2" onclick="commentDelete('+comment.commentNo+');">삭제</button></h5>';
 			}
+			html += '  <br>';
 			html += '  <div id="commentTextDiv">'+comment.content+'</div>';
 // 			html += '  <br>';
 			html += '</div>';

@@ -74,7 +74,7 @@
 }
 /* 댓글 text */
 #commentTextDiv {
-	font-size: 15px;
+	font-size: 13px;
 }
 
 #commentId {
@@ -111,6 +111,10 @@
 #articleUrl {
 	font-size:15px;
 	
+}
+
+.commentTextarea{
+	width: 60%;
 }
 .cardITNewsDetail1 > .articleall {
 		margin-left: 2%;
@@ -321,7 +325,7 @@
 
 /* 버튼 */
 /* 버튼 디자인 */
-.btn2 {
+h5 > .btn2 {
 	/* 버튼끼리의 위 아래 좌 우 간격 설정 */
 /* 	padding: 6px 12px; */
 	/* 커서 모양 */
