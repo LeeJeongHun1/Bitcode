@@ -28,11 +28,11 @@ import oracle.jdbc.proxy.annotation.Methods;
 @RequestMapping("/main")
 public class MainController {
 	
-	private static final String DELETE_PATH = "c:\\java-lec\\upload\\delete_";
+//	private static final String DELETE_PATH = "c:\\java-lec\\upload\\delete\\";
 	private final String PATH = "c:\\java-lec\\upload\\";
 	private final String MUSIC_PATH = "c:\\java-lec\\upload\\music_";
 	private final String[] EXT = { "jpg", "png", "gif",};
-	private static long FolderSize = 0;
+
 	
 	@RequestMapping("/main.do")
 	public void main(Model model) {
@@ -46,9 +46,7 @@ public class MainController {
 		String musicPath = PATH + "music_" + id;
 		System.out.println("경로 : " + folderPath);
 		new File(folderPath + "\\새 폴더").mkdirs();
-		new File(DELETE_PATH + id).mkdirs();
 		new File(musicPath + "\\새 폴더").mkdirs();
-		ListDirectorySize(new File(folderPath));
 		return ListDirectory(new File(folderPath));
 	}
 	
@@ -77,15 +75,8 @@ public class MainController {
 	
 	@RequestMapping("/delete.json")
 	@ResponseBody
-	public Map<String, Object> delete(String path, String name, String id) {
-		System.out.println(path);
-		System.out.println(name);
-		System.out.println(id);
-		new File(path + "/" + name).delete();
-		Map<String, Object> map = new HashMap<>();
-		map.put("fancyList", ListDirectory(new File(PATH + id)));
-		map.put("path", path);
-		return map;
+	public void delete(String path, String title, String id) {
+		
 	}
 	
 	@RequestMapping("/enterDirectory.json")
@@ -139,7 +130,10 @@ public class MainController {
 	}
 	
 	
-	// 루트 폴더 읽기
+	
+	
+	
+	
 	private List<Folder> ListDirectory(File file, int...args){
 //		file.renameTo(dest) 파일 무브 삭제개념
 		int i;
@@ -176,19 +170,6 @@ public class MainController {
 			fList.add(folder);
 		}
 		return fList;
-	}
-	
-	
-	private static long ListDirectorySize(File file){
-		for (File ff : file.listFiles()) {
-			if(ff.isFile()){
-				FolderSize += ff.length();
-			}
-			if(ff.isDirectory()) {
-				ListDirectorySize(ff);
-			}
-		}
-		return FolderSize;
 	}
 	
 	@RequestMapping("/download.do")

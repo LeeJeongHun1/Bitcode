@@ -121,6 +121,7 @@
 					<!-- 뒤로가기 앞으로가기 화살표  -->
 					<div class="col-xs-2">
 						<i class="fa fa-long-arrow-left" id="forward"></i>
+						<i class="fa fa-long-arrow-right" id="backwards"></i>
 						<i class="glyphicon glyphicon-home" id="hoomroot"></i>
 					</div>
 					<div class="col-xs-7">
@@ -166,7 +167,7 @@
 						<!-- 저장 용량 -->
 						<div class="saveSize" style="position: fixed; bottom: 20px; width: 145px;" >
 							<span>저장용량</span><img src="${pageContext.request.contextPath}/resources/images/cloud.PNG" style="width: 40px; margin-left: 8px;"><br>
-							<span>1GB 중 </span><span>20MB 사용</span>
+							<span></span>
 						</div>
 					</div>
 					<div class="col-xs-9 ">
@@ -463,7 +464,7 @@ recognition.interimResults = true;
 	// fancyTree
 	$(function() {
 		$.contextMenu({
-			selector: "#folder-area div, #folder-area",
+			selector: "#folder-area div",
 			items: {
 				"add": {name: "AddFolder", icon: "add" },
 				"delete": {name: "Delete", icon: "delete" }
@@ -472,7 +473,6 @@ recognition.interimResults = true;
 				var node = $.ui.fancytree.getNode(opt.$trigger);
 				var selPath = $("#share-path").data("root");
 				var fileName = '';
-				var deleteFileName = this[0].dataset.title;
 				console.log(opt);
 				console.dir(this[0].dataset.title);
 				console.dir(typeof(this[0].dataset));
@@ -524,15 +524,14 @@ recognition.interimResults = true;
 						type: "POST",
 						data: {
 							path: selPath,
-							name: deleteFileName,
+							name: this[0].dataset.title,
 							id: $("#sId").val()
 						}
 					})
 					.done(function (result) {
-						console.dir(result);
-						$('#tree').fancytree('option', 'source', result.fancyList);
-						Refresh(result.path);
-						swal('warning', '파일 삭제', 'question');
+						swal(	'warning',
+								'파일 삭제',
+								'question');
 					})
 				}
 			}
@@ -608,7 +607,7 @@ recognition.interimResults = true;
 						appendFile += '<p class="contain">';
 						if(f.type == 'img'){
 							appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/imageicon.png"`;
-						}else if(f.title.split('.mp3') != -1) {
+						}else if(f.title.split('.')[1] == 'mp3') {
 							appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/mp3image.png"`;
 						}else{
 							appendFile += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500505134/if_sticky-note_299111_px7waa.png"';
@@ -661,7 +660,7 @@ recognition.interimResults = true;
 					appendFile += '<p class="contain">';
 					if(f.type == 'img'){
 						appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/imageicon.png"`;
-					}else if(f.title.split('.mp3') != -1) {
+					}else if(f.title.split('.')[1] == 'mp3') {
 						appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/mp3image.png"`;
 					}else{
 						appendFile += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500505134/if_sticky-note_299111_px7waa.png"';
@@ -688,9 +687,6 @@ recognition.interimResults = true;
 		location.href = "download.do?path="+encodeURI(path)+"&fileName="+fileName;
 	}
 	
-	var backPath = '';
-	var backTitle = '';
-	
 	function loadFancytree(data) {
 		$("#tree").fancytree({
 			extensions: [],
@@ -703,8 +699,6 @@ recognition.interimResults = true;
 				if(node.folder){
 					console.log("폴더 선택");
 					console.log(node);
-					backPath = node.data.parentPath;
-					backTitle = node.title;
 // 					node.setExpanded(true); // 폴더 확장
 					fancyTreeClick(node)
 					}
@@ -777,8 +771,6 @@ recognition.interimResults = true;
 			console.log(result)
 			reload(result, selectInfo)
 			console.log($div.data("path"));
-			backPath = $div.data("path");
-			backTitle = $div.data("title")
 			console.log($div.data("title"));
 		})
 	}
@@ -821,7 +813,7 @@ recognition.interimResults = true;
 				appendFile += '<p class="contain">';
 				if(f.type == 'img'){
 					appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/imageicon.png"`;
-				}else if(f.title.split('.mp3') != -1) {
+				}else if(f.title.split('.')[1] == 'mp3') {
 					appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/mp3image.png"`;
 				}else{
 					appendFile += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500505134/if_sticky-note_299111_px7waa.png"';
@@ -865,14 +857,18 @@ recognition.interimResults = true;
 					console.dir(file);
 					html += '<div class="col-xs-2 folders text-center" id="'+ ++id +'" data-path="'+$("#share-path").data("root")+'" data-title="'+file.name+'" ondblclick="test1()">';
 					html += '	<p class="contain">';
-					if(file.type.split('/')[0] == 'image'){
-						html += `	<img src="${pageContext.request.contextPath}/resources/images/imageicon.png"`;
-					}else if(file.type.split('/')[0] == 'audio') {
-						html += `	<img src="${pageContext.request.contextPath}/resources/images/mp3image.png"`;
+					if(f.type == 'img'){
+						appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/imageicon.png"`;
+					}else if(f.title.split('.')[1] == 'mp3') {
+						appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/mp3image.png"`;
 					}else{
-						html += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500505134/if_sticky-note_299111_px7waa.png"';
+						appendFile += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500505134/if_sticky-note_299111_px7waa.png"';
 					}
-					html += 'class="img-responsive  center-block" style="height: 64px;" alt="">';
+					if(file.type.split('/')[0] == 'image'){
+						html += `	<img src="${pageContext.request.contextPath}/resources/images/imageicon.png" class="img-responsive  center-block" style="height: 64px;" alt="">`;
+					}else{
+						html += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500505134/if_sticky-note_299111_px7waa.png" class="img-responsive  center-block" style="height: 64px;" alt="">';
+					}
 					html += '	</p>';
 					html += '	<span class="ellipsis">'+file.name+'</span>';
 					html += '</div>';
@@ -1034,12 +1030,13 @@ recognition.interimResults = true;
 	
 	// 뒤로가기 기능
 	$("#forward").click(function () {
-		if($("#share-path").data("root").split($("#sId").val())[1] == ''){
-			return;
-		}else{
-			alert('루트 존재');
-			console.log(backPath)
-		}
+		alert('뒤로가기')
+	})
+	
+	// 앞으로가기 기능
+	$("#backwards").click(function () {
+		alert('앞으로가기')
+		alert($("#share-path").data("root"))
 	})
 	
 	// 홈으로 이동
