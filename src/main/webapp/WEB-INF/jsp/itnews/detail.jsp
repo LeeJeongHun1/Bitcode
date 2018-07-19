@@ -69,10 +69,10 @@ $(".card-grid-space1").draggable();
 		for (let i = 0; i < result.length; i++) {
 			var comment = result[i];
 			html += '<div class="comment_box" id="comment'+comment.commentNo+'">';
-			html += '  <h5><span id="commentId">'+comment.id+'</span>';
+			html += '  <span id="commentId">'+comment.id+'</span>';
 			if ("${sessionScope.user.id}" == comment.id) {
 			html += '    <button class="btn2" onclick="commentUpdateForm('+comment.commentNo+');">수정</button>'
-			html += '    <button class="btn2" onclick="commentDelete('+comment.commentNo+');">삭제</button></h5>';
+			html += '    <button class="btn2" onclick="commentDelete('+comment.commentNo+');">삭제</button>';
 			}
 			html += '  <br>';
 			html += '  <div id="commentTextDiv">'+comment.content+'</div>';
@@ -132,9 +132,9 @@ $(".card-grid-space1").draggable();
 		var html = '';
 		html += '<div id="modComment'+ commentNo +'">';
 		html += '  <h5>' + $("#comment"+commentNo+"> h5 > #commentName").text();
-		html += '  <button class="btn" onclick="commentUpdate('+ commentNo +');">수정</button>';
-		html += '  <button class="btn" onclick="commentCancel('+ commentNo +');">취소</button></h5>';
-		html += '<textarea name="commentText" id="commentText'+ commentNo +'">';
+		html += '  <button class="btn2" onclick="commentUpdate('+ commentNo +');">수정</button>';
+		html += '  <button class="btn2" onclick="commentCancel('+ commentNo +');">취소</button></h5>';
+		html += '<textarea name="commentText" class="commentTextarea" id="commentText'+ commentNo +'">';
 		html += $("#comment"+commentNo+"> #commentTextDiv").text();
 		html += '</textarea>';
 		html += '</div>';
