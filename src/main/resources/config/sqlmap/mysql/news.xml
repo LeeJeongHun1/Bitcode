@@ -19,7 +19,7 @@
 	<select id="selectPagingCount" resultType="int">
     	select count(*)
           from tb_news
-    </select>	
+    </select>
 <!-- 	<select id="selectITNews" resultMap="articleMap"> -->
 <!-- 		select * -->
 <!--     	  from tb_news -->

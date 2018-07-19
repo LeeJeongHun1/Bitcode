@@ -841,6 +841,13 @@ recognition.interimResults = true;
 					console.dir(file);
 					html += '<div class="col-xs-2 folders text-center" id="'+ ++id +'" data-path="'+$("#share-path").data("root")+'" data-title="'+file.name+'" ondblclick="test1()">';
 					html += '	<p class="contain">';
+					if(f.type == 'img'){
+						appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/imageicon.png"`;
+					}else if(f.title.split('.')[1] == 'mp3') {
+						appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/mp3image.png"`;
+					}else{
+						appendFile += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500505134/if_sticky-note_299111_px7waa.png"';
+					}
 					if(file.type.split('/')[0] == 'image'){
 						html += `	<img src="${pageContext.request.contextPath}/resources/images/imageicon.png" class="img-responsive  center-block" style="height: 64px;" alt="">`;
 					}else{

@@ -39,31 +39,35 @@
 	</div>
 	
 <script>
-
-	$(".musicBody").draggable();
-	
-	function callMain() {
-		//window.opener.location.href = '${pageContext.request.contextPath}/main/main.do';
-		self.close();
-	};
-	console.dir($("#myMusic"))
-	$.ajax({
-		url: "musicList.json",
-		dataType: "json",
-		data: {
-			id: `${sessionScope.user.id}`
-		}
-	})
-	.done(function (result) {
-		var html = '';
-		for(let f of result){
-			html += '<div>'+f.title+'</div>'
-		}
-		$(".musicList").html(html);
-		$("#myMusic").attr('src',
-				'${pageContext.request.contextPath}/main/download.do?path=' + encodeURI(`c:/java-lec/upload/music_${sessionScope.user.id}`) + '&fileName='+result[0].title+'')
-		$("#myMusic").attr('autoplay', 'autoplay')
-	})
+	window.onload = function () {
+		
+		$(".musicBody").draggable();
+		
+		function callMain() {
+			//window.opener.location.href = '${pageContext.request.contextPath}/main/main.do';
+			self.close();
+		};
+		console.dir($("#myMusic"))
+		$.ajax({
+			url: "musicList.json",
+			dataType: "json",
+			data: {
+				id: `${sessionScope.user.id}`
+			}
+		})
+		.done(function (result) {
+			var html = '';
+			for(let f of result){
+				html += '<div>'+f.title+'</div>'
+			}
+			$(".musicList").html(html);
+			$("#myMusic").attr('src',
+					'${pageContext.request.contextPath}/main/download.do?path=' + encodeURI(`c:/java-lec/upload/music_${sessionScope.user.id}`) + '&fileName='+result[0].title+'')
+			$("#myMusic").attr('autoplay', 'autoplay');
+			$("#myMusic")[0].onloadstart=function(){$("#myMusic")[0].play();};
+			
+		})
+	}
 
 </script>
 </body>

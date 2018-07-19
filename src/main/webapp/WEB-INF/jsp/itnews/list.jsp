@@ -31,6 +31,13 @@
 <script>
 window.onload = function(){
 		pageList();
+		$("body").waitMe({
+			effect: "ios",
+			text: "Loding.. :D",
+			bg: 'rgba(255,255,255, 0.7)',
+			color: '#000'
+			
+		});
 } 
 // 페이징 처리 
 function makePageLink(data) {
@@ -83,13 +90,6 @@ function pageList(pageNo){
 	if (pageNo === undefined) {
 		pageNo = 1;
 	}
-	$("body").waitMe({
-		effect: "ios",
-		text: "Loding.. :D",
-		bg: 'rgba(255,255,255, 0.7)',
-		color: '#000'
-		
-	});	
 	$.ajax({
 		url: "/bitcode/itnews/list.json",
 		data: {pageNo: pageNo},
