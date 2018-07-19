@@ -52,7 +52,7 @@
 			// 메시지 체크
 			if((evt.data).startsWith("chat")){
 				var msg = (evt.data).split(":");
-				$("#result").append(msg[1] + "<br>");
+				$("#result").append(msg[1]+ " : " + msg[2]+"<br>");
 				$("#result").scrollTop($("#result").height());			
 			}			
 			
