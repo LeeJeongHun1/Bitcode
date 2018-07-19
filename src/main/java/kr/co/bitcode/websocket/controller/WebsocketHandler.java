@@ -79,6 +79,9 @@ public class WebsocketHandler extends TextWebSocketHandler {
 				//wSession.sendMessage(new TextMessage(qna.getNo()+"번게시글이 "+ ansList.size()+"개 답변이 달렸습니다.")); //전체 사용자에게 텍스트 멧세지를 전송한ㄳ
 				wSession.sendMessage(new TextMessage("notice" + qna.getNo()+","+ ansList.size()+"안읽은갯수"+readList.size())); //전체 사용자에게 텍스트 멧세지를 전송한ㄳ
 				//wSession.sendMessage(new TextMessage(readList.size()+"개에 글을 읽었습니다.")); //전체 사용자에게 텍스트 멧세지를 전송한ㄳ
+		/*		if(qna.getPoint() <= 101 ) {
+					wSession.sendMessage(new TextMessage("notice" + qna.getPoint()+ "점이상입니다.")); //전체 사용자에게 텍스트 멧세지를 전송한ㄳ					
+				}*/
 			}
 				
 		}}// QnaList 를 받음

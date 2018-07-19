@@ -160,7 +160,8 @@
 		tb_qna_board(group_no,id,language_code,title,content)
 		values(#{no},#{id},#{code},#{title},#{content})
 	</insert>
-
+   
+   <!--  글 작성시 포인트 추가  -->
 	<update id="updatePoint" parameterType="user">
 		update tb_user
 		set point =
@@ -282,10 +283,14 @@
 	</delete>
 
 	<!-- 알림 -->
+	<!-- 유저 포인트 확인도 가능 -->
 	<select id="selectNotification" parameterType="string" resultMap="qnaMap">
-	 select *
-	   from tb_qna_board
-	  where id=#{id}
+     select *
+	   from tb_qna_board q
+	   inner
+        join tb_user u 
+        on q.id = u.id
+      where q.id= #{id}
 	</select>
 	<select id="selectNtf" parameterType="int" resultMap="qnaMap">
 	    select *

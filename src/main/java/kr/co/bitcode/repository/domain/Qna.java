@@ -21,6 +21,13 @@ public class Qna {
 	private char answerAt;
 	private char readAns;
 	private String oriId;
+	private int point;
+	public int getPoint() {
+		return point;
+	}
+	public void setPoint(int point) {
+		this.point = point;
+	}
 	public String getOriId() {
 		return oriId;
 	}
