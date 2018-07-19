@@ -47,8 +47,9 @@ public interface QnaMapper {
 	
 	//알림
 	public List<Qna> selectNotification(String id);
-	public List<Qna> selectNtf(int groupNo);
+	//public List<Qna> selectNtf(int groupNo);
 	public List<Qna> selectNoRead(int groupNo);
+	public User selectUserPoint(String id);
 	public Qna readQna(Qna qna);
 	public void updateReadAns(Qna qna);
 	

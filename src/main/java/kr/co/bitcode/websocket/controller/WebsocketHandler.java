@@ -44,33 +44,48 @@ public class WebsocketHandler extends TextWebSocketHandler {
 		//
 		if(reMsg.startsWith("notice")) {
 			System.out.println("메세지 잘 담겼는지 확인 " + reMsg);
-			List<Qna> qnaList = mapper.selectNotification(reMsg.split(":")[1]);
-			for(Qna qna:qnaList) {
-				System.out.println("게시글 번호" + qna.getNo());
-				System.out.println("게시글 그룹번호" + qna.getGroupNo());
-				List<Qna> ansList = mapper.selectNtf(qna.getGroupNo());
-				List<Qna> readList = mapper.selectNoRead(qna.getGroupNo());
+			Set<String> keys = users.keySet();
+			for (String key : keys) {
+				WebSocketSession wSession = users.get(key);
 				
-				Set<String> keys = users.keySet();
-				for (String key : keys) {
-					WebSocketSession wSession = users.get(key);
-					for(Qna ans:ansList) {
-						System.out.println("답변여부리스트 아이디 :" + ans.getId());
-						System.out.println("답변여부리스트  확인:" + ans.getAnswerAt());
-						System.out.println("답변여부리스트  글번호:" + ans.getNo());
-						System.out.println("답변여부길이 :" + ansList.size() );
-						System.out.println("읽음여부길이 :" + readList.size() );
-						//wSession.sendMessage(new TextMessage(qna.getNo()+"번게시글이 "+ ansList.size()+"개 답변이 달렸습니다.")); //전체 사용자에게 텍스트 멧세지를 전송한ㄳ
-						wSession.sendMessage(new TextMessage("notice:" + qna.getNo()+","+ ansList.size()+"안읽은갯수"+readList.size())); //전체 사용자에게 텍스트 멧세지를 전송한ㄳ
-						//wSession.sendMessage(new TextMessage(readList.size()+"개에 글을 읽었습니다.")); //전체 사용자에게 텍스트 멧세지를 전송한ㄳ
-						/*		if(qna.getPoint() <= 101 ) {
-					wSession.sendMessage(new TextMessage("notice" + qna.getPoint()+ "점이상입니다.")); //전체 사용자에게 텍스트 멧세지를 전송한ㄳ					
-				}*/
-					}
+				// 로그인 한 아이디로 쓴 게시글 정보 
+				List<Qna> qnaList = mapper.selectNotification(reMsg.split(":")[1]);
+				System.out.println(qnaList.size() + "QnaList 갯수");
 					
-				}}// QnaList 를 받음
+				for (Qna qna : qnaList) {
+					// 내가 쓴 글에 대한 게시글에 대한 답변수
+					//List<Qna> ansList = mapper.selectNtf(qna.getGroupNo());
+					
+					// 내가 읽지않은 답변 수 
+					List<Qna> readList = mapper.selectNoRead(qna.getGroupNo());
+					
+					// 사용자 질문에 대한 답변여부에 관한 리스트
+					for (Qna read : readList) {
+						
+						// 원글 쓴 사람에게만 답변갯수랑 읽은 갯수를 보냄.
+						if(read.getGroupNo() == qna.getNo()) {
+							wSession.sendMessage(
+									new TextMessage("notice:" + qna.getNo() + "안읽은갯수" + readList.size())); 						
+						}
+					}	
+						
+				} // QnaList 를 받음
 			
-		}else {
+				// 유저정보
+				User user = mapper.selectUserPoint(reMsg.split(":")[1]);
+				// 포인트 101점 이상 200점 미만이거나 201이상일때 포인트 상승 .
+				if(user.getPoint() >= 101 && user.getPoint() < 200) { 
+					wSession.sendMessage(new TextMessage("notice:" + user.getPoint()+ "점이상입니다.")); 
+				}else if(user.getPoint() >= 201) {
+					wSession.sendMessage(new TextMessage("notice:" + user.getPoint() + "점이상입니다.")); 				
+				}
+				
+			} 
+			
+			
+		}
+		
+		else {
 			// 채팅 부분
 			if(reMsg.startsWith("in:")) {
 				String[] inmsg = reMsg.split("in:");

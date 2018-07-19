@@ -283,28 +283,47 @@
 	</delete>
 
 	<!-- 알림 -->
-	<!-- 유저 포인트 확인도 가능 -->
+	<!-- 사용자 아이디가 접속하면 게시글을 쓴 경우 정보를 가져오게 -->
 	<select id="selectNotification" parameterType="string" resultMap="qnaMap">
-     select *
-	   from tb_qna_board q
-	   inner
-        join tb_user u 
-        on q.id = u.id
-      where q.id= #{id}
+	 select *
+	   from tb_qna_board
+	  where id=#{id}
 	</select>
-	<select id="selectNtf" parameterType="int" resultMap="qnaMap">
+	
+		<resultMap id="userMap" type="user">
+		<result column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="nick_Name" property="nickName" />
+		<result column="password" property="password" />
+		<result column="email" property="email" />
+		<result column="birthday" property="birthday" />
+		<result column="point" property="point" />
+		<result column="auth" property="auth" />
+	</resultMap>
+	
+	<!-- user point를 알고 싶을 때  -->
+	<select id="selectUserPoint" parameterType="string" resultMap="userMap">
+	select *
+	 from tb_user
+	 where id = #{id}
+	</select>
+	
+	
+<!-- 	<select id="selectNtf" parameterType="int" resultMap="qnaMap">
 	    select *
 		from tb_qna_board
 		where group_no = #{group_no}
 		and depth = 1
-	<!-- 	select *
+		
+		
+		select *
 		from tb_qna_board
 		where id = #{id}
 		and depth = 0
-		and answer_at = 'Y' -->
-	</select>
+		and answer_at = 'Y'
+	</select> -->
 
-	<select id="selectNoRead" parameterType="int" resultMap="qnaMap">
+	<select id="selectNoRead" parameterType="qna" resultMap="qnaMap">
 		select *
 		from tb_qna_board
 		where depth = 1
