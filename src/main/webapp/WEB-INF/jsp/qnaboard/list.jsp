@@ -1,16 +1,14 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
-
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BIT CODE</title>
 
-<!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/board/qnaList.css">
 </head>
 
@@ -246,7 +244,7 @@
 				html+='<tr>';
 				html+='<td>'+i.no+'</td>';
 				html+='<td>'+i.codeName+'</td>';
-				html+='<td><a href="detail.do?no='+i.no+'">'+i.title+'</a></td>';
+				html+='<td style="text-align:left;"><a href="detail.do?no='+i.no+'">'+i.title+'</a></td>';
 				html+='<td>'+i.nickName+'</td>';
 				var date = new Date(i.regDate);
 				var time = date.getFullYear() + "-" 
@@ -263,8 +261,8 @@
 				html+='<tr>';
 				html+='<td></td>';
 				html+='<td>'+i.codeName+'</td>';
-				html+='<td><a href="detail.do?no='+i.no+'">⤷ '+i.title+'</a></td>';
-				html+='<td>'+i.id+'</td>';
+				html+='<td style="text-align:left;"><a href="detail.do?no='+i.no+'">⤷ '+i.title+'</a></td>';
+				html+='<td>'+i.nickName+'</td>';
 				var date = new Date(i.regDate);
 				var time = date.getFullYear() + "-" 
 				         + (date.getMonth() + 1) + "-" 
