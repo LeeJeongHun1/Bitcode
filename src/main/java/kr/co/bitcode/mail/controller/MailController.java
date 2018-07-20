@@ -56,7 +56,7 @@ public class MailController {
 //        	user.setPassword(password);
         	
         	StringBuilder sb = new StringBuilder();
-        	String subject = "bitCode 임시 비밀번호 발급 안내 입니다.";
+        	String subject = "BIT CODE 임시 비밀번호 발급 안내 입니다.";
         	sb.append("귀하의 임시 비밀번호는 " + password + " 입니다.");
         	sb.append("로그인 후 나의 회원정보 페이지에서 변경해주세요");
         	mailService.send(subject, sb.toString(), "bitcodeProject1@gmail.com", user.getEmail(), null);

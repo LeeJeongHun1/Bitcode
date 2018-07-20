@@ -147,9 +147,9 @@
 </div>
 <script>
 //캘린더 로딩
-window.onload = function () {
+// window.onload = function () {
 	kCalendar('kCalendar');
-};
+// };
 console.dir($("input[name=attDate]"))
 
 
@@ -168,7 +168,7 @@ $("#attend").click(function () {
 		success : function(data){
 			if(data != undefined){
 				swal("출척이 체크 되었습니다.");
-
+				kCalendar('kCalendar');
 			}
 			else{
 				swal("오류 발생!! 다시 클릭 해주세요");
@@ -183,22 +183,6 @@ $("#attend").click(function () {
 function kCalendar(id, date) {
 	var attdate;	
 	var attMonth;
-	
-// 	// 디비에서 가져온 유저의 날짜 출력
-// 	 var attId = $("input[name=attDate]")
-// 	 for(let i = 0; i < attId.length; i++){
-// 		var a = attId[i]
-// 		var attendate = a.value;
-// 		attendate = attendate.split('-');
-// 		attendate[1]= attendate[1] - 1;
-// 		attendate = new Date(attendate[0], attendate[1], attendate[2]);
-// 		attdate = attendate.getDate();
-// 		attMonth = attendate.getMonth() + 1;
-// 		console.log(attMonth);
-// 		console.log(attdate);
-// 	 }
-	 
-	
 	var kCalendar = document.getElementById(id);
 	if( typeof( date ) !== 'undefined' ) {
 		date = date.split('-');
@@ -284,9 +268,9 @@ function kCalendar(id, date) {
 			attendate = new Date(attendate[0], attendate[1], attendate[2]);
 			attdate = attendate.getDate();
 			attMonth = attendate.getMonth() + 1;
-			console.log(attdate);
+// 			console.log(attdate);
 			day.push(attdate);
-			console.log(attMonth);
+// 			console.log(attMonth);
 		 }
 	console.dir(day)
 	for(var i = 0; i < week; i++) {
@@ -322,7 +306,7 @@ function kCalendar(id, date) {
 	var td = $("#calTable").find("td");
 	for(let t of td){
 		if(t.dataset.check){
-			console.dir(t)
+// 			console.dir(t)
 			$(t).css("background", 'url(/bitcode/resources/images/attend2.png)')
 			$(t).css("color", 'yellow')
 // 			$(t).css("color", 'red')
