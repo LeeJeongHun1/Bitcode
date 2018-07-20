@@ -69,7 +69,11 @@
 		
 		
 <script src="${pageContext.request.contextPath}/resources/js/folderjs/folder.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/folderjs/notepad.js"></script>
+<!-- 크롬 스크립트 -->
+<script src="${pageContext.request.contextPath}/resources/js/internet/internet.js"></script>
+<!-- 메모장 스크립트 -->
+<script src="${pageContext.request.contextPath}/resources/js/note/notepad.js"></script>
+
 
 <script>
 //툴팁출력
