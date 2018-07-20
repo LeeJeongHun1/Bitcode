@@ -49,14 +49,14 @@ function refreshNotifications(items, today) {
         '<ul class="notifications-list">' +
           '<li class="item no-data">You don\'t have notifications</li>' +
           '{{#items}}' +
-            '<li class="notice1 item js-item {{#isExpired}}expired{{/isExpired}}" data-id="1">' +
+            '<li class="notice1 item js-item " data-id="1">' +
               '<div class="details">' +
                 '<span class="title">{{title}}</span>' +
                 '<span class="date">{{formattedDate}}</span>' +
               '</div>' +
               '<button type="button" class="button-default button-dismiss js-dismiss">×</button>' +
             '</li>' +
-            '<li class="notice2 item js-item {{#isExpired}}expired{{/isExpired}}" data-id="2">' +
+            '<li class="notice2 item js-item " data-id="2">' +
             '<div class="details">' +
               '<span class="title">{{title}}</span>' +
               '<span class="date">{{formattedDate}}</span>' +
@@ -108,7 +108,7 @@ function generateItems(today) {
   today = today || newDate();
   return [
 	{ id: 1, title: '', date: randomDate() },
-	{ id: 2, title: '', date: randomDate(addMinutes(today, -60), addMinutes(today, 60)) },
+	/*{ id: 2, title: '', date: randomDate(addMinutes(today, -60), addMinutes(today, 60)) },
 	/*	{ id: 1, title: 'qna게시판에 답글이 등록되었습니다.', date: randomDate() },
     { id: 2, title: '포인트가 적립되었습니다.', date: randomDate(addMinutes(today, -60), addMinutes(today, 60)) },
     { id: 3, title: 'Annual party at Eric\'s house.', date: randomDate() },

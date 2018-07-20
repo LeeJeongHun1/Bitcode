@@ -52,41 +52,44 @@ public class WebsocketHandler extends TextWebSocketHandler {
 				// 로그인 한 아이디로 쓴 게시글 정보 
 				List<Qna> qnaList = mapper.selectNotification(reMsg.split(":")[1]);
 				System.out.println(qnaList.size() + "QnaList 갯수");
-					
+				String notReadText = "";
+				List<Qna> readList = null;
+				int notiCnt = 0;
 				for (Qna qna : qnaList) {
 					// 내가 쓴 글에 대한 게시글에 대한 답변수
 					//List<Qna> ansList = mapper.selectNtf(qna.getGroupNo());
 					
 					// 내가 읽지않은 답변 수 
-					List<Qna> readList = mapper.selectNoRead(qna.getGroupNo());
+					readList = mapper.selectNoRead(qna.getGroupNo());
 					
 					/*// 배열로 넘길 알림 내용 
 					notify.setId();
 					notify.setTitle(qna.getNo() + "읽지 않은 알ㄹ갯수" + readList.size()));
 					notify.setDate(new Date());*/
-					
 					// 사용자 질문에 대한 답변여부에 관한 리스트
 					for (Qna read : readList) {
 						System.out.println(readList.size() +"개");
 						// 원글 쓴 사람에게만 답변갯수랑 읽은 갯수를 보냄.
+						notiCnt++;
 						if(read.getGroupNo() == qna.getNo()) {
-							wSession.sendMessage( //noticeA : 1번글의 1개의 답글을 읽지않았습니다. : 1
- 															  
-									new TextMessage("noticeA:" + qna.getNo() + "번글의" + readList.size()+"개의 답글을 읽지않았습니다." +":"+readList.size())); 						
+							notReadText += qna.getNo() + "번글의" + readList.size()+"개의 답글을 읽지않았습니다.,";
 						}
 					}	
 						
 				} // QnaList 를 받음
+				
+				wSession.sendMessage( //"noticeA" : "1번글의 1개의 답글을 읽지않았습니다.," : 1
+						new TextMessage("noticeA:" + notReadText + ":" + notiCnt)); 						
 			
 				// 유저정보
 				User user = mapper.selectUserPoint(reMsg.split(":")[1]);
 				// 포인트 101점 이상 200점 미만이거나 201이상일때 포인트 상승 .
-				if(user.getPoint() >= 101 && user.getPoint() < 200) { 
-					wSession.sendMessage(new TextMessage("noticeB:" + user.getPoint()+ "점이상입니다.")); 
-				}else if(user.getPoint() >= 201) {
+/*				if(user.getPoint() >= 101 && user.getPoint() < 200) { 
+*/					wSession.sendMessage(new TextMessage("noticeB:"+ user.getNickName()+" 님의 현재포인트는" + user.getPoint()+ "점입니다.")); 
+/*				}else if(user.getPoint() >= 201) {
 					wSession.sendMessage(new TextMessage("noticeB:" + user.getPoint() + "점이상입니다.")); 				
 				}
-				
+*/				
 			} 
 			
 			

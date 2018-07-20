@@ -23,18 +23,28 @@
 				var notice = (evt.data).split(":");
 				// notice[0] notice[1] notice[2]
 				//noticeA : 1번글의 1개의 답글을 읽지않았습니다. : 1
-				var html = '';
-				alert(notice);
+//				console.dir(notice);
+				var no = notice[1].split(",");
 				
-				/*for(var i=0; notice.length; i++){*/
-					html += '<span class="title">' + notice[1] + '</span>';
-					html += '<span class="date">시간</span>';					
-				/*}*/
+				var html = '';
+				//alert(no);
+				
+				console.dir(no);
+				console.dir($("body > div.notifications.js-notifications.myshow > ul > li.notice1.item.js-item"));
+				for(var i=0; i < no.length-1; i++){
+					if(no.length == 0) {
+						html += '<span class="title"style="color: #7f8c8d !important;">not</span>';
+					}
+					html += '<span class="title"style="color: #7f8c8d !important;">' + (i+1) +". "+ no[i] + '</span>';
+					/*html += '<span class="date">시간</span>';		*/
+					
+				}
 				
 				
 		        $('li.notice1 div.details').html(html);
-		        var noticCnt = notice[2];
-		        $('.notifications-count js-count').html(noticCnt);
+		        var noticeCnt = notice[2];
+		        //alert(noticeCnt);
+		        $('.notifications-count js-count').html(noticeCnt);
 		        //$(".notice .details .title").data(id);
 		        //$("notice").attr('data-fruit','7');
 		       // $(".notice .details .title").append("<button type='button' class='noticeBtn button-default button-dismiss js-dismiss'>×</button>");
@@ -44,9 +54,9 @@
 			if((evt.data).startsWith("noticeB")){	
 				var notice = (evt.data).split("noticeB:");
 				var noticeB = '';
-				alert(notice[1]);
+				//alert(notice[1]);
 				noticeB += '<span class="title">' + notice[1] + '</span>';
-				noticeB += '<span class="date">시간</span>';
+				//noticeB += '<span class="date">시간</span>';
 		        $('li.notice2 div.details').html(noticeB);
 		       // $(".notice2 .details .title").append("<button type='button' class='noticeBtn2 button-default button-dismiss js-dismiss'>×</button>");
 			}			
@@ -86,7 +96,8 @@
 	        console.log("메세지 전송")
 	    };
 		 ws.onclose = function(){
-			 $(".details").prepend("웹소켓 연결이 종료됨");
+			console.log("웹소켓 연결이 종료됨");
+			 // $(".details").prepend("웹소켓 연결이 종료됨");
 		 };
 		
 	}) 
