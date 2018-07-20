@@ -42,11 +42,6 @@
 	window.onload = function () {
 		
 		$(".musicBody").draggable();
-		
-		function callMain() {
-			//window.opener.location.href = '${pageContext.request.contextPath}/main/main.do';
-			self.close();
-		};
 		console.dir($("#myMusic"))
 		$.ajax({
 			url: "musicList.json",
@@ -67,6 +62,11 @@
 // 			$("#myMusic")[0].onloadstart=function(){$("#myMusic")[0].play();};
 			
 		})
+	}
+	
+	function callMain() {
+		//window.opener.location.href = '${pageContext.request.contextPath}/main/main.do';
+		self.close();
 	}
 
 </script>

@@ -95,7 +95,7 @@ IMP.init('imp93914891');
 				<div class="first-row-win" id="first-row-win">
 					<div class="left">
 						<i class="fa fa-folder"></i>
-						<span>${sessionScope.user.nickName}님의 Share Folder</span>
+						<span>${sessionScope.user.nickName}님의 Folder</span>
 					</div>
 					<!-- 닫기, 최소화, 최대화 -->
 					<div class="right">
@@ -367,6 +367,8 @@ recognition.interimResults = true;
  	}else if (string.endsWith('음악 켜줘') || string.endsWith('음악 틀어줘') || string.endsWith('재생') || string.endsWith('플레이')) {
 	     $player.trigger('click');
 	     console.log($close)
+ 	}else if (string.endsWith('음악 꺼줘') || string.endsWith('음악 멈쳐줘') || string.endsWith('중지') || string.endsWith('스탑')) {
+		callMain()
  	}
  }
 	
@@ -1205,7 +1207,7 @@ recognition.interimResults = true;
 					title: msg,
 					showConfirmButton: false,
 					timer: 1500
-					})
+					});
 					
 			} else {
 				var msg = '결제에 실패하였습니다.';
@@ -1215,7 +1217,7 @@ recognition.interimResults = true;
 					title: msg,
 					showConfirmButton: false,
 					timer: 1500
-		        })
+		        });
 		    }
 		});
 	}
