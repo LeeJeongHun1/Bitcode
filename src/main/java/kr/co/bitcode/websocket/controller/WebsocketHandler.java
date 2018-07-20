@@ -1,5 +1,7 @@
 package kr.co.bitcode.websocket.controller;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +14,9 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import com.google.gson.Gson;
+
+import kr.co.bitcode.repository.domain.Notify;
 import kr.co.bitcode.repository.domain.Qna;
 import kr.co.bitcode.repository.domain.User;
 import kr.co.bitcode.repository.mapper.QnaMapper;
@@ -47,6 +52,8 @@ public class WebsocketHandler extends TextWebSocketHandler {
 			Set<String> keys = users.keySet();
 			for (String key : keys) {
 				WebSocketSession wSession = users.get(key);
+				Notify notify = new Notify();
+				List<Notify> notifyList = new ArrayList<>();
 				
 				// 로그인 한 아이디로 쓴 게시글 정보 
 				List<Qna> qnaList = mapper.selectNotification(reMsg.split(":")[1]);
@@ -59,13 +66,19 @@ public class WebsocketHandler extends TextWebSocketHandler {
 					// 내가 읽지않은 답변 수 
 					List<Qna> readList = mapper.selectNoRead(qna.getGroupNo());
 					
+					// 배열로 넘길 알림 내용 
+					notify.setId(1);
+					notify.setTitle(qna.getNo() + "읽지 않은 알ㄹ갯수" + readList.size());
+					notify.setDate(new Date());
+					
 					// 사용자 질문에 대한 답변여부에 관한 리스트
 					for (Qna read : readList) {
 						
 						// 원글 쓴 사람에게만 답변갯수랑 읽은 갯수를 보냄.
 						if(read.getGroupNo() == qna.getNo()) {
+							notifyList.add(notify);
 							wSession.sendMessage(
-									new TextMessage("noticeA:" + qna.getNo() + "안읽은갯수" + readList.size())); 						
+									new TextMessage("noticeA:" +  new Gson().toJson(notifyList))); 						
 						}
 					}	
 						
@@ -75,9 +88,17 @@ public class WebsocketHandler extends TextWebSocketHandler {
 				User user = mapper.selectUserPoint(reMsg.split(":")[1]);
 				// 포인트 101점 이상 200점 미만이거나 201이상일때 포인트 상승 .
 				if(user.getPoint() >= 101 && user.getPoint() < 200) { 
-					wSession.sendMessage(new TextMessage("noticeB:" + user.getPoint()+ "점이상입니다.")); 
+					notify.setId(2);
+					notify.setTitle( user.getPoint()+ "점이상입니다.");
+					notify.setDate(new Date());
+					notifyList.add(notify);
+					wSession.sendMessage(new TextMessage("noticeB:" +  new Gson().toJson(notifyList))); 
 				}else if(user.getPoint() >= 201) {
-					wSession.sendMessage(new TextMessage("noticeB:" + user.getPoint() + "점이상입니다.")); 				
+					notify.setId(2);
+					notify.setTitle( user.getPoint()+ "점이상입니다.");
+					notify.setDate(new Date());
+					notifyList.add(notify);
+					wSession.sendMessage(new TextMessage("noticeB:" +  new Gson().toJson(notifyList))); 				
 				}
 				
 			} 
