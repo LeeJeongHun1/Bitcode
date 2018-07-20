@@ -19,6 +19,8 @@ if(!location.hash.replace('#', '').length) {
 }
 </script>
 
+<script src="${pageContext.request.contextPath}/resources/sweetalertFile/sweetalert2.all.js"></script>
+
 <!-- scripts used for screen-sharing -->
 <script src="https://cdn.webrtc-experiment.com/socket.io.js"> </script>
 <script src="${pageContext.request.contextPath}/resources/js/remote/detectRTC.js"></script>
@@ -112,12 +114,11 @@ $("#endScreen").click(function() {
 	$("#endScreen").toggle();
 	$.ajax({
 		type : "POST",
-		url : "/bitcode/remote/remote.do",
-		data : {"id" : "${sessionScope.user.id}", "remoteDel": "Y"}
+		url : "/bitcode/remote/remoteDel.json",
+		data : {"id" : "${sessionScope.user.id}"}
 	}) // ajax
 	.always(function() {
-		alert(1);
-		window.location.href("/bitcode/main/main.do");
+		location.href = "/bitcode/main/main.do";
 		//location.href = ("/bitcode/remote/list.do");
 		//location.href = "list.do";
 		//response.sendRedirect(request.getHeader("referer"));
@@ -126,21 +127,28 @@ $("#endScreen").click(function() {
 
 // 페이지 이동시 상담신청 List에서 정보 삭제
 $(window).on("unload", function(e){
-	if(${sessionScope.user.id} != ""){
-		$.ajax({
-			type : "POST",
-			url : "/bitcode/remote/remote.do",
-			data : {"id" : "${sessionScope.user.id}", "remoteDel": "Y"},
-		})
-		.always(function() {
-			alert(2);
-			window.location.href("/bitcode/main/main.do");
-			location.href = "/bitcode/main/main.do";
-			//location.href = "list.do";
-			//response.sendRedirect(request.getHeader("referer"));
-		}); // ajax
-		
-	} // if	
+	$.ajax({
+		type : "POST",
+		url : "/bitcode/remote/remoteDel.json",
+		data : {"id" : "${sessionScope.user.id}"},
+	})
+	.always(function() {
+		swal({
+			  title: '페이지 이동시 상담이 종료됩니다.',
+			  text: "확인을 누르시면 메인 페이지로 이동합니다.",
+			  type: 'warning',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  confirmButtonText: '확인'
+			}).then((result) => {
+			  if (result.value) {
+				location.href = "/bitcode/main/main.do";
+			  }
+			})
+		//location.href = "list.do";
+		//response.sendRedirect(request.getHeader("referer"));
+	}); // ajax
 });
 
 // 노드(채팅)서버로 방번호/아이디 보내기
