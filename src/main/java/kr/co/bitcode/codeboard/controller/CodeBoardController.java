@@ -153,11 +153,14 @@ public class CodeBoardController {
 		return list;
 	}
 	
-	@RequestMapping(value="/like.do", method=RequestMethod.GET)
-	public String likeBoard(CodeBoardLike cbl) {
-		service.likeBoard(cbl);
-		int no = cbl.getNo();
-		return "redirect:/codeboard/detail.do?no=" +no;
+	@RequestMapping(value="/like.json", method=RequestMethod.GET)
+	@ResponseBody
+	public int likeBoard(CodeBoardLike cbl) {
+		System.out.println(cbl.getNo());
+		System.out.println(cbl.getId());
+//		service.likeBoard(cbl);
+//		int no = cbl.getNo();
+		return service.likeBoard(cbl);
 	}
 	
 	

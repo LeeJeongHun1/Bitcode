@@ -44,8 +44,8 @@
 
 				<div class="header_info">
 					<span class="shell_writer" ><c:out value="${cb.id}" /></span>
-					<span class="shell_hits" >조회<span><c:out value="${cb.viewCnt}" /></span></span>
-					<span class="shell_recommend" >추천<span><c:out value="${cb.likeCnt}" /></span></span>
+					<span class="shell_hits" >조회<c:out value="${cb.viewCnt}" /></span>
+					<span class="shell_recommend" id='likeCnt'>추천<c:out value="${cb.likeCnt}" /></span>
 
 				</div>
 			</div>
@@ -119,14 +119,29 @@
 			<a href='<c:url value="replyForm.do?no=${cb.no}" />'><button>답변</button></a>
 			<a href='<c:url value="updateForm.do?no=${cb.no}" />'><button>수정</button></a>
 			<a href='<c:url value="delete.do?no=${cb.no}"/>'><button>삭제</button></a>
-			<a href='<c:url value="like.do?no=${cb.no}"/>'><button onclick="recommend();">추천</button></a>
+			<a href='#'><button onclick="recommend();">추천</button></a>
 			</div>
 		</div>
 		</div>
 	</div>
 	<script>
 	function recommend() {
-		alert("이 글을 추천하였습니다!");
+		$.ajax({
+			url: "like.json",
+			dataType: "json",
+			data: {
+				id: '${sessionScope.user.id}',
+				no: ${cb.no}
+			}
+		})
+		.done(function (result){
+			if(result == '0'){
+				alert('이미 추천한 게시글 입니다.')
+			}else{
+				alert('추천 완료');
+				$("#likeCnt").html('추천' + result)
+			}
+		})
 	}
 	</script>
 </body>
