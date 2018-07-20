@@ -4,17 +4,26 @@
 
 $(".codeBody").draggable();
 window.onload = function(){
-	document.querySelector("#search").onclick=function(){
-		var target = document.getElementById("option");
-		var input = document.getElementById("input").value;
-		var option = target.options[target.selectedIndex].value;
-		codeList(input,option);
-	}
+	$("body").waitMe({
+		effect: "ios",
+		text: "Loding.. :D",
+		bg: 'rgba(255,255,255, 0.7)',
+		color: '#000'
+			
+	});
 	codeList();
 };
 
+document.querySelector("#search").onclick=function(){
+	var target = document.getElementById("option");
+	var input = document.getElementById("input").value;
+	var option = target.options[target.selectedIndex].value;
+	codeList(input,option);
+}
+
 
 function codeList(searchInput,searchOption){
+
 	if(searchInput == ""){
 		searchInput == null;
 	}
@@ -31,6 +40,8 @@ function codeList(searchInput,searchOption){
 	})
 	.done(function(data){
 		makeCodeList(data);
+		$("body").waitMe("hide");
+
 	})
 }
 

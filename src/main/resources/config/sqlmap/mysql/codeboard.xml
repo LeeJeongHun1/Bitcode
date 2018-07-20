@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace = "kr.co.bitcode.repository.mapper.CodeBoardMapper">
-	<resultMap id="codeBoardMap" type="codeBoard">
+	<resultMap type="codeBoard" id="codeBoardMap">
 		<result column="no" property="no" />
 		<result column="group_no" property="groupNo" />
 		<result column="group_order" property="groupOrder" />
@@ -20,7 +20,36 @@
 		<result column="searchInput" property="searchInput"/>
 		<result column="searchOption" property="searchOption"/>
 	</resultMap>
+	<resultMap type="codeBoardLike" id="codeBoardLikeMap">
+		<result column="like_no" property="likeNo"/>
+		<result column="no" property="no"/>
+		<result column="id" property="id"/>
+		<result column="like_check" property="likeCheck"/>
+	</resultMap>
+
+<!--  	게시글 추천 -->
+		<select id="selectCodeLike" parameterType="codeBoardLike" resultMap="codeBoardLikeMap">
+			select *
+		      from tb_code_like
+		     where id = #{id} and no = #{no}
+		</select>
 		
+	    <insert id="insertCodeLike" parameterType="codeBoardLike">
+	    	insert into tb_code_like (
+	    							 no,
+	    							 id
+	    							 ) values (
+	    							 #{no},
+	    							 #{id}
+	    							 ); 
+	    </insert>
+
+		<update id="updateBoardLikeCnt" parameterType="int">
+	    	update tb_code_board
+	    	   set like_cnt = like_cnt + 1
+	    	 where no = #{no}
+	    </update>	    
+	    
 		<sql id="searchOption">
 			<if test="searchOption != 0">
 				<if test="searchOption == 1">
@@ -109,6 +138,7 @@
 	    	   set view_cnt = view_cnt + 1
 	    	 where no = #{no}
 	    </update>
+
 	
 		<resultMap id="codeBoardFileMap" type="codeBoardFile">
 		<result column="file_no" property="fileNo" />
