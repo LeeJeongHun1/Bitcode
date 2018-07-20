@@ -13,25 +13,25 @@
 	<div class="container">
 		<div class="shell-container">
 			<h2 class="shell_title">QnA질문게시판</h2>
-			<form action='<c:url value="/qnaboard/insert.do"/>' method="post"
-				enctype="multipart/form-data">
+			<form id="insertForm" action='<c:url value="/qnaboard/insert.do"/>' method="post"
+				enctype="multipart/form-data" onsubmit="return check()">
 				<table class="editTable">
 					<tbody>
 						<tr>
 							<th>제목</th>
-							<td><input class="editTitle" type="text" name="title" /> 
+							<td><input id="insertTitle" class="editTitle" type="text" name="title" /> 
 							<select class="editSelect" name="code">
-									<option>분류</option>
+									<!-- <option value="">분류</option> -->
 							</select></td>
 						</tr>
 						<tr>
 							<th>작성자</th>
-							<td><input type="text" name="id" value="${sessionScope.user.id}"/></td>
+							<td><c:out value="${sessionScope.user.name}" /></td>
 						</tr>
 
 						<tr style="height: 90%;">
 							<th>내용</th>
-							<td><textarea name="content" style="width: 100%; height: 100%; min-height: 232px;"></textarea></td>
+							<td><textarea id="insertContent" name="content" style="width: 100%; height: 100%; min-height: 232px;"></textarea></td>
 						</tr>
 						<tr>
 							<th>파일첨부</th>
@@ -60,6 +60,23 @@
 				$("select[name='code']").append('<option value="'+data[i].code+'">'+data[i].name+'</option>');
 			}
 		})
-	}
+	}	
+	
+	function check() {
+
+		// 제목 null인지 체크 
+		if ($("#insertTitle").val() == "") {
+			alert("제목을 확인해주세요.")
+			return false;
+		}
+
+		// 내용 null인지 체크 
+		if ($("#insertContent").val() == "") {
+			alert("내용을 써주세요.")
+			return false;
+		}
+		;
+
+	};
 	</script>
 </body>
