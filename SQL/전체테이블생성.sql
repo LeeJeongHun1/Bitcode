@@ -118,6 +118,23 @@ create table tb_code_file (
 
 alter table tb_news comment '코드공유 게시판 첨부파일';
 --------------------------------------------------------------------
+-- 코드공유 게시판 첨부파일 테이블
+--------------------------------------------------------------------
+CREATE TABLE tb_code_like
+(
+    `like_no`     int(10)        NOT NULL    AUTO_INCREMENT COMMENT '추천번호', 
+    `no`          int(10)        NOT NULL    COMMENT '글번호', 
+    `id`          varchar(30)    NOT NULL    COMMENT '아이디', 
+    `like_check`  int(2)         NULL        COMMENT '추천유무', 
+    PRIMARY KEY (like_no)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+ALTER TABLE tb_code_like ADD CONSTRAINT FK_tb_code_like_no_tb_code_board_no FOREIGN KEY (no)
+ REFERENCES tb_code_board (no)  ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE tb_code_like ADD CONSTRAINT FK_tb_code_like_id_tb_user_id FOREIGN KEY (id)
+ REFERENCES tb_user (id)  ON DELETE RESTRICT ON UPDATE RESTRICT;
+--------------------------------------------------------------------
 -- Q&A 게시판 테이블
 --------------------------------------------------------------------
 create table tb_qna_board (
