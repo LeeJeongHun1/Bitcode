@@ -14,57 +14,57 @@
         <%-- 메뉴 아이콘 --%>
         <div class="icons-left">
 	        <%-- 메인링크 --%>
-            <a href="/bitcode/main/main.do" id="start-menu"><i class="fab fa-windows"></i></a>
+            <a href="/bitcode/main/main.do" id="start-menu" data-toggle="tooltip" title="홈"><i class="fab fa-windows"></i></a>
 	        <%-- 코드공유게시판 --%>
-            <a href="${pageContext.request.contextPath}/codeboard/list.do" id="coding"></a>
+            <a href="${pageContext.request.contextPath}/codeboard/list.do" id="coding" data-toggle="tooltip" title="코드 공유 게시판"></a>
 	        <%-- 단체대화방 --%>
-            <a href="${pageContext.request.contextPath}/chat/chat.do" id="chat" class="chatLoginCheck"></a>
+            <a href="${pageContext.request.contextPath}/chat/chat.do" id="chat" class="chatLoginCheck" data-toggle="tooltip" title="단체 대화방"></a>
 	        <%-- 원격상담 --%>
-            <a href="${pageContext.request.contextPath}/remote/list.do" id="remote"></a>
+            <a href="${pageContext.request.contextPath}/remote/list.do" id="remote" data-toggle="tooltip" title="실시간 상담"></a>
 	        <%-- Q&A 게시판 --%>
-            <a href="${pageContext.request.contextPath}/qnaboard/list.do" id="question"></a>
+            <a href="${pageContext.request.contextPath}/qnaboard/list.do" id="question" data-toggle="tooltip" title="Q&A"></a>
 	        <%-- IT News --%>	
-            <a href="${pageContext.request.contextPath}/itnews/list.do" id="news"></a>
+            <a href="${pageContext.request.contextPath}/itnews/list.do" id="news" data-toggle="tooltip" title="IT News"></a>
 	        <%-- 학원찾기 --%>
-            <a href="${pageContext.request.contextPath}/searchcenter/searchCenter.do" id="search"></a>
+            <a href="${pageContext.request.contextPath}/searchcenter/searchCenter.do" id="search" data-toggle="tooltip" title="학원 안내"></a>
             <%-- 크롬 브라우저 --%>
             <c:if test="${!empty sessionScope.user}">
-           		<a href="#chrome-pop-up" id="chrome" class="border"></a>
+           		<a href="#chrome-pop-up" id="chrome" class="border" data-toggle="tooltip" title="인터넷"></a>
             </c:if>
             <%-- 폴더 --%>
             <c:if test="${!empty sessionScope.user}">
-				<a href="#folder" id="folder" ondblclick="opencom()"></a>
+				<a href="#folder" id="folder" ondblclick="opencom()" data-toggle="tooltip" title="내문서"></a>
             </c:if>
             <%-- 메모장 --%>
             <c:if test="${!empty sessionScope.user}">
-				<a href="#note" id="notepad" onclick="notepad()"></a>
+				<a href="#note" id="notepad" onclick="notepad()" data-toggle="tooltip" title="메모장"></a>
             </c:if>
             <%-- 플레이어 --%>
             <c:if test="${!empty sessionScope.user}">
-				<a onclick="window.open('${pageContext.request.contextPath}/music/player.do?id=${sessionScope.user.id}', 'player', 'width=550 height=500')" id="wmplayer"></a>
+				<a onclick="window.open('${pageContext.request.contextPath}/music/player.do?id=${sessionScope.user.id}', 'player', 'width=550 height=500')" id="wmplayer" data-toggle="tooltip" title="비트 플레이어"></a>
             </c:if>
         </div>
         
         <%-- 마이인포 --%>
         <div class="icons-right">
-	        <a href="#up" id="up" class="small-icons"><i class="fas fa-chevron-up"></i></a>
-	        <a href="#sound-modal" id="sound" class="small-icons"></a>
-	        <a href="#wifi-modal" id="wifi" class="small-icons"></a>
-	        <div class="datetime">
+	        <!-- <a href="#up" id="up" class="small-icons"><i class="fas fa-chevron-up"></i></a> -->
+	        <a href="#sound-modal" id="sound" class="small-icons" data-toggle="tooltip" title="볼륨"></a>
+	        <!-- <a href="#wifi-modal" id="wifi" class="small-icons"></a> -->
+	        <div class="datetime" data-toggle="tooltip" title="시간">
 	            <span class="hour">
 	            	<c:set var="today" value="<%=new Date() %>" />
 	                <fmt:formatDate value="${today}" pattern="HH:mm" var="toDayTime"/>
 	                ${toDayTime}
 	            </span>
 	            <span class="date">
-	                <fmt:formatDate value="${today}" pattern="dd/MM/yyyy" var="toDay"/>
+	                <fmt:formatDate value="${today}" pattern="yyyy/MM/dd" var="toDay"/>
 	                ${toDay}
 	            </span>
 	        </div>
 	        
 	        <%-- 알람 --%>
 	        <c:if test="${!empty sessionScope.user}">
-	             <a href="#notifications" id="notifications"><button style="position: absolute;top: 7px; right:0;"type="button" class="button-default show-notifications active js-show-notifications">
+	             <a href="#notifications" id="notifications" data-toggle="tooltip" title="알림"><button style="position: absolute;top: 7px; right:0;"type="button" class="button-default show-notifications active js-show-notifications">
              	<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="32" viewBox="0 0 30 32">
             		<defs>
       					<g id="icon-bell">
@@ -82,11 +82,11 @@
 	        <%-- 마이인포 --%>
 	        	<c:choose>
 	      			<c:when test="${sessionScope.user.auth == 'U'}">
-		       		<a href="${pageContext.request.contextPath}/user/userInfo.do?id=${sessionScope.user.id}" id="user"></a>
+		       		<a href="${pageContext.request.contextPath}/user/userInfo.do?id=${sessionScope.user.id}" id="user" data-toggle="tooltip" title="내정보"></a>
 					</c:when>
 						
 		        	<c:when test="${sessionScope.user.auth == 'S'}">
-		       		<a href="${pageContext.request.contextPath}/admin/management.do" id="user"></a>
+		       		<a href="${pageContext.request.contextPath}/admin/management.do" id="user" data-toggle="tooltip" title="관리자 화면"></a>
 		        	</c:when>
 		        	
 		        	<c:otherwise>
@@ -96,10 +96,10 @@
 	        <%-- 로그인&아웃 --%>
             <c:choose>	
                 <c:when test="${sessionScope.user.id == null}">            
-                    <a href="${pageContext.request.contextPath}/login/loginForm.do" id="login"></a>
+                    <a href="${pageContext.request.contextPath}/login/loginForm.do" id="login" data-toggle="tooltip" title="로그인"></a>
                 </c:when>
                 <c:otherwise>
-                    <a href="${pageContext.request.contextPath}/login/logout.do" id="logout"></a>               
+                    <a href="${pageContext.request.contextPath}/login/logout.do" id="logout" data-toggle="tooltip" title="로그아웃"></a>               
                 </c:otherwise>
             </c:choose>
 <%-- 	        <a href="${pageContext.request.contextPath}/login/loginForm.do" id="login"></a> --%>
@@ -339,6 +339,9 @@ $("#noteClose").click(function(){
 function notepad(){
 	$("#noteBody").toggle();
 };
+
+// 툴팁출력
+$("[data-toggle='tooltip']").tooltip();
 
 </script>
 
