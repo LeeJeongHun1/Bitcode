@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import kr.co.bitcode.repository.domain.Code;
 import kr.co.bitcode.repository.domain.CodeBoard;
 import kr.co.bitcode.repository.domain.CodeBoardFile;
+import kr.co.bitcode.repository.domain.CodeBoardLike;
 import kr.co.bitcode.repository.domain.CodeSearch;
 import kr.co.bitcode.repository.mapper.CodeBoardMapper;
 import kr.co.bitcode.repository.mapper.CodeListMapper;
@@ -89,5 +90,19 @@ public class CodeBoardServiceImpl implements CodeBoardService{
 		
 		return list;
 	}
+
+	@Override
+	public void likeBoard(CodeBoardLike cbl) {
+		String id = cbl.getId();
+		System.out.println("id느느ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ"+id);
+		mapper.selectCodeLike(cbl);
+		int checkNo = cbl.getLikeNo();
+		if(checkNo==0) {
+			
+		}
+		mapper.insertCodeLike(cbl);
+		mapper.updateBoardLikeCnt(cbl.getNo());
+	}
+
 
 }

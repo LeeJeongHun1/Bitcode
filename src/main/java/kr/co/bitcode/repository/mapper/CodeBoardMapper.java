@@ -4,6 +4,7 @@ import java.util.List;
 
 import kr.co.bitcode.repository.domain.CodeBoard;
 import kr.co.bitcode.repository.domain.CodeBoardFile;
+import kr.co.bitcode.repository.domain.CodeBoardLike;
 import kr.co.bitcode.repository.domain.CodeSearch;
 
 public interface CodeBoardMapper {
@@ -18,4 +19,7 @@ public interface CodeBoardMapper {
 	public void updateGroupNo(int no);
 	public void updateGroupOrder(CodeBoard cb);
 	public void replyBoard(CodeBoard cb);
+	public List<CodeBoardLike> selectCodeLike(CodeBoardLike cbl);
+	public void insertCodeLike (CodeBoardLike cbl);
+	public void updateBoardLikeCnt(int no);
 }

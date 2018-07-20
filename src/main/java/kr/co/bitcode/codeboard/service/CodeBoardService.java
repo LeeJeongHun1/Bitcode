@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import kr.co.bitcode.repository.domain.Code;
 import kr.co.bitcode.repository.domain.CodeBoard;
 import kr.co.bitcode.repository.domain.CodeBoardFile;
+import kr.co.bitcode.repository.domain.CodeBoardLike;
 import kr.co.bitcode.repository.domain.CodeSearch;
 
 public interface CodeBoardService {
@@ -21,4 +22,6 @@ public interface CodeBoardService {
 	public void insertBoardFile(CodeBoardFile cbFile);
 	public void replyBoard(CodeBoard cb);
 	public void updateGroupNo(int no);
+	public void likeBoard(CodeBoardLike cbl);
+
 };
