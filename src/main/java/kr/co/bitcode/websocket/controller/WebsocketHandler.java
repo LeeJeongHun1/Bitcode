@@ -13,7 +13,6 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
-import kr.co.bitcode.repository.domain.Notify;
 import kr.co.bitcode.repository.domain.Qna;
 import kr.co.bitcode.repository.domain.User;
 import kr.co.bitcode.repository.mapper.QnaMapper;
@@ -49,7 +48,6 @@ public class WebsocketHandler extends TextWebSocketHandler {
 			Set<String> keys = users.keySet();
 			for (String key : keys) {
 				WebSocketSession wSession = users.get(key);
-				Notify notify = new Notify();
 				
 				// 로그인 한 아이디로 쓴 게시글 정보 
 				List<Qna> qnaList = mapper.selectNotification(reMsg.split(":")[1]);
