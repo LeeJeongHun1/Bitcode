@@ -1,6 +1,9 @@
 video {
     box-sizing: border-box;
 }
+#number-of-participants {
+ color: gray;
+}
 #strong, .link a {
 	display: none;
 }
@@ -12,12 +15,14 @@ video {
 	margin-top: 5%;
 	width: 70%;
 }
+.embedded-container.decal {
+  margin-left: 0;
+}
+
+.embedded-container ul {
+  list-style: none;
+}
 .embedded-container {
-  width: 80%;
-  height: 90%;
-  margin-right: auto;
-  margin-left: 10%;
-  margin-top: 20px;
   box-sizing: border-box;
   display: inline-block;
 }
@@ -27,7 +32,6 @@ video {
 }
 .embedded-container .embedded-player-az {
   max-width: 100%;
-  margin-bottom: 10%;
 }
 .embedded-player-az .screen {
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.33);
@@ -37,7 +41,6 @@ video {
   -o-transition: filter 0.5s;
   z-index: 2;
   width: 900px;
-  height: 90%;
   background: black;
   border-radius: 5px;
   /*  
@@ -53,6 +56,9 @@ video {
    max-width:600px; 
    line-height: 500px;
 }
+#shareScreen, #endScreen {
+	margin-bottom: 10px;
+}
 iframe {
 	height: 500px;
 	width: 330px;
@@ -60,22 +66,21 @@ iframe {
 	overflow: hidden;
 	box-sizing: border-box;
 }
+.media{
+	margin-bottom: 10px;
+}
 .media-right {
    padding-left: 0px;	
-   height: 90%; 
 }
 .media-left {
-   height: 90%; 
    padding-left: 0px;	
 }
 #chat{
   width: 330px;
-  height: 500px;
   border-radius: 5px;
 }
 .chat{
   width: 330px;
-  height: 500px;
   background: white;
   border-radius: 5px;
 }
@@ -250,12 +255,12 @@ iframe {
   text-align: center;
   background: #3e3e3e;
   line-height: 2;
+  margin-bottom: 10px;
 }
 
 .embedded-container .settings-ui li:hover {
   background: rgba(0, 0, 0, 0.30);
 }
-
 .embedded-container .settings-ui ul,
 .embedded-container .settings-ui li,
 .embedded-container .settings-ui li p {
@@ -266,7 +271,6 @@ iframe {
 .embedded-container .settings li span {
   text-decoration: underline;
 }
-
 
 /*settings menu popping*/
 
@@ -319,10 +323,6 @@ iframe {
 
 /*INFO PANEL STYLE*/
 
-.embedded-container ul {
-  list-style: none;
-}
-
 .info-panel ul {
   list-style: none;
 }
@@ -372,12 +372,257 @@ iframe {
 }
 
 
-/*decal video when info panel sliding*/
+/*THE END*/
 
-.embedded-container.decal {
-  margin-left: 0;
+
+/* card 스타일 CSS */
+.remoteBody {
+	width: 1200px;
+	margin: 0 auto;
+	margin-top: 10%;
+	margin-left: 10%;
+}
+
+.remote {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.remoteList {
+  width: 100%;
+  text-align: center;
 }
 
 
-/*THE END*/
+/* col 비율 */
+.one { width: 6.866%; }
+.two { width: 15.33%; }
+.three { width: 23.8%; }
+.four { width: 32.26%; }
+.five { width: 40.73%; }
+.six { width: 49.2%; }
+.seven { width: 57.66%; }
+.eight { width: 66.13%; }
+.nine { width: 74.6%; }
+.ten { width: 83.06%; }
+.eleven { width: 91.53%; }
+.twelve { width: 100%; }
+.four1 { width: 6% }
+.five1 { width: 10% }
+.ten1 { width: 30% }
 
+/* COLUMNS */
+.col {
+	display: block;
+	float: left;
+	margin: 1% 0 1% 1.6%;
+	box-shadow: 15px 15px 0px rgba(0, 0, 0, .1);
+}
+.col:first-of-type {
+	margin-left: 0;
+}
+/* PROFILES */
+.card {
+	max-width: 100%;
+	height: 500px;
+	background-color: #f7f7f7;
+	font-family: 'Arimo', sans-serif;
+	
+	font-size: 14px;
+	box-shadow: 15px 15px 0px rgba(0, 0, 0, .1);
+	box-sizing: border-box;
+}
+
+/* CARD ! */
+#card1 {
+	margin: 0 auto;
+	max-width: 100%;
+	text-align: center;
+	color: #2c3e50;
+	/* 	padding: 15px; */
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	box-shadow: 15px 15px 0px rgba(0, 0, 0, .1);
+	border-radius: 6px;
+}
+
+/* CARD 2 */
+#card2 {
+	max-width: 30%;
+	overflow: hidden;
+	color: #2c3e50;
+	border-radius: 6px;
+}
+
+/* CARD 3 */
+#card3 {
+	max-width: 30%;
+	color: #2c3e50;
+	border-radius: 6px;
+}
+
+/* 회원정보수정 */
+.updateBtns {
+	margin-top: 8%;
+	margin-left: -10%;
+}
+
+span>#submitBtn {
+	text-decoration: none;
+}
+
+span>#submitPassBtn {
+	text-decoration: none;
+}
+
+a>#userInfoUpdate {
+	font-size: 13px;
+	text-decoration: none;
+	color: white;
+	/* 	padding-top: 1px; */
+}
+
+#submitBox {
+	text-align: center;
+	/*   margin-top: 30%; */
+	/*   position:; */
+	width: 45%;
+	height: 40px;
+	padding: 10px;
+	border-radius: 6px;
+	border: 0;
+	margin-left: 30px;
+	background: #df736a;
+	font-size: 1.2em;
+	color: #fff;
+	/*   text-shadow:#d9554a; */
+	box-shadow: 0px 3px 0px #e89791;
+	ext-decoration: none;
+}
+
+input {
+	width: 95%;
+	background: #f5f5f5;
+	border: 0;
+	padding: 16px;
+	border-radius: 6px;
+	margin-bottom: 5px;
+	border: 1px solid #eee;
+}
+
+input:focus, textarea:focus {
+	outline: none;
+}
+
+button, input[type="submit"], input[type="radio"], input[type="checkbox"] 
+input[type="button"] {
+	cursor: pointer;
+}
+
+table {
+	border-collapse: collapse;
+}
+.table {
+	width: 100%;
+	margin-bottom: 20px;
+}
+.table>tbody>tr>td, .table>tbody>tr>th {
+	padding: 8px;
+	line-height: 1.42;
+	vertical-align: top;
+	border-top: 1px solid #ddd;
+}
+/* 홀수번째 tr들만을 대상으로 */
+.table-striped>tbody>tr:nth-of-type(odd) {
+	background-color: #f9f9f9;
+}
+.table-bordered {
+	border: 1px solid #ddd;
+}
+.table-bordered>tbody>tr>td, .table-bordered>tbody>tr>th {
+	border: 1px solid #ddd;
+}
+
+.table-hover>tbody>tr:hover {
+	background-color: #f5f5f5;
+}
+
+/* 빨 주 노 초 파 람 보 윗줄단  */
+.swatches {
+	float: left;
+	background: #333;
+}
+.swatches span {
+	display: block;
+	float: left;
+	width: 10px;
+	height: 10px;
+	cursor: pointer;
+	margin: 5px;
+}
+.red {
+	background: #ad3025;
+	opacity: 0.9;
+}
+.orange {
+	background: #f27937;
+	opacity: 0.8;
+}
+.yellow {
+	background: #f0b500;
+	opacity: 0.8;
+}
+.green {
+	background: #22a86d;
+	opacity: 0.8;
+}
+.blue {
+	background: #2279a4;
+	opacity: 0.8;
+}
+
+.maxbtn span {
+	display: block;
+	border: 1px solid #333;
+	border-top: 3px solid #333;
+	width: 11px;
+	height: 11px;
+	margin-top: 7px;
+}
+.pull-right {
+	margin-right: 50px;
+}
+
+.maxbtn:hover span, .maximized .maxbtn span {
+	border-color: #e7e7e7;
+}
+
+.xbtn:hover {
+	color: #e7e7e7;
+}
+
+.topbar {
+	border-radius: 3px 3px 0 0;
+	padding: 5px;
+	text-align: right;
+	cursor: default;
+    margin-bottom: 10px;
+}
+
+span {
+	color: #e7e7e7;
+}
+
+.xbtn, .maxbtn {
+	padding: 2px 4px;
+	text-align: center;
+	border-radius: 2px;
+	color: #333;
+	display: inline-block;
+	zoom: 1.0;
+	vertical-align: top;
+	font-family: 'Days One', sans-serif;
+	font-size: 16px;
+	margin-top: -3px;
+}

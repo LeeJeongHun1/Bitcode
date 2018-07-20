@@ -48,12 +48,15 @@
 				</c:choose>
 
 			</table>
+			<!-- remoteList -->
 			</div>
+			<!-- remote -->
 		<button type="button" class="btn btn-default btn-group-xs pull-right order">상담신청</button>
 		</div>
+		<!-- card1 -->
 
 	</div>
-	
+	<!-- remoteBody -->
 	
 	<script>
 	

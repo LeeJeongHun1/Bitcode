@@ -1,9 +1,4 @@
-.remoteBody {
-	width: 1200px;
-	margin: 0 auto;
-	margin-top: 10%;
-	margin-left: 10%;
-}
+
 
 th, td, a {
   transition: color 333ms ease-in-out;
@@ -14,6 +9,12 @@ a {
   color: #407DB8;
   text-decoration: none;
   font-weight: 400;
+}
+.remoteBody {
+	width: 1200px;
+	margin: 0 auto;
+	margin-top: 10%;
+	margin-left: 10%;
 }
 
 .remote {

@@ -39,10 +39,18 @@ if(!location.hash.replace('#', '').length) {
 
 <body>
 
-<div class="shareTitle">
+
+
+<div class="remoteBody">
+<div id="card1" class="card ten col">
+	<div class="topbar green">
+	<div class="swatches"><span class="red"></span><span class="orange"></span><span class="yellow"></span><span class="green"></span><span class="blue"></span></div>
+	<div class="xbtn" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">x</div>
+	</div> 
+	
+<div class="shareTitle remote">
 	<c:if test="${sessionScope.user.auth eq 'U'}">
 	<span id="number-of-participants">화면 공유를 해주시면 상담 신청이 완료됩니다.</span>
-	
 	<button id="shareScreen" class="screenShare order btn btn-default btn-group-xs">화면 공유</button>
     <button id="endScreen" class="screenShare order btn btn-default btn-group-xs">상담 종료</button>
     </c:if>
@@ -50,7 +58,6 @@ if(!location.hash.replace('#', '').length) {
 	<!-- 화면 공유 페이지 링크 주소 -->
 	<div class="hide-after-join">
 		<input type="text" id="user-name" placeholder="Your Name" hidden="hidden" value="${sessionScope.user.id}">
-	
 	    <!-- 문의 주제 -->
 	    <form id="qForm">
 	    <input type="text" id="id" name="id" value="${sessionScope.user.id}" hidden="hidden">
@@ -65,24 +72,32 @@ if(!location.hash.replace('#', '').length) {
 	<table style="width: 100%;" id="roomsList" class="hide-after-join"></table>
     </c:if>
 	
-</div>
 
-<div class="embedded-container">
-    <div class="embedded-player-az">
-      <!-- the main interactions will be in the .core div-->
-      <div class="media" style="position: relative;">
-        <%-- 화면창 --%>
-        <div class="screen media-left" id="videos-container">
-        </div>
-	
-		<div class="chat media-right">
-		<iframe id="chatIframe" src="https://192.168.0.104:10001">
-		</iframe>
+	<!-- 상담창 -->
+	<div class="embedded-container remoteList">
+			<div class="embedded-player-az">
+				<div class="media" style="position: relative;">
+				<%-- 화면출력창 --%>
+				<div class="screen media-left" id="videos-container">
+				</div>
+				<%-- 채팅창 --%>
+				<div class="chat media-right">
+				<iframe id="chatIframe" src="https://192.168.0.104:10001">
+				</iframe>
+				</div>
+			</div>
 		</div>
-		
-      </div>
-    </div>
-  </div>
+	</div>
+
+</div>
+<!-- remote -->
+</div>
+<!-- card1 -->
+</div>
+<!-- remoteBody -->  
+
+
+  
   
 <script>
 
@@ -352,6 +367,7 @@ setTimeout(function () {
 	document.querySelector("#chatIframe").contentWindow.postMessage(JSON.stringify({"roomId": roomId, "sender": "${sessionScope.user.nickName}"}), "*");	
 }, 1000);
 
+$(".remoteBody").draggable();
 
 </script>
 
