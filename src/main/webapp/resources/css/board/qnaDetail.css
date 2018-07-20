@@ -298,12 +298,6 @@ a {text-decoration: none;}
 	top: 10px;
 	cursor: pointer;
 }
-
-#Rbtn {
-	width: 20%;
-	height: 66px;
-	color: #666;
-}
 .resubmit {
 	width: 100%;
 	height: 66px;
@@ -358,6 +352,7 @@ table.editTable tr td {    padding: 10px 20px;
 	margin: 0 auto;
 	margin-top: 10%;
 	margin-left: 10%;
+	margin-bottom: 50px;
 }
 .qna {
   width: 100%;
@@ -476,6 +471,7 @@ div .information {
 	box-sizing: border-box;
 	box-shadow: 15px 15px 0px rgba(0, 0, 0, .1);
 	border-radius: 6px;
+	margin-bottom: 50px;
 }
 
 /* CARD 2 */
