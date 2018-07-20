@@ -78,14 +78,14 @@ public class WebsocketHandler extends TextWebSocketHandler {
 						
 				} // QnaList 를 받음
 				
-				wSession.sendMessage( //"noticeA" : "1번글의 1개의 답글을 읽지않았습니다.," : 1
+				wSession.sendMessage( //noticeA : "1번글의 1개의 답글을 읽지않았습니다.," : 1
 						new TextMessage("noticeA:" + notReadText + ":" + notiCnt)); 						
 			
 				// 유저정보
 				User user = mapper.selectUserPoint(reMsg.split(":")[1]);
 				// 포인트 101점 이상 200점 미만이거나 201이상일때 포인트 상승 .
 /*				if(user.getPoint() >= 101 && user.getPoint() < 200) { 
-*/					wSession.sendMessage(new TextMessage("noticeB:"+ user.getNickName()+" 님의 현재포인트는" + user.getPoint()+ "점입니다.")); 
+*/					wSession.sendMessage(new TextMessage("noticeB:"+ user.getNickName()+"님의 현재포인트는" + user.getPoint()+ "점입니다.")); 
 /*				}else if(user.getPoint() >= 201) {
 					wSession.sendMessage(new TextMessage("noticeB:" + user.getPoint() + "점이상입니다.")); 				
 				}

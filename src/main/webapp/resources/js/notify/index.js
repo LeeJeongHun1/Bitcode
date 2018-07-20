@@ -54,14 +54,14 @@ function refreshNotifications(items, today) {
                 '<span class="title">{{title}}</span>' +
                 '<span class="date">{{formattedDate}}</span>' +
               '</div>' +
-              '<button type="button" class="button-default button-dismiss js-dismiss">×</button>' +
+              /*'<button type="button" class="button-default button-dismiss js-dismiss">×</button>' +*/
             '</li>' +
             '<li class="notice2 item js-item " data-id="2">' +
             '<div class="details">' +
               '<span class="title">{{title}}</span>' +
               '<span class="date">{{formattedDate}}</span>' +
             '</div>' +
-            '<button type="button" class="button-default button-dismiss js-dismiss">×</button>' +
+          /*  '<button type="button" class="button-default button-dismiss js-dismiss">×</button>' +*/
           '</li>' +
           '{{/items}}' +
         '</ul>' +

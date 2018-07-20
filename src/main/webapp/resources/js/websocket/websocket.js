@@ -29,12 +29,14 @@
 				var html = '';
 				//alert(no);
 				
+				console.log("no.length", no.length);
 				console.dir(no);
 				console.dir($("body > div.notifications.js-notifications.myshow > ul > li.notice1.item.js-item"));
+				if(no.length == 1 && no[0].length == 0) {
+					alert("가");
+					$(".notice1").remove();
+				}
 				for(var i=0; i < no.length-1; i++){
-					if(no.length == 0) {
-						html += '<span class="title"style="color: #7f8c8d !important;">not</span>';
-					}
 					html += '<span class="title"style="color: #7f8c8d !important;">' + (i+1) +". "+ no[i] + '</span>';
 					/*html += '<span class="date">시간</span>';		*/
 					
@@ -43,8 +45,8 @@
 				
 		        $('li.notice1 div.details').html(html);
 		        var noticeCnt = notice[2];
-		        //alert(noticeCnt);
-		        $('.notifications-count js-count').html(noticeCnt);
+		        //alert(noticeCnt);s
+		        $('.notifications-count.js-count').html(noticeCnt);
 		        //$(".notice .details .title").data(id);
 		        //$("notice").attr('data-fruit','7');
 		       // $(".notice .details .title").append("<button type='button' class='noticeBtn button-default button-dismiss js-dismiss'>×</button>");
