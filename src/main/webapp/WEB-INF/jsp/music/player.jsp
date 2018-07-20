@@ -62,9 +62,9 @@
 			}
 			$(".musicList").html(html);
 			$("#myMusic").attr('src',
-					'${pageContext.request.contextPath}/main/download.do?path=' + encodeURI(`c:/java-lec/upload/music_${sessionScope.user.id}`) + '&fileName='+result[0].title+'')
+					'${pageContext.request.contextPath}/main/download.do?path=' + encodeURI(`c:/java-lec/upload/${sessionScope.user.id}_music`) + '&fileName='+result[0].title+'')
 			$("#myMusic").attr('autoplay', 'autoplay');
-			$("#myMusic")[0].onloadstart=function(){$("#myMusic")[0].play();};
+// 			$("#myMusic")[0].onloadstart=function(){$("#myMusic")[0].play();};
 			
 		})
 	}

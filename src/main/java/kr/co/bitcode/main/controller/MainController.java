@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
- 
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -21,18 +21,17 @@ import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.bitcode.repository.domain.DownloadFile;
 import kr.co.bitcode.repository.domain.Folder;
-import oracle.jdbc.proxy.annotation.Methods;
 
 @Controller
 @CrossOrigin(origins = "*")
 @RequestMapping("/main")
 public class MainController {
 	
-	private static final String DELETE_PATH = "c:\\java-lec\\upload\\delete_";
+//	private static final String DELETE_PATH = "c:\\java-lec\\upload\\delete_";
 	private final String PATH = "c:\\java-lec\\upload\\";
-	private final String MUSIC_PATH = "c:\\java-lec\\upload\\music_";
+	private final String MUSIC_PATH = "_music";
 	private final String[] EXT = { "jpg", "png", "gif",};
-	private static long FolderSize = 0;
+//	private static long FolderSize = 0;
 	
 	@RequestMapping("/main.do")
 	public void main(Model model) {
@@ -41,15 +40,18 @@ public class MainController {
 	
 	@RequestMapping("/selectFolder.json")
 	@ResponseBody
-	public List<Folder> selectFolder(String id) {
+	public Map<String, Object> selectFolder(String id) {
 		String folderPath = PATH + id; 
-		String musicPath = PATH + "music_" + id;
+		String musicPath = PATH + id + MUSIC_PATH;
+		String deletePath = PATH + id + "_delete";
 		System.out.println("경로 : " + folderPath);
 		new File(folderPath + "\\새 폴더").mkdirs();
-		new File(DELETE_PATH + id).mkdirs();
+		new File(deletePath).mkdirs();
 		new File(musicPath + "\\새 폴더").mkdirs();
-		ListDirectorySize(new File(folderPath));
-		return ListDirectory(new File(folderPath));
+		Map<String, Object> map = new HashMap<>();
+		map.put("size", ListDirectorySize(new File(folderPath)));
+		map.put("list", ListDirectory(new File(folderPath)));
+		return map;
 	}
 	
 	@RequestMapping("/createFolder.json")
@@ -107,11 +109,13 @@ public class MainController {
 	
 	@RequestMapping("/upload.json")
 	@ResponseBody
-	public List<Folder> upload(MultipartFile attach, String id, String parentPath){
+	public Map<String, Object> upload(MultipartFile attach, String id, String parentPath){
 		System.out.println("사용자가 올린 파일 이름 : " + attach.getOriginalFilename());
 		System.out.println("사용자가 올린 파일 이름1 : " + attach.getName());
 		System.out.println("사용자가 올린 파일 타입 : " + attach.getContentType());
 		System.out.println("경로 : " + parentPath);
+		Map<String, Object> map = new HashMap<>();
+
 		try {
 //			if(parentPath == null) {
 //				attach.transferTo(new File(PATH + id, attach.getOriginalFilename()));
@@ -125,7 +129,9 @@ public class MainController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return ListDirectory(new File(PATH + id));
+		map.put("list", ListDirectory(new File(PATH + id)));
+		map.put("size", ListDirectorySize(new File(PATH + id)));
+		return map;
 	}
 	
 	
@@ -135,7 +141,7 @@ public class MainController {
 	public List<Folder> musicFolder(String id) {
 		// 우클릭으로 폴더 추가시
 //		new File(path + "\\" + name).mkdirs();
-		return ListDirectory(new File(MUSIC_PATH + id));
+		return ListDirectory(new File(PATH + id + MUSIC_PATH));
 	}
 	
 	
@@ -180,6 +186,7 @@ public class MainController {
 	
 	
 	private static long ListDirectorySize(File file){
+		long FolderSize = 0;
 		for (File ff : file.listFiles()) {
 			if(ff.isFile()){
 				FolderSize += ff.length();

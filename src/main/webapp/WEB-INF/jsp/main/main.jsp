@@ -10,6 +10,7 @@
 	href="${pageContext.request.contextPath}/resources/css/main/main.css">
 <script src="//static.codepen.io/assets/editor/live/console_runner-ce3034e6bde3912cc25f83cccb7caa2b0f976196f2f2d52303a462c826d54a73.js"></script>
 <script src="//static.codepen.io/assets/editor/live/css_live_reload_init-890dc39bb89183d4642d58b1ae5376a0193342f9aed88ea04330dc14c8d52f55.js"></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <meta name="robots" content="noindex">
 <link rel="canonical" href="https://codepen.io/MohamedElGhandour/pen/GEbwEW">
 
@@ -41,6 +42,10 @@
 	display: block;
 }
 </style>
+<script>
+var IMP = window.IMP; // 생략가능
+IMP.init('imp93914891');
+</script>
 </head>
 <body>
 	<c:if test="${empty sessionScope.user}">
@@ -85,7 +90,7 @@
 <!-- 			<p>공유 폴더</p> -->
 <!-- 		</div> -->
 		<div class="overlay-computer" id="overlay-computer"
-			style="transform: scale(0); left: 142px; top: 29px; z-index: 1000;">
+			style="transform: scale(0); left: 142px; top: 29px; z-index: 1000; height: 680px;">
 			<div class="fluid-container">
 				<div class="first-row-win" id="first-row-win">
 					<div class="left">
@@ -166,7 +171,11 @@
 						<!-- 저장 용량 -->
 						<div class="saveSize" style="position: fixed; bottom: 20px; width: 145px;" >
 							<span>저장용량</span><img src="${pageContext.request.contextPath}/resources/images/cloud.PNG" style="width: 40px; margin-left: 8px;"><br>
-							<span>1GB 중 </span><span>20MB 사용</span>
+							<div class="progress" style="height: 5px;">
+								<div class="progress-bar progress-bar-info" id='ppbar' role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+								</div>
+							</div>
+							<span id='maxSize'>100MB 중 </span><span id='capacity'></span><span><a href="#" onclick="payment()">결제</a></span>
 						</div>
 					</div> 
 					<div class="col-xs-9 ">
@@ -574,6 +583,7 @@ recognition.interimResults = true;
 	var fDiv = $("#folder-area");
 	var fileList;
 	var id;
+	var maxSize = 100;
 	function folderOpen(){
 		opencom();
 		$("#folder-area").html('');
@@ -585,11 +595,19 @@ recognition.interimResults = true;
 				type: "POST"
 			})
 			.done(function (data) {
-				console.dir(data)
-				fileList = data;
-				id = Number(data.length);
+				var size = Number(data.size);
+				$("#maxSize").html(maxSize + 'MB 중')
+				size = (size / 1024) / 1024;
+				var progress = (size.toFixed(0) / 100) * 100;
+				$("#ppbar").css("width", progress+"%")
+				size = size.toFixed(2) + 'MB 사용';
+				console.log("size :" + size)
+				$("#capacity").html(size)
+				console.dir(data.list)
+				fileList = data.list;
+				id = Number(data.list.length);
 	// 			console.log(data);
-				for(var f of data){
+				for(var f of data.list){
 					var appendFile = '';
 					if(f.folder){
 	// 					console.log("폴더")
@@ -622,7 +640,7 @@ recognition.interimResults = true;
 						$("#folder-area").append(appendFile);
 					}
 				}
-				loadFancytree(data);
+				loadFancytree(data.list);
 				$("#share-path").data("root","c:/java-lec/upload/"+$("#sId").val());
 			})
 		}
@@ -942,9 +960,19 @@ recognition.interimResults = true;
 		})
 		.done(function (result) {
 			console.log("업로드 후 result : ")
-			console.dir(result)
-			console.dir(file)
-			$('#tree').fancytree('option', 'source', result);
+			var size = Number(result.size);
+			$("#maxSize").html(maxSize + 'MB 중')
+			size = (size / 1024) / 1024;
+			console.log("size :" + size)
+			var progress = (size.toFixed(0) / 100) * 100;
+			console.log("progress:" + progress)
+			$("#ppbar").css("width", "0%")
+			$("#ppbar").css("width", progress+"%")
+			size = size.toFixed(2) + 'MB 사용';
+			$("#capacity").html(size);
+// 			console.dir(result)
+// 			console.dir(file)
+			$('#tree').fancytree('option', 'source', result.list);
 // 			var rootNode = $("#tree").fancytree("getRootNode");
 // 			var childNode = rootNode.addChildren({
 // 				title: file.name,
@@ -1037,8 +1065,21 @@ recognition.interimResults = true;
 		if($("#share-path").data("root").split($("#sId").val())[1] == ''){
 			return;
 		}else{
-			alert('루트 존재');
+// 			alert('루트 존재');
 			console.log(backPath)
+// 			var path = {parentPath: backPath}
+// 			$.ajax({
+// 				url: "enterDirectory.json",
+// 				data: {
+// 					parentPath: backPath,
+// 					key: 1
+// 				},
+// 				dataType: "json"
+// 			})
+// 			.done(function (result) {
+// 				console.dir(result)
+// 				reload(result, path)
+// 			})
 		}
 	})
 	
@@ -1052,9 +1093,9 @@ recognition.interimResults = true;
 		.done(function (data) {
 			console.dir(data)
 			$("#folder-area").html('');
-			fileList = data;
-			id = Number(data.length);
-			for(var f of data){
+			fileList = data.list;
+			id = Number(data.list.length);
+			for(var f of data.list){
 				var appendFile = '';
 				if(f.folder){
 					appendFile += '<div class="col-xs-2 folders text-center" id="'+f.key+'" data-path="'+f.parentPath+'" data-title="'+f.title+'" ondblclick="test('+f.key+')">';
@@ -1082,7 +1123,7 @@ recognition.interimResults = true;
 					$("#folder-area").append(appendFile);
 				}
 			}
-			$('#tree').fancytree('option', 'source', data);
+			$('#tree').fancytree('option', 'source', data.list);
 			$("#share-path").data("root","c:/java-lec/upload/"+$("#sId").val());
 			$("#share-path").html('<span class="path-icon-input">Share:</span><span class="path-icon-input">${sessionScope.user.id}</span>');
 			
@@ -1139,6 +1180,45 @@ recognition.interimResults = true;
 		}
 	}
 	
+	
+	function payment(){
+		IMP.request_pay({
+		    pg : 'kakao', // version 1.1.0부터 지원.
+		    pay_method : 'card',
+		    merchant_uid : 'merchant_' + new Date().getTime(),
+		    name : '주문명:결제테스트',
+		    amount : 100,
+		    buyer_email : 'wjdgns1155@naver.com',
+		    buyer_name : '이정훈',
+		    buyer_tel : '010-2082-8237',
+		    buyer_addr : '서울특별시 강남구 삼성동',
+		    buyer_postcode : '123-456',
+		    m_redirect_url : 'main/main.do'
+		}, function(rsp) {
+			if ( rsp.success ) {
+				maxSize = maxSize + 100;
+				$("#maxSize").html(maxSize + "MB 중")
+				var msg = '결제가 완료되었습니다.';
+				swal({
+					position: 'top-end',
+					type: 'success',
+					title: msg,
+					showConfirmButton: false,
+					timer: 1500
+					})
+					
+			} else {
+				var msg = '결제에 실패하였습니다.';
+				swal({
+					position: 'top-end',
+					type: 'error',
+					title: msg,
+					showConfirmButton: false,
+					timer: 1500
+		        })
+		    }
+		});
+	}
 </script>
 </body>
 </html>

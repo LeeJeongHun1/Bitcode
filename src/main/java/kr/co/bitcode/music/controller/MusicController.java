@@ -16,7 +16,8 @@ import kr.co.bitcode.repository.domain.Folder;
 @RequestMapping("/music")
 public class MusicController {
 
-	private final String MUSIC_PATH = "c:\\java-lec\\upload\\music_";
+	private final String PATH = "c:\\java-lec\\upload\\";
+	private final String MUSIC_PATH = "_music";
 	//@Autowired
 	//private MusicService service;
 	
@@ -34,7 +35,7 @@ public class MusicController {
 	@RequestMapping("musicList.json")
 	@ResponseBody
 	public List<Folder> musicList(String id){
-		File f = new File(MUSIC_PATH + id);
+		File f = new File(PATH + id + MUSIC_PATH);
 		return ListDirectory(f);
 	}
 	
