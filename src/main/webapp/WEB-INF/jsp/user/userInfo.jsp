@@ -19,24 +19,28 @@
 }
 
 /* Kurien / Kurien's Blog / http://blog.kurien.co.kr */
-@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
-* {font-family: 'Nanum Gothic', serif;}
+/* @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css); */
+/* * {font-family: 'Nanum Gothic', serif;} */
 
-#kCalendar {width: 250px; height: 250px; border: 1px solid black;}
+#kCalendar {width: 360px; height: 400px; border: 3px solid gray;}
+#calTable {margin-left: 10px; margin-top: 10px;}
+#kCalendar #header {height: 70px; line-height: 70px; text-align: center; font-size: 20px; 
+					font-weight: bold; color: black; background-color: yellow;}
+#date { color: black;}
 
-#kCalendar #header {height: 50px; line-height: 50px; text-align: center; font-size: 18px; font-weight: bold}
 #kCalendar .button {color: #000; text-decoration: none;}
 
-#kCalendar table {width: 250px; height: 200px;}
+#kCalendar table {width: 320px; height:279px;}
 #kCalendar caption {display: none;}
+/* td {font-size: 15px; } */
 
-#kCalendar .sun {text-align: center; color: deeppink;}
-#kCalendar .mon {text-align: center;}
-#kCalendar .tue {text-align: center;}
-#kCalendar .wed {text-align: center;}
-#kCalendar .thu {text-align: center;}
-#kCalendar .fri {text-align: center;}
-#kCalendar .sat {text-align: center; color: deepskyblue;}
+#kCalendar .sun {text-align: center; font-size: 20px; width: 70px; height: 44px; padding-left: 10px;}
+#kCalendar .mon {text-align: center; font-size: 20px; width: 70px; height: 44px; padding-left: 1px;}
+#kCalendar .tue {text-align: center; font-size: 20px; width: 70px; height: 44px; padding-left: 8px;}
+#kCalendar .wed {text-align: center; font-size: 20px; width: 70px; height: 44px; padding-left: 5px;}
+#kCalendar .thu {text-align: center; font-size: 20px; width: 70px; height: 44px; padding-left: 7px;}
+#kCalendar .fri {text-align: center; font-size: 20px; width: 70px; height: 44px; padding-left: 5px;}
+#kCalendar .sat {text-align: center; font-size: 20px; width: 70px; height: 44px; padding-left: 10px;}
 </style>
 
 </head>
@@ -247,7 +251,6 @@ function kCalendar(id, date) {
 	// 디비에서 가져온 유저의 날짜 출력
 
 	
-	
 	var calendar = '';
 	
 	calendar += '<div id="header">';
@@ -259,13 +262,13 @@ function kCalendar(id, date) {
 	calendar += '			<caption>' + currentYear + '년 ' + currentMonth + '월 달력</caption>';
 	calendar += '			<thead>';
 	calendar += '				<tr>';
-	calendar += '				  <th class="sun" scope="row">일</th>';
-	calendar += '				  <th class="mon" scope="row">월</th>';
-	calendar += '				  <th class="tue" scope="row">화</th>';
-	calendar += '				  <th class="wed" scope="row">수</th>';
-	calendar += '				  <th class="thu" scope="row">목</th>';
-	calendar += '				  <th class="fri" scope="row">금</th>';
-	calendar += '				  <th class="sat" scope="row">토</th>';
+	calendar += '				  <th class="sun" scope="row">sun</th>';
+	calendar += '				  <th class="mon" scope="row">mon</th>';
+	calendar += '				  <th class="tue" scope="row">tue</th>';
+	calendar += '				  <th class="wed" scope="row">wed</th>';
+	calendar += '				  <th class="thu" scope="row">thu</th>';
+	calendar += '				  <th class="fri" scope="row">fri</th>';
+	calendar += '				  <th class="sat" scope="row">sat</th>';
 	calendar += '				</tr>';
 	calendar += '			</thead>';
 	calendar += '			<tbody>';
@@ -320,7 +323,8 @@ function kCalendar(id, date) {
 	for(let t of td){
 		if(t.dataset.check){
 			console.dir(t)
-			$(t).css("color", 'red')
+			$(t).css("background", 'url(/bitcode/resources/images/attend2.png)')
+			$(t).css("color", 'yellow')
 // 			$(t).css("color", 'red')
 		}
 	}
