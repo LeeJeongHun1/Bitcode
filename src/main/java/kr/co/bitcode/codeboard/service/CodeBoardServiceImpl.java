@@ -92,17 +92,18 @@ public class CodeBoardServiceImpl implements CodeBoardService{
 	}
 
 	@Override
-	public void likeBoard(CodeBoardLike cbl) {
-		String id = cbl.getId();
-		System.out.println("id느느ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ"+id);
-		mapper.selectCodeLike(cbl);
-		int checkNo = cbl.getLikeNo();
-		if(checkNo==0) {
-			
+	public int likeBoard(CodeBoardLike cbl) {		
+//		mapper.selectCodeLike(cbl);
+		System.out.println("impl: " + cbl.getId());
+		System.out.println("impl : " + cbl.getNo());
+		System.out.println("impl : " + mapper.selectCodeLike(cbl).size());
+		if(mapper.selectCodeLike(cbl).size() != 0) { // 추천 안됨
+			return 0;
+		}else{
+			mapper.insertCodeLike(cbl);
+			mapper.updateBoardLikeCnt(cbl.getNo());			
+			return mapper.selectBoardByNo(cbl.getNo()).getLikeCnt();
 		}
-		mapper.insertCodeLike(cbl);
-		mapper.updateBoardLikeCnt(cbl.getNo());
 	}
-
 
 }
