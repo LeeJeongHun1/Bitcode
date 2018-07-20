@@ -25,10 +25,13 @@
 				//noticeA : 1번글의 1개의 답글을 읽지않았습니다. : 1
 				var html = '';
 				alert(notice);
-				for(var i=0; notice.length; i++){
-					html += '<span class="title">' + notice[0] + '</span>';
+				
+				/*for(var i=0; notice.length; i++){*/
+					html += '<span class="title">' + notice[1] + '</span>';
 					html += '<span class="date">시간</span>';					
-				}
+				/*}*/
+				
+				
 		        $('li.notice1 div.details').html(html);
 		        var noticCnt = notice[2];
 		        $('.notifications-count js-count').html(noticCnt);
