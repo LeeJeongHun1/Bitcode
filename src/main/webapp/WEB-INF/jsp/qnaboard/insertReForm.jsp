@@ -15,20 +15,21 @@
 			<h2 class="shell_title">QnA질문게시판</h2>
 			<form action='<c:url value="/qnaboard/insertRe.do"/>' method="post"
 				enctype="multipart/form-data">
+				<input type="text" name="no" value="${list.qna.no}" hidden="hidden" />
+				<input type="text" name="groupNo" value="${list.qna.groupNo}" hidden="hidden" />
+				<input type="text" name="depth" value="${list.qna.depth}" hidden="hidden" />
+				<input type="text" name="groupOrder" value="${list.qna.groupOrder}" hidden="hidden" />
+				<input type="text" name="id" value="${sessionScope.user.id}" hidden="hidden" />
 				<table class="editTable">
 					<tbody>
 						<tr>
 							<th>제목</th>
-							<input type="hidden" name="no" value="${list.qna.no}">
-							<input type="hidden" name="groupNo" value="${list.qna.groupNo}">
-							<input type="hidden" name="depth" value="${list.qna.depth}">
-							<input type="hidden" name="groupOrder" value="${list.qna.groupOrder}">
 							<td><input class="editTitle" type="text" name="title" value="${list.qna.title}"/> 
 							<input type="hidden" name="code" value="${list.qna.code}"/> /${list.qna.codeName}</td>
 						</tr>
 						<tr>
 							<th>작성자</th>
-							<td><input type="text" name="id" value="<c:out value='${sessionScope.user.id}' />"/></td>
+							<td><input type="text" value="${sessionScope.user.nickName}" readonly /></td>
 						</tr>
 
 						<tr style="height: 90%;">
