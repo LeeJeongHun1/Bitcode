@@ -3,8 +3,8 @@
  */
 //var cnt = 0;	
 	$(function(){
-		//ws = new WebSocket("ws://localhost/bitcode/websocket.do");
-		ws = new WebSocket("wss://192.168.0.104/bitcode/websocket.do");
+		ws = new WebSocket("ws://localhost/bitcode/websocket.do");
+		//ws = new WebSocket("wss://192.168.0.104/bitcode/websocket.do");
 		ws.onopen = function(){
 			console.log("웹소켓 서버 접속 성공");
 			// 웹소켓 서버에 데이터 전송하기
@@ -20,13 +20,18 @@
 			
 			// 알림 체크
 			if((evt.data).startsWith("noticeA")){	
-				var notice = (evt.data).split("noticeA:");
-				var noticeA = '';
-				noticeA += '<span class="title">' + notice[1] + '</span>';
-				noticeA += '<span class="date">시간</span>';
-		        $('li.notice1 div.details').html(noticeA);
+				var notice = (evt.data).split(":");
+				// notice[0] notice[1] notice[2]
+				//noticeA : 1번글의 1개의 답글을 읽지않았습니다. : 1
+				var html = '';
+				alert(notice);
+				for(var i=0; notice.length; i++){
+					html += '<span class="title">' + notice[0] + '</span>';
+					html += '<span class="date">시간</span>';					
+				}
+		        $('li.notice1 div.details').html(html);
 		        var noticCnt = notice[2];
-		        $('.notifications-count').html(noticCnt);
+		        $('.notifications-count js-count').html(noticCnt);
 		        //$(".notice .details .title").data(id);
 		        //$("notice").attr('data-fruit','7');
 		       // $(".notice .details .title").append("<button type='button' class='noticeBtn button-default button-dismiss js-dismiss'>×</button>");
