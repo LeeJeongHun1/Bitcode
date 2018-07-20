@@ -78,7 +78,7 @@ public class WebsocketHandler extends TextWebSocketHandler {
 						if(read.getGroupNo() == qna.getNo()) {
 							notifyList.add(notify);
 							wSession.sendMessage(
-									new TextMessage("noticeA:" +  new Gson().toJson(notifyList))); 						
+									new TextMessage("noticeA:" +  new Gson().toJson(notifyList) + ":" + readList.size())); 						
 						}
 					}	
 						

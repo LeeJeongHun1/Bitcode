@@ -3,8 +3,8 @@
  */
 //var cnt = 0;	
 	$(function(){
-		ws = new WebSocket("ws://localhost/bitcode/websocket.do");
-		//ws = new WebSocket("wss://192.168.0.104/bitcode/notification.do");
+		//ws = new WebSocket("ws://localhost/bitcode/websocket.do");
+		ws = new WebSocket("wss://192.168.0.104/bitcode/websocket.do");
 		ws.onopen = function(){
 			console.log("웹소켓 서버 접속 성공");
 			// 웹소켓 서버에 데이터 전송하기
@@ -21,9 +21,12 @@
 			// 알림 체크
 			if((evt.data).startsWith("noticeA")){	
 				var notice = (evt.data).split("noticeA:");
-				$(".notice .details .title").html("");				
-		        $(".notice .details .title").prepend(notice);
-		        $('li[class="notice2 item js-item expired"][data-id="1"]').remove();
+				var noticeA = '';
+				noticeA += '<span class="title">' + notice[1] + '</span>';
+				noticeA += '<span class="date">시간</span>';
+		        $('li.notice1 div.details').html(noticeA);
+		        var noticCnt = notice[2];
+		        $('.notifications-count').html(noticCnt);
 		        //$(".notice .details .title").data(id);
 		        //$("notice").attr('data-fruit','7');
 		       // $(".notice .details .title").append("<button type='button' class='noticeBtn button-default button-dismiss js-dismiss'>×</button>");
@@ -32,12 +35,13 @@
 			
 			if((evt.data).startsWith("noticeB")){	
 				var notice = (evt.data).split("noticeB:");
-				$(".notice2 .details .title").html("");				
-		        $(".notice2 .details .title").prepend(notice);	
-		        $('li[class="notice item js-item expired"][data-id="2"]').remove();
+				var noticeB = '';
+				alert(notice[1]);
+				noticeB += '<span class="title">' + notice[1] + '</span>';
+				noticeB += '<span class="date">시간</span>';
+		        $('li.notice2 div.details').html(noticeB);
 		       // $(".notice2 .details .title").append("<button type='button' class='noticeBtn2 button-default button-dismiss js-dismiss'>×</button>");
 			}			
-			
 			
 			// 유저리스트 체크
 			if((evt.data).startsWith("userList")){	

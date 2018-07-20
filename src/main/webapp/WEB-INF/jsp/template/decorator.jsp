@@ -71,6 +71,10 @@
 <script src="${pageContext.request.contextPath}/resources/js/folderjs/folder.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/folderjs/notepad.js"></script>
 
+<script>
+//툴팁출력
+$("[data-toggle='tooltip']").tooltip();
+</script>
 </body>
 
 

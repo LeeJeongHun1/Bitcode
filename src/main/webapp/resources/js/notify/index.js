@@ -2,18 +2,19 @@ $(function () {
   var today = new Date();
   var items = generateItems(today);
   refreshNotifications(items, today);
-  $('li[class="notice2 item js-item expired"][data-id="1"]').remove();
-  $('li[class="notice item js-item expired"][data-id="2"]').remove();
+  /*$('li[class="notice2 item js-item expired"][data-id="1"]').remove();
+  $('li[class="notice item js-item expired"][data-id="2"]').remove();*/
   // 데이터 내용이 없으면 안뜨게 
-  
 });
 
 function refreshNotifications(items, today) {
+	
   items = items || [];
   today = today || newDate();
   
   var cssTransitionEnd = getTransitionEnd();
   var container = $('body');
+  
   
   items.forEach(function(item) {
     item.isExpired = item.date < today;
@@ -33,6 +34,7 @@ function refreshNotifications(items, today) {
     };
   });
   
+  
   items.sort(function(a, b) {
     if (a.isExpired === b.isExpired) {
       return a.date - b.date;
@@ -47,14 +49,14 @@ function refreshNotifications(items, today) {
         '<ul class="notifications-list">' +
           '<li class="item no-data">You don\'t have notifications</li>' +
           '{{#items}}' +
-            '<li class="notice item js-item {{#isExpired}}expired{{/isExpired}}" data-id="{{id}}">' +
+            '<li class="notice1 item js-item {{#isExpired}}expired{{/isExpired}}" data-id="1">' +
               '<div class="details">' +
                 '<span class="title">{{title}}</span>' +
                 '<span class="date">{{formattedDate}}</span>' +
               '</div>' +
               '<button type="button" class="button-default button-dismiss js-dismiss">×</button>' +
             '</li>' +
-            '<li class="notice2 item js-item {{#isExpired}}expired{{/isExpired}}" data-id="{{id}}">' +
+            '<li class="notice2 item js-item {{#isExpired}}expired{{/isExpired}}" data-id="2">' +
             '<div class="details">' +
               '<span class="title">{{title}}</span>' +
               '<span class="date">{{formattedDate}}</span>' +
