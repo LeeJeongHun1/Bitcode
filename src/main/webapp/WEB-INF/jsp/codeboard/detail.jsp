@@ -6,12 +6,32 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/board/detail.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/board/codeDetail.css">
 </head>
 <body>
+<div class="detailBoay">
+	<div id="card1" class="card ten col">
+		<div class="topbar yellow">
+		<div class="swatches"><span class="red"></span><span class="orange"></span><span class="yellow"></span><span class="green"></span><span class="blue"></span></div>
+		<div class="xbtn" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">x</div>
+		</div>
+<!-- 		<h1 class="information">상세보기</h1> -->
+<!-- 	<div class="detail"> -->
+<!-- 		<div class="detailList"> -->
+<%-- 					<c:out value="${cb.title}"/> --%>
+<!-- 					<span class="nowrap">|</span> -->
+<%-- 					<span class="cf" >${cb.languageName}</span>  --%>
+<!-- 					<span class="day" >2018-02-10</span> -->
+<%-- 			<input type="hidden" name="groupOrder" value="${cb.groupOrder}" />  --%>
+<%-- 			<input type="hidden" name="depth" value="${cb.depth}" /> --%>
+<%-- 			<input type="hidden" name="groupNo" value="${cb.groupNo}" /> --%>
+<!-- 		</div> -->
+<!-- 	</div> -->
+<!-- </div> -->
+<!-- </div> -->
+
 	<div class="container">
 		<div class="shell-container">
-		<!-- <h2 class="shell_title">QnA질문게시판</h2> -->
 			<div class="contents_header" >
 				<div class="title" >
 					<c:out value="${cb.title}" /><span class="nowrap">|</span>
@@ -25,6 +45,7 @@
 				<div class="header_info">
 					<span class="shell_writer" ><c:out value="${cb.id}" /></span>
 					<span class="shell_hits" >조회<span><c:out value="${cb.viewCnt}" /></span></span>
+					<span class="shell_recommend" >추천<span><c:out value="${cb.likeCnt}" /></span></span>
 
 				</div>
 			</div>
@@ -98,9 +119,15 @@
 			<a href='<c:url value="replyForm.do?no=${cb.no}" />'><button>답변</button></a>
 			<a href='<c:url value="updateForm.do?no=${cb.no}" />'><button>수정</button></a>
 			<a href='<c:url value="delete.do?no=${cb.no}"/>'><button>삭제</button></a>
+			<a href='<c:url value="like.do?no=${cb.no}"/>'><button onclick="recommend();">추천</button></a>
 			</div>
 		</div>
-
+		</div>
 	</div>
+	<script>
+	function recommend() {
+		alert("이 글을 추천하였습니다!");
+	}
+	</script>
 </body>
 </html>

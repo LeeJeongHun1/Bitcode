@@ -7,8 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>BIT CODE</title>
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/board/detail.css">
+<%-- <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/board/detail.css"> --%>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/board/qnaDetail.css">
 <style>
 a {
 	color: #333333
@@ -16,40 +16,49 @@ a {
 </style>
 </head>
 <body>
+
+
 	<input type="hidden" name="groupNo" value="${list.qna.groupNo}">
 	<input type="hidden" name="depth" value="${list.qna.depth}">
 	<input type="hidden" name="groupOrder" value="${list.qna.groupOrder}">
 	<input type="hidden" name="oriId" value="${list.id}"> 
-	<div class="qnaBody">
-		<div class="shell-container">
+	
+	<div class="qnaDetailBody">
+	<div id="card1" class="card ten col">
+		<div class="topbar blue">
+		<div class="swatches"><span class="red"></span><span class="orange"></span><span class="yellow"></span><span class="green"></span><span class="blue"></span></div>
+		<div class="xbtn" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">x</div>
+		</div> 
+		
+		<div class="shell-container qna">
 			<!-- <h2 class="shell_title">QnA질문게시판</h2> -->
 		<div class="contents_header">
 			<div class="title">
-				<c:if test="${empty list.qna}">
-			안
-			</c:if>
+				<c:if test="${empty list.qna}">안</c:if>
 				<c:out value="${list.qna.title}" />
-				<span class="nowrap">|</span><span class="cf"><c:out
-						value="${list.qna.codeName}" /></span> <span class="day"><fmt:formatDate value="${list.qna.regDate}" pattern="yyyy-MM-dd HH:mm:ss" /></span>
+				<span class="nowrap">|</span>
+				<span class="cf"><c:out value="${list.qna.codeName}" /></span>
+				<span class="day"><fmt:formatDate value="${list.qna.regDate}" pattern="yyyy-MM-dd HH:mm:ss" /></span>
 			</div>
 
 			<div class="header_info">
-				<span class="shell_writer"><c:out value="${list.qna.nickName}"/></span><span
-					class="shell_hits">조회<span><c:out value="${list.qna.viewCnt}" /></span></span>
-
+				<span class="shell_writer"><c:out value="${list.qna.nickName}"/></span>
+				<span class="shell_hits">조회<span><c:out value="${list.qna.viewCnt}" /></span></span>
 			</div>
-
 		</div>
+		<div class="qnaList">
 		<div class="contents_body">
 			<div class="detail">
-				<c:forEach var="qna" items="${list.qna.fileList}">
-			 파일명 : <a href="${pageContext.request.contextPath}/fileDown.do?filePath=${qna.filePath}&systemFileName=${qna.systemName}&originalFileName=${qna.oriName}">${qna.oriName}</a>
-       		미리보기 : <img src="${pageContext.request.contextPath}/fileDown.do?filePath=${qna.filePath}&systemFileName=${qna.systemName}&originalFileName=${qna.oriName}"
-						style="width: 150px; height: 150px">
-					<br>
-				</c:forEach>
-				${list.qna.content}
+			<c:forEach var="qna" items="${list.qna.fileList}">파일명 : 
+			<a href="${pageContext.request.contextPath}/fileDown.do?filePath=${qna.filePath}&systemFileName=${qna.systemName}&originalFileName=${qna.oriName}">${qna.oriName}</a>
+       		미리보기 : 
+       		<img src="${pageContext.request.contextPath}/fileDown.do?filePath=${qna.filePath}&systemFileName=${qna.systemName}&originalFileName=${qna.oriName}"
+				style="width: 150px; height: 150px">
+			<br>
+			</c:forEach>
+			${list.qna.content}
 			</div>
+			
 			<%-- 댓글 출력 --%>
 			<ul class="reBody">
 				
@@ -58,28 +67,25 @@ a {
 			<%-- 댓글 등록 --%>
 			<ul class="writeComment">
 			<li class="reWrite">
-			<form id="commentR"
-				action=''
-				method="post">
-				<input type="hidden" name="no" value="${list.qna.no}"> <input
-					type="hidden" name="groupNo" value="${list.qna.groupNo}">
+			<form id="commentR" action='' method="post">
+				<input type="hidden" name="no" value="${list.qna.no}">
+				<input type="hidden" name="groupNo" value="${list.qna.groupNo}">
 				<div class="reWriteDiv">
 				<input type="text" name="id" value="${sessionScope.user.id}" hidden="hidden"/>
 				<table>
 					<tbody>
 						<tr>
-							<th>작성자</th>
-							<td><input type="text" value="${sessionScope.user.nickName}" readonly="readonly"/></td>
-						</tr>
-						<tr>
-							<td><textarea name="content"></textarea></td>
+							<td width="300px">${sessionScope.user.nickName}</td>
+							<td width="500px"><textarea name="content" style="resize: none; width=500px;"></textarea></td>
+							<td width="100px"><button id="Rbtn" class="resubmit btn btn-default btn-group-xs">등록</button></td>
 						</tr>
 					</tbody>
 				</table>
 				</div>
+				<!-- 
 				<div class="reBtn">
-					<button id="Rbtn" class="resubmit">등록</button>
 				</div>
+				 -->
 			</form>
 			</li>
 			</ul>
@@ -93,9 +99,17 @@ a {
 				<!-- <a href="#"><button>삭제</button></a> -->
 			</div>
 
+			
 		</div>
-
+		<!-- qnaList -->
+		</div>
+		<!-- qna -->
+		</div>
+		<!-- card1 -->
 	</div>
+	<!-- qnaBody -->
+	
+	
 	<script>
 	// 댓글 삭제
  	function commentDelete(commentNo) {
@@ -209,6 +223,7 @@ a {
 	selectComment();
 	
 	
+	$(".qnaDetailBody").draggable();
 	
 	
 	</script>

@@ -1,5 +1,7 @@
 package kr.co.bitcode.user.controller;
 
+
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -40,15 +42,20 @@ public class UserController {
 	//출석체크
 	@RequestMapping("/attend.json")
 	@ResponseBody
-	public Attendance attend(String id) throws Exception {
+	public List<Attendance> attend(Attendance attendance) throws Exception {
+		
 		Attendance attend = new Attendance();
-		attend.setId(id);
-		attend.setAttDate(new Date());
+		//디비 저장
+		attend.setAttDate(attendance.getAttDate());
+		attend.setId(attendance.getId());
 		userService.insertAttendance(attend);
-		return attend;
+		ModelAndView mav = new ModelAndView();
+		List<Attendance> attendList =  userService.selectAttendance(attendance.getId());
+		
+		return attendList;
 	}
 	//회원정보
-	@RequestMapping("/userInfo.do") 
+	@RequestMapping("/userInfo.do") 	
 	public ModelAndView joinForm(String id) throws Exception{ 
 		ModelAndView mav = new ModelAndView();
 		//한 유저에 대한 질문 List 출력

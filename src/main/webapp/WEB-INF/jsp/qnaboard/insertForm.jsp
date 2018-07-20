@@ -15,6 +15,7 @@
 			<h2 class="shell_title">QnA질문게시판</h2>
 			<form id="insertForm" action='<c:url value="/qnaboard/insert.do"/>' method="post"
 				enctype="multipart/form-data" onsubmit="return check()">
+				<input type="text" name="id" hidden="hidden" value="${sessionScope.user.id}" />
 				<table class="editTable">
 					<tbody>
 						<tr>
@@ -26,7 +27,9 @@
 						</tr>
 						<tr>
 							<th>작성자</th>
-							<td><c:out value="${sessionScope.user.name}" /></td>
+							<td><c:out value="${sessionScope.user.nickName}" /></td>
+							
+							
 						</tr>
 
 						<tr style="height: 90%;">

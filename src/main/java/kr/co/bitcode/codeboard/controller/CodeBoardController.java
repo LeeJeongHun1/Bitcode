@@ -31,6 +31,7 @@ import kr.co.bitcode.codeboard.service.CodeBoardService;
 import kr.co.bitcode.repository.domain.Code;
 import kr.co.bitcode.repository.domain.CodeBoard;
 import kr.co.bitcode.repository.domain.CodeBoardFile;
+import kr.co.bitcode.repository.domain.CodeBoardLike;
 import kr.co.bitcode.repository.domain.CodeSearch;
 
 @Controller
@@ -151,6 +152,14 @@ public class CodeBoardController {
 		List<Code> list = service.selectLanguage();
 		return list;
 	}
+	
+	@RequestMapping(value="/like.do", method=RequestMethod.GET)
+	public String likeBoard(CodeBoardLike cbl) {
+		service.likeBoard(cbl);
+		int no = cbl.getNo();
+		return "redirect:/codeboard/detail.do?no=" +no;
+	}
+	
 	
 	
 }
