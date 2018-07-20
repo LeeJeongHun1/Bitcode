@@ -102,7 +102,7 @@ var socket = io.connect();
    if(sender.match(data.sender)){
 	   $("#chatBox").before("<p class='me'>" + data.sender + " : " + data.msg + "</p>");
    } else{
-	   $("#chatBody").before("<p class='them'>" + data.sender + " : " + data.msg + "</p>");
+	   $("#chatBox").before("<p class='them'>" + data.sender + " : " + data.msg + "</p>");
 	   
    }
    //$("#chatBody").before(data.sender + " : " + data.msg + "<br>");
