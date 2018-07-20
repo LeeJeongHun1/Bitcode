@@ -348,6 +348,12 @@ $("[data-toggle='tooltip']").tooltip();
 
 </script>
 
+<!-- 크롬 스크립트 -->
+<script src="${pageContext.request.contextPath}/resources/js/internet/internet.js"></script>
+
+<!-- 메모장 스크립트 -->
+<script src="${pageContext.request.contextPath}/resources/js/note/notepad.js"></script>
+
 <!-- 알림/단체대화 스크립트 -->
 <script src="${pageContext.request.contextPath}/resources/js/websocket/websocket.js"></script>
 
