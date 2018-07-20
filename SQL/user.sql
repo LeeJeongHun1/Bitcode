@@ -37,9 +37,6 @@ update tb_user
 delete from tb_user
 	where id = '811325256';
 
---
-delete from tb_attendance
-	where att_id = 12;
 	
 select * from tb_user;
 
@@ -52,11 +49,22 @@ select * from tb_user;
 -- 테이블 삭제
 drop table tb_user purge;
 drop table tb_news purge;
+--
+delete from tb_attendance
+	where att_id = 17;
+	
+--
+delete from tb_attendance
+	where id = 'id1';	
 
 select * from tb_attendance;
 
+		select *
+		  from tb_attendance
+		 where id = 'id1'; 
+
 INSERT INTO tb_attendance(att_id, id, att_date)
-	VALUES(11, 'id1', 20180715);
+	VALUES(67, 'id1', 20180719);
 ------------------------------------------------------------------------------------------------------
 -- 출석체크 테이블
 --------------------------------------------------------------------

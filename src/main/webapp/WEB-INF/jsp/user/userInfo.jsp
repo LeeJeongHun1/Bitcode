@@ -8,13 +8,15 @@
 <meta charset="UTF-8">
 <title>BIT CODE</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/user/userInfo.css" />
-<link href='https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css' rel='stylesheet' type='text/css'>
+<!-- <link href='https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css' rel='stylesheet' type='text/css'> -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/sweetalertFile/sweetalert2.css" />
 <script src="${pageContext.request.contextPath}/resources/sweetalertFile/sweetalert2.all.min.js"></script>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/waitme/waitMe.min.css" />
-<script src="${pageContext.request.contextPath}/resources/js/waitme/waitMe.min.js"></script>
 
 <style>
+
+.aaaa {
+	color: red;
+}
 
 /* Kurien / Kurien's Blog / http://blog.kurien.co.kr */
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
@@ -123,6 +125,12 @@
 <!-- 	    <div id="calendar_weekdays"></div> -->
 <!-- 	    <div id="calendar_content"></div> -->
 <!-- 	  </div> -->
+		<div>
+		<c:forEach var="attendList" items="${attendList}">
+				<input name="attDate" id="${attendList.attID}" value='<fmt:formatDate value="${attendList.attDate}" pattern="yyyy-MM-dd" />' type="hidden" >
+<%-- 				<fmt:formatDate value="${attendList.attDate}" pattern="yyyy-MM-dd" />  --%>
+		</c:forEach>
+		</div>
 	  	<div id="kCalendar"></div>
 	  	  <a href="#" id="attend">출첵</a>
 
@@ -134,26 +142,29 @@
   </div>
 </div>
 <script>
-
-
+//캘린더 로딩
 window.onload = function () {
 	kCalendar('kCalendar');
 };
+console.dir($("input[name=attDate]"))
+
+
+
 var userid = $("#userId").val();
 $("#attend").click(function () {
-	var date = new Date();
+	//오늘 날짜
+	var today = new Date();
 	$.ajax({
 		url : "/bitcode/user/attend.json",
 		type: "POST",
 		data : {
-			"id"	  : userid
+			"id"	  : userid,
+			"attDate" : today
 		},
 		success : function(data){
 			if(data != undefined){
 				swal("출척이 체크 되었습니다.");
-				console.log(data.attDate);
-				console.log(date);
-				
+
 			}
 			else{
 				swal("오류 발생!! 다시 클릭 해주세요");
@@ -161,19 +172,30 @@ $("#attend").click(function () {
 		
 		}
 	})	
-	
-	
-	
-	
-	
 });
-
 
 
 /* Kurien / Kurien's Blog / http://blog.kurien.co.kr */
 function kCalendar(id, date) {
-	var kCalendar = document.getElementById(id);
+	var attdate;	
+	var attMonth;
 	
+// 	// 디비에서 가져온 유저의 날짜 출력
+// 	 var attId = $("input[name=attDate]")
+// 	 for(let i = 0; i < attId.length; i++){
+// 		var a = attId[i]
+// 		var attendate = a.value;
+// 		attendate = attendate.split('-');
+// 		attendate[1]= attendate[1] - 1;
+// 		attendate = new Date(attendate[0], attendate[1], attendate[2]);
+// 		attdate = attendate.getDate();
+// 		attMonth = attendate.getMonth() + 1;
+// 		console.log(attMonth);
+// 		console.log(attdate);
+// 	 }
+	 
+	
+	var kCalendar = document.getElementById(id);
 	if( typeof( date ) !== 'undefined' ) {
 		date = date.split('-');
 		date[1] = date[1] - 1;
@@ -221,6 +243,11 @@ function kCalendar(id, date) {
 		var currentMonth = '0' + currentMonth;
 	//10월 이하라면 앞에 0을 붙여준다.
 	
+	
+	// 디비에서 가져온 유저의 날짜 출력
+
+	
+	
 	var calendar = '';
 	
 	calendar += '<div id="header">';
@@ -228,7 +255,7 @@ function kCalendar(id, date) {
 	calendar += '			<span id="date">' + currentYear + '년 ' + currentMonth + '월</span>';
 	calendar += '			<span><a href="#" class="button right" onclick="kCalendar(\'' + id + '\', \'' + nextDate + '\')">></a></span>';
 	calendar += '		</div>';
-	calendar += '		<table border="0" cellspacing="0" cellpadding="0">';
+	calendar += '		<table id="calTable" border="0" cellspacing="0" cellpadding="0">';
 	calendar += '			<caption>' + currentYear + '년 ' + currentMonth + '월 달력</caption>';
 	calendar += '			<thead>';
 	calendar += '				<tr>';
@@ -244,24 +271,60 @@ function kCalendar(id, date) {
 	calendar += '			<tbody>';
 	
 	var dateNum = 1 - currentDay;
-	
+	var attId = $("input[name=attDate]")
+	var day = [];
+	 for(let d = 0; d < attId.length; d++){
+			var dbuser = attId[d]
+			var attendate = dbuser.value;
+			attendate = attendate.split('-');
+			attendate[1]= attendate[1] - 1;
+			attendate = new Date(attendate[0], attendate[1], attendate[2]);
+			attdate = attendate.getDate();
+			attMonth = attendate.getMonth() + 1;
+			console.log(attdate);
+			day.push(attdate);
+			console.log(attMonth);
+		 }
+	console.dir(day)
 	for(var i = 0; i < week; i++) {
 		calendar += '			<tr>';
 		
 		for(var j = 0; j < 7; j++, dateNum++) {
 			if( dateNum < 1 || dateNum > currentLastDate ) {
-				calendar += '				<td class="' + dateString[j] + '"> </td>';
+				calendar += '				<td class="' + dateString[j] + '"></td>';
 				continue;
 			}
-			calendar += '				<td class="' + dateString[j] + '">' + dateNum + '</td>';
+// 			if(currentMonth == attMonth && attdate == dateNum){
+// 				calendar += '				<td class="' + dateString[j] + '">' + dateNum + '0</td>';
+				
+// 			}
+			var check = '';
+			for(let dd of day){
+				if(dd == dateNum){
+					console.log(dateNum)
+					check = dd;
+					break;
+				}
+			}
+			calendar += '				<td class="' + dateString[j] + '" data-check="'+check+'">' + dateNum + '</td>';
+			$("td").data('check')
 		}
 		calendar += '			</tr>';
 	}
 	
 	calendar += '			</tbody>';
 	calendar += '		</table>';
-	
+
 	kCalendar.innerHTML = calendar;
+	var td = $("#calTable").find("td");
+	for(let t of td){
+		if(t.dataset.check){
+			console.dir(t)
+			$(t).css("color", 'red')
+// 			$(t).css("color", 'red')
+		}
+	}
+// 	console.dir($("#calTable").find("td").data("ckeck"))
 }
 
 
@@ -303,7 +366,7 @@ $("#submitPassBtn").on('click',function () {
 	}).queue([
 	  {
 	    title: '변경할 비밀번호를 입력하세요',
-	    text: '...'
+	    text: ''
 	  },
 	  '비밀번호를 재입력 하세요',
 	]).then(function(result){
@@ -334,7 +397,15 @@ function fnFindPass(data) {
 		}
 	})
 }
-
+//function fromattend(data) {
+//	if( typeof(data) !== 'undefined'){
+//		console.log(data);
+//		for (let i = 0; i < data.length; i++) {
+//			 var result =  data[i];
+//			 var cal = new Date(result.attDate)
+//		}
+//	}
+//}
 </script>
 </body>
 </html>
