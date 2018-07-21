@@ -1202,7 +1202,7 @@ recognition.interimResults = true;
 				$("#maxSize").html(maxSize + "MB 중")
 				var msg = '결제가 완료되었습니다.';
 				swal({
-					position: 'top-end',
+					position: 'center',
 					type: 'success',
 					title: msg,
 					showConfirmButton: false,
@@ -1212,7 +1212,7 @@ recognition.interimResults = true;
 			} else {
 				var msg = '결제에 실패하였습니다.';
 				swal({
-					position: 'top-end',
+					position: 'center',
 					type: 'error',
 					title: msg,
 					showConfirmButton: false,
