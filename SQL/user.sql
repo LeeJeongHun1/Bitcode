@@ -51,7 +51,7 @@ drop table tb_user purge;
 drop table tb_news purge;
 --
 delete from tb_attendance
-	where att_id = 17;
+	where att_id = 72;
 	
 --
 delete from tb_attendance
