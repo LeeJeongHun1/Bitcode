@@ -38,25 +38,44 @@ public class UserController {
 	BCryptPasswordEncoder passCode;
 	
 	//출석체크
-	@RequestMapping("/attend.json")
-	@ResponseBody
-	public List<Attendance> attend(Attendance attendance) throws Exception {
-		
-		Attendance attend = new Attendance();
-		//디비 저장
-		attend.setAttDate(attendance.getAttDate());
-		attend.setId(attendance.getId());
-		userService.insertAttendance(attend);
+//	@RequestMapping("/attend.json")
+//	@ResponseBody
+//	public int attend(Attendance attendance) throws Exception {
+//		
+//		Attendance attend = new Attendance();
+//		//디비 저장
+//		attend.setAttDate(attendance.getAttDate());
+//		attend.setId(attendance.getId());
+//		userService.insertAttendance(attend);
+//		
+//		return 1;
+//	}
+	@RequestMapping("/updateAttend.do")
+	public ModelAndView updateAttend(String id) throws Exception {
+		System.out.println("userId 출첵 폼 : " + id);
 		ModelAndView mav = new ModelAndView();
-		List<Attendance> attendList =  userService.selectAttendance(attendance.getId());
+		//한 유저에 대한 질문 List 출력
+		List<Qna> qnaList= userService.selectmyQuestion(id);
+		// 유저 등급및 포인트 출력
+		User userInfo = loginService.selectUserById(id);
+		//출첵
+		List<Attendance> attendList =  userService.selectAttendance(id);
+		mav.setViewName("user/userInfo");
+		mav.addObject("qnaList", qnaList);
+		mav.addObject("userInfo", userInfo);
+		mav.addObject("attendList", attendList);
 		
-		return attendList;
+		return mav;
+		
 	}
+	
+	
 	//회원정보
 	@RequestMapping("/userInfo.do") 	
 	public ModelAndView joinForm(String id) throws Exception{ 
 		ModelAndView mav = new ModelAndView();
 		//한 유저에 대한 질문 List 출력
+		
 		List<Qna> qnaList= userService.selectmyQuestion(id);
 		// 유저 등급및 포인트 출력
 		User userInfo = loginService.selectUserById(id);

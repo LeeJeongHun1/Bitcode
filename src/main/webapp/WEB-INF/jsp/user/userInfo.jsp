@@ -11,21 +11,33 @@
 <!-- <link href='https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css' rel='stylesheet' type='text/css'> -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/sweetalertFile/sweetalert2.css" />
 <script src="${pageContext.request.contextPath}/resources/sweetalertFile/sweetalert2.all.min.js"></script>
-
 <style>
+
 
 .aaaa {
 	color: red;
 }
+.stampId:hover {cursor: pointer;
+}
+#textStmp {width: 250px; height: 100px; color: white; 
+font-size:20px;
+background-color: orange;
+border-radius: 12px 12px 12px 0px;
+	box-shadow:5px 5px 0px rgba(0,0,0,.1);
+}
+ #kCalendar #header { 
+height: 70px; line-height: 70px; text-align: center; font-size: 20px; 
+font-weight: bold; color: black; background-color: #ecec00;
+-webkit-border-radius: 12px 12px 0px 0px;
+-moz-border-radius: 12px 12px 0px 0px; 
+border-radius: 12px 12px 0px 0px;
+}
 
-/* Kurien / Kurien's Blog / http://blog.kurien.co.kr */
-/* @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css); */
-/* * {font-family: 'Nanum Gothic', serif;} */
-
-#kCalendar {width: 360px; height: 400px; border: 3px solid gray;}
+#kCalendar {width: 360px; height: 400px; border: 3px solid #FFFFFF;
+  -webkit-border-radius: 12px 12px 0px 0px;
+  -moz-border-radius: 12px 12px 0px 0px; 
+  border-radius: 12px 12px 0px 0px;}
 #calTable {margin-left: 10px; margin-top: 10px;}
-#kCalendar #header {height: 70px; line-height: 70px; text-align: center; font-size: 20px; 
-					font-weight: bold; color: black; background-color: yellow;}
 #date { color: black;}
 
 #kCalendar .button {color: #000; text-decoration: none;}
@@ -34,15 +46,16 @@
 #kCalendar caption {display: none;}
 /* td {font-size: 15px; } */
 
-#kCalendar .sun {text-align: center; font-size: 20px; width: 70px; height: 44px; padding-left: 10px;}
+#kCalendar .sun {text-align: center; font-size: 20px; width: 70px; height: 44px; padding-left: 6px;}
 #kCalendar .mon {text-align: center; font-size: 20px; width: 70px; height: 44px; padding-left: 1px;}
-#kCalendar .tue {text-align: center; font-size: 20px; width: 70px; height: 44px; padding-left: 8px;}
+#kCalendar .tue {text-align: center; font-size: 20px; width: 70px; height: 44px; padding-left: 9px;}
 #kCalendar .wed {text-align: center; font-size: 20px; width: 70px; height: 44px; padding-left: 5px;}
 #kCalendar .thu {text-align: center; font-size: 20px; width: 70px; height: 44px; padding-left: 7px;}
-#kCalendar .fri {text-align: center; font-size: 20px; width: 70px; height: 44px; padding-left: 5px;}
-#kCalendar .sat {text-align: center; font-size: 20px; width: 70px; height: 44px; padding-left: 10px;}
-</style>
+#kCalendar .fri {text-align: center; font-size: 20px; width: 70px; height: 44px; padding-left: 15px;}
+#kCalendar .sat {text-align: center; font-size: 20px; width: 70px; height: 44px; padding-left: 12px;}
 
+
+</style>
 </head>
 <body>
 <div class="container1">
@@ -52,7 +65,8 @@
 		<div class="topbar red">
 			<div class="swatches"><span class="red"></span><span class="orange"></span><span class="yellow"></span><span class="green"></span><span class="blue"></span></div>
 			<div class="maxbtn"><span></span></div>
-			<div class="xbtn">x</div>
+			<div class="xbtn"></div>
+	
 		</div>    
 		  <h3 class="userInformation">Information</h3>
 		  <p id="pName">이름</p>
@@ -82,7 +96,6 @@
 			<div class="xbtn">x</div>
 		</div>     
     	<h3 class="userInformation">My Question</h3>
-    	
 		<table class="table table-hover">
 			<tr>
 				<th colspan="1">번호</th><th colspan="1">글쓴이</th><th colspan="4">제목</th><th colspan="3">만족도</th>
@@ -101,7 +114,7 @@
 	</div>	
 
     <div id="card3" class="card three col">
-		<div class="topbar yellow">
+		<div class="topbar orange">
 			<div class="swatches"><span class="red"></span><span class="orange"></span><span class="yellow"></span><span class="green"></span><span class="blue"></span></div>
 			<div class="maxbtn"><span></span></div>
 			<div class="xbtn">x</div>
@@ -124,28 +137,25 @@
 		<div></div>
 		<div></div>
 <!-- 		캘린더 -->
-<!-- 	  <div id="calendar"> -->
-<!-- 	    <div id="calendar_header"><i class="icon-chevron-left"></i>          <h1></h1><i class="icon-chevron-right"></i>         </div> -->
-<!-- 	    <div id="calendar_weekdays"></div> -->
-<!-- 	    <div id="calendar_content"></div> -->
-<!-- 	  </div> -->
 		<div>
 		<c:forEach var="attendList" items="${attendList}">
 				<input name="attDate" id="${attendList.attID}" value='<fmt:formatDate value="${attendList.attDate}" pattern="yyyy-MM-dd" />' type="hidden" >
-<%-- 				<fmt:formatDate value="${attendList.attDate}" pattern="yyyy-MM-dd" />  --%>
 		</c:forEach>
 		</div>
+	  	<span><a class="stampId" href="#" id="stampId">
+	  	<img class="stamp" src="${pageContext.request.contextPath}/resources/images/stamp.png"></a></span>
+	  	<span id="textStmp">출석하기Click</span>
+	  	<form action="${pageContext.request.contextPath}/user/updateAttend.do" method="post" id="todayAttenStamp"></form>
+	  	<input name="id" value="${user.id}" type="hidden" >
 	  	<div id="kCalendar"></div>
-	  	  <a href="#" id="attend">출첵</a>
-
-	  
-	  
-	  	
-				
     </div>
   </div>
 </div>
+
 <script>
+
+
+
 //캘린더 로딩
 // window.onload = function () {
 	kCalendar('kCalendar');
@@ -153,34 +163,38 @@
 console.dir($("input[name=attDate]"))
 
 
-
-var userid = $("#userId").val();
-$("#attend").click(function () {
-	//오늘 날짜
-	var today = new Date();
-	$.ajax({
-		url : "/bitcode/user/attend.json",
-		type: "POST",
-		data : {
-			"id"	  : userid,
-			"attDate" : today
-		},
-		success : function(data){
-			if(data != undefined){
-				swal("출척이 체크 되었습니다.");
-				kCalendar('kCalendar');
-			}
-			else{
-				swal("오류 발생!! 다시 클릭 해주세요");
-			}
-		
-		}
-	})	
+$("#stampId").click(function () {
+	swal("출척이 체크 되었습니다.");
+	$("#todayAttenStamp").submit();
 });
+
+// var userid = $("#userId").val();
+// $("#stampId").click(function () {
+// 	//오늘 날짜
+// 	var today = new Date();
+// 	$.ajax({
+// 		url : "/bitcode/user/attend.json",
+// 		type: "POST",
+// 		data : {
+// 			"id"	  : userid,
+// 			"attDate" : today
+// 		},
+// 		success : function(data){
+// 			if(data == 1){
+// 				swal("출척이 체크 되었습니다.");
+// 				$("#todayAttenStamp").submit();
+// 			}
+// 			else{
+// 				swal("오류 발생!! 다시 클릭 해주세요");
+// 			}
+		
+// 		}
+// 	})	
+// });
 
 
 /* Kurien / Kurien's Blog / http://blog.kurien.co.kr */
-function kCalendar(id, date) {
+function kCalendar(id, date, data) {
 	var attdate;	
 	var attMonth;
 	var kCalendar = document.getElementById(id);
@@ -239,7 +253,7 @@ function kCalendar(id, date) {
 	
 	calendar += '<div id="header">';
 	calendar += '			<span><a href="#" class="button left" onclick="kCalendar(\'' +  id + '\', \'' + prevDate + '\')"><</a></span>';
-	calendar += '			<span id="date">' + currentYear + '년 ' + currentMonth + '월</span>';
+	calendar += '			<span id="date">'+ currentYear + '. ' + currentMonth + '월</span>';
 	calendar += '			<span><a href="#" class="button right" onclick="kCalendar(\'' + id + '\', \'' + nextDate + '\')">></a></span>';
 	calendar += '		</div>';
 	calendar += '		<table id="calTable" border="0" cellspacing="0" cellpadding="0">';
