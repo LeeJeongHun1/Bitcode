@@ -22,4 +22,5 @@ public interface CodeBoardMapper {
 	public List<CodeBoardLike> selectCodeLike(CodeBoardLike cbl);
 	public void insertCodeLike (CodeBoardLike cbl);
 	public void updateBoardLikeCnt(int no);
+	public int boardCount(CodeSearch cs);
 }

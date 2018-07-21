@@ -1,6 +1,8 @@
 package kr.co.bitcode.codeboard.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -12,6 +14,8 @@ import kr.co.bitcode.repository.domain.CodeBoard;
 import kr.co.bitcode.repository.domain.CodeBoardFile;
 import kr.co.bitcode.repository.domain.CodeBoardLike;
 import kr.co.bitcode.repository.domain.CodeSearch;
+import kr.co.bitcode.repository.domain.Page;
+import kr.co.bitcode.repository.domain.PageResult;
 import kr.co.bitcode.repository.mapper.CodeBoardMapper;
 import kr.co.bitcode.repository.mapper.CodeListMapper;
 
@@ -84,11 +88,20 @@ public class CodeBoardServiceImpl implements CodeBoardService{
 	}
 
 	@Override
-	public List<CodeBoard> boardListInfo(CodeSearch cs) {
-		List<CodeBoard> list = mapper.selectBoard(cs);
-		System.out.println("lsssssssssssssss"+list.size());
+	public Map<String, Object> boardListInfo(CodeSearch cs) {
+		int pageNo = cs.getPageNo();
+		Page search = new Page();
+		search.setPageNo(pageNo != -1 ? pageNo : 1);
+		cs.setBegin(search.getBegin());
+		cs.setEnd(search.getEnd());
 		
-		return list;
+		int count = mapper.boardCount(cs);
+		Map<String,Object> map = new HashMap<>();
+		map.put("searchInput", cs.getSearchInput());
+		map.put("searchOption", cs.getSearchOption());
+		map.put("list", mapper.selectBoard(cs));
+		map.put("pageResult",new PageResult(cs.getPageNo(), count));		
+		return map;
 	}
 
 	@Override

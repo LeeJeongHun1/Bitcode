@@ -48,7 +48,7 @@
         <form id="list" name="form1" style="margin-left: 370px;
         float:left">
         <select id="option" name="searchOption" style="background-color: #fff;">
-        	<option value="0"></option>
+        	<option value="0">분류</option>
         	<option value="1">이름</option>
         	<option value="2">내용</option>
         	<option value="3">제목</option>
@@ -65,8 +65,7 @@
     </div>
     <script>
     var session = '${sessionScope.user.id}';
-    
     </script>
-<script src="${pageContext.request.contextPath}/resources/js/codeboard/codeBoardList.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/codeboard/codeBoardList.js"></script>
 </body>
 </html>

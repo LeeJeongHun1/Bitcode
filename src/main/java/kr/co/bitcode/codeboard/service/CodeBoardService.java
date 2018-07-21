@@ -1,6 +1,7 @@
 package kr.co.bitcode.codeboard.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -11,7 +12,7 @@ import kr.co.bitcode.repository.domain.CodeBoardLike;
 import kr.co.bitcode.repository.domain.CodeSearch;
 
 public interface CodeBoardService {
-	public List<CodeBoard> boardListInfo(CodeSearch cs);
+	public Map<String, Object> boardListInfo(CodeSearch cs);
 	public CodeBoard selectBoardByNo(int no);
 	public void insertBoard(CodeBoard cb);
 	public void updateBoard(CodeBoard cb);

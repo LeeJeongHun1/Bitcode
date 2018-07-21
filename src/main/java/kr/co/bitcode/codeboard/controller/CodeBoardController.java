@@ -61,7 +61,7 @@ public class CodeBoardController {
 	
 	@RequestMapping("/list.json")
 	@ResponseBody
-	public List<CodeBoard> list(CodeSearch cs)throws Exception{
+	public Map<String, Object> list(CodeSearch cs)throws Exception{
 		return service.boardListInfo(cs);
 	}
 	

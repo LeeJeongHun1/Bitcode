@@ -4,13 +4,13 @@
 
 $(".codeBody").draggable();
 window.onload = function(){
-	$("body").waitMe({
-		effect: "ios",
-		text: "Loding.. :D",
-		bg: 'rgba(255,255,255, 0.7)',
-		color: '#000'
-			
-	});
+//	$("body").waitMe({
+//		effect: "ios",
+//		text: "Loding.. :D",
+//		bg: 'rgba(255,255,255, 0.7)',
+//		color: '#000'
+//			
+//	});
 	codeList();
 };
 
@@ -22,8 +22,10 @@ document.querySelector("#search").onclick=function(){
 }
 
 
-function codeList(searchInput,searchOption){
-
+function codeList(searchInput,searchOption,pageNo){
+	if(pageNo == ""){
+		pageNo = 1;
+	}
 	if(searchInput == ""){
 		searchInput == null;
 	}
@@ -34,14 +36,20 @@ function codeList(searchInput,searchOption){
 //	console.log(searchInput);
 	$.ajax({
 		url:"list.json",
-		data:{"searchInput" : searchInput, "searchOption" : searchOption},
-		dataType:"json",
-		
+		data:{
+			"searchInput" : searchInput,
+			"searchOption" : searchOption,
+			"pageNo" : pageNo
+			},
+		dataType:"json"
 	})
 	.done(function(data){
-		makeCodeList(data);
-		$("body").waitMe("hide");
-
+		makeCodeList(data.list);
+		makePage(data)
+//		$("body").waitMe("hide");
+	})
+	.fail(function(e){
+		console.log(e);
 	})
 }
 
@@ -101,5 +109,51 @@ function makeCodeList(data){
 		}                                                                        
 	}
     document.querySelector("#listTbody").innerHTML=html;
+}
+
+function makePage(data){
+	var html = "";
+	if (data.pageResult.count != 0) {
+		var clz = "";
+		if (data.pageResult.prev == false) {
+			clz = "disabled";
+		}
+		html += '<li class="' + clz + '">';
+		var fn = "";
+		if (data.pageResult.prev == true) {
+			console.log(data.pageResult.beginPage +"개");
+			fn = "javascript:codeList(" + (data.pageResult.beginPage - 1) + ");";
+		}else{
+			fn = "#1"
+		}
+		html += '<a href="' + fn + '" aria-label="Previous">';
+		html += '    <span aria-hidden="true">&laquo;</span>';
+		html += '</a>';
+	    html += '</li>';
+	    for (var i = data.pageResult.beginPage; i <= data.pageResult.endPage; i++) {
+	    	if (i == data.pageResult.pageNo) {
+			    html += '<li class="active"><a href="#1">' + i + '</a></li>';
+	    	}
+	    	else {
+	    		html += '<li><a href="javascript:codeList('+ data.searchInput + ',' + data.searchOption + ','+ i +');">' + i + '</a></li>';
+	    	}
+	    }
+		clz = "";
+		if (data.pageResult.next == false) {
+			clz = "disabled";
+		}
+		html += '<li class="' + clz + '">';
+		fn = "";
+		if (data.pageResult.next == true) {
+			fn = "javascript:codeList(" + (data.pageResult.endPage + 1) + ");";
+		}else{
+			fn = "#1";
+		}
+		html += '<a href="' + fn + '" aria-label="Next">';
+		html += '    <span aria-hidden="true">&raquo;</span>';
+		html += '</a>';
+	    html += '</li>';
+	}
+	$("nav > ul.pagination").html(html);	
 }
 

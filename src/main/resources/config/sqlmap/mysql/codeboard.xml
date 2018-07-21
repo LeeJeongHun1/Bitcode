@@ -81,6 +81,26 @@
 				</if>
 	 	</where>
 			 order by group_no desc, group_order asc
+			 LIMIT #{begin},10
+		</select>
+		
+		<select id="boardCount" parameterType="codeSearch" resultType="int">
+			select count(*)
+			  from tb_code_board cb
+	 	inner join tb_language_code lc
+	 			on cb.language_code = lc.language_code
+	 	<where>
+				<if test="searchOption == 1">
+				and id like concat("%", #{searchInput},"%")
+				</if>
+				<if test="searchOption == 2">
+				and content like concat("%", #{searchInput},"%")
+				</if>
+				<if test="searchOption == 3">
+				and title like concat("%", #{searchInput},"%")
+				</if>
+	 	</where>
+			 order by group_no desc, group_order asc		
 		</select>
 		
 		<insert id="insertBoard" parameterType="codeBoard">
