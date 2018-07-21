@@ -8,6 +8,7 @@ import kr.co.bitcode.repository.domain.Page;
 import kr.co.bitcode.repository.domain.Qna;
 import kr.co.bitcode.repository.domain.QnaComment;
 import kr.co.bitcode.repository.domain.QnaFile;
+import kr.co.bitcode.repository.domain.QnaLike;
 import kr.co.bitcode.repository.domain.Search;
 import kr.co.bitcode.repository.domain.User;
 
@@ -31,4 +32,7 @@ public interface QnaBoardService {
 	public List<QnaComment> commentRegist(QnaComment comment) throws Exception;
 	public List<QnaComment> commentUpdate(QnaComment comment) throws Exception;
 	public List<QnaComment> commentDelete(QnaComment comment) throws Exception;
+	
+	//좋아요 
+	public int updateQnaLike(QnaLike qnaLike) throws Exception;
 }

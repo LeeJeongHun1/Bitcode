@@ -6,6 +6,7 @@ import kr.co.bitcode.repository.domain.Page;
 import kr.co.bitcode.repository.domain.Qna;
 import kr.co.bitcode.repository.domain.QnaComment;
 import kr.co.bitcode.repository.domain.QnaFile;
+import kr.co.bitcode.repository.domain.QnaLike;
 import kr.co.bitcode.repository.domain.Search;
 import kr.co.bitcode.repository.domain.User;
 
@@ -19,6 +20,11 @@ public interface QnaMapper {
 	public void updateBoard(Qna qna);
 	public void deleteBoard(int no);
 	public void updateViewCnt(int no);
+	public void updateLikeCnt(int no);
+	
+	// 좋아요 
+	public List<QnaLike> selectLikeView(QnaLike qnaLike);
+	public void insertLikeView(QnaLike qnaLike);
 	
 	// 답글 
 	public void updateReBoard(Qna qna);

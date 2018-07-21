@@ -187,7 +187,12 @@
 		set view_cnt = view_cnt + 1
 		where no = #{no}
 	</update>
-
+	
+	<update id="updateLikeCnt" parameterType="int">
+		update tb_qna_board
+		 set like_cnt = like_cnt + 1
+	     where no = #{no}
+	</update>
 
 	<!-- 파일 등록,수정 -->
 	<insert id="insertQnaFile" parameterType="qnaFile">
@@ -352,4 +357,25 @@
 		where no = #{no}	
 	</update> 
 
+	<resultMap id="qnaLikeMap" type="qnaLike" >
+		<result column="like_no" property="likeNo"/>
+		<result column="no" property="no"/>
+		<result column="id" property="id"/>
+	</resultMap>
+	
+	<!-- 좋아요 -->
+	<select id="selectLikeView" parameterType="qnaLike" resultMap="qnaLikeMap">
+	 select *
+	   from tb_qna_like
+	  where no= #{no}
+	    and id= #{id}
+	</select>
+	
+	<insert id="insertLikeView" parameterType="qnaLike">
+	 insert into tb_qna_like(
+	 no,id
+	 )values(
+	 #{no},#{id}
+	 )
+	</insert>
 </mapper>

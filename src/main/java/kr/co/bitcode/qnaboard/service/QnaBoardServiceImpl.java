@@ -15,6 +15,7 @@ import kr.co.bitcode.repository.domain.PageResult;
 import kr.co.bitcode.repository.domain.Qna;
 import kr.co.bitcode.repository.domain.QnaComment;
 import kr.co.bitcode.repository.domain.QnaFile;
+import kr.co.bitcode.repository.domain.QnaLike;
 import kr.co.bitcode.repository.domain.Search;
 import kr.co.bitcode.repository.domain.User;
 import kr.co.bitcode.repository.mapper.CodeListMapper;
@@ -168,7 +169,21 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 		return mapper.selectComment(no);
 	}
 	
-	
+	@Override
+	public int updateQnaLike(QnaLike qnaLike) throws Exception {
+		List<QnaLike> list = mapper.selectLikeView(qnaLike);
+			if(list.size() == 0) {
+				System.out.println("좋아요 한 적이없음.");
+				mapper.insertLikeView(qnaLike);
+				mapper.updateLikeCnt(qnaLike.getNo());
+				return mapper.selectBoardByNo(qnaLike.getNo()).getLikeCnt();
+			}else {
+				System.out.println("좋아요 한 적 있어서 안됨");
+				return 0;
+			}
+			
+   }
+		
 	
 	
 	

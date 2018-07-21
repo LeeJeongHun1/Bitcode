@@ -30,7 +30,7 @@
 				//alert(no);
 				
 				console.log("no.length", no.length);
-				console.dir(no);
+				//console.dir(no);
 				console.dir($("body > div.notifications.js-notifications.myshow > ul > li.notice1.item.js-item"));
 				if(no.length == 1 && no[0].length == 0) {
 					//alert("가");

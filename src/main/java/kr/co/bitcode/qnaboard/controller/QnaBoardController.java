@@ -17,6 +17,7 @@ import kr.co.bitcode.repository.domain.Page;
 import kr.co.bitcode.repository.domain.Qna;
 import kr.co.bitcode.repository.domain.QnaComment;
 import kr.co.bitcode.repository.domain.QnaFile;
+import kr.co.bitcode.repository.domain.QnaLike;
 import kr.co.bitcode.repository.domain.Search;
 import kr.co.bitcode.repository.domain.User;
 
@@ -122,6 +123,13 @@ public class QnaBoardController {
 	@ResponseBody
 	public List<QnaComment> commentUpdate(QnaComment comment) throws Exception {
 		return qnaBoardService.commentUpdate(comment);
+	}
+	
+	// 좋아요
+	@RequestMapping("/likeUpdate.json")
+	@ResponseBody
+	public int insertQnaLike(QnaLike qnaLike) throws Exception{
+		return qnaBoardService.updateQnaLike(qnaLike);
 	}
 	
 	

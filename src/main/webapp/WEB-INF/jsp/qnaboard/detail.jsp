@@ -49,6 +49,7 @@ a {
 		<div class="qnaList">
 		<div class="contents_body">
 			<div class="detail">
+			<div class="contents" style="width:100%; height:auto; min-height:350px;">
 			<c:forEach var="qna" items="${list.qna.fileList}">파일명 : 
 			<a href="${pageContext.request.contextPath}/fileDown.do?filePath=${qna.filePath}&systemFileName=${qna.systemName}&originalFileName=${qna.oriName}">${qna.oriName}</a>
        		미리보기 : 
@@ -57,6 +58,11 @@ a {
 			<br>
 			</c:forEach>
 			${list.qna.content}
+			</div>
+			<div class="like">
+			<a id="qnaLike" href="javascript:recommend()">추천 </a>
+            <span class="like_count"><c:out value="${list.qna.likeCnt}" /></span>
+			</div>
 			</div>
 			
 			<%-- 댓글 출력 --%>
@@ -111,6 +117,24 @@ a {
 	
 	
 	<script>
+	// 추천 
+	//var session = '${sessionScope.user.id}';
+	//var oriWriter = $("input[name='id']").val();
+	function recommend(){
+		$.ajax({
+		    url:"<c:url value='/qnaboard/likeUpdate.json'/>",
+		   data:{no:"${list.qna.no}",
+			     id: $("input[name='id']").val()},
+		   dataType: "json"
+		})
+		.done(function(result){
+ 			if(result == '0'){
+				alert("이미 추천한 글입니다.")
+		 	} else{
+		 		$(".like_count").html(result);				
+		 	};
+		});
+	}
 	// 댓글 삭제
  	function commentDelete(commentNo) {
 		$.ajax({

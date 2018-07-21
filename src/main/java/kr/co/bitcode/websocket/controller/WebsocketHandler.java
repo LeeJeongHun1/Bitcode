@@ -65,7 +65,8 @@ public class WebsocketHandler extends TextWebSocketHandler {
 					// 사용자 질문에 대한 답변여부에 관한 리스트
 					for (Qna read : readList) {
 						System.out.println("------------------------------");
-						System.out.println(qna.getNo()+"번글의 읽지않은 답변리스트"+readList.size());
+						System.out.println(qna.getNo()+"번글의 읽지않은 답변리스트:"+readList.size());
+						System.out.println(qna.getNo()+"번글의 읽지않은 답변:" +read.getTitle());
 						System.out.println("------------------------------");
 						// 원글 쓴 사람에게만 답변갯수랑 읽은 갯수를 보냄.
 						notiCnt++;
