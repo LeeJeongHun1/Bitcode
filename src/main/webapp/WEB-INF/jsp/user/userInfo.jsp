@@ -75,9 +75,14 @@ border-radius: 12px 12px 0px 0px;
 		  <input name="nickName" type="text" id="nickName" data-flag="no" class="inputDetail" value="${user.nickName}" readonly="readonly"/>
 		 <p id="pName">ID</p>
 		  <input name="id" type="text" id="userId" value="${user.id}" readonly="readonly"/>
-		 <p id="pName">Birthday</p>
-		  <input name="birthday" type="text" id="birthday" data-flag="no" class="inputDetail" value="${user.birthday}" readonly="readonly"/>
-
+	
+		<p id="pName">Birthday</p>
+		<div class="birthday">
+		  <input type="text" name="year" id="birth1" size="4" class="inputDetail1" value="${yearId1}"/>
+		  <input type="text" name="month" id="birth2"  size="2" class="inputDetail1" value="${monthId1}"/>
+		  <input type="text" name="date" id="birth3"  size="2" class="inputDetail1" value="${dateId1}"/>  
+		</div>
+		
 		 <p id="pName">Email</p>
 		  <input name="email" type="text" id="userEmail" data-flag="no" class="emailDetail" value="${user.email}" readonly="readonly"/>
 		 <div class="updateBtns">
@@ -163,10 +168,10 @@ border-radius: 12px 12px 0px 0px;
 console.dir($("input[name=attDate]"))
 
 
-$("#stampId").click(function () {
-	swal("출척이 체크 되었습니다.");
-	$("#todayAttenStamp").submit();
-});
+// $("#stampId").click(function () {
+// 	swal("출척이 체크 되었습니다.");
+// 	$("#todayAttenStamp").submit();
+// });
 
 // var userid = $("#userId").val();
 // $("#stampId").click(function () {

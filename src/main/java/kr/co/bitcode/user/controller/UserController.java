@@ -1,7 +1,12 @@
 package kr.co.bitcode.user.controller;
 
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -79,12 +84,20 @@ public class UserController {
 		List<Qna> qnaList= userService.selectmyQuestion(id);
 		// 유저 등급및 포인트 출력
 		User userInfo = loginService.selectUserById(id);
+		String birth = userInfo.getBirthday();
+		String yearId1 = birth.substring(0, 4);
+		String monthId1 =birth.substring(4, 6);
+		String dateId1 =birth.substring(6);
+
 		//출첵
 		List<Attendance> attendList =  userService.selectAttendance(id);
 		mav.setViewName("user/userInfo");
 		mav.addObject("qnaList", qnaList);
 		mav.addObject("userInfo", userInfo);
 		mav.addObject("attendList", attendList);
+		mav.addObject("yearId1",yearId1);
+		mav.addObject("monthId1", monthId1);
+		mav.addObject("dateId1", dateId1);
 		
 		return mav;
 		

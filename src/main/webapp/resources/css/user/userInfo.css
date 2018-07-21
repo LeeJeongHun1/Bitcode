@@ -6,6 +6,33 @@ html, body{
 /* 	background-color: #ddd; */
   font-family: 'Arimo', sans-serif;
 }
+
+/* 생년월일 inputBpx */
+.birthday > #birth1 {
+	width:75px;
+/* 	padding:16px; */
+	margin-right:10px;
+	margin-left:-100px;
+	height: 40px;
+/* 	text-align: center; */
+}
+.birthday > #birth2 {
+	width:75px;
+/* 	padding:16px; */
+	margin-right:10px;
+	height: 40px;
+/* 	text-align: center; */
+}
+.birthday > #birth3 {
+	width:75px;
+/* 	padding:16px; */
+	margin-right:10px;
+	height: 40px;
+/* 	text-align: center; */
+}
+
+
+
 /* 글씨 h1, h3 */
 div .userInformation {
 	margin-top:20px;

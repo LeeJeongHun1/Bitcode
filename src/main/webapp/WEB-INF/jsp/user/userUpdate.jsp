@@ -27,10 +27,13 @@
 	 	 <a href="#1" id="submitBtn"><span class="signupbtn">수정하기</span></a>
 	  </div>
 	</form>
+	
+<script src="${pageContext.request.contextPath}/resources/js/signUp/userUpdate.js"></script>
+	
 <script>
-	$("#submitBtn").click(function () {
-		$("#userForm").submit();
-	})
+if("${msg}") {
+	swal("${msg}")
+}
 </script>
 </body>
 </html>
