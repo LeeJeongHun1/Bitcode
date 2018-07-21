@@ -62,13 +62,11 @@ public class WebsocketHandler extends TextWebSocketHandler {
 					// 내가 읽지않은 답변 수 
 					readList = mapper.selectNoRead(qna.getGroupNo());
 					
-					/*// 배열로 넘길 알림 내용 
-					notify.setId();
-					notify.setTitle(qna.getNo() + "읽지 않은 알ㄹ갯수" + readList.size()));
-					notify.setDate(new Date());*/
 					// 사용자 질문에 대한 답변여부에 관한 리스트
 					for (Qna read : readList) {
-						System.out.println(readList.size() +"개");
+						System.out.println("------------------------------");
+						System.out.println(qna.getNo()+"번글의 읽지않은 답변리스트"+readList.size());
+						System.out.println("------------------------------");
 						// 원글 쓴 사람에게만 답변갯수랑 읽은 갯수를 보냄.
 						notiCnt++;
 						if(read.getGroupNo() == qna.getNo()) {
@@ -83,13 +81,8 @@ public class WebsocketHandler extends TextWebSocketHandler {
 			
 				// 유저정보
 				User user = mapper.selectUserPoint(reMsg.split(":")[1]);
-				// 포인트 101점 이상 200점 미만이거나 201이상일때 포인트 상승 .
-/*				if(user.getPoint() >= 101 && user.getPoint() < 200) { 
-*/					wSession.sendMessage(new TextMessage("noticeB:"+ user.getNickName()+"님의 현재포인트는" + user.getPoint()+ "점입니다.")); 
-/*				}else if(user.getPoint() >= 201) {
-					wSession.sendMessage(new TextMessage("noticeB:" + user.getPoint() + "점이상입니다.")); 				
-				}
-*/				
+					wSession.sendMessage(new TextMessage("noticeB:"+ user.getNickName()+"님의 현재포인트는" + user.getPoint()+ "점입니다.")); 
+			
 			} 
 			
 			

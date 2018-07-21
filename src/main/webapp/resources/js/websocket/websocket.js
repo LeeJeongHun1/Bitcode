@@ -23,7 +23,7 @@
 				var notice = (evt.data).split(":");
 				// notice[0] notice[1] notice[2]
 				//noticeA : 1번글의 1개의 답글을 읽지않았습니다. : 1
-//				console.dir(notice);
+				console.dir(notice);
 				var no = notice[1].split(",");
 				
 				var html = '';
@@ -45,8 +45,13 @@
 				
 		        $('li.notice1 div.details').html(html);
 		        var noticeCnt = notice[2];
+		        console.dir(no.length);
 		        //alert(noticeCnt);
-		        $('.notifications-count.js-count').html(noticeCnt);
+		        if(no.length == 1){
+		        	$('.notifications-count.js-count').html(0);		        	
+		        }else{
+		        	$('.notifications-count.js-count').html(noticeCnt);		        			        	
+		        }
 		        //$(".notice .details .title").data(id);
 		        //$("notice").attr('data-fruit','7');
 		       // $(".notice .details .title").append("<button type='button' class='noticeBtn button-default button-dismiss js-dismiss'>×</button>");

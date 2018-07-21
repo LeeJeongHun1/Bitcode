@@ -131,6 +131,9 @@ CREATE TABLE tb_code_like
 
 ALTER TABLE tb_code_like ADD CONSTRAINT FK_tb_code_like_no_tb_code_board_no FOREIGN KEY (no)
  REFERENCES tb_code_board (no)  ON DELETE RESTRICT ON UPDATE RESTRICT;
+ 
+ 
+ 
 
 ALTER TABLE tb_code_like ADD CONSTRAINT FK_tb_code_like_id_tb_user_id FOREIGN KEY (id)
  REFERENCES tb_user (id)  ON DELETE RESTRICT ON UPDATE RESTRICT;
@@ -182,6 +185,22 @@ create table tb_qna_file (
 ) default charset=utf8;
 
 alter table tb_qna_file comment 'Q&A 게시판 첨부파일';
+
+--------------------------------------------------------------------
+-- Q&A 게시판 추천 게시판 테이블
+--------------------------------------------------------------------
+
+CREATE TABLE tb_qna_like
+(
+    `like_no`     int(10)        NOT NULL    AUTO_INCREMENT COMMENT '추천번호', 
+    `no`          int(10)        NOT NULL    COMMENT '글번호', 
+    `id`          varchar(30)    NOT NULL    COMMENT '아이디', 
+    PRIMARY KEY (like_no)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+ALTER TABLE tb_qna_like ADD CONSTRAINT FK_tb_qna_like_no_tb_qna_board_no FOREIGN KEY (no)
+ REFERENCES tb_qna_board (no)  ON DELETE RESTRICT ON UPDATE RESTRICT;
+
 --------------------------------------------------------------------
 -- IT News 테이블
 --------------------------------------------------------------------
