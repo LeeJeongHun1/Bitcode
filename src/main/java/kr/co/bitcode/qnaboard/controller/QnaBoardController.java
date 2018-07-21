@@ -28,27 +28,8 @@ public class QnaBoardController {
 	private QnaBoardService qnaBoardService;
 	
 	@RequestMapping("/list.do")
-	public void listBoard(Search search) throws Exception {
-		/*ModelAndView mav = new ModelAndView("qnaboard/list");
-		mav.addObject("list", qnaBoardService.list());
-		//mav.addObject("list", qnaBoardService.search(search));
-		return mav;*/
-	}
+	public void listBoard(Search search) throws Exception {	}
 	
-/*	@RequestMapping("/list.do")
-	public ModelAndView listBoard(Page page) throws Exception {
-		ModelAndView mav = new ModelAndView("qnaboard/list");
-		mav.addObject("list", qnaBoardService.list(page));
-		return mav;
-	}*/
-	
-/*	@RequestMapping("/list.do")
-	public ModelAndView listBoard(Search search) throws Exception {
-		ModelAndView mav = new ModelAndView("qnaboard/list");
-		mav.addObject("list", qnaBoardService.selectQnaBoard(search));
-		return mav;
-	}
-*/	
 	@RequestMapping("/delete.do")
 	public String delete(int no) throws Exception {
 		qnaBoardService.delete(no);
@@ -58,7 +39,6 @@ public class QnaBoardController {
 	@RequestMapping("/detail.do")
 	public ModelAndView viewDeatil(int no) throws Exception {
 		ModelAndView mav = new ModelAndView("qnaboard/detail");
-		System.out.println(no +"글번호");
 		mav.addObject("list", qnaBoardService.detailQna(no));
 		return mav;
 	}	
@@ -87,7 +67,6 @@ public class QnaBoardController {
 	
 	@RequestMapping(value="/insertRe.do",method=RequestMethod.POST)
 	public String editReQna(Qna qna,QnaFile qnafile) throws Exception {
-		System.out.println("가는지");
 		qnaBoardService.insertReQna(qna, qnafile);
 		return "redirect:/qnaboard/list.do";
 	}
@@ -110,14 +89,12 @@ public class QnaBoardController {
 	@ResponseBody
 	public List<Code> selectLanguage() throws Exception{
 		List<Code> list = qnaBoardService.selectLanguage();
-		System.out.println(list.get(1).getCode());
 		return list;
 	}
 	
 	@RequestMapping("/search.json")
 	@ResponseBody
 	public Map<String,Object> search(Search search) throws Exception{
-		System.out.println("컨트롤러여부");
 		return qnaBoardService.search(search);
 	}
 	
@@ -126,28 +103,24 @@ public class QnaBoardController {
 	@RequestMapping("/commentList.json")
 	@ResponseBody
 	public List<QnaComment> commentList(int no) throws Exception{
-		System.out.println("댓글리스트호출");
 		return qnaBoardService.commentList(no);
 	}
 	
 	@RequestMapping("/commentRegist.json")
 	@ResponseBody
 	public List<QnaComment> commentRegist(QnaComment comment) throws Exception{
-		System.out.println("댓글등록");
 		return qnaBoardService.commentRegist(comment);
 	}
 	
 	@RequestMapping("/commentDelete.json")
 	@ResponseBody
 	public List<QnaComment> commentDelete(QnaComment comment) throws Exception {
-		System.out.println("댓글삭제확인");
 		return qnaBoardService.commentDelete(comment);
 	}
 	
 	@RequestMapping("/commentUpdate.json")
 	@ResponseBody
 	public List<QnaComment> commentUpdate(QnaComment comment) throws Exception {
-		System.out.println("댓글업뎃확인");
 		return qnaBoardService.commentUpdate(comment);
 	}
 	

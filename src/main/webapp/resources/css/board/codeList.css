@@ -16,6 +16,7 @@
 	margin-right: 50px;
 	margin-bottom: 20px;
 }
+table.codeList > thead > tr > th {text-align: center;}
 th, td, a {
   transition: color 333ms ease-in-out;
   vertical-align: middle;

@@ -66,7 +66,6 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 	@Override
 	public Map<String,Object> detailQna(int no) throws Exception {
 		mapper.updateViewCnt(no);
-		System.out.println("감?");
 		Map<String,Object> map= new HashMap<>();
 		Qna qna = mapper.selectBoardByNo(no);
 		qna.setFileList(mapper.selectQnaFile(no));
@@ -79,7 +78,6 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 	}
 	@Override
 	public void delete(int no) throws Exception {
-		System.out.println("게시판 삭제 기능 구현 ");
 		mapper.deleteBoard(no);
 		mapper.deleteQnaFile(no);
 	}
@@ -132,7 +130,6 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 		map.put("list", mapper.selectBoardSearch(search));
 		map.put("pageResult", new PageResult(search.getPageNo(),mapper.searchBoardCount(search)));
 		List<Qna> list = mapper.selectBoardSearch(search);
-		System.out.println(search.getBegin());
 		return map;
 	
 	}
@@ -143,12 +140,6 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 		map.put("list", mapper.selectboard(page));
 		map.put("pageResult", new PageResult(page.getPageNo(),mapper.selectBoardCount(page)));
 		List<Qna> list = mapper.selectboard(page);
-		for(Qna qna:list) {
-			System.out.println("닉네임" +qna.getNickName());
-		}
-		System.out.println(page.getBegin() +"시작");
-		System.out.println(page.getEnd() +"끝");
-		System.out.println(page.getPageNo());
 		return map;
 		
 	}
@@ -156,14 +147,12 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 	@Override
 	public List<QnaComment> commentRegist(QnaComment comment) throws Exception {
 		mapper.insertComment(comment);
-		System.out.println("댓글적용");
 		return mapper.selectComment(comment.getNo());
 	}
 
 
 	@Override
 	public List<QnaComment> commentUpdate(QnaComment comment) throws Exception {
-		System.out.println(comment.getCommentNo() +"댓글업데이트서비스");
 		mapper.updateComment(comment);
 		return mapper.selectComment(comment.getNo()); 
 	}
@@ -176,7 +165,6 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 
 	@Override
 	public List<QnaComment> commentList(int no) throws Exception {
-		System.out.println("댓글리스트 확인중");
 		return mapper.selectComment(no);
 	}
 	

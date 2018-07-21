@@ -33,7 +33,7 @@
 				console.dir(no);
 				console.dir($("body > div.notifications.js-notifications.myshow > ul > li.notice1.item.js-item"));
 				if(no.length == 1 && no[0].length == 0) {
-					alert("가");
+					//alert("가");
 					$(".notice1").remove();
 				}
 				for(var i=0; i < no.length-1; i++){
@@ -45,7 +45,7 @@
 				
 		        $('li.notice1 div.details').html(html);
 		        var noticeCnt = notice[2];
-		        //alert(noticeCnt);s
+		        //alert(noticeCnt);
 		        $('.notifications-count.js-count').html(noticeCnt);
 		        //$(".notice .details .title").data(id);
 		        //$("notice").attr('data-fruit','7');

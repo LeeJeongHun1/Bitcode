@@ -171,6 +171,7 @@ border-top: 20px solid #3498db;
 .notifications .notifications-list .item .details .title,
 .notifications .notifications-list .item .details .date {
   display: block;
+  color: #7f8c8d !important;
 }
 .notifications .notifications-list .item .details .date {
   color: #95a5a6;

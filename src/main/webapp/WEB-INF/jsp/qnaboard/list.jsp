@@ -99,7 +99,7 @@
 		location.href = "list.do?pageNo=" + pageNo;
 	}
 	*/
-	
+	var session = '${sessionScope.user.id}';
   	window.onload = function(){
  		pageList();
 	} 
@@ -238,15 +238,19 @@
 	function makeList(data){
 		var html="";
 		$(".table tbody").html("");
-			for(let i of data.list){
+			for(let qna of data.list){
 			console.log(data.list);
-			if(i.groupOrder == 0){
-				html+='<tr>';
-				html+='<td>'+i.no+'</td>';
-				html+='<td>'+i.codeName+'</td>';
-				html+='<td style="text-align:left;"><a href="detail.do?no='+i.no+'">'+i.title+'</a></td>';
-				html+='<td>'+i.nickName+'</td>';
-				var date = new Date(i.regDate);
+			if(qna.groupOrder == 0){
+				html+= '<tr>';
+				html+= '<td>'+qna.no+'</td>';
+				html+= '<td>'+qna.codeName+'</td>';
+				if( session != ""){
+				html+= '<td style="text-align:left;"><a href="detail.do?no='+qna.no+'">'+qna.title+'</a></td>';					
+				}else{
+				html+= '<td style="text-align:left;">'+qna.title+'</td>';										
+				}
+				html+= '<td>'+qna.nickName+'</td>';
+				var date = new Date(qna.regDate);
 				var time = date.getFullYear() + "-" 
 				         + (date.getMonth() + 1) + "-" 
 				         + date.getDate();
@@ -254,16 +258,28 @@
 				         + date.getMinutes() + ":"
 				         + date.getSeconds(); */
 				html+= '<td>' + time + '</td>'; 
-				html+= '<td>'+i.likeCnt+'</td>';
-                html+= '<td>'+i.viewCnt+'</td>'; 
+				html+= '<td>'+qna.likeCnt+'</td>';
+                html+= '<td>'+qna.viewCnt+'</td>'; 
 				html+= '</tr>'	
 			}else{
-				html+='<tr>';
-				html+='<td></td>';
-				html+='<td>'+i.codeName+'</td>';
-				html+='<td style="text-align:left;"><a href="detail.do?no='+i.no+'">⤷ '+i.title+'</a></td>';
-				html+='<td>'+i.nickName+'</td>';
-				var date = new Date(i.regDate);
+				html+= '<tr>';
+				html+= '<td></td>';
+				html+= '<td>'+qna.codeName+'</td>';
+				html+= '<td style="text-align:left;">';					
+				if(session != ""){
+					for(var i = 1; i < qna.depth; i++){
+						html+= '<span>&nbsp;&nbsp;&nbsp;</span> ';					
+					}
+						html+= '<span style="color:#000 font-weight:600;">⤷ RE </span>';
+						html+= '<a href="detail.do?no='+qna.no+'">'+qna.title+'</a></td>';
+				}else{
+					for(var i = 1; i < qna.depth; i++){
+						html+= '<span>&nbsp;&nbsp;&nbsp;</span> ';					
+						}
+						html+= '<span style="color:#000">⤷ RE </span>'+qna.title+'</td>';
+				}
+				html+= '<td>'+qna.nickName+'</td>';
+				var date = new Date(qna.regDate);
 				var time = date.getFullYear() + "-" 
 				         + (date.getMonth() + 1) + "-" 
 				         + date.getDate();
@@ -271,8 +287,8 @@
 				         + date.getMinutes() + ":"
 				         + date.getSeconds(); */
 				html+= '<td>' + time + '</td>'; 
-				html+= '<td>'+i.likeCnt+'</td>';
-                html+= '<td>'+i.viewCnt+'</td>'; 
+				html+= '<td>'+qna.likeCnt+'</td>';
+                html+= '<td>'+qna.viewCnt+'</td>'; 
 				html+= '</tr>'	
 			}
  		}	
