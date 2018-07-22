@@ -47,10 +47,7 @@ INSERT INTO tb_qna_board(id, name, nick_name, password, email, point, auth, birt
  	where id = 'id3';
  	
  	
-update tb_qna_board
-   set stsfc_code = 13
- where id = 'yoo' and
- 	   no = 206;
+
  
  delete from tb_qna_board
  	where id = 'yoo';
@@ -60,7 +57,7 @@ delete from tb_qna_board
 	where id = 'yoo';
 
 	
-select * from tb_user
+select * from tb_qna_board
 	where id = 'yoo';
 
 -- 전체 테이블 조회
@@ -80,16 +77,22 @@ delete from tb_attendance
 delete from tb_attendance
 	where id = 'wldus';	
 
-select * from tb_attendance;
+select * from tb_stsfc_code;
 
-		select *
-		  from tb_attendance
-		 where id = 'id1'; 
+select *
+  from tb_qna_board
+ where id = 'yoo'; 
 
 INSERT INTO tb_attendance(att_id, id, att_date)
 	VALUES(67, 'id1', 20180719);
-	
-	
+---------------------------------------
+update tb_qna_board
+   set stsfc_code = 12
+ where id = 'yoo' and
+ 	   no = 210;	
+-----------------------------------------------------
+
+ 	   
 INSERT INTO tb_stsfc_code(stsfc_code, stsfc_step)
 	VALUES(13, '만족');
 ------------------------------------------------------------------------------------------------------

@@ -5,7 +5,9 @@ import java.util.List;
 import kr.co.bitcode.repository.domain.CodeBoard;
 import kr.co.bitcode.repository.domain.CodeBoardFile;
 import kr.co.bitcode.repository.domain.CodeBoardLike;
+import kr.co.bitcode.repository.domain.CodeComment;
 import kr.co.bitcode.repository.domain.CodeSearch;
+import kr.co.bitcode.repository.domain.QnaComment;
 
 public interface CodeBoardMapper {
 	public List<CodeBoard> selectBoard(CodeSearch cs);
@@ -23,4 +25,10 @@ public interface CodeBoardMapper {
 	public void insertCodeLike (CodeBoardLike cbl);
 	public void updateBoardLikeCnt(int no);
 	public int boardCount(CodeSearch cs);
+	
+	// 댓글 
+	public void insertComment(CodeComment comment);
+	public void updateComment(CodeComment comment);
+	public void deleteComment(int commentNo);
+	public List<CodeComment> selectComment(int no);
 }

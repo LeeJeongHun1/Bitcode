@@ -9,7 +9,9 @@ import kr.co.bitcode.repository.domain.Code;
 import kr.co.bitcode.repository.domain.CodeBoard;
 import kr.co.bitcode.repository.domain.CodeBoardFile;
 import kr.co.bitcode.repository.domain.CodeBoardLike;
+import kr.co.bitcode.repository.domain.CodeComment;
 import kr.co.bitcode.repository.domain.CodeSearch;
+import kr.co.bitcode.repository.domain.QnaComment;
 
 public interface CodeBoardService {
 	public Map<String, Object> boardListInfo(CodeSearch cs);
@@ -24,5 +26,10 @@ public interface CodeBoardService {
 	public void replyBoard(CodeBoard cb);
 	public void updateGroupNo(int no);
 	public int likeBoard(CodeBoardLike cbl);
-
+	
+	// 댓글
+	public List<CodeComment> commentList(int no) throws Exception;
+	public List<CodeComment> commentRegist(CodeComment comment) throws Exception;
+	public List<CodeComment> commentUpdate(CodeComment comment) throws Exception;
+	public List<CodeComment> commentDelete(CodeComment comment) throws Exception;	
 };

@@ -32,7 +32,9 @@ import kr.co.bitcode.repository.domain.Code;
 import kr.co.bitcode.repository.domain.CodeBoard;
 import kr.co.bitcode.repository.domain.CodeBoardFile;
 import kr.co.bitcode.repository.domain.CodeBoardLike;
+import kr.co.bitcode.repository.domain.CodeComment;
 import kr.co.bitcode.repository.domain.CodeSearch;
+import kr.co.bitcode.repository.domain.QnaComment;
 
 @Controller
 @CrossOrigin(origins = "*")
@@ -162,7 +164,32 @@ public class CodeBoardController {
 //		int no = cbl.getNo();
 		return service.likeBoard(cbl);
 	}
+
+	// 댓글 
 	
+	@RequestMapping("/commentList.json")
+	@ResponseBody
+	public List<CodeComment> commentList(int no) throws Exception{
+		return service.commentList(no);
+	}
+	
+	@RequestMapping("/commentRegist.json")
+	@ResponseBody
+	public List<CodeComment> commentRegist(CodeComment comment) throws Exception{
+		return service.commentRegist(comment);
+	}
+	
+	@RequestMapping("/commentDelete.json")
+	@ResponseBody
+	public List<CodeComment> commentDelete(CodeComment comment) throws Exception {
+		return service.commentDelete(comment);
+	}
+	
+	@RequestMapping("/commentUpdate.json")
+	@ResponseBody
+	public List<CodeComment> commentUpdate(CodeComment comment) throws Exception {
+		return service.commentUpdate(comment);
+	}	
 	
 	
 }

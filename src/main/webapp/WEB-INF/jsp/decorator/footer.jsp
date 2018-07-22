@@ -40,7 +40,7 @@
             </c:if>
             <%-- 메모장 --%>
             <c:if test="${!empty sessionScope.user}">
-				<a href="#note" id="notepad" onclick="notepad()" data-toggle="tooltip" title="메모장"></a>
+				<a href="#note" id="notepad" onclick="notepad();" data-toggle="tooltip" title="메모장"></a>
             </c:if>
             <%-- 플레이어 --%>
             <c:if test="${!empty sessionScope.user}">
@@ -151,7 +151,7 @@
                         <!-- 크롬브라우저 주소표시줄 -->
                         <div class="search-bar">
                             <span class="info"><i class="fas fa-lock"></i> Securised</span>
-                            <input type="text" id="bitUrl" value="http://www.daum.net">
+                            <input type="text" id="bitUrl" value="https://www.daum.net">
                             <span class="star"><i class="far fa-star"></i></span>
                         </div>
                         <div class="points-bar">
@@ -183,94 +183,48 @@
                 <!-- Bookmarks -->
 	            </div>
 	            <!-- 크롬 브라우저일 경우 iframe -->
- 	       		<iframe src="http://www.daum.net" frameborder="0" width="800px" height="400px" name="bitBrowser" id="bitBrowser"></iframe>
+ 	       		<iframe src="http://www.daum.net" frameborder="0" width="800px" height="400px"
+ 	       				 name="bitBrowser" id="bitBrowser"></iframe>
 	        </div> 
 	    </div>
 	    <!-- Chrome end -->
     
     
-    <!-- Notepad start -->
-    <div id="noteBody">
-	<div id="w-frame">
+    <!-- 메모장 시작 -->
+	<div id="w-frame" class="noteBody">
 		<div id="w-frame-white">
 			<div id="title">
-			<h4>BIT NOTE</h4>
+			<h4 id="nTitle">BIT NOTE</h4>
 			<div id="button-wrap">
 				<div class="bt close" title="Close" id="noteClose"></div>
-				<div class="bt maximize" title="Maximize"></div>
-				<div class="bt minimize" title="Minimize"></div>
 			</div>
 			<div class="clear"></div>
 			</div>
-			<!-- title -->
+			<!-- 메모장 메뉴바 -->
 			<div id="container">
-			<div id="menu">
-				<ul>
+			<div id="menu"><ul>
 			<li><a href="#">File</a>
 				<div class="sub">
 				<ul>
-					<li><a href="#">New <span>Ctrl+N</span></a></li>
-					<li><a href="#">Open... <span>Ctrl+O</span></a></li>
-					<li><a href="#">Save <span>Ctrl+S</span></a></li>
-					<li class="topline"><a href="#">Save As...</a></li>
-					<li><a href="#">Page Setup...</a></li>
-					<li><a href="#">Print... <span>Ctrl+P</span></a></li>
-					<li class="topline"><a href="#">Exit</a></li>
+					<li><a href="#" id="newNote">New <span>Ctrl+N</span></a></li>
+					<li><a href="#" id="saveNote">Save <span>Ctrl+S</span></a></li>
+					<li class="topline"><a href="#" id="exitNote">Exit</a></li>
 				</ul>
-				</div></li>
-			<li><a href="#">Edit</a>
-				<div class="sub">
-					<ul>
-					<li><a href="#">Undo <span>Ctrl+Z</span></a></li>
-					<li class="topline"><a href="#" class="disable">Cut <span>Ctrl+X</span></a></li>
-					<li><a href="#" class="disable">Copy <span>Ctrl+C</span></a></li>
-					<li><a href="#">Paste <span>Ctrl+V</span></a></li>
-					<li><a href="#">Delete <span>Del</span></a></li>
-					<li class="topline"><a href="#">Find... <span>Ctrl+F</span></a></li>
-					<li><a href="#">Find Next <span>F3</span></a></li>
-					<li><a href="#">Replace... <span>Ctrl+H</span></a></li>
-					<li><a href="#" class="disable">Go To... <span>Ctrl+G</span></a></li>
-					<li class="topline"><a href="#">Select All <span>Ctrl+A</span></a></li>
-					<li><a href="#">Time/Date <span>F5</span></a></li>
-				</ul>
-				</div></li>
-			<li><a href="#">Format</a>
-				<div class="sub min">
-					<ul>
-						<li><a href="#">Word Wrap</a></li>
-						<li><a href="#">Font... <span></span></a></li>
-					</ul>
-				</div></li>
-
-			<li><a href="#">View</a>
-				<div class="sub min">
-					<ul>
-					<li><a href="#" class="disable">Status bar</a></li>
-					</ul>
-				</div></li>
-
-			<li><a href="#">Help</a>
-				<div class="sub min">
-					<ul>
-					<li><a href="#">View Help</a></li>
-					<li class="topline"><a href="#">About Notepad</a></li>
-					</ul>
-				</div></li>
-			</ul>
-			</div>
+				</div>
+				</li>
+			</ul></div>
 			<!-- end menu -->
 			
-			<!-- NOTEPAD CONTENTS -->
-			<textarea autofocus="autofocus" spellcheck="false"></textarea>
+			<!-- 메모장 내용 -->
+			<textarea autofocus="autofocus" spellcheck="false" name="myNoteContent" id="myNoteContent"></textarea>
 			<!-- END NOTEPAD CONTENTS -->
 			</div>
 			<!-- container -->
 		</div>
 		<!-- w-frame white -->
 	</div>
-	</div>
 	<!-- w-frame -->
-	<!-- Notepad end -->
+	<!-- 메모장 끝 -->
 	    
 	    
 	    
@@ -332,16 +286,6 @@ $(".chromeBody").draggable();
 	}
 });
 
-// 메모장 드래그
-$("#noteBody").draggable();
-
-$("#noteBody").hide();
-$("#noteClose").click(function(){
-	$("#noteBody").hide();
-});
-function notepad(){
-	$("#noteBody").toggle();
-};
 
 // 툴팁출력
 $("[data-toggle='tooltip']").tooltip();

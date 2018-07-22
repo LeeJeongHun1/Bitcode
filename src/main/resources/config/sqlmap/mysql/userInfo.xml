@@ -32,7 +32,7 @@
 	</resultMap>
 	
 	<select id="selectmyQuestion" parameterType="string" resultMap="stsfcCodeMap">
-		select s.stsfc_step, q.no, q.id, q.title
+		select s.stsfc_step, s.stsfc_code, q.no, q.id, q.title
 		from tb_stsfc_code s
 		inner 
 		join tb_qna_board q
