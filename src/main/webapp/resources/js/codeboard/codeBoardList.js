@@ -11,26 +11,30 @@ window.onload = function(){
 //		color: '#000'
 //			
 //	});
-	codeList();
+	var target = document.getElementById("option");
+	var input = document.getElementById("input").value;
+	var option = target.options[target.selectedIndex].value;
+	codeList(input,option);
 };
 
 document.querySelector("#search").onclick=function(){
 	var target = document.getElementById("option");
 	var input = document.getElementById("input").value;
 	var option = target.options[target.selectedIndex].value;
+	console.log("input++++++++++++" + input);
+	console.log("option+++++++++++" + option);
 	codeList(input,option);
 }
-
 
 function codeList(searchInput,searchOption,pageNo){
 	if(pageNo == ""){
 		pageNo = 1;
 	}
 	if(searchInput == ""){
-		searchInput == null;
+		searchInput = null;
 	}
 	if(searchOption == ""){
-		searchOption == 0;
+		searchOption = 0;
 	}
 //	console.log(searchOption);
 //	console.log(searchInput);
@@ -54,8 +58,6 @@ function codeList(searchInput,searchOption,pageNo){
 }
 
 function makeCodeList(data){
-	console.log(data);
-	console.log("+++++++="+session);
 	var html="";
 	for(let codeBoard of data){
 		var date = new Date(codeBoard.regDate);

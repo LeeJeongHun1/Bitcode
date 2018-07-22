@@ -6,6 +6,7 @@ public class CodeSearch {
 	private int pageNo =1;
 	private int begin;
 	private int end;
+	private int listSize = 10;
 	public int getPageNo() {
 		return pageNo;
 	}
@@ -13,13 +14,13 @@ public class CodeSearch {
 		this.pageNo = pageNo;
 	}
 	public int getBegin() {
-		return begin;
+		return (pageNo -1) * listSize ;
 	}
 	public void setBegin(int begin) {
 		this.begin = begin;
 	}
 	public int getEnd() {
-		return end;
+		return pageNo * listSize + 1;
 	}
 	public void setEnd(int end) {
 		this.end = end;
