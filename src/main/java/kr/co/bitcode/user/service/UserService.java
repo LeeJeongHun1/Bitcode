@@ -10,6 +10,9 @@ import kr.co.bitcode.repository.domain.User;
 public interface UserService {
 	//유저 기본정보 수정
 	void updateUser(User user) throws Exception; 
+	public void updateNick(User user) throws Exception;
+	public void updateEmail(User user) throws Exception;
+	
 	//비번수정
 	void updateUserPass (User user) throws Exception;
 	

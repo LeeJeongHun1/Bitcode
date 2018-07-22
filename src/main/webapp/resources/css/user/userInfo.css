@@ -129,7 +129,14 @@ div .userInformation {
 	font-weight: bold;
 }
 
-
+#paName {
+    margin-top: 20px;
+    color: #305f5f;
+    text-align: left;
+    margin-left: 34px;
+    margin-right: 14px;
+    font-weight: bold;
+}
 
 
 
@@ -176,6 +183,8 @@ a > #userInfoUpdate {
 	color: white;	
 /* 	padding-top: 1px; */
 }
+
+
 #submitBox {
   text-align: center;
 /*   margin-top: 30%; */
@@ -194,6 +203,27 @@ a > #userInfoUpdate {
   ext-decoration:none;	
 }
 
+#submitBoxPass{
+  text-align: center;
+/*   margin-top: 30%; */
+/*   position:; */
+  width:45%;
+  height: 40px;
+  padding:10px;
+  border-radius:6px;
+  border:0;
+  margin-left:151px;
+  background:#df736a;
+  font-size:1.2em;
+  color:#fff;
+/*   text-shadow:#d9554a; */
+  box-shadow:0px 3px 0px #e89791;
+  ext-decoration:none;	
+}
+
+
+
+
 input {
   width:95%;
   background:#f5f5f5;
@@ -203,6 +233,29 @@ input {
   margin-bottom:5px;
   border:1px solid #eee;
 }
+
+.nickDiv > #nickName {
+  width:72%;
+  background:#f5f5f5;
+  border:0;
+  padding:16px;
+  border-radius:6px;
+  margin-bottom:5px;
+  margin-left:-10px;
+  border:1px solid #eee;
+}
+
+.nickDiv > #userEmail {
+  width:72%;
+  background:#f5f5f5;
+  border:0;
+  padding:16px;
+  border-radius:6px;
+  margin-bottom:5px;
+  margin-left:-10px;
+  border:1px solid #eee;
+}
+
 
 input:focus, 
 textarea:focus {

@@ -16,6 +16,10 @@ public interface UserMapper {
 	//유저정보 수정
 	public void updateUser(User user) throws Exception;
 	
+	public void updateEmail(User user) throws Exception;
+	
+	public void updateNick(User user) throws Exception;
+	
 	//비번수정하기
 	public void updateUserPass (User user) throws Exception;
 	//모든 유저들 List뽑기
@@ -23,6 +27,7 @@ public interface UserMapper {
 	
 	//이메일 인증 위해 ID 와 Email 매칭 유저 찾기
 	public User selectbyIdEmail(User user) throws Exception;
+	
 	
 
 	

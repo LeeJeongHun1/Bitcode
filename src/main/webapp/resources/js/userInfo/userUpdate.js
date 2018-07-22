@@ -12,7 +12,8 @@ $(".emailDetail, #userEmail").keyup(function(){
 		$.ajax({
 			url: "/bitcode/user/emailCheck.json",
 			data: {
-				"email" : $("#userEmail").val()	
+				"email" : $("#userEmail").val(),	
+				"id" : $("#userId").val()	
 			},
 			dataType: "json",
 			success: function (data) {

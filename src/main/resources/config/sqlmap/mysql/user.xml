@@ -67,6 +67,18 @@
          where id = #{id}  
     </update>
     
+    
+    <update id="updateNick" parameterType="user">
+        update tb_user
+           set nick_name = #{nickName}
+         where id = #{id}  
+    </update>    
+    
+     <update id="updateEmail" parameterType="user">
+        update tb_user
+           set email = #{email}
+         where id = #{id}  
+    </update>     
     <update id="updateUserPass" parameterType="user">
         update tb_user
            set password = #{password}

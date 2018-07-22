@@ -66,13 +66,17 @@ border-radius: 12px 12px 0px 0px;
 			<div class="swatches"><span class="red"></span><span class="orange"></span><span class="yellow"></span><span class="green"></span><span class="blue"></span></div>
 			<div class="maxbtn"><span></span></div>
 			<div class="xbtn"></div>
-	
 		</div>    
 		  <h3 class="userInformation">Information</h3>
 		  <p id="pName">이름</p>
 		  <input name="name" type="text" id="userName" value="${user.name}" readonly="readonly"/>
+		  <div class="nickDiv">
 		  <p id="pName">별명</p>
 		  <input name="nickName" type="text" id="nickName" data-flag="no" class="inputDetail" value="${user.nickName}" readonly="readonly"/>
+		  <span id="submitBox">
+		  	<a href="#" id="submitNickBtn"><span id="userInfoUpdate">수정</span></a>
+  		  </span>
+		 </div>
 		 <p id="pName">ID</p>
 		  <input name="id" type="text" id="userId" value="${user.id}" readonly="readonly"/>
 	
@@ -82,14 +86,17 @@ border-radius: 12px 12px 0px 0px;
 		  <input type="text" name="month" id="birth2"  size="2" class="inputDetail1" value="${monthId1}" readonly="readonly"/>
 		  <input type="text" name="date" id="birth3"  size="2" class="inputDetail1" value="${dateId1}" readonly="readonly"/>  
 		</div>
-		
+		<div class="nickDiv">
 		 <p id="pName">Email</p>
 		  <input name="email" type="text" id="userEmail" data-flag="no" class="emailDetail" value="${user.email}" readonly="readonly"/>
+ 		  <span id="submitBox"><a href="#" id="submitEmailBtn"><span id="userInfoUpdate">수정</span></a></span>
+		</div>
 		 <div class="updateBtns">
-		  <span id="submitBox">
-		  	<a href="${pageContext.request.contextPath}/user/updateUserForm.do?id=${sessionScope.user.id}" id="submitBtn"><span id="userInfoUpdate">나의 정보 수정</span></a>
-		  </span>
-		  <span id="submitBox">
+		 <span id="paName">Password</span>
+<!-- 		  <span id="submitBox"> -->
+<%-- 		  	<a href="${pageContext.request.contextPath}/user/updateUserForm.do?id=${sessionScope.user.id}" id="submitBtn"><span id="userInfoUpdate">나의 정보 수정</span></a> --%>
+<!-- 		  </span> -->
+		  <span id="submitBoxPass">
 		  	<a href="#" id="submitPassBtn"><span id="userInfoUpdate">비밀번호 수정</span></a>
   		  </span>
  		 </div>   
@@ -106,7 +113,6 @@ border-radius: 12px 12px 0px 0px;
 				<th colspan="1">번호</th><th colspan="1">글쓴이</th><th colspan="4">제목</th><th colspan="3">만족도</th>
 			</tr>
 			<c:forEach var="qnaList" items="${qnaList}">
-<%-- 			<c:if test="${qnaList.id == user.id}"> --%>
 			<tr>
 				<td>${qnaList.no}</td>			
 				<td>${user.nickName}</td>				
@@ -132,9 +138,6 @@ border-radius: 12px 12px 0px 0px;
 				</c:when> 					
 			</c:choose>	
 			</tr>
-			
-			
-<%-- 			</c:if> --%>
 			</c:forEach>
 		</table>
 	</div>	
@@ -168,11 +171,14 @@ border-radius: 12px 12px 0px 0px;
 				<input name="attDate" id="${attendList.attID}" value='<fmt:formatDate value="${attendList.attDate}" pattern="yyyy-MM-dd" />' type="hidden" >
 		</c:forEach>
 		</div>
-	  	<span><a class="stampId" href="#" id="stampId">
+		
+<%-- 		<form action="${pageContext.request.contextPath}/user/userInfo.do" method="post" id="todayAttenStamp"> --%>
+	  	<span><a class="stampId" href="${pageContext.request.contextPath}/user/userInfo.do?id=${sessionScope.user.id}" id="stampId">
 	  	<img class="stamp" src="${pageContext.request.contextPath}/resources/images/stamp.png"></a></span>
 	  	<span id="textStmp">출석하기Click</span>
-	  	<form action="${pageContext.request.contextPath}/user/updateAttend.do" method="post" id="todayAttenStamp"></form>
+<!-- 	    </form> -->
 	  	<input name="id" value="${user.id}" type="hidden" >
+	  
 	  	<div id="kCalendar"></div>
     </div>
   </div>
@@ -189,10 +195,10 @@ border-radius: 12px 12px 0px 0px;
 console.dir($("input[name=attDate]"))
 
 
-// $("#stampId").click(function () {
-// 	swal("출척이 체크 되었습니다.");
+$("#stampId").click(function () {
+	swal("출척이 체크 되었습니다.");
 // 	$("#todayAttenStamp").submit();
-// });
+});
 
 // var userid = $("#userId").val();
 // $("#stampId").click(function () {
@@ -355,6 +361,45 @@ function kCalendar(id, date, data) {
 // 	console.dir($("#calTable").find("td").data("ckeck"))
 }
 
+//email 수정
+$("#submitEmailBtn").on('click',function () {
+	swal.mixin({
+		  input: 'text',
+		  confirmButtonText: '전송',
+		  showCancelButton: true,
+		  progressSteps: ['1']
+		}).queue([
+		  {
+		    title: '변경할 Email 주소를 입력하세요',
+		    text: '비밀번호 수정시 꼭 필요한 이메일 입니다.'
+		  },
+		]).then(function(result){
+			if(result.value[0] == ""){
+				swal("다시 입력하세요");
+			}else {
+				updateEmail(result);
+			}
+		})
+});
+function updateEmail(data) {
+	$.ajax({
+		url : "/bitcode/user/updateEmailForm.json",
+		type: "POST",
+		data : {
+			"email" : data.value[0],
+			"id"	  : id
+		},
+		success : function(data){
+			if(data == false){
+				swal("Email 주소가 수정되었습니다.");
+				location.reload();
+			}else{
+				swal("중복된 Email 입니다. 다시 시도해주세요.");
+			}
+			console.log(data + "성공")
+		}
+	})
+}
 
 
 
@@ -367,19 +412,45 @@ function kCalendar(id, date, data) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+// 별명 수정
+$("#submitNickBtn").on('click',function () {
+	swal.mixin({
+		  input: 'text',
+		  confirmButtonText: '전송',
+		  showCancelButton: true,
+		  progressSteps: ['1']
+		}).queue([
+		  {
+		    title: '변경할 별명을 입력하세요',
+		    text: 'BitCode'
+		  },
+		]).then(function(result){
+			if(result.value[0] == ""){
+				swal("다시 입력하세요");
+			}else {
+				updateNcik(result);
+			}
+		})
+});
+function updateNcik(data) {
+	$.ajax({
+		url : "/bitcode/user/updateNickForm.json",
+		type: "POST",
+		data : {
+			"nickName" : data.value[0],
+			"id"	  : id
+		},
+		success : function(data){
+			if(data != undefined){
+				swal("별명이 수정되었습니다.");
+				location.reload();
+			}else{
+				swal("다시 시도 해주시기 바랍니다.");
+			}
+			console.log(data + "성공")
+		}
+	})
+}
 
 
 <%-- <script src="${pageContext.request.contextPath}/resources/js/userInfo/userInfo.js"></script> --%>

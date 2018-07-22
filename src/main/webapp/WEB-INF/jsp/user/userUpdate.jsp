@@ -29,7 +29,7 @@
 			<input type="text" name="month" id="birth2"  size="2" class="inputDetail1" value="${monthId1}" readonly="readonly"/>
 			<input type="text" name="date" id="birth3"  size="2" class="inputDetail1" value="${dateId1}" readonly="readonly"/>  
 		</div>
-		  <input name="birthday" type="hidden" class="inputDetail" />
+		   <input name="birthday" type="hidden" class="inputDetail" id="birthday"/>
 		<hr>
 		<div id="submitBox1">
 			 <a href="#1" id="submitBtn">Update Click</a>

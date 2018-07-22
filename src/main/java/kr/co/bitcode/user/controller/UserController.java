@@ -110,18 +110,42 @@ public class UserController {
 		return mav;
 	} 
 	//일반 유저 수정
-	@RequestMapping("/updateUser.do") 
-	public String updateUser(User user, RedirectAttributes attr, HttpSession session) throws Exception { 
+//	@RequestMapping("/updateUser.do") 
+//	public String updateUser(User user, RedirectAttributes attr, HttpSession session) throws Exception { 
+//		User userInfo = loginService.selectUserById(user.getId());	
+//		if(user.getEmail() == null) {
+//			user.setEmail(userInfo.getEmail());
+//		}
+//		if(user.getNickName() == null) {
+//			user.setName(userInfo.getNickName());
+//		}
+//		userService.updateUser(user);
+//		session.setAttribute("user", userInfo);
+//		return "redirect:/user/userInfo.do";
+//	} 
+	
+	//email 수정
+	@RequestMapping("/updateEmailForm.json") 
+	public @ResponseBody boolean updateEmailForm(User user, HttpSession session) throws Exception { 
+		List<User> list = loginService.selectAllUser();
+		for (User users : list) {
+			if(user.getEmail().equals(users.getEmail())) {
+				return true;
+			}
+		}
+		userService.updateEmail(user);
 		User userInfo = loginService.selectUserById(user.getId());	
-		if(user.getEmail() == null) {
-			user.setEmail(userInfo.getEmail());
-		}
-		if(user.getNickName() == null) {
-			user.setName(userInfo.getNickName());
-		}
-		userService.updateUser(user);
 		session.setAttribute("user", userInfo);
-		return "redirect:/user/userInfo.do";
+		return false;
+	} 
+	
+	//nick
+	@RequestMapping("/updateNickForm.json") 
+	public @ResponseBody User updateNickForm(User user, HttpSession session) throws Exception { 
+		userService.updateNick(user);
+		User userInfo = loginService.selectUserById(user.getId());	
+		session.setAttribute("user", userInfo);
+		return userInfo;
 	} 
 	
 	//비번수정 JSON
@@ -137,20 +161,6 @@ public class UserController {
 		
 		return user;
 	} 
-	
-	//email 중복 체크
-//	@RequestMapping("/emailCheck.json") 
-//	public @ResponseBody List<User> emailCheck(User user) throws Exception { 
-//		List<User> listUser = loginService.selectAllUser();
-//		for (User users : listUser) {
-//			if(user.getEmail().equals(users.getEmail())) {
-//				users.getEmail();
-////				
-//				return listUser;
-//			}
-//		}
-//		return listUser;
-//	} 
 	
 	@RequestMapping("/emailCheck.json") 
 	public @ResponseBody boolean emailCheck(User user) throws Exception { 

@@ -62,6 +62,17 @@ public class UserServiceImpl implements UserService{
 		return userInfoMapper.selectmyQuestion(id);
 	}
 
+	@Override
+	public void updateNick(User user) throws Exception {
+		userMapper.updateNick(user);
+	}
+
+	@Override
+	public void updateEmail(User user) throws Exception {
+		userMapper.updateEmail(user);
+		
+	}
+
 
 	
 
