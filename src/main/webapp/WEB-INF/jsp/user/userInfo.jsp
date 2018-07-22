@@ -78,9 +78,9 @@ border-radius: 12px 12px 0px 0px;
 	
 		<p id="pName">Birthday</p>
 		<div class="birthday">
-		  <input type="text" name="year" id="birth1" size="4" class="inputDetail1" value="${yearId1}"/>
-		  <input type="text" name="month" id="birth2"  size="2" class="inputDetail1" value="${monthId1}"/>
-		  <input type="text" name="date" id="birth3"  size="2" class="inputDetail1" value="${dateId1}"/>  
+		  <input type="text" name="year" id="birth1" size="4" class="inputDetail1" value="${yearId1}" readonly="readonly"/>
+		  <input type="text" name="month" id="birth2"  size="2" class="inputDetail1" value="${monthId1}" readonly="readonly"/>
+		  <input type="text" name="date" id="birth3"  size="2" class="inputDetail1" value="${dateId1}" readonly="readonly"/>  
 		</div>
 		
 		 <p id="pName">Email</p>
@@ -111,7 +111,7 @@ border-radius: 12px 12px 0px 0px;
 				<td>${qnaList.no}</td>			
 				<td>${user.nickName}</td>				
 				<td colspan="4"><a id="board_title" href='${pageContext.request.contextPath}/qnaboard/detail.do?no=${qnaList.no}'>${qnaList.title}</a></td>				
-				<td>${qnaList.stsfcCode}</td>
+				<td>${qnaList.stsfcStep}</td>
 			</tr>
 			</c:if>
 			</c:forEach>

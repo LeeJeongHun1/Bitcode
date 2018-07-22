@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import kr.co.bitcode.login.service.LoginService;
 import kr.co.bitcode.repository.domain.Attendance;
 import kr.co.bitcode.repository.domain.Qna;
+import kr.co.bitcode.repository.domain.StsfcCode;
 import kr.co.bitcode.repository.domain.User;
 import kr.co.bitcode.user.service.UserService;
 
@@ -55,7 +56,7 @@ public class UserController {
 		System.out.println("userId 출첵 폼 : " + id);
 		ModelAndView mav = new ModelAndView();
 		//한 유저에 대한 질문 List 출력
-		List<Qna> qnaList= userService.selectmyQuestion(id);
+		List<StsfcCode> qnaList= userService.selectmyQuestion(id);
 		// 유저 등급및 포인트 출력
 		User userInfo = loginService.selectUserById(id);
 		//출첵
@@ -71,7 +72,8 @@ public class UserController {
 	public ModelAndView joinForm(String id) throws Exception{ 
 		ModelAndView mav = new ModelAndView();
 		//한 유저에 대한 질문 List 출력
-		List<Qna> qnaList= userService.selectmyQuestion(id);
+		List<StsfcCode> qnaList= userService.selectmyQuestion(id);
+		
 		// 유저 등급및 포인트 출력
 		User userInfo = loginService.selectUserById(id);
 		//생년월일 3칸에 나누어서 출력

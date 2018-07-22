@@ -6,14 +6,21 @@ import java.util.List;
 
 import kr.co.bitcode.repository.domain.Attendance;
 import kr.co.bitcode.repository.domain.Qna;
+import kr.co.bitcode.repository.domain.StsfcCode;
 
 public interface UserInfoMapper {
 	//유저 질문 목록
-	public List<Qna> selectmyQuestion(String id) throws Exception;
+//	public List<Qna> selectmyQuestion(String id) throws Exception;
 	
 	//출석체크
 	public void insertAttendance(Attendance attend) throws Exception;
 	//출석체크
 	public List<Attendance> selectAttendance(String id) throws Exception;
+
+	
+	
+	//만족
+	List<StsfcCode> selectmyQuestion(String id) throws Exception;
+
 	
 }

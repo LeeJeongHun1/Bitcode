@@ -19,13 +19,27 @@
 		<result column="stsfc_code" property="stsfcCode" />
 	</resultMap>
 	
-	<select id="selectmyQuestion" parameterType="string" resultMap="qnaMap">
-		select *
-		  from tb_qna_board
-		 where id = #{id}
+<!-- 	<select id="selectmyQuestion" parameterType="string" resultMap="qnaMap"> -->
+<!-- 		select * -->
+<!-- 		  from tb_qna_board -->
+<!-- 		 where id = #{id} -->
+<!-- 	</select> -->
+
+
+	<resultMap id="stsfcCodeMap" type="stsfcCode">
+		<result column="stsfc_code" property="stsfcCode" />
+		<result column="stsfc_step" property="stsfcStep" />
+	</resultMap>
+	
+	<select id="selectmyQuestion" parameterType="string" resultMap="stsfcCodeMap">
+		select s.stsfc_step, q.no, q.id, q.title
+		from tb_stsfc_code s
+		inner 
+		join tb_qna_board q
+		on q.stsfc_code = s.stsfc_code
+		where id = #{id};
 	</select>
-
-
+	
 
 
 	<resultMap id="attendMap" type="attendance">

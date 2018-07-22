@@ -19,26 +19,49 @@ select * from tb_user;
 INSERT INTO tb_user(id, name, nick_name, password, email, point, auth, birthday)
 	VALUES('id1', 'hong', 'hongGilDong', 'id1', 'hong@naver.com', 10, 'U', 19880101);
 
-INSERT INTO tb_user(id, name, nick_name, password, email, point, auth, birthday)
-	VALUES('id2', '홍길동', '길동이', 'id2', 'hong2@naver.com', 10, 'U', 19880102);
 	
+select * from tb_qna_board;
 
-
+	select s.stsfc_step, q.no, q.id, q.title, q.content
+	from tb_stsfc_code s
+	inner 
+	join tb_qna_board q
+	on q.stsfc_code = s.stsfc_code
+	where id = 'yoo';
+		  
+INSERT INTO tb_qna_board(id, name, nick_name, password, email, point, auth, birthday)
+	VALUES('id2', '홍길동', '길동이', 'id2', 'hong2@naver.com', 10, 'U', 19880102);
+		 
+		select *
+		from tb_qna_board q
+		inner
+		join tb_language_code c
+		on
+		q.language_code = c.language_code
+		inner 
+		join tb_user u
+		on q.id = u.id
+		where q.id = 'yoo';		 
    
  select * from tb_user
  	where id = 'id3';
  	
  	
-update tb_user
-   set point = 250
- where id = 'id1';  
+update tb_qna_board
+   set stsfc_code = 13
+ where id = 'yoo' and
+ 	   no = 206;
+ 
+ delete from tb_qna_board
+ 	where id = 'yoo';
 -----------------------------------------------------------------------------------------------------
 --delete 유저
-delete from tb_user
-	where id = 'wldus';
+delete from tb_qna_board
+	where id = 'yoo';
 
 	
-select * from tb_user;
+select * from tb_user
+	where id = 'yoo';
 
 -- 전체 테이블 조회
 show tables;
@@ -65,6 +88,10 @@ select * from tb_attendance;
 
 INSERT INTO tb_attendance(att_id, id, att_date)
 	VALUES(67, 'id1', 20180719);
+	
+	
+INSERT INTO tb_stsfc_code(stsfc_code, stsfc_step)
+	VALUES(13, '만족');
 ------------------------------------------------------------------------------------------------------
 -- 출석체크 테이블
 --------------------------------------------------------------------
@@ -76,8 +103,13 @@ create table tb_attendance (
 
 alter table tb_attendance comment '출석체크 테이블';
 
+--------------------------------------------------------------------
+create table tb_stsfc_code (
+    `stsfc_code`  char(2)        primary key    comment '만족도코드', 
+    `stsfc_step`  varchar(30)    not null    comment '만족도' 
+) default charset=utf8;
 
-
+alter table tb_stsfc_code comment '답변만족도 코드표';
 
 
 commit;
