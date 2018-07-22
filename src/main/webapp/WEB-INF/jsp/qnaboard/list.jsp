@@ -40,134 +40,40 @@
 		</tr>
 		</thead>
 		<tbody>
-		<%-- <c:forEach var="i" items="${list.list}">
-                <tr style="height:13px; type:text/css;">
-                <c:choose>
-                <c:when test="${i.groupOrder == 0}">
-                  <td style="font-size:14px;">${i.no}</td>
-                    <td style="font-size:14px;">${i.codeName}</td>
-                    <td style="font-size:14px;"><a href="detail.do?no=${i.no}">${i.title}</a></td>
-                    <td style="font-size:14px;">${i.id}</td>
-                    <td style="font-size:14px;"><fmt:formatDate value="${i.regDate}" pattern="yyyy-MM-dd HH-mm-ss" /></td>
-                    <td style="font-size:14px;">${i.likeCnt}</td>
-                    <td style="font-size:14px;">${i.viewCnt}</td>
-                </c:when>
-                <c:otherwise>
-                    <td style="font-size:14px;"></td>
-                    <td style="font-size:14px;">${i.codeName}</td>
-                    <td style="font-size:14px;"><a href="detail.do?no=${i.no}">${i.title}</a></td>
-                    <td style="font-size:14px;">${i.id}</td>
-                    <td style="font-size:14px;"><fmt:formatDate value="${i.regDate}" pattern="yyyy-MM-dd HH-mm-ss" /></td>
-                    <td style="font-size:14px;">${i.likeCnt}</td>
-                    <td style="font-size:14px;">${i.viewCnt}</td>
-                </c:otherwise>
-                </c:choose>
-                </tr>
-                </c:forEach>   --%>
 		</tbody>
 		</table>
-		<%-- <navi:page data="${pageResult}" />  --%>
+		<!-- qnaList -->
 		<nav style="text-align: center;">
 			<ul class="pagination"></ul>
 		</nav>
-
-		<form id="list" action=''>
-			<select style="margin-left: 395px; width: 121px; margin-top: 12px; height: 35px;
-					border: 1px solid #d1d0cf; background-color: #fff; line-height: 29px;"
-					name="type">
+		<div class="searchBox">
+		<form id="list" action='' onsubmit="return searchList()">
+			<select name="type">
 				<option value="title">제목</option>
 				<option value="content">내용</option>
 				<option value="writer">글쓴이</option>
 				<option value="code">분류</option>
-			</select> <input type="text" id="search" name="keyword"
-				style="margin-left: 3px;">
+			</select> <input type="text" id="search" name="keyword">
 			<button id="btn" type="submit">검색</button>
 		</form>
-		
+		</div>
+		<!-- searchBox -->
 		 <button class="btn btn-default btn-group-xs pull-right order" type="button" onclick="location.href='insertForm.do'">글쓰기</button>		 
-				 <!-- type="button" onclick="location.href='insertForm.do'">글쓰기</button> -->
-
-	<!-- <span style="font-size:20px;margin-left:485px;">&lt; &nbsp;1 2 3 4 5 &nbsp;&gt;</span> -->
-	
 	</div>
+	<!-- qna -->
 	</div>
+	<!-- card1 -->
 	</div>
-	
+	<!-- qnaBody -->
 	<script>
-	/*
-	function goPage(pageNo) {
-		location.href = "list.do?pageNo=" + pageNo;
-	}
-	*/
+
 	var session = '${sessionScope.user.id}';
   	window.onload = function(){
- 		pageList();
+ 		searchList();
 	} 
-	 // 페이징 처리 
-	function makePageLink(data) {
-		var html = "";
-		if (data.count != 0) {
-			var clz = "";
-			if (data.prev == false) {
-				clz = "disabled";
-			}
-			html += '<li class="' + clz + '">';
-			var fn = "";
-			if (data.prev == true) {
-				console.log(data.beginPage +"개");
-				fn = "javascript:pageList(" + (data.beginPage - 1) + ");";
-			}else{
-				fn = "#1"
-			}
-			html += '<a href="' + fn + '" aria-label="Previous">';
-			html += '    <span aria-hidden="true">&laquo;</span>';
-			html += '</a>';
-		    html += '</li>';
-		    for (var i = data.beginPage; i <= data.endPage; i++) {
-		    	if (i == data.pageNo) {
-				    html += '<li class="active"><a href="#1">' + i + '</a></li>';
-		    	}
-		    	else {
-		    		html += '<li><a href="javascript:pageList(' + i + ');">' + i + '</a></li>';
-		    	}
-		    }
-			clz = "";
-			if (data.next == false) {
-				clz = "disabled";
-			}
-			html += '<li class="' + clz + '">';
-			fn = "";
-			if (data.next == true) {
-				fn = "javascript:pageList(" + (data.endPage + 1) + ");";
-			}else{
-				fn = "#1";
-			}
-			html += '<a href="' + fn + '" aria-label="Next">';
-			html += '    <span aria-hidden="true">&raquo;</span>';
-			html += '</a>';
-		    html += '</li>';
-		}
-		$("nav > ul.pagination").html(html);
-	}
-	 // 리스트 출력
-	function pageList(pageNo){
-		if (pageNo === undefined) {
-			pageNo = 1;
-		}
-		$.ajax({
-			url: "<c:url value='/qnaboard/list.json' />",
-			data: {pageNo: pageNo},
-			dataType: "json"
-		})
-		.done(function (data){
-			makeList(data)
-			makePageLink(data.pageResult)
-		});
-		return false;
-		}
 	
 	 //검색 페이징
-	  function searchMakePageLink(data) {
+	  function makePageLink(data) {
 		var html = "";
 		if (data.count != 0) {
 			var clz = "";
@@ -216,10 +122,9 @@
 	
 	// 검색 
 	function searchList(pageNo){
-	$("#btn").click(function(){
 		$.ajax({
 			//type:'post',
-			url:"<c:url value='/qnaboard/search.json'/>",
+			url:"<c:url value='/qnaboard/list.json'/>",
 			data:{type: $("select[name='type']").val(), 
 				  keyword: $("input[name='keyword']").val(),
 				  pageNo: pageNo},
@@ -227,10 +132,9 @@
 		})
 		.done(function (data){
 			makeList(data);
-			searchMakePageLink(data.pageResult)
+			makePageLink(data.pageResult)
 		});
 		return false;
-		})
 		
 	}
 	
@@ -295,7 +199,7 @@
 		$(".table tbody").html(html);
 	}	
 	
-	searchList();
+	//searchList();
 		
 	// 글쓰기버튼 로그인 확인
 	$(".order").click(function(){

@@ -55,15 +55,6 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 		return list;
 	}
 
-/*	@Override
-	public Qna detailQna(int no) throws Exception {
-		mapper.updateViewCnt(no);
-		System.out.println(no);
-		Qna qna = mapper.selectBoardByNo(no);
-		qna.setFileList(mapper.selectQnaFile(no));
-		return qna;
-	}*/
-	
 	@Override
 	public Map<String,Object> detailQna(int no) throws Exception {
 		mapper.updateViewCnt(no);
@@ -126,7 +117,7 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 	}
 
 	@Override
-	public Map<String,Object> search(Search search) throws Exception {
+	public Map<String,Object> list(Search search) throws Exception {
 		Map<String,Object> map = new HashMap<>();
 		map.put("list", mapper.selectBoardSearch(search));
 		map.put("pageResult", new PageResult(search.getPageNo(),mapper.searchBoardCount(search)));
@@ -135,16 +126,6 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 		System.out.println("검색 페이징 확인" + search.getBegin());
 		return map;
 	
-	}
-
-	@Override
-	public Map<String,Object> list(Page page) throws Exception {
-		Map<String,Object> map = new HashMap<>();
-		map.put("list", mapper.selectboard(page));
-		map.put("pageResult", new PageResult(page.getPageNo(),mapper.selectBoardCount(page)));
-		List<Qna> list = mapper.selectboard(page);
-		return map;
-		
 	}
 
 	@Override

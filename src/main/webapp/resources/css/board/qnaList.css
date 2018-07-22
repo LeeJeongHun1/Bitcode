@@ -242,3 +242,6 @@ span {
 	font-size: 16px;
 	margin-top: -3px;
 }
+#list select {width: 121px; margin-top: 12px; height: 35px; border: 1px solid #d1d0cf; background-color: #fff; line-height: 29px;}
+#search {margin-left: 3px; height:31px;}
+#btn {width: 50px; height: 32px;}

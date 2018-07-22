@@ -78,14 +78,6 @@ public class QnaBoardController {
 		return "qnaboard/insertReForm";
 	}
 	
-	@RequestMapping("/list.json")
-	@ResponseBody
-	public Map<String,Object> list(Page page) throws Exception{
-		System.out.println("리스트컨트롤러확인");
-		return qnaBoardService.list(page);
-		
-	}
-	
 	@RequestMapping("/selectLanguage.json")
 	@ResponseBody
 	public List<Code> selectLanguage() throws Exception{
@@ -93,10 +85,10 @@ public class QnaBoardController {
 		return list;
 	}
 	
-	@RequestMapping("/search.json")
+	@RequestMapping("/list.json")
 	@ResponseBody
-	public Map<String,Object> search(Search search) throws Exception{
-		return qnaBoardService.search(search);
+	public Map<String,Object> list(Search search) throws Exception{
+		return qnaBoardService.list(search);
 	}
 	
 	// 댓글 
