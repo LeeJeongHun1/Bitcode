@@ -13,9 +13,11 @@ import kr.co.bitcode.repository.domain.Code;
 import kr.co.bitcode.repository.domain.CodeBoard;
 import kr.co.bitcode.repository.domain.CodeBoardFile;
 import kr.co.bitcode.repository.domain.CodeBoardLike;
+import kr.co.bitcode.repository.domain.CodeComment;
 import kr.co.bitcode.repository.domain.CodeSearch;
 import kr.co.bitcode.repository.domain.Page;
 import kr.co.bitcode.repository.domain.PageResult;
+import kr.co.bitcode.repository.domain.QnaComment;
 import kr.co.bitcode.repository.mapper.CodeBoardMapper;
 import kr.co.bitcode.repository.mapper.CodeListMapper;
 
@@ -118,5 +120,29 @@ public class CodeBoardServiceImpl implements CodeBoardService{
 			return mapper.selectBoardByNo(cbl.getNo()).getLikeCnt();
 		}
 	}
+
+	@Override
+	public List<CodeComment> commentRegist(CodeComment comment) throws Exception {
+		mapper.insertComment(comment);
+		return mapper.selectComment(comment.getNo());
+	}
+
+
+	@Override
+	public List<CodeComment> commentUpdate(CodeComment comment) throws Exception {
+		mapper.updateComment(comment);
+		return mapper.selectComment(comment.getNo()); 
+	}
+
+	@Override
+	public List<CodeComment> commentDelete(CodeComment comment) throws Exception {
+		mapper.deleteComment(comment.getCommentNo());
+		return mapper.selectComment(comment.getNo());
+	}
+
+	@Override
+	public List<CodeComment> commentList(int no) throws Exception {
+		return mapper.selectComment(no);
+	}	
 
 }

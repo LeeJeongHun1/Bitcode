@@ -9,110 +9,73 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/board/codeDetail.css">
 </head>
 <body>
-<div class="detailBoay">
+			<input type="hidden" name="groupOrder" value="${cb.groupOrder}" /> 
+			<input type="hidden" name="depth" value="${cb.depth}" />
+			<input type="hidden" name="groupNo" value="${cb.groupNo}" />
+<div class="codeDetailBody">
 	<div id="card1" class="card ten col">
 		<div class="topbar yellow">
 		<div class="swatches"><span class="red"></span><span class="orange"></span><span class="yellow"></span><span class="green"></span><span class="blue"></span></div>
 		<div class="xbtn" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">x</div>
 		</div>
-<!-- 		<h1 class="information">상세보기</h1> -->
-<!-- 	<div class="detail"> -->
-<!-- 		<div class="detailList"> -->
-<%-- 					<c:out value="${cb.title}"/> --%>
-<!-- 					<span class="nowrap">|</span> -->
-<%-- 					<span class="cf" >${cb.languageName}</span>  --%>
-<!-- 					<span class="day" >2018-02-10</span> -->
-<%-- 			<input type="hidden" name="groupOrder" value="${cb.groupOrder}" />  --%>
-<%-- 			<input type="hidden" name="depth" value="${cb.depth}" /> --%>
-<%-- 			<input type="hidden" name="groupNo" value="${cb.groupNo}" /> --%>
-<!-- 		</div> -->
-<!-- 	</div> -->
-<!-- </div> -->
-<!-- </div> -->
 
-	<div class="container">
-		<div class="shell-container">
-			<div class="contents_header" >
-				<div class="title" >
-					<c:out value="${cb.title}" /><span class="nowrap">|</span>
+	<div class="shell-container code">
+		<div class="contents_header" >
+				<div class="titleWrap" >
+<%-- 					<c:if test="${empty list.code}">없습니다.</c:if> --%>
+					<div class="title">
+					<span class="codeTitle" /><c:out value="${cb.title}"/></span>
+					<span class="nowrap">|</span>
 					<span class="cf" >${cb.languageName}</span> 
-					<span class="day" >2018-02-10</span>
-			<input type="hidden" name="groupOrder" value="${cb.groupOrder}" /> 
-			<input type="hidden" name="depth" value="${cb.depth}" />
-			<input type="hidden" name="groupNo" value="${cb.groupNo}" />
+				</div>
+					<span class="day" ><fmt:formatDate value="${cb.regDate}" pattern="yyyy-MM-dd HH:mm:ss" /></span>
 				</div>
 
 				<div class="header_info">
 					<span class="shell_writer" ><c:out value="${cb.id}" /></span>
 					<span class="shell_hits" >조회<c:out value="${cb.viewCnt}" /></span>
-					<span class="shell_recommend" id='likeCnt'>추천<c:out value="${cb.likeCnt}" /></span>
-
 				</div>
 			</div>
-			<div class="contents_body" >
-				<div class="detail">
-					<c:out value="${cb.content}" />
+			<div class="codeList" >
+				<div class="contents_body">
+					<div class="detail">
+					<div class="contents">
+					<c:forEach var="cbFile" items="${cbFileList}">
+					파일명: <a href="${pageContext.request.contextPath}/fileDown.do?filePath=${cbFile.filePath}&systemFileName=${cbFile.systemName}&originalFileName=${cbFile.oriName}">${cbFile.oriName}</a>					
+	        		미리보기 : <img src="${pageContext.request.contextPath}/fileDown.do?filePath=${cbFile.filePath}&systemFileName=${cbFile.systemName}&originalFileName=${cbFile.oriName}" style="width: 150px; height: 150px "><br>
+					</c:forEach>
+					${cb.content}
+					</div>
+					<span class="like_count"><c:out value="${cb.likeCnt}" /></span>
+					</div>
 				</div>
-				<div>
-				<c:forEach var="cbFile" items="${cbFileList}">
-				파일명 : <a href="${pageContext.request.contextPath}/fileDown.do?filePath=${cbFile.filePath}&systemFileName=${cbFile.systemName}&originalFileName=${cbFile.oriName}">${cbFile.oriName}</a> 크기 : ${cbFile.fileSize}(bytes) <br>
-        		미리보기 : <img src="${pageContext.request.contextPath}/fileDown.do?filePath=${cbFile.filePath}&systemFileName=${cbFile.systemName}&originalFileName=${cbFile.oriName}" style="width: 150px; height: 150px "><br>
-					${cbFile.filePath}
-				</c:forEach>
+				
+<!-- 				댓글 -->
+			<ul class="reBody">
+				
+			</ul>
+			
+			<%-- 댓글 등록 --%>
+			<ul class="writeComment">
+			<li class="reWrite">
+			<form id="commentR" action='' method="post">
+				<input type="hidden" name="no" value="${cb.no}">
+				<input type="hidden" name="groupNo" value="${cb.groupNo}">
+				<div class="reWriteDiv">
+				<input type="text" name="id" value="${sessionScope.user.nickName}" hidden="hidden"/>
+				<table>
+					<tbody>
+						<tr>
+							<td width="300px">${sessionScope.user.nickName}</td>
+							<td width="500px"><textarea name="content" style="resize: none; width=500px;"></textarea></td>
+							<td width="100px"><button id="Rbtn" class="resubmit btn btn-default btn-group-xs">등록</button></td>
+						</tr>
+					</tbody>
+				</table>
 				</div>
-				<ul class="reBody" >
-					<li>
-						<div class="reHeader">
-							<p class="reWriter" >a</p>
-							<span class="reDay"><fmt:formatDate value="${cb.regDate}" pattern="yyyy-MM-dd HH:mm:ss" /></span> 
-							<span class="recomment"> <a href="#" >답글</a>
-							</span>
-						</div>
-						<div class="comment">cmt</div>
-					</li>
-					<li class="reple">
-						<div class="reHeader">
-							<p class="reWriter" >a</p>
-							<span class="reDay">2018.02.30 11:20</span> <span
-								class="recomment"> <a href="#" >답글</a>
-							</span>
-						</div>
-						<div class="comment">cmt</div>
-					</li>
-					<li class="repleW" style="display:none;">
-						<div class="comment">
-							<div class="reWriteDiv"
-								style="  width: 87%; clear: both; padding: 10px; border-width: 1px; border-style: solid; background-color: #ffffff; background-image: none; background-repeat: repeat; border-color: #e5e5e5;">
-								<table>
-									<tbody>
-										<tr>
-											<td><textarea></textarea></td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-							<div class="reBtn">
-								<button class="resubmit">등록</button>
-							</div>
-
-						</div>
-					</li>
-
-					<li class="reWrite">
-						<div class="reWriteDiv" >
-							<table>
-								<tbody>
-									<tr>
-										<td><textarea ></textarea></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-						<div class="reBtn">
-							<button class="resubmit">등록</button>
-						</div>
-					</li>
-				</ul>
+			</form>
+			</li>
+			</ul>
 			</div>
 			<div class="contents_btn">
     		<a href='<c:url value="list.do" />'><button>목록</button></a>
@@ -131,7 +94,7 @@
 			dataType: "json",
 			data: {
 				id: '${sessionScope.user.id}',
-				no: ${cb.no}
+				no: '${cb.no}'
 			}
 		})
 		.done(function (result){
@@ -143,6 +106,121 @@
 			}
 		})
 	}
+
+	// 댓글 삭제
+ 	function commentDelete(commentNo) {
+		$.ajax({
+			url: "commentDelete.json",
+			data: {
+				no: "${cb.no}", 
+				commentNo: commentNo
+			},
+			dataType: "json",
+			success:  commentList
+		});
+	} 
+	
+	//댓글 업데이트 폼
+	function commentUpdateForm(commentNo){
+		$(".reBody li[id^=cN]").show();
+		$(".reBody li[id^=modCN]").remove();
+		
+		var modId = $("#cN" + commentNo + " > div.reHeader > p.reWriter").text();
+		var modContent = $("#cNum" + commentNo).text();
+		
+		var html = '';
+	
+		html += '<li id="cN' + commentNo + '" class="commentOr">';
+		html += '<div class="reHeader">';
+		html += '<p class="reWriter">'+ modId +'</p>';
+		html += '<span class="reDay"></span>';
+		html += '<a href="javascript:commentUpdate(' + commentNo + ');" id="cu' + commentNo + '" class="btn btn-success btn-sm" role="button">확인</a>';
+		html += '<a href="javascript:commentCancel(' + commentNo + ');" id="cu' + commentNo + '" class="btn btn-success btn-sm" role="button">취소</a>';
+		html += '<div id="cNum' + commentNo + '" class="comment"><input type="text" name="content" id="modComment' + commentNo + '" value="' + modContent + '"></div>'; 
+		html += '</li>';
+		
+		$("#cN" + commentNo).after(html);
+		$("#cN" + commentNo).hide();
+	} // 댓글 업데이트 폼
+					
+	// 댓글 업데이트
+	function commentUpdate(commentNo) {
+		$.ajax({
+		url: "commentUpdate.json",
+		type:"POST",
+		data :{
+			no:"${cb.no}",
+			commentNo:commentNo,
+			content: $("#modComment" + commentNo).val()
+			},
+		dataType: "json"
+	   })
+	.done(function(data){
+		commentList(data);
+	});
+	} // 댓글 업데이트
+	
+	// 댓글 수정 취소
+	function commentCancel(commentNo) {
+		$("#cN" + commentNo).show();
+		$("#modCN" + commentNo).remove();
+	} // 댓글 수정 취소
+	
+	// 댓글 등록
+	$("#Rbtn").click(function(e){
+		e.preventDefault();
+		var formData = $("#commentR").serialize();	
+	$.ajax({
+		url: "commentRegist.json",
+		type:"POST",
+		cache: false,
+		data: formData
+	}).done(function(data){
+		$("#commentR > div.reWriteDiv textarea").val("");
+		commentList(data);
+	})
+	})
+	
+	// 댓글 리스트 출력
+	function  commentList(data){
+		var html ="";
+		$("ul.reBody").html("");
+		for(let i of data){
+			html+='<li id="cN' + i.commentNo + '" class="commentOr"><div class="reHeader"><p class="reWriter">'+i.id+'</p>';
+			var date = new Date(i.regDate);
+			var time = date.getFullYear() + "년" 
+			         + (date.getMonth() + 1) + "울" 
+			         + date.getDate() + "일"
+			         + date.getHours() + ":"
+			         + date.getMinutes() + ":"
+			         + date.getSeconds();
+			html += '<span class="reDay">' + time + '</span>';
+ 			html += '<a href="javascript:commentUpdateForm(' + i.commentNo + ')" id="cu' + i.commentNo + '" class="btn btn-success btn-sm" role="button">수정</a>';
+			html += '<a href="javascript:commentDelete(' + i.commentNo + ')" class="btn btn-success btn-sm" role="button">삭제</a>';
+			/* html += '<span class="recomment"><a href="#">답글</a></span></div>';   */
+			html += '<div id="cNum' + i.commentNo + '" class="comment">'+i.content+'</div></li>'; 
+		}
+		if(data.length == 0){
+			html += '<div class="comment">리뷰가 존재하지 않습니다.</div></li>';
+		}
+		$("ul.reBody").html(html);
+	
+} 
+	function selectComment(){
+		$.ajax({
+			url: "commentList.json",
+			data:{no:"${cb.no}"},
+			dataType:"json",
+		}).done(function(data){
+			commentList(data);
+		})
+	}
+	
+	selectComment();
+	
+	
+	$(".codeDetailBody").draggable();	
 	</script>
+<%-- 	<script src="${pageContext.request.contextPath}/resources/js/codeboard/codeBoardDetail.js"></script> --%>
 </body>
 </html>

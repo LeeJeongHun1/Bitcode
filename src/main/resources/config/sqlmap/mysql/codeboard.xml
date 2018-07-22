@@ -195,5 +195,45 @@
                values(#{languageCode},#{title}, #{content}, #{id}
                ,#{groupOrder}+1,#{depth}+1,#{groupNo})
         </insert>
+<!-- 댓글 -->
+	<resultMap id="commentMap" type="codeComment">
+		<result column="no" property="no" />
+		<result column="id" property="id" />
+		<result column="content" property="content" />
+		<result column="comment_no" property="commentNo" />
+		<result column="reg_date" property="regDate" />
+		<result column="group_no" property="groupNo" />
+		<result column="group_order" property="groupOrder" />
+		<result column="depth" property="depth" />
+	</resultMap>
+	<!-- 댓글쿼리 -->
+	<select id="selectComment" parameterType="int" resultMap="commentMap">
+		select
+		*
+		from
+		tb_code_comment
+		where no = #{no}
+		order by comment_no asc
+	</select>
 
+	<update id="updateComment" parameterType="codeComment">
+		update tb_code_comment
+		set content = #{content}
+		where comment_no = #{commentNo}
+	</update>
+
+	<insert id="insertComment" parameterType="codeComment">
+		insert into
+		tb_code_comment
+		(no,id,content,group_no)
+		values(
+		#{no},#{id},#{content},#{groupNo})
+	</insert>
+
+	<delete id="deleteComment" parameterType="int">
+		delete
+		from
+		tb_code_comment
+		where comment_no = #{commentNo}
+	</delete>
 </mapper>
