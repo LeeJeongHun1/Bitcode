@@ -35,7 +35,7 @@ update tb_user
 -----------------------------------------------------------------------------------------------------
 --delete 유저
 delete from tb_user
-	where id = '811325256';
+	where id = 'wldus';
 
 	
 select * from tb_user;
@@ -55,7 +55,7 @@ delete from tb_attendance
 	
 --
 delete from tb_attendance
-	where id = 'id1';	
+	where id = 'wldus';	
 
 select * from tb_attendance;
 

@@ -87,7 +87,7 @@ border-radius: 12px 12px 0px 0px;
 		  <input name="email" type="text" id="userEmail" data-flag="no" class="emailDetail" value="${user.email}" readonly="readonly"/>
 		 <div class="updateBtns">
 		  <span id="submitBox">
-		  	<a href="${pageContext.request.contextPath}/user/updateUserForm.do" id="submitBtn"><span id="userInfoUpdate">나의 정보 수정</span></a>
+		  	<a href="${pageContext.request.contextPath}/user/updateUserForm.do?id=${sessionScope.user.id}" id="submitBtn"><span id="userInfoUpdate">나의 정보 수정</span></a>
 		  </span>
 		  <span id="submitBox">
 		  	<a href="#" id="submitPassBtn"><span id="userInfoUpdate">비밀번호 수정</span></a>

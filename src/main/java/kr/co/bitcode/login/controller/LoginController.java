@@ -142,6 +142,8 @@ public class LoginController {
 	//ID 중복 체크
 	@RequestMapping("/signUpIdCheck.json") 
 	public @ResponseBody boolean signUpForm(User user) throws Exception { 
+		System.out.println("id찾기들어옴");
+		System.out.println(user.getId());
 		List<User> list = loginService.selectAllUser();
 		for (User users : list) {
 			if(user.getId().equals(users.getId())) {
@@ -179,6 +181,7 @@ public class LoginController {
 	@ResponseBody
 	public User fogetId(User user,  RedirectAttributes attr) throws Exception { 
 		User userInfo = loginService.selectUserByNameEmail(user);
+
 		if(userInfo != null){
 			return userInfo;
 		}

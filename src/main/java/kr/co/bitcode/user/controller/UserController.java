@@ -1,12 +1,7 @@
 package kr.co.bitcode.user.controller;
 
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -69,26 +64,22 @@ public class UserController {
 		mav.addObject("qnaList", qnaList);
 		mav.addObject("userInfo", userInfo);
 		mav.addObject("attendList", attendList);
-		
 		return mav;
-		
 	}
-	
-	
 	//회원정보
 	@RequestMapping("/userInfo.do") 	
 	public ModelAndView joinForm(String id) throws Exception{ 
 		ModelAndView mav = new ModelAndView();
 		//한 유저에 대한 질문 List 출력
-		
 		List<Qna> qnaList= userService.selectmyQuestion(id);
 		// 유저 등급및 포인트 출력
 		User userInfo = loginService.selectUserById(id);
+		//생년월일 3칸에 나누어서 출력
 		String birth = userInfo.getBirthday();
 		String yearId1 = birth.substring(0, 4);
+		
 		String monthId1 =birth.substring(4, 6);
 		String dateId1 =birth.substring(6);
-
 		//출첵
 		List<Attendance> attendList =  userService.selectAttendance(id);
 		mav.setViewName("user/userInfo");
@@ -98,21 +89,35 @@ public class UserController {
 		mav.addObject("yearId1",yearId1);
 		mav.addObject("monthId1", monthId1);
 		mav.addObject("dateId1", dateId1);
-		
 		return mav;
-		
-		
 	} 
 	//수정 클릭시
 	@RequestMapping("/updateUserForm.do") 
-	public String updateUserForm()  { 
-		return "user/userUpdate";
+	public ModelAndView updateUserForm(String id) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		User userInfo = loginService.selectUserById(id);
+		//생년월일 3칸에 나누어서 출력
+		String birth = userInfo.getBirthday();
+		String yearId1 = birth.substring(0, 4);
+		String monthId1 =birth.substring(4, 6);
+		String dateId1 =birth.substring(6);
+		mav.setViewName("user/userUpdate");
+		mav.addObject("yearId1",yearId1);
+		mav.addObject("monthId1", monthId1);
+		mav.addObject("dateId1", dateId1);
+		return mav;
 	} 
 	//일반 유저 수정
 	@RequestMapping("/updateUser.do") 
 	public String updateUser(User user, RedirectAttributes attr, HttpSession session) throws Exception { 
-		userService.updateUser(user);
 		User userInfo = loginService.selectUserById(user.getId());	
+		if(user.getEmail() == null) {
+			user.setEmail(userInfo.getEmail());
+		}
+		if(user.getNickName() == null) {
+			user.setName(userInfo.getNickName());
+		}
+		userService.updateUser(user);
 		session.setAttribute("user", userInfo);
 		return "redirect:/user/userInfo.do";
 	} 
@@ -131,7 +136,30 @@ public class UserController {
 		return user;
 	} 
 	
+	//email 중복 체크
+//	@RequestMapping("/emailCheck.json") 
+//	public @ResponseBody List<User> emailCheck(User user) throws Exception { 
+//		List<User> listUser = loginService.selectAllUser();
+//		for (User users : listUser) {
+//			if(user.getEmail().equals(users.getEmail())) {
+//				users.getEmail();
+////				
+//				return listUser;
+//			}
+//		}
+//		return listUser;
+//	} 
 	
+	@RequestMapping("/emailCheck.json") 
+	public @ResponseBody boolean emailCheck(User user) throws Exception { 
+		List<User> list = loginService.selectAllUser();
+		for (User users : list) {
+			if(user.getEmail().equals(users.getEmail())) {
+				return true;
+			}
+		}
+		return false;
+	} 	
 	
 	
 	

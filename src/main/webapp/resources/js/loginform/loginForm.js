@@ -5,7 +5,7 @@ $(document).ready(function(e){
 	   });
 })   
 	   
-	   Kakao.init('2acfbe2d572c39062b97a67d210c4923');  //여기서 발급받은 키  javascript키를 사용해준다.( 키 정보는 개인정보)
+	   Kakao.init('ce36a8875eea6388db5c148e0c6967a9');  //여기서 발급받은 키  javascript키를 사용해준다.( 키 정보는 개인정보)
 	   Kakao.Auth.createLoginButton({
 		   container: '#kakao-login-btnn',
 		   success: function(authObj) {

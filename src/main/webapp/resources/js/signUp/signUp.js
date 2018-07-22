@@ -1,7 +1,7 @@
-$(".inputDetail, inputDetail1, #userEmail").focus(function(){
+$(".inputDetail, #userEmail").focus(function(){
 		$(this).prev().addClass("show");
 });
-$(".inputDetail, inputDetail1, #userEmail").blur(function(){
+$(".inputDetail, #userEmail").blur(function(){
 	if(!$(this).val()){
 		$(this).prev().removeClass("show");
 	}
@@ -23,13 +23,17 @@ $("#userId").keyup(function () {
 		},
 		dataType: "json",
 		success: function (data) {
+			console.log(data);
 			var	result = "";
 			if (data == false) {
 				result = "사용가능한 아이디입니다.";
 				$("#userId").data("flag","yes");
+				$(".innerText").css("color","blue");
+				
 			}else{
 				result = "사용이 불가능한 아이디입니다.";
 				$("#userId").data("flag","no");
+				$(".innerText").css("color","red");
 			}
 			$("#userId").next().text(result);
 		}
@@ -54,9 +58,11 @@ $("#userEmail").keyup(function () {
 			if (data == false) {
 				result = "사용가능한 이메일 입니다.";
 				$("#userEmail").data("flag","yes");
+				$(".innerText").css("color","blue");
 			}else{
 				result = "사용 불가능한 또는 중복된 이메일입니다. ";
 				$("#userEmail").data("flag","no");
+				$(".innerText").css("color","red");
 			}
 			$("#userEmail").next().text(result);
 		}
@@ -76,27 +82,13 @@ $("#userPassCheck").keyup(function(){
 	if($(this).val() == $("#userPass").val()){
 		$("#userPassCheck").next().text("비밀번호가 일치합니다.");
 		$("#userPassCheck").data("flag","yes");
+		$(".innerText").css("color","blue");
 	}else{
 		$("#userPassCheck").next().text("비밀번호가 일치하지 않습니다.");
 		$("#userPassCheck").data("flag","no");
+		$(".innerText").css("color","red");
 	}
 });
-
-//생년원일
-//$("#userBirth").focus(function(){
-//	if($("#userBirth").val() == ""){
-//		$("#userBirth").data("flag","no");
-//	}else{
-//		$("#userBirth").data("flag","yes");
-//	}
-////	var birthday = $("#userBirth").val();
-////	console.log(birthday);
-////	console.log(Number(birthday.substr(0,5)));
-////	console.log(Date($("#userBirth").val()).toString());
-//	
-//});
-
-
 
 
 // 생년월일 체크
@@ -106,13 +98,13 @@ var date = null;
 
 $("#birth1").keyup(function(){
 	year = $("#birth1").val();
-	if($("#birth1").val() == "" || year < 1899) {
-//		$("#birth3").next().text("정확한 년도를 기입해주세요 ");
+	if($("#birth1").val() == "") {
+//		$("#birthtext").next().text("Example) 1988 01 01");
 		$("#birth1").data("flag","no");
 		return;
 	}else{
+//		$("#birthtext").next().text("Example) 1988 01 01");
 		$("#birth1").data("flag","yes");
-//		$("#birth3").next().text("");
 		return;
 	}
 });
@@ -138,14 +130,14 @@ $("#birth3").keyup(function(){
 	date = $("#birth3").val();
 	month = $("#birth2").val();
 	year = $("#birth1").val();
-//	if (date < 1 || date > 31) {
 		if ($("#birth3").val() == "" || date < 1 || date > 31) {
 		$("#birth3").data("flag","no");
+		$("#birthtext").next().text("Example) 1988 01 01");
 //		$("#birth3").next().text("일은 1일부터 31일까지 입력가능합니다. ");
 		return;
 	}else{
 		$("#birth3").data("flag","yes");
-//		$("#birth3").next().text("");
+		$("#birthtext").next().text("Example) 1988 01 01");
 		
 	}	
 	
@@ -155,7 +147,6 @@ $("#birth3").keyup(function(){
 		return;
 	}else{
 		$("#birth3").data("flag","yes");
-//		$("#birth3").next().text("");
 		
 	} 	
 //	
@@ -163,12 +154,10 @@ $("#birth3").keyup(function(){
 		var isleap = (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0));
 		if (date>29 || (date==29 && !isleap)) {
 			$("#birth3").data("flag","no");
-//			$("#birth3").next().text(year + "년 2월은  " + day + "일이 없습니다.");
 			return;
 		}
 	}else{
 		$("#birth3").data("flag","yes");
-//		$("#birth3").next().text("");
 		
 	}	
 	

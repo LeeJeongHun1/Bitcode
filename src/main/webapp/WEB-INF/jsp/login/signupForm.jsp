@@ -12,8 +12,9 @@
 <script src="${pageContext.request.contextPath}/resources/js/waitme/waitMe.min.js"></script>
 </head>
 <body>
+<div class="signuoForm">
 	<form action="${pageContext.request.contextPath}/login/signup.do" method="post" id="userForm">
-	  <h1 id="#signup">Sign UP! <img src="${pageContext.request.contextPath}/resources/images/signupIcon.png"></h1>
+	  <h1 id="signuph1">Sign UP! <img src="${pageContext.request.contextPath}/resources/images/signupIcon.png"></h1>
 	  <input name="id" placeholder="ID를 입력하세요" type="text" id="userId" data-flag="no" class="inputDetail" maxlength="15"/>
 	  <p class="innerText"></p>
 	  <input name="name" placeholder="이름을 입력하세요" type="text" id="userName" data-flag="no" class="inputDetail" maxlength="15"/>
@@ -30,15 +31,16 @@
 <!--   	<input type="date" name="birthday" id="userBirth"> -->
     <input type="text" name="year" id="birth1" size="4" data-flag="no" class="inputDetail1" placeholder="Year"/>
     <input type="text" name="month" id="birth2"  size="2" data-flag="no" class="inputDetail1" placeholder="Month" />
-    <input type="text" name="date" id="birth3"  size="2" data-flag="no" class="inputDetail1" placeholder="date"/>  
-  	<p class="innerText"></p>
+    <input type="text" name="date" id="birth3"  size="2" data-flag="no" class="inputDetail1" placeholder="Day"/>  
+  	<p class="birthText">Example) 2000 01 01</p>
   </div>
-  <input name="birthday" type="hidden" class="inputDetail" />
+  <input name="birthday" type="hidden" class="inputDetail" id="birthday"/>
 <!-- 	  <button class="btn" id="submitBtn">Sign UP</button> -->
 	  <div id="submitBox">
 	 	 <a href="#1" id="submitBtn"><span class="signupbtn">Sign UP</span></a>
 	  </div>
 	</form>
+</div>	
 <script src="${pageContext.request.contextPath}/resources/js/signUp/signUp.js"></script>
 <script>
 if("${msg}") {
