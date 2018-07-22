@@ -33,11 +33,13 @@ a {
 		<div class="shell-container qna">
 			<!-- <h2 class="shell_title">QnA질문게시판</h2> -->
 		<div class="contents_header">
-			<div class="title">
-				<c:if test="${empty list.qna}">안</c:if>
-				<c:out value="${list.qna.title}" />
+			<div class="titleWrap">
+				<c:if test="${empty list.qna}">없습니다.</c:if>
+				<div class="title">
+				<span class="qnaTitle"><c:out value="${list.qna.title}" /></span>
 				<span class="nowrap">|</span>
 				<span class="cf"><c:out value="${list.qna.codeName}" /></span>
+				</div>
 				<span class="day"><fmt:formatDate value="${list.qna.regDate}" pattern="yyyy-MM-dd HH:mm:ss" /></span>
 			</div>
 
@@ -49,7 +51,7 @@ a {
 		<div class="qnaList">
 		<div class="contents_body">
 			<div class="detail">
-			<div class="contents" style="width:100%; height:auto; min-height:350px;">
+			<div class="contents" style="">
 			<c:forEach var="qna" items="${list.qna.fileList}">파일명 : 
 			<a href="${pageContext.request.contextPath}/fileDown.do?filePath=${qna.filePath}&systemFileName=${qna.systemName}&originalFileName=${qna.oriName}">${qna.oriName}</a>
        		미리보기 : 

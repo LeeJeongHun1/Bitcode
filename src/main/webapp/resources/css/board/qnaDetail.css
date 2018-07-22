@@ -23,6 +23,7 @@ time, mark, audio, video {
 	font-size: 13px;
 	/* font: inherit; */
 	vertical-align: baseline;
+	color:#5a5a5a;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
@@ -71,17 +72,21 @@ a {text-decoration: none;}
 	background-color: #f3f3f3;
 	border: 1px solid #e6e6e6;
 	border-top: 1px solid #b3b3b3;
-	width: 900px;
+	width: 100%;
 	margin: auto;
 	height: 85px;
 }
 
-.contents_header>.title {
+.contents_header>.titleWrap {
 	color: #1a1a1a;
 	font-size: 17px;
 	font-weight: 600;
 	word-wrap: break-word;
 }
+.contents_header>.titleWrap > .title{
+    text-align: left;	
+}
+.qnaTitle {color: #5a5a5a;}
 
 .contents_body {
 	font-family: Arial, Verdana, "Trebuchet MS", sans-serif;
@@ -93,11 +98,12 @@ a {text-decoration: none;}
 	padding: 20px;
 	font-size: 13px;
 	line-height: 1.6;
-	width: 900px;
+	width:100%;
 	height: 500px;
 	overflow-y: scroll;
 	margin: auto;
 }
+.contents {width:100%; height:auto; min-height:350px;text-align:left;}
 .contents_btn {margin-top: 10px;
     text-align: right;
     margin-bottom: 10px;
@@ -115,13 +121,15 @@ a {text-decoration: none;}
 
 .cf {
 	padding-left: 5px;
-	line-height: 1.5;
+	/* line-height: 1.5; */
 	color: #666666;
-	font-size: 15px;
+	font-size: 13px;
 	font-weight: normal;
 }
 
 .day {
+	position: absolute;
+    top: 21px;
 	padding-left: 5px;
 	line-height: 1.5;
 	position: absolute;
@@ -136,6 +144,7 @@ a {text-decoration: none;}
 	float: left;
 	margin-right: 20px;
 	margin-top: 10px;
+	color:#5a5a5a;
 }
 
 .shell_hits {
@@ -147,6 +156,7 @@ a {text-decoration: none;}
 
 .shell_hits>span {
 	padding-left: 5px;
+	color:#5a5a5a;
 }
 
 .reHeader {
@@ -570,9 +580,9 @@ div .information {
 	cursor: default;
 }
 
-span {
+/* span {
 	color: #e7e7e7;
-}
+} */
 
 .xbtn, .maxbtn {
 	padding: 2px 4px;
