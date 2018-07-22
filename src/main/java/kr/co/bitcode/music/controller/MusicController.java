@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import kr.co.bitcode.repository.domain.Folder;
+import kr.co.bitcode.repository.domain.FancyTree;
 
 @Controller
 @CrossOrigin(origins = "*")
@@ -23,24 +23,25 @@ public class MusicController {
 	
 	/** 내음악 플레이어 */
 	@RequestMapping("/player.do")
-	public void player(String id) {
-//		File f = new File(MUSIC_PATH + id);
-//		for (File music : f.listFiles()) {
-//			if(music.isFile()){
-//				
-//			}
-//		}
+	public void player(String id) { }
+	
+	//----------------------------------------music폴더 관리
+	@RequestMapping("/musicFolder.json")
+	@ResponseBody
+	public List<FancyTree> musicFolder(String id) {
+		// 우클릭으로 폴더 추가시
+//		new File(path + "\\" + name).mkdirs();
+		return ListDirectory(new File(PATH + id + MUSIC_PATH));
 	}
 	
 	@RequestMapping("musicList.json")
 	@ResponseBody
-	public List<Folder> musicList(String id){
+	public List<FancyTree> musicList(String id){
 		File f = new File(PATH + id + MUSIC_PATH);
 		return ListDirectory(f);
 	}
 	
-	
-	private List<Folder> ListDirectory(File file, int...args){
+	private List<FancyTree> ListDirectory(File file, int...args){
 //		file.renameTo(dest) 파일 무브 삭제개념
 		int i;
 		if(args.length == 0){
@@ -49,13 +50,13 @@ public class MusicController {
 			i = args[0];
 		}
 //		long size = 0; 용량 체크
-		List<Folder> fList = new ArrayList<>(); 
+		List<FancyTree> fList = new ArrayList<>(); 
 		for (File ff : file.listFiles()) {
 			if(ff.isFile()){
-				Folder folder = new Folder();
-				folder.setKey(i++);
+				FancyTree folder = new FancyTree();
+				folder.setKey(Integer.toString(i++));
 				folder.setTitle(ff.getName());
-				folder.setParentPath(ff.getParent());
+				folder.setPath(ff.getParent());
 				fList.add(folder);
 			}
 		}
