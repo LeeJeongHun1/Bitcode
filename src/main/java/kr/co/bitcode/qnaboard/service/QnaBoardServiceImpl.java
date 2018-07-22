@@ -131,6 +131,8 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 		map.put("list", mapper.selectBoardSearch(search));
 		map.put("pageResult", new PageResult(search.getPageNo(),mapper.searchBoardCount(search)));
 		List<Qna> list = mapper.selectBoardSearch(search);
+		System.out.println("------------------------------");
+		System.out.println("검색 페이징 확인" + search.getBegin());
 		return map;
 	
 	}

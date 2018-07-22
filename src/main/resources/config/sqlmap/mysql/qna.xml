@@ -84,9 +84,26 @@
 	</select>
 	<!-- 게시글  카운트 -->
 	<select id="selectBoardCount" resultType="int">
-		select count(*)
+<!-- 		select count(*)
 		from
-		tb_qna_board
+		tb_qna_board -->
+		
+		SELECT
+		SQL_CALC_FOUND_ROWS count(*)
+		FROM (
+		select
+		q.no,u.name,u.nick_name,q.title,q.content,q.depth,q.group_no,q.group_order,q.id,q.language_code,q.like_cnt,q.reg_date,q.stsfc_code,q.view_cnt,l.language_name
+		from tb_qna_board q
+		inner
+		join tb_language_code l
+		on q.language_code =
+		l.language_code
+		inner
+		join tb_user u
+		on q.id = u.id
+		order
+		by group_no desc, group_order asc) A
+		
 	</select>
 	<!-- 검색 카운트 -->
 	<select id="searchBoardCount" parameterType="search" resultType="int">
