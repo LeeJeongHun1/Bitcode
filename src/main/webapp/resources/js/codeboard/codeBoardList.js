@@ -11,38 +11,40 @@ window.onload = function(){
 //		color: '#000'
 //			
 //	});
-	var target = document.getElementById("option");
-	var input = document.getElementById("input").value;
-	var option = target.options[target.selectedIndex].value;
-	codeList(input,option);
+	//var target = document.getElementById("option");
+	//var input = document.getElementById("input").value;
+	//var option = target.options[target.selectedIndex].value;
+	codeList();
 };
 
 document.querySelector("#search").onclick=function(){
+	
+	//console.log("input++++++++++++" + input);
+	//console.log("option+++++++++++" + option);
+	codeList();
+}
+
+function codeList(pageNo){
 	var target = document.getElementById("option");
 	var input = document.getElementById("input").value;
 	var option = target.options[target.selectedIndex].value;
-	console.log("input++++++++++++" + input);
-	console.log("option+++++++++++" + option);
-	codeList(input,option);
-}
-
-function codeList(searchInput,searchOption,pageNo){
+	
 	if(pageNo == ""){
 		pageNo = 1;
 	}
-	if(searchInput == ""){
-		searchInput = null;
+	if(input == ""){
+		input = null;
 	}
-	if(searchOption == ""){
-		searchOption = 0;
+	if(option == ""){
+		option = 0;
 	}
 //	console.log(searchOption);
 //	console.log(searchInput);
 	$.ajax({
 		url:"list.json",
 		data:{
-			"searchInput" : searchInput,
-			"searchOption" : searchOption,
+			"searchInput" : input,
+			"searchOption" : option,
 			"pageNo" : pageNo
 			},
 		dataType:"json"
@@ -137,7 +139,7 @@ function makePage(data){
 			    html += '<li class="active"><a href="#1">' + i + '</a></li>';
 	    	}
 	    	else {
-	    		html += '<li><a href="javascript:codeList('+ data.searchInput + ',' + data.searchOption + ','+ i +');">' + i + '</a></li>';
+	    		html += '<li><a href="javascript:codeList('+ i +');">' + i + '</a></li>';
 	    	}
 	    }
 		clz = "";

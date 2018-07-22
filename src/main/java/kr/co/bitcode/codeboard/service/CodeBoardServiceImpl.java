@@ -101,6 +101,9 @@ public class CodeBoardServiceImpl implements CodeBoardService{
 		map.put("searchOption", cs.getSearchOption());
 		map.put("list", mapper.selectBoard(cs));
 		map.put("pageResult",new PageResult(cs.getPageNo(), count));		
+		System.out.println(cs.getBegin()+"시작");
+		System.out.println(cs.getSearchInput() +"검색어");
+		System.out.println(cs.getSearchOption() + "옵션");
 		return map;
 	}
 
