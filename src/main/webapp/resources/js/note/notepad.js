@@ -11,7 +11,16 @@ $("#noteClose").click(function(){
 });
 
 // 메모장 내용
-var myNote = $("#myNoteContent").val();
+//var myNote = $("#myNoteContent").val();
+//var myNote = "";
+
+$.ajax({
+	url: "/bitcode/main/myNote.json?id=" + loginId,
+	success: function(result) {
+		var myNote = $("#myNoteContent").val(result);
+	}
+});
+
 
 // 실행시 출력/숨기기
 function notepad(){

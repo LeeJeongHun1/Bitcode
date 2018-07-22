@@ -2,8 +2,10 @@ package kr.co.bitcode.main.controller;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -230,5 +232,31 @@ public class MainController {
 		fis.close();
 		bos.close();
 		out.close();
+	}
+	
+	// 메모장 내용 읽기
+	@RequestMapping("/myNote.json")
+	@ResponseBody
+	public String myNote(String id) throws Exception {
+		// 사용자 txt 파일
+		File txt = new File(PATH + id + ".txt", "");
+		// 없으면 만들기
+		if(!txt.exists()) {
+			txt.createNewFile();
+		}
+		// txt 파일 읽기
+		String myTxt = "";
+		String temp;
+		
+		BufferedReader br = new BufferedReader(new FileReader(txt));
+        while ((temp = br.readLine()) != null) {
+      	  myTxt += temp + "/r/n";
+        }
+
+		br.close();
+		
+		System.out.println("myTxt : " + myTxt);
+		return myTxt;
+		
 	}
 }
