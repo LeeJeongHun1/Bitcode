@@ -106,14 +106,35 @@ border-radius: 12px 12px 0px 0px;
 				<th colspan="1">번호</th><th colspan="1">글쓴이</th><th colspan="4">제목</th><th colspan="3">만족도</th>
 			</tr>
 			<c:forEach var="qnaList" items="${qnaList}">
-			<c:if test="${qnaList.id == user.id}">
+<%-- 			<c:if test="${qnaList.id == user.id}"> --%>
 			<tr>
 				<td>${qnaList.no}</td>			
 				<td>${user.nickName}</td>				
 				<td colspan="4"><a id="board_title" href='${pageContext.request.contextPath}/qnaboard/detail.do?no=${qnaList.no}'>${qnaList.title}</a></td>				
-				<td>${qnaList.stsfcStep}</td>
+			<c:choose>
+				<c:when test="${qnaList.stsfcStep eq '만족'}">
+					<td>
+					<img class="lelvel" src="${pageContext.request.contextPath}/resources/images/sstar.png">
+					<img class="lelvel" src="${pageContext.request.contextPath}/resources/images/sstar.png">
+					<img class="lelvel" src="${pageContext.request.contextPath}/resources/images/sstar.png">
+					</td>
+				</c:when> 
+				<c:when test="${qnaList.stsfcStep eq '불만족'}">
+					<td>
+					<img class="lelvel" src="${pageContext.request.contextPath}/resources/images/xstar.png">
+					</td>
+				</c:when> 				
+				<c:when test="${qnaList.stsfcStep eq '보통'}">
+					<td>
+					<img class="lelvel" src="${pageContext.request.contextPath}/resources/images/sstar.png">
+					<img class="lelvel" src="${pageContext.request.contextPath}/resources/images/sstar.png">
+					</td>
+				</c:when> 					
+			</c:choose>	
 			</tr>
-			</c:if>
+			
+			
+<%-- 			</c:if> --%>
 			</c:forEach>
 		</table>
 	</div>	
