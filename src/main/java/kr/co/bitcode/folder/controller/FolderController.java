@@ -76,6 +76,13 @@ public class FolderController {
 		return folderService.uploadFile(faf, attach);
 	}
 	
+	@RequestMapping("/musicFolder.json")
+	@ResponseBody
+	public List<FancyTree> musicFolder(FolderAndFile faf){
+		return folderService.musicFolder(faf);
+	}
+	
+	
 	
 	@RequestMapping("/download.do")
 	public void download(DownloadFile file, HttpServletResponse response) throws Exception{

@@ -33,7 +33,11 @@
 	href="${pageContext.request.contextPath}/resources/css/fancytree/ui.fancytree.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/main/mainMIC.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main/folder.css">
+<script src="${pageContext.request.contextPath}/resources/js/folderjs/folder.js"></script>
 
+<!-- 음성 -->
+<script src="${pageContext.request.contextPath}/resources/js/folderjs/Speech.js"></script>
 <style>
 .ellipsis {
 	text-overflow: ellipsis;
@@ -58,12 +62,12 @@ IMP.init('imp93914891');
 			</div>
 		</div>
 	</c:if>
-	<div class="wrap">
-	    <div id="result" style="display: none;">
-	      <span class="final" id="final_span"></span>
-	      <span class="interim" id="interim_span"></span>
-	    </div>
-	</div>
+<!-- 	<div class="wrap"> -->
+<!-- 	    <div id="result" style="display: none;"> -->
+<!-- 	      <span class="final" id="final_span"></span> -->
+<!-- 	      <span class="interim" id="interim_span"></span> -->
+<!-- 	    </div> -->
+<!-- 	</div> -->
 	<input type="hidden" id="sId" value="${sessionScope.user.id}" />
 	<div id="window" class="windows" style="height: 734px;">
 		<c:if test="${!empty sessionScope.user }">
@@ -82,13 +86,6 @@ IMP.init('imp93914891');
 				<p>음악 폴더</p>
 			</div>
 		</c:if>
-<!-- 		<div class="icon-computer text-center" id="icon-computer-share" -->
-<!-- 			ondblclick="opencom()"> -->
-<!-- 			<img -->
-<!-- 				src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500502735/if_folder-blue_285658_f5jeko.svg" -->
-<!-- 				class="img-responsive" style="margin: auto;"> -->
-<!-- 			<p>공유 폴더</p> -->
-<!-- 		</div> -->
 		<div class="overlay-computer" id="overlay-computer"
 			style="transform: scale(0); left: 142px; top: 29px; z-index: 1000; height: 680px;">
 			<div class="fluid-container">
@@ -169,7 +166,7 @@ IMP.init('imp93914891');
 						</div>
 						<div id="tree" style="overflow-x: auto; height: 420px;"></div>
 						<!-- 저장 용량 -->
-						<div class="saveSize" style="position: fixed; bottom: 20px; width: 145px;" >
+						<div class="saveSize" style="position: fixed; bottom: 20px; width: 154px;" >
 							<span>저장용량</span><img src="${pageContext.request.contextPath}/resources/images/cloud.PNG" style="width: 40px; margin-left: 8px;"><br>
 							<div class="progress" style="height: 5px;">
 								<div class="progress-bar progress-bar-info" id='ppbar' role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
@@ -251,221 +248,7 @@ IMP.init('imp93914891');
 
 
 <script>
-/*!
-*
-* WebRTC Lab 
-* @author dodortus (codejs.co.kr / dodortus@gmail.com)
-*
-*/
-$(function() {
- if (typeof webkitSpeechRecognition != 'function') {
-   alert('크롬에서만 동작 합니다.');
-   return false;
- }
 
-var recognition = new webkitSpeechRecognition();
-var isRecognizing = false;
-var ignoreOnend = false;
-var finalTranscript = '';
-var audio = document.getElementById('audio');
-var $btnMic = $('#btn-mic');
-var $folder = $('#icon-computer');
-var $player = $('#wmplayer');
-var $result = $('#result');
-var $iconMusic = $('#icon-music');
-var $close = $("#closeMIC");
-console.dir(recognition)
-recognition.continuous = true;
-recognition.interimResults = true;
-
- recognition.onstart = function() {
-   console.log('onstart', arguments);
-   isRecognizing = true;
-
-   $btnMic.attr('class', 'on');
- };
-
- recognition.onend = function() {
-   console.log('onend', arguments);
-	console.dir(event)
-   isRecognizing = false;
-
-   if (ignoreOnend) {
-     return false;
-   }
-
-   // DO end process
-   $btnMic.attr('class', 'off');
-   if (!finalTranscript) {
-     console.log('empty finalTranscript');
-     return false;
-   }
-
-   if (window.getSelection) {
-     window.getSelection().removeAllRanges();
-     var range = document.createRange();
-     range.selectNode(document.getElementById('final-span'));
-     window.getSelection().addRange(range);
-   }
-
- };
-
- recognition.onresult = function(event) {
-   console.log('onresult', event);
-
-   var interimTranscript = '';
-   if (typeof(event.results) == 'undefined') {
-     recognition.onend = null;
-//     recognition.stop();
-     return;
-   }
-
-   for (var i = event.resultIndex; i < event.results.length; ++i) {
-     if (event.results[i].isFinal) {
-       finalTranscript += event.results[i][0].transcript;
-     } else {
-       interimTranscript += event.results[i][0].transcript;
-     }
-   }
-
-   finalTranscript = capitalize(finalTranscript);
-   final_span.innerHTML = linebreak(finalTranscript);
-   interim_span.innerHTML = linebreak(interimTranscript);
-
-   console.log('finalTranscript', finalTranscript);
-   console.log('interimTranscript', interimTranscript);
-   fireCommand(interimTranscript);
- };
-
- /**
-  * changeColor
-  *
-  */
- /*개덥 쑤지눌 폭력인데 나븐수지
-	  .red 		{ background: red; }
-		.blue 	{ background: blue; }
-		.green 	{ background: green; }
-		.yellow { background: yellow; }
-		.orange { background: orange; }
-		.grey 	{ background: grey; }
-		.gold   { background: gold; }
-		.white 	{ background: white; }
-		.black  { background: black; }
-	*/
- function fireCommand(string, opencom) {
- 	if (string.endsWith('폴더 열어') || string.endsWith('폴더 열어줘') || string.endsWith('오픈')) {
-// 		 opencom();
-	     console.log('opencom() 호출');
-	     $folder.trigger('dblclick');
-	     console.log($folder);
-     // opencom() 함수 호출
- 	}else if (string.endsWith('닫기') || string.endsWith('다다') || string.endsWith('폴더 다다') || string.endsWith('폴더 닫아') || string.endsWith('폴더 닫아줘') || string.endsWith('닫아')){
-	     console.log('closecom() 호출');
-	     $close.trigger('click');
-	     console.log($close)
-	     closecom();
- 	}else if (string.endsWith('음악 켜줘') || string.endsWith('음악 틀어줘') || string.endsWith('재생') || string.endsWith('플레이')) {
-	     $player.trigger('click');
-	     console.log($close)
- 	}else if (string.endsWith('음악 꺼줘') || string.endsWith('음악 멈쳐줘') || string.endsWith('중지') || string.endsWith('스탑')) {
-		callMain()
- 	}
- }
-	
-	
- recognition.onerror = function(event) {
-   console.log('onerror', event);
-	console.dir(event)
-   if (event.error == 'no-speech') {
-     ignoreOnend = true;
-   } else if (event.error == 'audio-capture') {
-     ignoreOnend = true;
-   } else if (event.error == 'not-allowed') {
-     ignoreOnend = true;
-   }
-
-   $btnMic.attr('class', 'off');
- };
-
- var two_line = /\n\n/g;
- var one_line = /\n/g;
- var first_char = /\S/;
-
- function linebreak(s) {
-   return s.replace(two_line, '<p></p>').replace(one_line, '<br>');
- }
-
- function capitalize(s) {
-   return s.replace(first_char, function(m) {
-     return m.toUpperCase();
-   });
- }
-
- function start(event) {
-   if (isRecognizing) {
-     recognition.stop();
-     return;
-   }
-   recognition.lang = 'ko-KR';
-   recognition.start();
-   ignoreOnend = false;
-
-   finalTranscript = '';
-   final_span.innerHTML = '';
-   interim_span.innerHTML = '';
-
- }
-
- /**
-  * textToSpeech
-  * 지원: 크롬, 사파리, 오페라, 엣지
-  */
- function textToSpeech(text) {
-   console.log('textToSpeech', arguments);
-
-   /*
-   var u = new SpeechSynthesisUtterance();
-   u.text = 'Hello world';
-   u.lang = 'en-US';
-   u.rate = 1.2;
-   u.onend = function(event) {
-     log('Finished in ' + event.elapsedTime + ' seconds.');
-   };
-   speechSynthesis.speak(u);
-   */
-
-   // simple version
-   speechSynthesis.speak(new SpeechSynthesisUtterance(text));
- }
-
- /**
-  * requestServer
-  * key - AIzaSyDiMqfg8frtoZflA_2LPqfGdpjmgTMgWhg
-  */
- function requestServer() {
-   $.ajax({
-     method: 'post',
-     url: 'https://www.google.com/speech-api/v2/recognize?output=json&lang=en-us&key=AIzaSyDiMqfg8frtoZflA_2LPqfGdpjmgTMgWhg',
-     data: '/examples/speech-recognition/hello.wav',
-     contentType: 'audio/l16; rate=16000;', // 'audio/x-flac; rate=44100;',
-     success: function(data) {
-
-     },
-     error: function(xhr) {
-
-     }
-   });
- }
-
- /**
-  * init
-  */
- // $btnMic.click(start);
- start();
- $('#btn-tts').click(function() {
-   textToSpeech($('#final_span').text() || '전 음성 인식된 글자를 읽습니다.');
- });
-});
 
 </script>
 
@@ -550,32 +333,33 @@ recognition.interimResults = true;
 		});
 		
 		// fancyTree ContextMenu
-        $.contextMenu({
-          selector: "#tree span.fancytree-title",
-          items: {
-            "cut": {name: "Cut", icon: "cut",
-                callback: function(key, opt){
-                  var node = $.ui.fancytree.getNode(opt.$trigger);
-                  // alert("Clicked on " + key + " on " + node);
-                }
-              },
-            "copy": {name: "Copy", icon: "copy"},
-            "paste": {name: "Paste", icon: "paste", disabled: false },
-            "sep1": "----",
-            "edit": {name: "Edit", icon: "edit", disabled: false },
-            "delete": {name: "Delete", icon: "delete", disabled: true },
-            "more": {name: "More", items: {
-              "sub1": {name: "Sub 1"},
-              "sub1": {name: "Sub 2"}
-              }}
-            },
-          callback: function(itemKey, opt) {
-           var node = $.ui.fancytree.getNode(opt.$trigger);
-           console.dir(node)
-            alert("select " + itemKey + " on " + node);
-          }
-        });
+//         $.contextMenu({
+//           selector: "#tree span.fancytree-title",
+//           items: {
+//             "cut": {name: "Cut", icon: "cut",
+//                 callback: function(key, opt){
+//                   var node = $.ui.fancytree.getNode(opt.$trigger);
+//                   // alert("Clicked on " + key + " on " + node);
+//                 }
+//               },
+//             "copy": {name: "Copy", icon: "copy"},
+//             "paste": {name: "Paste", icon: "paste", disabled: false },
+//             "sep1": "----",
+//             "edit": {name: "Edit", icon: "edit", disabled: false },
+//             "delete": {name: "Delete", icon: "delete", disabled: true },
+//             "more": {name: "More", items: {
+//               "sub1": {name: "Sub 1"},
+//               "sub1": {name: "Sub 2"}
+//               }}
+//             },
+//           callback: function(itemKey, opt) {
+//            var node = $.ui.fancytree.getNode(opt.$trigger);
+//            console.dir(node)
+//             alert("select " + itemKey + " on " + node);
+//           }
+//         });
     });
+	
 	//Setup the dnd listeners.
 	var dropZone = document.getElementById('overlay-computer');
 	dropZone.addEventListener('dragover', handleDragOver, false);
@@ -589,63 +373,76 @@ recognition.interimResults = true;
 	function folderOpen(){
 		opencom();
 		$("#folder-area").html('');
-		if($("#sId").val() != ''){
-			$.ajax({
-				url: "selectFolder.json",
-				data: {id: $("#sId").val()},
-				dataType: "json",
-				type: "POST"
-			})
-			.done(function (data) {
-				var size = Number(data.size);
-				$("#maxSize").html(maxSize + 'MB 중')
-				size = (size / 1024) / 1024;
-				var progress = (size.toFixed(0) / 100) * 100;
-				$("#ppbar").css("width", progress+"%")
-				size = size.toFixed(2) + 'MB 사용';
-				console.log("size :" + size)
-				$("#capacity").html(size)
-				console.dir(data.list)
-				fileList = data.list;
-				id = Number(data.list.length);
-	// 			console.log(data);
-				for(var f of data.list){
-					var appendFile = '';
-					if(f.folder){
-	// 					console.log("폴더")
-						appendFile += '<div class="col-xs-2 folders text-center" id="'+f.key+'" data-path="'+f.parentPath+'" data-title="'+f.title+'" ondblclick="test('+f.key+')">';
-						appendFile += '<p class="contain">';
-						appendFile += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500502735/if_folder-blue_285658_f5jeko.svg"';
-						appendFile += '		class="img-responsive  center-block" style="height: 64px;"';
-						appendFile += '		alt="">';
-	// 					appendFile += '	<img src="download.do?filePath='+f.parentPath+'&systemFileName=attach&originalFileName='+f.title+'" style="height: 64px;">';
-						appendFile += '	</p>';
-						appendFile += '	<span class="ellipsis">' + f.title + '</span>';
-						appendFile += '</div>';
-						$("#folder-area").append(appendFile);
-					}else{
-						appendFile += '<div class="col-xs-2 folders text-center" id="'+f.key+'" data-path="'+f.parentPath+'" data-title="'+f.title+'" ondblclick="test1('+f.key+')">';
-						appendFile += '<p class="contain">';
-						if(f.type == 'img'){
-							appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/imageicon.png"`;
-						}else if(f.title.split('.mp3') != -1) {
-							appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/mp3image.png"`;
-						}else{
-							appendFile += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500505134/if_sticky-note_299111_px7waa.png"';
-						}
-						appendFile += '		class="img-responsive  center-block" style="height: 64px;"';
-						appendFile += '		alt="">';
-	// 					appendFile += '	<img src="download.do?filePath='+f.parentPath+'&systemFileName=attach&originalFileName='+f.title+'" style="height: 64px;">';
-						appendFile += '	</p>';
-						appendFile += '	<span class="ellipsis">' + f.title + '</span>';
-						appendFile += '</div>';
-						$("#folder-area").append(appendFile);
-					}
-				}
-				loadFancytree(data.list);
-				$("#share-path").data("root","c:/java-lec/upload/"+$("#sId").val());
-			})
+		if($("#sId").val() == ''){
+			swal({
+				position: 'center',
+				type: 'error',
+				title: '로그인 후 이용 가능합니다.',
+				showConfirmButton: false,
+				timer: 1500
+			});
 		}
+		$.ajax({
+			url: "selectFolder.json",
+			data: {id: $("#sId").val()},
+			dataType: "json",
+			type: "POST"
+		})
+		.done(function (data) {
+			console.log(data.size)
+			var size = Number(data.size);
+			$("#maxSize").html(maxSize + 'MB 중')
+			size = (size / 1024) / 1024;
+			var progress = (size.toFixed(0) / 100) * 100;
+			$("#ppbar").css("width", progress+"%")
+			size = size.toFixed(2) + 'MB 사용';
+			console.log("size :" + size)
+			$("#capacity").html(size)
+			console.dir(data.list)
+			fileList = data.list;
+			id = Number(data.list.length);
+// 			console.log(data);
+			for(var f of data.list){
+				var appendFile = '';
+				if(f.folder){
+// 					console.log("폴더")
+					appendFile += '<div class="col-xs-2 folders text-center" id="'+f.key+'" data-path="'+f.path+'" data-title="'+f.title+'" ondblclick="test('+f.key+')">';
+					appendFile += '<p class="contain">';
+					appendFile += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500502735/if_folder-blue_285658_f5jeko.svg"';
+					appendFile += '		class="img-responsive  center-block" style="height: 64px;"';
+					appendFile += '		alt="">';
+// 					appendFile += '	<img src="download.do?filePath='+f.parentPath+'&systemFileName=attach&originalFileName='+f.title+'" style="height: 64px;">';
+					appendFile += '	</p>';
+					appendFile += '	<span class="ellipsis">' + f.title + '</span>';
+					appendFile += '</div>';
+					$("#folder-area").append(appendFile);
+				}else{
+					appendFile += '<div class="col-xs-2 folders text-center" id="'+f.key+'" data-path="'+f.path+'" data-title="'+f.title+'" ondblclick="test1('+f.key+')">';
+					appendFile += '<p class="contain">';
+					if(f.type == 'img'){
+						appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/imageicon.png"`;
+					}else if(f.title.split('.')[1] == 'mp3') {
+						appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/mp3image.png"`;
+					}else if(f.title.split('.')[1] == 'xls') {
+						appendFile += `	<img src="https://image.noelshack.com/fichiers/2018/22/1/1527527145-logo-microsoft-excel-20132.png"`;
+					}else if(f.title.split('.')[1] == 'pdf') {
+						appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/pdfimage.png"`;
+					}else{
+						appendFile += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500505134/if_sticky-note_299111_px7waa.png"';
+					}
+					appendFile += '		class="img-responsive  center-block" style="height: 64px;"';
+					appendFile += '		alt="">';
+// 					appendFile += '	<img src="download.do?filePath='+f.parentPath+'&systemFileName=attach&originalFileName='+f.title+'" style="height: 64px;">';
+					appendFile += '	</p>';
+					appendFile += '	<span class="ellipsis">' + f.title + '</span>';
+					appendFile += '</div>';
+					$("#folder-area").append(appendFile);
+				}
+			}
+			loadFancytree(data.list);
+			$('#tree').fancytree('option', 'source', data.list);
+			$("#share-path").data("root","c:/java-lec/upload/"+$("#sId").val());
+		})
 	}
 	
 	//새로고침
@@ -653,7 +450,7 @@ recognition.interimResults = true;
 		$.ajax({
 			url: "enterDirectory.json",
 			data: {
-				parentPath: path,
+				path: path,
 				key: 1
 			},
 			dataType: "json"
@@ -667,7 +464,7 @@ recognition.interimResults = true;
 			for(var f of data){
 				var appendFile = '';
 				if(f.folder){
-					appendFile += '<div class="col-xs-2 folders text-center" id="'+f.key+'" data-path="'+f.parentPath+'" data-title="'+f.title+'" ondblclick="test('+f.key+')">';
+					appendFile += '<div class="col-xs-2 folders text-center" id="'+f.key+'" data-path="'+f.path+'" data-title="'+f.title+'" ondblclick="test('+f.key+')">';
 					appendFile += '<p class="contain">';
 					appendFile += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500502735/if_folder-blue_285658_f5jeko.svg"';
 					appendFile += '		class="img-responsive  center-block" style="height: 64px;"';
@@ -677,11 +474,11 @@ recognition.interimResults = true;
 					appendFile += '</div>';
 					$("#folder-area").append(appendFile);
 				}else{
-					appendFile += '<div class="col-xs-2 folders text-center" id="'+f.key+'" data-path="'+f.parentPath+'" data-title="'+f.title+'" ondblclick="test1('+f.key+')">';
+					appendFile += '<div class="col-xs-2 folders text-center" id="'+f.key+'" data-path="'+f.path+'" data-title="'+f.title+'" ondblclick="test1('+f.key+')">';
 					appendFile += '<p class="contain">';
 					if(f.type == 'img'){
 						appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/imageicon.png"`;
-					}else if(f.title.split('.mp3') != -1) {
+					}else if(f.title.split('.mp3')[1] != '') {
 						appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/mp3image.png"`;
 					}else{
 						appendFile += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500505134/if_sticky-note_299111_px7waa.png"';
@@ -723,11 +520,11 @@ recognition.interimResults = true;
 				if(node.folder){
 					console.log("폴더 선택");
 					console.log(node);
-					backPath = node.data.parentPath;
+					backPath = node.data.path;
 					backTitle = node.title;
 // 					node.setExpanded(true); // 폴더 확장
 					fancyTreeClick(node)
-					}
+				}
 			},
 			lazyLoad: function (e, data) {
 				console.dir(data);
@@ -736,9 +533,9 @@ recognition.interimResults = true;
 		        $.ajax({
 					url: "lazyLoad.json",
 					data: {
-						parentPath: data.node.data.parentPath,
+						path: data.node.data.path,
 						key: data.node.key,
-						title: data.node.title
+						name: data.node.title
 					},
 					dataType: "json"
 				})
@@ -751,7 +548,7 @@ recognition.interimResults = true;
 	}
 	// fancyTree 폴더 선택
 	function fancyTreeClick(node){
-		var path = node.data.parentPath + '\\' + node.title;
+		var path = node.data.path + '\\' + node.title;
 		var selectInfo = {
 				parentPath: path,
 				title: node.title
@@ -759,7 +556,7 @@ recognition.interimResults = true;
 		$.ajax({
 			url: "enterDirectory.json",
 			data: {
-				parentPath: path,
+				path: path,
 				key: node.key
 			},
 			dataType: "json"
@@ -788,7 +585,7 @@ recognition.interimResults = true;
 		$.ajax({
 			url: "enterDirectory.json",
 			data: {
-				parentPath: parentPath,
+				path: parentPath,
 				key: key
 			},
 			dataType: "json"
@@ -809,7 +606,7 @@ recognition.interimResults = true;
 		console.dir(fileList)
 		
 		$("#share-path").data("root", selectInfo.parentPath)
-// 		alert($("#share-path").data("root"))
+//		alert($("#share-path").data("root"))
 		var r = $("#share-path").data("root").split($("#sId").val()+'\\')[1].split('\\');
 		$("#share-path").html('');
 		$("#share-path").append("<span class='path-icon-input'>"+$("#sId").val()+"</span>");
@@ -827,7 +624,7 @@ recognition.interimResults = true;
 			var appendFile = '';
 			if(f.folder){
 				console.log("폴더")
-				appendFile += '<div class="col-xs-2 folders text-center" id="'+f.key+'" data-path="'+f.parentPath+'" data-title="'+f.title+'" ondblclick="test('+f.key+')">';
+				appendFile += '<div class="col-xs-2 folders text-center" id="'+f.key+'" data-path="'+f.path+'" data-title="'+f.title+'" ondblclick="test('+f.key+')">';
 				appendFile += '<p class="contain">';
 				appendFile += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500502735/if_folder-blue_285658_f5jeko.svg"';
 				appendFile += '		class="img-responsive  center-block" style="height: 64px;"';
@@ -837,11 +634,11 @@ recognition.interimResults = true;
 				appendFile += '</div>';
 				$("#folder-area").append(appendFile);
 			}else{
-				appendFile += '<div class="col-xs-2 folders text-center" id="'+f.key+'" data-path="'+f.parentPath+'" data-title="'+f.title+'" ondblclick="test1('+f.key+')">';
+				appendFile += '<div class="col-xs-2 folders text-center" id="'+f.key+'" data-path="'+f.path+'" data-title="'+f.title+'" ondblclick="test1('+f.key+')">';
 				appendFile += '<p class="contain">';
 				if(f.type == 'img'){
 					appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/imageicon.png"`;
-				}else if(f.title.split('.mp3') != -1) {
+				}else if(f.title.split('.') == 'mp3') {
 					appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/mp3image.png"`;
 				}else{
 					appendFile += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500505134/if_sticky-note_299111_px7waa.png"';
@@ -860,8 +657,8 @@ recognition.interimResults = true;
 	}
 	
 	function error(e) {
-	    console.log('error');
-	    console.log(e);
+		console.log('error');
+		console.log(e);
 	}
 	
 	function error_from_readentries(e) {
@@ -887,8 +684,6 @@ recognition.interimResults = true;
 					html += '	<p class="contain">';
 					if(file.type.split('/')[0] == 'image'){
 						html += `	<img src="${pageContext.request.contextPath}/resources/images/imageicon.png"`;
-					}else if(file.type.split('/')[0] == 'audio') {
-						html += `	<img src="${pageContext.request.contextPath}/resources/images/mp3image.png"`;
 					}else{
 						html += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500505134/if_sticky-note_299111_px7waa.png"';
 					}
@@ -896,7 +691,9 @@ recognition.interimResults = true;
 					html += '	</p>';
 					html += '	<span class="ellipsis">'+file.name+'</span>';
 					html += '</div>';
-					fDiv.append(html);
+					if(file.type.split('/')[0] != 'audio' || $("#share-path").data("root") != 'c:/java-lec/upload/aa_music'){
+						fDiv.append(html);
+					}
 					sendFile(file);
 				}else{
 					// 폴더 형태에 파일이 온경우
@@ -940,10 +737,15 @@ recognition.interimResults = true;
 	function sendFile(file, path) {
 		console.log("넘어온 path : ");
 		console.log(path);
+		console.log("넘어온 file : ");
+		console.log(file);
+		console.log(file.type.split('/')[0]);
 		console.log("sendfile root : ");
 		console.log($("#share-path").data("root"));
 		if(path){
-			path = $("#share-path").data("root") + '//' + path;
+			path = $("#share-path").data("root") + '\\' + path;
+		}else if(file.type.split('/')[0] == 'audio'){
+			path = "c:\\java-lec\\upload\\" + $("#sId").val() + "_music";
 		}else{
 			path = $("#share-path").data("root");
 		}
@@ -952,7 +754,7 @@ recognition.interimResults = true;
 		var fd = new FormData();
 		fd.append("attach", file);
 		fd.append("id", $("#sId").val());
-		fd.append("parentPath", path);
+		fd.append("path", path);
 		$.ajax({
 			url: "upload.json",
 			data: fd,
@@ -962,6 +764,7 @@ recognition.interimResults = true;
 		})
 		.done(function (result) {
 			console.log("업로드 후 result : ")
+			console.dir(result)
 			var size = Number(result.size);
 			$("#maxSize").html(maxSize + 'MB 중')
 			size = (size / 1024) / 1024;
@@ -975,15 +778,6 @@ recognition.interimResults = true;
 // 			console.dir(result)
 // 			console.dir(file)
 			$('#tree').fancytree('option', 'source', result.list);
-// 			var rootNode = $("#tree").fancytree("getRootNode");
-// 			var childNode = rootNode.addChildren({
-// 				title: file.name,
-// 				key: "",
-// 				folder: false,
-// 				parentPath: path,
-// 				type: null,
-// 				lazy: false
-// 			});
 		})
 	}
 	
@@ -1064,6 +858,7 @@ recognition.interimResults = true;
 	
 	// 뒤로가기 기능
 	$("#forward").click(function () {
+		console.log($("#share-path").data("root"))
 		if($("#share-path").data("root").split($("#sId").val())[1] == ''){
 			return;
 		}else{
@@ -1085,6 +880,12 @@ recognition.interimResults = true;
 		}
 	})
 	
+	
+	//용량 체크
+	function cloudSize() {
+		
+	}
+	
 	// 홈으로 이동
 	$("#hoomroot").click(function () {
 		$.ajax({
@@ -1098,9 +899,10 @@ recognition.interimResults = true;
 			fileList = data.list;
 			id = Number(data.list.length);
 			for(var f of data.list){
+				console.dir(f);
 				var appendFile = '';
 				if(f.folder){
-					appendFile += '<div class="col-xs-2 folders text-center" id="'+f.key+'" data-path="'+f.parentPath+'" data-title="'+f.title+'" ondblclick="test('+f.key+')">';
+					appendFile += '<div class="col-xs-2 folders text-center" id="'+f.key+'" data-path="'+f.path+'" data-title="'+f.title+'" ondblclick="test('+f.key+')">';
 					appendFile += '<p class="contain">';
 					appendFile += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500502735/if_folder-blue_285658_f5jeko.svg"';
 					appendFile += '		class="img-responsive  center-block" style="height: 64px;"';
@@ -1110,10 +912,12 @@ recognition.interimResults = true;
 					appendFile += '</div>';
 					$("#folder-area").append(appendFile);
 				}else{
-					appendFile += '<div class="col-xs-2 folders text-center" id="'+f.key+'" data-path="'+f.parentPath+'" data-title="'+f.title+'" ondblclick="test1()">';
+					appendFile += '<div class="col-xs-2 folders text-center" id="'+f.key+'" data-path="'+f.path+'" data-title="'+f.title+'" ondblclick="test1()">';
 					appendFile += '<p class="contain">';
 					if(f.type == 'img'){
 						appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/imageicon.png"`;
+					}else if(f.title.split('.')[1] == 'mp3') {
+						appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/mp3image.png"`;
 					}else{
 						appendFile += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500505134/if_sticky-note_299111_px7waa.png"';
 					}
@@ -1153,7 +957,7 @@ recognition.interimResults = true;
 					var appendFile = '';
 					if(f.folder){
 	// 					console.log("폴더")
-						appendFile += '<div class="col-xs-2 folders text-center" id="'+f.key+'" data-path="'+f.parentPath+'" data-title="'+f.title+'" ondblclick="test('+f.key+')">';
+						appendFile += '<div class="col-xs-2 folders text-center" id="'+f.key+'" data-path="'+f.path+'" data-title="'+f.title+'" ondblclick="test('+f.key+')">';
 						appendFile += '<p class="contain">';
 						appendFile += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500502735/if_folder-blue_285658_f5jeko.svg"';
 						appendFile += '		class="img-responsive  center-block" style="height: 64px;"';
@@ -1164,7 +968,7 @@ recognition.interimResults = true;
 						appendFile += '</div>';
 						$("#folder-area").append(appendFile);
 					}else{
-						appendFile += '<div class="col-xs-2 folders text-center" id="'+f.key+'" data-path="'+f.parentPath+'" data-title="'+f.title+'" ondblclick="test1('+f.key+')">';
+						appendFile += '<div class="col-xs-2 folders text-center" id="'+f.key+'" data-path="'+f.path+'" data-title="'+f.title+'" ondblclick="test1('+f.key+')">';
 						appendFile += '<p class="contain">';
 						appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/mp3image.png"`;
 						appendFile += '		class="img-responsive  center-block" style="height: 64px;"';
@@ -1176,8 +980,9 @@ recognition.interimResults = true;
 						$("#folder-area").append(appendFile);
 					}
 				}
+// 				loadFancytree(data)
 				$('#tree').fancytree('option', 'source', data);
-				$("#share-path").data("root","c:/java-lec/upload/music_"+$("#sId").val());
+				$("#share-path").data("root","c:/java-lec/upload/"+$("#sId").val() + "_music");
 			})
 		}
 	}

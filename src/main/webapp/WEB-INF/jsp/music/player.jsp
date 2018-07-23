@@ -53,7 +53,7 @@
 		.done(function (result) {
 			var html = '';
 			for(let f of result){
-				html += '<div>'+f.title+'</div>'
+				html += '<div class="musicList">'+f.title+'</div>'
 			}
 			$(".musicList").html(html);
 			$("#myMusic").attr('src',
@@ -63,7 +63,10 @@
 			
 		})
 	}
-	
+// 	console.dir($(".musicList"));
+	$(".musicList").dblclick(function () {
+		console.dir(this)
+	})
 	function callMain() {
 		//window.opener.location.href = '${pageContext.request.contextPath}/main/main.do';
 		self.close();

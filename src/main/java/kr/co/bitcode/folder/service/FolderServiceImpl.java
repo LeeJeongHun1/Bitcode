@@ -6,12 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import kr.co.bitcode.repository.domain.DownloadFile;
 import kr.co.bitcode.repository.domain.FancyTree;
 import kr.co.bitcode.repository.domain.FolderAndFile;
 
@@ -22,19 +19,32 @@ public class FolderServiceImpl implements FolderService{
 	private final String PATH = "c:\\java-lec\\upload\\";
 	private final String MUSIC_PATH = "_music";
 	private final String[] EXT = { "jpg", "png", "gif",};
-//	private static long FolderSize = 0;	
+	private static long FolderSize = 0;
 	
 	@Override
 	public Map<String, Object> selectFolderById(String id) {
-		
 		String folderPath = PATH + id; 
 		String musicPath = PATH + id + MUSIC_PATH;
 		String deletePath = PATH + id + "_delete";
-		System.out.println("경로 : " + folderPath);
 		new File(folderPath + "\\새 폴더").mkdirs();
 		new File(deletePath).mkdirs();
-		new File(musicPath + "\\새 폴더").mkdirs();
+		new File(musicPath).mkdirs();
+//		try {
+//			FileInputStream fis = new FileInputStream(PATH + "sample.mp3");
+//			FileOutputStream fos = new FileOutputStream(musicPath + "\\sample.mp3");
+//			int data = 0;
+//			while((data=fis.read())!=-1) {
+//				fos.write(data);
+//			}
+//			fis.close();
+//			fos.close();
+//			
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		Map<String, Object> map = new HashMap<>();
+		FolderSize = 0;
 		map.put("size", ListDirectorySize(new File(folderPath)));
 		map.put("list", ListDirectory(new File(folderPath)));
 		return map;
@@ -85,14 +95,19 @@ public class FolderServiceImpl implements FolderService{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		System.out.println(faf.getId());
+		System.out.println(ListDirectorySize(new File(PATH + faf.getId())));
 		map.put("list", ListDirectory(new File(PATH + faf.getId())));
+		FolderSize = 0;
 		map.put("size", ListDirectorySize(new File(PATH + faf.getId())));
-		return null;
+		return map;
 	}
+	
+	
 	@Override
-	public void downloadFile(DownloadFile dFile, HttpServletResponse res) {
-		// TODO Auto-generated method stub
+	public List<FancyTree> musicFolder(FolderAndFile faf) {
 		
+		return ListDirectory(new File(PATH + faf.getId() + MUSIC_PATH));
 	}
 	
 	//폴더 읽기
@@ -138,16 +153,15 @@ public class FolderServiceImpl implements FolderService{
 	
 	// 폴더 크기
 	private static long ListDirectorySize(File file){
-		long ftSize = 0;
 		for (File ff : file.listFiles()) {
 			if(ff.isFile()){
-				ftSize += ff.length();
+				FolderSize += ff.length();
 			}
 			if(ff.isDirectory()) {
 				ListDirectorySize(ff);
 			}
 		}
-		return ftSize;
+		return FolderSize;
 	}
 
 	

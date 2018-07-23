@@ -25,6 +25,6 @@ public interface FolderService {
 	public List<FancyTree> enterDirectory(FolderAndFile faf);
 	public List<FancyTree> lazyLoad(FolderAndFile faf);
 	public Map<String, Object> uploadFile(FolderAndFile faf, MultipartFile attach);
-	public void downloadFile(DownloadFile dFile, HttpServletResponse res);
+	public List<FancyTree> musicFolder(FolderAndFile faf);
 	
 }

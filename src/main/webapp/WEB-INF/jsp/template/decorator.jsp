@@ -32,8 +32,6 @@
 <%-- 메모장 --%>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main/notepad.css">
 
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main/folder.css">
-
 <%-- 부트스트랩  --%> 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css"> 
@@ -68,11 +66,11 @@
 		
 		
 		
-<script src="${pageContext.request.contextPath}/resources/js/folderjs/folder.js"></script>
 <!-- 크롬 스크립트 -->
 <script src="${pageContext.request.contextPath}/resources/js/internet/internet.js"></script>
 <!-- 메모장 스크립트 -->
 <script src="${pageContext.request.contextPath}/resources/js/note/notepad.js"></script>
+
 
 
 <script>

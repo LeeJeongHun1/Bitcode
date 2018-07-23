@@ -283,4 +283,8 @@ if(loginId){
 
 <!-- 알림/단체대화 스크립트 -->
 <script src="${pageContext.request.contextPath}/resources/js/websocket/websocket.js"></script>
-
+<!-- 폴더 -->
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main/folder.css">
+<script src="${pageContext.request.contextPath}/resources/js/folderjs/folder.js"></script>
+<!-- 음성인식 -->
+<script src="${pageContext.request.contextPath}/resources/js/folderjs/Speech.js"></script>
