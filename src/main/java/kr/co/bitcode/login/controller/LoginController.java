@@ -108,20 +108,21 @@ public class LoginController {
 	
 	
 	//카카오톡 ?????
-	@RequestMapping("/kakao.json") 
-	public @ResponseBody User kakao(User user, Model model) throws Exception { 
-		User users = loginService.selectUserById(user.getId());
-		System.out.println(user.getName());
-		System.out.println(user.getId());
-		System.out.println(user.getEmail());
-		return users;
-	} 
+//	@RequestMapping("/kakao.json") 
+//	public @ResponseBody User kakao(User user, Model model) throws Exception { 
+//		User users = loginService.selectUserById(user.getId());
+//		System.out.println(user.getName());
+//		System.out.println(user.getId());
+//		System.out.println(user.getEmail());
+//		return users;
+//	} 
 	
 	//로그인 (ID, Pass 입력 후)
 	@RequestMapping("/login.do")
 	public String login(User user, HttpSession session,  RedirectAttributes attr) throws Exception{
-		
 		User userInfo = loginService.selectUserById(user.getId());
+		System.out.println(user.getPassword());
+		System.out.println(userInfo.getPassword());
 		if(userInfo != null && passCode.matches(user.getPassword(), userInfo.getPassword())) {
 			session.setAttribute("user", userInfo);
 			session.setMaxInactiveInterval(60 * 60);
