@@ -47,8 +47,8 @@ $(document).ready(function(e){
 	   $("#siciallogin").on('click',function(){
 	      $('.social').stop().slideToggle();
 	   });
-})   
-	   
+}) 
+		/* 
 	   Kakao.init('ce36a8875eea6388db5c148e0c6967a9');  //여기서 발급받은 키  javascript키를 사용해준다.( 키 정보는 개인정보)
 	   Kakao.Auth.createLoginButton({
 		   container: '#kakao-login-btnn',
@@ -59,7 +59,6 @@ $(document).ready(function(e){
 					   kakao(res); 
 					   console.log(res.properties.nickname);
 					   console.log(authObj.access_token);
-
 				   }
 			   })
 		   },
@@ -67,7 +66,7 @@ $(document).ready(function(e){
 			   alert(JSON.stringify(error));
 		   }
 	   });
-	   
+	    */
 	   function kakao(res) {
 		   var kakaoForm = $("#kakaoForm");
 		   $("#kakaoId").val(res.id);
