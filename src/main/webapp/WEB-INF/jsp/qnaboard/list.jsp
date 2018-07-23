@@ -34,9 +34,9 @@
 			<th style="width: 100px; font-size: 14px;">분류</th>
 			<th style="width: 500px; font-size: 14px;">제목</th>
 			<th style="width: 120px; font-size: 14px;">작성자</th>
-			<th style="width: 150px; font-size: 14px;">등록일</th>
-			<th style="width: 100px; font-size: 13px;">추천수</th>
-			<th style="width: 100px; font-size: 13px;">조회수</th>
+			<th style="width: 150px; font-size: 14px;"><a href="#" onclick="return searchList(1) ">등록일</a></th>
+			<th style="width: 100px; font-size: 13px;"><a href="#" onclick="return searchList(2) ">추천수</a></th>
+			<th style="width: 100px; font-size: 13px;"><a href="#" onclick="return searchList(3) ">조회수</a></th>
 		</tr>
 		</thead>
 		<tbody>
@@ -68,12 +68,14 @@
 	<script>
 
 	var session = '${sessionScope.user.id}';
-  	window.onload = function(){
+	var sort = 0 ;
+	window.onload = function(){
  		searchList();
 	} 
 	
 	 //검색 페이징
 	  function makePageLink(data) {
+		 console.dir(data +"페이징");
 		var html = "";
 		if (data.count != 0) {
 			var clz = "";
@@ -98,7 +100,7 @@
 				    html += '<li class="active"><a href="#1">' + i + '</a></li>';
 		    	}
 		    	else {
-		    		html += '<li><a href="javascript:searchList(' + i + ');">' + i + '</a></li>';
+		    		html += '<li><a href="javascript:searchList('+sort+','+ i + ');">' + i + '</a></li>';
 		    	}
 		    }
 			clz = "";
@@ -121,17 +123,26 @@
 	}
 	
 	// 검색 
-	function searchList(pageNo){
+	 
+	// 검색 
+	function searchList(sort,pageNo){
+		alert(sort);
+		 sort = sort;
+		if(pageNo == ""){
+			pageNo = 1;
+		}
 		$.ajax({
 			//type:'post',
 			url:"<c:url value='/qnaboard/list.json'/>",
 			data:{type: $("select[name='type']").val(), 
 				  keyword: $("input[name='keyword']").val(),
-				  pageNo: pageNo},
+				  pageNo: pageNo,
+				  sort:sort 
+				  },
 			dataType: "json"
 		})
 		.done(function (data){
-			makeList(data);
+			makeList(sort,data);
 			makePageLink(data.pageResult)
 		});
 		return false;
@@ -139,9 +150,14 @@
 	}
 	
 	// Q&A 리스트 출력
-	function makeList(data){
+	function makeList(sort,data){
 		var html="";
 		$(".table tbody").html("");
+		if(data.list == ""){
+			html+= '<tr>';
+			html+= '<td colspan="7">게시글이 존재하지않습니다.</td>';
+			html+= '</tr>';
+		}else{
 			for(let qna of data.list){
 			console.log(data.list);
 			if(qna.groupOrder == 0){
@@ -196,6 +212,8 @@
 				html+= '</tr>'	
 			}
  		}	
+			
+		}
 		$(".table tbody").html(html);
 	}	
 	

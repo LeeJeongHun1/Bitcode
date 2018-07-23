@@ -2,9 +2,17 @@ package kr.co.bitcode.repository.domain;
 
 public class Search {
 	private String type;
-	private String keyword;
+	private String keyword; 
 	private String title;
 	private String content;
+	private int sort;
+	public int getSort() {
+		return sort;
+	}
+	public void setSort(int sort) {
+		this.sort = sort;
+	}
+
 	private int pageNo = 1;
 	public static void main(String[] args) {
 		Page p = new Page();

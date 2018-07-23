@@ -83,8 +83,8 @@ a {
 				<table>
 					<tbody>
 						<tr>
-							<td width="300px">${sessionScope.user.nickName}</td>
-							<td width="500px"><textarea name="content" style="resize: none; width=500px;"></textarea></td>
+							<td style="width:130px;">${sessionScope.user.nickName}</td>
+							<td width="500px"><textarea name="content" style="resize: none;"></textarea></td>
 							<td width="100px"><button id="Rbtn" class="resubmit btn btn-default btn-group-xs">등록</button></td>
 						</tr>
 					</tbody>
@@ -178,8 +178,10 @@ a {
 		html += '<div class="reHeader">';
 		html += '<p class="reWriter">'+ modId +'</p>';
 		html += '<span class="reDay"></span>';
+		html += '<div>';
 		html += '<a href="javascript:commentUpdate(' + commentNo + ');" id="cu' + commentNo + '" class="btn btn-success btn-sm" role="button">확인</a>';
 		html += '<a href="javascript:commentCancel(' + commentNo + ');" id="cu' + commentNo + '" class="btn btn-success btn-sm" role="button">취소</a>';
+		html += '</div>';
 		html += '<div id="cNum' + commentNo + '" class="comment"><input type="text" name="content" id="modComment' + commentNo + '" value="' + modContent + '"></div>'; 
 		html += '</li>';
 		

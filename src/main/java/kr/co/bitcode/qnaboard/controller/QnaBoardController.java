@@ -8,12 +8,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.bitcode.qnaboard.service.QnaBoardService;
 import kr.co.bitcode.repository.domain.Code;
-import kr.co.bitcode.repository.domain.Page;
 import kr.co.bitcode.repository.domain.Qna;
 import kr.co.bitcode.repository.domain.QnaComment;
 import kr.co.bitcode.repository.domain.QnaFile;
@@ -88,7 +88,7 @@ public class QnaBoardController {
 	
 	@RequestMapping("/list.json")
 	@ResponseBody
-	public Map<String,Object> list(Search search) throws Exception{
+	public Map<String,Object> list(@RequestParam(value="sort", defaultValue="0") int sort, Search search) throws Exception{
 		return qnaBoardService.list(search);
 	}
 	

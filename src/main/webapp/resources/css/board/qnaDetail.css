@@ -49,6 +49,9 @@ table {
 	border-spacing: 0;
 }
 a {text-decoration: none;}
+textarea {    width: 610px;
+    border: 1px solid #e2e2e2;
+    height: 74px;}
 /* 상세페이지 */
 .container {
   position: absolute;
@@ -160,7 +163,7 @@ a {text-decoration: none;}
 }
 
 .reHeader {
-	
+	background: #f3f3f3;
 }
 
 .reBody, .writeComment {
@@ -171,18 +174,22 @@ a {text-decoration: none;}
 
 .reWriter {
 	display: inline-block;
-	margin: 5px 0 0 6px;
+/* 	margin: 5px 0 0 6px; */
+    float: left;
+    font-size:15px;
 	vertical-align: top;
-	color: #666;
+	color: #012b53;
 	word-wrap: break-word;
 	font-weight: bold;
+	margin-left: 5px;
 }
 
 .reDay {
 	font-size: 11px;
 	font-family: '돋움', dotum, Helvetica, sans-serif;
-	margin: 6px 0 0 1px;
+	margin: 6px 5px 1px;
 	display: inline-block;
+	float: left;
 }
 
 .recomment {
@@ -201,7 +208,7 @@ a {text-decoration: none;}
 
 .reBody li {
 	position: relative;
-	border-top: 1px solid #b9b9b9;
+	border-top: 1px solid #dadada;
 	margin-top: 10px;
 	padding-top: 10px;
 }
@@ -299,6 +306,8 @@ a {text-decoration: none;}
 
 .comment {
 	margin: 5px;
+	min-height: 60px;
+	text-align: left;
 }
 
 .reBody > .reBtn, .writeForm > .reBtn {
@@ -332,7 +341,8 @@ table.editTable {width:900px; height:80%;
 
 }
 table.editTable tr { height:30px;}
-table.editTable tr th {  width: 20%;
+table.editTable tr th {  
+	width: 20%;
     padding: 10px 20px;
     border: none;
     background-color: #f3f3f3;
@@ -409,6 +419,8 @@ tr td {
   font-size: 0.78em;
   font-weight: 300;
   letter-spacing: 0.2em;
+  padding-bottom: 7px;
+  padding-top: 7px;
 }
 
 /* 글씨 h1, h3 */
