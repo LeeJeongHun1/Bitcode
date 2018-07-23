@@ -34,9 +34,9 @@
 			<th style="width: 100px; font-size: 14px;">분류</th>
 			<th style="width: 500px; font-size: 14px;">제목</th>
 			<th style="width: 120px; font-size: 14px;">작성자</th>
-			<th style="width: 150px; font-size: 14px;">등록일</th>
-			<th style="width: 100px; font-size: 14px;">추천수</th>
-			<th style="width: 100px; font-size: 14px;">조회수</th>
+			<th style="width: 150px; font-size: 14px;"><a href="#" onclick="return searchList(1) "><input name="sort" type="hidden" value="3">등록일</a></th>
+			<th style="width: 100px; font-size: 13px;"><a href="#" onclick="return searchList(2) "><input name="sort" type="hidden" value="1">추천수</a></th>
+			<th style="width: 100px; font-size: 13px;"><a href="#" onclick="return searchList(3) "><input name="sort" type="hidden" value="2">조회수</a></th>
 		</tr>
 		</thead>
 		<tbody>
@@ -46,7 +46,7 @@
 		<nav style="text-align: center;">
 			<ul class="pagination"></ul>
 		</nav>
-		<div class="searchBox"> 
+		<div class="searchBox">
 		<form id="list" action='' onsubmit="return searchList()">
 			<select name="type">
 				<option value="title">제목</option>
@@ -119,15 +119,20 @@
 		}
 		$("nav > ul.pagination").html(html);
 	}
-	
+	 
 	// 검색 
-	function searchList(pageNo){
+	function searchList(sort,pageNo){
+		if(pageNo == ""){
+			pageNo = 1;
+		}
 		$.ajax({
 			//type:'post',
 			url:"<c:url value='/qnaboard/list.json'/>",
 			data:{type: $("select[name='type']").val(), 
 				  keyword: $("input[name='keyword']").val(),
-				  pageNo: pageNo},
+				  pageNo: pageNo,
+				  sort:sort
+				  },
 			dataType: "json"
 		})
 		.done(function (data){
@@ -174,7 +179,7 @@
 					for(var i = 1; i < qna.depth; i++){
 						html+= '<span>&nbsp;&nbsp;&nbsp;</span> ';					
 					}
-						html+= '<span style="color:#000 font-weight:600;">⤷ RE </span>';
+						html+= '<span style="color:#2c3e50;">⤷ RE </span>';
 						html+= '<a href="detail.do?no='+qna.no+'">'+qna.title+'</a></td>';
 				}else{
 					for(var i = 1; i < qna.depth; i++){
