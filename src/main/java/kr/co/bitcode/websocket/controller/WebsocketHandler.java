@@ -45,13 +45,13 @@ public class WebsocketHandler extends TextWebSocketHandler {
 		
 		String reMsg = message.getPayload();
 		//
+		String rcvMsg = reMsg.split(":")[0];
+		String rcvId = reMsg.split(":")[1];
 		if(reMsg.startsWith("notice")) {
 			System.out.println("메세지 잘 담겼는지 확인 " + reMsg);
 			Set<String> keys = users.keySet();
-			for (String key : keys) {
-				WebSocketSession wSession = users.get(key);
-				
-				// 로그인 한 아이디로 쓴 게시글 정보 
+			WebSocketSession rcvSession = users.get(rcvId);
+			if(rcvSession != null) {
 				List<Qna> qnaList = mapper.selectNotification(reMsg.split(":")[1]);
 				System.out.println(qnaList.size() + "QnaList 갯수");
 				String notReadText = "";
@@ -79,14 +79,22 @@ public class WebsocketHandler extends TextWebSocketHandler {
 						
 				} // QnaList 를 받음
 				
-				wSession.sendMessage( //noticeA : "1번글의 1개의 답글을 읽지않았습니다.," : 1
+				rcvSession.sendMessage( //noticeA : "1번글의 1개의 답글을 읽지않았습니다.," : 1
 						new TextMessage("noticeA:" + notReadText + ":" + notiCnt)); 						
 			
 				// 유저정보
 				User user = mapper.selectUserPoint(reMsg.split(":")[1]);
-					wSession.sendMessage(new TextMessage("noticeB:"+ user.getNickName()+"님의 현재포인트는" + user.getPoint()+ "점입니다.")); 
+				rcvSession.sendMessage(new TextMessage("noticeB:"+ user.getNickName()+"님의 현재포인트는" + user.getPoint()+ "점입니다.")); 
+				
+				
+			}
+/*			for (String key : keys) {
+				WebSocketSession wSession = users.get(key);
+				System.out.println(wSession +"이거뭐야 ");
+*/				// 로그인 한 아이디로 쓴 게시글 정보 
+				
 			
-			} 
+			// } 
 			
 			
 		}
