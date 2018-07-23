@@ -123,12 +123,12 @@ a {
 	//var oriWriter = $("input[name='id']").val();
 	
 	
-	var session = '${sessionScope.user.id}';
+	var session = '${sessionScope.user.auth}';
 	var sessionP = '${sessionScope.user.point}';
 	alert(sessionP);
 	// 답글 관리자및 고수 외 답글 못달게
 	$("#cBtn").click(function(){ 
-		if(sessionP <= 250 ){
+		if(session != 'S' && sessionP <= 250 ){
 			alert("관리자 와 고수외에는 답글이 불가능 합니다.")
 			return false;
 		}
