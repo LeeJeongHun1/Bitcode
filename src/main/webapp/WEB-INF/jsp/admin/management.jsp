@@ -53,14 +53,14 @@
 		</div>
 		<div>
 			<h3 class="userInformation">Q&A 답변 만족률</h3>
+			<canvas id="pieCanvas" width="100%" height="20%"></canvas>
 		</div>
     </div>
     
   </div>
 </div>
 <script src="${pageContext.request.contextPath}/resources/js/userInfo/userInfo.js"></script>
-
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 <script>
@@ -148,7 +148,55 @@
 	}
 
 	$(".managementBody").draggable();
+
 	
+//------------------------만족률----------------------------//
+
+dou();
+	var img = new Image();
+	var ctx = document.getElementById("pieCanvas").getContext('2d');
+	var fillPattern = ctx.createPattern(img, 'repeat');
+
+	function dou() {
+		console.log("도너들어옴");
+		$.ajax({
+			url: "/bitcode/admin/minidou.json",
+			dataType: "json",
+			success: function (data) {
+				console.log(data);
+				var data = {
+					    datasets: [{
+					        data: [data.unstsfCount, data.midstsfCount, data.stsfCount],
+						    backgroundColor: [
+						    	 'rgba(255, 99, 132)',
+					             'rgba(255, 159, 64)',
+					             'rgba(54, 162, 235)',
+// 					             'rgba(255, 205, 86)'
+						    ]
+					    }],
+					    // These labels appear in the legend and in the tooltips when hovering different arcs
+					    labels: [
+					        '만족',
+					        '보통',
+					        '불만족',
+					    ]
+					};
+				var img = new Image();
+
+				var ctx = document.getElementById("pieCanvas").getContext('2d');
+				var fillPattern = ctx.createPattern(img, 'repeat');
+				var myPieChart = new Chart(ctx,{
+				    type: 'doughnut',
+				    data: data,
+				    options: {
+						rotation : 1 * Math.PI,
+						'animation.animateScale' : true,
+				    }
+				});
+			},
+		});
+	}
+
 </script>
 
 </body>

@@ -14,7 +14,7 @@
 <body>
 <div class="signuoForm">
 	<form action="${pageContext.request.contextPath}/login/signup.do" method="post" id="userForm">
-	  <h1 id="signuph1">Sign UP! <img src="${pageContext.request.contextPath}/resources/images/signupIcon.png"></h1>
+	  <p id="signuph1">Sign UP! <img src="${pageContext.request.contextPath}/resources/images/signupIcon.png"></p>
 	  <input name="id" placeholder="ID를 입력하세요" type="text" id="userId" data-flag="no" class="inputDetail" maxlength="15"/>
 	  <p class="innerText"></p>
 	  <input name="name" placeholder="이름을 입력하세요" type="text" id="userName" data-flag="no" class="inputDetail" maxlength="15"/>

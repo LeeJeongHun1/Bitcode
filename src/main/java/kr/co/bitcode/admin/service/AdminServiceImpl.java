@@ -1,5 +1,6 @@
 package kr.co.bitcode.admin.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,4 +21,18 @@ public class AdminServiceImpl implements AdminService {
 		return result;
 	}
 
+	
+	public Map<String, Integer> stsDou() {
+		Map<String, Integer> map= new HashMap<>();
+		int unstsfCount = mapper.unstsfCount();
+		int midstsfCount=mapper.MidstsfCount();
+		int stsfCount = mapper.stsfCount();
+		
+		map.put("unstsfCount", unstsfCount);
+		map.put("midstsfCount", midstsfCount);
+		map.put("stsfCount", stsfCount);
+		
+		return map;
+	}
+	
 }

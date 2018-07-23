@@ -13,7 +13,7 @@
 </head>
 <body>
 	<form action="${pageContext.request.contextPath}/login/signup.do" method="post" id="userSocialForm">
-	  <h1 id="#signup">Sign UP! <img src="${pageContext.request.contextPath}/resources/images/signupIcon.png"></h1>
+	  <p id="#signup">Sign UP! <img src="${pageContext.request.contextPath}/resources/images/signupIcon.png"></p>
 	 	<p id="commentSignup">더 나은 이용을 위해서는 사용자의 정보가 필요합니다.</p>
 	  <input name="id" placeholder="ID를 입력하세요" type="text" id="userId" data-flag="no" class="inputDetail" value="${id}" readonly="readonly"/>
 	  <p class="innerText"></p>

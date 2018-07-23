@@ -153,4 +153,53 @@
 	</select>
 	-->
 	
+	<resultMap id="qnaMap" type="qna">
+		<result column="no" property="no" />
+		<result column="group_no" property="groupNo" />
+		<result column="group_order" property="groupOrder" />
+		<result column="depth" property="depth" />
+		<result column="id" property="id" />
+		<result column="language_code" property="code" />
+		<result column="language_name" property="codeName" />
+		<result column="title" property="title" />
+		<result column="content" property="content" />
+		<result column="reg_date" property="regDate" />
+		<result column="view_cnt" property="viewCnt" />
+		<result column="like_cnt" property="likeCnt" />
+		<result column="answer_at" property="answerAt" />
+		<result column="stsfc_code" property="stsfcCode" />
+	</resultMap>
+	
+	
+	<resultMap id="stsfcCodeMap" type="stsfcCode">
+		<result column="stsfc_code" property="stsfcCode" />
+		<result column="stsfc_step" property="stsfcStep" />
+	</resultMap>
+	
+	<select id="unstsfCount" resultType="int" >
+	select count(*)
+	from tb_stsfc_code s
+	inner 
+	join tb_qna_board q
+	on q.stsfc_code = s.stsfc_code
+	where s.stsfc_code = 11	
+	</select>
+	<select id="MidstsfCount" resultType="int" >
+	select count(*)
+	from tb_stsfc_code s
+	inner 
+	join tb_qna_board q
+	on q.stsfc_code = s.stsfc_code
+	where s.stsfc_code = 12;
+	</select>	
+	<select id="stsfCount" resultType="int" >
+	select count(*)
+	from tb_stsfc_code s
+	inner 
+	join tb_qna_board q
+	on q.stsfc_code = s.stsfc_code
+	where s.stsfc_code = 13;
+	</select>
+	
+	
 </mapper> 

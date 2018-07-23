@@ -59,7 +59,7 @@ border-radius: 12px 12px 0px 0px;
 </head>
 <body>
 <div class="container1">
-  <h1 class="title1 twelve" id="profileName">Your Profile</h1>
+  <p class="title1 twelve" id="profileName">Your Profile</p>
   <div class="row cf">
     <div id="card1" class="card three col">
 		<div class="topbar red">
@@ -189,40 +189,40 @@ border-radius: 12px 12px 0px 0px;
 
 
 //캘린더 로딩
-// window.onload = function () {
+window.onload = function () {
 	kCalendar('kCalendar');
-// };
+};
 console.dir($("input[name=attDate]"))
 
 
-$("#stampId").click(function () {
-	swal("출척이 체크 되었습니다.");
-// 	$("#todayAttenStamp").submit();
-});
-
-// var userid = $("#userId").val();
 // $("#stampId").click(function () {
-// 	//오늘 날짜
-// 	var today = new Date();
-// 	$.ajax({
-// 		url : "/bitcode/user/attend.json",
-// 		type: "POST",
-// 		data : {
-// 			"id"	  : userid,
-// 			"attDate" : today
-// 		},
-// 		success : function(data){
-// 			if(data == 1){
-// 				swal("출척이 체크 되었습니다.");
-// 				$("#todayAttenStamp").submit();
-// 			}
-// 			else{
-// 				swal("오류 발생!! 다시 클릭 해주세요");
-// 			}
-		
-// 		}
-// 	})	
+// 	swal("출척이 체크 되었습니다.");
+// // 	$("#todayAttenStamp").submit();
 // });
+
+var userid = $("#userId").val();
+$("#stampId").click(function () {
+	//오늘 날짜
+	var today = new Date();
+	$.ajax({
+		url : "/bitcode/user/attend.json",
+		type: "POST",
+		data : {
+			"id"	  : userid,
+			"attDate" : today
+		},
+		success : function(data){
+			if(data == 1){
+				swal("출척이 체크 되었습니다.");
+				location.reload();
+			}
+			else{
+				swal("오류 발생!! 다시 클릭 해주세요");
+			}
+		
+		}
+	})	
+});
 
 
 /* Kurien / Kurien's Blog / http://blog.kurien.co.kr */
@@ -358,7 +358,6 @@ function kCalendar(id, date, data) {
 // 			$(t).css("color", 'red')
 		}
 	}
-// 	console.dir($("#calTable").find("td").data("ckeck"))
 }
 
 //email 수정
@@ -400,17 +399,6 @@ function updateEmail(data) {
 		}
 	})
 }
-
-
-
-
-
-
-
-
-
-
-
 
 // 별명 수정
 $("#submitNickBtn").on('click',function () {
@@ -496,15 +484,6 @@ function fnFindPass(data) {
 		}
 	})
 }
-//function fromattend(data) {
-//	if( typeof(data) !== 'undefined'){
-//		console.log(data);
-//		for (let i = 0; i < data.length; i++) {
-//			 var result =  data[i];
-//			 var cal = new Date(result.attDate)
-//		}
-//	}
-//}
 </script>
 </body>
 </html>

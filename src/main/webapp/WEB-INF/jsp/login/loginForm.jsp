@@ -15,7 +15,7 @@
 <body>
 	<div id="loginUi">
 		<form action="${pageContext.request.contextPath}/login/login.do" method="post" id="userForm">
-		  <h1>Hello Bit Code !!</h1>
+		  <p>Hello Bit Code !!</p>
 		  <input name="id" placeholder="UserId" type="text"/>
 		  <input name="password" placeholder="Password" type="password"/>
 		  <button class="btnL" id="loginBtn">Log in</button>

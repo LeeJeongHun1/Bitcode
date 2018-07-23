@@ -39,18 +39,18 @@ public class UserController {
 	BCryptPasswordEncoder passCode;
 	
 	//출석체크
-//	@RequestMapping("/attend.json")
-//	@ResponseBody
-//	public int attend(Attendance attendance) throws Exception {
-//		
-//		Attendance attend = new Attendance();
-//		//디비 저장
-//		attend.setAttDate(attendance.getAttDate());
-//		attend.setId(attendance.getId());
-//		userService.insertAttendance(attend);
-//		
-//		return 1;
-//	}
+	@RequestMapping("/attend.json")
+	@ResponseBody
+	public int attend(Attendance attendance) throws Exception {
+		
+		Attendance attend = new Attendance();
+		//디비 저장
+		attend.setAttDate(attendance.getAttDate());
+		attend.setId(attendance.getId());
+		userService.insertAttendance(attend);
+		
+		return 1;
+	}
 	@RequestMapping("/updateAttend.do")
 	public ModelAndView updateAttend(String id) throws Exception {
 		System.out.println("userId 출첵 폼 : " + id);
@@ -109,21 +109,6 @@ public class UserController {
 		mav.addObject("dateId1", dateId1);
 		return mav;
 	} 
-	//일반 유저 수정
-//	@RequestMapping("/updateUser.do") 
-//	public String updateUser(User user, RedirectAttributes attr, HttpSession session) throws Exception { 
-//		User userInfo = loginService.selectUserById(user.getId());	
-//		if(user.getEmail() == null) {
-//			user.setEmail(userInfo.getEmail());
-//		}
-//		if(user.getNickName() == null) {
-//			user.setName(userInfo.getNickName());
-//		}
-//		userService.updateUser(user);
-//		session.setAttribute("user", userInfo);
-//		return "redirect:/user/userInfo.do";
-//	} 
-	
 	//email 수정
 	@RequestMapping("/updateEmailForm.json") 
 	public @ResponseBody boolean updateEmailForm(User user, HttpSession session) throws Exception { 

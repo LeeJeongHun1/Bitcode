@@ -31,4 +31,10 @@ public class AdminController {
 		return service.answerCnt();
 	}
 	
+	@RequestMapping("/minidou.json")
+	@ResponseBody
+	public Map<String, Integer> minidou() {
+		System.out.println("만족률!!!!!!!!!!!!!!!!!!!!!!!!1 들어옴");
+		return service.stsDou();
+	}
 }

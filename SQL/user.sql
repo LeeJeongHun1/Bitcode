@@ -13,8 +13,12 @@ alter table tb_user comment '회원정보';
 -----------------------------------------------------------------------------------------------------
 --  유저
 
-select * from tb_user;
+select * from tb_user
+where id = 'junsu';
 
+	update tb_user
+   set birthday = 20001212
+ where id = 'pp';
 -----------------------------------------------------------------------------------------------------
 INSERT INTO tb_user(id, name, nick_name, password, email, point, auth, birthday)
 	VALUES('id1', 'hong', 'hongGilDong', 'id1', 'hong@naver.com', 10, 'U', 19880101);
@@ -72,24 +76,74 @@ drop table tb_news purge;
 --
 delete from tb_attendance
 	where att_id = 72;
-	
+
 --
 delete from tb_attendance
 	where id = 'wldus';	
 
 select * from tb_stsfc_code;
+select * from tb_qna_board;
 
 select *
   from tb_qna_board
- where id = 'yoo'; 
+ where id = 'bitcode'; 
+ -------------------------------------------------------------------
+ ---만족----------------------
+ 
+select s.stsfc_step, s.stsfc_code, q.no, q.id, q.title
+from tb_stsfc_code s
+inner 
+join tb_qna_board q
+on q.stsfc_code = s.stsfc_code;
 
+
+--- 만족 카운트
+select count(*)
+from tb_stsfc_code
+where stsfc_step = '만족'; 
+-----------------------------
+select *
+from tb_stsfc_code s
+inner 
+join tb_qna_board q
+on q.stsfc_code = s.stsfc_code;
+where s.stsfc_step = '만족'; 
+
+
+---불만족 
+select count(*)
+from tb_stsfc_code s
+inner 
+join tb_qna_board q
+on q.stsfc_code = s.stsfc_code
+where s.stsfc_code = 11;
+
+--보통
+select count(*)
+from tb_stsfc_code s
+inner 
+join tb_qna_board q
+on q.stsfc_code = s.stsfc_code
+where s.stsfc_code = 12;
+--만족
+select count(*)
+from tb_stsfc_code s
+inner 
+join tb_qna_board q
+on q.stsfc_code = s.stsfc_code
+where s.stsfc_code = 13;
+
+
+
+------------------------------------------------------------- 
+ 
 INSERT INTO tb_attendance(att_id, id, att_date)
 	VALUES(67, 'id1', 20180719);
 ---------------------------------------
 update tb_qna_board
-   set stsfc_code = 12
- where id = 'yoo' and
- 	   no = 210;	
+   set stsfc_code = 13
+ where id = 'bitcode' and
+ 	   no = 217;	
 -----------------------------------------------------
 
  	   
