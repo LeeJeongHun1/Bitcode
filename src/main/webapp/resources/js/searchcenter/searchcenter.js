@@ -3,6 +3,7 @@
  */
 window.onload = getMyLocation;
 
+
 function getMyLocation(){
 	if(navigator.geolocation){
 		console.log("위치정보 지원함");
@@ -95,8 +96,8 @@ function displayError(error){
 //참고 주소 (location 정보 가져옴)
 //http://maps.googleapis.com/maps/api/geocode/xml?address=%EA%B0%95%EB%82%A8%EC%97%AD&language=ko&sensor=false
 var ourCoords = {
-		latitude: 37.4979420,
-		longitude: 127.0276210
+		latitude: 37.4994884,
+		longitude: 127.0292442
 }
 
 /**
