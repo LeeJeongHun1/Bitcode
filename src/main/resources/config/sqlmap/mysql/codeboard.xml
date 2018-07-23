@@ -8,6 +8,7 @@
 		<result column="group_order" property="groupOrder" />
 		<result column="depth" property="depth" />
 		<result column="id" property="id" />
+		<result column="nick_name" property="nickName" />		
 		<result column="language_code" property="languageCode" />
 		<result column="language_name" property="languageName" />
 		<result column="title" property="title" />
@@ -66,13 +67,14 @@
 		
 
 <select id="selectBoard" resultMap="codeBoardMap" parameterType="codeSearch">
-	select * from tb_code_board cb inner join tb_language_code lc on cb.language_code = lc.language_code 
-
+	select * from tb_code_board cb 
+	inner join tb_language_code lc on cb.language_code = lc.language_code 
+	inner join tb_user u on cb.id = u.id
 <where>
 
-<if test="searchOption == 0"> and id || content || title like concat("%", #{searchInput},"%") </if>
+<if test="searchOption == 0"> and u.nick_name || content || title like concat("%", #{searchInput},"%") </if>
 
-<if test="searchOption == 1"> and id like concat("%", #{searchInput},"%") </if>
+<if test="searchOption == 1"> and u.nick_name like concat("%", #{searchInput},"%") </if>
 
 <if test="searchOption == 2"> and content like concat("%", #{searchInput},"%") </if>
 
@@ -97,11 +99,13 @@ LIMIT #{begin},10
 
 
 <select id="boardCount" parameterType="codeSearch" resultType="int">
-	select count(*) from tb_code_board cb inner join tb_language_code lc on cb.language_code = lc.language_code 
-	
+	select count(*) from tb_code_board cb 
+	inner join tb_language_code lc on cb.language_code = lc.language_code 
+	inner join tb_user u on cb.id = u.id
 	<where>
-	
-	<if test="searchOption == 1"> and id like concat("%", #{searchInput},"%") </if>
+	<if test="searchOption == 0"> and u.nick_name || content || title like concat("%", #{searchInput},"%") </if>	
+
+	<if test="searchOption == 1"> and u.nick_name like concat("%", #{searchInput},"%") </if>
 	
 	<if test="searchOption == 2"> and content like concat("%", #{searchInput},"%") </if>
 	

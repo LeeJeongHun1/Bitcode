@@ -55,7 +55,7 @@ function makeCodeList(data){
 			else{
 			html+='        <td style="font-size:14px; text-align:left;">'+codeBoard.title+'</td>     ';					
 			}
-			html+='        <td style="font-size:14px;">'+codeBoard.id+'</td>                                                             ';
+			html+='        <td style="font-size:14px;">'+codeBoard.nickName+'</td>                                                             ';
 			html+='        <td style="font-size:14px;">'+day+'</td>        ';
 			html+='        <td style="font-size:14px;">'+codeBoard.likeCnt+'</td>                                                        ';
 			html+='        <td style="font-size:14px;">'+codeBoard.viewCnt+'</td>                                                        ';
@@ -84,7 +84,7 @@ function makeCodeList(data){
 					html+='        </td>                                                                                                 ';			
 				}
                                                                                           
-			html+='        <td style="font-size:14px;">'+codeBoard.id+'</td>                                                             ';
+			html+='        <td style="font-size:14px;">'+codeBoard.nickName+'</td>                                                             ';
 			html+='        <td style="font-size:14px;">'+day+'</td>        ';
 			html+='        <td style="font-size:14px;">'+codeBoard.likeCnt+'</td>                                                        ';
 			html+='        <td style="font-size:14px;">'+codeBoard.viewCnt+'</td>                                                        ';
