@@ -34,9 +34,9 @@
                                 <th style="width:100px;font-size:14px;">분류</th>
                                 <th style="width:500px;font-size:14px;">제목</th>
                                 <th style="width:120px;font-size:14px;">작성자</th>
-                                <th style="width:150px;font-size:14px;">등록일</th>
-                                <th style="width:100px;font-size:14px;">추천수</th>
-                                <th style="width:100px;font-size:14px;">조회수</th>
+                                <th style="width:150px;font-size:14px;"><a href="#" onclick="codeList(1, 1)">등록일</a></th>
+                                <th style="width:100px;font-size:14px;"><a href="#" onclick="codeList(1, 2)">추천수</a></th>
+                                <th style="width:100px;font-size:14px;"><a href="#" onclick="codeList(1, 3)">조회수</a></th>
                             </tr>
                         </thead>
                         <tbody id="listTbody">

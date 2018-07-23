@@ -96,13 +96,14 @@ public class CodeBoardServiceImpl implements CodeBoardService{
 		search.setPageNo(pageNo != -1 ? pageNo : 1);
 		cs.setBegin(search.getBegin());
 		cs.setEnd(search.getEnd());
-		
-		int count = mapper.boardCount(cs);
+		System.out.println(cs.getPageNo());
+//		System.out.println(mapper.boardCount(cs));
+//		int count = mapper.boardCount(cs);
 		Map<String,Object> map = new HashMap<>();
 		map.put("searchInput", cs.getSearchInput());
 		map.put("searchOption", cs.getSearchOption());
 		map.put("list", mapper.selectBoard(cs));
-		map.put("pageResult",new PageResult(cs.getPageNo(), count));		
+		map.put("pageResult",new PageResult(cs.getPageNo(), mapper.boardCount(cs)));		
 		System.out.println(cs.getBegin()+"시작");
 		System.out.println(cs.getSearchInput() +"검색어");
 		System.out.println(cs.getSearchOption() + "옵션");

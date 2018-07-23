@@ -3,10 +3,12 @@ package kr.co.bitcode.repository.domain;
 public class CodeSearch {
 	private String searchInput;
 	private int searchOption;
-	private int pageNo =1;
+	private int pageNo = 1;
 	private int begin;
 	private int end;
 	private int listSize = 10;
+	private int sort;
+	
 	public int getPageNo() {
 		return pageNo;
 	}
@@ -36,6 +38,12 @@ public class CodeSearch {
 	}
 	public void setSearchOption(int searchOption) {
 		this.searchOption = searchOption;
+	}
+	public int getSort() {
+		return sort;
+	}
+	public void setSort(int sort) {
+		this.sort = sort;
 	}
 
 }

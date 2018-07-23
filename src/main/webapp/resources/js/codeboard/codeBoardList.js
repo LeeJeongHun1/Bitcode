@@ -24,41 +24,6 @@ document.querySelector("#search").onclick=function(){
 	codeList();
 }
 
-function codeList(pageNo){
-	var target = document.getElementById("option");
-	var input = document.getElementById("input").value;
-	var option = target.options[target.selectedIndex].value;
-	
-	if(pageNo == ""){
-		pageNo = 1;
-	}
-	if(input == ""){
-		input = null;
-	}
-	if(option == ""){
-		option = 0;
-	}
-//	console.log(searchOption);
-//	console.log(searchInput);
-	$.ajax({
-		url:"list.json",
-		data:{
-			"searchInput" : input,
-			"searchOption" : option,
-			"pageNo" : pageNo
-			},
-		dataType:"json"
-	})
-	.done(function(data){
-		makeCodeList(data.list);
-		makePage(data)
-//		$("body").waitMe("hide");
-	})
-	.fail(function(e){
-		console.log(e);
-	})
-}
-
 function makeCodeList(data){
 	var html="";
 	for(let codeBoard of data){
@@ -161,3 +126,42 @@ function makePage(data){
 	$("nav > ul.pagination").html(html);	
 }
 
+function codeList(pageNo, sort){
+	var target = document.getElementById("option");
+	var input = document.getElementById("input").value;
+	var option = target.options[target.selectedIndex].value;
+	
+	if(pageNo == ""){
+		pageNo = 1;
+	}
+	if(input == ""){
+		input = null;
+	}
+	if(option == ""){
+		option = 0;
+	}
+	if(sort === undefined){
+		sort = 0;
+	}
+	console.log(sort);
+//	console.log(searchOption);
+//	console.log(searchInput);
+	$.ajax({
+		url:"list.json",
+		data:{
+			"searchInput" : input,
+			"searchOption" : option,
+			"pageNo" : pageNo,
+			"sort": sort
+			},
+		dataType:"json"
+	})
+	.done(function(data){
+		makeCodeList(data.list);
+		makePage(data)
+//		$("body").waitMe("hide");
+	})
+	.fail(function(e){
+		console.log(e);
+	})
+}

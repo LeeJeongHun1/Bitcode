@@ -64,44 +64,64 @@
 			</if>
 		</sql>
 		
-		<select id="selectBoard" parameterType="codeSearch" resultMap="codeBoardMap">
-			select *
-			  from tb_code_board cb
-	 	inner join tb_language_code lc
-	 			on cb.language_code = lc.language_code
-	 	<where>
-				<if test="searchOption == 1">
-				and id like concat("%", #{searchInput},"%")
-				</if>
-				<if test="searchOption == 2">
-				and content like concat("%", #{searchInput},"%")
-				</if>
-				<if test="searchOption == 3">
-				and title like concat("%", #{searchInput},"%")
-				</if>
-	 	</where>
-			 order by group_no desc, group_order asc
-			 LIMIT #{begin},10
-		</select>
-		
-		<select id="boardCount" parameterType="codeSearch" resultType="int">
-			select count(*)
-			  from tb_code_board cb
-	 	inner join tb_language_code lc
-	 			on cb.language_code = lc.language_code
-	 	<where>
-				<if test="searchOption == 1">
-				and id like concat("%", #{searchInput},"%")
-				</if>
-				<if test="searchOption == 2">
-				and content like concat("%", #{searchInput},"%")
-				</if>
-				<if test="searchOption == 3">
-				and title like concat("%", #{searchInput},"%")
-				</if>
-	 	</where>
-			 order by group_no desc, group_order asc		
-		</select>
+
+<select id="selectBoard" resultMap="codeBoardMap" parameterType="codeSearch">
+	select * from tb_code_board cb inner join tb_language_code lc on cb.language_code = lc.language_code 
+
+<where>
+
+<!-- <if test="searchOption == 0"> and id || content || title like concat("%", #{searchInput},"%") </if> -->
+
+<if test="searchOption == 1"> and id like concat("%", #{searchInput},"%") </if>
+
+<if test="searchOption == 2"> and content like concat("%", #{searchInput},"%") </if>
+
+<if test="searchOption == 3"> and title like concat("%", #{searchInput},"%") </if>
+
+</where>
+order by 
+
+<choose>
+
+<when test="sort == 1 "> cb.reg_date desc, cb.group_no desc, cb.group_order asc </when>
+
+<when test="sort == 2"> cb.like_cnt desc, cb.group_no desc, cb.group_order asc </when>
+
+<when test="sort == 3"> cb.view_cnt desc, cb.group_no desc, cb.group_order asc </when>
+
+<when test="sort == 0 "> cb.group_no desc, cb.group_order asc </when>
+
+</choose>
+LIMIT #{begin},10 
+</select>
+
+
+<select id="boardCount" parameterType="codeSearch" resultType="int">
+	select count(*) from tb_code_board cb inner join tb_language_code lc on cb.language_code = lc.language_code 
+	
+	<where>
+	
+	<if test="searchOption == 1"> and id like concat("%", #{searchInput},"%") </if>
+	
+	<if test="searchOption == 2"> and content like concat("%", #{searchInput},"%") </if>
+	
+	<if test="searchOption == 3"> and title like concat("%", #{searchInput},"%") </if>
+	
+	</where>
+	order by 
+	
+	<choose>
+	
+	<when test="sort == 1 "> cb.reg_date desc, cb.group_no desc, cb.group_order asc </when>
+	
+	<when test="sort == 2"> cb.like_cnt desc, cb.group_no desc, cb.group_order asc </when>
+	
+	<when test="sort == 3"> cb.view_cnt desc, cb.group_no desc, cb.group_order asc </when>
+	
+	<when test="sort == 0 "> cb.group_no desc, cb.group_order asc </when>
+	
+	</choose>
+</select>
 		
 		<insert id="insertBoard" parameterType="codeBoard">
 		   <selectKey keyProperty="no" resultType="int" order="AFTER">
