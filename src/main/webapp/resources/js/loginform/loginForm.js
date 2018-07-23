@@ -1,11 +1,13 @@
 //카카오톡
+/*
 $(document).ready(function(e){
 	   $("#siciallogin").on('click',function(){
 	      $('.social').stop().slideToggle();
 	   });
 })   
-	   
-	   Kakao.init('ce36a8875eea6388db5c148e0c6967a9');  //여기서 발급받은 키  javascript키를 사용해준다.( 키 정보는 개인정보)
+	  
+		Kakao.init('ce36a8875eea6388db5c148e0c6967a9');  //여기서 발급받은 키  javascript키를 사용해준다.( 키 정보는 개인정보)
+
 	   Kakao.Auth.createLoginButton({
 		   container: '#kakao-login-btnn',
 		   success: function(authObj) {
@@ -18,12 +20,10 @@ $(document).ready(function(e){
 
 				   }
 			   })
-		   },
-		   fail: function(error) {
-			   alert(JSON.stringify(error));
 		   }
 	   });
 	   
+
 	   function kakao(res) {
 		   var kakaoForm = $("#kakaoForm");
 		   $("#kakaoId").val(res.id);
@@ -35,7 +35,7 @@ $(document).ready(function(e){
 		   
 	   }
      
-
+*/
 //Pass 찾기
 	$("#forgetpass").on('click',function () {
 		swal.mixin({
