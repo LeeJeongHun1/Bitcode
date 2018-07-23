@@ -53,7 +53,7 @@
 		</div>
 		<div>
 			<h3 class="userInformation">Q&A 답변 만족률</h3>
-			<canvas id="pieCanvas" width="100%" height="20%"></canvas>
+			<canvas id="pieCanvas" width="100%" height="70%"></canvas>
 		</div>
     </div>
     
@@ -163,6 +163,7 @@ dou();
 			url: "/bitcode/admin/minidou.json",
 			dataType: "json",
 			success: function (data) {
+				var un = data.unstsfCount;
 				console.log(data);
 				var data = {
 					    datasets: [{
@@ -173,12 +174,14 @@ dou();
 					             'rgba(54, 162, 235)',
 // 					             'rgba(255, 205, 86)'
 						    ]
+					    
+					    
 					    }],
 					    // These labels appear in the legend and in the tooltips when hovering different arcs
 					    labels: [
-					        '만족',
-					        '보통',
 					        '불만족',
+					        '보통',
+					        '만족',
 					    ]
 					};
 				var img = new Image();
@@ -189,6 +192,14 @@ dou();
 				    type: 'doughnut',
 				    data: data,
 				    options: {
+					    	 elements: {
+		    		                    center: {
+		    		                      text: 10,
+		    		                      fontStyle: 'Helvetica', //Default Arial
+		    		                      sidePadding: 15 //Default 20 (as a percentage)
+		    		                 	 }
+					    		        },
+				    	
 						rotation : 1 * Math.PI,
 						'animation.animateScale' : true,
 				    }

@@ -16,8 +16,8 @@
 	<div id="loginUi">
 		<form action="${pageContext.request.contextPath}/login/login.do" method="post" id="userForm">
 		  <p>Hello Bit Code !!</p>
-		  <input name="id" placeholder="UserId" type="text"/>
-		  <input name="password" placeholder="Password" type="password"/>
+		  <input class="inputlogin "name="id" placeholder="UserId" type="text"/>
+		  <input class="inputlogin name="password" placeholder="Password" type="password"/>
 		  <button class="btnL" id="loginBtn">Log in</button>
 		</form>
 		  <span id="forgetid">ID 찾기</span>
@@ -29,9 +29,9 @@
 	<div class="btnka"><a id="kakao-login-btnn" href="http://developers.kakao.com/logout"></a></div>
 	</div>
     <form name="kakaoForm" id="kakaoForm" method="post" action="${pageContext.request.contextPath}/login/kakaoForm.do">
-		<input type="hidden" name="id" id="kakaoId" />
-		<input type="hidden" name="email"  id="kakaoEmail"/>
-		<input type="hidden" name="nickname"  id="kakaoNickname"/>
+		<input type="hidden" name="id" id="kakaoId" class="inputlogin"/>
+		<input type="hidden" name="email"  id="kakaoEmail" class="inputlogin"/>
+		<input type="hidden" name="nickname"  id="kakaoNickname" class="inputlogin"/>
 	</form>	
 </div>	
 <script src="${pageContext.request.contextPath}/resources/js/loginform/loginForm.js"></script>
