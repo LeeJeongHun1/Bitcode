@@ -17,7 +17,7 @@ $("#noteClose").click(function(){
 $.ajax({
 	url: "/bitcode/main/myNote.json?id=" + loginId,
 	success: function(result) {
-		var myNote = $("#myNoteContent").val(result);
+		var myNote = $("#myNoteContent").html(result.replace(/<br>/g, "&#10;"));
 	}
 });
 
@@ -36,12 +36,33 @@ $("#myNoteContent").keyup(function(){
 
 // new
 $("#newNote").click(function(){
+	var noteContent = {"id": loginId, "content": ""};
+	$.ajax({
+		type: "POST",
+		url: "/bitcode/main/modNote.json",
+		data: noteContent, 
+		success: function(result) {
+			var myNote = $("#myNoteContent").html(result.replace(/<br>/g, "&#10;"));
+		}
+	});	
 	$("#nTitle").html("BIT NOTE");
-
 });
 
 // save
 $("#saveNote").click(function(){
+	var modNote = $("#myNoteContent").val();
+	modNote = modNote.replace(/(?:\r\n|\r|\n)/g, '<br>');
+	var noteContent = {"id": loginId, "content": modNote};
+	
+	$.ajax({
+		type: "POST",
+		url: "/bitcode/main/modNote.json",
+		data: noteContent, 
+		success: function(result) {
+			var myNote = $("#myNoteContent").html(result.replace(/<br>/g, "&#10;"));
+		}
+	});	
+	
 	$("#nTitle").html("BIT NOTE");
 });
 
