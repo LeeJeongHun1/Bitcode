@@ -29,7 +29,8 @@ public class QnaBoardController {
 	private QnaBoardService qnaBoardService;
 	
 	@RequestMapping("/list.do")
-	public void listBoard(Search search) throws Exception {	}
+	public void listBoard(Search search) throws Exception {	
+	}
 	
 	@RequestMapping("/delete.do")
 	public String delete(int no) throws Exception {

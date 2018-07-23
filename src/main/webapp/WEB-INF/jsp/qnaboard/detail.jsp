@@ -101,7 +101,7 @@ a {
 
 			<div class="contents_btn">
 				<a href='<c:url value="/qnaboard/list.do" />'><button>목록</button></a>
-				<a href='<c:url value="/qnaboard/insertReForm.do?no=${list.qna.no}"/>'><button>답변</button></a>
+				<a id="cBtn" href='<c:url value="/qnaboard/insertReForm.do?no=${list.qna.no}"/>'><button>답변</button></a>
 				<a href='<c:url value="/qnaboard/updateForm.do?no=${list.qna.no}" />'><button>수정</button></a>
 				<a href='<c:url value="/qnaboard/delete.do?no=${list.qna.no}"/>'><button>삭제</button></a>
 				<!-- <a href="#"><button>삭제</button></a> -->
@@ -120,8 +120,21 @@ a {
 	
 	<script>
 	// 추천 
-	//var session = '${sessionScope.user.id}';
 	//var oriWriter = $("input[name='id']").val();
+	
+	
+	var session = '${sessionScope.user.id}';
+	var sessionP = '${sessionScope.user.point}';
+	alert(sessionP);
+	// 답글 관리자및 고수 외 답글 못달게
+	$("#cBtn").click(function(){ 
+		if(sessionP <= 250 ){
+			alert("관리자 와 고수외에는 답글이 불가능 합니다.")
+			return false;
+		}
+		
+	});
+	
 	function recommend(){
 		$.ajax({
 		    url:"<c:url value='/qnaboard/likeUpdate.json'/>",
