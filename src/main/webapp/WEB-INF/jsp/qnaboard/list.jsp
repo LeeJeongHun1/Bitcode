@@ -46,7 +46,7 @@
 		<nav style="text-align: center;">
 			<ul class="pagination"></ul>
 		</nav>
-		<div class="searchBox">
+		<div class="searchBox"> 
 		<form id="list" action='' onsubmit="return searchList()">
 			<select name="type">
 				<option value="title">제목</option>
