@@ -24,7 +24,10 @@ document.querySelector("#search").onclick=function(){
 	codeList();
 }
 
+
+
 function makeCodeList(data){
+	console.dir(pageNumber);
 	var html="";
 	for(let codeBoard of data){
 		var date = new Date(codeBoard.regDate);
@@ -75,12 +78,15 @@ function makeCodeList(data){
 			html+='        <td style="font-size:14px;">'+codeBoard.likeCnt+'</td>                                                        ';
 			html+='        <td style="font-size:14px;">'+codeBoard.viewCnt+'</td>                                                        ';
 			html+='    </tr>                        	                                                                         ';
-		}                                                                        
+			html+='   <input type="hidden" id="pNo" value="'+pageNumber+'" />';
+		}
 	}
     document.querySelector("#listTbody").innerHTML=html;
 }
-
+var pageNumber;
 function makePage(data){
+	pageNumber = data.pageResult.pageNo;
+	console.log(pageNumber);
 	var html = "";
 	if (data.pageResult.count != 0) {
 		var clz = "";
@@ -157,8 +163,8 @@ function codeList(pageNo, sort){
 		dataType:"json"
 	})
 	.done(function(data){
-		makeCodeList(data.list);
 		makePage(data)
+		makeCodeList(data.list);
 //		$("body").waitMe("hide");
 	})
 	.fail(function(e){

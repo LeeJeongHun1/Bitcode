@@ -17,6 +17,7 @@
 </head>
 
 <body>
+	
 	<div class="codeBody">
 		<%-- 상단 컬러바 --%>
 	<div id="card1" class="card ten col">
@@ -25,7 +26,6 @@
 		<div class="xbtn" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">x</div>
 		</div>
 		<h1 class="information">코드공유게시판</h1>
-	
 	<div class="code">
                     <table class="codeList table table-hover">
                         <thead>
@@ -34,9 +34,9 @@
                                 <th style="width:100px;font-size:14px;">분류</th>
                                 <th style="width:500px;font-size:14px;">제목</th>
                                 <th style="width:120px;font-size:14px;">작성자</th>
-                                <th style="width:150px;font-size:14px;"><a href="#" onclick="codeList(1, 1)">등록일</a></th>
-                                <th style="width:100px;font-size:14px;"><a href="#" onclick="codeList(1, 2)">추천수</a></th>
-                                <th style="width:100px;font-size:14px;"><a href="#" onclick="codeList(1, 3)">조회수</a></th>
+                                <th style="width:150px;font-size:14px;"><a href="#" onclick="pNo(1)">등록일</a></th>
+                                <th style="width:100px;font-size:14px;"><a href="#" onclick="pNo(2)">추천수</a></th>
+                                <th style="width:100px;font-size:14px;"><a href="#" onclick="pNo(3)">조회수</a></th>
                             </tr>
                         </thead>
                         <tbody id="listTbody">
@@ -64,7 +64,10 @@
 	</div>
     </div>
     <script>
-    var session = '${sessionScope.user.id}';
+    	var session = '${sessionScope.user.id}';
+    	function pNo(sort) {
+    		codeList($("#pNo").val(), sort)
+    	}
     </script>
 	<script src="${pageContext.request.contextPath}/resources/js/codeboard/codeBoardList.js"></script>
 </body>
