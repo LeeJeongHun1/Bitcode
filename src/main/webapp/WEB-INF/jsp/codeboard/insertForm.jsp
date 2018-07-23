@@ -5,8 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" 
-href="${pageContext.request.contextPath}/resources/css/board/detail.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/board/codeDetail.css">
 <style>
 button{
 color:#80FF00;
@@ -14,8 +13,14 @@ background-color: black;}
 </style>
 </head>
 <body>
-	<div class="container">
-		<div class="shell-container" style="color:#80FF00; background-color: black;">
+	<div class="codeDetailBody">
+	<div id="card1" class="card ten col">
+		<div class="topbar yellow">
+		<div class="swatches"><span class="red"></span><span class="orange"></span><span class="yellow"></span><span class="green"></span><span class="blue"></span></div>
+		<div class="xbtn" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">x</div>
+		</div>
+		
+		<div class="shell-container code">
 			<form method='post' action='${pageContext.request.contextPath}/codeboard/insert.do'
 			enctype="multipart/form-data">
 		<h2 class="shell_title" style="color:#80FF00;">코드공유게시판</h2>
@@ -30,7 +35,7 @@ background-color: black;}
 			</tr>
 			<tr>
 			<th style="color:#80FF00; background-color: black;">작성자</th>
-			<td><input style="color:#80FF00; background-color: black;" type="text" name="id" value='${user.id}' readonly="readonly"/></td>
+			<td><input style="color:#80FF00; background-color: black;" type="text" name="id" value='${user.nickName}' readonly="readonly"/></td>
 			</tr>
 
 			<tr style="height:90%;">

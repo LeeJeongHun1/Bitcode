@@ -2,24 +2,31 @@
 
 <!DOCTYPE html>
 <html>
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>findcenter</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
+<title>Search Center</title>
+<meta name="viewport" 
+      content="width=device-width, user-scalable=no, initial-scale=1">
+<meta charset="utf-8">
+<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script src="${pageContext.request.contextPath}/resources/js/searchcenter/searchcenter.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/searchcenter/searchcenter.css">
 </head>
-
 <body>
-	<div class="container" style="color:#80FF00; background-color: black;">
-    <div class="container" style="height:146px;">
-        <h1 class="text-center" style="margin-top:59px;margin-right: 50px">현재 위치에서 가장 가까운 센터</h1>
-    </div>
-    <div class="container" style="height:510px;width:543px;"><img style="width:497px;height:479px;"></div>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-	</div>
-</body>
+<form>
+	<input type="button" id="watch" value="watch" />
+	<input type="button" id="clearWatch" value="clearWatch" />
+</form>
 
+<div id="location">
+당신의 현재 위치
+</div>
+
+<div id="distance">
+강남역과의 거리 : 
+</div>
+
+<div id="map">
+</div>
+
+</body>
 </html>

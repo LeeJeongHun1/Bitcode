@@ -31,7 +31,7 @@ background-color: black;}
 			</tr>
 			<tr>
 			<th style="color:#80FF00; background-color: black;">작성자</th>
-			<td><input style="color:#80FF00; background-color: black;" type="text" name="id"/></td>
+			<td><input style="color:#80FF00; background-color: black;" type="text" name="id" value='${user.nickName}' readonly="readonly"/></td>
 			</tr>
 
 			<tr style="height:90%;">

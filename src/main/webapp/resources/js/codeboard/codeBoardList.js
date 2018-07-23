@@ -34,6 +34,17 @@ function makeCodeList(data){
 		var day = date.getFullYear() + "-"
 		+ (date.getMonth() + 1) + "-"
 		+ date.getDate();
+		if(data.length==0){
+			html+='    <tr style="height:13px; type:text/css;">                                                                  ';
+			html+='        <td style="font-size:14px;"></td>                                                             ';
+			html+='        <td style="font-size:14px;"></td>   ';
+			html+='        <td style="font-size:14px; text-align:right;">검색 결과가 없습니다.</td>     ';			
+			html+='        <td style="font-size:14px;"></td>                                                             ';
+			html+='        <td style="font-size:14px;"></td>        ';
+			html+='        <td style="font-size:14px;"></td>                                                        ';
+			html+='        <td style="font-size:14px;"></td>                                                        ';
+			html+='    </tr>  ';
+		}		
 		if(codeBoard.groupOrder==1){
 			html+='    <tr style="height:13px; type:text/css;">                                                                  ';
 			html+='        <td style="font-size:14px;">'+codeBoard.no+'</td>                                                             ';
