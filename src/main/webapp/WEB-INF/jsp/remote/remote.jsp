@@ -75,7 +75,7 @@ if(!location.hash.replace('#', '').length) {
 	    
 	<!-- 화면 공유 대기 리스트 -->
 	<c:if test="${sessionScope.user.auth eq 'S'}">
-	<table style="width: 100%;" id="roomsList" class="hide-after-join"></table>
+	<div style="width: 100%;" id="roomsList" class="hide-after-join"></div>
     </c:if>
 	
 

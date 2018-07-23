@@ -41,11 +41,17 @@ screensharing.onscreen = function(_screen) {
     var alreadyExist = document.getElementById(_screen.userid);
     if (alreadyExist) return;
     if (typeof roomsList === 'undefined') roomsList = document.body;
+    /*
     var tr = document.createElement('tr');
     tr.id = _screen.userid;
     //tr.innerHTML = '<td>' + _screen.userid + ' 회원 화면 함께보기</td>' +
-    tr.innerHTML = '<td>회원 화면 함께보기</td>' +
-            '<td><button class="join screenShare order btn btn-default btn-group-xs">출력</button></td>';
+    tr.innerHTML = '<span id="number-of-participants">회원 화면 함께 보기. </span><button class="join screenShare order btn btn-default btn-group-xs">출력</button>';
+    roomsList.insertBefore(tr, roomsList.firstChild);
+    */
+    var tr = document.createElement('span');
+    tr.id = _screen.userid;
+    //tr.innerHTML = '<td>' + _screen.userid + ' 회원 화면 함께보기</td>' +
+    tr.innerHTML = '회원 화면 함께 보기. <button class="join screenShare order btn btn-default btn-group-xs">출력</button>';
     roomsList.insertBefore(tr, roomsList.firstChild);
     var button = tr.querySelector('.join');
     button.setAttribute('data-userid', _screen.userid);

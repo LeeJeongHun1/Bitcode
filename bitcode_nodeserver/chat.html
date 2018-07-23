@@ -3,6 +3,7 @@ body {
   margin: 0px;
   padding: 0px;
 }
+/* 채팅틀 */
 #chatBody{
   width: 330px;
   background: white;
@@ -11,24 +12,33 @@ body {
   scroll: hidden;
   box-sizing: border-box;
 }
-#chatBox{
+/* 대화창 */
+#chatBox {
   width: 330px;
   background: white;
   border-radius: 5px;
-  overflow: hidden;
   box-sizing: border-box;
-  scroll-x: hidden;
-  scroll-y: auto;
+  overflow-x: hidden;
+  height: 430px;
 }
+/* 전송창 */
 .bottom-bar{
+  margin: 0 auto;
   bottom: 10px;
   color: black;
   position: absolute;
   position: fixed;
 }
-#msg{
-  width: 230px;
-  height: 30px;
+input{
+  width: 270px;
+  height: 40px;
+  border-radius: 5px;
+}
+/* 전송버튼 */
+#msgBtn {
+  width: 30px;
+  height: 40px;
+  border-radius: 5px;
 }
 /* 말풍선 */
 blockquote {
@@ -84,9 +94,9 @@ p.me::after {
 	<div id="chatBox"></div>
 	
 	<!-- 메시지 입력창 -->
-	<div class="bottom-bar">
+	<div id="chatBottom" class="bottom-bar">
 		<input type="text" id="message" />
-		<input type="button" value="메세지 전송" id="msgBtn"/>
+		<button type="button" value="메세지 전송" id="msgBtn">↵</button>
 	</div>
 </blockquote>
 
@@ -100,16 +110,13 @@ var socket = io.connect();
    socket.on("msg", function (data) {
    console.dir(data);
    if(sender.match(data.sender)){
-	   $("#chatBox").before("<p class='me'>" + data.sender + " : " + data.msg + "</p>");
+	   $("#chatBox").append("<p class='me'>" + data.sender + " : " + data.msg + "</p>");
+	   $("#chatBox").scrollTop($("#chatBox").height());
    } else{
-	   $("#chatBox").before("<p class='them'>" + data.sender + " : " + data.msg + "</p>");
-	   
+	   $("#chatBox").append("<p class='them'>" + data.sender + " : " + data.msg + "</p>");
+	   $(document).scrollTop($(document).height());
    }
-   //$("#chatBody").before(data.sender + " : " + data.msg + "<br>");
    
-   
-   
-   $(document).scrollTop($(document).height());
    });
  
    $("[type=button]").click(function () {
