@@ -85,6 +85,7 @@ border-radius: 12px 12px 0px 0px;
 		  <input type="text" name="year" id="birth1" size="4" class="inputDetail1" value="${yearId1}" readonly="readonly"/>
 		  <input type="text" name="month" id="birth2"  size="2" class="inputDetail1" value="${monthId1}" readonly="readonly"/>
 		  <input type="text" name="date" id="birth3"  size="2" class="inputDetail1" value="${dateId1}" readonly="readonly"/>  
+		  <input name="birthday" type="hidden" class="inputDetail" id="birthday"/>
 		</div>
 		<div class="nickDiv">
 		 <p id="pName">Email</p>
@@ -189,15 +190,6 @@ border-radius: 12px 12px 0px 0px;
 window.onload = function () {
 	kCalendar('kCalendar');
 };
-// console.dir($("input[name=attDate]"))
-
-
-// $("#stampId").click(function () {
-// 	swal("출척이 체크 되었습니다.");
-// // 	$("#todayAttenStamp").submit();
-// });
-
-// var userid = $("#userId").val();
 $("#stampId").click(function () {
 	//오늘 날짜
 	var today = new Date();
@@ -304,6 +296,7 @@ function kCalendar(id, date) {
 	var dateNum = 1 - currentDay;
 	var attId = $("input[name=attDate]")
 	var day = [];
+	var mons = [];
 	 for(let d = 0; d < attId.length; d++){
 			var dbuser = attId[d]
 			var attendate = dbuser.value;
@@ -312,9 +305,10 @@ function kCalendar(id, date) {
 			attendate = new Date(attendate[0], attendate[1], attendate[2]);
 			attdate = attendate.getDate();
 			attMonth = attendate.getMonth() + 1;
-			day.push(attdate);
+			day.push({"date": attdate, "month": attMonth});
+			mons.push(attMonth);
 		 }
-// 	console.dir(day)
+	 
 	for(var i = 0; i < week; i++) {
 		calendar += '			<tr>';
 		
@@ -325,8 +319,7 @@ function kCalendar(id, date) {
 			}
 			var check = '';
 			for(let dd of day){
-				if(dd == dateNum){
-// 					console.log(dateNum)
+				if(dd.date == dateNum && dd.month == currentMonth){
 					check = dd;
 					break;
 				}
@@ -337,7 +330,6 @@ function kCalendar(id, date) {
 		}
 		calendar += '			</tr>';
 	}
-	
 	calendar += '			</tbody>';
 	calendar += '		</table>';
 
@@ -345,10 +337,8 @@ function kCalendar(id, date) {
 	var td = $("#calTable").find("td");
 	for(let t of td){
 		if(t.dataset.check){
-// 			console.dir(t)
 			$(t).css("background", 'url(/bitcode/resources/images/attend2.png)')
 			$(t).css("color", 'yellow')
-// 			$(t).css("color", 'red')
 		}
 	}
 }
