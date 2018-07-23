@@ -68,13 +68,14 @@
 	<script>
 
 	var session = '${sessionScope.user.id}';
-	var sort = 0 ;
+	var sort;
+	
 	window.onload = function(){
  		searchList();
 	} 
 	
 	 //검색 페이징
-	  function makePageLink(data) {
+	  function makePageLink(sort, data) {
 		 console.dir(data +"페이징");
 		var html = "";
 		if (data.count != 0) {
@@ -100,7 +101,7 @@
 				    html += '<li class="active"><a href="#1">' + i + '</a></li>';
 		    	}
 		    	else {
-		    		html += '<li><a href="javascript:searchList('+sort+','+ i + ');">' + i + '</a></li>';
+		    		html += '<li><a href="javascript:searchList(' + sort + ',' + i + ');">' + i + '</a></li>';
 		    	}
 		    }
 			clz = "";
@@ -125,15 +126,13 @@
 	// 검색 
 	 
 	// 검색 
-	function searchList(sort,pageNo){
-		alert(sort);
-		 sort = sort;
-		if(pageNo == ""){
-			pageNo = 1;
-		}
+	function searchList(sort, pageNo){
+		if(!sort) sort = 0;
+		if(!pageNo) pageNo = 1;
+		
 		$.ajax({
-			//type:'post',
-			url:"<c:url value='/qnaboard/list.json'/>",
+			//type:'POST',
+			url:"/bitcode/qnaboard/list.json",
 			data:{type: $("select[name='type']").val(), 
 				  keyword: $("input[name='keyword']").val(),
 				  pageNo: pageNo,
@@ -143,7 +142,7 @@
 		})
 		.done(function (data){
 			makeList(sort,data);
-			makePageLink(data.pageResult)
+			makePageLink(sort, data.pageResult)
 		});
 		return false;
 		

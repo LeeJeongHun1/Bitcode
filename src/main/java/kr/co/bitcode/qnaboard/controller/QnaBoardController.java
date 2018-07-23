@@ -88,7 +88,8 @@ public class QnaBoardController {
 	
 	@RequestMapping("/list.json")
 	@ResponseBody
-	public Map<String,Object> list(@RequestParam(value="sort", defaultValue="0") int sort, Search search) throws Exception{
+	public Map<String,Object> list(Search search) throws Exception{
+		System.out.println("12111111111 : ddddd");
 		return qnaBoardService.list(search);
 	}
 	

@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.bitcode.repository.domain.Code;
-import kr.co.bitcode.repository.domain.Page;
 import kr.co.bitcode.repository.domain.PageResult;
 import kr.co.bitcode.repository.domain.Qna;
 import kr.co.bitcode.repository.domain.QnaComment;

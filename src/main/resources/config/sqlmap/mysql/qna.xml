@@ -103,7 +103,7 @@
 		</where>
 	order by
 			<choose>
-			 <when test="sort == 1 ">
+			 <when test="sort == 1">
 				q.reg_date desc, q.group_no desc, q.group_order asc 	
 			 </when>
 			 <when test="sort == 2">
@@ -112,13 +112,12 @@
 			 <when test="sort == 3">
 			 	q.view_cnt desc, q.group_no desc, q.group_order asc		 
 			 </when>
-			 <when test="sort == 0 ">
+			 <when test="sort == 0">
 			   q.group_no desc, q.group_order asc 	 
 			   </when>
 			</choose>
 	<!-- 	order
 		by q.group_no desc, q.group_order asc  -->) A
-		LIMIT #{begin},10
 	</select>
 	<select id="selectBoardByNo" parameterType="int" resultMap="qnaMap">
 		select *
