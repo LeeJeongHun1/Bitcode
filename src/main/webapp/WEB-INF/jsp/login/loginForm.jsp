@@ -17,7 +17,7 @@
 		<form action="${pageContext.request.contextPath}/login/login.do" method="post" id="userForm">
 		  <p>Hello Bit Code !!</p>
 		  <input class="inputlogin "name="id" placeholder="UserId" type="text"/>
-		  <input class="inputlogin name="password" placeholder="Password" type="password"/>
+		  <input class="inputlogin" name="password" placeholder="Password" type="password"/>
 		  <button class="btnL" id="loginBtn">Log in</button>
 		</form>
 		  <span id="forgetid">ID 찾기</span>
