@@ -125,7 +125,7 @@ a {
 	
 	var session = '${sessionScope.user.auth}';
 	var sessionP = '${sessionScope.user.point}';
-	alert(sessionP);
+	//alert(sessionP);
 	 
 	// 답글 관리자및 고수로 제한
 	$("#cBtn").click(function(){ 
