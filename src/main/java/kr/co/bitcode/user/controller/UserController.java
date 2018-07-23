@@ -162,10 +162,8 @@ public class UserController {
 		return false;
 	} 	
 	
-	
-	
-	
-	
+	@RequestMapping("/pattern.do") 
+	public void pattern() { }
 	
 	
 }

@@ -11,6 +11,7 @@
 <!-- <link href='https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css' rel='stylesheet' type='text/css'> -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/sweetalertFile/sweetalert2.css" />
 <script src="${pageContext.request.contextPath}/resources/sweetalertFile/sweetalert2.all.min.js"></script>
+
 <style>
 
 
@@ -54,10 +55,25 @@ border-radius: 12px 12px 0px 0px;
 #kCalendar .fri {text-align: center; font-size: 20px; width: 70px; height: 44px; padding-left: 15px;}
 #kCalendar .sat {text-align: center; font-size: 20px; width: 70px; height: 44px; padding-left: 12px;}
 
-
+#userPattern {
+    text-align: center;
+    font-size: 13px;
+    width: 45%;
+    height: 40px;
+    padding: 5px;
+    border-radius: 6px;
+    border: 0;
+    margin-left: 230px;
+    background: #df736a;
+    font-size: 1.1em;
+    color: #fff;
+    box-shadow: 0px 3px 0px #e89791;
+}
 </style>
 </head>
 <body>
+<!-- <div id="patternContainer" style="top: 300px; left: 600px;"></div> -->
+
 <div class="container1">
   <p class="title1 twelve" id="profileName">Your Profile</p>
   <div class="row cf">
@@ -68,7 +84,7 @@ border-radius: 12px 12px 0px 0px;
 			<div class="xbtn"></div>
 		</div>    
 		  <h3 class="userInformation">Information</h3>
-		  <p id="pName">이름</p>
+		  <p id="pName">이름  <a href="#"><span id="userPattern" onclick="window.open('${pageContext.request.contextPath}/user/pattern.do', 'pattern', 'width=400 height=400')">패턴등록</span></a></p>
 		  <input name="name" type="text" id="userName" value="${user.name}" readonly="readonly"/>
 		  <div class="nickDiv">
 		  <p id="pName">별명</p>

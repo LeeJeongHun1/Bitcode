@@ -40,9 +40,31 @@
 	 	 <a href="#1" id="submitBtn"><span class="signupbtn">Sign UP</span></a>
 	  </div>
 	</form>
-</div>	
+</div>
 <script src="${pageContext.request.contextPath}/resources/js/signUp/signUp.js"></script>
 <script>
+$(document).ready(function () {
+	lock = new PatternLock('#patternContainer');
+	$("#confirm").click(function () {
+		var patVal = lock.getPattern()
+		alert(patVal);
+	});
+	$("#reset").click(function () {
+		lock.reset();
+	});
+	$("#lock").click(function () {
+		lock.disable();
+	});
+	$("#unlock").click(function () {
+		lock.enable();
+	});
+	
+	$('#patternContainer').mouseup(function () {
+		var patVal = lock.getPattern()
+		alert(patVal);
+	});
+});
+
 if("${msg}") {
 	swal("${msg}")
 }
