@@ -73,9 +73,7 @@ select * from tb_user;
 -- 테이블 삭제
 drop table tb_user purge;
 drop table tb_news purge;
---
-delete from tb_attendance
-	where att_id = 72;
+
 
 --
 delete from tb_attendance
@@ -95,6 +93,36 @@ from tb_stsfc_code s
 inner 
 join tb_qna_board q
 on q.stsfc_code = s.stsfc_code;
+
+----------------
+		select id
+		  from tb_attendance
+		 where id = #{id} and
+		 	   to_char(att_date, 'yyyy-mm-dd') = to_char(#{attDate}, 'yyyy-mm-dd')
+
+-----------오늘 날짜 비교-------------------
+		select *
+		  from tb_attendance
+		 where id = 'yoo' and
+		 	   att_date <= str_to_date(now(),'%Y-%m-%d');
+---------오늘날짜 2222-------------------------------------------------
+		select id
+		  from tb_attendance
+		 where id = 'yoo' and
+		 	   date_format(att_date, '%e%c%Y') = date_format(now(), '%e%c%Y')
+		 	   
+-----------------------------
+--
+delete from tb_attendance
+	where att_id = 112;		 	   
+		 	   
+select * from tb_attendance
+	where id = 'yoo';		 	   
+		 	   
+	----------------------------------------------------	 	   
+		 	   
+where date_format(record_date, '%e%c%Y') = date_format(now(), '%e%c%Y')
+WHERE date <= str_to_date(now(),'%Y-%m-%d');
 
 
 --- 만족 카운트
@@ -133,12 +161,16 @@ join tb_qna_board q
 on q.stsfc_code = s.stsfc_code
 where s.stsfc_code = 13;
 
-
+select * from tb_attendance;
 
 ------------------------------------------------------------- 
  
 INSERT INTO tb_attendance(att_id, id, att_date)
-	VALUES(67, 'id1', 20180719);
+	VALUES(105, 'yoo', 20180719);
+	INSERT INTO tb_attendance(att_id, id, att_date)
+	VALUES(106, 'yoo', 20180720);
+	INSERT INTO tb_attendance(att_id, id, att_date)
+	VALUES(109, 'yoo', 20180723);
 ---------------------------------------
 update tb_qna_board
    set stsfc_code = 13

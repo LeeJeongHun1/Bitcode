@@ -27,4 +27,6 @@ public interface UserService {
 	//출석체크
 	List<Attendance> selectAttendance(String id) throws Exception;
 //	public List<Attendance> selectmyStis(String id) throws Exception;
+
+	public Attendance selectAttenByIdDate(Attendance attendance) throws Exception;
 }

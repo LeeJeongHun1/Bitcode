@@ -47,7 +47,6 @@
 		<result column="att_id" property="attID" />
 		<result column="att_date" property="attDate" />
 	</resultMap>
-	
 	<insert id="insertAttendance" parameterType="attendance">
 	insert into tb_attendance(
 		id,
@@ -57,11 +56,15 @@
 		#{attDate}
 		)
 	</insert>
-	
 	<select id="selectAttendance" resultMap="attendMap" parameterType="string">
 		select *
 		  from tb_attendance
 		 where id = #{id} 
 	</select>
-
+	<select id="selectAttenByIdDate" resultMap="attendMap" parameterType="attendance">
+		select *
+		  from tb_attendance
+		 where id = #{id} and
+		 	   date_format(att_date, '%e%c%Y') = date_format(now(), '%e%c%Y')
+	</select>
 </mapper>

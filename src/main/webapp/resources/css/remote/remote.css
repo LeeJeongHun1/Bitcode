@@ -3,6 +3,8 @@ video {
 }
 #number-of-participants {
  color: gray;
+ position: relative;
+ bottom: 5px;
 }
 #strong, .link a {
 	display: none;
@@ -25,6 +27,9 @@ video {
 .embedded-container {
   box-sizing: border-box;
   display: inline-block;
+}
+.hide-after-join span {
+	color: gray;
 }
 .hide-after-join a{
 	font-size: 12px;
@@ -66,6 +71,12 @@ iframe {
 	overflow: hidden;
 	box-sizing: border-box;
 }
+#roomsList{
+	text-align: center;
+	margin: 0 auto;
+	color: gray;
+	bottom: 5px;
+}
 .media{
 	margin-bottom: 10px;
 }
@@ -95,6 +106,7 @@ iframe {
 .screenShare{
   height: 30px;
   width: 100px;
+  bottom: 6px;
 }
 .embedded-player-az .buttons button {
   font-family: "Glyphter";
