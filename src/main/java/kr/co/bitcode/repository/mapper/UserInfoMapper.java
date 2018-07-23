@@ -16,8 +16,8 @@ public interface UserInfoMapper {
 	public void insertAttendance(Attendance attend) throws Exception;
 	//출석체크
 	public List<Attendance> selectAttendance(String id) throws Exception;
-
-	
+	//현재날짜 중복체크
+	public Attendance selectAttenByIdDate(Attendance attendance) throws Exception;
 	
 	//만족
 	List<StsfcCode> selectmyQuestion(String id) throws Exception;

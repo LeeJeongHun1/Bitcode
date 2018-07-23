@@ -73,6 +73,12 @@ public class UserServiceImpl implements UserService{
 		
 	}
 
+	@Override
+	public Attendance selectAttenByIdDate(Attendance attendance) throws Exception {
+		
+		return userInfoMapper.selectAttenByIdDate(attendance);
+	}
+
 
 	
 

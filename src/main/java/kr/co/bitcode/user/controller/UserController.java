@@ -42,14 +42,18 @@ public class UserController {
 	@RequestMapping("/attend.json")
 	@ResponseBody
 	public int attend(Attendance attendance) throws Exception {
-		
 		Attendance attend = new Attendance();
-		//디비 저장
-		attend.setAttDate(attendance.getAttDate());
-		attend.setId(attendance.getId());
-		userService.insertAttendance(attend);
+		Attendance attenTodayUser = userService.selectAttenByIdDate(attendance);
+		if(attenTodayUser != null) {
+			return 2;
+		}else {
+			//디비 저장
+			attend.setAttDate(attendance.getAttDate());
+			attend.setId(attendance.getId());
+			userService.insertAttendance(attend);
+			return 1;
+		}
 		
-		return 1;
 	}
 	@RequestMapping("/updateAttend.do")
 	public ModelAndView updateAttend(String id) throws Exception {

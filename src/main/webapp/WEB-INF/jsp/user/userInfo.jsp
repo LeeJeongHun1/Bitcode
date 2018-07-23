@@ -171,12 +171,9 @@ border-radius: 12px 12px 0px 0px;
 				<input name="attDate" id="${attendList.attID}" value='<fmt:formatDate value="${attendList.attDate}" pattern="yyyy-MM-dd" />' type="hidden" >
 		</c:forEach>
 		</div>
-		
-<%-- 		<form action="${pageContext.request.contextPath}/user/userInfo.do" method="post" id="todayAttenStamp"> --%>
 	  	<span><a class="stampId" href="${pageContext.request.contextPath}/user/userInfo.do?id=${sessionScope.user.id}" id="stampId">
 	  	<img class="stamp" src="${pageContext.request.contextPath}/resources/images/stamp.png"></a></span>
 	  	<span id="textStmp">출석하기Click</span>
-<!-- 	    </form> -->
 	  	<input name="id" value="${user.id}" type="hidden" >
 	  
 	  	<div id="kCalendar"></div>
@@ -192,7 +189,7 @@ border-radius: 12px 12px 0px 0px;
 window.onload = function () {
 	kCalendar('kCalendar');
 };
-console.dir($("input[name=attDate]"))
+// console.dir($("input[name=attDate]"))
 
 
 // $("#stampId").click(function () {
@@ -200,7 +197,7 @@ console.dir($("input[name=attDate]"))
 // // 	$("#todayAttenStamp").submit();
 // });
 
-var userid = $("#userId").val();
+// var userid = $("#userId").val();
 $("#stampId").click(function () {
 	//오늘 날짜
 	var today = new Date();
@@ -208,16 +205,17 @@ $("#stampId").click(function () {
 		url : "/bitcode/user/attend.json",
 		type: "POST",
 		data : {
-			"id"	  : userid,
+			"id"	  : $("#userId").val(),
 			"attDate" : today
 		},
 		success : function(data){
-			if(data == 1){
-				swal("출척이 체크 되었습니다.");
-				location.reload();
+			console.log(data);
+			if(data == 2){
+				swal("하루 한번만 출석이 가능합나다.");
 			}
 			else{
-				swal("오류 발생!! 다시 클릭 해주세요");
+				swal("출석이 체크 되었습니다.");
+				location.reload();
 			}
 		
 		}
@@ -226,7 +224,7 @@ $("#stampId").click(function () {
 
 
 /* Kurien / Kurien's Blog / http://blog.kurien.co.kr */
-function kCalendar(id, date, data) {
+function kCalendar(id, date) {
 	var attdate;	
 	var attMonth;
 	var kCalendar = document.getElementById(id);
@@ -314,11 +312,9 @@ function kCalendar(id, date, data) {
 			attendate = new Date(attendate[0], attendate[1], attendate[2]);
 			attdate = attendate.getDate();
 			attMonth = attendate.getMonth() + 1;
-// 			console.log(attdate);
 			day.push(attdate);
-// 			console.log(attMonth);
 		 }
-	console.dir(day)
+// 	console.dir(day)
 	for(var i = 0; i < week; i++) {
 		calendar += '			<tr>';
 		
@@ -327,18 +323,15 @@ function kCalendar(id, date, data) {
 				calendar += '				<td class="' + dateString[j] + '"></td>';
 				continue;
 			}
-// 			if(currentMonth == attMonth && attdate == dateNum){
-// 				calendar += '				<td class="' + dateString[j] + '">' + dateNum + '0</td>';
-				
-// 			}
 			var check = '';
 			for(let dd of day){
 				if(dd == dateNum){
-					console.log(dateNum)
+// 					console.log(dateNum)
 					check = dd;
 					break;
 				}
 			}
+			
 			calendar += '				<td class="' + dateString[j] + '" data-check="'+check+'">' + dateNum + '</td>';
 			$("td").data('check')
 		}
@@ -441,7 +434,6 @@ function updateNcik(data) {
 }
 
 
-<%-- <script src="${pageContext.request.contextPath}/resources/js/userInfo/userInfo.js"></script> --%>
 //Pass 찾기
 var id = $("#userId").val();
 $("#submitPassBtn").on('click',function () {
