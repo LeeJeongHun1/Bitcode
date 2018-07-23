@@ -3,8 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css"> 
 <div>
 
 	<div class="footer-area">
@@ -230,24 +228,18 @@
 	    
     </div>
 </div>
-
 <script src="${pageContext.request.contextPath}/resources/sweetalertFile/sweetalert2.all.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/sweetalertFile/sweetalert2.min.css">
 
 <script>
+
 $("#chrome").click(function (){
 	$(".frame").hide();
 	$(".text-tabs").text('Chrome')
 	$(".icons-tabs").find("i").removeClass().addClass("fab fa-chrome");
 	$("iframe").show();
 })
-$("#folder").click(function (){
-	$("iframe").hide();
-	$(".text-tabs").text('id 님의 전용 폴더')
-	$(".icons-tabs").find("i").removeClass().addClass("fas fa-folder-open");
-	$("#url").val('https://drive.bitcode.com/my-drive');
-	$(".frame").show();
-})
+
 
 var ws = null;
 var loginId = '${sessionScope.user.id}';
@@ -274,28 +266,20 @@ $(".chatLoginCheck").click(function(e){
 		location.href='/bitcode/chat/chat.do';
 	}
 });
+
+if(loginId){
+	$(".chromeBody").draggable();
 	
-$(".chromeBody").draggable();
-
-// 브라우저 주소표시줄 입력 이벤트설정
-//$("#bitUrl")
- $("#bitUrl").keydown(function (key) {
-	if(key.keyCode == 13){//키가 13이면 실행 (엔터는 13)
-	    var url = $("#bitUrl").val();
-		$("#bitBrowser").attr('src', url);
-	}
-});
-
-
-// 툴팁출력
-$("[data-toggle='tooltip']").tooltip();
+	// 브라우저 주소표시줄 입력 이벤트설정
+	//$("#bitUrl")
+	 $("#bitUrl").keydown(function (key) {
+		if(key.keyCode == 13){//키가 13이면 실행 (엔터는 13)
+			$("#bitBrowser").attr('src', $("#bitUrl").val());
+		}
+	});
+}
 
 </script>
-
-<!-- 크롬 스크립트 -->
-<script src="${pageContext.request.contextPath}/resources/js/internet/internet.js"></script>
-<!-- 메모장 스크립트 -->
-<script src="${pageContext.request.contextPath}/resources/js/note/notepad.js"></script>
 
 <!-- 알림/단체대화 스크립트 -->
 <script src="${pageContext.request.contextPath}/resources/js/websocket/websocket.js"></script>
