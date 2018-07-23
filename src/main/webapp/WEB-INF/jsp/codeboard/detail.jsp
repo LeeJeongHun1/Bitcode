@@ -24,7 +24,7 @@
 				<div class="titleWrap" >
 <%-- 					<c:if test="${empty list.code}">없습니다.</c:if> --%>
 					<div class="title">
-					<span class="codeTitle" /><c:out value="${cb.title}"/></span>
+					<span class="codeTitle" ><c:out value="${cb.title}"/></span>
 					<span class="nowrap">|</span>
 					<span class="cf" >${cb.languageName}</span> 
 				</div>
@@ -80,8 +80,10 @@
 			<div class="contents_btn">
     		<a href='<c:url value="list.do" />'><button>목록</button></a>
 			<a href='<c:url value="replyForm.do?no=${cb.no}" />'><button>답변</button></a>
+			<c:if test="${cb.id == sessionScope.user.id}">
 			<a href='<c:url value="updateForm.do?no=${cb.no}" />'><button>수정</button></a>
 			<a href='<c:url value="delete.do?no=${cb.no}"/>'><button>삭제</button></a>
+			</c:if>
 			<a href='#'><button onclick="recommend();">추천</button></a>
 			</div>
 		</div>
