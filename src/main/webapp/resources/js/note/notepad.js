@@ -25,7 +25,8 @@ $.ajax({
 // 실행시 출력/숨기기
 function notepad(){
 	$(".noteBody").toggle();
-	$(".noteBody").css("margin-top", "-700px");
+	$(".noteBody").css("margin-top", "-600px");
+	//$(".noteBody").css("margin-top", "-50%");
 };
 
 // 내용 변경시 * 표시

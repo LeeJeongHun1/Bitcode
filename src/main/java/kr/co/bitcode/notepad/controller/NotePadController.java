@@ -13,13 +13,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @CrossOrigin(origins = "*")
-@RequestMapping("/main")
 public class NotePadController {
 	
 	private final String PATH = "c:\\java-lec\\upload\\";
 		
 	/** 메모장 내용 읽기 */
-	@RequestMapping("/myNote.json")
+	@RequestMapping("/main/myNote.json")
 	@ResponseBody
 	public String myNote(String id) throws Exception {
 		// 사용자 txt 파일
@@ -37,22 +36,21 @@ public class NotePadController {
       	  myTxt += temp;
         }
 		br.close();
-		System.out.println("저장된 메모장 내용 : " + myTxt);
+		//System.out.println("저장된 메모장 내용 : " + myTxt);
 		return myTxt;
 	}
 	
 	
 	/** 메모장 내용 수정 */
-	@RequestMapping("/modNote.json")
+	@RequestMapping("/main/modNote.json")
 	@ResponseBody
 	public String modNote(String id, String content) throws Exception {
-		System.out.println("메모장 입력 내용 : " + content);
+		//System.out.println("메모장 입력 내용 : " + content);
 		// txt 파일 저장
 		FileWriter fw = new FileWriter(PATH + id + ".txt");
 		BufferedWriter bw = new BufferedWriter(fw);
 		bw.write(content);
 		bw.close();
-		
 		// txt 파일 읽기
 		String myTxt = "";
 		String temp;

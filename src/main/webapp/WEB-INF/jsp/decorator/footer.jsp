@@ -151,7 +151,7 @@
                         <!-- 크롬브라우저 주소표시줄 -->
                         <div class="search-bar">
                             <span class="info"><i class="fas fa-lock"></i> Securised</span>
-                            <input type="text" id="bitUrl" value="https://www.daum.net">
+                            <input type="text" id="bitUrl" value="">
                             <span class="star"><i class="far fa-star"></i></span>
                         </div>
                         <div class="points-bar">
@@ -183,7 +183,7 @@
                 <!-- Bookmarks -->
 	            </div>
 	            <!-- 크롬 브라우저일 경우 iframe -->
- 	       		<iframe src="http://www.daum.net" frameborder="0" width="800px" height="400px"
+ 	       		<iframe src="" frameborder="0" width="800px" height="400px"
  	       				 name="bitBrowser" id="bitBrowser"></iframe>
 	        </div> 
 	    </div>
@@ -291,6 +291,11 @@ $(".chromeBody").draggable();
 $("[data-toggle='tooltip']").tooltip();
 
 </script>
+
+<!-- 크롬 스크립트 -->
+<script src="${pageContext.request.contextPath}/resources/js/internet/internet.js"></script>
+<!-- 메모장 스크립트 -->
+<script src="${pageContext.request.contextPath}/resources/js/note/notepad.js"></script>
 
 <!-- 알림/단체대화 스크립트 -->
 <script src="${pageContext.request.contextPath}/resources/js/websocket/websocket.js"></script>
