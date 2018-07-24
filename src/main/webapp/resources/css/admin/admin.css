@@ -10,9 +10,8 @@ div .userInformation {
 .managementBody {
 	width: 1200px;
 	margin: 0 auto;
-	margin-top: 10%;
+	margin-top: 5%;
 	margin-left: 10%;
-	
 }
 /* col 비율 */
 .twelve { width: 100%; }
