@@ -36,27 +36,24 @@
 		<audio id="myMusic" autoplay="autoplay" loop>
 		</audio>
 		<div class="musicList">
-
-		<div id="playstation">
-			<div id="controlpanel">
-				<div id="backward" class="inlineblo">
-					<i class="fa fa-backward glyphicon glyphicon-backward"></i>
+			<div id="playstation">
+				<div id="controlpanel">
+					<div id="backward" class="inlineblo">
+						<i class="fa fa-backward glyphicon glyphicon-backward"></i>
+					</div>
+					<div id="songpro" class="inlineblo">
+					<span class="musicPlay glyphicon glyphicon-play"></span>
+					</div>
+					<div id="forward" class="inlineblo">
+						<i class="fa fa-forward glyphicon glyphicon-forward"></i>
+					</div>
+					<h2>노래노래노래</h2>
 				</div>
-				<div id="songpro" class="inlineblo">
-				<span class="musicPlay glyphicon glyphicon-play"></span>
-				</div>
-				<div id="forward" class="inlineblo">
-					<i class="fa fa-forward glyphicon glyphicon-forward"></i>
-				</div>
-				<h2>노래노래노래</h2>
+				<progress max="100" value="80"></progress>
+				<%-- 음악리스트 --%>
+				<ol class="fList">
+				</ol>
 			</div>
-			<progress max="100" value="80"></progress>
-			<%-- 음악리스트 --%>
-			<ol class="fList">
-			</ol>
-		</div>
-
-
 		</div>
 	</div>
 	
@@ -112,6 +109,12 @@
 					'${pageContext.request.contextPath}/main/download.do?path=' + encodeURI(`c:/java-lec/upload/${sessionScope.user.id}_music`) + '&fileName='+result[0].title+'')
 			$("#myMusic").attr('autoplay', 'autoplay');
 	// 		$("#myMusic")[0].onloadstart=function(){$("#myMusic")[0].play();};
+			console.dir($(".fList li"));
+			$(".fList li").dblclick(function () {
+// 				alert(this.innerHTML);
+				$("#myMusic").attr('src',
+						'${pageContext.request.contextPath}/main/download.do?path=' + encodeURI(`c:/java-lec/upload/${sessionScope.user.id}_music`) + '&fileName='+this.innerHTML+'')
+			})
 		})
 	}
 // 	console.dir($(".musicList"));
@@ -121,10 +124,8 @@
 // 			f.innerHTML;
 // 		}
 // 	})
-	console.dir($(".musicList").children());
-	$(".musicList1").click(function () {
-		console.dir(this);
-	});
+
+
 	function callMain() {
 		//window.opener.location.href = '${pageContext.request.contextPath}/main/main.do';
 		self.close();
