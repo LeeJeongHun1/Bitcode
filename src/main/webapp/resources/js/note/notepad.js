@@ -25,8 +25,7 @@ if(loginId){
 		success: function(result) {
 			var myNote = $("#myNoteContent").html(result.replace(/<br>/g, "&#10;"));
 		}
-	});
-
+	}); // ajax
 }
 
 //내용 변경시 * 표시
@@ -37,16 +36,28 @@ $("#myNoteContent").keyup(function(){
 
 //new
 $("#newNote").click(function(){
-	var noteContent = {"id": loginId, "content": ""};
-	$.ajax({
-		type: "POST",
-		url: "/bitcode/main/modNote.json",
-		data: noteContent, 
-		success: function(result) {
-			var myNote = $("#myNoteContent").html(result.replace(/<br>/g, "&#10;"));
+	swal({
+		title: '메모를 초기화 합니다!',
+		text: "확인을 누르시면 메모 내용이 삭제 됩니다.",
+		type: 'warning',
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: '확인'
+	}).then((result) => {
+		if (result.value) {
+			var noteContent = {"id": loginId, "content": ""};
+			$.ajax({
+				type: "POST",
+				url: "/bitcode/main/modNote.json",
+				data: noteContent, 
+				success: function(result) {
+					var myNote = $("#myNoteContent").html(result.replace(/<br>/g, "&#10;"));
+				}
+			});	
+			$("#nTitle").html("BIT NOTE");
 		}
-	});	
-	$("#nTitle").html("BIT NOTE");
+	}); // swal
 });
 
 //save
@@ -62,9 +73,17 @@ $("#saveNote").click(function(){
 		success: function(result) {
 			var myNote = $("#myNoteContent").html(result.replace(/<br>/g, "&#10;"));
 		}
-	});	
+	}); // ajax	
 
 	$("#nTitle").html("BIT NOTE");
+
+	swal({
+		title: '메모가 저장되었습니다.',
+		type: 'info',
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: '확인'
+	}); // swal
 });
 
 //exit
