@@ -121,8 +121,6 @@ public class LoginController {
 	@RequestMapping("/login.do")
 	public String login(User user, HttpSession session,  RedirectAttributes attr) throws Exception{
 		User userInfo = loginService.selectUserById(user.getId());
-		System.out.println(user.getPassword());
-		System.out.println(userInfo.getPassword());
 		if(userInfo != null && passCode.matches(user.getPassword(), userInfo.getPassword())) {
 			session.setAttribute("user", userInfo);
 			session.setMaxInactiveInterval(60 * 60);
