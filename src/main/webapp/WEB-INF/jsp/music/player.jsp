@@ -16,7 +16,12 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/music/player.css">
 </head>
 <body>
-
+   	<div class="wrap">
+	    <div id="result" style="display: none;">
+	      <span class="final" id="final_span"></span>
+	      <span class="interim" id="interim_span"></span>
+	    </div>
+	</div>
 	<div class="musicBody">
 		<div id="card1" class="card ten col">
 			<div class="topbar blue">
@@ -37,6 +42,7 @@
 		</div>
 
 	</div>
+	<script src="${pageContext.request.contextPath}/resources/js/folderjs/Speech.js"></script>
 	
 <script>
 	window.onload = function () {
@@ -52,8 +58,12 @@
 		})
 		.done(function (result) {
 			var html = '';
+			if(result.length == 0){
+				$(".musicList").html('<div>노래 없음</div>');
+				return;
+			}
 			for(let f of result){
-				html += '<div class="musicList">'+f.title+'</div>'
+				html += '<div class="musicList1">'+f.title+'</div>'
 			}
 			$(".musicList").html(html);
 			$("#myMusic").attr('src',
@@ -64,9 +74,16 @@
 		})
 	}
 // 	console.dir($(".musicList"));
-	$(".musicList").dblclick(function () {
-		console.dir(this)
-	})
+// 	$(".musicList").dblclick(function () {
+// 		console.dir(this)
+// 		for(let f of this.children){
+// 			f.innerHTML;
+// 		}
+// 	})
+	console.dir($(".musicList").children());
+	$(".musicList1").click(function () {
+		console.dir(this);
+	});
 	function callMain() {
 		//window.opener.location.href = '${pageContext.request.contextPath}/main/main.do';
 		self.close();
