@@ -56,6 +56,7 @@ border-radius: 12px 12px 0px 0px;
 #kCalendar .sat {text-align: center; font-size: 20px; width: 70px; height: 44px; padding-left: 12px;}
 
 #userPattern {
+	font-weight: lighter;
     text-align: center;
     font-size: 13px;
     width: 45%;
@@ -67,7 +68,10 @@ border-radius: 12px 12px 0px 0px;
     background: #df736a;
     font-size: 1.1em;
     color: #fff;
-    box-shadow: 0px 3px 0px #e89791;
+    font-family: 'Arimo', sans-serif;
+    text-decoration:none;
+    ext-decoration:none;		
+    
 }
 </style>
 </head>
@@ -75,12 +79,12 @@ border-radius: 12px 12px 0px 0px;
 <!-- <div id="patternContainer" style="top: 300px; left: 600px;"></div> -->
 
 <div class="container1">
-  <p class="title1 twelve" id="profileName">Your Profile</p>
+  <p class="title1 twelve" id="profileName">${user.nickName}님의 Profile</p>
   <div class="row cf">
     <div id="card1" class="card three col">
 		<div class="topbar red">
 			<div class="swatches"><span class="red"></span><span class="orange"></span><span class="yellow"></span><span class="green"></span><span class="blue"></span></div>
-			<div class="maxbtn"><span></span></div>
+			<div class="maxbtn"></div>
 			<div class="xbtn"></div>
 		</div>    
 		  <h3 class="userInformation">Information</h3>
@@ -121,8 +125,8 @@ border-radius: 12px 12px 0px 0px;
     <div id="card2" class="card six col">
 		<div class="topbar blue">
 			<div class="swatches"><span class="red"></span><span class="orange"></span><span class="yellow"></span><span class="green"></span><span class="blue"></span></div>
-			<div class="maxbtn"><span></span></div>
-			<div class="xbtn">x</div>
+			<div class="maxbtn"></div>
+			<div class="xbtn"></div>
 		</div>     
     	<h3 class="userInformation">My Question</h3>
 		<table class="table table-hover">
@@ -163,7 +167,7 @@ border-radius: 12px 12px 0px 0px;
 		<div class="topbar orange">
 			<div class="swatches"><span class="red"></span><span class="orange"></span><span class="yellow"></span><span class="green"></span><span class="blue"></span></div>
 			<div class="maxbtn"><span></span></div>
-			<div class="xbtn">x</div>
+			<div class="xbtn"  onclick="location.href='${pageContext.request.contextPath}/main/main.do'">x</div>
 		</div>
 		<div>
 <%-- 		<c:forEach var="userList" items="${userList}"> --%>
@@ -200,6 +204,7 @@ border-radius: 12px 12px 0px 0px;
 
 <script>
 
+$(".container1").draggable();
 
 
 //캘린더 로딩
@@ -419,25 +424,47 @@ $("#submitNickBtn").on('click',function () {
 			}
 		})
 });
+//별명 중복 체크
 function updateNcik(data) {
+	console.log("닉네임 중복 체크 작동중..");
 	$.ajax({
-		url : "/bitcode/user/updateNickForm.json",
-		type: "POST",
-		data : {
+		url: "/bitcode/user/updateNickCheck.json",
+		data: {
 			"nickName" : data.value[0],
-			"id"	  : id
+			"id"	   : $("#userId").val()
 		},
-		success : function(data){
-			if(data != undefined){
-				swal("별명이 수정되었습니다.");
+		dataType: "json",
+		success: function (data) {
+			if (data == false) {
+				swal("닉네임이 수정되었습니다.");
 				location.reload();
 			}else{
-				swal("다시 시도 해주시기 바랍니다.");
+				swal("중복된 닉네임 입니다.");
 			}
-			console.log(data + "성공")
 		}
-	})
-}
+	});
+};
+
+
+
+// function updateNcik(data) {
+// 	$.ajax({
+// 		url : "/bitcode/user/updateNickForm.json",
+// 		type: "POST",
+// 		data : {
+// 			"nickName" : data.value[0],
+// 			"id"	  : id
+// 		},
+// 		success : function(data){
+// 			if(data != undefined){
+// 				swal("별명이 수정되었습니다.");
+// 				location.reload();
+// 			}else{
+// 				swal("다시 시도 해주시기 바랍니다.");
+// 			}
+// 		}
+// 	})
+// }
 
 
 //Pass 찾기

@@ -1,4 +1,4 @@
-$(".inputDetail, #userEmail").focus(function(){
+$(".inputDetail, #userEmail, #emailResult" ).focus(function(){
 		$(this).prev().addClass("show");
 });
 $(".inputDetail, #userEmail").blur(function(){
@@ -39,36 +39,79 @@ $("#userId").keyup(function () {
 		}
 	});
 });
-
+//이메일
+//$("#userEmailDomain").change(function(){
+//	var emailAddr = $("#userEmailDomain option:selected").val();
+//	if(emailAddr == "etc"){
+//		$("#userEmailDetail").attr("readonly",false);
+//	}else{
+//		$("#userEmailDetail").attr("readonly",true);
+//		$("#userEmailDetail").val(emailAddr.substring(1));
+//	}
+//	if($("#userEmail").val() == "" || $("#userEmailDetail").val() == ""){
+//		$("#userEmail").data("flag","no");
+//		$("#emailResult > p").text("이메일을 입력하세요");
+//	}else{
+//		$("#userEmail").data("flag","yes");
+//		$("#emailResult > p").text("");
+//	}
+//});
 //email 중복 체크
 $("#userEmail").keyup(function () {
-	if($(this).val() == ""){
-		$("#userEmail").next().text("정확한 이메일를 기입해주세요 ");
-		return;
-	}
-	console.log("이메일 중복 체크 작동중..");
+		if($("#userEmail").val() == "" || $("#userEmailDetail").val() == ""){
+			$("#userEmail").data("flag","no");
+			$("#emailResult > p").text("");
+		}
+	  for (i = 0; i < $("#userEmail").val().length; i++) {
+          ch = $("#userEmail").val().charAt(i)
+          if (!(ch >= '0' && ch <= '9') && !(ch >= 'a' && ch <= 'z')) {
+        		$("#userEmail").data("flag","no");
+        		$("#emailResult > p").text("영문소문자, 숫자만 입력가능합니다");
+          }
+	  }
+	var emailFirst = $("#userEmail").val();
+//	checkEmail(emailFirst);
+	
+	console.log(emailFirst);
+//	var cemail = $("#userconformEmail").val(email+ '@'+ $("#userEmailDetail").val());
+});
+
+$("#userEmailDetail").keyup(function () {
+	  for (i = 0; i < $("#userEmailDetail").val().length; i++) {
+          ch = $("#userEmailDetail").val().charAt(i)
+          if (!(ch >= '0' && ch <= '9') && !(ch >= 'a' && ch <= 'z') && !(ch =='.')) {
+        		$("#userEmailDetail").data("flag","no");
+        		$("#emailResult > p").text("영문소문자, 숫자만 입력가능합니다");
+          }
+	  }
+		var emailLast = $("#userEmailDetail").val();
+		console.log(emailLast);
+//		checkEmail(emailLast);
+		checkEmail();
+});
+
+function checkEmail() {
+	var emailTotal = $("#userEmail").val() +'@'+ $("#userEmailDetail").val();
+	console.log(emailTotal);
 	$.ajax({
 		url: "/bitcode/login/emailCheck.json",
 		data: {
-			"email" : $(this).val()	
+			"email" : emailTotal
 		},
 		dataType: "json",
 		success: function (data) {
-			var	result = "";
 			if (data == false) {
-				result = "사용가능한 이메일 입니다.";
 				$("#userEmail").data("flag","yes");
-				$(".innerText").css("color","blue");
+				$("#emailResult > p").css("color","blue");
+				$("#emailResult > p").text("사용가능한 이메일 입니다.");
 			}else{
-				result = "사용 불가능한 또는 중복된 이메일입니다. ";
 				$("#userEmail").data("flag","no");
-				$(".innerText").css("color","red");
+				$("#emailResult > p").css("color","red");
+				$("#emailResult > p").text("사용 불가능한 또는 중복된 이메일입니다.");
 			}
-			$("#userEmail").next().text(result);
 		}
 	});
-});
-
+}
 
 
 
@@ -176,14 +219,51 @@ $("#userName").keyup(function(){
 	}
 })
 
-//별명 
-$("#nickName").keyup(function(){
+
+
+//별명 중복 체크
+
+$("#nickName").keyup(function () {
 	if($(this).val() == ""){
-		$(this).data("flag","no");
-	}else{
-		$(this).data("flag","yes");
+		$("#nickName").next().text("닉네임 입력");
+		return;
 	}
-})
+	console.log("닉네임 중복 체크 작동중..");
+	$.ajax({
+		url: "/bitcode/login/signUpNickCheck.json",
+		data: {
+			"nickName" : $(this).val()	
+		},
+		dataType: "json",
+		success: function (data) {
+			console.log(data);
+			var	result = "";
+			if (data == false) {
+				result = "사용가능한 nickName 입니다.";
+				$("#nickName").data("flag","yes");
+				$(".innerText").css("color","blue");
+				
+			}else{
+				result = "사용이 불가능한 nickName입니다.";
+				$("#nickName").data("flag","no");
+				$(".innerText").css("color","red");
+			}
+			$("#nickName").next().text(result);
+		}
+	});
+});
+
+
+
+
+//별명 
+//$("#nickName").keyup(function(){
+//	if($(this).val() == ""){
+//		$(this).data("flag","no");
+//	}else{
+//		$(this).data("flag","yes");
+//	}
+//})
 
 
 //공백 체크
@@ -210,9 +290,11 @@ $("#submitBtn").click(function(){
 	if(id == false || pass == false || name == false || nickName == false || email == false ||year == false ||month == false || date == false){
 		return;
 	}
+	email = $("#userEmail").val();
+	$("#userEmail").val(email +'@'+ $("#userEmailDetail").val());
 	
 	birthday = $("#birthday").val();
-	$("#birthday").val($("#birth1").val() + $("#birth2").val() + $("#birth3").val());
+	$("#userconformEmail").val($("#birth1").val() + $("#birth2").val() + $("#birth3").val());
 
 	$("#userForm").submit();
 })
