@@ -166,7 +166,7 @@
 	        </li>
 			<li>
 	          <span>MusicPlayer</span> 
-	          <a onclick="window.open('${pageContext.request.contextPath}/music/player.do?id=${sessionScope.user.id}', 'player', 'width=550 height=500')" id="wmplayer" data-toggle="tooltip" title="비트 플레이어">
+	          <a onclick="window.open('${pageContext.request.contextPath}/music/player.do?id=${sessionScope.user.id}', 'player', 'width=430 height=550')" id="wmplayer" data-toggle="tooltip" title="비트 플레이어">
 	          	<img src="/bitcode/resources/images/wmplayer.png">
 	          </a>
 	        </li>

@@ -1,20 +1,18 @@
-/* 
 body {
-	height: 100vh;
-	background: url(/bitcode/resources/images/main.jpg);
-	background-position: center;
-	background-size: cover;
-	font-family: 'Source Sans Pro', sans-serif;;
+	height: 550px;
+	/* background: url(/bitcode/resources/images/main.jpg);
+  background-position: center;
+  background-size: cover; */
+	font-family: 'Source Sans Pro', sans-serif;
+	background: #e7e7e7;
+	/* padding:10px; */
+	color: #000;
 }
-*/
-/*  
 .musicBody {
-	width: 500px;
+	width: 400px;
 	margin: 0 auto;
-	margin-top: 10%;
-	margin-left: 10%;
+	margin-top: 5px;
 }
-*/
 /* 뮤직 플레이어 */
 @import
 	url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700);
@@ -29,19 +27,13 @@ html {
 	height: 100%
 }
 
-body {
-	background: #e7e7e7;
-	padding: 10px;
-	color: #000;
-}
-
 #playstation {
 	background: #f7f7f7;
 	border-radius: 20px;
 	width: 400px;
 	border: 1px solid #c1c1c1;
 	overflow: auto;
-	margin: 5px auto;
+	margin: 0;
 }
 
 #controlpanel {
@@ -165,7 +157,6 @@ ol li {
 	padding: 15px 25px 15px 15px;
 	border-bottom: 1px solid #cccccc;
 	border-top: 1px solid #ffffff;
-	font-size: 1.25em;
 	color: #666666;
 	text-shadow: 0px 2px 0px #ffffff;
 	cursor: pointer;
