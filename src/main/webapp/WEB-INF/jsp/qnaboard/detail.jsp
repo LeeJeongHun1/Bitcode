@@ -54,12 +54,12 @@ a {
 			<div class="detail">
 			<div class="contents" style="">
 			<c:forEach var="qna" items="${list.qna.fileList}">
-			파일명 : 
-			<a href="${pageContext.request.contextPath}/fileDown.do?filePath=${qna.filePath}&systemFileName=${qna.systemName}&originalFileName=${qna.oriName}" style="width: 600px;
-    height: 400px;">${qna.oriName}</a>
-       		미리보기 : 
-       		<img src="${pageContext.request.contextPath}/fileDown.do?filePath=${qna.filePath}&systemFileName=${qna.systemName}&originalFileName=${qna.oriName}"
-				style="width: 150px; height: 150px">
+       		<!-- <span>미리보기 :</span>  -->
+       	
+						<div>
+			<!-- <span>다운로드 링크 : </span>  -->
+			<a href="${pageContext.request.contextPath}/fileDown.do?filePath=${qna.filePath}&systemFileName=${qna.systemName}&originalFileName=${qna.oriName}" title="${qna.oriName}">	<img class="imgLink" src="${pageContext.request.contextPath}/fileDown.do?filePath=${qna.filePath}&systemFileName=${qna.systemName}&originalFileName=${qna.oriName}"></a>
+       		</div>
 			<br>
 			</c:forEach>
 			${list.qna.content}

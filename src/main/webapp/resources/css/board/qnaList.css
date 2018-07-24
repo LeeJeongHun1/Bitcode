@@ -14,8 +14,8 @@
   text-align: center;
 }
 .pull-right {
-	margin-right: 50px;
-	margin-bottom: 20px;
+/* 	margin-right: 50px;
+	margin-bottom: 20px; */
 	position: absolute;
     bottom: 70px;
     right: 30px;
