@@ -39,7 +39,11 @@
 <%-- 알림 --%> 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/notify/style.css">
 
+<%-- waitme --%> 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/waitme/waitMe.min.css" />
+
+<%-- contextmenu --%> 
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main/contextMenu.css" />
 
 <title><sitemesh:write property="title" /></title>
 <sitemesh:write property="head" />
@@ -119,16 +123,59 @@
 			<c:import url="/WEB-INF/jsp/decorator/footer.jsp" />
 		</div>
 		
+<!-- context bitMenu start -->
+<!-- 
+<div class=bitMenu>
+    <div class="bitMenu-item">
+        <a href="#" class="bitMenu-btn">
+            <i class="fa fa-folder-open"></i>
+            <span class="bitMenu-text">BIT CODE 배경 설정</span>
+        </a>
+    </div>
+    <div class="bitMenu-separator"></div>
+    <div class="bitMenu-item">
+        <button type="button" class="bitMenu-btn">
+            <i class="fa fa-reply"></i>
+            <span class="bitMenu-text">배경1</span>
+        </button>
+    </div>
+    <div class="bitMenu-item">
+        <button type="button" class="bitMenu-btn">
+            <i class="fa fa-star"></i>
+            <span class="bitMenu-text">배경2</span>
+        </button>
+    </div>
+    <div class="bitMenu-item">
+        <button type="button" class="bitMenu-btn">
+            <i class="fa fa-users"></i>
+            <span class="bitMenu-text">배경3</span>
+        </button>
+    </div>
+    <div class="bitMenu-separator"></div>
+    <div class="bitMenu-item">
+        <button type="button" class="bitMenu-btn">
+            <i class="fa fa-download"></i>
+            <span class="bitMenu-text">Save</span>
+        </button>
+    </div>
+    <div class="bitMenu-item">
+        <button type="button" class="bitMenu-btn">
+            <i class="fa fa-trash"></i>
+            <span class="bitMenu-text">Delete</span>
+        </button>
+    </div>
+</div>
+ -->
+<!-- context bitMenu end -->
 		
 		
-		
-		
-<!-- 크롬 스크립트 -->
-<script src="${pageContext.request.contextPath}/resources/js/internet/internet.js"></script>
 <!-- 메모장 스크립트 -->
 <script src="${pageContext.request.contextPath}/resources/js/note/notepad.js"></script>
 
-
+		
+<!-- 우클릭 컨텍스트 메뉴 스크립트 -->
+<script src="${pageContext.request.contextPath}/resources/js/main/contextMenu.js"></script>
+		
 
 <script>
 //툴팁출력
