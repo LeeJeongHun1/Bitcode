@@ -22,7 +22,7 @@ public class Search {
 		System.out.println(p.getEnd());
 	}
 	
-	private int listSize = 10; // 쿼리에서 LIMIT #{begin},10  숫자변경시 같이 변경해야됨 
+	private int listSize = 5; // 쿼리에서 LIMIT #{begin},10  숫자변경시 같이 변경해야됨 
 	public int getBegin() {
 		// 10이 listSize
 		//      1-1 * 10

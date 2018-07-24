@@ -88,7 +88,7 @@
 			var fn = "";
 			if (data.prev == true) {
 				console.log(data.beginPage +"개");
-				fn = "javascript:searchList(" + (data.beginPage - 1) + ");";
+				fn = "javascript:searchList("+ sort + ','+ (data.beginPage - 1) + ");";
 			}else{
 				fn = "#1"
 			}
@@ -112,7 +112,7 @@
 			html += '<li class="' + clz + '">';
 			fn = "";
 			if (data.next == true) {
-				fn = "javascript:searchList(" + (data.endPage + 1) + ");";
+				fn = "javascript:searchList(" + sort + ','+ (data.endPage + 1) + ");";
 			}else{
 				fn = "#1";
 			}

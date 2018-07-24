@@ -1,7 +1,7 @@
 package kr.co.bitcode.repository.domain;
 
 public class PageResult {
-	private int listSize = 10;
+	private int listSize = 5;
 	private int tabSize  = 10;
 	private int pageNo;
 	private int count;
