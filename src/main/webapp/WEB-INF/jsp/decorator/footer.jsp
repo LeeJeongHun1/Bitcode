@@ -166,17 +166,14 @@
 	        </li>
 			<li>
 	          <span>MusicPlayer</span> 
-	          <a onclick="window.open('${pageContext.request.contextPath}/music/player.do?id=${sessionScope.user.id}', 'player', 'width=550 height=500')" id="wmplayer">
+	          <a onclick="window.open('${pageContext.request.contextPath}/music/player.do?id=${sessionScope.user.id}', 'player', 'width=430 height=550')" id="wmplayer">
 	          	<img src="/bitcode/resources/images/wmplayer.png">
 	          </a>
 	        </li>
-			<li> 
-	          <span>iTunes</span> <a href="#"><img src=
- 	          "https://forums.macrumors.com/attachments/itunes-1024x1024-png.565323/"></a>
- 	        </li>
 	      </ul>
 	    </div>
 	  </div>
+	  <!-- dock bar end -->
 	</c:if>
 	    
     </div>

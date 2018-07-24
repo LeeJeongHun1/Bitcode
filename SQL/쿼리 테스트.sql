@@ -35,6 +35,12 @@ update tb_user
 		set auth = 'S'
 		where id = 'admin';
 		
+select * from tb_user;
+
+update tb_user
+		set birthday = '20000404'
+		where id = 'hong1qweqwe';
+		
 -- update 답글여부
 update tb_qna_board
 	set answer_at = 'Y'

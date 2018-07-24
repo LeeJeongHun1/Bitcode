@@ -10,8 +10,13 @@
 <%-- favicon --%>
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/favicon.ico" type="image/x-icon" />
 <link rel="icon" href="${pageContext.request.contextPath}/resources/images/favicon.ico" type="image/x-icon" />
+
+<%-- jquery  --%> 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<%-- 부트스트랩  --%> 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/music/player.css">
 </head>
@@ -35,11 +40,13 @@
 		<div id="playstation">
 			<div id="controlpanel">
 				<div id="backward" class="inlineblo">
-					<i class="fa fa-backward"></i>
+					<i class="fa fa-backward glyphicon glyphicon-backward"></i>
 				</div>
-				<div id="songpro" class="inlineblo"></div>
+				<div id="songpro" class="inlineblo">
+				<span class="musicPlay glyphicon glyphicon-play"></span>
+				</div>
 				<div id="forward" class="inlineblo">
-					<i class="fa fa-forward"></i>
+					<i class="fa fa-forward glyphicon glyphicon-forward"></i>
 				</div>
 				<h2>노래노래노래</h2>
 			</div>
