@@ -12,14 +12,14 @@
 	function closecom() {
 		computerOverlay.style.transform = "scale(0)";
 		document.getElementById('a1').style.display = "none";
-		document.getElementById('folder').style.border = 'none';
+//		document.getElementById('folder').style.border = 'none';
 	}
 
 	function closeopencom() {
 		computerOverlay.style.transform = "scale(0)";
 		document.getElementById('a1').style.display = "block";
 		document.getElementById('a1').style.borderBottom = '2px solid #76b9ed';
-		document.getElementById('folder').style.borderBottom = '2px solid #76b9ed'
+//		document.getElementById('folder').style.borderBottom = '2px solid #76b9ed'
 	}
 	document.getElementById('a1').onclick = function() {
 		if (computerOverlay.style.transform == "scale(1)") {

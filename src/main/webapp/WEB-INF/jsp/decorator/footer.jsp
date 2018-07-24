@@ -5,10 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <div>
-
 	<div class="footer-area">
-	
-	
  	<%-- 하단 메뉴바 --%>
     <div class="taskbar">
         <div class="icons">
@@ -34,13 +31,14 @@
 <!-- 				<a href="#folder" id="folder" ondblclick="opencom()" data-toggle="tooltip" title="내문서"></a> -->
 <%--             </c:if> --%>
             <%-- 메모장 --%>
-            <c:if test="${!empty sessionScope.user}">
-				<a href="#note" id="notepad" onclick="notepad();" data-toggle="tooltip" title="메모장"></a>
-            </c:if>
+<%--             <c:if test="${!empty sessionScope.user}"> --%>
+<!-- 				<a href="#note" id="notepad" onclick="notepad();" data-toggle="tooltip" title="메모장"></a> -->
+<%--             </c:if> --%>
             <%-- 플레이어 --%>
-            <c:if test="${!empty sessionScope.user}">
-				<a onclick="window.open('${pageContext.request.contextPath}/music/player.do?id=${sessionScope.user.id}', 'player', 'width=550 height=500')" id="wmplayer" data-toggle="tooltip" title="비트 플레이어"></a>
-            </c:if>
+<%--             <c:if test="${!empty sessionScope.user}"> --%>
+<!--             	<a href="#note" id="notepad" onclick="notepad();" data-toggle="tooltip" title="메모장"></a> -->
+<%-- 				<a onclick="window.open('${pageContext.request.contextPath}/music/player.do?id=${sessionScope.user.id}', 'player', 'width=550 height=500')" id="wmplayer" data-toggle="tooltip" title="비트 플레이어"></a> --%>
+<%--             </c:if> --%>
         </div>
         
         <%-- 마이인포 --%>
@@ -110,81 +108,6 @@
     </div>
     
     
-	    <!-- Chrome start -->
-	    <div class="chrome chromeBody" id="chrome-pop-up">
-	        <div class="pop-up">
-	            <!-- Taskbar chrome-->
-	            <!-- Top -->
-	            <div class="chrome-top">
-	                <div class="chrome-tabs">
-	                    <div class="triangle"></div>
-	                    <div class="tabs">
-	                        <span class="icons-tabs">
-	                            <i class="fab fa-codepen"></i>
-	                        </span>
-	                        <span class="text-tabs">BIT Browser</span>
-	                        <span class="close-tabs">x</span>
-	                    </div>
-	                    <div class="triangle-2"></div>
-	                    <div class="new-tabs"></div>
-	                </div>
-	                <div class="chrome-close">
-	                    <a href="#"><i class="fas fa-minus"></i></a>
-	                    <a href="#"><i class="far fa-window-restore"></i></a>
-	                    <a href="#"><i class="fas fa-times"></i></a>
-	                </div>
-	            </div>
-	            <!-- Bottom -->
-	            <div class="chrome-bottom">
-                <div class="options-bar">
-                    <div class="icons-bar">
-                        <div class="arrows">
-                            <a href="#"><i class="fas fa-arrow-left"></i></a>
-                            <a href="#"><i class="fas fa-arrow-right"></i></a>
-                            <a href="#"><i class="fas fa-sync"></i></a>
-                        </div>
-                        <!-- 크롬브라우저 주소표시줄 -->
-                        <div class="search-bar">
-                            <span class="info"><i class="fas fa-lock"></i> Securised</span>
-                            <input type="text" id="bitUrl" value="">
-                            <span class="star"><i class="far fa-star"></i></span>
-                        </div>
-                        <div class="points-bar">
-                            <div class="points">
-                                <span>•</span>
-                                <span>•</span>
-                                <span>•</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- 크롬브라우저 즐겨찾기 -->
-                    <div class="bookmarks">
-                            <div class="folder-book">
-                                <a target="bitBrowser" href="https://purecss.io/"><span>P</span> Pure</a>
-                            </div>
-                            <div class="folder-book">
-                                <a target="bitBrowser" href="https://developer.mozilla.org/fr/docs/Web/CSS"><i class="fab fa-css3-alt"></i> CSS</a>
-                            </div>
-                            <div class="folder-book">
-                                <a target="bitBrowser" href="https://www.microsoft.com/fr-fr/windows"><i class="fab fa-windows"></i> Windows 10</a>
-                            </div>
-                            <div class="folder-book">
-                                <a target="bitBrowser" href="https://www.naver.com"><i class="fab fa-windows"></i> NAVER</a>
-                            </div>
-                    </div>
-                </div>
-	                
-                <!-- Bookmarks -->
-	            </div>
-	            <!-- 크롬 브라우저일 경우 iframe -->
- 	       		<iframe src="" frameborder="0" width="800px" height="400px"
- 	       				 name="bitBrowser" id="bitBrowser"></iframe>
-	        </div> 
-	    </div>
-	    <!-- Chrome end -->
-    
-    
     <!-- 메모장 시작 -->
 	<div id="w-frame" class="noteBody">
 		<div id="w-frame-white">
@@ -221,48 +144,51 @@
 	<!-- w-frame -->
 	<!-- 메모장 끝 -->
 	
-	<!-- dock bar -->
+	
+	<!-- 로그인 상태에따라  show -->
+	<c:if test="${!empty sessionScope.user}">
+		<!-- dock bar -->
 	  <div id="dockContainer">
 	    <div id="dock">
 	      <ul>
 	        <li>
-	          <span>folder</span> 
-	          <a href="#folder" id="folder" ondblclick="folderOpen()">
+	          <span>Folder</span>
+<!-- 	          <a href="javascript:folderOpen()" id="folder"> -->
+	          <a href="#folder" id="folder" onclick="folderOpen()">
 	          	<img src="${pageContext.request.contextPath}/resources/images/File-Explorer.ico">
 	          </a>
-<!-- 	          <a href="#"><img src="http://icons.iconarchive.com/icons/johanchalibert/mac-osx-yosemite/1024/launchpad-icon.png"></a> -->
 	        </li>
-					<li>
-	          <span>System pereferences</span> <a href="#"><img src=
-	          "http://icons.iconarchive.com/icons/johanchalibert/mac-osx-yosemite/1024/system-preferences-icon.png"></a>
+			<li>
+	          <span>Note</span>
+				<a href="#note" id="notepad" onclick="notepad();" data-toggle="tooltip" title="메모장">
+					<img src="/bitcode/resources/images/notepad.png">
+				</a>
 	        </li>
-					<li>
-	          <span>Siri</span> <a href="#"><img src=
-	          "https://pre00.deviantart.net/008b/th/pre/f/2017/169/1/3/siri_by_hs1987-dbd58rs.png"></a>
+			<li>
+	          <span>MusicPlayer</span> 
+	          <a onclick="window.open('${pageContext.request.contextPath}/music/player.do?id=${sessionScope.user.id}', 'player', 'width=550 height=500')" id="wmplayer" data-toggle="tooltip" title="비트 플레이어">
+	          	<img src="/bitcode/resources/images/wmplayer.png">
+	          </a>
 	        </li>
-					<li>
-	          <span>iTunes</span> <a href="#"><img src=
-	          "https://forums.macrumors.com/attachments/itunes-1024x1024-png.565323/"></a>
-	        </li>
+<!-- 			<li> -->
+<!-- 	          <span>iTunes</span> <a href="#"><img src= -->
+<!-- 	          "https://forums.macrumors.com/attachments/itunes-1024x1024-png.565323/"></a> -->
+<!-- 	        </li> -->
 	      </ul>
 	    </div>
 	  </div>
+	</c:if>
 	    
     </div>
 </div>
 <script src="${pageContext.request.contextPath}/resources/sweetalertFile/sweetalert2.all.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/sweetalertFile/sweetalert2.min.css">
-
+<!-- 폴더 -->
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main/folder.css">
+<script src="${pageContext.request.contextPath}/resources/js/folderjs/folder.js"></script>
+<!-- 음성인식 -->
+<script src="${pageContext.request.contextPath}/resources/js/folderjs/Speech.js"></script>
 <script>
-
-$("#chrome").click(function (){
-	$(".frame").hide();
-	$(".text-tabs").text('Chrome')
-	$(".icons-tabs").find("i").removeClass().addClass("fab fa-chrome");
-	$("iframe").show();
-})
-
-
 var ws = null;
 var loginId = '${sessionScope.user.id}';
 
@@ -288,25 +214,7 @@ $(".chatLoginCheck").click(function(e){
 		location.href='/bitcode/chat/chat.do';
 	}
 });
-
-if(loginId){
-	$(".chromeBody").draggable();
-	
-	// 브라우저 주소표시줄 입력 이벤트설정
-	//$("#bitUrl")
-	 $("#bitUrl").keydown(function (key) {
-		if(key.keyCode == 13){//키가 13이면 실행 (엔터는 13)
-			$("#bitBrowser").attr('src', $("#bitUrl").val());
-		}
-	});
-}
-
 </script>
 
 <!-- 알림/단체대화 스크립트 -->
 <script src="${pageContext.request.contextPath}/resources/js/websocket/websocket.js"></script>
-<!-- 폴더 -->
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main/folder.css">
-<script src="${pageContext.request.contextPath}/resources/js/folderjs/folder.js"></script>
-<!-- 음성인식 -->
-<script src="${pageContext.request.contextPath}/resources/js/folderjs/Speech.js"></script>

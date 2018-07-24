@@ -87,7 +87,7 @@ IMP.init('imp93914891');
 			</div>
 		</c:if>
 		<div class="overlay-computer" id="overlay-computer"
-			style="transform: scale(0); left: 142px; top: 29px; z-index: 1000; height: 680px;">
+			style="transform: scale(0); left: 142px; top: 29px; z-index: 1000; height: 680px; ">
 			<div class="fluid-container">
 				<div class="first-row-win" id="first-row-win">
 					<div class="left">
@@ -139,8 +139,8 @@ IMP.init('imp93914891');
 						<i class="path-icon-2">|</i>
 					</div>
 					<div class="col-xs-3">
-						<input class="search-input" type="text" placeholder="Search">
-						<span id="sasa" class="fa fa-search path-icon-1"></span>
+<!-- 						<input class="search-input" type="text" placeholder="Search"> -->
+<!-- 						<span id="sasa" class="fa fa-search path-icon-1"></span> -->
 					</div>
 					<div class="clearfix"></div>
 				</div>
@@ -169,7 +169,7 @@ IMP.init('imp93914891');
 						<div class="saveSize" style="position: fixed; bottom: 20px; width: 154px;" >
 							<span>저장용량</span><img src="${pageContext.request.contextPath}/resources/images/cloud.PNG" style="width: 40px; margin-left: 8px;"><br>
 							<div class="progress" style="height: 5px;">
-								<div class="progress-bar progress-bar-info" id='ppbar' role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+								<div class="progress-bar progress-bar-info" id='ppbar' role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
 								</div>
 							</div>
 							<span id='maxSize'>100MB 중 </span><span id='capacity'></span><span><a href="#" onclick="payment()">결제</a></span>

@@ -112,7 +112,7 @@ body {
   background-size: 26px 26px;
 }
 /* 작업표시줄 좌측 메뉴 - 플레이어 */
-.taskbar .icons-left #wmplayer {
+#dockContainer #dock ul li #wmplayer {
   height: 43px;
   width: 49px;
   background-image: url("/bitcode/resources/images/wmplayer.png");
@@ -166,7 +166,7 @@ body {
   background-size: 26px 26px;
 }
 /* 작업표시줄 좌측 메뉴 - 메모장 */
-.taskbar .icons-left #notepad {
+#dockContainer #dock ul li #notepad {
   height: 43px;
   width: 49px;
   background-image: url("/bitcode/resources/images/notepad.png");
