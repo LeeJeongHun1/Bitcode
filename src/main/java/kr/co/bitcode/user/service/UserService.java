@@ -30,4 +30,6 @@ public interface UserService {
 	public void updateUserPoint(String id) throws Exception;
 
 	public Attendance selectAttenByIdDate(Attendance attendance) throws Exception;
+	//만족
+	public void updateSatisfAnat(Qna qna) throws Exception;
 }

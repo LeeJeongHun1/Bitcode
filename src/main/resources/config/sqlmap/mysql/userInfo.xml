@@ -23,6 +23,12 @@
 		<result column="stsfc_step" property="stsfcStep" />
 	</resultMap>
 	
+	<update id="updateSatisfAnat" parameterType="qna">
+        update tb_qna_board
+           set stsfc_code = #{stsfcCode}
+         where id = #{id}  	
+	</update>
+	
 	<select id="selectmyQuestion" parameterType="string" resultMap="stsfcCodeMap">
 		select s.stsfc_step, s.stsfc_code, q.no, q.id, q.title
 		from tb_stsfc_code s

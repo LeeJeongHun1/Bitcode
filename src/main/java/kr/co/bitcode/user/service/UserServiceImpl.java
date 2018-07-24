@@ -77,6 +77,12 @@ public class UserServiceImpl implements UserService{
 		userInfoMapper.updateUserPoint(id);
 		
 	}
+//만족
+	@Override
+	public void updateSatisfAnat(Qna qna) throws Exception {
+		userInfoMapper.updateSatisfAnat(qna);
+	}
+
 
 
 	

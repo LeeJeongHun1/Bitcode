@@ -38,6 +38,10 @@ public class UserController {
 	@Autowired
 	BCryptPasswordEncoder passCode;
 	
+	
+	//만족클릭
+//	@RequestMapping("/")
+//	public String stis
 	//출석체크
 	@RequestMapping("/attend.json")
 	@ResponseBody
@@ -58,7 +62,6 @@ public class UserController {
 	}
 	@RequestMapping("/updateAttend.do")
 	public ModelAndView updateAttend(String id) throws Exception {
-		System.out.println("userId 출첵 폼 : " + id);
 		ModelAndView mav = new ModelAndView();
 		//한 유저에 대한 질문 List 출력
 		List<StsfcCode> qnaList= userService.selectmyQuestion(id);
@@ -131,7 +134,6 @@ public class UserController {
 	//닉네임 수정 중복 체크
 	@RequestMapping("/updateNickCheck.json") 
 	public @ResponseBody boolean signUpNickCheck(User user, HttpSession session) throws Exception { 
-		System.out.println("s닉넴 수정 중복 체크");
 		List<User> list = loginService.selectAllUser();
 		for (User users : list) {
 			if(user.getNickName().equals(users.getNickName())) {
@@ -140,7 +142,6 @@ public class UserController {
 		}
 		userService.updateNick(user);
 		User userInfo = loginService.selectUserById(user.getId());	
-		System.out.println("유저 수정" + user.getNickName());
 		session.setAttribute("user", userInfo);
 		return false;
 	} 	
@@ -150,11 +151,9 @@ public class UserController {
 	@RequestMapping("/updatePassForm.json") 
 	@ResponseBody
 	public User updatePassForm(User user, HttpSession session)  throws Exception{ 
-		System.out.println(user.getId());
 		user.setPassword(passCode.encode(user.getPassword()));
 		userService.updateUserPass(user);
 		User userInfo = loginService.selectUserById(user.getId());	
-		System.out.println(userInfo.getPassword());
 		session.setAttribute("user", userInfo);
 		
 		return user;
