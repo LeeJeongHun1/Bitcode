@@ -5,13 +5,22 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css"
+<%-- <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/board/detail.css">
+ --%>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/board/qnaDetail.css">
 
 </head>
 <body>
-	<div class="container">
-		<div class="shell-container">
+
+	<div class="qnaDetailBody">
+	<div id="card1" class="card ten col">
+		<div class="topbar blue">
+		<div class="swatches"><span class="red"></span><span class="orange"></span><span class="yellow"></span><span class="green"></span><span class="blue"></span></div>
+		<div class="xbtn" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">x</div>
+		</div> 
+		
+		<div class="shell-container qna">
 			<h2 class="shell_title">QnA질문게시판</h2>
 			<form id="insertForm" action='<c:url value="/qnaboard/insert.do"/>' method="post"
 				enctype="multipart/form-data" onsubmit="return check()">
@@ -20,14 +29,14 @@
 					<tbody>
 						<tr>
 							<th>제목</th>
-							<td><input id="insertTitle" class="editTitle" type="text" name="title" /> 
+							<td style="text-align: left;"><input id="insertTitle" class="editTitle" type="text" name="title" /> 
 							<select class="editSelect" name="code">
 									<!-- <option value="">분류</option> -->
 							</select></td>
 						</tr>
 						<tr>
 							<th>작성자</th>
-							<td><c:out value="${sessionScope.user.nickName}" /></td>
+							<td class="editWriter"><c:out value="${sessionScope.user.nickName}" /></td>
 							
 							
 						</tr>
@@ -43,15 +52,16 @@
 					</tbody>
 				</table>
 			<div class="contents_btn">
-				<a href='<c:url value="/qnaboard/list.do" />'><button type="button">목록</button></a>
-				<button type="submit">등록</button>
+				<a href='<c:url value="/qnaboard/list.do" />'><input class="editBtn" type="button" value="목록"></a>
+				<%-- <a href='<c:url value="/qnaboard/list.do" />'><button type="button">목록</button></a> --%>
+				<input class="editSubmit" type="submit" value="등록">
+				<!-- <button type="submit">등록</button> -->
 			</div>
 			</form>
 		</div>
+		</div>
 	</div>
 	<script>
-	window.onload = function(){
-	}
 	code();
 	function code(){
 		$.ajax({
@@ -81,5 +91,7 @@
 		;
 
 	};
+	
+	$(".qnaDetailBody").draggable();
 	</script>
 </body>
