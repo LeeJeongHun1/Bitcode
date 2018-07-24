@@ -24,12 +24,16 @@
 	 	<h1 id="articleTitle">${article.articleTitle}</h1>
 	    <hr>
 	    <span id="articleReport">${article.articleReporter}</span><span id="articleReport">${article.articleDate}${article.articleNo}</span>
-	    <a href="${article.articleUrl}" id="articleUrl" target="_blank" title="새창으로 열립니다.">원본 기사 보기 클릭...</a>
+	    <a href="${article.articleUrl}" id="articleUrl" target="_blank" title="새창으로 열립니다." 
+	    onclick="window.open(this.href,'팝업창title','scrollbars=yes, top=90px, left=300px, width=1400px, height=800px'); return false;">
+		원본 기사 보기 클릭...</a>
 	    <div class="cardITNewsDetail"><img src="${article.articleThumb}"></div>
 		<hr>
 		<p id="articleContent">
 		${fn:replace(article.articleContent, '다.', "다.<br/>")}
-		<a href="${article.articleUrl}" id="articleUrl">원본 기사 보기 클릭...</a>
+		<a href="${article.articleUrl}" id="articleUrl" target="_blank" title="새창으로 열립니다." 
+	    onclick="window.open(this.href,'팝업창title','scrollbars=yes, top=180px, left=300px, width=800px, height=600px'); return false;">
+		원본 기사 보기 클릭...</a>
 		</p>
 		<!-- 댓글	-->
 			<div id="comment">
