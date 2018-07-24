@@ -287,10 +287,10 @@ $("#submitBtn").click(function(){
 		return;
 	}
 	email = $("#userEmail").val();
-	$("#userEmail").val(email +'@'+ $("#userEmailDetail").val());
+	$("#userconformEmail").val(email +'@'+ $("#userEmailDetail").val());
 	
 	birthday = $("#birthday").val();
-	$("#userconformEmail").val($("#birth1").val() + $("#birth2").val() + $("#birth3").val());
+	$("#birthday").val($("#birth1").val() + $("#birth2").val() + $("#birth3").val());
 
 	$("#userForm").submit();
 })
