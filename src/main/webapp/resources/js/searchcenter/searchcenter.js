@@ -67,7 +67,7 @@ function showMap(coords){
 	map = new google.maps.Map(mapDiv, mapOptions);
 	
 	// 마커에 마우스를 올렸을때 보여줄 툴팁
-	var title = "당신의 현재 위치입니다.";
+	var title = "비트캠프의 위치입니다.";
 	// InfoWindow 객체에 보여줄 컨텐츠
 	var content = "위치(위도 : " + coords.latitude + ", 경도 : " + coords.longitude + ")";
 	// 마커추가 함수 호출
