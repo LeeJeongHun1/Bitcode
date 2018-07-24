@@ -31,7 +31,7 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
-	line-height: 1;
+	/* line-height: 1; */
 }
 ol, ul {
 	list-style: none;
@@ -395,7 +395,7 @@ table.editTable tr td {
     border: 1px solid #c5c5c5;	
 }
 .editSubmit{
-	height: 30px;
+	height: 29px;
     background: #244c61;
     width: 50px;
     color: white;
