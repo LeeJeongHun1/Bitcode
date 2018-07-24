@@ -50,6 +50,7 @@ public class UserController {
 			//디비 저장
 			attend.setAttDate(attendance.getAttDate());
 			attend.setId(attendance.getId());
+			userService.updateUserPoint(attendance.getId());
 			userService.insertAttendance(attend);
 			return 1;
 		}
@@ -98,21 +99,21 @@ public class UserController {
 		return mav;
 	} 
 	//수정 클릭시
-	@RequestMapping("/updateUserForm.do") 
-	public ModelAndView updateUserForm(String id) throws Exception {
-		ModelAndView mav = new ModelAndView();
-		User userInfo = loginService.selectUserById(id);
-		//생년월일 3칸에 나누어서 출력
-		String birth = userInfo.getBirthday();
-		String yearId1 = birth.substring(0, 4);
-		String monthId1 =birth.substring(4, 6);
-		String dateId1 =birth.substring(6);
-		mav.setViewName("user/userUpdate");
-		mav.addObject("yearId1",yearId1);
-		mav.addObject("monthId1", monthId1);
-		mav.addObject("dateId1", dateId1);
-		return mav;
-	} 
+//	@RequestMapping("/updateUserForm.do") 
+//	public ModelAndView updateUserForm(String id) throws Exception {
+//		ModelAndView mav = new ModelAndView();
+//		User userInfo = loginService.selectUserById(id);
+//		//생년월일 3칸에 나누어서 출력
+//		String birth = userInfo.getBirthday();
+//		String yearId1 = birth.substring(0, 4);
+//		String monthId1 =birth.substring(4, 6);
+//		String dateId1 =birth.substring(6);
+//		mav.setViewName("user/userUpdate");
+//		mav.addObject("yearId1",yearId1);
+//		mav.addObject("monthId1", monthId1);
+//		mav.addObject("dateId1", dateId1);
+//		return mav;
+//	} 
 	//email 수정
 	@RequestMapping("/updateEmailForm.json") 
 	public @ResponseBody boolean updateEmailForm(User user, HttpSession session) throws Exception { 
@@ -127,17 +128,7 @@ public class UserController {
 		session.setAttribute("user", userInfo);
 		return false;
 	} 
-	
-	//nick 수정
-//	@RequestMapping("/updateNickForm.json") 
-//	public @ResponseBody User updateNickForm(User user, HttpSession session) throws Exception { 
-//		User userInfo = loginService.selectUserById(user.getId());	
-//		userService.updateNick(user);
-//		session.setAttribute("user", userInfo);
-//		return userInfo;
-//	} 
-	
-	//닉네임 중복 체크
+	//닉네임 수정 중복 체크
 	@RequestMapping("/updateNickCheck.json") 
 	public @ResponseBody boolean signUpNickCheck(User user, HttpSession session) throws Exception { 
 		System.out.println("s닉넴 수정 중복 체크");
@@ -153,8 +144,6 @@ public class UserController {
 		session.setAttribute("user", userInfo);
 		return false;
 	} 	
-	
-	
 	
 	
 	//비번수정 JSON
