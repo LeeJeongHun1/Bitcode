@@ -50,7 +50,7 @@ table {
 }
 a {text-decoration: none;}
 textarea {    width: 610px;
-    border: 1px solid #e2e2e2;
+    border:1px solid #dcdcdc;
     height: 74px;}
 /* 상세페이지 */
 .container {
@@ -367,11 +367,12 @@ table.editTable tr td {
     padding: 12px; margin:0;}
 .editTitle {
 	width: 80%;
-    border: 1px solid #e2e2e2;
+    border: 1px solid #c5c5c5;
     height: 33px;
+    padding-left: 5px;
 }
 .editSelect {    
-	border: 1px solid #e2e2e2;
+	border:1px solid #c5c5c5;
 	width: 100px;
     margin-left: 10px;
     height: 33px;
@@ -634,7 +635,7 @@ div .information {
 	padding: 2px 4px;
 	text-align: center;
 	border-radius: 2px;
-	color: #333;
+	color: #fff;
 	display: inline-block;
 	zoom: 1.0;
 	vertical-align: top;

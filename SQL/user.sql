@@ -13,12 +13,12 @@ alter table tb_user comment '회원정보';
 -----------------------------------------------------------------------------------------------------
 --  유저
 
-select * from tb_user
+select * from tb_user;
 where id = 'junsu';
 
 	update tb_user
-   set birthday = 20001212
- where id = 'pp';
+   set nick_name = 'test3'
+ where id = 'test3';
 -----------------------------------------------------------------------------------------------------
 INSERT INTO tb_user(id, name, nick_name, password, email, point, auth, birthday)
 	VALUES('id1', 'hong', 'hongGilDong', 'id1', 'hong@naver.com', 10, 'U', 19880101);

@@ -25,8 +25,20 @@
 	  <p class="innerText"></p>
 	  <input name="conformpass" placeholder="비밀번호를  재입력하세요" type="password" id="userPassCheck" data-flag="no" class="inputDetail" maxlength="16"/>
 	  <p class="innerText"></p>	  
-	  <input name="email" placeholder="Email을 입력하세요" type="text" id="userEmail" data-flag="no" class="inputDetail"/>
-	  <p class="innerText"></p>
+<div id="inputEmail">
+	<div class="innerBox">
+		<input type="text" name="emailuser" id="userEmail" data-flag="no" class="emailDetail" maxlength="16" placeholder="email">
+		<div id="emptyBox">@</div>
+		<input type="text" name="userEmailDetail" id="userEmailDetail" data-flag="no" class="emailDetail" maxlength="16" >
+		<p class="innerText"></p>
+	</div>
+</div>
+<div id="emailResult"><p></p></div>  
+ <input name="email" type="hidden" id="userconformEmail" data-flag="no" class="inputDetail"/>
+<!-- 	  <p class="innerText"></p> -->
+ 
+ 
+ 
   <div class="birthday">
 <!--   	<input type="date" name="birthday" id="userBirth"> -->
     <input type="text" name="year" id="birth1" size="4" data-flag="no" class="inputDetail1" placeholder="Year"/>

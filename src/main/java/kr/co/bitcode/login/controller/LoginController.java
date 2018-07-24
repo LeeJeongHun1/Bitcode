@@ -143,7 +143,6 @@ public class LoginController {
 	//ID 중복 체크
 	@RequestMapping("/signUpIdCheck.json") 
 	public @ResponseBody boolean signUpForm(User user) throws Exception { 
-		System.out.println("id찾기들어옴");
 		System.out.println(user.getId());
 		List<User> list = loginService.selectAllUser();
 		for (User users : list) {
@@ -153,7 +152,21 @@ public class LoginController {
 		}
 		return false;
 	} 	
-
+	
+	//닉네임 중복 체크
+	@RequestMapping("/signUpNickCheck.json") 
+	public @ResponseBody boolean signUpNickCheck(User user) throws Exception { 
+		System.out.println("닉넴찾기들어옴");
+		System.out.println(user.getNickName());
+		List<User> list = loginService.selectAllUser();
+		for (User users : list) {
+			if(user.getNickName().equals(users.getNickName())) {
+				return true;
+			}
+		}
+		return false;
+	} 		
+	
 	//email 중복 체크
 	@RequestMapping("/emailCheck.json") 
 	public @ResponseBody boolean emailCheck(User user) throws Exception { 
