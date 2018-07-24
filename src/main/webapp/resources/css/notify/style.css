@@ -50,13 +50,13 @@ body {
   background: #3498db;
   color: #fefefe;
   font: normal 0.85em 'Lato';
-  height: 16px;
+  height: 13px;
   line-height: 1.00em;
   position: absolute;
   right: 2px;
   text-align: center;
   top: -2px;
-  width: 16px;
+  width: 14px;
 }
 .show-notifications.active ~ .notifications {
   opacity: 1;
