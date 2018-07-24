@@ -109,8 +109,23 @@ public class CodeBoardController {
 	}
 	
 	@RequestMapping(value="/update.do", method=RequestMethod.POST)
-	public String updateBoard(CodeBoard cb) {
+	public String updateBoard(CodeBoard cb,CodeBoardFile cbFile) throws Exception {
 		service.updateBoard(cb);
+		if(cb.getFile()[0].getSize() == 0) {
+			System.out.println("파일없음");
+		}else {
+			
+		for(MultipartFile file:cb.getFile()) {
+			file.transferTo(new File("c:/java-lec/upload/"+file.getOriginalFilename()));
+			cbFile.setNo(cb.getNo());
+			System.out.println(cb.getNo());
+			cbFile.setFilePath("c:/java-lec/upload/"+file.getOriginalFilename());
+			cbFile.setOriName(file.getOriginalFilename());
+			cbFile.setSystemName(file.getName());
+			cbFile.setFileSize((int)file.getSize());	
+			service.insertBoardFile(cbFile);
+			}
+		}		
 		int no = cb.getNo();
 		return "redirect:/codeboard/detail.do?no=" +no;
 	}

@@ -159,7 +159,7 @@ LIMIT #{begin},10
 		<update id="updateBoard" parameterType="codeBoard">
 			update tb_code_board
 			   set title = #{title},
-			   	   language_code = #{languageCode},
+<!-- 			   	   language_code = #{languageCode}, -->
 			       content = #{content}
 			 where no = #{no}
 		</update>

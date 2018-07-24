@@ -26,6 +26,7 @@ background-color: black;}
 		<div class="shell-container">
 			<form method='post' action='${pageContext.request.contextPath}/codeboard/update.do'
 			enctype="multipart/form-data">
+			<input type="hidden" name="id" value="${sessionScope.user.id}" />			
 			<input type='hidden' name='no' value='${cb.no}' />
 		<h2 class="shell_title" >코드공유게시판</h2>
 			<table class="editTable" >
@@ -39,7 +40,7 @@ background-color: black;}
 			</tr>
 			<tr>
 			<th>작성자</th>
-			<td class="editWriter"><input type="text" name="id" value='${user.nickName}' readonly="readonly"/></td>
+			<td class="editWriter"><input type="text" name="nickname" value='${user.nickName}' readonly="readonly"/></td>
 			</tr>
 
 			<tr style="height:90%;">
@@ -49,7 +50,10 @@ background-color: black;}
 			</tr>
 			<tr>
 			<th>파일첨부</th>
-			<td><input type="file" name="file" multiple="multiple" ></td>
+			<c:forEach items="${fileList}" var="i">
+			<input type="hidden" name="fileNo" value="${i}">
+			</c:forEach>
+			<td><input type="file" name="file" multiple="multiple" value="${i.oriName}"></td>			
 			</tr>
 			</tbody>			
 			</table>
@@ -67,6 +71,7 @@ background-color: black;}
 	</div>
 	
 	<script>
+	$(".codeDetailBody").draggable();
 	window.onload = function(){}
 	code();
 	function code(){
