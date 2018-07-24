@@ -18,6 +18,7 @@ background-color: black;}
 		<div class="shell-container" style="color:#80FF00; background-color: black;">
 			<form method='post' action='${pageContext.request.contextPath}/codeboard/reply.do'
 			enctype="multipart/form-data">
+			<input type="hidden" name="id" value="${sessionScope.user.id}" />			
 		<h2 class="shell_title" style="color:#80FF00;">코드공유게시판</h2>
 			<table class="editTable" >
 			<tbody>
@@ -31,7 +32,7 @@ background-color: black;}
 			</tr>
 			<tr>
 			<th style="color:#80FF00; background-color: black;">작성자</th>
-			<td><input style="color:#80FF00; background-color: black;" type="text" name="id" value='${user.nickName}' readonly="readonly"/>
+			<td><input style="color:#80FF00; background-color: black;" type="text" name="nickname" value='${user.nickName}' readonly="readonly"/>
 			<input type="hidden" name="no" value="${cb.no}" /> 
 			<input type="hidden" name="groupOrder" value="${cb.groupOrder}" /> 
 			<input type="hidden" name="depth" value="${cb.depth}" />

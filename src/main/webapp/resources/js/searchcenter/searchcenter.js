@@ -41,7 +41,7 @@ function displayLocation(position){
 	// 두 지점간의 거리를 km로 반환
 	var km = computeDistance(position.coords, ourCoords);
 	var distance = document.getElementById("distance");
-	distance.innerHTML = "강남역까지의 거리 : " + km + "km";
+	distance.innerHTML = "비트캠프 강남지점까지의 거리 : " + km + "km";
 	
 	// 지도관련 함수 호출
 	if(map == null){

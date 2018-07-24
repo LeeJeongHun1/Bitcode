@@ -23,6 +23,7 @@ background-color: black;}
 		<div class="shell-container code">
 			<form method='post' action='${pageContext.request.contextPath}/codeboard/insert.do'
 			enctype="multipart/form-data">
+			<input type="hidden" name="id" value="${sessionScope.user.id}" />
 		<h2 class="shell_title" style="color:#80FF00;">코드공유게시판</h2>
 			<table class="editTable" >
 			<tbody>
@@ -35,7 +36,7 @@ background-color: black;}
 			</tr>
 			<tr>
 			<th style="color:#80FF00; background-color: black;">작성자</th>
-			<td><input style="color:#80FF00; background-color: black;" type="text" name="id" value='${user.nickName}' readonly="readonly"/></td>
+			<td><input style="color:#80FF00; background-color: black;" type="text" name="nickname" value='${sessionScope.user.nickName}' readonly="readonly"/></td>
 			</tr>
 
 			<tr style="height:90%;">
@@ -55,7 +56,7 @@ background-color: black;}
 			</div>
 			</form>
 		</div>
-
+	</div>
 	</div>
 	
 	<script>

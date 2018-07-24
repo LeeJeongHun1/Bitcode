@@ -12,7 +12,7 @@
 <body>
 	<div class="chatBody" style="height:600px">
 	<div id="card1" class="card ten col">
-		<div class="topbar yellow">
+		<div class="topbar orange">
 		<div class="swatches"><span class="red"></span><span class="orange"></span><span class="yellow"></span><span class="green"></span><span class="blue"></span></div>
 		<div class="xbtn" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">x</div>
 		</div>

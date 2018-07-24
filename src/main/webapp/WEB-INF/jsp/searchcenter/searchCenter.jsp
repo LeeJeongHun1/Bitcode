@@ -15,14 +15,14 @@
 <div class="mapBody">
 
 	<div id="card1" class="card ten col">
-		<div class="topbar yellow">
+		<div class="topbar green">
 		<div class="swatches"><span class="red"></span><span class="orange"></span><span class="yellow"></span><span class="green"></span><span class="blue"></span></div>
 		<div class="xbtn" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">x</div>
 		</div>
 <div class="map">
 <form>
-	<input type="button" id="watch" value="watch" />
-	<input type="button" id="clearWatch" value="clearWatch" />
+	<input type="button" id="watch" value="찾기" />
+<!-- 	<input type="button" id="clearWatch" value="clearWatch" /> -->
 </form>
 
 <div id="location">
@@ -33,7 +33,7 @@
 비트캠프 강남지점까지의 거리 : 
 </div>
 
-<div id="map">
+<div id="map" style="margin-left: 300px;">
 </div>
 
 </div>

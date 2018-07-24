@@ -46,7 +46,10 @@
 					</c:forEach>
 					${cb.content}
 					</div>
+					<div class="like">
+					<a id="qnaLike" href="javascript:recommend()">추천 </a>
 					<span class="like_count"><c:out value="${cb.likeCnt}" /></span>
+					</div>
 					</div>
 				</div>
 				
@@ -217,10 +220,7 @@
 			commentList(data);
 		})
 	}
-	
 	selectComment();
-	
-	
 	$(".codeDetailBody").draggable();	
 	</script>
 <%-- 	<script src="${pageContext.request.contextPath}/resources/js/codeboard/codeBoardDetail.js"></script> --%>
