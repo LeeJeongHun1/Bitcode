@@ -5,53 +5,65 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" 
+<%-- <link rel="stylesheet" type="text/css" 
 href="${pageContext.request.contextPath}/resources/css/board/detail.css">
-<style>
+ --%>
+ <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/board/codeDetail.css">
+ <style>
 button{
 color:#80FF00;
 background-color: black;}
 </style>
 </head>
 <body>
-	<div class="container">
-		<div class="shell-container" style="color:#80FF00; background-color: black;">
+	<div class="codeDetailBody">
+	<div id="card1" class="card ten col">
+		<div class="topbar yellow">
+		<div class="swatches"><span class="red"></span><span class="orange"></span><span class="yellow"></span><span class="green"></span><span class="blue"></span></div>
+		<div class="xbtn" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">x</div>
+		</div>
+		
+		<div class="shell-container">
 			<form method='post' action='${pageContext.request.contextPath}/codeboard/update.do'
 			enctype="multipart/form-data">
 			<input type='hidden' name='no' value='${cb.no}' />
-		<h2 class="shell_title" style="color:#80FF00;">코드공유게시판</h2>
+		<h2 class="shell_title" >코드공유게시판</h2>
 			<table class="editTable" >
 			<tbody>
 			<tr>
-			<th style="color:#80FF00; background-color: black;">제목</th>
-			<td><input class="editTitle" value='${cb.title}' name="title" style="color:#80FF00; background-color: black;"type="text" />
-			<select style="color:#80FF00; background-color: black;" class="editSelect" id="code" name="languageCode">
+			<th>제목</th>
+			<td><input class="editTitle" value='${cb.title}' name="title" type="text" />
+			<select class="editSelect" id="code" name="languageCode">
 			</select>
 			</td>
 			</tr>
 			<tr>
-			<th style="color:#80FF00; background-color: black;">작성자</th>
-			<td><input style="color:#80FF00; background-color: black;" type="text" name="id" value='${user.nickName}' readonly="readonly"/></td>
+			<th>작성자</th>
+			<td class="editWriter"><input type="text" name="id" value='${user.nickName}' readonly="readonly"/></td>
 			</tr>
 
 			<tr style="height:90%;">
-			<th style="color:#80FF00; background-color: black;">내용</th>
-			<td><textarea name="content" style="width: 100%; color:#80FF00; background-color: black;
-    		height: 100%;"><c:out value="${cb.content}" /></textarea></td>
+			<th>내용</th>
+			<td><textarea name="content" style="border:1px solid #c5c5c5; width: 100%;
+    		height: 230px;"><c:out value="${cb.content}" /></textarea></td>
 			</tr>
 			<tr>
-			<th style="color:#80FF00; background-color: black;">파일첨부</th>
+			<th>파일첨부</th>
 			<td><input type="file" name="file" multiple="multiple" ></td>
 			</tr>
 			</tbody>			
 			</table>
 			<div class="contents_btn">
-			<button type='submit'>수정</button>
+<%-- 			<button type='submit'>수정</button>
 			<a href='<c:url value="list.do" />'><button type="button">목록</button></a>
-			</div>
+ --%>		
+ 			<input class="editSubmit" type="submit" value="수정">
+			<input class="editBtn" type="button" value="삭제">
+ 			</div>
 			</form>
 		</div>
-
+		
+		</div>
 	</div>
 	
 	<script>

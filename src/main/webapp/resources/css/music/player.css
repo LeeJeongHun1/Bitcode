@@ -1,245 +1,254 @@
+/* 
 body {
-  height: 100vh;
-  background: url(/bitcode/resources/images/main.jpg);
-  background-position: center;
-  background-size: cover;
+	height: 100vh;
+	background: url(/bitcode/resources/images/main.jpg);
+	background-position: center;
+	background-size: cover;
+	font-family: 'Source Sans Pro', sans-serif;;
 }
+*/
+/*  
 .musicBody {
 	width: 500px;
 	margin: 0 auto;
 	margin-top: 10%;
 	margin-left: 10%;
 }
-th, td, a {
-  transition: color 333ms ease-in-out;
-  vertical-align: middle;
+*/
+/* 뮤직 플레이어 */
+@import
+	url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700);
+
+* {
+	margin: 0px;
+	padding: 0px;
+	outline: none;
+}
+
+html {
+	height: 100%
+}
+
+body {
+	background: #e7e7e7;
+	padding: 10px;
+	color: #000;
+}
+
+#playstation {
+	background: #f7f7f7;
+	border-radius: 20px;
+	width: 400px;
+	border: 1px solid #c1c1c1;
+	overflow: auto;
+	margin: 5px auto;
+}
+
+#controlpanel {
+	padding: 50px 25px 15px;
+	overflow: auto;
+	position: relative;
+}
+
+#songpro {
+	width: 180px;
+	height: 180px;
+	border-radius: 50%;
+	border: 1px solid #eaeaea;
+	position: relative;
+	margin: 0 0px 0px 23px;
+	background:
+		url("http://www.tmottgogo.com/wp-content/uploads/2011/10/MashableYouTube.png")
+		no-repeat 0 0;
+	background-size: 220px 220px;
+	box-shadow: inset 0px 0px 10px 2px #5f5f5f;
+}
+
+#backward, #forward {
+	content: "fa-backward";
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+	margin-top: 67px;
+	border: 1px solid #eaeaea;
+	background: #f7f7f7;
+	box-shadow: 0px 0px 5px #e9e9e9, inset 0px 2px 0px #fdfdfd;
+	cursor: pointer;
+	-webkit-transition: 0.2s;
+	-o-transition: 0.2s;
+	-ms-transition: 0.2s;
+	-moz-transition: 0.2s;
+	transition: 0.2s;
+}
+
+#backward {
+	float: left;
+}
+
+#forward {
+	float: right;
+}
+
+#backward:hover, #forward:hover {
+	box-shadow: 0px 0px 0px #cacaca, inset 0px 2px 0px #fdfdfd;
+	-webkit-transition: 0.2s;
+	-o-transition: 0.2s;
+	-ms-transition: 0.2s;
+	-moz-transition: 0.2s;
+	transition: 0.2s;
+}
+
+#backward:hover .fa {
+	text-shadow: 0px 2px 0px #cacaca;
+	-webkit-transition: 0.2s;
+	-o-transition: 0.2s;
+	-ms-transition: 0.2s;
+	-moz-transition: 0.2s;
+	transition: 0.2s;
+}
+
+#forward:hover .fa {
+	text-shadow: 0px 2px 0px #cacaca;
+	-webkit-transition: 0.2s;
+	-o-transition: 0.2s;
+	-ms-transition: 0.2s;
+	-moz-transition: 0.2s;
+	transition: 0.2s;
+}
+
+.fa {
+	-webkit-transition: 0.2s;
+	-o-transition: 0.2s;
+	-ms-transition: 0.2s;
+	-moz-transition: 0.2s;
+	transition: 0.2s;
+}
+
+#backward .fa, #forward .fa {
+	margin: 19px 0px 0px 22px;
+}
+
+#backward .fa {
+	margin: 19px 0px 0px 16px;
+}
+
+.inlineblo {
+	display: inline-block;
+}
+
+.fa {
+	color: #666666;
+	font-size: 1.5em;
+}
+
+h1, h2 {
+	text-align: center;
+	font-weight: normal;
+	color: #333333;
+	padding: 5px 15px 5px 15px;
+	font-size: 1.8em;
+}
+
+h2 {
+	color: #999999;
+	font-size: 1.5em;
+	padding: 0px 15px 5px 15px;
+}
+
+ol {
+	padding: 0px 0px 15px 0px;
+	counter-reset: section;
+}
+
+ol li {
+	list-style-type: none;
+	padding: 15px 25px 15px 15px;
+	border-bottom: 1px solid #cccccc;
+	border-top: 1px solid #ffffff;
+	font-size: 1.25em;
+	color: #666666;
+	text-shadow: 0px 2px 0px #ffffff;
+	cursor: pointer;
+	-webkit-transition: 0.2s;
+	-o-transition: 0.2s;
+	-ms-transition: 0.2s;
+	-moz-transition: 0.2s;
+	transition: 0.2s;
+}
+
+li:before {
+	counter-increment: section; /* Increment the section counter */
+	content: "" counter(section) ""; /* Display the counter */
+	padding: 0px 15px;
+	color: #999999;
+	text-shadow: 0px 2px 0px #ffffff;
+}
+
+li:hover {
+	background: #efefef;
+	-webkit-transition: 0.2s;
+	-o-transition: 0.2s;
+	-ms-transition: 0.2s;
+	-moz-transition: 0.2s;
+	transition: 0.2s;
+}
+
+ol li:first-child {
+	border-top: none;
+}
+
+ol li:last-child {
+	border-bottom: none;
+}
+
+.time {
+	float: right;
+	color: #999999;
+}
+
+.active {
+	background: #efefef;
 }
 
 a {
-  color: #407DB8;
-  text-decoration: none;
-  font-weight: 400;
-}
-tr {
-  height: 40px;
-  transition: background 333ms ease-in-out;
-}
-tr:nth-child(even) {
-  background: #e6f0f6;
-}
-tr:nth-child(odd) {
-  background: #fff;
-}
-tr:hover {
-  background: #ddd;
-}
-tr:hover:nth-child(even) {
-  background: #ddd;
-}
-tr:hover td {
-  color: #888;
-}
-tr:hover a {
-  color: #666;
-}
-tr td {
-  color: #888;
-  font-size: 0.78em;
-  font-weight: 300;
-  letter-spacing: 0.2em;
-}
-
-/* 상단 컬러 바 */
-tr:first-child td {
-  color: #eee;
-  font-size: 0.75em;
-  letter-spacing: 0.3em;
-}
-
-tr:first-child,
-tr:first-child td {
-  transition: none;
-}
-
-/* 글씨 h1, h3 */
-div .userInformation {
-	margin-top: 20px;
-	margin-bottom: 50px;
-	color: #408080;
-	text-align: center;
-	font-size: 23px;
-}
-
-.title1 {
-	color: #ffffff;
-	backgound: inherit;
-	/*   margin: 0 0 10px 6px; */
-	padding: 0;
-	font-size: 50px;
-	margin-top: 4%;
-	margin-left: 37%;
-	margin-bottom: 2%;
-}
-
-/* col 비율 */
-.one { width: 6.866%; }
-.two { width: 15.33%; }
-.three { width: 23.8%; }
-.four { width: 32.26%; }
-.five { width: 40.73%; }
-.six { width: 49.2%; }
-.seven { width: 57.66%; }
-.eight { width: 66.13%; }
-.nine { width: 74.6%; }
-.ten { width: 83.06%; }
-.eleven { width: 91.53%; }
-.twelve { width: 100%; }
-.four1 { width: 6% }
-.five1 { width: 10% }
-.ten1 { width: 30% }
-
-/* COLUMNS */
-.col {
+	text-decoration: none;
+	color: #000;
 	display: block;
-	float: left;
-	margin: 1% 0 1% 1.6%;
-	box-shadow: 15px 15px 0px rgba(0, 0, 0, .1);
-}
-.col:first-of-type {
-	margin-left: 0;
-}
-/* PROFILES */
-.card {
-	max-width: 100%;
-	height: 400px;
-	background-color: #f7f7f7;
-	font-family: 'Arimo', sans-serif;
-	font-size: 14px;
-	box-shadow: 15px 15px 0px rgba(0, 0, 0, .1);
-	box-sizing: border-box;
-}
-
-/* CARD ! */
-#card1 {
-	margin: 0 auto;
-	max-width: 100%;
-	text-align: center;
-	color: #2c3e50;
-	/* 	padding: 15px; */
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-	box-shadow: 15px 15px 0px rgba(0, 0, 0, .1);
-	border-radius: 6px;
-}
-
-/* CARD 2 */
-#card2 {
-	max-width: 30%;
-	overflow: hidden;
-	color: #2c3e50;
-	border-radius: 6px;
-}
-
-/* CARD 3 */
-#card3 {
-	max-width: 30%;
-	color: #2c3e50;
-	border-radius: 6px;
-}
-
-.table>tbody>tr>td, .table>tbody>tr>th {
-	padding: 8px;
-	line-height: 1.42;
-	vertical-align: top;
-	border-top: 1px solid #ddd;
-}
-/* 홀수번째 tr들만을 대상으로 */
-.table-striped>tbody>tr:nth-of-type(odd) {
-	background-color: #f9f9f9;
-}
-.table-bordered {
-	border: 1px solid #ddd;
-}
-.table-bordered>tbody>tr>td, .table-bordered>tbody>tr>th {
-	border: 1px solid #ddd;
-}
-
-.table-hover>tbody>tr:hover {
-	background-color: #f5f5f5;
-}
-
-/* 빨 주 노 초 파 람 보 윗줄단  */
-.swatches {
-	float: left;
-	background: #333;
-}
-.swatches span {
-	display: block;
-	float: left;
-	width: 10px;
-	height: 10px;
-	cursor: pointer;
-	margin: 5px;
-}
-.red {
-	background: #ad3025;
-	opacity: 0.9;
-}
-.orange {
-	background: #f27937;
-	opacity: 0.8;
-}
-.yellow {
-	background: #f0b500;
-	opacity: 0.8;
-}
-.green {
-	background: #22a86d;
-	opacity: 0.8;
-}
-.blue {
-	background: #2279a4;
-	opacity: 0.8;
-}
-
-.maxbtn span {
-	display: block;
-	border: 1px solid #333;
-	border-top: 3px solid #333;
-	width: 11px;
-	height: 11px;
-	margin-top: 7px;
-}
-
-.maxbtn:hover span, .maximized .maxbtn span {
-	border-color: #e7e7e7;
-}
-
-.xbtn:hover {
-	color: #e7e7e7;
-}
-
-.topbar {
-	border-radius: 3px 3px 0 0;
-	padding: 5px;
 	text-align: right;
-	cursor: default;
+	background: #e3e2e2;
+	padding: 5px;
 }
 
-span {
-	color: #e7e7e7;
+.textalign {
+	text-align: left !important;
 }
 
-.xbtn, .maxbtn {
-	padding: 2px 4px;
-	text-align: center;
-	border-radius: 2px;
-	color: #333;
-	display: inline-block;
-	zoom: 1.0;
-	vertical-align: top;
-	font-family: 'Days One', sans-serif;
-	font-size: 16px;
-	margin-top: -3px;
+/* Progress bar css */
+progress[value] {
+	width: 100%;
+	height: 12px;
+	-webkit-appearance: none;
+	appearance: none;
+	border: 0px solid #000;
+	margin-bottom: 1px;
+}
+
+progress[value]::-webkit-progress-bar {
+	background-color: #eee;
+	border-radius: 0px;
+	box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2) inset;
+}
+
+progress[value]::-webkit-progress-value {
+	background: #ffaa00;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2) inset;
+}
+
+/* CSS3 Counter */
+li:before {
+	counter-increment: section; /* Increment the section counter */
+	content: "" counter(section) ""; /* Display the counter */
+	padding: 0px 15px;
+	color: #999999;
+	text-shadow: 0px 2px 0px #ffffff;
 }

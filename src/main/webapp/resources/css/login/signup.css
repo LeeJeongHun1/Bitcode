@@ -79,7 +79,7 @@ h1 > #siciallogin:hover { cursor: pointer; }
   border-radius:6px;
   padding:20px;
   padding-top:30px;
-  width:380px;
+  width: 420px;
   min-width: 300px;
   margin:50px auto;
   box-shadow:15px 15px 0px rgba(0,0,0,.1);
@@ -90,7 +90,8 @@ h1 > #siciallogin:hover { cursor: pointer; }
 	color: #f26964;
 	font-weight: bolder;
 	text-align: center;
-	margin-bottom: 30px;
+	margin-bottom: 25px;
+	font-size: 40px;
 }
 
 
@@ -115,6 +116,45 @@ input {
 	
   margin-bottom:10px;
 /*   margin-top:10px; */
+}
+/* 이메일 */
+#userEmail ,#userEmailDetail, #userEmailDomain {
+	outline: none;
+}
+
+#userEmailDomain {
+	color: #999;
+}
+#userEmailDomain option {
+	color: black;	
+}
+
+.innerBox > #userEmail {
+	width: 40%;
+	height: 40px;
+	border:1px solid #eee;
+	margin-bottom: 10px;
+/* 	padding: 0 19px; */
+}
+
+.innerBox > #userEmailDetail{
+	width: 45%;
+	height: 40px;
+	border:1px solid #eee;
+	margin-bottom: 10px;
+/* 	padding: 0 19px; */
+	
+	
+}
+
+.innerBox {
+	position: relative;
+	margin-top: 10px;
+}
+#emptyBox {
+	display: inline-block;
+	width:30px;
+	text-align: center;
 }
 
 

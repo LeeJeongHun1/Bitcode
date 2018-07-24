@@ -128,14 +128,34 @@ public class UserController {
 		return false;
 	} 
 	
-	//nick
-	@RequestMapping("/updateNickForm.json") 
-	public @ResponseBody User updateNickForm(User user, HttpSession session) throws Exception { 
+	//nick 수정
+//	@RequestMapping("/updateNickForm.json") 
+//	public @ResponseBody User updateNickForm(User user, HttpSession session) throws Exception { 
+//		User userInfo = loginService.selectUserById(user.getId());	
+//		userService.updateNick(user);
+//		session.setAttribute("user", userInfo);
+//		return userInfo;
+//	} 
+	
+	//닉네임 중복 체크
+	@RequestMapping("/updateNickCheck.json") 
+	public @ResponseBody boolean signUpNickCheck(User user, HttpSession session) throws Exception { 
+		System.out.println("s닉넴 수정 중복 체크");
+		List<User> list = loginService.selectAllUser();
+		for (User users : list) {
+			if(user.getNickName().equals(users.getNickName())) {
+				return true;
+			}
+		}
 		userService.updateNick(user);
 		User userInfo = loginService.selectUserById(user.getId());	
+		System.out.println("유저 수정" + user.getNickName());
 		session.setAttribute("user", userInfo);
-		return userInfo;
-	} 
+		return false;
+	} 	
+	
+	
+	
 	
 	//비번수정 JSON
 	@RequestMapping("/updatePassForm.json") 
@@ -150,7 +170,7 @@ public class UserController {
 		
 		return user;
 	} 
-	
+	//email 체크
 	@RequestMapping("/emailCheck.json") 
 	public @ResponseBody boolean emailCheck(User user) throws Exception { 
 		List<User> list = loginService.selectAllUser();
