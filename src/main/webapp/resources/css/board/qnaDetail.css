@@ -332,11 +332,13 @@ Button {
 }
 
 /* 등록폼 */
-table.editTable {width:900px; height:80%;
+table.editTable {
+	width:100%; 
+	height:80%;
     border: none;
     border-collapse: collapse;
     border-top: 1px solid #b3b3b3;
-    border-bottom: 1px solid #b3b3b3;
+    border-bottom:1px solid #dadada;
 }
 
 }
@@ -348,23 +350,54 @@ table.editTable tr th {
     background-color: #f3f3f3;
     border-top: 1px solid #e6e6e6;
     color: #727272;
-    text-align: right;
+    /* text-align: right; */
+    text-align:center;
     font-size: 14px;}
-table.editTable tr td {    padding: 10px 20px;
+table.editTable tr td {    
+	background:#fff;
+	padding: 10px 20px;
     border: none;
     border-top: 1px solid #e6e6e6;
     font-size: 14px;}
-    .shell_title {    color: #464646;
+    .shell_title {    
+    background:#fff;
+    color: #464646;
     font-size: 32px;
     margin-bottom: 0;
     padding: 12px; margin:0;}
-.editTitle {width: 64%;}
-.editSelect {    width: 100px;
-    margin-left: 10px;
-    height: 25px;
+.editTitle {
+	width: 80%;
+    border: 1px solid #e2e2e2;
+    height: 33px;
 }
-
-
+.editSelect {    
+	border: 1px solid #e2e2e2;
+	width: 100px;
+    margin-left: 10px;
+    height: 33px;
+}
+.editWriter {    
+	text-align: left;
+    font-size: 13px !important;
+    font-weight: 700;
+    color:#464646;
+    }
+.editWriter > input { border:none;}
+.editBtn {
+	width: 50px;
+    background: #fff;
+    color: #505354;
+    height: 31px;
+    border: 1px solid #c5c5c5;	
+}
+.editSubmit{
+	height: 30px;
+    background: #244c61;
+    width: 50px;
+    color: white;
+    border: none;
+	
+}
 
 /* 카드 스타일 */
 .qnaDetailBody {
@@ -396,7 +429,7 @@ a {
   text-decoration: none;
   font-weight: 400;
 }
-tr:nth-child(even) {
+/* tr:nth-child(even) {
   background: #e6f0f6;
 }
 tr:nth-child(odd) {
@@ -413,7 +446,7 @@ tr:hover td {
 }
 tr:hover a {
   color: #666;
-}
+} */
 tr td {
   color: #888;
   font-size: 0.78em;
@@ -597,6 +630,7 @@ div .information {
 } */
 
 .xbtn, .maxbtn {
+	cursor:pointer;
 	padding: 2px 4px;
 	text-align: center;
 	border-radius: 2px;
