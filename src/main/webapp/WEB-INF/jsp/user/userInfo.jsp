@@ -225,10 +225,14 @@ $("#stampId").click(function () {
 			console.log(data);
 			if(data == 2){
 				swal("하루 한번만 출석이 가능합나다.");
+				
 			}
 			else{
 				swal("출석이 체크 되었습니다.");
-				location.reload();
+				setTimeout( function() {
+					location.reload();
+					}, 10000);
+				
 			}
 		
 		}

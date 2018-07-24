@@ -37,13 +37,6 @@ public class UserServiceImpl implements UserService{
 	public User selectbyIdEmail(User user) throws Exception {
 		return userMapper.selectbyIdEmail(user);
 	}
-
-//	@Override
-//	public List<> selectmyQuestion(String id) throws Exception {
-//		List<Qna> userQna = userInfoMapper.selectmyQuestion(id);
-//		
-//		return null ;
-//	}
 //출석
 	@Override
 	public void insertAttendance(Attendance attend) throws Exception {
@@ -77,6 +70,12 @@ public class UserServiceImpl implements UserService{
 	public Attendance selectAttenByIdDate(Attendance attendance) throws Exception {
 		
 		return userInfoMapper.selectAttenByIdDate(attendance);
+	}
+//출석시 포인트 지급
+	@Override
+	public void updateUserPoint(String id) throws Exception {
+		userInfoMapper.updateUserPoint(id);
+		
 	}
 
 

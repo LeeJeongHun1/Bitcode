@@ -26,7 +26,8 @@ public interface UserService {
 	void insertAttendance(Attendance attend) throws Exception;
 	//출석체크
 	List<Attendance> selectAttendance(String id) throws Exception;
-//	public List<Attendance> selectmyStis(String id) throws Exception;
+	//출석시 포인트 업뎃
+	public void updateUserPoint(String id) throws Exception;
 
 	public Attendance selectAttenByIdDate(Attendance attendance) throws Exception;
 }

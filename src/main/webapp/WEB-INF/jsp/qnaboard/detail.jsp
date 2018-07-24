@@ -22,6 +22,7 @@ a {
 	<input type="hidden" name="depth" value="${list.qna.depth}">
 	<input type="hidden" name="groupOrder" value="${list.qna.groupOrder}">
 	<input type="hidden" name="oriId" value="${list.id}"> 
+	<input type="hidden" name="qnaId" value="${list.qna.id}"> 
 	
 	<div class="qnaDetailBody">
 	<div id="card1" class="card ten col">
@@ -52,8 +53,10 @@ a {
 		<div class="contents_body">
 			<div class="detail">
 			<div class="contents" style="">
-			<c:forEach var="qna" items="${list.qna.fileList}">파일명 : 
-			<a href="${pageContext.request.contextPath}/fileDown.do?filePath=${qna.filePath}&systemFileName=${qna.systemName}&originalFileName=${qna.oriName}">${qna.oriName}</a>
+			<c:forEach var="qna" items="${list.qna.fileList}">
+			파일명 : 
+			<a href="${pageContext.request.contextPath}/fileDown.do?filePath=${qna.filePath}&systemFileName=${qna.systemName}&originalFileName=${qna.oriName}" style="width: 600px;
+    height: 400px;">${qna.oriName}</a>
        		미리보기 : 
        		<img src="${pageContext.request.contextPath}/fileDown.do?filePath=${qna.filePath}&systemFileName=${qna.systemName}&originalFileName=${qna.oriName}"
 				style="width: 150px; height: 150px">
@@ -102,8 +105,8 @@ a {
 			<div class="contents_btn">
 				<a href='<c:url value="/qnaboard/list.do" />'><button>목록</button></a>
 				<a id="cBtn" href='<c:url value="/qnaboard/insertReForm.do?no=${list.qna.no}"/>'><button>답변</button></a>
-				<a href='<c:url value="/qnaboard/updateForm.do?no=${list.qna.no}" />'><button>수정</button></a>
-				<a href='<c:url value="/qnaboard/delete.do?no=${list.qna.no}"/>'><button>삭제</button></a>
+				<a id="mBtn" href='<c:url value="/qnaboard/updateForm.do?no=${list.qna.no}" />' style="display: none;"><button>수정</button></a>
+				<a id="dBtn" href='<c:url value="/qnaboard/delete.do?no=${list.qna.no}"/>' style="display: none;"><button>삭제</button></a>
 				<!-- <a href="#"><button>삭제</button></a> -->
 			</div>
 
@@ -119,12 +122,26 @@ a {
 	
 	
 	<script>
+	
+	
 	// 추천 
 	//var oriWriter = $("input[name='id']").val();
 	
 	
 	var session = '${sessionScope.user.auth}';
+	var sessionId = '${sessionScope.user.id}';
 	var sessionP = '${sessionScope.user.point}';
+	var nName = $("input[name='qnaId']").val();
+	
+	// 수정,삭제 버튼 본인 제한 
+	$(function(){
+		if(sessionId == nName){
+			$("#mBtn").css("display","inline-block");
+			$("#dBtn").css("display","inline-block");
+		}
+	
+	
+	})
 	//alert(sessionP);
 	 
 	// 답글 관리자및 고수로 제한

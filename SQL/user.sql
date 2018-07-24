@@ -61,7 +61,7 @@ delete from tb_qna_board
 	where id = 'yoo';
 
 	
-select * from tb_qna_board
+select * from tb_user
 	where id = 'yoo';
 
 -- 전체 테이블 조회
@@ -113,10 +113,10 @@ on q.stsfc_code = s.stsfc_code;
 		 	   
 -----------------------------
 --
-delete from tb_attendance
-	where att_id = 112;		 	   
+delete from tb_attendance;
+	where att_id = 115;		 	   
 		 	   
-select * from tb_attendance
+select * from tb_user;
 	where id = 'yoo';		 	   
 		 	   
 	----------------------------------------------------	 	   
