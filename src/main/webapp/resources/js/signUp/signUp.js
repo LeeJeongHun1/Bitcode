@@ -153,7 +153,8 @@ $("#birth1").keyup(function(){
 });
 $("#birth2").keyup(function(){
 	 month = ($("#birth2").val());
-	if($("#birth2").val() == "" || month < 1 || month >= 13) {
+	 console.log($("#birth2").val().length);
+	if($("#birth2").val() == "" || month < 1 || month >= 13 || $("#birth2").val().length == 1) {
 //		$("#birth3").next().text("1월부터 12월까지 입력 가능합니다. ");
 		$("#birth2").data("flag","no");
 		return;
@@ -173,7 +174,7 @@ $("#birth3").keyup(function(){
 	date = $("#birth3").val();
 	month = $("#birth2").val();
 	year = $("#birth1").val();
-		if ($("#birth3").val() == "" || date < 1 || date > 31) {
+		if ($("#birth3").val() == "" || date < 1 || date > 31 || $("#birth3").val().length == 1) {
 		$("#birth3").data("flag","no");
 		$("#birthtext").next().text("Example) 1988 01 01");
 //		$("#birth3").next().text("일은 1일부터 31일까지 입력가능합니다. ");
@@ -284,7 +285,7 @@ $("#submitBtn").click(function(){
 	nickName = isEmpty($("#nickName"), nickName , "별명을 입력해주세요");
 	year = isEmpty($("#birth1"), year , "정확한 년도를 입력해주세요");
 	month = isEmpty($("#birth2"), month , "1월부터 12월까지 입력 가능합니다. ");
-	date = isEmpty($("#birth3"), date , "정확한 날짜를 입력해주세요");
+	date = isEmpty($("#birth3"), date , "정확한 날짜를 입력해주세요. (2000-01-01)");
 //	birth = isEmpty($("#userBirth"), birth , "생년월일을 입력해주세요");
 	email = isEmpty($("#userEmail"), email , "이메일를 입력해주세요");
 	if(id == false || pass == false || name == false || nickName == false || email == false ||year == false ||month == false || date == false){
