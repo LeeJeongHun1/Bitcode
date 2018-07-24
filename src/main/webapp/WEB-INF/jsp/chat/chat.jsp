@@ -19,14 +19,14 @@
 		<h1 class="information">채팅방</h1>
     <div class="chat" style="height:150px;">
         <h1 style="width:140px;margin-left:777px;font-size:20px;">사용자 목록</h1>
-    <div id="chatResult" style="overflow:auto;text-align:left;margin-left:100px;width:630px;height:392px;float:left;">
+    <div id="chatResult" style="overflow:auto;text-align:left;margin-left:100px;width:620px;height:392px;float:left;border-style: dashed;border-width: 3px;border-color: orange;">
     </div>
-	<div id="entranceUser" style="overflow:auto;width:200px;height:392px;float:left;margin-left:20px;"></div>
+	<div id="entranceUser" style="overflow:auto;width:200px;height:392px;float:left;margin-left:30px;border-style: dashed;border-width: 3px;border-color: orange;"></div>
 
 	<div id="msgBox">
 		<input type="text" id="message" name="message" style="width:520px;"/>
-		<button id="sendBtn">메세지 보내기</button>
-    	<button class="btn btn-default" onclick="location.href='${pageContext.request.contextPath}/main/main.do'" type="button" style="margin-left:80px;" >나가기</button>
+		<button class="btn btn-default" id="sendBtn">전송</button>
+    	<button class="btn btn-default" onclick="location.href='${pageContext.request.contextPath}/main/main.do'" type="button" style="margin-left:110px;" >나가기</button>
 	</div>
     </div>
 	</div>
