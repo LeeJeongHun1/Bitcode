@@ -417,6 +417,7 @@ IMP.init('imp93914891');
 					appendFile += '</div>';
 					$("#folder-area").append(appendFile);
 				}else{
+					console.log(f.title.split('.')[1])
 					appendFile += '<div class="col-xs-2 folders text-center" id="'+f.key+'" data-path="'+f.path+'" data-title="'+f.title+'" ondblclick="test1('+f.key+')">';
 					appendFile += '<p class="contain">';
 					if(f.type == 'img'){
