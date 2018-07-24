@@ -164,7 +164,7 @@ IMP.init('imp93914891');
 								</div>
 							</div>
 						</div>
-						<div id="tree" style="overflow-x: auto; height: 420px;"></div>
+						<div id="tree" style="overflow-x: auto;"></div>
 						<!-- 저장 용량 -->
 						<div class="saveSize" style="position: fixed; bottom: 20px; width: 154px;" >
 							<span>저장용량</span><img src="${pageContext.request.contextPath}/resources/images/cloud.PNG" style="width: 40px; margin-left: 8px;"><br>
@@ -516,7 +516,6 @@ IMP.init('imp93914891');
 			click: function(event, data) {
 				var node = data.node,
 					targetType = data.targetType;
-
 				if(node.folder){
 					console.log("폴더 선택");
 					console.log(node);
@@ -542,7 +541,6 @@ IMP.init('imp93914891');
 				.done(function (result){
 					dfd.resolve(result);
 				});
-				
 			}
 		});
 	}
@@ -782,6 +780,7 @@ IMP.init('imp93914891');
 			$("#capacity").html(size);
 // 			console.dir(result)
 // 			console.dir(file)
+// 폴더 새로고침
 			$('#tree').fancytree('option', 'source', result.list);
 		})
 	}
@@ -885,11 +884,10 @@ IMP.init('imp93914891');
 		}
 	})
 	
-	
-	//용량 체크
-	function cloudSize() {
+// 	//용량 체크
+// 	function cloudSize() {
 		
-	}
+// 	}
 	
 	// 홈으로 이동
 	$("#hoomroot").click(function () {
@@ -923,6 +921,10 @@ IMP.init('imp93914891');
 						appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/imageicon.png"`;
 					}else if(f.title.split('.')[1] == 'mp3') {
 						appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/mp3image.png"`;
+					}else if(f.title.split('.')[1] == 'xls') {
+						appendFile += `	<img src="https://image.noelshack.com/fichiers/2018/22/1/1527527145-logo-microsoft-excel-20132.png"`;
+					}else if(f.title.split('.')[1] == 'pdf') {
+						appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/pdfimage.png"`;
 					}else{
 						appendFile += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500505134/if_sticky-note_299111_px7waa.png"';
 					}
