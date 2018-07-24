@@ -7,7 +7,7 @@
 <meta name="viewport" 
       content="width=device-width, user-scalable=no, initial-scale=1">
 <meta charset="utf-8">
-<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script src="https://maps.google.com/maps/api/js?sensor=false"></script>
 <script src="${pageContext.request.contextPath}/resources/js/searchcenter/searchcenter.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/searchcenter/searchcenter.css">
 </head>
