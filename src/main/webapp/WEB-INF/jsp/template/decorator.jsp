@@ -44,8 +44,10 @@
 <title><sitemesh:write property="title" /></title>
 <sitemesh:write property="head" />
 <style>
-.content{
+.content {
 	overflow-y: scroll;
+	position: relative;
+	bottom: 5px;
 }
 #dockContainer #dock{
 	width: 100%;
@@ -56,9 +58,8 @@
   position: fixed;
   bottom: 43px;
   text-align: center;
-  right: 20%;
-  left: 10%;
-  width: 79%;
+  left: 40%;
+  width: 350px;
   background: rgba(255, 255, 255, 0.2);
   border-radius: 10px 10px 0 0;
 }
