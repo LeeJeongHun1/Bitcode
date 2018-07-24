@@ -2,11 +2,22 @@
 show tables;
 
 -- 특정 테이블 조회
-select * from tb_user;
-select * from tb_code_board;
-select * from tb_qna_board;
-select * from tb_language_code;
-select * from tb_news;
+select * from tb_user; -- 회원
+select * from tb_language_code; -- 언어 분류 코드
+select * from tb_stsfc_code; -- 만족도 코드
+select * from tb_code_board; -- 코드 게시판
+select * from tb_qna_board; -- Q&A 게시판
+select * from tb_news; -- 뉴스 게시판
+select * from tb_code_file; -- 코드 게시판 첨부 파일
+select * from tb_qna_file; -- Q&A 게시판 첨부 파일
+select * from tb_rank_code; -- 등급 코드
+select * from tb_code_comment; -- 코드 게시판 댓글
+select * from tb_qna_comment; -- Q&A 게시판 댓글
+select * from tb_attendance; -- 출석 체크
+select * from tb_news_comment; -- 뉴스 게시판 댓글
+select * from tb_document; -- 내문서(클라우드)
+select * from tb_code_like; -- 코드 게시판 좋아요
+select * from tb_qna_like; -- Q&A 게시판 좋아요
 --------------------------------------------------------------------
 -- fk 항목에는 on delete cascade on update cascade 옵션 붙이기
 --------------------------------------------------------------------
@@ -176,7 +187,7 @@ create table tb_code_comment (
     `group_no`     int(10)          not null          comment '댓글그룹번호', 
     `group_order`  int(2)           default 0         comment '그룹내에서순서', 
     `depth`        int(2)           default 0         comment '댓글의깊이', 
-    primary key (no)
+    primary key (comment_no)
 ) engine=innodb default charset=utf8;
 
 alter table tb_code_comment comment '코드공유게시판 댓글';
@@ -198,7 +209,7 @@ create table tb_qna_comment (
     `group_no`     int(10)          not null          comment '댓글그룹번호', 
     `group_order`  int(2)           default 0         comment '그룹내에서순서', 
     `depth`        int(2)           default 0         comment '댓글의깊이', 
-    primary key (no)
+    primary key (comment_no)
 ) engine=innodb default charset=utf8;
 
 alter table tb_qna_comment comment 'Q&A게시판 댓글';
@@ -226,17 +237,20 @@ alter table tb_attendance add constraint fk_tb_attendance_id_tb_user_id foreign 
 -- IT News 게시판 댓글 테이블
 --------------------------------------------------------------------
 create table tb_news_comment (
-    `article_no`  int(10)         not null          comment '뉴스번호', 
-    `comment_no`  int(10)         auto_increment    comment '댓글번호', 
-    `id`          varchar(30)     not null          comment '아이디', 
-    `content`     varchar(400)    not null          comment '댓글내용', 
-    primary key (comment_no)
-) engine=innodb default charset=utf8;
+    `article_no`  int(10)         not null    comment '뉴스번호', 
+    `comment_no`  int(10)         not null    comment '댓글번호', 
+    `id`          varchar(30)     not null    comment '아이디', 
+    `content`     varchar(400)    not null    comment '댓글내용', 
+    primary key (article_no)
+);
 
 alter table tb_news_comment comment 'it 뉴스 댓글 테이블';
 
 alter table tb_news_comment add constraint fk_tb_news_comment_article_no_tb_news_article_no foreign key (article_no)
  references tb_news (article_no)  on delete cascade on update cascade;
+
+alter table tb_news_comment add constraint fk_tb_news_comment_id_tb_user_id foreign key (id)
+ references tb_user (id)  on delete cascade on update cascade;
 --------------------------------------------------------------------
 -- 내문서 테이블
 --------------------------------------------------------------------
