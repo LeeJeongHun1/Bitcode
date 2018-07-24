@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <div>
 
 	<div class="footer-area">
@@ -28,14 +29,10 @@
             <a href="${pageContext.request.contextPath}/itnews/list.do" id="news" data-toggle="tooltip" title="IT News"></a>
 	        <%-- 학원찾기 --%>
             <a href="${pageContext.request.contextPath}/searchcenter/searchCenter.do" id="search" data-toggle="tooltip" title="학원 안내"></a>
-            <%-- 크롬 브라우저 --%>
-            <c:if test="${!empty sessionScope.user}">
-           		<a href="#chrome-pop-up" id="chrome" class="border" data-toggle="tooltip" title="인터넷"></a>
-            </c:if>
-            <%-- 폴더 --%>
-            <c:if test="${!empty sessionScope.user}">
-				<a href="#folder" id="folder" ondblclick="opencom()" data-toggle="tooltip" title="내문서"></a>
-            </c:if>
+<%--             폴더 --%>
+<%--             <c:if test="${!empty sessionScope.user}"> --%>
+<!-- 				<a href="#folder" id="folder" ondblclick="opencom()" data-toggle="tooltip" title="내문서"></a> -->
+<%--             </c:if> --%>
             <%-- 메모장 --%>
             <c:if test="${!empty sessionScope.user}">
 				<a href="#note" id="notepad" onclick="notepad();" data-toggle="tooltip" title="메모장"></a>
@@ -223,8 +220,33 @@
 	</div>
 	<!-- w-frame -->
 	<!-- 메모장 끝 -->
-	    
-	    
+	
+	<!-- dock bar -->
+	  <div id="dockContainer">
+	    <div id="dock">
+	      <ul>
+	        <li>
+	          <span>folder</span> 
+	          <a href="#folder" id="folder" ondblclick="folderOpen()">
+	          	<img src="${pageContext.request.contextPath}/resources/images/File-Explorer.ico">
+	          </a>
+<!-- 	          <a href="#"><img src="http://icons.iconarchive.com/icons/johanchalibert/mac-osx-yosemite/1024/launchpad-icon.png"></a> -->
+	        </li>
+					<li>
+	          <span>System pereferences</span> <a href="#"><img src=
+	          "http://icons.iconarchive.com/icons/johanchalibert/mac-osx-yosemite/1024/system-preferences-icon.png"></a>
+	        </li>
+					<li>
+	          <span>Siri</span> <a href="#"><img src=
+	          "https://pre00.deviantart.net/008b/th/pre/f/2017/169/1/3/siri_by_hs1987-dbd58rs.png"></a>
+	        </li>
+					<li>
+	          <span>iTunes</span> <a href="#"><img src=
+	          "https://forums.macrumors.com/attachments/itunes-1024x1024-png.565323/"></a>
+	        </li>
+	      </ul>
+	    </div>
+	  </div>
 	    
     </div>
 </div>

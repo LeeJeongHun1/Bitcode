@@ -47,6 +47,62 @@
 .content{
 	overflow-y: scroll;
 }
+#dockContainer #dock{
+	width: 100%;
+	text-align: center;
+	margin: 0 auto;
+}
+#dockContainer {
+  position: fixed;
+  bottom: 43px;
+  text-align: center;
+  right: 20%;
+  left: 10%;
+  width: 79%;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px 10px 0 0;
+}
+
+#dockContainer li {
+  list-style-type: none;
+  display: inline-block;
+  position: relative;
+}
+
+#dockContainer li img {
+  width: 50px;
+  height: 50px;
+  -webkit-box-reflect: below 2px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0.7, transparent), to(rgba(255, 255, 255, .5)));
+  -webkit-transition: all 0.3s;
+  -webkit-transform-origin: 40% 70%;
+}
+
+#dockContainer li:hover img {
+  -webkit-transform: scale(2);
+  margin: 0 2em;
+}
+
+#dockContainer li:hover+li img,
+#dockContainer li.prev img {
+  -webkit-transform: scale(1.5);
+  margin: 0 1.5em;
+}
+
+#dockContainer li span {
+  display: none;
+  position: absolute;
+  bottom: 100px;
+  left: 0;
+  width: 100%;
+  background-color: #222;
+  padding: 4px 0;
+  border-radius: 7px;
+}
+
+#dockContainer li:hover span {
+  display: block;
+  color: #fff;
+}
 </style>
 </head>
 <body>

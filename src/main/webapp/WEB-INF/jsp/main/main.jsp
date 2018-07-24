@@ -980,6 +980,7 @@ IMP.init('imp93914891');
 						$("#folder-area").append(appendFile);
 					}
 				}
+				fileList = data;
 				loadFancytree(data)
 				$('#tree').fancytree('option', 'source', data);
 				$("#share-path").data("root","c:/java-lec/upload/"+$("#sId").val() + "_music");

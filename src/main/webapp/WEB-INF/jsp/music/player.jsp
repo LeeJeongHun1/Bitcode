@@ -73,14 +73,6 @@
 			
 		})
 	}
-// 	console.dir($(".musicList"));
-// 	$(".musicList").dblclick(function () {
-// 		console.dir(this)
-// 		for(let f of this.children){
-// 			f.innerHTML;
-// 		}
-// 	})
-	console.dir($(".musicList").children());
 	$(".musicList1").click(function () {
 		console.dir(this);
 	});

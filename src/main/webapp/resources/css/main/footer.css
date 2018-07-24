@@ -148,7 +148,7 @@ body {
   background-size: 26px 26px;
 }
 /* 작업표시줄 좌측 메뉴 - 폴더 */
-.taskbar .icons-left #folder {
+#dockContainer #dock ul li #folder {
   height: 43px;
   width: 49px;
   background-image: url("/bitcode/resources/images/File-Explorer.ico");
