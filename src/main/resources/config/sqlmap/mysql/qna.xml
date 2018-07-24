@@ -169,10 +169,16 @@
    <!--  글 작성시 포인트 추가  -->
 	<update id="updatePoint" parameterType="user">
 		update tb_user
-		set point =
-		point + 10
-		where id = #{id};
+		set point = point + 10
+		where id = #{id}
 	</update>
+	
+	<update id="deletePoint" parameterType="user">
+	   update tb_user
+	     set point = point - 10 
+	    where id = #{id}
+	</update>
+	
 	<update id="updateGroupNo" parameterType="int">
 		update tb_qna_board
 		set

@@ -6,13 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/board/codeDetail.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/board/detail.css">
 </head>
 <body>
 			<input type="hidden" name="groupOrder" value="${cb.groupOrder}" /> 
 			<input type="hidden" name="depth" value="${cb.depth}" />
 			<input type="hidden" name="groupNo" value="${cb.groupNo}" />
-<div class="codeDetailBody">
+<div class="detailBody">
 	<div id="card1" class="card ten col">
 		<div class="topbar yellow">
 		<div class="swatches"><span class="red"></span><span class="orange"></span><span class="yellow"></span><span class="green"></span><span class="blue"></span></div>
@@ -36,7 +36,7 @@
 					<span class="shell_hits" >조회<c:out value="${cb.viewCnt}" /></span>
 				</div>
 			</div>
-			<div class="codeList" >
+			<div class="boardList" >
 				<div class="contents_body">
 					<div class="detail">
 					<div class="contents">
@@ -47,7 +47,7 @@
 					${cb.content}
 					</div>
 					<div class="like">
-					<a id="qnaLike" href="javascript:recommend()">추천 </a>
+					<a id="codeLike" href="javascript:recommend()">추천 </a>
 					<span class="like_count"><c:out value="${cb.likeCnt}" /></span>
 					</div>
 					</div>
@@ -221,7 +221,7 @@
 		})
 	}
 	selectComment();
-	$(".codeDetailBody").draggable();	
+	$(".detailBody").draggable();	
 	</script>
 <%-- 	<script src="${pageContext.request.contextPath}/resources/js/codeboard/codeBoardDetail.js"></script> --%>
 </body>

@@ -6,7 +6,7 @@ public class CodeSearch {
 	private int pageNo = 1;
 	private int begin;
 	private int end;
-	private int listSize = 10;
+	private int listSize = 5;
 	private int sort;
 	
 	public int getPageNo() {
