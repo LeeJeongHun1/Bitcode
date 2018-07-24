@@ -9,12 +9,12 @@
 <title>BIT CODE</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/user/userInfo.css" />
 <!-- <link href='https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css' rel='stylesheet' type='text/css'> -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/sweetalertFile/sweetalert2.css" />
-<script src="${pageContext.request.contextPath}/resources/sweetalertFile/sweetalert2.all.min.js"></script>
+<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/sweetalertFile/sweetalert2.css" /> --%>
+<%-- <script src="${pageContext.request.contextPath}/resources/sweetalertFile/sweetalert2.all.min.js"></script> --%>
+<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/pattern/patternLock.css" /> --%>
+
 
 <style> 
-
-
 .aaaa {
 	color: red;
 }
@@ -192,7 +192,7 @@ border-radius: 12px 12px 0px 0px;
 				<input name="attDate" id="${attendList.attID}" value='<fmt:formatDate value="${attendList.attDate}" pattern="yyyy-MM-dd" />' type="hidden" >
 		</c:forEach>
 		</div>
-	  	<span><a class="stampId" href="${pageContext.request.contextPath}/user/userInfo.do?id=${sessionScope.user.id}" id="stampId">
+	  	<span><a class="stampId" href="#1" id="stampId">
 	  	<img class="stamp" src="${pageContext.request.contextPath}/resources/images/stamp.png"></a></span>
 	  	<span id="textStmp">출석하기Click</span>
 	  	<input name="id" value="${user.id}" type="hidden" >
@@ -231,7 +231,7 @@ $("#stampId").click(function () {
 				swal("출석이 체크 되었습니다.");
 				setTimeout( function() {
 					location.reload();
-					}, 10000);
+					}, 5000);
 				
 			}
 		
@@ -399,7 +399,9 @@ function updateEmail(data) {
 		success : function(data){
 			if(data == false){
 				swal("Email 주소가 수정되었습니다.");
-				location.reload();
+				setTimeout( function() {
+					location.reload();
+					}, 5000);
 			}else{
 				swal("중복된 Email 입니다. 다시 시도해주세요.");
 			}
@@ -441,7 +443,9 @@ function updateNcik(data) {
 		success: function (data) {
 			if (data == false) {
 				swal("닉네임이 수정되었습니다.");
-				location.reload();
+				setTimeout( function() {
+					location.reload();
+					}, 5000);
 			}else{
 				swal("중복된 닉네임 입니다.");
 			}
@@ -449,26 +453,6 @@ function updateNcik(data) {
 	});
 };
 
-
-
-// function updateNcik(data) {
-// 	$.ajax({
-// 		url : "/bitcode/user/updateNickForm.json",
-// 		type: "POST",
-// 		data : {
-// 			"nickName" : data.value[0],
-// 			"id"	  : id
-// 		},
-// 		success : function(data){
-// 			if(data != undefined){
-// 				swal("별명이 수정되었습니다.");
-// 				location.reload();
-// 			}else{
-// 				swal("다시 시도 해주시기 바랍니다.");
-// 			}
-// 		}
-// 	})
-// }
 
 
 //Pass 찾기
@@ -513,6 +497,7 @@ function fnFindPass(data) {
 		}
 	})
 }
+
 </script>
 </body>
 </html>

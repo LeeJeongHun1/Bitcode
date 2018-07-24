@@ -97,6 +97,13 @@ div .userInformation {
 	box-shadow:15px 15px 0px rgba(0,0,0,.1);
 	
 }
+.car1{
+	max-width: 90%;
+    background-color: #f7f7f7;
+    font-family: 'Arimo', sans-serif;
+    font-size: 14px;
+}
+
 
 .userCard {
 	max-width: 100%;
@@ -236,7 +243,10 @@ a > #userInfoUpdate {
 /*     color: #fff; */
 /* } */
 
-
+.patternIn {
+	  width:95%;
+	  border:1px solid #eee;
+}
 input {
   width:95%;
   background:#f5f5f5;

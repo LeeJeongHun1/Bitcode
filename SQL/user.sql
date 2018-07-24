@@ -61,7 +61,7 @@ delete from tb_qna_board
 	where id = 'yoo';
 
 	
-select * from tb_user
+select * from tb_attendance;
 	where id = 'yoo';
 
 -- 전체 테이블 조회
