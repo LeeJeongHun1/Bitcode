@@ -48,16 +48,16 @@ div .userInformation {
   backgound: inherit;
 /*   margin: 0 0 10px 6px; */
   padding: 0;
-  font-size: 50px;
-  margin-top: 4%;
+  font-size: 35px;
+  margin-top: 2%;
   margin-left: 37%;
-  margin-bottom: 2%;
+/*   margin-bottom: 2%; */
 }
 
 /* CONTAINERS  max-width: 940px;*/ 
 
 /* .container1 { width: 80%; margin: 0 auto; }  */
-.container1 { width: 1500px; margin: 0 auto; } 
+.container1 { width: 1450px; margin: 0 auto; height: 1000px; } 
 .twelve { width: 100%; } 
 .eleven { width: 91.53%; } 
 .ten { width: 83.06%; } 
@@ -89,19 +89,13 @@ div .userInformation {
 /* PROFILES */
 
 .card{
-	max-width:90%;
-	height: 670px;
+	max-width:80%;
+	height: 660px;
 	background-color: #f7f7f7;
 	font-family: 'Arimo', sans-serif;
 	font-size: 14px;
 	box-shadow:15px 15px 0px rgba(0,0,0,.1);
 	
-}
-.car1{
-	max-width: 90%;
-    background-color: #f7f7f7;
-    font-family: 'Arimo', sans-serif;
-    font-size: 14px;
 }
 
 

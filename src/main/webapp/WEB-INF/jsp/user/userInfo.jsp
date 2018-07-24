@@ -34,7 +34,7 @@ font-weight: bold; color: black; background-color: #ecec00;
 border-radius: 12px 12px 0px 0px;
 }
 
-#kCalendar {width: 360px; height: 400px; border: 3px solid #FFFFFF;
+#kCalendar {width: 350px; height: 400px; border: 3px solid #FFFFFF;
   -webkit-border-radius: 12px 12px 0px 0px;
   -moz-border-radius: 12px 12px 0px 0px; 
   border-radius: 12px 12px 0px 0px;}
@@ -79,7 +79,7 @@ border-radius: 12px 12px 0px 0px;
 <!-- <div id="patternContainer" style="top: 300px; left: 600px;"></div> -->
 
 <div class="container1">
-  <p class="title1 twelve" id="profileName">${user.nickName}님의 Profile</p>
+  <p class="title1" id="profileName">${user.nickName}님의 Profile</p>
   <div class="row cf">
     <div id="card1" class="card three col">
 		<div class="topbar red">
@@ -300,7 +300,7 @@ function kCalendar(id, date) {
 	
 	calendar += '<div id="header">';
 	calendar += '			<span><a href="#" class="button left" onclick="kCalendar(\'' +  id + '\', \'' + prevDate + '\')"><</a></span>';
-	calendar += '			<span id="date">'+ currentYear + '. ' + currentMonth + '월</span>';
+	calendar += '			<span id="date">'+ currentYear + '년' + currentMonth + '월</span>';
 	calendar += '			<span><a href="#" class="button right" onclick="kCalendar(\'' + id + '\', \'' + nextDate + '\')">></a></span>';
 	calendar += '		</div>';
 	calendar += '		<table id="calTable" border="0" cellspacing="0" cellpadding="0">';
