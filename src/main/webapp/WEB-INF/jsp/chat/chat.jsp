@@ -25,7 +25,7 @@
 
 	<div id="msgBox">
 		<input type="text" id="message" name="message" style="width:520px;"/>
-		<button class="btn btn-default" id="sendBtn">전송</button>
+		<button class="btn btn-default" id="sendBtn" style="margin-bottom: 10px;margin-top: 5px;margin-left: 10px;">전송</button>
     	<button class="btn btn-default" onclick="location.href='${pageContext.request.contextPath}/main/main.do'" type="button" style="margin-left:110px;" >나가기</button>
 	</div>
     </div>
