@@ -120,8 +120,7 @@ alter table tb_news comment '코드공유 게시판 첨부파일';
 --------------------------------------------------------------------
 -- 코드공유 게시판 첨부파일 테이블
 --------------------------------------------------------------------
-CREATE TABLE tb_code_like
-(
+CREATE TABLE tb_code_like (
     `like_no`     int(10)        NOT NULL    AUTO_INCREMENT COMMENT '추천번호', 
     `no`          int(10)        NOT NULL    COMMENT '글번호', 
     `id`          varchar(30)    NOT NULL    COMMENT '아이디', 
@@ -167,8 +166,8 @@ create table tb_qna_comment (
     `comment_no`   int(10)          auto_increment primary key    comment '댓글번호', 
     `reg_date`     datetime         default now()                 comment '댓글등록일', 
     `group_no`     int(10)          not null                      comment '댓글그룹번호', 
-    `group_order`  int(2)          default 0                     comment '그룹내에서순서', 
-    `depth`        int(2)          default 0                     comment '댓글의깊이'
+    `group_order`  int(2)           default 0                     comment '그룹내에서순서', 
+    `depth`        int(2)           default 0                     comment '댓글의깊이'
 ) default charset=utf8;
 
 alter table tb_qna_comment comment 'Q&A게시판 댓글';
@@ -185,24 +184,21 @@ create table tb_qna_file (
 ) default charset=utf8;
 
 alter table tb_qna_file comment 'Q&A 게시판 첨부파일';
-
 --------------------------------------------------------------------
 -- Q&A 게시판 추천 게시판 테이블
 --------------------------------------------------------------------
-
-CREATE TABLE tb_qna_like
+create table tb_qna_like
 (
-    `like_no`     int(10)        NOT NULL    AUTO_INCREMENT COMMENT '추천번호', 
-    `no`          int(10)        NOT NULL    COMMENT '글번호', 
-    `id`          varchar(30)    NOT NULL    COMMENT '아이디', 
-    PRIMARY KEY (like_no)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+    `like_no`     int(10)        not null    auto_increment comment '추천번호', 
+    `no`          int(10)        not null    comment '글번호', 
+    `id`          varchar(30)    not null    comment '아이디', 
+    primary key (like_no)
+) engine=innodb default charset=utf8;
 
-ALTER TABLE tb_qna_like ADD CONSTRAINT FK_tb_qna_like_no_tb_qna_board_no FOREIGN KEY (no)
- REFERENCES tb_qna_board (no)  ON DELETE RESTRICT ON UPDATE RESTRICT;
-
+alter table tb_qna_like add constraint fk_tb_qna_like_no_tb_qna_board_no foreign key (no)
+ references tb_qna_board (no)  on delete restrict on update restrict;
 --------------------------------------------------------------------
--- IT News 테이블
+-- it news 테이블
 --------------------------------------------------------------------
 create table tb_news (
     `article_no`        int(10)          auto_increment primary key    comment '뉴스번호', 
@@ -222,7 +218,7 @@ alter table tb_news comment 'it뉴스 테이블';
 --------------------------------------------------------------------
 create table tb_news_comment (
     `article_no`  int(10)         comment '뉴스번호' references tb_news (article_no)  on delete cascade on update cascade, 
-    `comment_no`  int(10)         not null    comment '댓글번호', 
+    `comment_no`  int(10)         auto_increment    comment '댓글번호', 
     `id`          varchar(30)     comment '아이디' references tb_user (id)  on delete cascade on update cascade,
     `content`     varchar(400)    not null    comment '댓글내용'
 ) default charset=utf8;
@@ -249,7 +245,7 @@ create table tb_document (
     `system_name`  varchar(100)    not null    comment '시스템이름', 
     `file_size`    int(10)         not null    comment '파일크기'
     `file_size`    int(10)         not null    comment '파일크기'
-    `share_yn`     VARCHAR(2)      NOT NULL    COMMENT '공유여부', 
+    `share_yn`     varchar(2)      not null    comment '공유여부', 
 ) default charset=utf8;
 
 alter table tb_document comment '내문서(클라우드)';
