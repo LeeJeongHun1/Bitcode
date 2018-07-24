@@ -24,9 +24,9 @@
 			<div class="remote">
 			<table class="remoteList table table-hover">
 				<tr>
-					<th>문의주제</th>
-					<th>신청자</th>
-					<th>진행상태</th>
+					<th width="60%">문의주제</th>
+					<th width="20%">신청자</th>
+					<th width="20%">상담</th>
 				</tr>
 
 				<c:choose>
@@ -35,7 +35,13 @@
 							<tr>
 								<td>${remote.question}</td>
 								<td>${remote.nickName}</td>
-								<td><a href="${remote.link}">상담</a></td>
+								<c:if test="${sessionScope.user.auth eq 'S'}">
+									<td><a href="${remote.link}">상담연결</a></td>
+								</c:if>
+								<c:if test="${sessionScope.user.auth eq 'U'}">
+									<td><a href="#" onclick="remoteAlert();">상담연결</a></td>
+								</c:if>
+								
 							</tr>
 						</c:forEach>
 					</c:when>
@@ -81,7 +87,18 @@
 			location.href='/bitcode/remote/insertForm.do';
 		}
 	})
-
+	
+	// 상담 연결 제한 알림 창
+	function remoteAlert () {
+		swal({
+			  title: '상담 연결은 관리자만 가능합니다.',
+			  type: 'warning',
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  confirmButtonText: '확인'
+			})
+	};
+	
 	$(".remoteBody").draggable();
 
 	</script>
