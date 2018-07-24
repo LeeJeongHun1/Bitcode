@@ -17,14 +17,14 @@
 <div class="topbar red">
 	<div class="swatches"><span class="red"></span><span class="orange"></span><span class="yellow"></span><span class="green"></span><span class="blue"></span></div>
 	<div class="maxbtn"><span></span></div>
-	<div class="xbtn" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">x</div>
+	<div class="xbtn" onclick="location.href='${pageContext.request.contextPath}/itnews/list.do'">x</div>
 </div>  	 
 	 <div class="cardITNewsDetail1">  
 		<div class="articleall"> 
 	 	<h1 id="articleTitle">${article.articleTitle}</h1>
 	    <hr>
 	    <span id="articleReport">${article.articleReporter}</span><span id="articleReport">${article.articleDate}${article.articleNo}</span>
-	    <a href="${article.articleUrl}" id="articleUrl">원본 기사 보기 클릭...</a>
+	    <a href="${article.articleUrl}" id="articleUrl" target="_blank" title="새창으로 열립니다.">원본 기사 보기 클릭...</a>
 	    <div class="cardITNewsDetail"><img src="${article.articleThumb}"></div>
 		<hr>
 		<p id="articleContent">
