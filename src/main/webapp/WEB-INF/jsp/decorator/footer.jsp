@@ -26,15 +26,15 @@
             <a href="${pageContext.request.contextPath}/itnews/list.do" id="news" data-toggle="tooltip" title="IT News"></a>
 	        <%-- 학원찾기 --%>
             <a href="${pageContext.request.contextPath}/searchcenter/searchCenter.do" id="search" data-toggle="tooltip" title="학원 안내"></a>
-<%--             폴더 --%>
+<!-- <!--             폴더 --> 
 <%--             <c:if test="${!empty sessionScope.user}"> --%>
 <!-- 				<a href="#folder" id="folder" ondblclick="opencom()" data-toggle="tooltip" title="내문서"></a> -->
 <%--             </c:if> --%>
-            <%-- 메모장 --%>
+<!-- <!--             메모장 --> 
 <%--             <c:if test="${!empty sessionScope.user}"> --%>
 <!-- 				<a href="#note" id="notepad" onclick="notepad();" data-toggle="tooltip" title="메모장"></a> -->
 <%--             </c:if> --%>
-            <%-- 플레이어 --%>
+<!-- <!--             플레이어 --> 
 <%--             <c:if test="${!empty sessionScope.user}"> --%>
 <!--             	<a href="#note" id="notepad" onclick="notepad();" data-toggle="tooltip" title="메모장"></a> -->
 <%-- 				<a onclick="window.open('${pageContext.request.contextPath}/music/player.do?id=${sessionScope.user.id}', 'player', 'width=550 height=500')" id="wmplayer" data-toggle="tooltip" title="비트 플레이어"></a> --%>
@@ -153,27 +153,27 @@
 	      <ul>
 	        <li>
 	          <span>Folder</span>
-<!-- 	          <a href="javascript:folderOpen()" id="folder"> -->
+<!--  	          <a href="javascript:folderOpen()" id="folder">  -->
 	          <a href="#folder" id="folder" onclick="folderOpen()">
 	          	<img src="${pageContext.request.contextPath}/resources/images/File-Explorer.ico">
 	          </a>
 	        </li>
 			<li>
 	          <span>Note</span>
-				<a href="#note" id="notepad" onclick="notepad();" data-toggle="tooltip" title="메모장">
+				<a href="#note" id="notepad" onclick="notepad();">
 					<img src="/bitcode/resources/images/notepad.png">
 				</a>
 	        </li>
 			<li>
 	          <span>MusicPlayer</span> 
-	          <a onclick="window.open('${pageContext.request.contextPath}/music/player.do?id=${sessionScope.user.id}', 'player', 'width=550 height=500')" id="wmplayer" data-toggle="tooltip" title="비트 플레이어">
+	          <a onclick="window.open('${pageContext.request.contextPath}/music/player.do?id=${sessionScope.user.id}', 'player', 'width=550 height=500')" id="wmplayer">
 	          	<img src="/bitcode/resources/images/wmplayer.png">
 	          </a>
 	        </li>
-<!-- 			<li> -->
-<!-- 	          <span>iTunes</span> <a href="#"><img src= -->
-<!-- 	          "https://forums.macrumors.com/attachments/itunes-1024x1024-png.565323/"></a> -->
-<!-- 	        </li> -->
+			<li> 
+	          <span>iTunes</span> <a href="#"><img src=
+ 	          "https://forums.macrumors.com/attachments/itunes-1024x1024-png.565323/"></a>
+ 	        </li>
 	      </ul>
 	    </div>
 	  </div>

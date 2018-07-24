@@ -684,7 +684,10 @@ IMP.init('imp93914891');
 					html += '	<p class="contain">';
 					if(file.type.split('/')[0] == 'image'){
 						html += `	<img src="${pageContext.request.contextPath}/resources/images/imageicon.png"`;
-					}else{
+					}else if(file.type.split('/')[0] == 'audio'){
+						
+					}
+					else{
 						html += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500505134/if_sticky-note_299111_px7waa.png"';
 					}
 					html += 'class="img-responsive  center-block" style="height: 64px;" alt="">';
@@ -692,6 +695,8 @@ IMP.init('imp93914891');
 					html += '	<span class="ellipsis">'+file.name+'</span>';
 					html += '</div>';
 					if(file.type.split('/')[0] != 'audio' || $("#share-path").data("root") != 'c:/java-lec/upload/aa_music'){
+						console.log("이미지 그린다.");
+						console.log($("#share-path").data("root"));
 						fDiv.append(html);
 					}
 					sendFile(file);
