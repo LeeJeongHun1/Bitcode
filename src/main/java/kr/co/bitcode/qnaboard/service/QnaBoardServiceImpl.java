@@ -60,6 +60,7 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 		Map<String,Object> map= new HashMap<>();
 		Qna qna = mapper.selectBoardByNo(no);
 		qna.setFileList(mapper.selectQnaFile(no));
+		System.out.println(qna.getFileList().size() + "파일사이즈바군");
 		map.put("qna", qna);
 		map.put("ori", mapper.selectBoardByNo(qna.getGroupNo()).getId());	
 		// 게시판 읽었을 경우 Y로 변경되게
@@ -77,6 +78,7 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 	public void updateQna(Qna qna, QnaFile qnafile) throws Exception {
 		//mapper.updateReBoard(qna.getNo());
 		mapper.updateBoard(qna);
+		mapper.deleteQnaFile(qna.getNo());
 		if(qna.getFile()[0].getSize() == 0) {
 			System.out.println("파일없음");
 		}else {
@@ -87,7 +89,9 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 		qnafile.setOriName(file.getOriginalFilename());
 		qnafile.setSystemName(file.getName());
 		qnafile.setFileSize((int)file.getSize());	
-		mapper.updateQnaFile(qnafile);}
+		mapper.insertQnaFile(qnafile);
+		System.out.println("파일이 등록인가");
+		}
 		} 	
 	}
 

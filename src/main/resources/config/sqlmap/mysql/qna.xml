@@ -67,7 +67,7 @@
 			</choose>
 	<!-- 	order
 		by q.group_no desc, q.group_order asc  -->) A
-		LIMIT #{begin},10
+		LIMIT #{begin},5
 	</select>
 	
 	<!-- 게시글 및 검색 카운트 -->

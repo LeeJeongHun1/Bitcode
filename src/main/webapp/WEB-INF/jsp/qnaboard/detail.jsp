@@ -131,7 +131,6 @@ a {
 	var session = '${sessionScope.user.auth}';
 	var sessionId = '${sessionScope.user.id}';
 	var sessionP = '${sessionScope.user.point}';
-	var nName = $("input[name='qnaId']").val();
 	
 	// 수정,삭제 버튼 본인 제한 
 	$(function(){
@@ -142,6 +141,9 @@ a {
 	
 	
 	})
+	
+	
+	
 	//alert(sessionP);
 	 
 	// 답글 관리자및 고수로 제한
@@ -197,8 +199,8 @@ a {
 		html += '<span class="reDay"></span>';
 		html += '<div>';
 		html += '<a href="javascript:commentUpdate(' + commentNo + ');" id="cu' + commentNo + '" class="btn btn-success btn-sm" role="button">확인</a>';
-		html += '<a href="javascript:commentCancel(' + commentNo + ');" id="cu' + commentNo + '" class="btn btn-success btn-sm" role="button">취소</a>';
-		html += '</div>';
+/* 		html += '<a href="javascript:commentCancel(' + commentNo + ');" id="cu' + commentNo + '" class="btn btn-success btn-sm" role="button">취소</a>';
+ */		html += '</div>';
 		html += '<div id="cNum' + commentNo + '" class="comment"><input type="text" name="content" id="modComment' + commentNo + '" value="' + modContent + '"></div>'; 
 		html += '</li>';
 		
@@ -258,8 +260,10 @@ a {
 			         + date.getMinutes() + ":"
 			         + date.getSeconds();
 			html += '<span class="reDay">' + time + '</span>';
- 			html += '<a href="javascript:commentUpdateForm(' + i.commentNo + ')" id="cu' + i.commentNo + '" class="btn btn-success btn-sm" role="button">수정</a>';
-			html += '<a href="javascript:commentDelete(' + i.commentNo + ')" class="btn btn-success btn-sm" role="button">삭제</a>';
+			if(i.id == sessionId){
+ 			html += '<a href="javascript:commentUpdateForm(' + i.commentNo + ')" id="cu' + i.commentNo + '" class="coBtn btn btn-success btn-sm" role="button">수정</a>';
+			html += '<a href="javascript:commentDelete(' + i.commentNo + ')" class="coBtn btn-success btn-sm" role="button">삭제</a>';				
+			}
 			/* html += '<span class="recomment"><a href="#">답글</a></span></div>';   */
 			html += '<div id="cNum' + i.commentNo + '" class="comment">'+i.content+'</div></li>'; 
 		}
