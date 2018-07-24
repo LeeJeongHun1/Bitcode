@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>BIT CODE</title>
 <%-- <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/board/detail.css"> --%>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/board/qnaDetail.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/board/detail.css">
 <style>
 a {
 	color: #333333

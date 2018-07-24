@@ -8,7 +8,7 @@
 <%-- <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/board/detail.css">
  --%>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/board/qnaDetail.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/board/detail.css">
 
 </head>
 <body>

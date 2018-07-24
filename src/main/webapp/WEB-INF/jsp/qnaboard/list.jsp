@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BIT CODE</title>
 
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/board/qnaList.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/board/list.css">
 </head>
 
 <body>
