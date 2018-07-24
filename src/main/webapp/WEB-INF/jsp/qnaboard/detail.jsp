@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>BIT CODE</title>
 <%-- <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/board/detail.css"> --%>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/board/qnaDetail.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/board/detail.css">
 <style>
 a {
 	color: #333333
@@ -24,15 +24,15 @@ a {
 	<input type="hidden" name="oriId" value="${list.id}"> 
 	<input type="hidden" name="qnaId" value="${list.qna.id}"> 
 	
-	<div class="qnaDetailBody">
+	<div class="detailBody">
 	<div id="card1" class="card ten col">
 		<div class="topbar blue">
 		<div class="swatches"><span class="red"></span><span class="orange"></span><span class="yellow"></span><span class="green"></span><span class="blue"></span></div>
 		<div class="xbtn" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">x</div>
 		</div> 
 		
-		<div class="shell-container qna">
-			<!-- <h2 class="shell_title">QnA질문게시판</h2> -->
+		<div class="shell-container">
+			<h2 class="shell_title">QnA질문게시판</h2>
 		<div class="contents_header">
 			<div class="titleWrap">
 				<c:if test="${empty list.qna}">없습니다.</c:if>
@@ -49,7 +49,7 @@ a {
 				<span class="shell_hits">조회<span><c:out value="${list.qna.viewCnt}" /></span></span>
 			</div>
 		</div>
-		<div class="qnaList">
+		<div class="boardList">
 		<div class="contents_body">
 			<div class="detail">
 			<div class="contents" style="">
@@ -105,8 +105,10 @@ a {
 			<div class="contents_btn">
 				<a href='<c:url value="/qnaboard/list.do" />'><button>목록</button></a>
 				<a id="cBtn" href='<c:url value="/qnaboard/insertReForm.do?no=${list.qna.no}"/>'><button>답변</button></a>
-				<a id="mBtn" href='<c:url value="/qnaboard/updateForm.do?no=${list.qna.no}" />' style="display: none;"><button>수정</button></a>
-				<a id="dBtn" href='<c:url value="/qnaboard/delete.do?no=${list.qna.no}"/>' style="display: none;"><button>삭제</button></a>
+				<c:if test="${list.qna.id == sessionScope.user.id}">
+				<a id="mBtn" href='<c:url value="/qnaboard/updateForm.do?no=${list.qna.no}" />'><button>수정</button></a>
+				<a id="dBtn" href='<c:url value="/qnaboard/delete.do?no=${list.qna.no}"/>' ><button>삭제</button></a>
+				</c:if>
 				<!-- <a href="#"><button>삭제</button></a> -->
 			</div>
 
@@ -132,7 +134,7 @@ a {
 	var sessionId = '${sessionScope.user.id}';
 	var sessionP = '${sessionScope.user.point}';
 	
-	// 수정,삭제 버튼 본인 제한 
+/* 	// 수정,삭제 버튼 본인 제한 
 	$(function(){
 		if(sessionId == nName){
 			$("#mBtn").css("display","inline-block");
@@ -141,7 +143,7 @@ a {
 	
 	
 	})
-	
+	 */
 	
 	
 	//alert(sessionP);
@@ -201,7 +203,8 @@ a {
 		html += '<a href="javascript:commentUpdate(' + commentNo + ');" id="cu' + commentNo + '" class="btn btn-success btn-sm" role="button">확인</a>';
 /* 		html += '<a href="javascript:commentCancel(' + commentNo + ');" id="cu' + commentNo + '" class="btn btn-success btn-sm" role="button">취소</a>';
  */		html += '</div>';
-		html += '<div id="cNum' + commentNo + '" class="comment"><input type="text" name="content" id="modComment' + commentNo + '" value="' + modContent + '"></div>'; 
+		html += '<div id="cNum' + commentNo + '" class="comment"><textarea name="content" id="modComment' + commentNo + '">' + modContent + '</textarea></div>'; 
+//	    	html += '<div id="cNum' + commentNo + '" class="comment"><input type="text" name="content" id="modComment' + commentNo + '" value="' + modContent + '"></div>'; 
 		html += '</li>';
 		
 		$("#cN" + commentNo).after(html);
@@ -286,7 +289,7 @@ a {
 	selectComment();
 	
 	
-	$(".qnaDetailBody").draggable();
+	$(".detailBody").draggable();
 	
 	
 	</script>

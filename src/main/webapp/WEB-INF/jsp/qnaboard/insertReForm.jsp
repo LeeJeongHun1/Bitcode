@@ -10,7 +10,14 @@
 
 </head>
 <body> 
-	<div class="container">
+
+	<div class="detailBody">
+	<div id="card1" class="card ten col">
+		<div class="topbar blue">
+		<div class="swatches"><span class="red"></span><span class="orange"></span><span class="yellow"></span><span class="green"></span><span class="blue"></span></div>
+		<div class="xbtn" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">x</div>
+		</div> 
+
 		<div class="shell-container">
 			<h2 class="shell_title">QnA질문게시판</h2>
 			<form action='<c:url value="/qnaboard/insertRe.do"/>' method="post"
@@ -24,12 +31,12 @@
 					<tbody>
 						<tr>
 							<th>제목</th>
-							<td><input class="editTitle" type="text" name="title" value="${list.qna.title}"/> 
+							<td style="text-align: left;"><input class="editTitle" type="text" name="title" value="${list.qna.title}"/> 
 							<input type="hidden" name="code" value="${list.qna.code}"/> /${list.qna.codeName}</td>
 						</tr>
 						<tr>
 							<th>작성자</th>
-							<td><input type="text" value="${sessionScope.user.nickName}" readonly /></td>
+							<td class="editWriter"><input type="text" value="${sessionScope.user.nickName}" readonly /></td>
 						</tr>
 
 						<tr style="height: 90%;">
@@ -49,6 +56,7 @@
 			</form>
 		</div>
 	</div>
+	</div>
 	<script>
 	window.onload = function(){
 	}
@@ -64,5 +72,7 @@
 			}
 		})
 	}
+	
+	$(".detailBody").draggable();
 	</script>
 </body>

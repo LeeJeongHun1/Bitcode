@@ -8,19 +8,19 @@
 <%-- <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/board/detail.css">
  --%>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/board/qnaDetail.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/board/detail.css">
 
 </head>
 <body>
 
-	<div class="qnaDetailBody">
+	<div class="detailBody">
 	<div id="card1" class="card ten col">
 		<div class="topbar blue">
 		<div class="swatches"><span class="red"></span><span class="orange"></span><span class="yellow"></span><span class="green"></span><span class="blue"></span></div>
 		<div class="xbtn" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">x</div>
 		</div> 
 		
-		<div class="shell-container qna">
+		<div class="shell-container">
 			<h2 class="shell_title">QnA질문게시판</h2>
 			<form id="insertForm" action='<c:url value="/qnaboard/insert.do"/>' method="post"
 				enctype="multipart/form-data" onsubmit="return check()">
@@ -92,6 +92,6 @@
 
 	};
 	
-	$(".qnaDetailBody").draggable();
+	$(".detailBody").draggable();
 	</script>
 </body>

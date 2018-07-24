@@ -9,12 +9,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BIT CODE</title>
 
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/board/qnaList.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/board/list.css">
 </head>
 
 <body>
 
-	<div class="qnaBody">
+	<div class="listBody">
 	
 	<%-- 상단 컬러바 --%>
 	<div id="card1" class="card ten col">
@@ -26,17 +26,17 @@
 	
 	
 	<%-- Q&A 게시판 내용 출력 --%>
-	<div class="qna">
-		<table class="qnaList table table-hover">
+	<div class="list">
+		<table class="boardList table table-hover">
 		<thead>
 		<tr>
-			<th style="width: 100px; font-size: 14px;">&nbsp;글번호</th>
-			<th style="width: 100px; font-size: 14px;">분류</th>
-			<th style="width: 500px; font-size: 14px;">제목</th>
-			<th style="width: 120px; font-size: 14px;">작성자</th>
-			<th style="width: 150px; font-size: 14px;"><a href="#" onclick="return searchList(1) ">등록일 ▼</a></th>
-			<th style="width: 100px; font-size: 13px;"><a href="#" onclick="return searchList(2) ">추천수 ▼</a></th>
-			<th style="width: 100px; font-size: 13px;"><a href="#" onclick="return searchList(3) ">조회수 ▼</a></th>
+			<th style="width:10%; font-size: 14px;">&nbsp;글번호</th>
+			<th style="width:10%; font-size: 14px;">분류</th>
+			<th style="width:35%; font-size: 14px;">제목</th>
+			<th style="width:10%; font-size: 14px;">작성자</th>
+			<th style="width:15%; font-size: 14px;"><a href="#" onclick="return searchList(1) " style="color: #2c3e50; font-weight: 700;">등록일 ▼</a></th>
+			<th style="width:10%; font-size: 13px;"><a href="#" onclick="return searchList(2) " style="color: #2c3e50; font-weight: 700;">추천수 ▼</a></th>
+			<th style="width:10%; font-size: 13px;"><a href="#" onclick="return searchList(3) " style="color: #2c3e50; font-weight: 700;">조회수 ▼</a></th>
 		</tr>
 		</thead>
 		<tbody>
@@ -59,7 +59,9 @@
 		</form>
 		</div>
 		<!-- searchBox -->
+		<c:if test="${sessionScope.user.id!=null}">
 		 <button class="btn btn-default btn-group-xs pull-right order" type="button" onclick="location.href='insertForm.do'">글쓰기</button>		 
+		</c:if>
 	</div>
 	<!-- qna -->
 	</div>
@@ -238,7 +240,7 @@
 		} // 로그인알림
 	})
 	
-	$(".qnaBody").draggable();
+	$(".listBody").draggable();
 
 	</script>
 
