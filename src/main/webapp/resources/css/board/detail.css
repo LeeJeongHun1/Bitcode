@@ -64,7 +64,9 @@ textarea {    width: 610px;
 .container .shell-container {
   margin: auto;
   background-color: #ffffff;
-  width: 900px;
+  width: 100%;
+  margin: 0 auto;
+  /* width: 900px; */
   height: 500px;
    display: flex;
   flex-direction: column;
@@ -89,7 +91,7 @@ textarea {    width: 610px;
 .contents_header>.titleWrap > .title{
     text-align: left;	
 }
-.qnaTitle {color: #5a5a5a;}
+/* .qnaTitle {color: #5a5a5a;} */
 
 .contents_body {
 	font-family: Arial, Verdana, "Trebuchet MS", sans-serif;
@@ -362,7 +364,7 @@ table.editTable tr td {
     font-size: 14px;}
     .shell_title {    
     background:#fff;
-    color: #464646;
+    color: #5a5a5a;
     font-size: 32px;
     margin-bottom: 0;
     padding: 12px; margin:0;}
@@ -402,18 +404,18 @@ table.editTable tr td {
 }
 
 /* 카드 스타일 */
-.qnaDetailBody {
+.detailBody {
 	width: 1200px;
 	margin: 0 auto;
 	margin-top: 10%;
 	margin-left: 10%;
 	margin-bottom: 50px;
 }
-.qna {
+/* .qna {
   width: 100%;
   margin: 0 auto;
-}
-.qnaList {
+} */
+.boardList {
   width: 100%;
   text-align: center;
 }

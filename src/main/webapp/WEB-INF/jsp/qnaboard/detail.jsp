@@ -24,15 +24,15 @@ a {
 	<input type="hidden" name="oriId" value="${list.id}"> 
 	<input type="hidden" name="qnaId" value="${list.qna.id}"> 
 	
-	<div class="qnaDetailBody">
+	<div class="detailBody">
 	<div id="card1" class="card ten col">
 		<div class="topbar blue">
 		<div class="swatches"><span class="red"></span><span class="orange"></span><span class="yellow"></span><span class="green"></span><span class="blue"></span></div>
 		<div class="xbtn" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">x</div>
 		</div> 
 		
-		<div class="shell-container qna">
-			<!-- <h2 class="shell_title">QnA질문게시판</h2> -->
+		<div class="shell-container">
+			<h2 class="shell_title">QnA질문게시판</h2>
 		<div class="contents_header">
 			<div class="titleWrap">
 				<c:if test="${empty list.qna}">없습니다.</c:if>
@@ -286,7 +286,7 @@ a {
 	selectComment();
 	
 	
-	$(".qnaDetailBody").draggable();
+	$(".detailBody").draggable();
 	
 	
 	</script>
