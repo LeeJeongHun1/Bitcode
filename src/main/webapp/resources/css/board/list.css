@@ -1,15 +1,15 @@
-.qnaBody {
+.listBody {
 	width: 1200px;
 	margin: 0 auto;
 	margin-top: 10%;
 	margin-left: 10%;
 }
-.qna {
+.list {
   position:relative;
   width: 100%;
   margin: 0 auto;
 }
-.qnaList {
+.boardList {
   width: 100%;
   text-align: center;
 }
@@ -20,7 +20,7 @@
     bottom: 70px;
     right: 30px;
 }
-table.qnaList > thead > tr > th {text-align: center;}
+table.boardList > thead > tr > th {text-align: center;}
 th, td, a {
   transition: color 333ms ease-in-out;
   vertical-align: middle;
@@ -226,7 +226,7 @@ div .information {
 }
 
 span {
-	color: #e7e7e7;
+	color:#244c61;
 }
 
 .xbtn, .maxbtn {
