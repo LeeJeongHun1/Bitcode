@@ -18,14 +18,6 @@
 		<result column="answer_at" property="answerAt" />
 		<result column="stsfc_code" property="stsfcCode" />
 	</resultMap>
-	
-<!-- 	<select id="selectmyQuestion" parameterType="string" resultMap="qnaMap"> -->
-<!-- 		select * -->
-<!-- 		  from tb_qna_board -->
-<!-- 		 where id = #{id} -->
-<!-- 	</select> -->
-
-
 	<resultMap id="stsfcCodeMap" type="stsfcCode">
 		<result column="stsfc_code" property="stsfcCode" />
 		<result column="stsfc_step" property="stsfcStep" />
@@ -39,9 +31,6 @@
 		on q.stsfc_code = s.stsfc_code
 		where id = #{id};
 	</select>
-	
-
-
 	<resultMap id="attendMap" type="attendance">
 		<result column="id" property="id" />
 		<result column="att_id" property="attID" />
@@ -67,4 +56,20 @@
 		 where id = #{id} and
 		 	   date_format(att_date, '%e%c%Y') = date_format(now(), '%e%c%Y')
 	</select>
+	
+<!--     <resultMap id="userMap" type="user"> -->
+<!--     	<result column = "id" property = "id" /> -->
+<!--         <result column = "name" property = "name" /> -->
+<!--         <result column = "nick_name" property = "nickName" /> -->
+<!--         <result column = "password" property = "password" /> -->
+<!--         <result column = "birthday" property = "birthday" /> -->
+<!--         <result column = "email" property = "email" /> -->
+<!--         <result column = "point" property = "point" /> -->
+<!--         <result column = "auth" property = "auth" /> -->
+<!--     </resultMap>	 -->
+    <update id="updateUserPoint" parameterType="String">
+        update tb_user
+           set point = point + 10
+         where id = #{id}  
+    </update> 	
 </mapper>

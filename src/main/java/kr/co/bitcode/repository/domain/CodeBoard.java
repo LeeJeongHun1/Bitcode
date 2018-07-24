@@ -13,9 +13,9 @@ public class CodeBoard {
 	public void setNickName(String nickName) {
 		this.nickName = nickName;
 	}
-	private int groupNo;
-	private int groupOrder;
-	private int depth;
+	private Integer groupNo;
+	private Integer groupOrder;
+	private Integer depth;
 	private String id;
 	private String languageCode;
 	private String languageName;
@@ -64,22 +64,22 @@ public class CodeBoard {
 	public void setNo(int no) {
 		this.no = no;
 	}
-	public int getGroupNo() {
+	public Integer getGroupNo() {
 		return groupNo;
 	}
-	public void setGroupNo(int groupNo) {
+	public void setGroupNo(Integer groupNo) {
 		this.groupNo = groupNo;
 	}
-	public int getGroupOrder() {
+	public Integer getGroupOrder() {
 		return groupOrder;
 	}
-	public void setGroupOrder(int groupOrder) {
+	public void setGroupOrder(Integer groupOrder) {
 		this.groupOrder = groupOrder;
 	}
-	public int getDepth() {
+	public Integer getDepth() {
 		return depth;
 	}
-	public void setDepth(int depth) {
+	public void setDepth(Integer depth) {
 		this.depth = depth;
 	}
 	public String getId() {

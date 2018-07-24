@@ -69,8 +69,8 @@
 				<table>
 					<tbody>
 						<tr>
-							<td width="300px">${sessionScope.user.nickName}</td>
-							<td width="500px"><textarea name="content" style="resize: none; width=500px;"></textarea></td>
+							<td width="130px">${sessionScope.user.nickName}</td>
+							<td width="500px"><textarea name="content" style="resize: none;"></textarea></td>
 							<td width="100px"><button id="Rbtn" class="resubmit btn btn-default btn-group-xs">등록</button></td>
 						</tr>
 					</tbody>
