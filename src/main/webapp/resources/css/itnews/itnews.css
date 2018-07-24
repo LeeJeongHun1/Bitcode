@@ -28,8 +28,8 @@ a {
   justify-content: center;
   align-items: center;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 4rem;
-  padding: 4rem;
+  grid-gap: 3rem;
+  padding: 3rem;
   margin: 0 auto;
   width: max-content;
 }
