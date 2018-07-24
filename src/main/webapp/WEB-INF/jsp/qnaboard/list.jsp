@@ -14,7 +14,7 @@
 
 <body>
 
-	<div class="qnaBody">
+	<div class="listBody">
 	
 	<%-- 상단 컬러바 --%>
 	<div id="card1" class="card ten col">
@@ -26,8 +26,8 @@
 	
 	
 	<%-- Q&A 게시판 내용 출력 --%>
-	<div class="qna">
-		<table class="qnaList table table-hover">
+	<div class="list">
+		<table class="boardList table table-hover">
 		<thead>
 		<tr>
 			<th style="width: 100px; font-size: 14px;">&nbsp;글번호</th>
@@ -238,7 +238,7 @@
 		} // 로그인알림
 	})
 	
-	$(".qnaBody").draggable();
+	$(".listBody").draggable();
 
 	</script>
 

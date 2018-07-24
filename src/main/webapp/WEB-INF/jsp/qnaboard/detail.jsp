@@ -49,7 +49,7 @@ a {
 				<span class="shell_hits">조회<span><c:out value="${list.qna.viewCnt}" /></span></span>
 			</div>
 		</div>
-		<div class="qnaList">
+		<div class="boardList">
 		<div class="contents_body">
 			<div class="detail">
 			<div class="contents" style="">
