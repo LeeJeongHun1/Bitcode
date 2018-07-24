@@ -22,11 +22,11 @@ public interface QnaBoardService {
 	public Map<String,Object> list(Search search) throws Exception;
 	
 	// 답글
-	public void insertReQna(Qna qna,QnaFile qnafile) throws Exception;
+	public void insertReQna(Qna qna,QnaFile qnafile,User user) throws Exception;
 	
 	// 댓글
 	public List<QnaComment> commentList(int no) throws Exception;
-	public List<QnaComment> commentRegist(QnaComment comment) throws Exception;
+	public List<QnaComment> commentRegist(QnaComment comment, User user) throws Exception;
 	public List<QnaComment> commentUpdate(QnaComment comment) throws Exception;
 	public List<QnaComment> commentDelete(QnaComment comment) throws Exception;
 	

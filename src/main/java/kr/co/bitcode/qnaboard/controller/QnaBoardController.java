@@ -68,8 +68,8 @@ public class QnaBoardController {
 	}
 	
 	@RequestMapping(value="/insertRe.do",method=RequestMethod.POST)
-	public String editReQna(Qna qna,QnaFile qnafile) throws Exception {
-		qnaBoardService.insertReQna(qna, qnafile);
+	public String editReQna(Qna qna,QnaFile qnafile,User user) throws Exception {
+		qnaBoardService.insertReQna(qna, qnafile,user);
 		return "redirect:/qnaboard/list.do";
 	}
 	
@@ -103,8 +103,8 @@ public class QnaBoardController {
 	
 	@RequestMapping("/commentRegist.json")
 	@ResponseBody
-	public List<QnaComment> commentRegist(QnaComment comment) throws Exception{
-		return qnaBoardService.commentRegist(comment);
+	public List<QnaComment> commentRegist(QnaComment comment,User user) throws Exception{
+		return qnaBoardService.commentRegist(comment,user);
 	}
 	
 	@RequestMapping("/commentDelete.json")

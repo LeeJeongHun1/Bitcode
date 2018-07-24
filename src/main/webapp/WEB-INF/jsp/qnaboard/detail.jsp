@@ -200,7 +200,7 @@ a {
 		html += '<p class="reWriter">'+ modId +'</p>';
 		html += '<span class="reDay"></span>';
 		html += '<div>';
-		html += '<a href="javascript:commentUpdate(' + commentNo + ');" id="cu' + commentNo + '" class="btn btn-success btn-sm" role="button">확인</a>';
+		html += '<a href="javascript:commentUpdate(' + commentNo + ');" id="cu' + commentNo + '" class="coBtn" role="button">확인</a>';
 /* 		html += '<a href="javascript:commentCancel(' + commentNo + ');" id="cu' + commentNo + '" class="btn btn-success btn-sm" role="button">취소</a>';
  */		html += '</div>';
 		html += '<div id="cNum' + commentNo + '" class="comment"><textarea name="content" id="modComment' + commentNo + '">' + modContent + '</textarea></div>'; 
@@ -255,17 +255,19 @@ a {
 		$("ul.reBody").html("");
 		for(let i of data){
 			html+='<li id="cN' + i.commentNo + '" class="commentOr"><div class="reHeader"><p class="reWriter">'+i.id+'</p>';
-			var date = new Date(i.regDate);
-			var time = date.getFullYear() + "년" 
-			         + (date.getMonth() + 1) + "울" 
-			         + date.getDate() + "일"
+			var date = new Date();
+			var time = date.getFullYear() + "." 
+			         + (date.getMonth() + 1) + "." 
+			         + date.getDate() + "."
 			         + date.getHours() + ":"
 			         + date.getMinutes() + ":"
 			         + date.getSeconds();
 			html += '<span class="reDay">' + time + '</span>';
 			if(i.id == sessionId){
- 			html += '<a href="javascript:commentUpdateForm(' + i.commentNo + ')" id="cu' + i.commentNo + '" class="coBtn btn btn-success btn-sm" role="button">수정</a>';
-			html += '<a href="javascript:commentDelete(' + i.commentNo + ')" class="coBtn btn-success btn-sm" role="button">삭제</a>';				
+			html += '<div class="coWrap">';
+ 			html += '<a href="javascript:commentUpdateForm(' + i.commentNo + ')" id="cu' + i.commentNo + '" class="coBtn" role="button">수정</a>';
+			html += '<a href="javascript:commentDelete(' + i.commentNo + ')" class="coBtn" role="button">삭제</a>';				
+			html += '</div>';
 			}
 			/* html += '<span class="recomment"><a href="#">답글</a></span></div>';   */
 			html += '<div id="cNum' + i.commentNo + '" class="comment">'+i.content+'</div></li>'; 

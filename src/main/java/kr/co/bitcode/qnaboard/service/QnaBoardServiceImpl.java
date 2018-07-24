@@ -45,7 +45,7 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 		qnafile.setFileSize((int)file.getSize());	
 		mapper.insertQnaFile(qnafile);}
 		} 	
-		mapper.updatePoint(user);
+		mapper.deletePoint(user);
 	}
 
 	@Override
@@ -102,7 +102,7 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 	}
 
 	@Override
-	public void insertReQna(Qna qna, QnaFile qnafile) throws Exception {
+	public void insertReQna(Qna qna, QnaFile qnafile,User user) throws Exception {
 		mapper.updateReBoard(qna);
 		mapper.insertReBoard(qna);
 		if(qna.getFile()[0].getSize() == 0) {
@@ -117,6 +117,7 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 		qnafile.setFileSize((int)file.getSize());	
 		mapper.updateQnaFile(qnafile);}
 		}mapper.updateAnswerChange(qna.getNo());
+		mapper.updatePoint(user);
 	}
 
 	@Override
@@ -133,8 +134,9 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 	}
 
 	@Override
-	public List<QnaComment> commentRegist(QnaComment comment) throws Exception {
+	public List<QnaComment> commentRegist(QnaComment comment, User user) throws Exception {
 		mapper.insertComment(comment);
+		mapper.updatePoint(user);
 		return mapper.selectComment(comment.getNo());
 	}
 

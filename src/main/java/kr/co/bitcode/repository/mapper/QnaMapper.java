@@ -50,6 +50,7 @@ public interface QnaMapper {
 	
 	// 포인트 증가여부 
 	public void updatePoint(User user);
+	public void deletePoint(User user);
 	
 	//알림
 	public List<Qna> selectNotification(String id);

@@ -308,6 +308,7 @@ textarea {    width: 610px;
 }
 
 .comment {
+	clear: both;
 	margin: 5px;
 	min-height: 60px;
 	text-align: left;
@@ -649,3 +650,9 @@ div .information {
 
 .imgLink {width: 600px;
     height: 400px;}
+    
+/* 댓글 */
+.coWrap { float:right;}
+.coBtn { margin-right:5px;
+    color: #5a5a5a;}
+    
