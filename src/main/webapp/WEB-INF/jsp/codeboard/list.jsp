@@ -7,18 +7,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ListBoard</title>
-<!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/board/codeList.css">
-<style type="text/css">
- a:link { color: black; text-decoration: none;}
- a:visited { color: black; text-decoration: none;}
- a:hover { color: black; text-decoration: underline;}
-</style>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/board/list.css">
+
 </head>
 
 <body>
 	
-	<div class="codeBody">
+	<div class="listBody">
 		<%-- 상단 컬러바 --%>
 	<div id="card1" class="card ten col">
 		<div class="topbar yellow">
@@ -26,8 +21,8 @@
 		<div class="xbtn" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">x</div>
 		</div>
 		<h1 class="information">코드공유게시판</h1>
-	<div class="code">
-                    <table class="codeList table table-hover">
+	<div class="list">
+                    <table class="boardList table table-hover">
                         <thead>
                             <tr>
                                 <th style="width:10%;font-size:14px;">&nbsp;글번호</th>
@@ -35,8 +30,8 @@
                                 <th style="width:35%;font-size:14px;">제목</th>
                                 <th style="width:10%;font-size:14px;">작성자</th>
                                 <th style="width:15%;font-size:14px;"><a href="#" onclick="pNo(1)">등록일</a></th>
-                                <th style="width:10%;font-size:14px;"><a href="#" onclick="pNo(2)">추천수</a></th>
-                                <th style="width:10%;font-size:14px;"><a href="#" onclick="pNo(3)">조회수</a></th>
+                                <th style="width:10%;font-size:13px;"><a href="#" onclick="pNo(2)">추천수</a></th>
+                                <th style="width:10%;font-size:13px;"><a href="#" onclick="pNo(3)">조회수</a></th>
                             </tr>
                         </thead>
                         <tbody id="listTbody">
@@ -45,7 +40,8 @@
                     <nav style="text-align: center;">
 					<ul class="pagination"></ul>
 					</nav>
-        <form id="list" name="form1" style="margin-left: 370px;margin-bottom: 25px;float:left">
+		<div class="searchBox" style="margin-bottom:20px">
+        <form id="list">
         <select id="option" name="searchOption" style="background-color: #fff;">
         	<option value="0">전체</option>
         	<option value="1">이름</option>
@@ -55,14 +51,15 @@
         <input name="keyword" id="input">
         <input id="search" type="button" value="조회">
         </form>
+		</div>
         <c:if test="${user.id!=null}">
-            <button class="btn btn-primary" type="button" onclick="location.href='insertForm.do'" style="margin-left:-245px;margin-bottom: 50px;
-    margin-top: -3px;">글쓰기</button>
+            <button class="btn btn-default btn-group-xs pull-right order" type="button" onclick="location.href='insertForm.do'">글쓰기</button>
         </c:if>
 	</div>
 	</div>
     </div>
     <script>
+    	$(".listBody").draggable();
     	var session = '${sessionScope.user.id}';
     	function pNo(sort) {
     		codeList($("#pNo").val(), sort)

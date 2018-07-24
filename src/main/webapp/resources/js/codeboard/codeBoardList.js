@@ -2,7 +2,6 @@
  * 
  */
 
-$(".codeBody").draggable();
 window.onload = function(){
 //	$("body").waitMe({
 //		effect: "ios",
