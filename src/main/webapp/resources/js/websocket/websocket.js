@@ -82,22 +82,22 @@ $(function(){
 			// 입장 체크
 			if((evt.data).startsWith("in")){
 				var inmsg = (evt.data).split(":");
-				$("#result").append(inmsg[1] + "<br>");
-				$("#result").scrollTop($("#result").height());			
+				$("#chatResult").append(inmsg[1] + "<br>");
+				$("#chatResult").scrollTop($("#chatResult").height());			
 			}	
 
 			// 퇴장 체크
 			if((evt.data).startsWith("out")){
 				var outmsg = (evt.data).split(":");
-				$("#result").append(outmsg[1] + "<br>");
-				$("#result").scrollTop($("#result").height());			
+				$("#chatResult").append(outmsg[1] + "<br>");
+				$("#chatResult").scrollTop($("#chatResult").height());			
 			}						
 
 			// 메시지 체크
 			if((evt.data).startsWith("chat")){
 				var msg = (evt.data).split(":");
-				$("#result").append(msg[1]+ " : " + msg[2]+"<br>");
-				$("#result").scrollTop($("#result").height());			
+				$("#chatResult").append(msg[1]+ " : " + msg[2]+"<br>");
+				$("#chatResult").scrollTop($("#chatResult").height());			
 			}			
 
 			console.log("메세지 전송")

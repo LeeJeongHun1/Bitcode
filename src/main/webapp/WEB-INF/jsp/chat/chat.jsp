@@ -19,7 +19,7 @@
 		<h1 class="information">채팅방</h1>
     <div class="chat" style="height:150px;">
         <h1 style="width:140px;margin-left:777px;font-size:20px;">사용자 목록</h1>
-    <div id="result" style="overflow:auto;text-align:left;margin-left:100px;width:630px;height:392px;float:left;">
+    <div id="chatResult" style="overflow:auto;text-align:left;margin-left:100px;width:630px;height:392px;float:left;">
     </div>
 	<div id="entranceUser" style="overflow:auto;width:200px;height:392px;float:left;margin-left:20px;"></div>
 
