@@ -84,7 +84,7 @@
 			
 			for(let f of result){
 				mList.push({"title":f.title, "path":f.path});
-				html += '<li>' + f.title.substring(f.title.length-4, 4) + '</li>'
+				html += '<li>' + f.title.split(".mp3")[0] + '</li>'
 			}
 			
 			$("#title").text(result[mPos].title.substring(result[mPos].title.length-4, 4));
@@ -94,7 +94,7 @@
 			
 			$(".fList").html(html);
 			$("#myMusic").attr('src',
-					'${pageContext.request.contextPath}/main/download.do?path=' + encodeURI(`c:/java-lec/upload/${sessionScope.user.id}_music`) + '&fileName='+result[mPos].title+'')
+					'${pageContext.request.contextPath}/main/download.do?path=' + encodeURI(`c:/java-lec/upload/${sessionScope.user.id}_music`) + '&fileName=' + result[mPos].title + '')
 			$("#myMusic").attr('autoplay', 'autoplay');
 	// 		$("#myMusic")[mPos].onloadstart=function(){$("#myMusic")[mPos].play();};
 			
@@ -102,7 +102,10 @@
 			$(".fList li").dblclick(function () {
 // 				alert(this.innerHTML);
 				$("#myMusic").attr('src',
-						'${pageContext.request.contextPath}/main/download.do?path=' + encodeURI(`c:/java-lec/upload/${sessionScope.user.id}_music`) + '&fileName='+this.innerHTML+'')
+						'${pageContext.request.contextPath}/main/download.do?path=' + encodeURI(`c:/java-lec/upload/${sessionScope.user.id}_music`) + '&fileName=' + this.innerHTML + '.mp3')
+				// 더블클릭시 타이틀 변경되게..						
+				$("#title").text(title.substring(title.length-4, 4));		
+						
 			})
 		})
 	}
