@@ -183,6 +183,12 @@ LIMIT #{begin},5
 	    	 where no = #{no}
 	    </update>
 
+   	<!--  글 작성시 포인트 추가  -->
+	<update id="updatePoint" parameterType="user">
+		update tb_user
+		set point = point + 10
+		where id = #{id}
+	</update>		
 	
 		<resultMap id="codeBoardFileMap" type="codeBoardFile">
 		<result column="file_no" property="fileNo" />

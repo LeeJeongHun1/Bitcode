@@ -18,6 +18,7 @@ import kr.co.bitcode.repository.domain.CodeSearch;
 import kr.co.bitcode.repository.domain.Page;
 import kr.co.bitcode.repository.domain.PageResult;
 import kr.co.bitcode.repository.domain.QnaComment;
+import kr.co.bitcode.repository.domain.User;
 import kr.co.bitcode.repository.mapper.CodeBoardMapper;
 import kr.co.bitcode.repository.mapper.CodeListMapper;
 
@@ -34,12 +35,7 @@ public class CodeBoardServiceImpl implements CodeBoardService{
 	
 	@Override
 	public void insertBoard(CodeBoard cb) {
-//		System.out.println("sessionnnnnnnnnnnnn"+session);
-//		String id = (String) session.getAttribute("id");
-//		System.out.println("idddddddddddddddddddddddddddd"+id);
-//		cb.setId(id);
 		mapper.insertBoard(cb);
-		
 	}
 
 	@Override
@@ -147,6 +143,12 @@ public class CodeBoardServiceImpl implements CodeBoardService{
 	@Override
 	public List<CodeComment> commentList(int no) throws Exception {
 		return mapper.selectComment(no);
+	}
+
+	@Override
+	public void updatePoint(User user) {
+		mapper.updatePoint(user);
+		
 	}	
 
 }

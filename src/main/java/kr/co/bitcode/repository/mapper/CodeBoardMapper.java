@@ -8,6 +8,7 @@ import kr.co.bitcode.repository.domain.CodeBoardLike;
 import kr.co.bitcode.repository.domain.CodeComment;
 import kr.co.bitcode.repository.domain.CodeSearch;
 import kr.co.bitcode.repository.domain.QnaComment;
+import kr.co.bitcode.repository.domain.User;
 
 public interface CodeBoardMapper {
 	public List<CodeBoard> selectBoard(CodeSearch cs);
@@ -25,6 +26,7 @@ public interface CodeBoardMapper {
 	public void insertCodeLike (CodeBoardLike cbl);
 	public void updateBoardLikeCnt(int no);
 	public int boardCount(CodeSearch cs);
+	public void updatePoint(User user);
 	
 	// 댓글 
 	public void insertComment(CodeComment comment);
