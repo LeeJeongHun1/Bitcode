@@ -19,22 +19,24 @@
 		<div class="swatches"><span class="red"></span><span class="orange"></span><span class="yellow"></span><span class="green"></span><span class="blue"></span></div>
 		<div class="xbtn" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">x</div>
 		</div>
-<div class="map">
-<form>
-	<input type="button" id="watch" value="찾기" />
+		<h1 class="information">오시는 길</h1>
+<div class="map" style="margin-bottom:30px">
+<!-- <form> -->
+<!-- 	<input type="button" id="watch" value="찾기" /> -->
 <!-- 	<input type="button" id="clearWatch" value="clearWatch" /> -->
-</form>
+<!-- </form> -->
 
-<div id="location">
-당신의 현재 위치
-</div>
+<!-- <div id="location"> -->
+<!-- 당신의 현재 위치 -->
+<!-- </div> -->
 
-<div id="distance">
-비트캠프 강남지점까지의 거리 : 
-</div>
+<!-- <div id="distance"> -->
+<!-- 비트캠프 강남지점까지의 거리 :  -->
+<!-- </div> -->
 
-<div id="map" style="margin-left: 100px;border-style: dashed;border-width: 3px;border-color: green;">
+<div id="map" style="margin-bottom:30px;margin-left: 100px;border-style: dashed;border-width: 3px;border-color: green;">
 </div>
+<span style="color:black;">서울 강남구 테헤란로5길 11 YOO빌딩 3층, 지하철 2호선 강남역 12번 출구(도보 2분)</span>
 
 </div>
 </div>
