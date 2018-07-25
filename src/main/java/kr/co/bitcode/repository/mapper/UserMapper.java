@@ -2,6 +2,7 @@ package kr.co.bitcode.repository.mapper;
 
 import java.util.List;
 
+import kr.co.bitcode.repository.domain.Qna;
 import kr.co.bitcode.repository.domain.User;
 
 public interface UserMapper {
@@ -27,6 +28,11 @@ public interface UserMapper {
 	
 	//이메일 인증 위해 ID 와 Email 매칭 유저 찾기
 	public User selectbyIdEmail(User user) throws Exception;
+	
+	
+	
+	
+
 	
 	
 

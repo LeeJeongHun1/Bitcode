@@ -2,6 +2,7 @@ package kr.co.bitcode.user.controller;
 
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -12,8 +13,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import kr.co.bitcode.login.service.LoginService;
 import kr.co.bitcode.repository.domain.Attendance;
 import kr.co.bitcode.repository.domain.Qna;
@@ -39,21 +38,13 @@ public class UserController {
 	BCryptPasswordEncoder passCode;
 	
 	
-	//만족클릭
+	// 게시판에서 만족클릭
 	@RequestMapping("/satisAn.json")
 	@ResponseBody
 	public boolean satisAn (Qna qna) throws Exception {
-		System.out.println("접속"+qna.getId());
-		System.out.println(qna.getGroupNo());
-		System.out.println(qna.getGroupOrder());
-		System.out.println(qna.getStsfcCode());
 		
 		Qna user = userService.checkSatis(qna);
-		System.out.println(user.getId());
-		
 		Qna admin = userService.checkSatisAdmin(qna);
-		System.out.println(admin.getStsfcCode());
-//		System.out.println(user.getId() != qna.getId() || admin.getStsfcCode() != null);
 		
 		if(user.getId().equals(qna.getId()) && admin.getStsfcCode() == null) {
 			userService.updateSatisfAnat(qna);
@@ -102,8 +93,8 @@ public class UserController {
 	public ModelAndView joinForm(String id) throws Exception{ 
 		ModelAndView mav = new ModelAndView();
 		//한 유저에 대한 질문 List 출력
-		List<StsfcCode> qnaList= userService.selectmyQuestion(id);
-		
+//		List<StsfcCode> qnaList= userService.selectmyQuestion(id);
+		Map<String, Object> qnaList = userService.selectIdAnswer(id);
 		// 유저 등급및 포인트 출력
 		User userInfo = loginService.selectUserById(id);
 		//생년월일 3칸에 나누어서 출력

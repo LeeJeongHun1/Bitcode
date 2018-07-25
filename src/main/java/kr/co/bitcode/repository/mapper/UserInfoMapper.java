@@ -31,4 +31,15 @@ public interface UserInfoMapper {
 	//admin
 	public Qna checkSatisAdmin(Qna qna) throws Exception;
 	
+	
+	
+	
+	public List<Qna> selectIdAnswer(String id) throws Exception;
+	
+	
+	public List<Qna> selectSatisAdmin() throws Exception;
+	
 }
+
+
+

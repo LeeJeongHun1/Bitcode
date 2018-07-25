@@ -97,7 +97,13 @@ div .userInformation {
 	box-shadow:15px 15px 0px rgba(0,0,0,.1);
 	
 }
-
+/* #card2 {  */
+/* 	word-wrap:break-word;  */
+/* 	overflow:auto;  */
+/* 	overflow-x:hidden; */
+/* 	overflow-y:yes;  */
+/* 	overflow: scroll; */
+/* } */
 
 .userCard {
 	max-width: 100%;
@@ -144,9 +150,13 @@ div .userInformation {
 
 /* CARD 2 */
 #card2{
-	overflow: hidden;
 	color: #2c3e50;
 	border-radius:6px;
+		word-wrap:break-word; 
+	overflow:auto; 
+	overflow-x:hidden;
+	overflow-y:yes; 
+	overflow: scroll;
 }
 
 

@@ -1,6 +1,7 @@
 package kr.co.bitcode.user.service;
 
 import java.util.List;
+import java.util.Map;
 
 import kr.co.bitcode.repository.domain.Attendance;
 import kr.co.bitcode.repository.domain.Qna;
@@ -37,4 +38,10 @@ public interface UserService {
 	public Qna checkSatis(Qna qna) throws Exception;
 	//admin
 	public Qna checkSatisAdmin(Qna qna) throws Exception;
+	
+	
+	
+	
+	
+	public Map<String,Object> selectIdAnswer(String id) throws Exception;
 }

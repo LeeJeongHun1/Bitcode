@@ -131,35 +131,50 @@ border-radius: 12px 12px 0px 0px;
     	<h3 class="userInformation">My Question</h3>
 		<table class="table table-hover">
 			<tr>
-				<th colspan="1">번호</th><th colspan="1">글쓴이</th><th colspan="4">제목</th><th colspan="3">만족도</th>
+				<th colspan="1">글쓴이</th><th colspan="4">제목</th><th>답변여부</th><th colspan="3">만족도</th>
 			</tr>
-			<c:forEach var="qnaList" items="${qnaList}">
+			
+			<c:forEach var="listUser" items="${qnaList.listUser}">
 			<tr>
-				<td>${qnaList.no}</td>			
 				<td>${user.nickName}</td>				
-				<td colspan="4"><a id="board_title" href='${pageContext.request.contextPath}/qnaboard/detail.do?no=${qnaList.no}'>${qnaList.title}</a></td>				
-			<c:choose>
-				<c:when test="${qnaList.stsfcStep eq '만족'}">
-					<td>
-					<img class="lelvel" src="${pageContext.request.contextPath}/resources/images/sstar.png">
-					<img class="lelvel" src="${pageContext.request.contextPath}/resources/images/sstar.png">
-					<img class="lelvel" src="${pageContext.request.contextPath}/resources/images/sstar.png">
-					</td>
-				</c:when> 
-				<c:when test="${qnaList.stsfcStep eq '불만족'}">
-					<td>
-					<img class="lelvel" src="${pageContext.request.contextPath}/resources/images/xstar.png">
-					</td>
-				</c:when> 				
-				<c:when test="${qnaList.stsfcStep eq '보통'}">
-					<td>
-					<img class="lelvel" src="${pageContext.request.contextPath}/resources/images/sstar.png">
-					<img class="lelvel" src="${pageContext.request.contextPath}/resources/images/sstar.png">
-					</td>
-				</c:when> 					
-			</c:choose>	
+				<td colspan="4"><a id="board_title" href='${pageContext.request.contextPath}/qnaboard/detail.do?no=${listUser.no}'>${listUser.title}</a></td>				
+				<c:choose>
+				<c:when test="${listUser.answerAt eq 'Y'}">
+				<td>답변이 있습니다.${listUser.answerAt}</td>				
+				</c:when>
+				<c:otherwise>
+				<td>답변이 없습니다.${listUser.answerAt}</td>	
+				</c:otherwise>
+				</c:choose>	
+				
+				<c:forEach var="listStis" items="${qnaList.listStis}">
+				<c:choose>
+					<c:when test="${listStis.stsfcCode eq '13' and listUser.no == listStis.groupNo}">
+						<td>
+						<img class="lelvel" src="${pageContext.request.contextPath}/resources/images/sstar.png">
+						<img class="lelvel" src="${pageContext.request.contextPath}/resources/images/sstar.png">
+						<img class="lelvel" src="${pageContext.request.contextPath}/resources/images/sstar.png">
+						</td>
+					</c:when> 
+					<c:when test="${listStis.stsfcCode eq '11'  and listUser.no == listStis.groupNo}">
+						<td>
+						<img class="lelvel" src="${pageContext.request.contextPath}/resources/images/xstar.png">
+						</td>
+					</c:when> 				
+					<c:when test="${listStis.stsfcCode eq '12'  and listUser.no == listStis.groupNo}">
+						<td>
+						<img class="lelvel" src="${pageContext.request.contextPath}/resources/images/sstar.png">
+						<img class="lelvel" src="${pageContext.request.contextPath}/resources/images/sstar.png">
+						</td>
+					</c:when> 	
+					<c:when test="${listUser.no == listStis.groupNo}">
+					<td>만족업슴</td>
+					</c:when>				
+				</c:choose>	
+				</c:forEach>
 			</tr>
 			</c:forEach>
+			
 		</table>
 	</div>	
 

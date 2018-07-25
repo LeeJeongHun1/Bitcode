@@ -2,7 +2,10 @@ package kr.co.bitcode.user.service;
 
 
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -90,12 +93,34 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public Qna checkSatisAdmin(Qna qna) throws Exception {
-		// TODO Auto-generated method stub
 		return userInfoMapper.checkSatisAdmin(qna);
 	}
 
+	@Override
+	public Map<String,Object> selectIdAnswer(String id) throws Exception {
+		List<Qna> user = userInfoMapper.selectIdAnswer(id);
+		List<Qna> admins= userInfoMapper.selectSatisAdmin();
+		
+		
+		List<Qna> listUser = new ArrayList<Qna>();
+		List<Qna> listStis = new ArrayList<Qna>();
+		Map<String,Object> map = new HashMap<>();
+		for(Qna userb : user) {
+			for (Qna admin: admins) {
+				if(userb.getGroupNo() == admin.getGroupNo()) {
+					listStis.add(admin);
+//					listUser.add(userb);
+				}
+			}
+		}
+		map.put("listUser", user);
+		map.put("listStis", listStis);
+		
+		return map;
+	}
 
 
+ 
 	
 
 

@@ -32,9 +32,61 @@ INSERT INTO tb_user(id, name, nick_name, password, email, point, auth, birthday)
 
 	
 select * from tb_qna_board;
+select * from tb_user;
 where id ='yoo';
 
+		select *
+		from tb_qna_board 
+		 where id = 'yoo' 
+		  and answer_at = 'y'
 
+		  
+		select *
+		from tb_qna_board q
+		 where depth = 1;
+	
+	
+			select *
+		from tb_qna_board q
+		inner 
+		join tb_user u
+		on q.id = u.id
+		where u.auth = 'S' 
+			  and answer_at ='Y'	 
+		 
+		 
+		 
+		select t.group_no
+		from tb_qna_board t
+		(select *
+		from tb_qna_board
+		 where id = 'yoo' 
+		) q
+		inner 
+		join tb_user u
+		on q.id = u.id
+		 where answer_at = 'y' and
+		  auth = 'S'; 
+
+		  
+		select *
+		from tb_qna_board 
+		inner 
+		join tb_user u
+		on q.id = u.id
+		 where auth = 'S' and answer_at ='Y';
+		 
+		 
+		 
+		 
+<!-- 		select s.stsfc_step, s.stsfc_code -->
+<!-- 		from tb_stsfc_code s -->
+<!-- 		inner  -->
+<!-- 		join tb_qna_board q -->
+<!-- 		on q.stsfc_code = s.stsfc_code -->
+<!-- 		where group_no = #{group_no} -->		 
+		 
+		  
 		select *
 		from tb_qna_board 
 		 where group_no = 210 and
@@ -48,10 +100,32 @@ where id ='yoo';
 		  
 		select *
 		from tb_qna_board 
-			where  group_no = 249;
-			
+			where  group_no = 249
 			and
-			  group_order = 1;		
+			  group_order = 0;		
+			  
+			  
+			       update tb_qna_board
+           set stsfc_code = '11'
+			 where no = 251 and
+			  group_no = 249 and
+			  depth = 1;
+			  
+		select s.stsfc_step, s.stsfc_code, q.no, q.id, q.title
+		from tb_stsfc_code s
+		inner 
+		join tb_qna_board q
+		on q.stsfc_code = s.stsfc_code
+		where group_no = 246;
+	
+		
+		select s.stsfc_step, s.stsfc_code, q.no, q.id, q.title
+		from tb_stsfc_code s
+		inner 
+		join tb_qna_board q
+		on q.stsfc_code = s.stsfc_code
+		where id = yoo;		  
+			  
 			  
 		delete 
 		from tb_qna_board 

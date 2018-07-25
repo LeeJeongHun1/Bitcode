@@ -18,7 +18,7 @@ public class Qna {
 	private int viewCnt;
 	private String code;
 	private String codeName;
-	private char answerAt;
+	private String answerAt;
 	private char readAns;
 	private String oriId;
 	private int point;
@@ -50,10 +50,11 @@ public class Qna {
 	
 	
 	
-	public char getAnswerAt() {
+
+	public String getAnswerAt() {
 		return answerAt;
 	}
-	public void setAnswerAt(char answerAt) {
+	public void setAnswerAt(String answerAt) {
 		this.answerAt = answerAt;
 	}
 	public String getLanguage_code() {
