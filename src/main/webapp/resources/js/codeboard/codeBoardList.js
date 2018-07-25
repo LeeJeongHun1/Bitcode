@@ -10,40 +10,25 @@ window.onload = function(){
 //		color: '#000'
 //			
 //	});
-	//var target = document.getElementById("option");
-	//var input = document.getElementById("input").value;
-	//var option = target.options[target.selectedIndex].value;
 	codeList();
 };
 
 document.querySelector("#search").onclick=function(){
-	
-	//console.log("input++++++++++++" + input);
-	//console.log("option+++++++++++" + option);
 	codeList();
 }
 
-
-
 function makeCodeList(data){
-	console.dir(pageNumber);
 	var html="";
+	if(data.length==0){
+		html+= '<tr>';
+		html+= '<td colspan="7">게시글이 존재하지않습니다.</td>';
+		html+= '</tr>';		
+	}
 	for(let codeBoard of data){
 		var date = new Date(codeBoard.regDate);
 		var day = date.getFullYear() + "-"
 		+ (date.getMonth() + 1) + "-"
 		+ date.getDate();
-		if(data.length==0){
-			html+='    <tr style="height:13px; type:text/css;">                                                                  ';
-			html+='        <td style="font-size:14px;"></td>                                                             ';
-			html+='        <td style="font-size:14px;"></td>   ';
-			html+='        <td style="font-size:14px; text-align:right;">검색 결과가 없습니다.</td>     ';			
-			html+='        <td style="font-size:14px;"></td>                                                             ';
-			html+='        <td style="font-size:14px;"></td>        ';
-			html+='        <td style="font-size:14px;"></td>                                                        ';
-			html+='        <td style="font-size:14px;"></td>                                                        ';
-			html+='    </tr>  ';
-		}		
 		if(codeBoard.groupOrder==1){
 			html+='    <tr style="height:13px; type:text/css;">                                                                  ';
 			html+='        <td style="font-size:14px;">'+codeBoard.no+'</td>                                                             ';
@@ -96,7 +81,6 @@ function makeCodeList(data){
 var pageNumber;
 function makePage(data){
 	pageNumber = data.pageResult.pageNo;
-	console.log(pageNumber);
 	var html = "";
 	if (data.pageResult.count != 0) {
 		var clz = "";
@@ -159,9 +143,6 @@ function codeList(pageNo, sort){
 	if(sort === undefined){
 		sort = 0;
 	}
-	console.log(sort);
-//	console.log(searchOption);
-//	console.log(searchInput);
 	$.ajax({
 		url:"list.json",
 		data:{
