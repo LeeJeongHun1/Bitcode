@@ -9,11 +9,14 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/itnews/itnews.css" />
 </head>
-<body>
-<h1 id="h1ITNews">IT News BIT CODE</h1>
+<body><br>
+<span id="h1ITNews">IT News BIT CODE</span>
+<span id="adminIT">
 <c:if test="${sessionScope.user.auth == 'S'}">
-<a href="${pageContext.request.contextPath}/crawling.do" class="crawlingBtn"><img src="${pageContext.request.contextPath}/resources/images/crawinfNews.png"></a>
+<a href="${pageContext.request.contextPath}/crawling.do" class="crawlingBtn">
+<img src="${pageContext.request.contextPath}/resources/images/crawinfNews.png"></a>
 </c:if>
+</span>
 
 <section class="cards-wrapper">
 <%-- 	<c:forEach var="newList" items="${newList}"> --%>

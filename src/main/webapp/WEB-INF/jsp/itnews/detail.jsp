@@ -12,13 +12,14 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <body>
+
 <!--   기사 내용부분 -->
 <div class="card-grid-space1">
 <div class="topbar red">
 	<div class="swatches"><span class="red"></span><span class="orange"></span><span class="yellow"></span><span class="green"></span><span class="blue"></span></div>
 	<div class="maxbtn"><span></span></div>
 	<div class="xbtn" onclick="location.href='${pageContext.request.contextPath}/itnews/list.do'">x</div>
-</div>  	 
+</div>  
 	 <div class="cardITNewsDetail1">  
 		<div class="articleall"> 
 	 	<h1 id="articleTitle">${article.articleTitle}</h1>
@@ -35,7 +36,7 @@
 	    onclick="window.open(this.href,'팝업창title','scrollbars=yes, top=180px, left=300px, width=800px, height=600px'); return false;">
 		원본 기사 보기 클릭...</a>
 		</p>
-		<!-- 댓글	-->
+		댓글	
 			<div id="comment">
 			<hr>
 				<div id="commentList"></div>
@@ -46,13 +47,14 @@
 						<textarea name="commentText" class="commentTextarea"></textarea>
 						<button>등록</button>
 					</form>
+					<div class="btnITList"><a href='${pageContext.request.contextPath}/itnews/list.do' class="ITList" role="button" >목록</a></div>	
 					</c:if>	
 					<div style="text-align: right;">
 						<c:if test="${sessionScope.user.id eq newsComment.id && sessionScope.user.id != null}">
 							<button class="btn2" onclick="location.href='updateForm.do?articleNo=${user.id}'">수정</button>
 							<button class="btn2" onclick="location.href='delete.do?articleNo=${user.id}'">삭제</button>
 						</c:if>
-						<div class="btnITList"><a href='${pageContext.request.contextPath}/itnews/list.do' class="ITList" role="button" >목록</a></div>	
+						
 					</div>
 				</div>
 			</div>	 
@@ -66,7 +68,6 @@
 <!--   댓글부분 -->
 <script>
 $(".card-grid-space1").draggable();
-
 
 	function makeCommentList(result) {
 		var html = "";

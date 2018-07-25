@@ -51,11 +51,11 @@ public class ITNewsController {
 		return iTService.retrieveListComment(articleNo);
 	}
 	//댓글 입력
-	int commentNo = 0;
+//	int commentNo = 0;
 	@RequestMapping("/commentWrite.json")
 	public @ResponseBody List<NewsComment> writeComment(NewsComment newsComment) {
-		commentNo++;
-		newsComment.setCommentNo(commentNo);
+//		commentNo++;
+//		newsComment.setCommentNo(commentNo);
 		System.out.println("newsComment:" + newsComment.getCommentNo());
 		iTService.insertArticleComment(newsComment);
 		return iTService.retrieveListComment(newsComment.getArticleNo());
