@@ -24,14 +24,16 @@ select * from tb_qna_like; -- Q&A 게시판 좋아요
 -- 회원정보 테이블
 --------------------------------------------------------------------
 create table tb_user (
-    `id`         varchar(30)     not null        comment '아이디', 
-    `name`       varchar(30)     not null        comment '이름', 
-    `nick_name`  varchar(30)     not null        comment '닉네임', 
-    `password`   varchar(200)    not null        comment '비밀번호', 
-    `email`      varchar(50)     not null        comment '이메일', 
-    `point`      int(10)         default 0       comment '포인트', 
-    `auth`       char(1)         default 'U'     comment '권한', 
-    `birthday`   char(8)         not null        comment '생년월일', 
+    `id`            varchar(30)     not null         comment '아이디', 
+    `name`          varchar(30)     not null         comment '이름', 
+    `nick_name`     varchar(30)     not null         comment '닉네임', 
+    `password`      varchar(200)    not null         comment '비밀번호', 
+    `email`         varchar(50)     not null         comment '이메일', 
+    `point`         int(10)         default 0        comment '포인트', 
+    `auth`          char(1)         default 'U'      comment '권한', 
+    `birthday`      char(8)         not null         comment '생년월일', 
+    `pattern_at`    char(1)         default 'N'      comment '패턴사용여부', 
+    `pattern_pass`  int(30)         default '1234'   comment '패턴비밀번호', 
     primary key (id)
 ) engine=innodb default charset=utf8;
 
