@@ -26,7 +26,7 @@ public interface CodeBoardService {
 	public void insertBoardFile(CodeBoardFile cbFile);
 	public void replyBoard(CodeBoard cb);
 	public void updateGroupNo(int no);
-	public int likeBoard(CodeBoardLike cbl);
+	public int likeBoard(CodeBoardLike cbl,User user);
 	public void updatePoint(User user);
 	
 	// 댓글

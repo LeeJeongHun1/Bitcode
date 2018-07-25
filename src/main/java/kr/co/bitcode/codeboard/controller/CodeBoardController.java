@@ -175,12 +175,8 @@ public class CodeBoardController {
 	
 	@RequestMapping(value="/like.json", method=RequestMethod.GET)
 	@ResponseBody
-	public int likeBoard(CodeBoardLike cbl) {
-		System.out.println(cbl.getNo());
-		System.out.println(cbl.getId());
-//		service.likeBoard(cbl);
-//		int no = cbl.getNo();
-		return service.likeBoard(cbl);
+	public int likeBoard(CodeBoardLike cbl,User user) {
+		return service.likeBoard(cbl,user);
 	}
 
 	// 댓글 
