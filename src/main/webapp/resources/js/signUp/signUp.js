@@ -39,23 +39,6 @@ $("#userId").keyup(function () {
 		}
 	});
 });
-//이메일
-//$("#userEmailDomain").change(function(){
-//	var emailAddr = $("#userEmailDomain option:selected").val();
-//	if(emailAddr == "etc"){
-//		$("#userEmailDetail").attr("readonly",false);
-//	}else{
-//		$("#userEmailDetail").attr("readonly",true);
-//		$("#userEmailDetail").val(emailAddr.substring(1));
-//	}
-//	if($("#userEmail").val() == "" || $("#userEmailDetail").val() == ""){
-//		$("#userEmail").data("flag","no");
-//		$("#emailResult > p").text("이메일을 입력하세요");
-//	}else{
-//		$("#userEmail").data("flag","yes");
-//		$("#emailResult > p").text("");
-//	}
-//});
 //email 중복 체크
 $("#userEmail").keyup(function () {
 		if($("#userEmail").val() == "" || $("#userEmailDetail").val() == ""){
@@ -88,6 +71,14 @@ $("#userEmailDetail").keyup(function () {
 
 function checkEmail() {
 	var emailTotal = $("#userEmail").val() +'@'+ $("#userEmailDetail").val();
+	  for (i = 0; i < emailTotal.length; i++) {
+          ch = emailTotal.charAt(i)
+          if (!(ch >= '0' && ch <= '9') && !(ch >= 'a' && ch <= 'z') && !(ch =='.')) {
+        		$("#userEmailDetail").data("flag","no");
+        		$("#emailResult > p").text("영문소문자, 숫자만 입력가능합니다");
+          }
+	  }
+	
 	$.ajax({
 		url: "/bitcode/login/emailCheck.json",
 		data: {
@@ -273,7 +264,7 @@ $("#submitBtn").click(function(){
 	var month = $("#birth2").data("flag");
 	var date = $("#birth3").data("flag");
 //	var birth = $("#userBirth").data("flag");
-	var email = $("#userPassCheck").data("flag");
+	var email = $("#userEmailDetail").data("flag");
 	id = isEmpty($("#userId"), id , "아이디를 입력해주세요");
 	pass = isEmpty($("#userPassCheck"), pass , "비밀번호를 입력해주세요");
 	name = isEmpty($("#userName"), name , "이름을 입력해주세요");
@@ -282,7 +273,7 @@ $("#submitBtn").click(function(){
 	month = isEmpty($("#birth2"), month , "1월부터 12월까지 입력 가능합니다. ");
 	date = isEmpty($("#birth3"), date , "정확한 날짜를 입력해주세요. (2000-01-01)");
 //	birth = isEmpty($("#userBirth"), birth , "생년월일을 입력해주세요");
-	email = isEmpty($("#userPassCheck"), email , "이메일를 입력해주세요");
+	email = isEmpty($("#userEmailDetail"), email , "이메일를 입력해주세요");
 	if(id == false || pass == false || name == false || nickName == false || email == false ||year == false ||month == false || date == false){
 		return;
 	}

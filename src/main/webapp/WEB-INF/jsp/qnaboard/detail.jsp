@@ -70,9 +70,26 @@ a {
 			</div>
 			</div>
 			
+		<!-- 	만족		 -->
+		<c:if test="${list.qna.depth == 1}">
+			<div>		
+			<span class="satisAn">
+			<input type="radio" id="satisS" name="stsfcCode" value="13"/>
+		    <label for="satisS"><span></span>만족</label>
+		    </span>
+		    <span class="satisAn">
+		    <input type="radio" id="satisJ" name="stsfcCode" value="12"/>
+		    <label for="satisJ"><span></span>보통</label>
+			</span>
+			<span class="satisAn">
+		    <input type="radio" id="satisU" name="stsfcCode" value="11"/>
+		    <label for="satisU"><span></span>불만족</label>
+		    </span>
+		    <a href="#" id="StatisBtn"><span id="userClick">Click</span></a>
+			</div>		
+		</c:if>		
 			<%-- 댓글 출력 --%>
 			<ul class="reBody">
-				
 			</ul>
 			
 			<%-- 댓글 등록 --%>
@@ -124,6 +141,42 @@ a {
 	
 	
 	<script>
+	$("#StatisBtn").click(function () {
+        //라디오 버튼 Name 가져오기
+        var radio_btn = document.getElementsByName("stsfcCode");
+        //라디오 버튼이 체크되었나 확인하기 위한 변수
+        var radio_btn_check = 0;
+        var radioCheck = null;
+        for(var i = 0; i<radio_btn.length; i++){
+            //만약 라디오 버튼이 체크가 되어있다면 true
+            if(radio_btn[i].checked==true){
+                //라디오 버튼 값
+                radioCheck = radio_btn[i].value;
+            }
+        }
+    	$.ajax({
+    		url: "/bitcode/user/satisAn.json",
+    		data: {
+    			"id" : "${sessionScope.user.id}",
+    			"stsfcCode": radioCheck,
+    			"no": "${list.qna.no}",
+    			"groupOrder": "${list.qna.groupOrder}",
+    			"groupNo": "${list.qna.groupNo}"
+    		},
+    		dataType: "json",
+    		success: function (data) {
+    			console.log(data);
+    			if(data == true){
+    				swal("체크 되었습니다.");
+    				setTimeout( function() {
+    					location.reload();
+    					}, 3000);
+    			}else {
+    				swal("이미 체크 되었거나, 답변자만 체크가 가능합니다.");
+    			}
+    		}
+    	});      
+	});
 	
 	
 	// 추천 

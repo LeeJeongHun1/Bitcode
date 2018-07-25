@@ -40,8 +40,30 @@ public class UserController {
 	
 	
 	//만족클릭
-//	@RequestMapping("/")
-//	public String stis
+	@RequestMapping("/satisAn.json")
+	@ResponseBody
+	public boolean satisAn (Qna qna) throws Exception {
+		System.out.println("접속"+qna.getId());
+		System.out.println(qna.getGroupNo());
+		System.out.println(qna.getGroupOrder());
+		System.out.println(qna.getStsfcCode());
+		
+		Qna user = userService.checkSatis(qna);
+		System.out.println(user.getId());
+		
+		Qna admin = userService.checkSatisAdmin(qna);
+		System.out.println(admin.getStsfcCode());
+//		System.out.println(user.getId() != qna.getId() || admin.getStsfcCode() != null);
+		
+		if(user.getId().equals(qna.getId()) && admin.getStsfcCode() == null) {
+			userService.updateSatisfAnat(qna);
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
+	
 	//출석체크
 	@RequestMapping("/attend.json")
 	@ResponseBody

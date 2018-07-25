@@ -83,6 +83,17 @@ public class UserServiceImpl implements UserService{
 		userInfoMapper.updateSatisfAnat(qna);
 	}
 
+	@Override
+	public Qna checkSatis(Qna qna) throws Exception {
+		return userInfoMapper.checkSatis(qna);
+	}
+
+	@Override
+	public Qna checkSatisAdmin(Qna qna) throws Exception {
+		// TODO Auto-generated method stub
+		return userInfoMapper.checkSatisAdmin(qna);
+	}
+
 
 
 	

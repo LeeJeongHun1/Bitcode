@@ -32,4 +32,9 @@ public interface UserService {
 	public Attendance selectAttenByIdDate(Attendance attendance) throws Exception;
 	//만족
 	public void updateSatisfAnat(Qna qna) throws Exception;
+	
+	
+	public Qna checkSatis(Qna qna) throws Exception;
+	//admin
+	public Qna checkSatisAdmin(Qna qna) throws Exception;
 }

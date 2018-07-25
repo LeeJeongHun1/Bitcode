@@ -9,12 +9,19 @@ create table tb_user (
     `birthday`   varchar(8)     not null       comment '생년월일'
 ) default charset=utf8;
 
+		select stsfc_code, id, group_no
+		from tb_qna_board 
+		where id = #{id} and
+			  no = #{no} and
+			  group_order = #{groupOrder}
+
+
 alter table tb_user comment '회원정보';
 -----------------------------------------------------------------------------------------------------
 --  유저
 
 select * from tb_user;
-where id = 'junsu';
+where id = 'dbwldus';
 
 	update tb_user
    set nick_name = 'test3'
@@ -25,7 +32,39 @@ INSERT INTO tb_user(id, name, nick_name, password, email, point, auth, birthday)
 
 	
 select * from tb_qna_board;
+where id ='yoo';
 
+
+		select *
+		from tb_qna_board 
+		 where group_no = 210 and
+		  group_order = 1;
+			  
+		select *
+		from tb_qna_board 
+		 where group_no = 210 and
+		  group_order = 0;	
+		  
+		  
+		select *
+		from tb_qna_board 
+			where  group_no = 249;
+			
+			and
+			  group_order = 1;		
+			  
+		delete 
+		from tb_qna_board 
+		  where id= 'admin' and
+		   group_no = 249;
+		
+		   
+		 select *
+		from tb_qna_board 
+		  where 
+		  group_no = 247 and
+			   depth = 0;
+			  
 	select s.stsfc_step, q.no, q.id, q.title, q.content
 	from tb_stsfc_code s
 	inner 

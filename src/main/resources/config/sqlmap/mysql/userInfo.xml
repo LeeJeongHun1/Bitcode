@@ -23,11 +23,34 @@
 		<result column="stsfc_step" property="stsfcStep" />
 	</resultMap>
 	
+	<select id="checkSatis" parameterType="qna" resultMap="qnaMap">
+		select *
+		from tb_qna_board 
+			where group_no = #{groupNo} and
+			    depth = 0;
+	</select>	
+	<select id="checkSatisAdmin" parameterType="qna" resultMap="qnaMap">
+		select *
+		from tb_qna_board 
+		  where group_no = #{groupNo} and
+			  group_order = #{groupOrder};
+	</select>
 	<update id="updateSatisfAnat" parameterType="qna">
         update tb_qna_board
            set stsfc_code = #{stsfcCode}
-         where id = #{id}  	
+			 where no = #{no} and
+			  group_no = #{groupNo} and
+			  depth = 1;	
 	</update>
+	
+<!-- 	<update id="updateSatisfAnat1" parameterType="qna"> -->
+<!--         update tb_qna_board -->
+<!--            set stsfc_code = #{stsfcCode} -->
+<!--          where id = #{id} and -->
+<!-- 			  no = #{no} and -->
+<!-- 			  group_no = #{groupNo} and -->
+<!-- 			  group_order = #{groupOrder}	 -->
+<!-- 	</update>	 -->
 	
 	<select id="selectmyQuestion" parameterType="string" resultMap="stsfcCodeMap">
 		select s.stsfc_step, s.stsfc_code, q.no, q.id, q.title
@@ -35,7 +58,7 @@
 		inner 
 		join tb_qna_board q
 		on q.stsfc_code = s.stsfc_code
-		where id = #{id};
+		where id = #{id}
 	</select>
 	<resultMap id="attendMap" type="attendance">
 		<result column="id" property="id" />

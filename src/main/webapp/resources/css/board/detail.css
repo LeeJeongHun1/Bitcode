@@ -25,6 +25,48 @@ time, mark, audio, video {
 	vertical-align: baseline;
 	color:#5a5a5a;
 }
+
+/* 만족버튼 */
+.satisAn {
+/* 	margin-bottom: -10px; */
+}
+input[type="radio"] {
+	cursor:pointer
+}
+
+input[type="radio"] + label {
+    color:#400000;
+    font-family:Arial, sans-serif;
+    cursor:pointer
+}
+
+input[type="radio"] + label span {
+    display:inline-block;
+    width:19px;
+    height:19px;
+    vertical-align:middle;
+    cursor:pointer;
+}
+#StatisBtn {
+  text-align: center;
+  width:40px;
+  height: 25px;
+  border-radius:6px;
+  border:0;
+  margin-left:30px;
+  background:#df736a;
+  color:#fff;
+  ext-decoration:none;
+}
+#StatisBtn > #userClick{
+	font-size: 15px;
+	padding: 5px;
+	text-decoration: none;
+}
+
+
+
+
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
