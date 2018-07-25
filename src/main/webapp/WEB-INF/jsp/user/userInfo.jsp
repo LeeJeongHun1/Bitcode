@@ -140,10 +140,12 @@ border-radius: 12px 12px 0px 0px;
 				<td colspan="4"><a id="board_title" href='${pageContext.request.contextPath}/qnaboard/detail.do?no=${listUser.no}'>${listUser.title}</a></td>				
 				<c:choose>
 				<c:when test="${listUser.answerAt eq 'Y'}">
-				<td>답변이 있습니다.${listUser.answerAt}</td>				
+				<td><img class="lelvel" src="${pageContext.request.contextPath}/resources/images/unRead.png"></td>				
 				</c:when>
 				<c:otherwise>
-				<td>답변이 없습니다.${listUser.answerAt}</td>	
+				<td>
+<%-- 				<img class="lelvel" src="${pageContext.request.contextPath}/resources/images/unRead.png"> --%>
+				<img class="lelvel" src="${pageContext.request.contextPath}/resources/images/nonono.png"></td>	
 				</c:otherwise>
 				</c:choose>	
 				
@@ -172,7 +174,7 @@ border-radius: 12px 12px 0px 0px;
 					</c:when> 	
 					<c:when test="${listUser.no == listStis.groupNo}">
 					<td><a id="board_title" href='${pageContext.request.contextPath}/qnaboard/detail.do?no=${listStis.no}'>Click</a></td>
-					</c:when>				
+					</c:when>
 				</c:choose>	
 				</c:forEach>
 			</tr>
