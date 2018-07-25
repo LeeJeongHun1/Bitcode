@@ -13,7 +13,7 @@
 </head>
 <body>
 
-<!--   기사 내용부분 -->
+<!--   기사 내용부분 -->	
 <div class="card-grid-space1">
 <div class="topbar red">
 	<div class="swatches"><span class="red"></span><span class="orange"></span><span class="yellow"></span><span class="green"></span><span class="blue"></span></div>
@@ -36,7 +36,6 @@
 	    onclick="window.open(this.href,'팝업창title','scrollbars=yes, top=180px, left=300px, width=800px, height=600px'); return false;">
 		원본 기사 보기 클릭...</a>
 		</p>
-		댓글	
 			<div id="comment">
 			<hr>
 				<div id="commentList"></div>
@@ -44,8 +43,11 @@
 					<c:if test="${sessionScope.user.id != null}">
 					<form id="writeForm">
 						<h5>댓글쓰기</h5>
+						<div>
 						<textarea name="commentText" class="commentTextarea"></textarea>
-						<button>등록</button>
+<!-- 						<button class="btn3"><div id="q">등록</div></button> -->
+						<input type="button" class="btn3" value="등록">
+						</div>
 					</form>
 					<div class="btnITList"><a href='${pageContext.request.contextPath}/itnews/list.do' class="ITList" role="button" >목록</a></div>	
 					</c:if>	
