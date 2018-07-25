@@ -12,6 +12,7 @@
 			<input type="hidden" name="groupOrder" value="${cb.groupOrder}" /> 
 			<input type="hidden" name="depth" value="${cb.depth}" />
 			<input type="hidden" name="groupNo" value="${cb.groupNo}" />
+			<input type="hidden" name="id" value="${cb.id}" />
 <div class="detailBody">
 	<div id="card1" class="card ten col">
 		<div class="topbar yellow">
@@ -32,7 +33,7 @@
 				</div>
 
 				<div class="header_info">
-					<span class="shell_writer" ><c:out value="${cb.id}" /></span>
+					<span class="shell_writer" ><c:out value="${cb.nickName}" /></span>
 					<span class="shell_hits" >조회<c:out value="${cb.viewCnt}" /></span>
 				</div>
 			</div>
