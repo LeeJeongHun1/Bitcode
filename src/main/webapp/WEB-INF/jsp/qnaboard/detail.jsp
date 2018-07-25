@@ -23,6 +23,7 @@ a {
 	<input type="hidden" name="groupOrder" value="${list.qna.groupOrder}">
 	<input type="hidden" name="oriId" value="${list.ori}"> 
 	<input type="hidden" name="qnaId" value="${list.qna.id}"> 
+	<input type="hidden" name="qnaId" value="${list.qna.stsfcCode}"> 
 	
 	<div class="detailBody">
 	<div id="card1" class="card ten col">
@@ -71,10 +72,8 @@ a {
 			</div>
 			</c:if>
 			</div>
-			
 		<!-- 	만족		 -->
- 			<c:if test="${list.ori != sessionScope.user.id}">  
-<%-- 		<c:if test="${list.id != sessionScope.user.id} "> --%>
+ 			<c:if test="${list.ori == sessionScope.user.id and list.qna.depth == 1}">  
 			<div>		
 			<span class="satisAn">
 			<input type="radio" id="satisS" name="stsfcCode" value="13"/>

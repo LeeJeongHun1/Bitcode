@@ -131,7 +131,7 @@ border-radius: 12px 12px 0px 0px;
     	<h3 class="userInformation">My Question</h3>
 		<table class="table table-hover">
 			<tr>
-				<th colspan="1">글쓴이</th><th colspan="4">제목</th><th>답변여부</th><th colspan="3">만족도</th>
+				<th colspan="1">글쓴이</th><th colspan="4">제목</th><th colspan="1">답변여부</th><th colspan="3">만족도</th>
 			</tr>
 			
 			<c:forEach var="listUser" items="${qnaList.listUser}">
@@ -151,24 +151,27 @@ border-radius: 12px 12px 0px 0px;
 				<c:choose>
 					<c:when test="${listStis.stsfcCode eq '13' and listUser.no == listStis.groupNo}">
 						<td>
+						<a id="board_title" href='${pageContext.request.contextPath}/qnaboard/detail.do?no=${listStis.no}'>
 						<img class="lelvel" src="${pageContext.request.contextPath}/resources/images/sstar.png">
 						<img class="lelvel" src="${pageContext.request.contextPath}/resources/images/sstar.png">
-						<img class="lelvel" src="${pageContext.request.contextPath}/resources/images/sstar.png">
+						<img class="lelvel" src="${pageContext.request.contextPath}/resources/images/sstar.png"></a>
 						</td>
 					</c:when> 
-					<c:when test="${listStis.stsfcCode eq '11'  and listUser.no == listStis.groupNo}">
+					<c:when test="${listStis.stsfcCode eq '11' and listUser.no == listStis.groupNo}">
 						<td>
-						<img class="lelvel" src="${pageContext.request.contextPath}/resources/images/xstar.png">
+						<a id="board_title" href='${pageContext.request.contextPath}/qnaboard/detail.do?no=${listStis.no}'>
+						<img class="lelvel" src="${pageContext.request.contextPath}/resources/images/xstar.png"></a>
 						</td>
 					</c:when> 				
-					<c:when test="${listStis.stsfcCode eq '12'  and listUser.no == listStis.groupNo}">
+					<c:when test="${listStis.stsfcCode eq '12' and listUser.no == listStis.groupNo}">
 						<td>
+						<a id="board_title" href='${pageContext.request.contextPath}/qnaboard/detail.do?no=${listStis.no}'>
 						<img class="lelvel" src="${pageContext.request.contextPath}/resources/images/sstar.png">
-						<img class="lelvel" src="${pageContext.request.contextPath}/resources/images/sstar.png">
+						<img class="lelvel" src="${pageContext.request.contextPath}/resources/images/sstar.png"></a>
 						</td>
 					</c:when> 	
 					<c:when test="${listUser.no == listStis.groupNo}">
-					<td>만족업슴</td>
+					<td><a id="board_title" href='${pageContext.request.contextPath}/qnaboard/detail.do?no=${listStis.no}'>Click</a></td>
 					</c:when>				
 				</c:choose>	
 				</c:forEach>
