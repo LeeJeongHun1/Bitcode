@@ -51,7 +51,7 @@
 					</div>
 					<h2 id="title"></h2>
 				</div>
-				<progress max="100" value="80"></progress>
+				<progress max="100" value="100"></progress>
 				<%-- 음악리스트 --%>
 				<ol class="fList">
 				</ol>
