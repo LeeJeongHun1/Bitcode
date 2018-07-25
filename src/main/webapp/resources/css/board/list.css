@@ -177,7 +177,7 @@ div .information {
 	float: left;
 	width: 10px;
 	height: 10px;
-	cursor: pointer;
+	/* cursor: pointer; */
 	margin: 5px;
 }
 .red {
