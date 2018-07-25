@@ -106,8 +106,7 @@ $(function(){
 					$("#chatResult").scrollTop($(document).height());													
 				}
 				
-			}			
-
+			}
 			console.log("메세지 전송")
 		};
 		ws.onclose = function(){
