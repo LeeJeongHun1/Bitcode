@@ -9,8 +9,8 @@
 <title>BIT CODE</title>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/remote/remote.css">
-<script src="https://192.168.0.165:10001/socket.io/socket.io.js"></script>
-<!-- <script src="https://localhost:10001/socket.io/socket.io.js"></script> -->
+<!-- <script src="https://192.168.0.165:10001/socket.io/socket.io.js"></script> -->
+<script src="https://localhost:10001/socket.io/socket.io.js"></script>
 
 <%-- 고유 링크 생성 스크립트 --%>
 <script>
@@ -89,7 +89,8 @@ if(!location.hash.replace('#', '').length) {
 				</div>
 				<%-- 채팅창 --%>
 				<div class="chat media-right">
-				<iframe id="chatIframe" src="https://192.168.0.104:10001">
+				<!-- <iframe id="chatIframe" src="https://192.168.0.104:10001"> -->
+				<iframe id="chatIframe" src="https://localhost:10001">
 				</iframe>
 				</div>
 			</div>

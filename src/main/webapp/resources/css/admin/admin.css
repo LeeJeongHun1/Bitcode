@@ -6,7 +6,6 @@ div .userInformation {
 	text-align: center;
 	font-size: 23px;
 }
-
 .managementBody {
 	width: 1200px;
 	margin: 0 auto;
@@ -45,7 +44,7 @@ div .userInformation {
 /* PROFILES */
 .card {
 	max-width: 90%;
-	height: 500px;
+	height: 400px;
 	background-color: #f7f7f7;
 	font-family: 'Arimo', sans-serif;
 	font-size: 14px;

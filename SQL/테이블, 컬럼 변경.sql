@@ -26,7 +26,7 @@ alter table tb_news_comment change comment_no comment_no int(10) auto_increment 
 
 -- 추가
 alter table tb_qna_board add answer_at char(1) default 'N' comment '답변여부';
-alter table tb_user add pattern_at char(1) default 'N' comment '답변여부';
+alter table tb_user add pattern_at char(1) default 'N' comment '패턴사용여부';
 alter table tb_user add pattern_pass int(30) default '1234' comment '패턴비밀번호';
 
 -- foreign key 설정
