@@ -43,7 +43,7 @@
 					<div class="contents">
 					<c:forEach var="cbFile" items="${cbFileList}">
 					파일명: <a href="${pageContext.request.contextPath}/fileDown.do?filePath=${cbFile.filePath}&systemFileName=${cbFile.systemName}&originalFileName=${cbFile.oriName}">${cbFile.oriName}</a>					
-	        		미리보기 : <img src="${pageContext.request.contextPath}/fileDown.do?filePath=${cbFile.filePath}&systemFileName=${cbFile.systemName}&originalFileName=${cbFile.oriName}" style="width: 150px; height: 150px "><br>
+	        		미리보기 : <img src="${pageContext.request.contextPath}/fileDown.do?filePath=${cbFile.filePath}&systemFileName=${cbFile.systemName}&originalFileName=${cbFile.oriName}" style="width: 400px; height: 400px "><br>
 					</c:forEach>
 					${cb.content}
 					</div>
