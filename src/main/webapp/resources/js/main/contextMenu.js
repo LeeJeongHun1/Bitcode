@@ -10,7 +10,7 @@
 		bitMenu.classList.remove('show-bitMenu');
 	}
 
-	function onContextMenu(e){
+	function onContextMenua(e){
 		e.preventDefault();
 		showMenu(e.pageX, e.pageY);
 		document.addEventListener('mousedown', onMouseDown, false);
@@ -21,4 +21,4 @@
 		document.removeEventListener('mousedown', onMouseDown);
 	}
 
-	document.addEventListener('contextmenu', onContextMenu, false);
+	document.addEventListener('contextmenu', onContextMenua, false);

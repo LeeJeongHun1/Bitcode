@@ -43,7 +43,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/waitme/waitMe.min.css" />
 
 <%-- contextmenu --%> 
-<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main/contextMenu.css" /> --%>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main/contextMenu.css" />
 
 <title><sitemesh:write property="title" /></title>
 <sitemesh:write property="head" />
@@ -117,56 +117,57 @@
 	
 		<div class="content">
 			<sitemesh:write property="body" />
+			
+			<!-- context bitMenu start -->
+			<div class="bitMenu">
+			    <div class="bitMenu-item">
+			        <a href="#" class="bitMenu-btn">
+			            <i class="fa fa-folder-open"></i>
+			            <span class="bitMenu-text">BIT CODE 배경 설정</span>
+			        </a>
+			    </div>
+			    <div class="bitMenu-separator"></div>
+			    <div class="bitMenu-item">
+			        <button type="button" class="bitMenu-btn">
+			            <i class="fa fa-reply"></i>
+			            <span class="bitMenu-text">배경1</span>
+			        </button>
+			    </div>
+			    <div class="bitMenu-item">
+			        <button type="button" class="bitMenu-btn">
+			            <i class="fa fa-star"></i>
+			            <span class="bitMenu-text">배경2</span>
+			        </button>
+			    </div>
+			    <div class="bitMenu-item">
+			        <button type="button" class="bitMenu-btn">
+			            <i class="fa fa-users"></i>
+			            <span class="bitMenu-text">배경3</span>
+			        </button>
+			    </div>
+			    <div class="bitMenu-separator"></div>
+			    <div class="bitMenu-item">
+			        <button type="button" class="bitMenu-btn">
+			            <i class="fa fa-download"></i>
+			            <span class="bitMenu-text">Save</span>
+			        </button>
+			    </div>
+			    <div class="bitMenu-item">
+			        <button type="button" class="bitMenu-btn">
+			            <i class="fa fa-trash"></i>
+			            <span class="bitMenu-text">Delete</span>
+			        </button>
+			    </div>
+			</div>
+			<!-- context bitMenu end -->
 		</div>
 		
 		<div class="footer">
 			<c:import url="/WEB-INF/jsp/decorator/footer.jsp" />
+			
+
 		</div>
 		
-<!-- context bitMenu start -->
-<!-- 
-<div class=bitMenu>
-    <div class="bitMenu-item">
-        <a href="#" class="bitMenu-btn">
-            <i class="fa fa-folder-open"></i>
-            <span class="bitMenu-text">BIT CODE 배경 설정</span>
-        </a>
-    </div>
-    <div class="bitMenu-separator"></div>
-    <div class="bitMenu-item">
-        <button type="button" class="bitMenu-btn">
-            <i class="fa fa-reply"></i>
-            <span class="bitMenu-text">배경1</span>
-        </button>
-    </div>
-    <div class="bitMenu-item">
-        <button type="button" class="bitMenu-btn">
-            <i class="fa fa-star"></i>
-            <span class="bitMenu-text">배경2</span>
-        </button>
-    </div>
-    <div class="bitMenu-item">
-        <button type="button" class="bitMenu-btn">
-            <i class="fa fa-users"></i>
-            <span class="bitMenu-text">배경3</span>
-        </button>
-    </div>
-    <div class="bitMenu-separator"></div>
-    <div class="bitMenu-item">
-        <button type="button" class="bitMenu-btn">
-            <i class="fa fa-download"></i>
-            <span class="bitMenu-text">Save</span>
-        </button>
-    </div>
-    <div class="bitMenu-item">
-        <button type="button" class="bitMenu-btn">
-            <i class="fa fa-trash"></i>
-            <span class="bitMenu-text">Delete</span>
-        </button>
-    </div>
-</div>
- -->
-<!-- context bitMenu end -->
 		
 		
 <!-- 메모장 스크립트 -->

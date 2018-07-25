@@ -81,6 +81,7 @@ public class FolderServiceImpl implements FolderService{
 	}
 	@Override
 	public Map<String, Object> uploadFile(FolderAndFile faf, MultipartFile attach) {
+		System.out.println(faf.getPath());
 		Map<String, Object> map = new HashMap<>();
 		try {
 //			if(parentPath == null) {

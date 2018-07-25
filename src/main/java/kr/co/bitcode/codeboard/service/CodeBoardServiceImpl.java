@@ -41,19 +41,16 @@ public class CodeBoardServiceImpl implements CodeBoardService{
 	@Override
 	public void updateBoard(CodeBoard cb) {
 		mapper.updateBoard(cb);
-		
 	}
 
 	@Override
 	public void deleteBoard(int no) {
 		mapper.deleteBoard(no);
-		
 	}
 
 	@Override
 	public void updateBoardViewCnt(int no) {
 		mapper.updateBoardViewCnt(no);
-		
 	}
 
 	@Override
