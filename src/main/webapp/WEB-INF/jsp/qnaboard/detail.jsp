@@ -332,7 +332,7 @@ a {
 			html += '<div id="cNum' + i.commentNo + '" class="comment">'+i.content+'</div></li>'; 
 		}
 		if(data.length == 0){
-			html += '<div class="comment">리뷰가 존재하지 않습니다.</div></li>';
+			html += '<div class="nonC comment" >리뷰가 존재하지 않습니다.</div></li>';
 		}
 		$("ul.reBody").html(html);
 	

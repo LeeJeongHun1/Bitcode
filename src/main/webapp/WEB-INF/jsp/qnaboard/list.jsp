@@ -163,7 +163,7 @@
 			html+= '</tr>';
 		}else{
 			for(let qna of data.list){
-			console.log(data.list);
+			console.log(data.list.length);
 			if(qna.groupOrder == 0){
 				html+= '<tr>';
 				html+= '<td>'+qna.no+'</td>';
