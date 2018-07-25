@@ -245,14 +245,7 @@ IMP.init('imp93914891');
 			</div>
 		</footer>
 	</div>
-
-
-<script>
-
-
-</script>
-
-
+	
 	<script>
 	// fancyTree
 	$(function() {
@@ -428,6 +421,8 @@ IMP.init('imp93914891');
 						appendFile += `	<img src="https://image.noelshack.com/fichiers/2018/22/1/1527527145-logo-microsoft-excel-20132.png"`;
 					}else if(f.title.split('.')[1] == 'pdf') {
 						appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/pdfimage.png"`;
+					}else if(f.title.split('.')[1] == 'pptx') {
+						appendFile += `	<img src="https://image.noelshack.com/fichiers/2018/22/1/1527527145-logo-microsoft-powerpoint-2013.png"`;
 					}else{
 						appendFile += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500505134/if_sticky-note_299111_px7waa.png"';
 					}
@@ -674,6 +669,12 @@ IMP.init('imp93914891');
 			item.file(function(file) {
 				var html = '';
 				if(path == ''){
+					if($("#share-path").data("root") == 'c:/java-lec/upload/'+$("#sId").val()+'_music' && file.type.split('/')[0] != 'audio'){
+						swal(	'warning',
+								'음악 파일만 업로드 가능합니다.',
+								'question');
+						return;
+					}
 					console.log("파일만 올림")
 					console.log("File: " + file.name);
 					console.log("path: " + path);
@@ -684,20 +685,20 @@ IMP.init('imp93914891');
 					if(file.type.split('/')[0] == 'image'){
 						html += `	<img src="${pageContext.request.contextPath}/resources/images/imageicon.png"`;
 					}else if(file.type.split('/')[0] == 'audio'){
-						
-					}
-					else{
+						html += `	<img src="${pageContext.request.contextPath}/resources/images/mp3image.png"`;
+					}else{
 						html += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500505134/if_sticky-note_299111_px7waa.png"';
 					}
 					html += 'class="img-responsive  center-block" style="height: 64px;" alt="">';
 					html += '	</p>';
 					html += '	<span class="ellipsis">'+file.name+'</span>';
 					html += '</div>';
-					if(file.type.split('/')[0] != 'audio' || $("#share-path").data("root") != 'c:/java-lec/upload/aa_music'){
-						console.log("이미지 그린다.");
-						console.log($("#share-path").data("root"));
-						fDiv.append(html);
+					if(file.type.split('/')[0] == 'audio' && $("#share-path").data("root") != ('c:/java-lec/upload/'+$("#sId").val()+'_music') ){
+						$("#share-path").data("root", 'c:/java-lec/upload/'+$("#sId").val()+'_music');
+						sendFile(file);
+						return;
 					}
+					fDiv.append(html);
 					sendFile(file);
 				}else{
 					// 폴더 형태에 파일이 온경우
@@ -781,7 +782,7 @@ IMP.init('imp93914891');
 			$("#capacity").html(size);
 // 			console.dir(result)
 // 			console.dir(file)
-// 폴더 새로고침
+// 			폴더 새로고침
 			$('#tree').fancytree('option', 'source', result.list);
 		})
 	}
@@ -892,6 +893,9 @@ IMP.init('imp93914891');
 	
 	// 홈으로 이동
 	$("#hoomroot").click(function () {
+		if($("#share-path").data("root")){
+			
+		} 
 		$.ajax({
 			url: "selectFolder.json",
 			data: {id: $("#sId").val()},
@@ -996,7 +1000,9 @@ IMP.init('imp93914891');
 		}
 	}
 	
-	
+	/*
+		결체 import
+	*/
 	function payment(){
 		IMP.request_pay({
 		    pg : 'kakao', // version 1.1.0부터 지원.

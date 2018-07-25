@@ -76,6 +76,10 @@ public class FolderController {
 		return folderService.uploadFile(faf, attach);
 	}
 	
+	/**
+	 * @param faf
+	 * @return
+	 */
 	@RequestMapping("/musicFolder.json")
 	@ResponseBody
 	public List<FancyTree> musicFolder(FolderAndFile faf){

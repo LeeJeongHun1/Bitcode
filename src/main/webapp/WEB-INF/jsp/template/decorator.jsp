@@ -43,7 +43,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/waitme/waitMe.min.css" />
 
 <%-- contextmenu --%> 
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main/contextMenu.css" />
+<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main/contextMenu.css" /> --%>
 
 <title><sitemesh:write property="title" /></title>
 <sitemesh:write property="head" />

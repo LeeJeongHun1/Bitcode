@@ -95,8 +95,6 @@ public class FolderServiceImpl implements FolderService{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println(faf.getId());
-		System.out.println(ListDirectorySize(new File(PATH + faf.getId())));
 		map.put("list", ListDirectory(new File(PATH + faf.getId())));
 		FolderSize = 0;
 		map.put("size", ListDirectorySize(new File(PATH + faf.getId())));
@@ -106,7 +104,6 @@ public class FolderServiceImpl implements FolderService{
 	
 	@Override
 	public List<FancyTree> musicFolder(FolderAndFile faf) {
-		
 		return ListDirectory(new File(PATH + faf.getId() + MUSIC_PATH));
 	}
 	
@@ -152,6 +149,10 @@ public class FolderServiceImpl implements FolderService{
 	}
 	
 	// 폴더 크기
+	/**
+	 * @param file
+	 * @return 파일 용량 
+	 */
 	private static long ListDirectorySize(File file){
 		for (File ff : file.listFiles()) {
 			if(ff.isFile()){
