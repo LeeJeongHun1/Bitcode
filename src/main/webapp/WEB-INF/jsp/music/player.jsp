@@ -104,8 +104,7 @@
 				$("#myMusic").attr('src',
 						'${pageContext.request.contextPath}/main/download.do?path=' + encodeURI(`c:/java-lec/upload/${sessionScope.user.id}_music`) + '&fileName=' + this.innerHTML + '.mp3')
 				// 더블클릭시 타이틀 변경되게..						
-				$("#title").text(title.substring(title.length-4, 4));		
-						
+				$("#title").html(this.innerHTML.substring(this.innerHTML.length-4));		
 			})
 		})
 	}
@@ -140,7 +139,7 @@
 
 		$("#myMusic")[0].src = '${pageContext.request.contextPath}/main/download.do?path=' + encodeURI(`c:/java-lec/upload/${sessionScope.user.id}_music`) + '&fileName='+ title+'';
 		//$(".album").attr("src", '${pageContext.request.contextPath}'' + imageLink);
-		$("#title").text(title.substring(title.length-4, 4));
+		$("#title").html(title.substring(title.length-4, 4));
 	};
 	
 	// 창 종료 함수
