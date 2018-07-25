@@ -4,8 +4,8 @@
 var cnt = 0;	
 $(function(){
 	if(loginId){
-		ws = new WebSocket("wss://localhost/bitcode/websocket.do");
-		//ws = new WebSocket("wss://192.168.0.104/bitcode/websocket.do");
+		//ws = new WebSocket("wss://localhost/bitcode/websocket.do");
+		ws = new WebSocket("wss://192.168.0.104/bitcode/websocket.do");
 		ws.onopen = function(){
 			console.log("웹소켓 서버 접속 성공");
 			// 웹소켓 서버에 데이터 전송하기

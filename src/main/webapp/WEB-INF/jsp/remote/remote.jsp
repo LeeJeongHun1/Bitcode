@@ -9,8 +9,8 @@
 <title>BIT CODE</title>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/remote/remote.css">
-<!-- <script src="https://192.168.0.104:10001/socket.io/socket.io.js"></script> -->
-<script src="https://localhost:10001/socket.io/socket.io.js"></script>
+<script src="https://192.168.0.104:10001/socket.io/socket.io.js"></script>
+<!-- <script src="https://localhost:10001/socket.io/socket.io.js"></script> -->
 
 <%-- 고유 링크 생성 스크립트 --%>
 <script>
