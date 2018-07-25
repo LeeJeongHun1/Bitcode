@@ -36,6 +36,7 @@ import kr.co.bitcode.repository.domain.CodeBoardLike;
 import kr.co.bitcode.repository.domain.CodeComment;
 import kr.co.bitcode.repository.domain.CodeSearch;
 import kr.co.bitcode.repository.domain.QnaComment;
+import kr.co.bitcode.repository.domain.User;
 
 @Controller
 @CrossOrigin(origins = "*")
@@ -85,9 +86,10 @@ public class CodeBoardController {
 	
 	
 	@RequestMapping(value="/insert.do", method=RequestMethod.POST)
-	public String insertBoard(CodeBoard cb, CodeBoardFile cbFile) throws Exception {
+	public String insertBoard(CodeBoard cb, CodeBoardFile cbFile, User user) throws Exception {
 		service.insertBoard(cb);
 		service.updateGroupNo(cb.getNo());
+		service.updatePoint(user);
 		if(cb.getFile()[0].getSize() == 0) {
 			System.out.println("파일없음");
 		}else {
@@ -103,7 +105,6 @@ public class CodeBoardController {
 			service.insertBoardFile(cbFile);
 			}
 		}
-		
 		 int no = cb.getNo();
 		return "redirect:/codeboard/detail.do?no=" +no;
 	}
@@ -159,8 +160,9 @@ public class CodeBoardController {
 	}
 	
 	@RequestMapping(value="/reply.do", method=RequestMethod.POST)
-	public String replyBoard(CodeBoard cb, CodeBoardFile cbFile) {
+	public String replyBoard(CodeBoard cb, CodeBoardFile cbFile,User user) {
 		service.replyBoard(cb);
+		service.updatePoint(user);
 		return "redirect:/codeboard/list.do";
 	}
 	

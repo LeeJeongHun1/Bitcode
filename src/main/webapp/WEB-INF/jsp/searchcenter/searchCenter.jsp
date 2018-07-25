@@ -14,7 +14,7 @@
 <body>
 <div class="mapBody">
 
-	<div id="card1" class="card ten col">
+	<div id="card1" class="card six col">
 		<div class="topbar green">
 		<div class="swatches"><span class="red"></span><span class="orange"></span><span class="yellow"></span><span class="green"></span><span class="blue"></span></div>
 		<div class="xbtn" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">x</div>
@@ -33,7 +33,7 @@
 비트캠프 강남지점까지의 거리 : 
 </div>
 
-<div id="map" style="margin-left: 300px;">
+<div id="map" style="margin-left: 100px;border-style: dashed;border-width: 3px;border-color: green;">
 </div>
 
 </div>
