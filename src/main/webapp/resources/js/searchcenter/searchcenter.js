@@ -1,22 +1,34 @@
 /**
  * 
  */
-window.onload = getMyLocation;
-
-
-function getMyLocation(){
-	if(navigator.geolocation){
-		console.log("위치정보 지원함");
-		
-		var watchBtn = document.getElementById("watch");
-		watchBtn.onclick = watchLocation;
-		
-		var clearWatchBtn = document.getElementById("clearWatch");
-		clearWatchBtn.onclick = clearWatch;
-	}else{
-		console.log("위치정보 지원하지 않음");
+//window.onload = getMyLocation;
+window.onload = function(){
+		if(navigator.geolocation){
+			console.log("위치정보 지원함");
+			
+//			var watchBtn = document.getElementById("watch");
+//			watchBtn.onclick = watchLocation;
+			watchLocation();
+			
+		}else{
+			console.log("위치정보 지원하지 않음");
+		}
 	}
-}
+
+
+//function getMyLocation(){
+//	if(navigator.geolocation){
+//		console.log("위치정보 지원함");
+//		
+//		var watchBtn = document.getElementById("watch");
+//		watchBtn.onclick = watchLocation;
+//		
+//		var clearWatchBtn = document.getElementById("clearWatch");
+//		clearWatchBtn.onclick = clearWatch;
+//	}else{
+//		console.log("위치정보 지원하지 않음");
+//	}
+//}
 
 var watchId = null;
 function watchLocation(){
@@ -35,13 +47,13 @@ function displayLocation(position){
 	
 	// 위치를 보여줄 객체 조회
 	var location = document.getElementById("location");
-	location.innerHTML = "당신의 위치 : 위도(" + latitude + "), 경도(" + longitude + ")<br />"
-						 + "정확도 : " + position.coords.accuracy + "meter";
+//	location.innerHTML = "당신의 위치 : 위도(" + latitude + "), 경도(" + longitude + ")<br />"
+//						 + "정확도 : " + position.coords.accuracy + "meter";
 	
 	// 두 지점간의 거리를 km로 반환
 	var km = computeDistance(position.coords, ourCoords);
-	var distance = document.getElementById("distance");
-	distance.innerHTML = "비트캠프 강남지점까지의 거리 : " + km + "km";
+//	var distance = document.getElementById("distance");
+//	distance.innerHTML = "비트캠프 강남지점까지의 거리 : " + km + "km";
 	
 	// 지도관련 함수 호출
 	if(map == null){
