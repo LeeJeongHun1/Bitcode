@@ -23,6 +23,9 @@ alter table tb_user comment '회원정보';
 select * from tb_user;
 where id = 'dbwldus';
 
+delete from tb_user
+where id = '811325256';
+
 	update tb_user
    set nick_name = 'test3'
  where id = 'test3';
