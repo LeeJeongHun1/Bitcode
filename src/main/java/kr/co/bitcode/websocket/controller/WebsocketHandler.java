@@ -29,12 +29,7 @@ public class WebsocketHandler extends TextWebSocketHandler {
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		User user = (User)session.getAttributes().get("user");
-		System.out.println(user.getId() +"세션1");
-		System.out.println(session.getAttributes().get("user") +"세션2");
 		users.put(user.getId(),session);
-		System.out.println("세션 아이디 체크 "+ users.get(session.getId()));
-	
-		
 	}
 	
 	
@@ -165,10 +160,8 @@ public class WebsocketHandler extends TextWebSocketHandler {
 
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-		System.out.println(session.getId() + " 연결 종료됨");
 		User user = (User)session.getAttributes().get("user");
 		users.remove(user.getId());
-		System.out.println("왔으면 찍어줘");
 //		Map<String,Object> attr =  session.getAttributes();
 //		System.out.println(attr.toString() +"맵정보");
 //		User user = (User)attr.get("user");
