@@ -159,8 +159,11 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 	@Override
 	public int updateQnaLike(QnaLike qnaLike,User user) throws Exception {
 		List<QnaLike> list = mapper.selectLikeView(qnaLike);
+		System.out.println(qnaLike.getOriId() +"넘어오나");
 		user.setId(qnaLike.getOriId());
+		System.out.println(user.getPoint() +"포인트확인1");
 		mapper.updatePoint(user);
+		System.out.println(user.getPoint() +"포인트확인2");
 			if(list.size() == 0) {
 				mapper.insertLikeView(qnaLike);
 				mapper.updateLikeCnt(qnaLike.getNo());
