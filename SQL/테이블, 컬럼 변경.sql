@@ -21,6 +21,8 @@ alter table tb_user change auth auth char(1) default 'U' comment '권한';
 alter table tb_user change password password varchar(200) not null comment '비밀번호';
 alter table tb_user change birthday birthday char(8) not null comment '생년월일';
 
+alter table tb_news_comment change comment_no comment_no int(10) auto_increment comment '댓글번호';
+
 alter table tb_qna_board add answer_at char(1) default 'N' comment '답변여부';
 
 -- foreign key 설정

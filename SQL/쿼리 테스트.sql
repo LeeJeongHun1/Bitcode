@@ -9,8 +9,9 @@ select * from tb_stsfc_code;
 select * from tb_news;
 
 -- 테이블 삭제
-drop table tb_user purge;
-drop table tb_news purge;
+drop table tb_user;
+drop table tb_news;
+drop table tb_news_comment;
 
 delete from tb_user
 	where id = 'id1';
@@ -25,6 +26,8 @@ insert into tb_user (
 -- delete 유저
 delete from tb_user
 	where id = 'sun';
+
+delete from tb_news_comment;
 	
 -- delete Q&A 게시판
 delete from tb_qna_board

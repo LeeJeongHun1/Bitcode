@@ -95,7 +95,7 @@ p.me::after {
 	
 	<!-- 메시지 입력창 -->
 	<div id="chatBottom" class="bottom-bar">
-		<input type="text" id="message" />
+		<input type="text" id="rMessage" />
 		<button type="button" value="메세지 전송" id="msgBtn">↵</button>
 	</div>
 </blockquote>
@@ -111,21 +111,34 @@ var socket = io.connect();
    console.dir(data);
    if(sender.match(data.sender)){
 	   $("#chatBox").append("<p class='me'>" + data.sender + " : " + data.msg + "</p>");
-	   $("#chatBox").scrollTop($("#chatBox").height());
+	   $("#chatBox").scrollTop($(document).height());
    } else{
 	   $("#chatBox").append("<p class='them'>" + data.sender + " : " + data.msg + "</p>");
-	   $(document).scrollTop($(document).height());
+	   $("#chatBox").scrollTop($(document).height());
    }
    
    });
- 
+ 	
+ 	// 전송 버튼 클릭시
    $("[type=button]").click(function () {
-   // id가 msg 인 텍스트 창에 입력된 데이터를 소켓서버에 전송
-	console.log("서버로 전송함");
-	// msg 호출
-     	socket.emit("msg", {roomId: roomId, sender: sender, msg: $("#message").val()});
+		var $msg = $("#rMessage");
+		// id가 msg 인 텍스트 창에 입력된 데이터를 소켓서버에 전송
+		console.log("서버로 전송함");
+		// msg 호출
+     	socket.emit("msg", {roomId: roomId, sender: sender, msg: $("#rMessage").val()});
+		$msg.val(""); 
    });
 
+ 	// 엔터키 입력시
+ 	$('#rMessage').keypress(function(key) {
+	if(key.which == 13){
+		var $msg = $("#rMessage");
+		// 웹소켓 서버에 데이터 전송하기
+		socket.emit("msg", {roomId: roomId, sender: sender, msg: $("#rMessage").val()});
+		$msg.val(""); 
+	}
+	});
+ 	
 // 룸번호로 조인
 socket.emit('join:room', {roomId: roomId});
    

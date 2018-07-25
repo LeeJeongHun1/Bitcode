@@ -238,11 +238,11 @@ alter table tb_attendance add constraint fk_tb_attendance_id_tb_user_id foreign 
 --------------------------------------------------------------------
 create table tb_news_comment (
     `article_no`  int(10)         not null    comment '뉴스번호', 
-    `comment_no`  int(10)         not null    comment '댓글번호', 
+    `comment_no`  int(10)         auto_increment    comment '댓글번호', 
     `id`          varchar(30)     not null    comment '아이디', 
     `content`     varchar(400)    not null    comment '댓글내용', 
-    primary key (article_no)
-);
+    primary key (comment_no)
+) engine=innodb default charset=utf8;
 
 alter table tb_news_comment comment 'it 뉴스 댓글 테이블';
 
@@ -250,7 +250,8 @@ alter table tb_news_comment add constraint fk_tb_news_comment_article_no_tb_news
  references tb_news (article_no)  on delete cascade on update cascade;
 
 alter table tb_news_comment add constraint fk_tb_news_comment_id_tb_user_id foreign key (id)
- references tb_user (id)  on delete cascade on update cascade;
+ references tb_user (id)  on delete cascade on update cascade; 
+ 
 --------------------------------------------------------------------
 -- 내문서 테이블
 --------------------------------------------------------------------

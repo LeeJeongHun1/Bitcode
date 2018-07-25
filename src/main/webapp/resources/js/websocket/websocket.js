@@ -96,8 +96,18 @@ $(function(){
 			// 메시지 체크
 			if((evt.data).startsWith("chat")){
 				var msg = (evt.data).split(":");
-				$("#chatResult").append(msg[1]+ " : " + msg[2]+"<br>");
-				$("#chatResult").scrollTop($("#chatResult").height());			
+				
+				if(msg[1].equals(nick)){
+					$("#chatResult").append("<p class='me'>" +msg[1]+ " : " + msg[2]+"<br>");
+					$("#chatResult").scrollTop($("#chatResult").height());								
+				}
+				else{
+					$("#chatResult").append("<p class='them'>" +msg[1]+ " : " + msg[2]+"<br>");
+					$("#chatResult").scrollTop($("#chatResult").height());													
+				}
+				
+				
+				
 			}			
 
 			console.log("메세지 전송")
