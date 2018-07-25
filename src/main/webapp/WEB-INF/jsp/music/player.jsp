@@ -87,7 +87,7 @@
 				html += '<li>' + f.title.split(".mp3")[0] + '</li>'
 			}
 			
-			$("#title").text(result[mPos].title.substring(result[mPos].title.length-4, 4));
+			$("#title").text(result[mPos].title);
 			
 			// 노래 인덱스 관리 (최대갯수)
 			mMax = result.length;
@@ -104,7 +104,7 @@
 				$("#myMusic").attr('src',
 						'${pageContext.request.contextPath}/main/download.do?path=' + encodeURI(`c:/java-lec/upload/${sessionScope.user.id}_music`) + '&fileName=' + this.innerHTML + '.mp3')
 				// 더블클릭시 타이틀 변경되게..						
-				$("#title").html(this.innerHTML.substring(this.innerHTML.length-4));		
+				$("#title").html(this.innerHTML);		
 			})
 		})
 	}
@@ -139,7 +139,7 @@
 
 		$("#myMusic")[0].src = '${pageContext.request.contextPath}/main/download.do?path=' + encodeURI(`c:/java-lec/upload/${sessionScope.user.id}_music`) + '&fileName='+ title+'';
 		//$(".album").attr("src", '${pageContext.request.contextPath}'' + imageLink);
-		$("#title").html(title.substring(title.length-4, 4));
+		$("#title").html(title);
 	};
 	
 	// 창 종료 함수
