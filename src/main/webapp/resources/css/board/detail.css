@@ -693,8 +693,10 @@ div .information {
 	margin-top: -3px;
 }
 
-.imgLink {width: 600px;
-    height: 400px;}
+.imgLink {
+	    max-width: 600px;
+    max-height: 400px;
+}
     
 /* 댓글 */
 .coWrap { float:right;}
