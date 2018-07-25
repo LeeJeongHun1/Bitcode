@@ -5,18 +5,25 @@ import java.util.Date;
 public class QnaComment {
 	private int no;
 	private int commentNo;
-	public int getCommentNo() {
-		return commentNo;
-	}
-	public void setCommentNo(int commentNo) {
-		this.commentNo = commentNo;
-	}
 	private String id;
 	private String content;
 	private Date regDate;
 	private int groupNo;
 	private int groupOrder;
 	private int depth;
+	private String nickName;
+	public String getNickName() {
+		return nickName;
+	}
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
+	public int getCommentNo() {
+		return commentNo;
+	}
+	public void setCommentNo(int commentNo) {
+		this.commentNo = commentNo;
+	}
 	public int getNo() {
 		return no;
 	}

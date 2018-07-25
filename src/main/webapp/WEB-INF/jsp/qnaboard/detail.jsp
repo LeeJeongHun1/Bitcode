@@ -71,7 +71,8 @@ a {
 			</div>
 			
 		<!-- 	만족		 -->
-		<c:if test="${list.qna.depth == 1}">
+ 			<c:if test="${list.id != sessionScope.user.id}">  
+<%-- 		<c:if test="${list.id != sessionScope.user.id} "> --%>
 			<div>		
 			<span class="satisAn">
 			<input type="radio" id="satisS" name="stsfcCode" value="13"/>
@@ -307,7 +308,7 @@ a {
 		var html ="";
 		$("ul.reBody").html("");
 		for(let i of data){
-			html+='<li id="cN' + i.commentNo + '" class="commentOr"><div class="reHeader"><p class="reWriter">'+i.id+'</p>';
+			html+='<li id="cN' + i.commentNo + '" class="commentOr"><div class="reHeader"><p class="reWriter">'+i.nickName+'</p>';
 			var date = new Date();
 			var time = date.getFullYear() + "." 
 			         + (date.getMonth() + 1) + "." 

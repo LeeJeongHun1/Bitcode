@@ -90,7 +90,6 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 		qnafile.setSystemName(file.getName());
 		qnafile.setFileSize((int)file.getSize());	
 		mapper.insertQnaFile(qnafile);
-		System.out.println("파일이 등록인가");
 		}
 		} 	
 	}
@@ -126,16 +125,16 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 		map.put("list", mapper.selectBoardSearch(search));
 		map.put("pageResult", new PageResult(search.getPageNo(),mapper.searchBoardCount(search)));
 		List<Qna> list = mapper.selectBoardSearch(search);
-		System.out.println("------------------------------");
-		System.out.println("검색 페이징 확인" + search.getBegin());
-		System.out.println("검색 솔트 확인" + search.getSort());
 		return map;
 	
 	}
 
 	@Override
 	public List<QnaComment> commentRegist(QnaComment comment, User user) throws Exception {
+		// 댓글 입력함.
 		mapper.insertComment(comment);
+		// 댓글이 입력되면 포인트를 줘야됨.
+		user.setId(comment.getId());
 		mapper.updatePoint(user);
 		return mapper.selectComment(comment.getNo());
 	}
@@ -162,12 +161,10 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 	public int updateQnaLike(QnaLike qnaLike) throws Exception {
 		List<QnaLike> list = mapper.selectLikeView(qnaLike);
 			if(list.size() == 0) {
-				System.out.println("좋아요 한 적이없음.");
 				mapper.insertLikeView(qnaLike);
 				mapper.updateLikeCnt(qnaLike.getNo());
 				return mapper.selectBoardByNo(qnaLike.getNo()).getLikeCnt();
 			}else {
-				System.out.println("좋아요 한 적 있어서 안됨");
 				return 0;
 			}
 			

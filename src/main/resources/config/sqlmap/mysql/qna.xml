@@ -173,6 +173,7 @@
 		where id = #{id}
 	</update>
 	
+	<!-- qna글 작성시 포인트 차감 -->
 	<update id="deletePoint" parameterType="user">
 	   update tb_user
 	     set point = point - 10 
@@ -266,13 +267,15 @@
 		<result column="group_no" property="groupNo" />
 		<result column="group_order" property="groupOrder" />
 		<result column="depth" property="depth" />
+		<result column="nick_name" property="nickName" />
 	</resultMap>
 	<!-- 댓글쿼리 -->
 	<select id="selectComment" parameterType="int" resultMap="commentMap">
-		select
-		*
-		from
-		tb_qna_comment
+		select *
+		from tb_qna_comment c
+		inner
+		join tb_user u
+		 on c.id = u.id
 		where no = #{no}
 		order by comment_no asc
 	</select>

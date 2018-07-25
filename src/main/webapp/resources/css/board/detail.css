@@ -208,8 +208,9 @@ textarea {    width: 610px;
 }
 
 .reHeader {
-	background: #f3f3f3;
-}
+/* 	background: #f3f3f3;*/
+background:#fff;
+ }
 
 .reBody, .writeComment {
 	background: #f5f5f5;
@@ -253,8 +254,9 @@ textarea {    width: 610px;
 
 .reBody li {
 	position: relative;
-	border-top: 1px solid #dadada;
-	margin-top: 10px;
+/* 	border-top: 1px solid #dadada;*/
+	margin-top: 10px; 
+	backgrond:#fff;
 	padding-top: 10px;
 }
 
@@ -352,6 +354,7 @@ textarea {    width: 610px;
 .comment {
 	clear: both;
 	margin: 5px;
+	padding-top:5px;
 	min-height: 60px;
 	text-align: left;
 }

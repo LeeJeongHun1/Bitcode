@@ -50,8 +50,10 @@
 					</tbody>
 				</table>
 			<div class="contents_btn">
-				<a href='<c:url value="/qnaboard/list.do" />'><button type="button">목록</button></a>
-				<button type="submit">등록</button>
+<%-- 				<a href='<c:url value="/qnaboard/list.do" />'><button type="button">목록</button></a>--%>
+				<a href='<c:url value="/qnaboard/list.do" />'><input class="editBtn" type="button" value="목록"></a>
+ 				<input class="editSubmit" type="submit" value="등록">
+<!-- 				<button type="submit">등록</button> -->
 			</div>
 			</form>
 		</div>
