@@ -35,7 +35,9 @@ update tb_user
 		set auth = 'S'
 		where id = 'admin';
 		
-select * from tb_user;
+select point 
+	from tb_user
+	where id = 'asd';
 
 update tb_user
 		set birthday = '20000404'
@@ -85,6 +87,8 @@ select count(distinct group_no)
 	from tb_qna_board
 	where answer_at = 'Y';
 	
+select * from tb_qna_board
+	where no = 261;
 	
 select *
 	from tb_code_board
@@ -109,4 +113,14 @@ select *
 	and group_no = 91
 	and read_ans = 'N';
 	
-commit;
+-- 내 문의글 출력
+select s.stsfc_step, s.stsfc_code, q.no, q.id, q.title
+	from tb_stsfc_code s
+	inner join tb_qna_board q
+	on q.stsfc_code = s.stsfc_code
+	where id = 'yoo';
+
+--
+select *
+	from tb_qna_board
+	where id = 'asd';

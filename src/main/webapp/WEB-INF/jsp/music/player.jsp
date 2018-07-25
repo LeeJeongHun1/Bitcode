@@ -39,15 +39,17 @@
 			<div id="playstation">
 				<div id="controlpanel">
 					<div id="backward" class="inlineblo">
-						<i class="fa fa-backward glyphicon glyphicon-backward"></i>
+						<!-- 이전곡 -->
+						<i class="fa fa-backward glyphicon glyphicon-backward" id="prevPlay"></i>
 					</div>
 					<div id="songpro" class="inlineblo">
 					<span class="musicPlay glyphicon glyphicon-play"></span>
 					</div>
 					<div id="forward" class="inlineblo">
-						<i class="fa fa-forward glyphicon glyphicon-forward"></i>
+						<!-- 다음곡 -->
+						<i class="fa fa-forward glyphicon glyphicon-forward" id="nextPlay"></i>
 					</div>
-					<h2>노래노래노래</h2>
+					<h2 id="title"></h2>
 				</div>
 				<progress max="100" value="80"></progress>
 				<%-- 음악리스트 --%>
@@ -61,31 +63,12 @@
 
 <script src="${pageContext.request.contextPath}/resources/js/folderjs/Speech.js"></script>
 <script>
+	// 노래 재생 인덱스 관리
+	var mPos = 0;
+	var mMax;
+	var mList = new Array();
+	
 	window.onload = function () {
-		<%-- 
-		// 팝업 창 크기를 HTML 크기에 맞추어 자동으로 크기를 조정하는 함수.
-		var strWidth;
-		var strHeight;
-		//innerWidth / innerHeight / outerWidth / outerHeight 지원 브라우저
-		if ( window.innerWidth && window.innerHeight && window.outerWidth && window.outerHeight ) {
-			strWidth = $('.musicBody').outerWidth() + (window.outerWidth - window.innerWidth);
-			strHeight = $('.musicBody').outerHeight() + (window.outerHeight - window.innerHeight);
-		}
-		else {
-			var strDocumentWidth = $(document).outerWidth();
-			var strDocumentHeight = $(document).outerHeight();
-
-			window.resizeTo ( strDocumentWidth, strDocumentHeight );
-
-			var strMenuWidth = strDocumentWidth - $(window).width();
-			var strMenuHeight = strDocumentHeight - $(window).height();
-
-			strWidth = $('.musicBody').outerWidth() + strMenuWidth;
-			strHeight = $('.musicBody').outerHeight() + strMenuHeight;
-		}
-		//resize
-		window.resizeTo( strWidth, strHeight );
-		 --%>
 		$(".musicBody").draggable();
 		console.dir($("#myMusic"))
 		$.ajax({
@@ -101,14 +84,23 @@
 				$(".fList").html('<li>음악 폴더에 파일이 없습니다.</li>');
 				return;
 			}
+			
 			for(let f of result){
-				html += '<li>' + f.title + '</li>'
+				mList.push({"title":f.title, "path":f.path});
+				html += '<li>' + f.title.substring(f.title.length-4, 4) + '</li>'
 			}
+			
+			$("#title").text(result[mPos].title.substring(result[mPos].title.length-4, 4));
+			
+			// 노래 인덱스 관리 (최대갯수)
+			mMax = result.length;
+			
 			$(".fList").html(html);
 			$("#myMusic").attr('src',
-					'${pageContext.request.contextPath}/main/download.do?path=' + encodeURI(`c:/java-lec/upload/${sessionScope.user.id}_music`) + '&fileName='+result[0].title+'')
+					'${pageContext.request.contextPath}/main/download.do?path=' + encodeURI(`c:/java-lec/upload/${sessionScope.user.id}_music`) + '&fileName='+result[mPos].title+'')
 			$("#myMusic").attr('autoplay', 'autoplay');
-	// 		$("#myMusic")[0].onloadstart=function(){$("#myMusic")[0].play();};
+	// 		$("#myMusic")[mPos].onloadstart=function(){$("#myMusic")[mPos].play();};
+			
 			console.dir($(".fList li"));
 			$(".fList li").dblclick(function () {
 // 				alert(this.innerHTML);
@@ -125,7 +117,33 @@
 // 		}
 // 	})
 
+	
+	// 이전곡 재생
+	$("#prevPlay").click(function() {
+		mPos--;
+		nowPlay ();
+		
+	});
+	// 다음곡 재생
+	$("#nextPlay").click(function() {
+		mPos++;
+		nowPlay ();
+	});
+	
+	
+	// 오디오 플레이어
+	function nowPlay () {
+		if(mPos >= mMax){ mPos = 0; };
+		if(mPos <= -1){ mPos = mMax; };
+		var mPath = mList[mPos].path;
+		var title = mList[mPos].title;
 
+		$("#myMusic")[0].src = '${pageContext.request.contextPath}/main/download.do?path=' + encodeURI(`c:/java-lec/upload/${sessionScope.user.id}_music`) + '&fileName='+ title+'';
+		//$(".album").attr("src", '${pageContext.request.contextPath}'' + imageLink);
+		$("#title").text(title.substring(title.length-4, 4));
+	};
+	
+	// 창 종료 함수
 	function callMain() {
 		//window.opener.location.href = '${pageContext.request.contextPath}/main/main.do';
 		self.close();
