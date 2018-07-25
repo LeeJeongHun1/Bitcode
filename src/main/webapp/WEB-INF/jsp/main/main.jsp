@@ -696,6 +696,9 @@ IMP.init('imp93914891');
 					if(file.type.split('/')[0] == 'audio' && $("#share-path").data("root") != ('c:/java-lec/upload/'+$("#sId").val()+'_music') ){
 						$("#share-path").data("root", 'c:/java-lec/upload/'+$("#sId").val()+'_music');
 						sendFile(file);
+						swal(	'warning',
+								'음악 폴더에 업로드 합니다.',
+								'question');
 						return;
 					}
 					fDiv.append(html);
@@ -815,30 +818,6 @@ IMP.init('imp93914891');
 						'이 위치에 이름이 같은 파일이 존재합니다.',
 						'question');
 				return;
-// 				swal({
-// 					title: '이 위치에 이름이 같은 파일이 존재합니다.',
-// 					text: "이동하는 파일로 덮어 쓰시겠습니까??",
-// 					type: 'warning',
-// 					showCancelButton: true,
-// 					confirmButtonColor: '#3085d6',
-// 					cancelButtonColor: '#d33',
-// 					cancelButtonText: '취소',
-// 					confirmButtonText: '덮어쓰기'
-// 					})
-// 					.then((result) => {
-// 						if (result.value) {
-// 							result = result.value;
-// 							swal(
-// 							'success!',
-// 							'해당 파일로 덮어쓰기 하였습니다.',
-// 							'success'
-// 							)
-// 							for (var i = 0; i < items.length; i++) {
-// 								var item = items[i].webkitGetAsEntry();
-// 								if (item) { traverseFileTree(item); }
-// 							}
-// 						}
-// 					})
 			}
 		}
 		if(items[0].webkitGetAsEntry().isDirectory){
