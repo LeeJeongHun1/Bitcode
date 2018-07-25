@@ -31,7 +31,7 @@
 					<tbody>
 						<tr>
 							<th>제목</th>
-							<td style="text-align: left;"><input class="editTitle" type="text" name="title" value="${list.qna.title}"/> 
+							<td style="text-align: left;"><input class="editTitle" type="text" name="title" value="${list.qna.nickName}님 문의글에 대한 답변글입니다."/> 
 							<input type="hidden" name="code" value="${list.qna.code}"/> /${list.qna.codeName}</td>
 						</tr>
 						<tr>

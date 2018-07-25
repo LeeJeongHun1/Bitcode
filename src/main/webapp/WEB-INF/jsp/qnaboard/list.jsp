@@ -194,7 +194,7 @@
 					for(var i = 1; i < qna.depth; i++){
 						html+= '<span>&nbsp;&nbsp;&nbsp;</span> ';					
 					}
-						html+= '<span style="color:#2c3e50;">⤷ RE </span>';
+						html+= '<span style="color:#2c3e50;">⤷  </span>';
 						html+= '<a href="detail.do?no='+qna.no+'">'+qna.title+'</a></td>';
 				}else{
 					for(var i = 1; i < qna.depth; i++){
