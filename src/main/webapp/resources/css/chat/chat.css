@@ -240,6 +240,7 @@ span {
 /* 채팅박스 */
 p {
   margin: 0 0 0.5em;
+  margin-top: 10px;
   border-radius: 1em;
   padding: 0.5em 1em;
   background: #e5e5ea;
@@ -249,9 +250,9 @@ p {
 }
 p.them {
   float: left;
+  margin-left: 10px;
 }
 p.them::after {
-  content: "";
   position: absolute;
   left: -0.5em;
   bottom: 0;
@@ -264,9 +265,9 @@ p.me {
   float: right;
   background-color: #1289fe;
   color: white;
+  margin-right: 10px;
 }
 p.me::after {
-  content: "";
   position: absolute;
   right: -0.5em;
   bottom: 0;
