@@ -12,7 +12,7 @@
 			<input type="hidden" name="groupOrder" value="${cb.groupOrder}" /> 
 			<input type="hidden" name="depth" value="${cb.depth}" />
 			<input type="hidden" name="groupNo" value="${cb.groupNo}" />
-			<input type="hidden" name="id" value="${cb.id}" />
+			<input type="hidden" name="oriId" value="${cb.id}" />
 <div class="detailBody">
 	<div id="card1" class="card ten col">
 		<div class="topbar yellow">
@@ -88,7 +88,6 @@
 			<a href='<c:url value="updateForm.do?no=${cb.no}" />'><button>수정</button></a>
 			<a href='<c:url value="delete.do?no=${cb.no}"/>'><button>삭제</button></a>
 			</c:if>
-			<a href='#'><button onclick="recommend();">추천</button></a>
 			</div>
 		</div>
 		</div>
@@ -99,16 +98,17 @@
 			url: "like.json",
 			dataType: "json",
 			data: {
+				no: '${cb.no}',
 				id: '${sessionScope.user.id}',
-				no: '${cb.no}'
+				oriId:'${cb.id}'
 			}
 		})
 		.done(function (result){
 			if(result == '0'){
 				alert('이미 추천한 게시글 입니다.')
 			}else{
+				$(".like_count").html(result)
 				alert('추천 완료');
-				$("#likeCnt").html('추천' + result)
 			}
 		})
 	}
