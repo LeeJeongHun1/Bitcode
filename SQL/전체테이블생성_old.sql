@@ -44,7 +44,7 @@ create table tb_user (
     `email`      varchar(50)    not null       comment '이메일', 
     `point`      int(10)        default 0      comment '포인트', 
     `auth`       char(1)        default 'U'    comment '권한', 
-    `birthday`   varchar(8)     not null       comment '생년월일'
+    `birthday`   char(8)        not null       comment '생년월일'
 ) default charset=utf8;
 
 alter table tb_user comment '회원정보';
