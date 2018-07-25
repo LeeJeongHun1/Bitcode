@@ -124,8 +124,11 @@ input[type="radio"] + label span {
 }
 
 .commentTextarea {
-	width: 800px;
-	height: 40px;
+/* 	width: 800px;
+	height: 40px; */
+    width: 88%;
+    height: 56px;
+
 }
 .cardITNewsDetail1 > .articleall {
 		margin-left: 3%;
@@ -490,9 +493,17 @@ button.btn2 {
     background-color: #c10000;
     color: white;
     width: 81px;
-    height: 36px;
+    height: 46px;
     /* padding-bottom: 76px; */
-    padding: 18px;
-    display: inline-grid;
+    /* padding: 18px; */
+    display: block;
+    top: 6px;
+    position: absolute;
     font-size: 16px;
+    right: 21px;
 }
+
+.commetWrap {    
+	position: relative;
+    width: 100%;}
+.

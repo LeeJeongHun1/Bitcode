@@ -43,7 +43,7 @@
 					<c:if test="${sessionScope.user.id != null}">
 					<form id="writeForm">
 						<h5>댓글쓰기</h5>
-						<div>
+						<div class="commetWrap">
 						<textarea name="commentText" class="commentTextarea"></textarea>
 <!-- 						<button class="btn3"><div id="q">등록</div></button> -->
 						<input type="button" class="btn3" value="등록">
