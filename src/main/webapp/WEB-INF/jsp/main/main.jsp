@@ -410,11 +410,12 @@ IMP.init('imp93914891');
 					appendFile += '</div>';
 					$("#folder-area").append(appendFile);
 				}else{
-					console.log(f.title.split('.')[1])
+					console.dir(f)
 					appendFile += '<div class="col-xs-2 folders text-center" id="'+f.key+'" data-path="'+f.path+'" data-title="'+f.title+'" ondblclick="test1('+f.key+')">';
 					appendFile += '<p class="contain">';
 					if(f.type == 'img'){
-						appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/imageicon.png"`;
+						appendFile += '	<img src=download.do?path='+encodeURI(f.path)+'&fileName='+f.title;
+// 						appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/imageicon.png"`;
 					}else if(f.title.split('.')[1] == 'mp3') {
 						appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/mp3image.png"`;
 					}else if(f.title.split('.')[1] == 'xls') {
@@ -473,7 +474,8 @@ IMP.init('imp93914891');
 					appendFile += '<div class="col-xs-2 folders text-center" id="'+f.key+'" data-path="'+f.path+'" data-title="'+f.title+'" ondblclick="test1('+f.key+')">';
 					appendFile += '<p class="contain">';
 					if(f.type == 'img'){
-						appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/imageicon.png"`;
+						appendFile += '	<img src=download.do?path='+encodeURI(f.path)+'&fileName='+f.title;
+// 						appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/imageicon.png"`;
 					}else if(f.title.split('.mp3')[1] != '') {
 						appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/mp3image.png"`;
 					}else{
@@ -631,9 +633,18 @@ IMP.init('imp93914891');
 				appendFile += '<div class="col-xs-2 folders text-center" id="'+f.key+'" data-path="'+f.path+'" data-title="'+f.title+'" ondblclick="test1('+f.key+')">';
 				appendFile += '<p class="contain">';
 				if(f.type == 'img'){
-					appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/imageicon.png"`;
+					appendFile += '	<img src=download.do?path='+encodeURI(f.path)+'&fileName='+f.title;
+// 					appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/imageicon.png"`;
 				}else if(f.title.split('.') == 'mp3') {
 					appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/mp3image.png"`;
+				}else if(f.title.split('.')[1] == 'xls') {
+					appendFile += `	<img src="https://image.noelshack.com/fichiers/2018/22/1/1527527145-logo-microsoft-excel-20132.png"`;
+				}else if(f.title.split('.')[1] == 'pdf') {
+					appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/pdfimage.png"`;
+				}else if(f.title.split('.')[1] == 'pptx') {
+					appendFile += `	<img src="https://image.noelshack.com/fichiers/2018/22/1/1527527145-logo-microsoft-powerpoint-2013.png"`;
+				}else if(f.title.split('.')[1] == 'ppt') {
+					appendFile += `	<img src="https://image.noelshack.com/fichiers/2018/22/1/1527527145-logo-microsoft-powerpoint-2013.png"`;
 				}else{
 					appendFile += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500505134/if_sticky-note_299111_px7waa.png"';
 				}
@@ -683,9 +694,16 @@ IMP.init('imp93914891');
 					html += '<div class="col-xs-2 folders text-center" id="'+ ++id +'" data-path="'+$("#share-path").data("root")+'" data-title="'+file.name+'" ondblclick="test1()">';
 					html += '	<p class="contain">';
 					if(file.type.split('/')[0] == 'image'){
-						html += `	<img src="${pageContext.request.contextPath}/resources/images/imageicon.png"`;
+						html += "	<img src='" + URL.createObjectURL(file) + "'"; // file 객체를 이용하여 데이터 활용
+// 						html += `	<img src="${pageContext.request.contextPath}/resources/images/imageicon.png"`;
 					}else if(file.type.split('/')[0] == 'audio'){
 						html += `	<img src="${pageContext.request.contextPath}/resources/images/mp3image.png"`;
+					}else if(file.name.split('.')[1] == 'xls') {
+						html += `	<img src="https://image.noelshack.com/fichiers/2018/22/1/1527527145-logo-microsoft-excel-20132.png"`;
+					}else if(file.name.split('.')[1] == 'pdf') {
+						html += `	<img src="${pageContext.request.contextPath}/resources/images/pdfimage.png"`;
+					}else if(file.name.split('.')[1] == 'pptx') {
+						html += `	<img src="https://image.noelshack.com/fichiers/2018/22/1/1527527145-logo-microsoft-powerpoint-2013.png"`;
 					}else{
 						html += '	<img src="https://res.cloudinary.com/dr5ei3rt1/image/upload/v1500505134/if_sticky-note_299111_px7waa.png"';
 					}
@@ -902,7 +920,8 @@ IMP.init('imp93914891');
 					appendFile += '<div class="col-xs-2 folders text-center" id="'+f.key+'" data-path="'+f.path+'" data-title="'+f.title+'" ondblclick="test1()">';
 					appendFile += '<p class="contain">';
 					if(f.type == 'img'){
-						appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/imageicon.png"`;
+						appendFile += '	<img src=download.do?path='+encodeURI(f.path)+'&fileName='+f.title;
+// 						appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/imageicon.png"`;
 					}else if(f.title.split('.')[1] == 'mp3') {
 						appendFile += `	<img src="${pageContext.request.contextPath}/resources/images/mp3image.png"`;
 					}else if(f.title.split('.')[1] == 'xls') {
@@ -920,7 +939,7 @@ IMP.init('imp93914891');
 					$("#folder-area").append(appendFile);
 				}
 			}
-			$('#tree').fancytree('option', 'source', data.list);
+// 			$('#tree').fancytree('option', 'source', data.list);
 			$("#share-path").data("root","c:/java-lec/upload/"+$("#sId").val());
 			$("#share-path").html('<span class="path-icon-input">Share:</span><span class="path-icon-input">${sessionScope.user.id}</span>');
 			

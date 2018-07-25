@@ -4,8 +4,8 @@
 var cnt = 0;	
 $(function(){
 	if(loginId){
-		ws = new WebSocket("wss://localhost/bitcode/websocket.do");
-//		ws = new WebSocket("wss://192.168.0.165/bitcode/websocket.do");
+//		ws = new WebSocket("wss://localhost/bitcode/websocket.do");
+		ws = new WebSocket("wss://192.168.0.165/bitcode/websocket.do");
 		ws.onopen = function(){
 			console.log("웹소켓 서버 접속 성공");
 			// 웹소켓 서버에 데이터 전송하기
@@ -83,14 +83,14 @@ $(function(){
 			if((evt.data).startsWith("in")){
 				var inmsg = (evt.data).split(":");
 				$("#chatResult").append("<p class='them'>"+inmsg[1] + "</p>");
-				$("#chatResult").scrollTop($("#chatResult").height());			
-			}	
+				$("#chatResult").scrollTop($(document).height());
+			}
 
 			// 퇴장 체크
 			if((evt.data).startsWith("out")){
 				var outmsg = (evt.data).split(":");
 				$("#chatResult").append("<p class='them'>"+outmsg[1] + "</p>");
-				$("#chatResult").scrollTop($("#chatResult").height());			
+				$("#chatResult").scrollTop($(document).height());			
 			}						
 
 			// 메시지 체크
@@ -99,11 +99,11 @@ $(function(){
 				
 				if(msg[1].match(nick)){
 					$("#chatResult").append("<p class='me'>" +msg[1]+ " : " + msg[2]+"</p>");
-					$("#chatResult").scrollTop($("#chatResult").height());								
+					$("#chatResult").scrollTop($(document).height());								
 				}
 				else{
 					$("#chatResult").append("<p class='them'>" +msg[1]+ " : " + msg[2]+"</p>");
-					$("#chatResult").scrollTop($("#chatResult").height());													
+					$("#chatResult").scrollTop($(document).height());													
 				}
 				
 			}			
