@@ -19,14 +19,14 @@
 		<h1 class="information">채팅방</h1>
     <div class="chat" style="height:150px;">
         <h1 style="width:140px;margin-left:777px;font-size:20px;">사용자 목록</h1>
-    <div id="chatResult" style="overflow:auto;text-align:left;margin-left:100px;width:620px;height:392px;float:left;border-style: dashed;border-width: 3px;border-color: orange;">
+    <div id="chatResult" style="box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, .1);overflow:auto;text-align:left;margin-left:100px;width:620px;height:392px;float:left;border-style: none;border-width: 3px;border-color: orange;">
     </div>
-	<div id="entranceUser" style="overflow:auto;width:200px;height:392px;float:left;margin-left:30px;border-style: dashed;border-width: 3px;border-color: orange;"></div>
+	<div id="entranceUser" style="box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, .1);overflow:auto;width:200px;height:392px;float:left;margin-left:30px;border-style:none;border-width: 3px;border-color: orange;"></div>
 
 	<div id="msgBox">
-		<input type="text" id="message" name="message" style="width:520px;"/>
+		<input type="text" id="message" name="message" style="width:520px; height: 40px; border-radius: 5px;"/>
 		<button class="btn btn-default" id="sendBtn" style="margin-bottom: 10px;margin-top: 5px;margin-left: 10px;">전송</button>
-    	<button class="btn btn-default" onclick="location.href='${pageContext.request.contextPath}/main/main.do'" type="button" style="margin-left:110px;" >나가기</button>
+    	<button class="btn btn-default" onclick="location.href='${pageContext.request.contextPath}/main/main.do'" type="button" style="margin-left:110px;margin-bottom: 5px" >나가기</button>
 	</div>
     </div>
 	</div>
