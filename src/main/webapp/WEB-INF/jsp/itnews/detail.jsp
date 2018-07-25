@@ -46,7 +46,7 @@
 						<div class="commetWrap">
 						<textarea name="commentText" class="commentTextarea"></textarea>
 <!-- 						<button class="btn3"><div id="q">등록</div></button> -->
-						<input type="button" class="btn3" value="등록">
+						<input type="submit" class="btn3" value="등록">
 						</div>
 					</form>
 					<div class="btnITList"><a href='${pageContext.request.contextPath}/itnews/list.do' class="ITList" role="button" >목록</a></div>	
