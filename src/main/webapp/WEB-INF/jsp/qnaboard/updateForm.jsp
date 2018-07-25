@@ -40,9 +40,7 @@
 
 						<tr style="height: 90%;">
 							<th>내용</th>
-							<td><textarea name="content" style="width: 100%; height: 100%; min-height: 232px;">
-							<c:out value="${list.qna.content}"/>
-							</textarea></td>
+							<td><textarea name="content" style="width: 100%; height: 100%; min-height: 232px;"><c:out value="${list.qna.content}"/></textarea></td>
 						</tr>
 					 	<tr>
 							<th>파일첨부</th>

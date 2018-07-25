@@ -32,7 +32,7 @@ a {
 		</div> 
 		
 		<div class="shell-container">
-			<h2 class="shell_title">QnA질문게시판</h2>
+			<!-- <h2 class="shell_title">QnA질문게시판</h2> -->
 		<div class="contents_header">
 			<div class="titleWrap">
 				<c:if test="${empty list.qna}">없습니다.</c:if>
@@ -123,11 +123,11 @@ a {
 			</div>
 
 			<div class="contents_btn">
-				<a href='<c:url value="/qnaboard/list.do" />'><button>목록</button></a>
-				<a id="cBtn" href='<c:url value="/qnaboard/insertReForm.do?no=${list.qna.no}"/>'><button>답변</button></a>
+				<a href='<c:url value="/qnaboard/list.do" />'><input class="editBtn" type="button" value="목록"></a>
+				<a id="cBtn" href='<c:url value="/qnaboard/insertReForm.do?no=${list.qna.no}"/>'><input class="editSubmit" type="button" value="답변"/></a>
 				<c:if test="${list.qna.id == sessionScope.user.id}">
-				<a id="mBtn" href='<c:url value="/qnaboard/updateForm.do?no=${list.qna.no}" />'><button>수정</button></a>
-				<a id="dBtn" href='<c:url value="/qnaboard/delete.do?no=${list.qna.no}"/>' ><button>삭제</button></a>
+				<a id="mBtn" href='<c:url value="/qnaboard/updateForm.do?no=${list.qna.no}" />'><input class="editSubmit" type="button" value="수정"/></a>
+				<a id="dBtn" href='<c:url value="/qnaboard/delete.do?no=${list.qna.no}"/>' ><input class="editBtn" type="button" value="삭제" /></a>
 				</c:if>
 				<!-- <a href="#"><button>삭제</button></a> -->
 			</div>
@@ -143,7 +143,9 @@ a {
 	<!-- qnaBody -->
 	
 	
-	<script>$("#StatisBtn").click(function () {
+	<script>
+	
+		$("#StatisBtn").click(function () {
         //라디오 버튼 Name 가져오기
         var radio_btn = document.getElementsByName("stsfcCode");
         //라디오 버튼이 체크되었나 확인하기 위한 변수
