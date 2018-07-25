@@ -33,8 +33,7 @@
 	<div class="musicBody">
 		<!-- <audio src='download.do?path=" + encodeURI(path) + "&fileName="+fileName'> -->
 		<!-- <audio id="myMusic" autoplay="autoplay" controls="controls" loop> -->
-		<audio id="myMusic" autoplay="autoplay" loop>
-		</audio>
+		<audio id="myMusic" autoplay="autoplay"></audio>
 		<div class="musicList">
 			<div id="playstation">
 				<div id="controlpanel">
@@ -42,9 +41,7 @@
 						<!-- 이전곡 -->
 						<i class="fa fa-backward glyphicon glyphicon-backward" id="prevPlay"></i>
 					</div>
-					<div id="songpro" class="inlineblo">
-					<span class="musicPlay glyphicon glyphicon-play"></span>
-					</div>
+					<div id="songpro" class="inlineblo"></div>
 					<div id="forward" class="inlineblo">
 						<!-- 다음곡 -->
 						<i class="fa fa-forward glyphicon glyphicon-forward" id="nextPlay"></i>
