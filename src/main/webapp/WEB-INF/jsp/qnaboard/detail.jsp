@@ -201,11 +201,16 @@ a {
 	
 	
 	//alert(sessionP);
+	
+	// 추천수로 포인트 증가
+	$("#qnaLike")
+	
 	 
 	// 답글 관리자및 고수로 제한
 	$("#cBtn").click(function(){ 
 		if(session != 'S' && sessionP <= 250 ){
-			alert("관리자 와 고수외에는 답글이 불가능 합니다.")
+			swal("관리자 와 고수외에는 답글이 불가능 합니다.");
+			//alert("관리자 와 고수외에는 답글이 불가능 합니다.");
 			return false;
 		}
 		
@@ -215,7 +220,8 @@ a {
 		$.ajax({
 		    url:"<c:url value='/qnaboard/likeUpdate.json'/>",
 		   data:{no:"${list.qna.no}",
-			     id: $("input[name='id']").val()},
+			     id: $("input[name='id']").val(),
+			     oriId: $("input[name='oriId']").val()},
 		   dataType: "json"
 		})
 		.done(function(result){

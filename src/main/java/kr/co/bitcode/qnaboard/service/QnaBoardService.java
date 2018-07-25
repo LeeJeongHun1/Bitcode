@@ -31,5 +31,5 @@ public interface QnaBoardService {
 	public List<QnaComment> commentDelete(QnaComment comment) throws Exception;
 	
 	//좋아요 
-	public int updateQnaLike(QnaLike qnaLike) throws Exception;
+	public int updateQnaLike(QnaLike qnaLike,User user) throws Exception;
 }

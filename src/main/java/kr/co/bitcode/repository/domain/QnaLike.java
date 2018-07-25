@@ -4,6 +4,13 @@ public class QnaLike {
 	private int likeNo;
 	private int no;
 	private String id;
+	private String oriId;
+	public String getOriId() {
+		return oriId;
+	}
+	public void setOriId(String oriId) {
+		this.oriId = oriId;
+	}
 	public int getLikeNo() {
 		return likeNo;
 	}

@@ -11,7 +11,9 @@
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/board/list.css">
 </head>
-
+<style>
+.information a:hover {font-weight: 700;}
+</style>
 <body>
 
 	<div class="listBody">
@@ -22,7 +24,7 @@
 		<div class="swatches"><span class="red"></span><span class="orange"></span><span class="yellow"></span><span class="green"></span><span class="blue"></span></div>
 		<div class="xbtn" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">x</div>
 		</div>
-		<h1 class="information">QnA게시판</h1>
+		<h1 class="information"><a href='<c:url value="/qnaboard/list.do" />'>QnA게시판</a></h1>
 	
 	
 	<%-- Q&A 게시판 내용 출력 --%>

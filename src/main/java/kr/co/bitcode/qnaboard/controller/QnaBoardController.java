@@ -122,8 +122,8 @@ public class QnaBoardController {
 	// 좋아요
 	@RequestMapping("/likeUpdate.json")
 	@ResponseBody
-	public int insertQnaLike(QnaLike qnaLike) throws Exception{
-		return qnaBoardService.updateQnaLike(qnaLike);
+	public int insertQnaLike(QnaLike qnaLike,User user) throws Exception{
+		return qnaBoardService.updateQnaLike(qnaLike,user);
 	}
 	
 	

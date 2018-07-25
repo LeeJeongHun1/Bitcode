@@ -60,9 +60,8 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 		Map<String,Object> map= new HashMap<>();
 		Qna qna = mapper.selectBoardByNo(no);
 		qna.setFileList(mapper.selectQnaFile(no));
-		System.out.println(qna.getFileList().size() + "파일사이즈바군");
 		map.put("qna", qna);
-		map.put("ori", mapper.selectBoardByNo(qna.getGroupNo()).getId());	
+		map.put("ori", mapper.selectBoardByNo(qna.getGroupNo()).getId());
 		// 게시판 읽었을 경우 Y로 변경되게
 		mapper.readQna(qna);
 		mapper.updateReadAns(qna);
@@ -158,8 +157,10 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 	}
 	
 	@Override
-	public int updateQnaLike(QnaLike qnaLike) throws Exception {
+	public int updateQnaLike(QnaLike qnaLike,User user) throws Exception {
 		List<QnaLike> list = mapper.selectLikeView(qnaLike);
+		user.setId(qnaLike.getOriId());
+		mapper.updatePoint(user);
 			if(list.size() == 0) {
 				mapper.insertLikeView(qnaLike);
 				mapper.updateLikeCnt(qnaLike.getNo());
