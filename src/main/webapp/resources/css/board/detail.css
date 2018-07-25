@@ -51,12 +51,13 @@ input[type="radio"] + label span {
   text-align: center;
   width:40px;
   height: 25px;
-  border-radius:6px;
-  border:0;
-  margin-left:30px;
+  border-radius:2px;
+  margin-left:1px;
   background:#df736a;
   color:#fff;
   ext-decoration:none;
+  text-decoration: none;
+  display: inline;
 }
 #StatisBtn > #userClick{
 	font-size: 15px;
