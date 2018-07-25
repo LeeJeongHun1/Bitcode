@@ -13,7 +13,7 @@
 </head>
 <body>
 
-<!--   기사 내용부분 -->
+<!--   기사 내용부분 -->	
 <div class="card-grid-space1">
 <div class="topbar red">
 	<div class="swatches"><span class="red"></span><span class="orange"></span><span class="yellow"></span><span class="green"></span><span class="blue"></span></div>
