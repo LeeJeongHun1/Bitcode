@@ -115,7 +115,6 @@
 // 			f.innerHTML;
 // 		}
 // 	})
-
 	
 	// 이전곡 재생
 	$("#prevPlay").click(function() {
@@ -129,7 +128,6 @@
 		nowPlay ();
 	});
 	
-	
 	// 오디오 플레이어
 	function nowPlay () {
 		if(mPos >= mMax){ mPos = 0; };
@@ -140,13 +138,13 @@
 		$("#myMusic")[0].src = '${pageContext.request.contextPath}/main/download.do?path=' + encodeURI(`c:/java-lec/upload/${sessionScope.user.id}_music`) + '&fileName='+ title+'';
 		//$(".album").attr("src", '${pageContext.request.contextPath}'' + imageLink);
 		$("#title").html(title);
-	};
+	}; // nowPlay
 	
 	// 창 종료 함수
 	function callMain() {
 		//window.opener.location.href = '${pageContext.request.contextPath}/main/main.do';
 		self.close();
-	}
+	} // callMain
 </script>
 </body>
 </html>
