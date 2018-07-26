@@ -151,7 +151,7 @@ border: groove yellow;
 				</c:when>
 				<c:otherwise>
 				<td>
-				<img class="lelvel" src="${pageContext.request.contextPath}/resources/images/xxxx.png"></td>	
+				<img class="lelvel" src="${pageContext.request.contextPath}/resources/images/unre.png"></td>	
 				</c:otherwise>
 				</c:choose>	
 				<c:forEach var="listStis" items="${qnaList.listStis}">
