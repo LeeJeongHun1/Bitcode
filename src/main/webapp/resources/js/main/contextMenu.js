@@ -21,7 +21,7 @@ if(loginId){
 
 	function onMouseDown(e){
 		hideMenu();
-
+		
 		// 컨텍스트 메뉴에서 클릭한 항목
 		//console.dir(e.path[0].lastElementChild.id);
 		if(e.path[0].lastElementChild.id.match("back1")){
