@@ -57,7 +57,6 @@ $('#patternContainer').mouseup(function () {
 	var patVal = lock.getPattern();
 	// 패턴 번호를 input .patternlogin에 입력
 	$(".patternLogin").val(patVal);
-	alert(patVal);
 	alert($(".patternLogin").val());
 });
 </script> 
