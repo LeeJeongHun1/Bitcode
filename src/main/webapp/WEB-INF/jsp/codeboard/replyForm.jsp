@@ -51,8 +51,8 @@ href="${pageContext.request.contextPath}/resources/css/board/detail.css">
 			</tbody>			
 			</table>
 			<div class="contents_btn">
-			<button type='submit'>답변등록</button>
-			<a href='<c:url value="list.do" />'><button type="button">목록</button></a>
+			<button class="editSubmit" type='submit'>답변</button>
+			<a href='<c:url value="list.do" />'><button class="editBtn" type="button">목록</button></a>
 			</div>
 			</form>
 		</div>

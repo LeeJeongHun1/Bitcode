@@ -82,11 +82,11 @@
 			</ul>
 			</div>
 			<div class="contents_btn">
-    		<a href='<c:url value="list.do" />'><button>목록</button></a>
-			<a href='<c:url value="replyForm.do?no=${cb.no}" />'><button>답변</button></a>
+    		<a href='<c:url value="list.do" />'><button class="editBtn">목록</button></a>
+			<a href='<c:url value="replyForm.do?no=${cb.no}" />'><button class="editSubmit">답변</button></a>
 			<c:if test="${cb.id == sessionScope.user.id}">
-			<a href='<c:url value="updateForm.do?no=${cb.no}" />'><button>수정</button></a>
-			<a href='<c:url value="delete.do?no=${cb.no}"/>'><button>삭제</button></a>
+			<a href='<c:url value="updateForm.do?no=${cb.no}" />'><button class="editSubmit">수정</button></a>
+			<a href='<c:url value="delete.do?no=${cb.no}"/>'><button class="editBtn">삭제</button></a>
 			</c:if>
 			</div>
 		</div>

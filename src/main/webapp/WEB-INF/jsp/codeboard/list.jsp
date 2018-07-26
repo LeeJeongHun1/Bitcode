@@ -49,7 +49,7 @@
         	<option value="3">제목</option>
         </select>
         <input name="keyword" id="input">
-        <input id="search" type="button" value="조회">
+        <input id="search" class="searchSubmit" type="button" value="조회">
         </form>
 		</div>
         <c:if test="${user.id!=null}">
