@@ -6,7 +6,6 @@ html, body{
 /* 	background-color: #ddd; */
   font-family: 'Arimo', sans-serif;
 }
-
 /* 생년월일 inputBpx */
 .birthday > #birth1 {
 	width:80px;
@@ -44,14 +43,11 @@ div .userInformation {
 
 .title1{
   color: #ffffff;
-/*   color: #ecec00; */
   backgound: inherit;
-/*   margin: 0 0 10px 6px; */
-  padding: 0;
   font-size: 35px;
   margin-top: 2%;
-  margin-left: 37%;
-/*   margin-bottom: 2%; */
+  margin-left: 40%;
+  font-weight: bold;
 }
 
 /* CONTAINERS  max-width: 940px;*/ 

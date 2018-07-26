@@ -20,11 +20,16 @@
 }
 .stampId:hover {cursor: pointer;
 }
-#textStmp {width: 250px; height: 100px; color: white; 
-font-size:20px;
-background-color: orange;
-border-radius: 12px 12px 12px 0px;
-	box-shadow:5px 5px 0px rgba(0,0,0,.1);
+#textStmp {
+width: 280px;
+    height: 100px;
+    color: white;
+    font-size: 16px;
+    font-weight: lighter;
+    background-color: #fbc444;
+    padding: 9px;
+    border-radius: 20px 18px 20px 0px;
+    box-shadow: 5px 5px 0px rgba(0,0,0,.1);
 }
  #kCalendar #header { 
 height: 70px; line-height: 70px; text-align: center; font-size: 20px; 
@@ -79,7 +84,7 @@ border-radius: 12px 12px 0px 0px;
 <!-- <div id="patternContainer" style="top: 300px; left: 600px;"></div> -->
 
 <div class="container1">
-  <p class="title1" id="profileName">${user.nickName}님의 Profile</p>
+  <p class="title1" id="profileName">MyForm</p>
   <div class="row cf">
     <div id="card1" class="card three col">
 		<div class="topbar red">
