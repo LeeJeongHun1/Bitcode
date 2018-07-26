@@ -11,10 +11,10 @@ a {
   font-weight: 400;
 }
 .remoteBody {
-	width: 1200px;
+	width: 996px;
 	margin: 0 auto;
-	margin-top: 5%;
-	margin-left: 10%;
+	margin-top: 12%;
+	/* margin-left: 10%; */
 }
 
 .remote {
@@ -148,6 +148,7 @@ div .userInformation {
 #card1 {
 	margin: 0 auto;
 	max-width: 100%;
+	width: 996px;
 	text-align: center;
 	color: #2c3e50;
 	/* 	padding: 15px; */

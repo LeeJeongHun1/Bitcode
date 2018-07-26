@@ -55,7 +55,7 @@
 				<option value="content">내용</option>
 				<option value="writer">글쓴이</option>
 				<option value="code">분류</option>
-			</select> <input type="text" id="search" name="keyword">
+			</select> <input type="text" id="search" class="searchC" name="keyword">
 			<!-- <button id="btn" type="submit">검색</button> -->
 			<input id="btn" class="searchSubmit" type="submit" value="검색">
 		</form>

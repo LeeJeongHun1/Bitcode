@@ -73,23 +73,23 @@ a {
 			</c:if>
 			</div>
 		<!-- 	만족		 -->
- 		<c:if test="${list.ori == sessionScope.user.id and list.qna.depth == 1}">  
-			<div class="satisDiv">		
+ 			<c:if test="${list.ori == sessionScope.user.id and list.qna.depth == 1}">  
+			<div>		
 			<span class="satisAn">
 			<input type="radio" id="satisS" name="stsfcCode" value="13"/>
-		    <label for="satisS"><img src="${pageContext.request.contextPath}/resources/images/vergood.png"></label>
+		    <label for="satisS"><span></span>만족</label>
 		    </span>
 		    <span class="satisAn">
 		    <input type="radio" id="satisJ" name="stsfcCode" value="12"/>
-		    <label for="satisJ"><img src="${pageContext.request.contextPath}/resources/images/good.png"></label>
+		    <label for="satisJ"><span></span>보통</label>
 			</span>
 			<span class="satisAn">
 		    <input type="radio" id="satisU" name="stsfcCode" value="11"/>
-		    <label for="satisU"><img src="${pageContext.request.contextPath}/resources/images/notgood.png"></label>
+		    <label for="satisU"><span></span>불만족</label>
 		    </span>
 		    <a href="#" id="StatisBtn"><span id="userClick">Click</span></a>
 			</div>		
-		</c:if><hr>		
+		</c:if>		
 			<%-- 댓글 출력 --%>
 			<ul class="reBody">
 			</ul>

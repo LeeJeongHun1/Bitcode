@@ -31,26 +31,26 @@ function makeCodeList(data){
 		+ date.getDate();
 		if(codeBoard.groupOrder==1){
 			html+='    <tr style="height:13px; type:text/css;">                                                                  ';
-			html+='        <td style="font-size:14px;">'+codeBoard.no+'</td>                                                             ';
-			html+='        <td style="font-size:14px;">'+codeBoard.languageName+'</td>                                                   ';
+			html+='        <td>'+codeBoard.no+'</td>                                                             ';
+			html+='        <td>'+codeBoard.languageName+'</td>                                                   ';
 			if(session!=""){
-			html+='        <td style="font-size:14px; text-align:left;"><a href="detail.do?no='+codeBoard.no+'">'+codeBoard.title+'</a></td>     ';				
+			html+='        <td style="text-align:left;"><a href="detail.do?no='+codeBoard.no+'">'+codeBoard.title+'</a></td>     ';				
 			}
 			else{
-			html+='        <td style="font-size:14px; text-align:left;">'+codeBoard.title+'</td>     ';					
+			html+='        <td style="text-align:left;">'+codeBoard.title+'</td>     ';					
 			}
-			html+='        <td style="font-size:14px;">'+codeBoard.nickName+'</td>                                                             ';
-			html+='        <td style="font-size:14px;">'+day+'</td>        ';
-			html+='        <td style="font-size:14px;">'+codeBoard.likeCnt+'</td>                                                        ';
-			html+='        <td style="font-size:14px;">'+codeBoard.viewCnt+'</td>                                                        ';
+			html+='        <td>'+codeBoard.nickName+'</td>                                                             ';
+			html+='        <td>'+day+'</td>        ';
+			html+='        <td>'+codeBoard.likeCnt+'</td>                                                        ';
+			html+='        <td>'+codeBoard.viewCnt+'</td>                                                        ';
 			html+='    </tr>                        	                                                                         ';
 		}
 		else{
 			html+='    <tr style="height:13px; type:text/css;">                                                                  ';
-			html+='    	<td style="font-size:14px;"></td>                                                                        ';
-			html+='        <td style="font-size:14px;">'+codeBoard.languageName+'</td>                                                   ';
+			html+='    	<td></td>                                                                        ';
+			html+='        <td>'+codeBoard.languageName+'</td>                                                   ';
 			if(session!=""){
-				html+='        <td style="font-size:14px; text-align:left;">                                                         ';				
+				html+='        <td style="text-align:left;">                                                         ';				
 				for(var i = 1; i<codeBoard.depth; i++ ){
 					html+='        	<span>&nbsp;&nbsp;&nbsp;</span>                                                                      ';
 				}
@@ -59,7 +59,7 @@ function makeCodeList(data){
 				html+='        </td>                                                                                                 ';
 			}
 				else{
-					html+='        <td style="font-size:14px; text-align:left;">                                                         ';					
+					html+='        <td style="text-align:left;">                                                         ';					
 					for(var i = 1; i<codeBoard.depth; i++ ){
 						html+='        	<span>&nbsp;&nbsp;&nbsp;</span>                                                                      ';
 					}
@@ -68,10 +68,10 @@ function makeCodeList(data){
 					html+='        </td>                                                                                                 ';			
 				}
                                                                                           
-			html+='        <td style="font-size:14px;">'+codeBoard.nickName+'</td>                                                             ';
-			html+='        <td style="font-size:14px;">'+day+'</td>        ';
-			html+='        <td style="font-size:14px;">'+codeBoard.likeCnt+'</td>                                                        ';
-			html+='        <td style="font-size:14px;">'+codeBoard.viewCnt+'</td>                                                        ';
+			html+='        <td>'+codeBoard.nickName+'</td>                                                             ';
+			html+='        <td>'+day+'</td>        ';
+			html+='        <td>'+codeBoard.likeCnt+'</td>                                                        ';
+			html+='        <td>'+codeBoard.viewCnt+'</td>                                                        ';
 			html+='    </tr>                        	                                                                         ';
 			html+='   <input type="hidden" id="pNo" value="'+pageNumber+'" />';
 		}
