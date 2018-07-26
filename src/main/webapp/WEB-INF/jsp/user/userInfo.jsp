@@ -37,12 +37,14 @@ font-weight: bold; color: black; background-color: #ecec00;
 -webkit-border-radius: 12px 12px 0px 0px;
 -moz-border-radius: 12px 12px 0px 0px; 
 border-radius: 12px 12px 0px 0px;
+border: groove #ffffac;
 }
 
 #kCalendar {width: 350px; height: 400px; border: 3px solid #FFFFFF;
   -webkit-border-radius: 12px 12px 0px 0px;
   -moz-border-radius: 12px 12px 0px 0px; 
-  border-radius: 12px 12px 0px 0px;}
+  border-radius: 12px 12px 0px 0px;
+   border: 3px groove white;}
 #calTable {margin-left: 10px; margin-top: 10px;}
 #date { color: black;}
 
