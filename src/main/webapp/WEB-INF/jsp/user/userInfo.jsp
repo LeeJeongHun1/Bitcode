@@ -131,24 +131,21 @@ border-radius: 12px 12px 0px 0px;
     	<h3 class="userInformation">My Question</h3>
 		<table class="table table-hover">
 			<tr>
-				<th colspan="1">글쓴이</th><th colspan="4">제목</th><th colspan="1">답변여부</th><th colspan="3">만족도</th>
+				<th colspan="4">제목</th><th colspan="1">답변여부</th><th colspan="3">만족도</th>
 			</tr>
 			
 			<c:forEach var="listUser" items="${qnaList.listUser}">
 			<tr>
-				<td>${user.nickName}</td>				
 				<td colspan="4"><a id="board_title" href='${pageContext.request.contextPath}/qnaboard/detail.do?no=${listUser.no}'>${listUser.title}</a></td>				
 				<c:choose>
 				<c:when test="${listUser.answerAt eq 'Y'}">
-				<td><img class="lelvel" src="${pageContext.request.contextPath}/resources/images/unRead.png"></td>				
+				<td><img class="lelvel" src="${pageContext.request.contextPath}/resources/images/checked.png"></td>				
 				</c:when>
 				<c:otherwise>
 				<td>
-<%-- 				<img class="lelvel" src="${pageContext.request.contextPath}/resources/images/unRead.png"> --%>
 				<img class="lelvel" src="${pageContext.request.contextPath}/resources/images/nonono.png"></td>	
 				</c:otherwise>
 				</c:choose>	
-				
 				<c:forEach var="listStis" items="${qnaList.listStis}">
 				<c:choose>
 					<c:when test="${listStis.stsfcCode eq '13' and listUser.no == listStis.groupNo}">
@@ -173,7 +170,9 @@ border-radius: 12px 12px 0px 0px;
 						</td>
 					</c:when> 	
 					<c:when test="${listUser.no == listStis.groupNo}">
-					<td><a id="board_title" href='${pageContext.request.contextPath}/qnaboard/detail.do?no=${listStis.no}'>Click</a></td>
+					<td><a id="board_title" href='${pageContext.request.contextPath}/qnaboard/detail.do?no=${listStis.no}'>
+					<img class="lelvel" src="${pageContext.request.contextPath}/resources/images/go.png">답변보러가기
+					</a></td>
 					</c:when>
 				</c:choose>	
 				</c:forEach>
