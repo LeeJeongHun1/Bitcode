@@ -80,7 +80,6 @@ border: groove yellow;
     font-family: 'Arimo', sans-serif;
     text-decoration:none;
     ext-decoration:none;		
-    
 }
 </style>
 </head>

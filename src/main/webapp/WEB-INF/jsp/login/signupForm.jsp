@@ -42,12 +42,12 @@
 		<p class="birthText">Example) 2000 01 01</p>
 		</div>
 		<input name="birthday" type="hidden" class="inputDetail" id="birthday"/>
-		<span id="submitBox">
+		<div id="submitBox">
 			<a href="#1" id="submitBtn"><span class="signupbtn">Sign UP</span></a>
-		</span>
-		<span id="submitBox1">	
+		</div>
+		<div id="submitBox1">	
 		<a href="${pageContext.request.contextPath}/login/loginForm.do" id="submitBtn1"><span class="signupbtn">Cancel</span></a>
-		</span>	  
+		</div>	  
 	</form>
 </div>
 <script src="${pageContext.request.contextPath}/resources/js/signUp/signUp.js"></script>
