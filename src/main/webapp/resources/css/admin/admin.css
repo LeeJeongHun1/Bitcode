@@ -1,11 +1,14 @@
 /* 글씨 h1, h3 */
 div .userInformation {
-	margin-top: 20px;
-	margin-bottom: 50px;
-	color: #408080;
-	text-align: center;
-	font-size: 23px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    font-weight: 600;
+    color: #474747;
+    text-align: center;
+    font-size: 26px;
 }
+
+.cf {    width: 1151px; margin-left:0; margin-right:0;}
 .managementBody {
 	width: 1200px;
 	margin: 0 auto;
@@ -62,8 +65,11 @@ div .userInformation {
 }
 
 /* CARD ! */
+
 #card1 {
-	max-width: 30%;
+	/* max-width: 30%; */
+	max-width: 100%;
+    width: 369px;
 	text-align: center;
 	color: #2c3e50;
 	/* 	padding: 15px; */
@@ -83,7 +89,8 @@ div .userInformation {
 
 /* CARD 2 */
 #card2 {
-	max-width: 30%;
+	max-width: 100%;
+    width: 369px;
 	overflow: hidden;
 	color: #2c3e50;
 	border-radius: 6px;
@@ -91,7 +98,8 @@ div .userInformation {
 
 /* CARD 3 */
 #card3 {
-	max-width: 30%;
+	max-width: 100%;
+    width: 369px;
 	color: #2c3e50;
 	border-radius: 6px;
 }

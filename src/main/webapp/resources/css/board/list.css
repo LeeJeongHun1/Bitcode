@@ -60,10 +60,11 @@ tr td {
 /* 글씨 h1, h3 */
 div .information {
 	margin-top: 20px;
-	margin-bottom: 50px;
-	color: #408080;
-	text-align: center;
-	font-size: 23px;
+    margin-bottom: 50px;
+    color: #5a5a5a;
+    text-align: center;
+    font-weight: 700;
+    font-size: 27px;
 }
 
 .title1 {

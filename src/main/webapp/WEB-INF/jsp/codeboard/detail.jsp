@@ -52,7 +52,7 @@
 					<span class="like_count"><c:out value="${cb.likeCnt}" /></span>
 					</div>
 					</div>
-				</div>
+				
 				
 <!-- 				댓글 -->
 			<ul class="reBody">
@@ -88,6 +88,7 @@
 			<a href='<c:url value="updateForm.do?no=${cb.no}" />'><button class="editSubmit">수정</button></a>
 			<a href='<c:url value="delete.do?no=${cb.no}"/>'><button class="editBtn">삭제</button></a>
 			</c:if>
+			</div>
 			</div>
 		</div>
 		</div>

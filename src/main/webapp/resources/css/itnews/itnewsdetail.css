@@ -207,10 +207,12 @@ input[type="radio"] + label span {
  .card-grid-space1 {
  	width: 1100px;
 	min-width:800px; 
-	margin-left: 18%;
+	/* margin-left: 18%; */
+	margin: auto;
 	margin-top: 2%;
 	height: 800px;
 	margin-bottom: 5%;
+	
 /* 	font-family: 'Heebo'; */
 /* 	--bg-filter-opacity: 0.5; */
 /* 	background-color: white; */

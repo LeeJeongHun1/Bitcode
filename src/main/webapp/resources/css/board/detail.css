@@ -410,7 +410,9 @@ table.editTable tr td {
     .shell_title {    
     background:#fff;
     color: #5a5a5a;
-    font-size: 32px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 27px;
     margin-bottom: 0;
     padding: 12px; margin:0;}
 .editTitle {
@@ -708,4 +710,8 @@ div .information {
 .coWrap { float:right;}
 .coBtn { margin-right:5px;
     color: #5a5a5a;}
-    
+#qnaLike {
+	background: url(../../images/like.png) no-repeat 0 0;
+	background-size: 21px;
+
+}

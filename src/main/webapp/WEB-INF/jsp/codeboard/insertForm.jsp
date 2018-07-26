@@ -5,7 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/board/codeDetail.css">
+<%-- <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/board/codeDetail.css">
+ --%>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/board/detail.css">
 <style>
 button{
 color:#80FF00;
@@ -13,14 +15,14 @@ background-color: black;}
 </style>
 </head>
 <body>
-	<div class="codeDetailBody">
+	<div class="detailBody" >
 	<div id="card1" class="card ten col">
 		<div class="topbar yellow">
 		<div class="swatches"><span class="red"></span><span class="orange"></span><span class="yellow"></span><span class="green"></span><span class="blue"></span></div>
 		<div class="xbtn" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">x</div>
 		</div>
 		
-		<div class="shell-container code">
+		<div class="shell-container">
 			<form method='post' action='${pageContext.request.contextPath}/codeboard/insert.do'
 			enctype="multipart/form-data">
 			<input type="hidden" name="id" value="${sessionScope.user.id}" />
@@ -79,7 +81,7 @@ background-color: black;}
 		})
 	}
 	
-	$(".codeDetailBody").draggable();
+	$(".detailBody").draggable();
 	</script>
 </body>
 </html>
