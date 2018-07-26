@@ -29,13 +29,13 @@
 <!-- 당신의 현재 위치 -->
 <!-- </div> -->
 
-<!-- <div id="distance"> -->
-<!-- 비트캠프 강남지점까지의 거리 :  -->
-<!-- </div> -->
 
 <div id="map" style="margin-bottom:30px;">
 </div>
 <span style="color:black;">서울 강남구 테헤란로5길 11 YOO빌딩 3층, 지하철 2호선 강남역 12번 출구(도보 2분)</span>
+<div id="distance">
+현 위치에서의 거리 : 
+</div>
 
 </div>
 </div>
