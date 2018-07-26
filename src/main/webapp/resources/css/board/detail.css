@@ -92,7 +92,9 @@ table {
 	border-spacing: 0;
 }
 a {text-decoration: none;}
-textarea {    width: 610px;
+textarea {    
+	padding-left:7px;
+	width: 610px;
     border:1px solid #dcdcdc;
     height: 74px;}
 /* 상세페이지 */
@@ -618,6 +620,12 @@ div .information {
 	background-color: #f5f5f5;
 }
 
+.reWriteDiv > table tr td {
+ letter-spacing:0;
+ color: #505354;
+ font-size:13px;
+ font-weight:600;
+}
 /* 빨 주 노 초 파 람 보 윗줄단  */
 .swatches {
 	float: left;

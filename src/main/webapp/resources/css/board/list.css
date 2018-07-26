@@ -1,8 +1,9 @@
 .listBody {
-	width: 1200px;
-	margin: 0 auto;
-	margin-top: 5%;
-	margin-left: 10%;
+	width: 950px;
+    margin: 0 auto;
+    margin-top: 5%;
+    /* margin-left: 10%; */
+    height: 500px;
 }
 .list {
   position:relative;
@@ -120,6 +121,7 @@ div .information {
 	max-width: 100%;
 	text-align: center;
 	color: #2c3e50;
+	width:950px;
 	min-height:490px;
 	/* 	padding: 15px; */
 	-webkit-box-sizing: border-box;
