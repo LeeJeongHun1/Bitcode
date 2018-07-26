@@ -187,16 +187,13 @@ $("[data-toggle='tooltip']").tooltip();
 //배경화면 변경
 
 if("${sessionScope.user}" != ""){
-	if(localStorage.getItem('${sessionScope.user}').match('1')){
-		alert(1);
+	if(localStorage.getItem('${sessionScope.user.id}').match('1')){
 		$(".content, .windows").css("background", "url(/bitcode/resources/images/userMainImg1.jpg)");
 	}
-	if(localStorage.getItem('${sessionScope.user}').match('2')){
-		alert(2);
+	if(localStorage.getItem('${sessionScope.user.id}').match('2')){
 		$(".content, .windows").css("background", "url(/bitcode/resources/images/userMainImg2.jpg)");
 	}
-	if(localStorage.getItem('${sessionScope.user}').match('3')){
-		alert(3);
+	if(localStorage.getItem('${sessionScope.user.id}').match('3')){
 		$(".content, .windows").css("background", "url(/bitcode/resources/images/userMainImg3.jpg)");
 	}
 }
