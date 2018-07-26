@@ -86,8 +86,8 @@
 				mList.push({"title":f.title, "path":f.path});
 				html += '<li>' + f.title.split(".mp3")[0] + '</li>'
 			}
-			
-			$("#title").text(result[mPos].title);
+			// 첫 로딩시 출력되는 제목
+			$("#title").text(result[mPos].title.split(".mp3")[0]);
 			
 			// 노래 인덱스 관리 (최대갯수)
 			mMax = result.length;
@@ -135,14 +135,14 @@
 		var mPath = mList[mPos].path;
 		var title = mList[mPos].title;
 
-		$("#myMusic")[0].src = '${pageContext.request.contextPath}/main/download.do?path=' + encodeURI(`c:/java-lec/upload/${sessionScope.user.id}_music`) + '&fileName='+ title+'';
+		$("#myMusic")[0].src = '${pageContext.request.contextPath}/main/download.do?path=' + encodeURI(`c:/java-lec/upload/${sessionScope.user.id}_music`) + '&fileName=' + title;
 		//$(".album").attr("src", '${pageContext.request.contextPath}'' + imageLink);
-		$("#title").html(title);
+		$("#title").html(title.split(".mp3")[0]);
 	}; // nowPlay
 	
 	// 창 종료 함수
 	function callMain() {
-		//window.opener.location.href = '${pageContext.request.contextPath}/main/main.do';
+		//window.parent.location.href = '${pageContext.request.contextPath}/main/main.do';
 		self.close();
 	} // callMain
 </script>

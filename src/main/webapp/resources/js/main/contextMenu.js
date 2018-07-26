@@ -44,7 +44,7 @@ if(loginId){
 		 */
 		// 사용자 배경 초기화
 		if(e.path[0].lastElementChild.id.match("userImgDel")){
-			alert("userImgDel");
+			$(".content, .windows").css("background", "url(/bitcode/resources/images/main.jpg)");
 			localStorage.clear();
 
 		}
