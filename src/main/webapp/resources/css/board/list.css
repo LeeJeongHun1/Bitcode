@@ -1,7 +1,7 @@
 .listBody {
 	width: 950px;
     margin: 0 auto;
-    margin-top: 5%;
+    margin-top: 12%;
     /* margin-left: 10%; */
     height: 500px;
 }
@@ -245,8 +245,8 @@ span {
 	margin-top: -3px;
 }
 #list select {width: 121px; margin-top: 12px; height: 35px; border: 1px solid #d1d0cf; background-color: #fff; line-height: 29px;}
-#search {margin-left: 3px; height:31px;}
-#btn {
+.searchC {margin-left: 3px; height:31px;}
+.searchSubmit{
 	height: 30px;
     background: #244c61;
     width: 50px;

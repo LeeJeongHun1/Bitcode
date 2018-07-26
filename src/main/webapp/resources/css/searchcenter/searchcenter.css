@@ -17,10 +17,10 @@ div#map {
 }
 
 .mapBody {
-	width: 1200px;
+	width: 590px;
 	margin: 0 auto;
 	margin-top: 5%;
-	margin-left: 10%;
+	/* margin-left: 10%; */
 }
 
 .map {
@@ -134,6 +134,7 @@ div .information {
 #card1 {
 	margin: 0 auto;
 	max-width: 100%;
+	width:590px;
 	text-align: center;
 	color: #2c3e50;
 	/* 	padding: 15px; */
@@ -192,7 +193,7 @@ div .information {
 	float: left;
 	width: 10px;
 	height: 10px;
-	cursor: pointer;
+	/* cursor: pointer; */
 	margin: 5px;
 }
 .red {
@@ -248,7 +249,7 @@ span {
 	padding: 2px 4px;
 	text-align: center;
 	border-radius: 2px;
-	color: #333;
+	color: #fff;
 	display: inline-block;
 	zoom: 1.0;
 	vertical-align: top;

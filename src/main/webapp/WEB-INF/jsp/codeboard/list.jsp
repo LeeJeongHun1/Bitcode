@@ -40,7 +40,7 @@
                     <nav style="text-align: center;">
 					<ul class="pagination"></ul>
 					</nav>
-		<div class="searchBox" style="margin-bottom:20px">
+		<div class="searchBox" >
         <form id="list">
         <select id="option" name="searchOption" style="background-color: #fff;">
         	<option value="0">전체</option>
@@ -48,7 +48,7 @@
         	<option value="2">내용</option>
         	<option value="3">제목</option>
         </select>
-        <input name="keyword" id="input">
+        <input name="keyword" id="input" class="searchC">
         <input id="search" class="searchSubmit" type="button" value="조회">
         </form>
 		</div>
