@@ -19,6 +19,7 @@
 	color: red;
 }
 .stampId:hover {cursor: pointer;
+text-decoration: none;
 }
 #textStmp {
 width: 280px;
@@ -30,6 +31,7 @@ width: 280px;
     padding: 9px;
     border-radius: 20px 18px 20px 0px;
     box-shadow: 5px 5px 0px rgba(0,0,0,.1);
+    text-decoration: none;
 }
  #kCalendar #header { 
 height: 70px; line-height: 70px; text-align: center; font-size: 20px; 
@@ -37,7 +39,7 @@ font-weight: bold; color: black; background-color: #ecec00;
 -webkit-border-radius: 12px 12px 0px 0px;
 -moz-border-radius: 12px 12px 0px 0px; 
 border-radius: 12px 12px 0px 0px;
-border: groove #ffffac;
+border: groove yellow;
 }
 
 #kCalendar {width: 350px; height: 400px; border: 3px solid #FFFFFF;
@@ -219,8 +221,8 @@ border: groove #ffffac;
 		</c:forEach>
 		</div>
 	  	<span><a class="stampId" href="#1" id="stampId">
-	  	<img class="stamp" src="${pageContext.request.contextPath}/resources/images/stamp.png"></a></span>
-	  	<span id="textStmp">출석하기Click</span>
+	  	<img class="stamp" src="${pageContext.request.contextPath}/resources/images/stamp.png">
+	  	<span id="textStmp">출석하기Click</span></a></span>
 	  	<input name="id" value="${user.id}" type="hidden" >
 	  
 	  	<div id="kCalendar"></div>
@@ -257,7 +259,7 @@ $("#stampId").click(function () {
 				swal("출석이 체크 되었습니다.");
 				setTimeout( function() {
 					location.reload();
-					}, 3000);
+					}, 2000);
 				
 			}
 		
@@ -427,7 +429,7 @@ function updateEmail(data) {
 				swal("Email 주소가 수정되었습니다.");
 				setTimeout( function() {
 					location.reload();
-					}, 3000);
+					}, 2000);
 			}else{
 				swal("중복된 Email 입니다. 다시 시도해주세요.");
 			}
@@ -471,7 +473,7 @@ function updateNcik(data) {
 				swal("닉네임이 수정되었습니다.");
 				setTimeout( function() {
 					location.reload();
-					}, 3000);
+					}, 2000);
 			}else{
 				swal("중복된 닉네임 입니다.");
 			}
