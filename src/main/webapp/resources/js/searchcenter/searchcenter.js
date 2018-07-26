@@ -52,19 +52,21 @@ function displayLocation(position){
 	
 	// 두 지점간의 거리를 km로 반환
 	var km = computeDistance(position.coords, ourCoords);
-//	var distance = document.getElementById("distance");
-//	distance.innerHTML = "비트캠프 강남지점까지의 거리 : " + km + "km";
+	var distance = document.getElementById("distance");
+	var num = km.toFixed(2);
+	
+	distance.innerHTML = "현 위치에서의 거리 : " + num + "km";
 	
 	// 지도관련 함수 호출
 	if(map == null){
-		showMap(position.coords);
+		showMap(position.coords,ourCoords);
 	}
 	
 }
 
 var map = null;
 
-function showMap(coords){
+function showMap(coords,ourCoords){
 	// 위치 정보 객체 생성
 	var latAndLng = new google.maps.LatLng(coords.latitude, coords.longitude);
 	
@@ -79,10 +81,16 @@ function showMap(coords){
 	map = new google.maps.Map(mapDiv, mapOptions);
 	
 	// 마커에 마우스를 올렸을때 보여줄 툴팁
-	var title = "비트캠프의 위치입니다.";
+	var title = "현재 위치입니다.";
 	// InfoWindow 객체에 보여줄 컨텐츠
 	var content = "위치(위도 : " + coords.latitude + ", 경도 : " + coords.longitude + ")";
 	// 마커추가 함수 호출
+	// 현재위치 마커
+	addMarker(map, latAndLng, title, content);
+	
+	title = "비트캠프의 위치입니다";
+	latAndLng = new google.maps.LatLng(ourCoords.latitude, ourCoords.longitude);
+	// 비트캠프 마커
 	addMarker(map, latAndLng, title, content);
 	
 }
