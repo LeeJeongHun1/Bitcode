@@ -5,13 +5,19 @@ public class User {
 	private String name;
 	private String nickName;
 	private String password;
+	private int patternPass;
 	private String email;
 	private String birthday;
 	private int point;
 	private String auth;
 	
 	
-	
+	public int getPatternPass() {
+		return patternPass;
+	}
+	public void setPatternPass(int patternPass) {
+		this.patternPass = patternPass;
+	}
 	public String getId() {
 		return id;
 	}
@@ -61,5 +67,10 @@ public class User {
 		this.auth = auth;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", nickName=" + nickName + ", password=" + password
+				+ ", patternPass=" + patternPass + ", email=" + email + ", birthday=" + birthday + ", point=" + point
+				+ ", auth=" + auth + "]";
+	}
 }

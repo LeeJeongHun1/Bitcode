@@ -8,13 +8,13 @@
         <result column = "name" property = "name" />
         <result column = "nick_name" property = "nickName" />
         <result column = "password" property = "password" />
+        <result column = "pattern_pass" property = "patternPass" />
         <result column = "birthday" property = "birthday" />
         <result column = "email" property = "email" />
         <result column = "point" property = "point" />
         <result column = "auth" property = "auth" />
     </resultMap>
     
-    	
     <select id="selectbyIdEmail" parameterType="user" resultMap="userMap">
     	select *
     	  from tb_user

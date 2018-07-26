@@ -11,8 +11,8 @@
 <!-- <link href='https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css' rel='stylesheet' type='text/css'> -->
 <%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/sweetalertFile/sweetalert2.css" /> --%>
 <%-- <script src="${pageContext.request.contextPath}/resources/sweetalertFile/sweetalert2.all.min.js"></script> --%>
-<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/pattern/patternLock.css" /> --%>
-
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/pattern/patternLock.css" />
+<script src="${pageContext.request.contextPath}/resources/js/pattern/patternLock.min.js"></script>
 
 <style> 
 .aaaa {
