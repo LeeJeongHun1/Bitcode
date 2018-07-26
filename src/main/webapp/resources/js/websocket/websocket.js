@@ -4,8 +4,8 @@
 var cnt = 0;	
 $(function(){
 	if(loginId){
-//		ws = new WebSocket("wss://localhost/bitcode/websocket.do");
-		ws = new WebSocket("wss://192.168.0.165/bitcode/websocket.do");
+	ws = new WebSocket("wss://localhost/bitcode/websocket.do");
+		//ws = new WebSocket("wss://192.168.0.165/bitcode/websocket.do");
 		ws.onopen = function(){
 			console.log("웹소켓 서버 접속 성공");
 			// 웹소켓 서버에 데이터 전송하기
@@ -38,7 +38,7 @@ $(function(){
 					$(".notice1").remove();
 				}
 				for(var i=0; i < no.length-1; i++){
-					html += '<span class="title"style="color: #7f8c8d !important;">' + (i+1) +". "+ no[i] + '</span>';
+					html += '<span class="title"style="color: #7f8c8d !important; width:307px;">' + (i+1) +". "+ no[i] + '</span>';
 					/*html += '<span class="date">시간</span>';		*/
 
 				}
