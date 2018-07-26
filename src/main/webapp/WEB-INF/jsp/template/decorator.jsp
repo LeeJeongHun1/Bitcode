@@ -130,32 +130,34 @@
 			    <div class="bitMenu-item">
 			        <button type="button" class="bitMenu-btn">
 			            <i class="fa fa-reply"></i>
-			            <span class="bitMenu-text">배경1</span>
+			            <span class="bitMenu-text" id="back1">배경1</span>
 			        </button>
 			    </div>
 			    <div class="bitMenu-item">
 			        <button type="button" class="bitMenu-btn">
 			            <i class="fa fa-star"></i>
-			            <span class="bitMenu-text">배경2</span>
+			            <span class="bitMenu-text" id="back2">배경2</span>
 			        </button>
 			    </div>
 			    <div class="bitMenu-item">
 			        <button type="button" class="bitMenu-btn">
 			            <i class="fa fa-users"></i>
-			            <span class="bitMenu-text">배경3</span>
+			            <span class="bitMenu-text" id="back3">배경3</span>
 			        </button>
 			    </div>
 			    <div class="bitMenu-separator"></div>
+			    <!-- 
 			    <div class="bitMenu-item">
 			        <button type="button" class="bitMenu-btn">
 			            <i class="fa fa-download"></i>
-			            <span class="bitMenu-text">Save</span>
+			            <span class="bitMenu-text" id="userImgSave">Save</span>
 			        </button>
 			    </div>
+			     -->
 			    <div class="bitMenu-item">
 			        <button type="button" class="bitMenu-btn">
 			            <i class="fa fa-trash"></i>
-			            <span class="bitMenu-text">Delete</span>
+			            <span class="bitMenu-text" id="userImgDel">Delete</span>
 			        </button>
 			    </div>
 			</div>
@@ -183,7 +185,21 @@
 $("[data-toggle='tooltip']").tooltip();
 
 //배경화면 변경
-//$(".content, .windows").css("background", "url(/bitcode/resources/images/user.png)");
+
+if("${sessionScope.user}" != ""){
+	if(localStorage.getItem('${sessionScope.user}').match('1')){
+		alert(1);
+		$(".content, .windows").css("background", "url(/bitcode/resources/images/userMainImg1.jpg)");
+	}
+	if(localStorage.getItem('${sessionScope.user}').match('2')){
+		alert(2);
+		$(".content, .windows").css("background", "url(/bitcode/resources/images/userMainImg2.jpg)");
+	}
+	if(localStorage.getItem('${sessionScope.user}').match('3')){
+		alert(3);
+		$(".content, .windows").css("background", "url(/bitcode/resources/images/userMainImg3.jpg)");
+	}
+}
 
 </script>
 
