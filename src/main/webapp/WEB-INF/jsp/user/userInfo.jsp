@@ -251,7 +251,7 @@ $("#stampId").click(function () {
 				swal("출석이 체크 되었습니다.");
 				setTimeout( function() {
 					location.reload();
-					}, 5000);
+					}, 3000);
 				
 			}
 		
@@ -421,7 +421,7 @@ function updateEmail(data) {
 				swal("Email 주소가 수정되었습니다.");
 				setTimeout( function() {
 					location.reload();
-					}, 5000);
+					}, 3000);
 			}else{
 				swal("중복된 Email 입니다. 다시 시도해주세요.");
 			}
@@ -465,7 +465,7 @@ function updateNcik(data) {
 				swal("닉네임이 수정되었습니다.");
 				setTimeout( function() {
 					location.reload();
-					}, 5000);
+					}, 3000);
 			}else{
 				swal("중복된 닉네임 입니다.");
 			}

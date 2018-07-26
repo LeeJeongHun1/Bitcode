@@ -53,7 +53,8 @@
 		</div>
 		<div>
 			<h3 class="userInformation">Q&A 답변 만족률</h3>
-			<canvas id="pieCanvas" width="100%" height="70%"></canvas>
+<%-- 			<canvas id="pieCanvas" width="100%" height="65%"></canvas> --%>
+        <div id="donutchart1"></div>
 		</div>
     </div>
     
@@ -149,65 +150,57 @@
 
 	$(".managementBody").draggable();
 
+
 	
 //------------------------만족률----------------------------//
 
-dou();
-	var img = new Image();
-	var ctx = document.getElementById("pieCanvas").getContext('2d');
-	var fillPattern = ctx.createPattern(img, 'repeat');
+	
+//-----------------------------------------------------------------
 
+
+
+// 	답변률 통계 스크립트
+	dou();
 	function dou() {
-		console.log("도너들어옴");
 		$.ajax({
-			url: "/bitcode/admin/minidou.json",
-			dataType: "json",
-			success: function (data) {
-				var un = data.unstsfCount;
-				console.log(data);
-				var data = {
-					    datasets: [{
-					        data: [data.unstsfCount, data.midstsfCount, data.stsfCount],
-						    backgroundColor: [
-						    	 'rgba(255, 99, 132)',
-					             'rgba(255, 159, 64)',
-					             'rgba(54, 162, 235)',
-// 					             'rgba(255, 205, 86)'
-						    ]
-					    
-					    
-					    }],
-					    // These labels appear in the legend and in the tooltips when hovering different arcs
-					    labels: [
-					        '불만족',
-					        '보통',
-					        '만족',
-					    ]
-					};
-				var img = new Image();
-
-				var ctx = document.getElementById("pieCanvas").getContext('2d');
-				var fillPattern = ctx.createPattern(img, 'repeat');
-				var myPieChart = new Chart(ctx,{
-				    type: 'doughnut',
-				    data: data,
-				    options: {
-					    	 elements: {
-		    		                    center: {
-		    		                      text: 10,
-		    		                      fontStyle: 'Helvetica', //Default Arial
-		    		                      sidePadding: 15 //Default 20 (as a percentage)
-		    		                 	 }
-					    		        },
-				    	
-						rotation : 1 * Math.PI,
-						'animation.animateScale' : true,
-				    }
-				});
-			},
+			url : "/bitcode/admin/minidou.json",
+			dataType : "json",
+			success : systisCnt
 		});
-	}
+	};
+	// 답변률 통계 카운트출력
+	function systisCnt(result) {
+	
 
+		unstsfCount = result.unstsfCount; 
+		midstsfCount = result.midstsfCount; 
+		stsfCount = result.stsfCount;
+
+		// 문의율 그래프
+		google.charts.load("current", {
+			packages : [ "corechart" ]
+		});
+		google.charts.setOnLoadCallback(drawChart2);
+		function drawChart2() {
+			
+		 var data = google.visualization.arrayToDataTable([
+				[ '답변', '만족율' ],
+				[ '만족', stsfCount ],
+				[ '보통', midstsfCount ],
+				[ '불만', unstsfCount ] ]);
+
+			var options = {
+				title : 'Q&A 답변의 만족도',
+				pieHole : 0.4,
+			};
+
+			var chart = new google.visualization.PieChart(document
+					.getElementById('donutchart1'));
+			chart.draw(data, options);
+
+		} 
+	}	
+	
 </script>
 
 </body>
