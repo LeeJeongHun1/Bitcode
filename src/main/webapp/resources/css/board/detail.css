@@ -47,22 +47,18 @@ input[type="radio"] + label span {
     vertical-align:middle;
     cursor:pointer;
 }
-#StatisBtn {
+#statisBtn {
   text-align: center;
-  width:40px;
+  width:50px;
   height: 25px;
   border-radius:2px;
   margin-left:1px;
   background:#df736a;
-  color:#fff;
+  color:#ffffff;
   ext-decoration:none;
   text-decoration: none;
   display: inline;
-}
-#StatisBtn > #userClick{
-	font-size: 15px;
-	padding: 5px;
-	text-decoration: none;
+      padding: 2px 8px;
 }
 
 
