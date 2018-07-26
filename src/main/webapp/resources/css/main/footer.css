@@ -17,6 +17,7 @@ body {
   background: url(/bitcode/resources/images/main.jpg);
   background-position: center;
   background-size: cover;
+  overflow: hidden;
 }
 
 /* ==========================================================================

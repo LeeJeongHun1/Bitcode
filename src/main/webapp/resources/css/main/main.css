@@ -2,6 +2,7 @@ body{
 	margin: 0 auto;
 	padding: 0;
 	background-color: #00569F;
+	overflow: hidden;
 }
 .wrapp{
 	position: absolute;
