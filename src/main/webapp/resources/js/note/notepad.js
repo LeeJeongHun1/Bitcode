@@ -52,7 +52,10 @@ $("#newNote").click(function(){
 				url: "/bitcode/main/modNote.json",
 				data: noteContent, 
 				success: function(result) {
-					var myNote = $("#myNoteContent").html(result.replace(/<br>/g, "&#10;"));
+					var myNote = $("#myNoteContent").val("");
+				},
+				error:function(e) {
+					console.dir(e);
 				}
 			});	
 			$("#nTitle").html("BIT NOTE");
@@ -71,7 +74,7 @@ $("#saveNote").click(function(){
 		url: "/bitcode/main/modNote.json",
 		data: noteContent, 
 		success: function(result) {
-			var myNote = $("#myNoteContent").html(result.replace(/<br>/g, "&#10;"));
+			var myNote = $("#myNoteContent").html(result.result.replace(/<br>/g, "&#10;"));
 		}
 	}); // ajax	
 

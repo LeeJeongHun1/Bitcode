@@ -5,6 +5,8 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -44,7 +46,7 @@ public class NotePadController {
 	/** 메모장 내용 수정 */
 	@RequestMapping("/main/modNote.json")
 	@ResponseBody
-	public String modNote(String id, String content) throws Exception {
+	public Map<String, String> modNote(String id, String content) throws Exception {
 		//System.out.println("메모장 입력 내용 : " + content);
 		// txt 파일 저장
 		FileWriter fw = new FileWriter(PATH + id + ".txt");
@@ -60,6 +62,9 @@ public class NotePadController {
       	  myTxt += temp;
         }
 		br.close();
-		return myTxt;
+		System.out.println("메모장 : " + myTxt);
+		Map<String, String> result = new HashMap<>();
+		result.put("result", myTxt);
+		return result;
 	}
 }

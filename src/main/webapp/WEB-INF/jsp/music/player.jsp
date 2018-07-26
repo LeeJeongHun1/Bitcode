@@ -142,7 +142,7 @@
 	
 	// 창 종료 함수
 	function callMain() {
-		//window.parent.location.href = '${pageContext.request.contextPath}/main/main.do';
+		opener.parent.location="${pageContext.request.contextPath}/main/main.do";
 		self.close();
 	} // callMain
 </script>
