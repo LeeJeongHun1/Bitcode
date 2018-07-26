@@ -48,11 +48,11 @@
 <title><sitemesh:write property="title" /></title>
 <sitemesh:write property="head" />
 <style>
-.content {
+/* .content {
 	overflow-y: scroll;
 	position: relative;
 	bottom: 5px;
-}
+} */
 #dockContainer #dock{
 	width: 100%;
 	text-align: center;
