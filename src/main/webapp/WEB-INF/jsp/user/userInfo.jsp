@@ -117,7 +117,7 @@ border: groove yellow;
 		  <input name="birthday" type="hidden" class="inputDetail" id="birthday"/>
 		</div>
 		<div class="nickDiv">
-		 <p id="pName">Email</p>
+		 <p id="pName">Email</p>	
 		  <input name="email" type="text" id="userEmail" data-flag="no" class="emailDetail" value="${user.email}" readonly="readonly"/>
  		  <span id="submitBox"><a href="#" id="submitEmailBtn"><span id="userInfoUpdate">수정</span></a></span>
 		</div>
@@ -152,7 +152,7 @@ border: groove yellow;
 				</c:when>
 				<c:otherwise>
 				<td>
-				<img class="lelvel" src="${pageContext.request.contextPath}/resources/images/nonono.png"></td>	
+				<img class="lelvel" src="${pageContext.request.contextPath}/resources/images/xxxx.png"></td>	
 				</c:otherwise>
 				</c:choose>	
 				<c:forEach var="listStis" items="${qnaList.listStis}">

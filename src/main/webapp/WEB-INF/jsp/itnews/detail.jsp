@@ -26,7 +26,7 @@
 	    <hr>
 	    <span id="articleReport">${article.articleReporter}</span><span id="articleReport">${article.articleDate}${article.articleNo}</span>
 	    <a href="${article.articleUrl}" id="articleUrl" target="_blank" title="새창으로 열립니다." 
-	    onclick="window.open(this.href,'팝업창title','scrollbars=yes, top=90px, left=300px, width=1400px, height=800px'); return false;">
+	    onclick="window.open(this.href,'팝업창title','scrollbars=yes, top=90px, left=300px, width=1000px, height=600px'); return false;">
 		원본 기사 보기 클릭...</a>
 	    <div class="cardITNewsDetail"><img src="${article.articleThumb}"></div>
 		<hr>

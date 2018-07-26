@@ -52,8 +52,8 @@
 	<select id="selectIdAnswer"  parameterType="string" resultMap="qnaMap">
 		select *
 		  from tb_qna_board 
-		 where id = #{id} and
-		 answer_at = 'Y'
+		 where id = #{id}
+		 
 	</select>
 	<select id="selectSatisAdmin" resultMap="qnaMap">
 		select *
