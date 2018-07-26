@@ -67,7 +67,7 @@ public class WebsocketHandler extends TextWebSocketHandler {
 						// 원글 쓴 사람에게만 답변갯수랑 읽은 갯수를 보냄.
 						notiCnt++;
 						if(read.getGroupNo() == qna.getNo()) {
-							notReadText += qna.getNo() + "번글의" + readList.size()+"개의 답글을 읽지않았습니다.,";
+							notReadText += qna.getNo() + "번글의" + read.getNickName() +"님의 답글을 읽지않았습니다.,";
 						}
 					}	
 						

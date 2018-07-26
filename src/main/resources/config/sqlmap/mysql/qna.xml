@@ -344,10 +344,13 @@
 
 	<select id="selectNoRead" parameterType="qna" resultMap="qnaMap">
 		select *
-		from tb_qna_board
-		where depth = 1
-		and group_no = #{groupNo}
-		and read_ans = 'N'
+		from tb_qna_board q
+		inner 
+		 join tb_user u
+	     on q.id = u.id
+	  where q.depth = 1
+		and q.group_no = #{groupNo}
+		and q.read_ans = 'N'
 	<!-- 	select *
 		from tb_qna_board
 		where id=#{id}

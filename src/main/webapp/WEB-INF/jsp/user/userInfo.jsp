@@ -19,12 +19,19 @@
 	color: red;
 }
 .stampId:hover {cursor: pointer;
+text-decoration: none;
 }
-#textStmp {width: 250px; height: 100px; color: white; 
-font-size:20px;
-background-color: orange;
-border-radius: 12px 12px 12px 0px;
-	box-shadow:5px 5px 0px rgba(0,0,0,.1);
+#textStmp {
+width: 280px;
+    height: 100px;
+    color: white;
+    font-size: 16px;
+    font-weight: lighter;
+    background-color: #fbc444;
+    padding: 9px;
+    border-radius: 20px 18px 20px 0px;
+    box-shadow: 5px 5px 0px rgba(0,0,0,.1);
+    text-decoration: none;
 }
  #kCalendar #header { 
 height: 70px; line-height: 70px; text-align: center; font-size: 20px; 
@@ -32,12 +39,14 @@ font-weight: bold; color: black; background-color: #ecec00;
 -webkit-border-radius: 12px 12px 0px 0px;
 -moz-border-radius: 12px 12px 0px 0px; 
 border-radius: 12px 12px 0px 0px;
+border: groove yellow;
 }
 
 #kCalendar {width: 350px; height: 400px; border: 3px solid #FFFFFF;
   -webkit-border-radius: 12px 12px 0px 0px;
   -moz-border-radius: 12px 12px 0px 0px; 
-  border-radius: 12px 12px 0px 0px;}
+  border-radius: 12px 12px 0px 0px;
+   border: 3px groove white;}
 #calTable {margin-left: 10px; margin-top: 10px;}
 #date { color: black;}
 
@@ -79,7 +88,7 @@ border-radius: 12px 12px 0px 0px;
 <!-- <div id="patternContainer" style="top: 300px; left: 600px;"></div> -->
 
 <div class="container1">
-  <p class="title1" id="profileName">${user.nickName}님의 Profile</p>
+  <p class="title1" id="profileName">MyForm</p>
   <div class="row cf">
     <div id="card1" class="card three col">
 		<div class="topbar red">
@@ -131,24 +140,21 @@ border-radius: 12px 12px 0px 0px;
     	<h3 class="userInformation">My Question</h3>
 		<table class="table table-hover">
 			<tr>
-				<th colspan="1">글쓴이</th><th colspan="4">제목</th><th colspan="1">답변여부</th><th colspan="3">만족도</th>
+				<th colspan="4">제목</th><th colspan="1">답변여부</th><th colspan="3">만족도</th>
 			</tr>
 			
 			<c:forEach var="listUser" items="${qnaList.listUser}">
 			<tr>
-				<td>${user.nickName}</td>				
 				<td colspan="4"><a id="board_title" href='${pageContext.request.contextPath}/qnaboard/detail.do?no=${listUser.no}'>${listUser.title}</a></td>				
 				<c:choose>
 				<c:when test="${listUser.answerAt eq 'Y'}">
-				<td><img class="lelvel" src="${pageContext.request.contextPath}/resources/images/unRead.png"></td>				
+				<td><img class="lelvel" src="${pageContext.request.contextPath}/resources/images/checked.png"></td>				
 				</c:when>
 				<c:otherwise>
 				<td>
-<%-- 				<img class="lelvel" src="${pageContext.request.contextPath}/resources/images/unRead.png"> --%>
 				<img class="lelvel" src="${pageContext.request.contextPath}/resources/images/nonono.png"></td>	
 				</c:otherwise>
 				</c:choose>	
-				
 				<c:forEach var="listStis" items="${qnaList.listStis}">
 				<c:choose>
 					<c:when test="${listStis.stsfcCode eq '13' and listUser.no == listStis.groupNo}">
@@ -173,7 +179,9 @@ border-radius: 12px 12px 0px 0px;
 						</td>
 					</c:when> 	
 					<c:when test="${listUser.no == listStis.groupNo}">
-					<td><a id="board_title" href='${pageContext.request.contextPath}/qnaboard/detail.do?no=${listStis.no}'>Click</a></td>
+					<td><a id="board_title" href='${pageContext.request.contextPath}/qnaboard/detail.do?no=${listStis.no}'>
+					<img class="lelvel" src="${pageContext.request.contextPath}/resources/images/go.png">답변보러가기
+					</a></td>
 					</c:when>
 				</c:choose>	
 				</c:forEach>
@@ -213,8 +221,8 @@ border-radius: 12px 12px 0px 0px;
 		</c:forEach>
 		</div>
 	  	<span><a class="stampId" href="#1" id="stampId">
-	  	<img class="stamp" src="${pageContext.request.contextPath}/resources/images/stamp.png"></a></span>
-	  	<span id="textStmp">출석하기Click</span>
+	  	<img class="stamp" src="${pageContext.request.contextPath}/resources/images/stamp.png">
+	  	<span id="textStmp">출석하기Click</span></a></span>
 	  	<input name="id" value="${user.id}" type="hidden" >
 	  
 	  	<div id="kCalendar"></div>
@@ -251,7 +259,7 @@ $("#stampId").click(function () {
 				swal("출석이 체크 되었습니다.");
 				setTimeout( function() {
 					location.reload();
-					}, 3000);
+					}, 2000);
 				
 			}
 		
@@ -421,7 +429,7 @@ function updateEmail(data) {
 				swal("Email 주소가 수정되었습니다.");
 				setTimeout( function() {
 					location.reload();
-					}, 3000);
+					}, 2000);
 			}else{
 				swal("중복된 Email 입니다. 다시 시도해주세요.");
 			}
@@ -465,7 +473,7 @@ function updateNcik(data) {
 				swal("닉네임이 수정되었습니다.");
 				setTimeout( function() {
 					location.reload();
-					}, 3000);
+					}, 2000);
 			}else{
 				swal("중복된 닉네임 입니다.");
 			}
