@@ -42,13 +42,15 @@
 					<div class="detail">
 					<div class="contents">
 					<c:forEach var="cbFile" items="${cbFileList}">
-					파일명: <a href="${pageContext.request.contextPath}/fileDown.do?filePath=${cbFile.filePath}&systemFileName=${cbFile.systemName}&originalFileName=${cbFile.oriName}">${cbFile.oriName}</a>					
-	        		미리보기 : <img src="${pageContext.request.contextPath}/fileDown.do?filePath=${cbFile.filePath}&systemFileName=${cbFile.systemName}&originalFileName=${cbFile.oriName}" style="width: 400px; height: 400px "><br>
+					<!-- 파일명:  --><a href="${pageContext.request.contextPath}/fileDown.do?filePath=${cbFile.filePath}&systemFileName=${cbFile.systemName}&originalFileName=${cbFile.oriName}">
+					 <img class="imgLink" src="${pageContext.request.contextPath}/fileDown.do?filePath=${cbFile.filePath}&systemFileName=${cbFile.systemName}&originalFileName=${cbFile.oriName}">
+					<%-- ${cbFile.oriName} --%></a>					
+	        		<!-- 미리보기 : --> <br>
 					</c:forEach>
 					${cb.content}
 					</div>
 					<div class="like">
-					<a id="codeLike" href="javascript:recommend()">추천 </a>
+					<a id="codeLike" class="LikeGood" href="javascript:recommend()">추천 </a>
 					<span class="like_count"><c:out value="${cb.likeCnt}" /></span>
 					</div>
 					</div>

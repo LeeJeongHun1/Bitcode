@@ -234,11 +234,11 @@ background:#fff;
 }
 
 .reDay {
-	font-size: 11px;
-	font-family: '돋움', dotum, Helvetica, sans-serif;
-	margin: 6px 5px 1px;
-	display: inline-block;
-	float: left;
+    font-size: 12px;
+    font-family: '돋움', dotum, Helvetica, sans-serif;
+    margin: 3px 10px 1px;
+    display: inline-block;
+    float: left;
 }
 
 .recomment {
@@ -624,10 +624,10 @@ div .information {
 }
 
 .reWriteDiv > table tr td {
- letter-spacing:0;
- color: #505354;
- font-size:13px;
- font-weight:600;
+    letter-spacing: 0;
+    color: #505354;
+    font-size: 16px;
+    font-weight: 600;
 }
 /* 빨 주 노 초 파 람 보 윗줄단  */
 .swatches {
@@ -720,7 +720,7 @@ div .information {
     position: relative;
     margin: 5px auto;
     padding: 3px;}
-#qnaLike {
+.LikeGood {
 	background: url(../../images/li.png) no-repeat 7% 23%;
     background-size: 23%;
     display: inline-block;

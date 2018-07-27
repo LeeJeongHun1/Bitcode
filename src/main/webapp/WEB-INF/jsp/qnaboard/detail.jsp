@@ -67,7 +67,7 @@ a {
 			</div>
 			<c:if test="${!sessionScope.user.id}">
 			<div class="like">
-			<a id="qnaLike" href="javascript:recommend()">추천 </a>
+			<a id="qnaLike" class="LikeGood" href="javascript:recommend()">추천 </a>
             <span class="like_count"><c:out value="${list.qna.likeCnt}" /></span>
 			</div>
 			</c:if>
