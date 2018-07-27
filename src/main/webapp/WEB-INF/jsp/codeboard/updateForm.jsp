@@ -62,7 +62,7 @@ background-color: black;}
 			<a href='<c:url value="list.do" />'><button type="button">목록</button></a>
  --%>		
  			<input class="editSubmit" type="submit" value="수정">
-			<input class="editBtn" type="button" value="삭제">
+ 			<a href='<c:url value="list.do" />'><input class="editBtn" type="button" value="취소"></a>
  			</div>
 			</form>
 		</div>
