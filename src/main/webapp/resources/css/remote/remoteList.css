@@ -245,6 +245,9 @@ table {
 	line-height: 1.42;
 	vertical-align: top;
 	border-top: 1px solid #ddd;
+	color: #474747;
+    font-size: 14px;
+    font-weight: 700;
 }
 /* 홀수번째 tr들만을 대상으로 */
 .table-striped>tbody>tr:nth-of-type(odd) {
