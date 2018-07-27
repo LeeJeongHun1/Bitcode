@@ -78,11 +78,12 @@
 			}
 		})
 	}
+	var sendRId = "${list.qna.id}";
 	
 	$(".editSubmit").click(function() {
 		// 답글알림을 받기 위한 원글 아이디 전송
 		if(loginId){
-			ws.send("notice:" + "${list.qna.id}");
+			ws.send("notice:" + sendRId);
 		}
 		// 서브밋
 		$("#qnaRForm").submit();
