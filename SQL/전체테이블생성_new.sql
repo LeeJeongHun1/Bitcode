@@ -33,7 +33,7 @@ create table tb_user (
     `auth`          char(1)         default 'U'      comment '권한', 
     `birthday`      char(8)         not null         comment '생년월일', 
     `pattern_at`    char(1)         default 'N'      comment '패턴사용여부', 
-    `pattern_pass`  int(30)         default '1234'   comment '패턴비밀번호', 
+    `pattern_pass`  int(30)         default '12369'   comment '패턴비밀번호', 
     primary key (id)
 ) engine=innodb default charset=utf8;
 
