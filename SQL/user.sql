@@ -15,6 +15,16 @@ create table tb_user (
 			  no = #{no} and
 			  group_order = #{groupOrder}
 
+		select *
+		from tb_news_comment c
+		inner
+		join tb_user u
+		 on c.id = u.id
+		where article_no = 2323;
+			  
+			  
+		
+		
 
 alter table tb_user comment '회원정보';
 -----------------------------------------------------------------------------------------------------

@@ -72,7 +72,7 @@ $(".card-grid-space1").draggable();
 		for (let i = 0; i < result.length; i++) {
 			var comment = result[i];
 			html += '<div class="comment_box" id="comment'+comment.commentNo+'">';
-			html += '  <span id="commentId">'+"${sessionScope.user.nickName}"+ '</span>';
+			html += '  <span id="commentId">'+comment.nickName+ '</span>';
 			if ("${sessionScope.user.id}" == comment.id) {
 			html += '    <button class="btn2" onclick="commentUpdateForm('+comment.commentNo+');">수정</button>'
 			html += '    <button class="btn2" onclick="commentDelete('+comment.commentNo+');">삭제</button>';
@@ -133,7 +133,7 @@ $(".card-grid-space1").draggable();
 	
 	function commentUpdateForm(commentNo) {
 		var html = '';
-		html += '<div id="modComment'+ "${sessionScope.user.id}" +'">';
+		html += '<div id="modComment'+ +comment.nickName+ +'">';
 		html += '  <h5>' + $("#comment"+commentNo+"> h5 > #commentName").text();
 		html += '  <button class="btn2" onclick="commentUpdate('+ commentNo +');">수정</button>';
 		html += '  <button class="btn2" onclick="commentCancel('+ commentNo +');">취소</button></h5>';

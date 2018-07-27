@@ -5,10 +5,16 @@ public class NewsComment {
 	private int commentNo;
 	private String id;
 	private String content;
+	private String nickName;
 	
 	
 	
-	
+	public String getNickName() {
+		return nickName;
+	}
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
 	public int getArticleNo() {
 		return articleNo;
 	}

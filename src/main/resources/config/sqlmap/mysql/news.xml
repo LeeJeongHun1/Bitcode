@@ -75,13 +75,17 @@
 		<result column="content" property="content" />
 		<result column="article_no" property="articleNo" />
 		<result column="comment_no" property="commentNo" />
+		<result column="nick_name" property="nickName" />
 	</resultMap>
 	
 
 	<select id="selectCommByArticleNo" parameterType="int" resultMap="NewscommentMap">
-		select * 
-		  from tb_news_comment
-		 where article_no = #{articleNo} 
+		select *
+		from tb_news_comment c
+		inner
+		join tb_user u
+		 on c.id = u.id
+		where article_no = #{articleNo}
 	</select>
 	
 	<insert id="insertArticleComment" parameterType="Newscomment">

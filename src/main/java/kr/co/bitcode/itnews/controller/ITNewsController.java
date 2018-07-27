@@ -56,7 +56,7 @@ public class ITNewsController {
 	public @ResponseBody List<NewsComment> writeComment(NewsComment newsComment) {
 //		commentNo++;
 //		newsComment.setCommentNo(commentNo);
-		System.out.println("newsComment:" + newsComment.getCommentNo());
+//		System.out.println("newsComment:" + newsComment.getCommentNo());
 		iTService.insertArticleComment(newsComment);
 		return iTService.retrieveListComment(newsComment.getArticleNo());
 	}
