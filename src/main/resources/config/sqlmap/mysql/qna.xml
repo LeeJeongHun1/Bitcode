@@ -135,7 +135,7 @@
 	<delete id="deleteBoard" parameterType="int">
 		delete
 		from tb_qna_board
-		where group_no=#{no}
+		where no=#{no}
 	</delete>
 
 	<resultMap id="fileMap" type="qnaFile">

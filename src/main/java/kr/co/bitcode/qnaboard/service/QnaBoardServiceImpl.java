@@ -72,6 +72,8 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 	@Override
 	public void delete(int no) throws Exception {
 		mapper.deleteBoard(no);
+		System.out.println(no +"삭제할 번호");
+		System.out.println("삭제확인");
 		mapper.deleteQnaFile(no);
 	}
 
