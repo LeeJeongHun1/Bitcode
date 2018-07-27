@@ -120,11 +120,10 @@ public class LoginController {
 	//로그인 (ID, Pass 입력 후)
 	@RequestMapping("/login.do")
 	public String login(User user, HttpSession session,  RedirectAttributes attr) throws Exception{
-		User userInfo = null;
 		// 패턴값 들어왔을 때
 		if(user.getPatternPass() != 0) {
 			System.out.println("패턴 로그인 시도 : " + user.toString());
-			userInfo = loginService.selectUserById(user.getId());
+			User userInfo = loginService.selectUserById(user.getId());
 			if(userInfo != null && user.getPatternPass() == userInfo.getPatternPass()) {
 				session.setAttribute("user", userInfo);
 				session.setMaxInactiveInterval(60 * 60);
@@ -134,18 +133,18 @@ public class LoginController {
 				return "redirect:/login/loginForm.do";
 			}
 		} // 패턴 입력 됬을때
-		
-		userInfo = loginService.selectUserById(user.getId());
-		
-		if(userInfo != null && passCode.matches(user.getPassword(), userInfo.getPassword())) {
-			session.setAttribute("user", userInfo);
-			session.setMaxInactiveInterval(60 * 60);
-			return "redirect:/main/main.do";
-		}else {
-			attr.addFlashAttribute("msg", "아이디 또는 비밀번호가 일치 하지 않습니다");
-			return "redirect:/login/loginForm.do";
-		}
-		
+		else {
+			User userInfo = loginService.selectUserById(user.getId());
+			if(userInfo != null && passCode.matches(user.getPassword(), userInfo.getPassword())) {
+				session.setAttribute("user", userInfo);
+				session.setMaxInactiveInterval(60 * 60);
+				return "redirect:/main/main.do";
+			}else {
+				attr.addFlashAttribute("msg", "아이디 또는 비밀번호가 일치 하지 않습니다");
+				return "redirect:/login/loginForm.do";
+			}
+		} // 비밀번호 입력시
+
 	}	
 
 	
