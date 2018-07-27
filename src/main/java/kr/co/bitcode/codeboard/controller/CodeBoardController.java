@@ -72,6 +72,8 @@ public class CodeBoardController {
 	@RequestMapping(value="/detail.do", method=RequestMethod.GET)
 	public String detailBoard(int no, Model model) {
 		CodeBoard cb = service.selectBoardByNo(no);
+		// 개행문자 처리
+		cb.setContent(cb.getContent().replace("\r\n", "<br>"));
 		List<CodeBoardFile> cbFileList = service.selectBoardFileByNo(no);
 		model.addAttribute("cb", cb);
 		model.addAttribute("cbFileList", cbFileList);

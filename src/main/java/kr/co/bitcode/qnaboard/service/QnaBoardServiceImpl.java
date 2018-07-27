@@ -59,6 +59,8 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 		mapper.updateViewCnt(no);
 		Map<String,Object> map= new HashMap<>();
 		Qna qna = mapper.selectBoardByNo(no);
+		// 개행문자 처리
+		qna.setContent(qna.getContent().replace("\r\n", "<br>"));
 		qna.setFileList(mapper.selectQnaFile(no));
 		map.put("qna", qna);
 		map.put("ori", mapper.selectBoardByNo(qna.getGroupNo()).getId());
