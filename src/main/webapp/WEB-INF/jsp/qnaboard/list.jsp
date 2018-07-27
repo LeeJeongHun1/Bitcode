@@ -29,7 +29,7 @@
 	
 	<%-- Q&A 게시판 내용 출력 --%>
 	<div class="list">
-		<table class="boardList table table-hover">
+		<table class="boardList table table-hover" style="margin-bottom: 0;">
 		<thead>
 		<tr>
 			<th style="width:10%; font-size: 14px;">&nbsp;글번호</th>

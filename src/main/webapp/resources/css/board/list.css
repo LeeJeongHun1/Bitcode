@@ -154,7 +154,7 @@ div .information {
 	border-top: 1px solid #ddd;
 	text-align: center;
 	color: #4a4a4a;
-    font-size: 13px;
+    /* font-size: 13px; */
 }
 /* 홀수번째 tr들만을 대상으로 */
 .table-striped>tbody>tr:nth-of-type(odd) {
