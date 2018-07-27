@@ -23,7 +23,7 @@
 		  <div class="pattern">
 		  <div id="patternContainer"></div>
 		  </div>
-		  <input class="patternLogin" name="patternPass" hidden="hidden"/>
+		  <input class="patternLogin" name="patternPass" hidden="hidden" value="0"/>
 		  <input class="inputlogin" name="password" placeholder="Password" type="password"/>
 		  <button class="btnL" id="loginBtn">Log in</button>
 		</form>

@@ -122,7 +122,6 @@ public class LoginController {
 	public String login(User user, HttpSession session,  RedirectAttributes attr) throws Exception{
 		// 패턴값 들어왔을 때
 		if(user.getPatternPass() != 0) {
-			System.out.println("패턴 로그인 시도 : " + user.toString());
 			User userInfo = loginService.selectUserById(user.getId());
 			if(userInfo != null && user.getPatternPass() == userInfo.getPatternPass()) {
 				session.setAttribute("user", userInfo);
@@ -147,7 +146,6 @@ public class LoginController {
 
 	}	
 
-	
 	//회원가입
 	@RequestMapping("/signupForm.do") 
 	public String signupForm() throws Exception{ 
