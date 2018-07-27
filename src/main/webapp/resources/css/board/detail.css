@@ -30,6 +30,7 @@ time, mark, audio, video {
 .satisAn {
 /* 	margin-bottom: -10px; */
 }
+.satisGood { width: 15px; height: 24px;}
 input[type="radio"] {
 	cursor:pointer
 }
@@ -48,19 +49,22 @@ input[type="radio"] + label span {
     cursor:pointer;
 }
 #statisBtn {
-  text-align: center;
-  width:50px;
-  height: 25px;
-  border-radius:2px;
-  margin-left:1px;
-  background:#df736a;
-  color:#ffffff;
-  ext-decoration:none;
-  text-decoration: none;
-  display: inline;
-      padding: 2px 8px;
+	text-align: center;
+    width: 40px;
+    display: block;
+    height: 25px;
+    border-radius: 2px;
+    /* margin-left: 1px; */
+    /* background: #4d92b5; */
+    color: #3a3838;
+    ext-decoration: none;
+    margin-top: -16px;
+    text-decoration: none;
+    display: inline-block;
+    /* padding: 2px 8px; */
 }
-
+.satisDiv {    margin-top: 10px;
+    margin-bottom: 10px;}
 
 
 
@@ -710,8 +714,27 @@ div .information {
 .coWrap { float:right;}
 .coBtn { margin-right:5px;
     color: #5a5a5a;}
-#qnaLike {
-	background: url(../../images/like.png) no-repeat 0 0;
-	background-size: 21px;
 
+.like {border: 1px solid #c5c3c3;
+    width: 101px;
+    position: relative;
+    margin: 5px auto;
+    padding: 3px;}
+#qnaLike {
+	background: url(../../images/li.png) no-repeat 7% 23%;
+    background-size: 23%;
+    display: inline-block;
+    width: 82px;
+    display: inline-block;
+    /* height: 55px; */
 }
+.like_count {
+	display: inline-block;
+    width: 10px;
+    right: 21px;
+    height: 23px;
+    position: absolute;
+    top: 5px;
+	
+}
+

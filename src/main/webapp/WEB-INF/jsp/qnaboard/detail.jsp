@@ -77,15 +77,15 @@ a {
          <c:if test="${list.ori == sessionScope.user.id and list.qna.depth == 1}">  
             <div class="satisDiv">        
             <span class="satisAn">
-            <input type="radio" id="satisS" name="stsfcCode" value="13"/>
+            <input type="radio" class="satisGood" id="satisS" name="stsfcCode" value="13"/>
             <label for="satisS"><img src="${pageContext.request.contextPath}/resources/images/vergood.png"></label>
             </span>
             <span class="satisAn">
-            <input type="radio" id="satisJ" name="stsfcCode" value="12"/>
+            <input type="radio" class="satisGood" id="satisJ" name="stsfcCode" value="12"/>
             <label for="satisJ"><img src="${pageContext.request.contextPath}/resources/images/good.png"></label>
             </span>
             <span class="satisAn">
-            <input type="radio" id="satisU" name="stsfcCode" value="11"/>
+            <input type="radio" class="satisGood" id="satisU" name="stsfcCode" value="11"/>
             <label for="satisU"><img src="${pageContext.request.contextPath}/resources/images/notgood.png"></label>
             </span>
             <a href="#" id="statisBtn">Click</a>
