@@ -21,7 +21,7 @@
 		<div class="shell-container">
 			<h2 class="shell_title">QnA질문게시판</h2>
 			<form action='<c:url value="/qnaboard/insertRe.do"/>' method="post"
-				enctype="multipart/form-data">
+				enctype="multipart/form-data" id="qnaRForm">
 				<input type="text" name="no" value="${list.qna.no}" hidden="hidden" />
 				<input type="text" name="groupNo" value="${list.qna.groupNo}" hidden="hidden" />
 				<input type="text" name="depth" value="${list.qna.depth}" hidden="hidden" />
@@ -52,7 +52,7 @@
 			<div class="contents_btn">
 <%-- 				<a href='<c:url value="/qnaboard/list.do" />'><button type="button">목록</button></a>--%>
 				<a href='<c:url value="/qnaboard/list.do" />'><input class="editBtn" type="button" value="목록"></a>
- 				<input class="editSubmit" type="submit" value="등록">
+ 				<input class="editSubmit" type="button" value="등록">
 <!-- 				<button type="submit">등록</button> -->
 			</div>
 			</form>
@@ -62,6 +62,10 @@
 	<script>
 	window.onload = function(){
 	}
+	
+	// 답글 등록시 답변 알림 전송
+	console.dir("${list.qna.id}");
+	
 	code();
 	function code(){
 		$.ajax({
@@ -74,6 +78,16 @@
 			}
 		})
 	}
+	
+	$(".editSubmit").click(function() {
+		// 답글알림을 받기 위한 원글 아이디 전송
+		if(loginId){
+			alert(11);
+			ws.send("notice:" + "${list.qna.id}");
+		}
+		// 서브밋
+		$("#qnaRForm").submit();
+	});
 	
 	$(".detailBody").draggable();
 	</script>
