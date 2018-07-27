@@ -13,7 +13,7 @@
         <%-- 메뉴 아이콘 --%>
         <div class="icons-left">
 	        <%-- 메인링크 --%>
-            <a href="/bitcode/main/main.do" id="start-menu" data-toggle="tooltip" title="홈"><i class="fab fa-windows"></i></a>
+            <a href="/bitcode/main/main.do" id="start-menu" data-toggle="tooltip" title="홈"><i id='mainIcon' class="fab fa-windows"></i></a>
 	        <%-- 코드공유게시판 --%>
             <a href="${pageContext.request.contextPath}/codeboard/list.do" id="coding" data-toggle="tooltip" title="코드 공유 게시판"></a>
 	        <%-- 단체대화방 --%>

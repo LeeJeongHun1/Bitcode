@@ -79,7 +79,7 @@
 	    <property name="host" value="smtp.gmail.com" />
 	    <property name="port" value="587" />
 	    <property name="username" value="bitcodeProject1@gmail.com" />
-	    <property name="password" value="bitcodeadmin" />
+	    <property name="password" value="bitcodeadmin1111" />
 	    <property name="javaMailProperties">
 	        <props>
 	            <prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>

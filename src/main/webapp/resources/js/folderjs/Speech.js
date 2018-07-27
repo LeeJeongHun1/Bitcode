@@ -112,38 +112,37 @@ recognition.interimResults = true;
 	     $close.trigger('click');
 	     console.log($close)
 //	     closecom();
- 	}else if (string.endsWith('음악 켜줘') || string.endsWith('음악 틀어줘') || string.endsWith('재생') || string.endsWith('플레이')) {
+ 	}else if (string.endsWith('음악 켜줘') || string.endsWith('음악 켜 줘') || string.endsWith('음악 틀어 줘') || string.endsWith('음악 틀어줘') || string.endsWith('재생') || string.endsWith('플레이')) {
 	     $player.trigger('click');
 	     console.log($close)
- 	}else if (string.endsWith('음악 꺼줘') || string.endsWith('음악 멈쳐줘') || string.endsWith('중지') || string.endsWith('스탑')) {
+ 	}else if (string.endsWith('음악 꺼줘') || string.endsWith('음악 꺼 줘') || string.endsWith('음악 멈쳐줘') || string.endsWith('중지') || string.endsWith('스탑')) {
 		callMain()
- 	}else if (string.endsWith('코드 공유') || string.endsWith('공유 게시판 열어줘') || string.endsWith('공유 게시판') || string.endsWith('코드 게시판') || string.endsWith('코드')) {
+ 	}else if (string.endsWith('코드 공유') || string.endsWith('공유 게시판 열어줘') || string.endsWith('공유 게시판 열어 줘') || string.endsWith('공유 게시판') || string.endsWith('코드 게시판') || string.endsWith('코드')) {
  		coding.click();
  	}else if (string.endsWith('메인') || string.endsWith('메인으로') || string.endsWith('메인화면') || string.endsWith('처음으로')) {
  		console.dir($("#start-menu"));
- 		start-menu.click();
+ 		mainIcon.click();
  	}else if (string.endsWith('채팅방') || string.endsWith('대화방') || string.endsWith('채팅방으로') || string.endsWith('대화방 열어줘') || string.endsWith('채팅방 열어줘')) {
  		console.log("채팅방");
  		chat.click();
  	}else if (string.endsWith('상담실') || string.endsWith('원격 상담') || string.endsWith('원격 대화방') || string.endsWith('상담실 열어줘') || string.endsWith('원격상담 열어줘')) {
  		console.log("상담실");
  		remote.click();
- 	}else if (string.endsWith('질문') || string.endsWith('질문 게시판 열어줘') || string.endsWith('질문 게시판')) {
+ 	}else if (string.endsWith('질문') || string.endsWith('질문 게시판 열어줘') || string.endsWith('질문 게시판 열어 줘') || string.endsWith('질문 게시판')) {
  		console.log("qna");
  		question.click();
- 	}else if (string.endsWith('뉴스') || string.endsWith('뉴스 보여줘') || string.endsWith('뉴스 열어줘')) {
-		console.log("qna");
+ 	}else if (string.endsWith('뉴스') || string.endsWith('뉴스 보여줘') || string.endsWith('뉴스 열어줘') || string.endsWith('뉴스 열어 줘')) {
+		console.log("news");
 		news.click();
- 	}else if (string.endsWith('학원') || string.endsWith('학원 위치 알려줘') || string.endsWith('학원 보여줘')) {
- 		console.log("qna");
+ 	}else if (string.endsWith('학원') || string.endsWith('학원 위치 알려줘') || string.endsWith('학원 위치 알려 줘') || string.endsWith('학원 보여줘') || string.endsWith('학원 보여 줘')) {
+ 		console.log("학원센터");
  		search.click();
- 	}else if (string.endsWith('메모장') || string.endsWith('메모장 열어줘') || string.endsWith('메모장 보여줘')) {
- 		console.log("qna");
+ 	}else if (string.endsWith('메모장') || string.endsWith('메모장 열어줘') || string.endsWith('메모장 열어 줘') || string.endsWith('메모장 보여줘') || string.endsWith('메모장 보여 줘')) {
+ 		console.log("메모장");
  		notepad.click();
- 	}
- 	else if (string.endsWith('로그인')){
+ 	}else if (string.endsWith('로그인')){
  		login.click();
- 	}else if (string.endsWith('로그아웃')) {
+ 	}else if (string.endsWith('로그아웃') || string.endsWith('나갈래')) {
  		logout.click();
  	}
  	

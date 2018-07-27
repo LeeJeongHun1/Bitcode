@@ -26,7 +26,7 @@ public class FolderServiceImpl implements FolderService{
 		String folderPath = PATH + id; 
 		String musicPath = PATH + id + MUSIC_PATH;
 		String deletePath = PATH + id + "_delete";
-		new File(folderPath + "\\새 폴더").mkdirs();
+		new File(folderPath + "\\Sample").mkdirs();
 		new File(deletePath).mkdirs();
 		new File(musicPath).mkdirs();
 //		try {
@@ -64,9 +64,14 @@ public class FolderServiceImpl implements FolderService{
 	}
 	@Override
 	public Map<String, Object> delete(FolderAndFile faf) {
+		System.out.println(faf.getPath());
 		new File(faf.getPath() + "/" + faf.getName()).delete();
 		Map<String, Object> map = new HashMap<>();
-		map.put("fancyList", ListDirectory(new File(PATH + faf.getId())));
+		if(faf.getPath().indexOf(MUSIC_PATH) != -1){
+			map.put("fancyList", ListDirectory(new File(faf.getPath())));
+		}else{
+			map.put("fancyList", ListDirectory(new File(PATH + faf.getId())));
+		}
 		map.put("path", faf.getPath());
 		return map;
 	}
@@ -81,7 +86,8 @@ public class FolderServiceImpl implements FolderService{
 	}
 	@Override
 	public Map<String, Object> uploadFile(FolderAndFile faf, MultipartFile attach) {
-		System.out.println(faf.getPath());
+//		System.out.println(faf.getPath().indexOf(MUSIC_PATH));
+//		System.out.println(faf.getPath().);
 		Map<String, Object> map = new HashMap<>();
 		try {
 //			if(parentPath == null) {
@@ -96,7 +102,11 @@ public class FolderServiceImpl implements FolderService{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		map.put("list", ListDirectory(new File(PATH + faf.getId())));
+		if(faf.getPath().indexOf(MUSIC_PATH) != -1){
+			map.put("list", ListDirectory(new File(faf.getPath())));
+		}else{
+			map.put("list", ListDirectory(new File(PATH + faf.getId())));
+		}
 		FolderSize = 0;
 		map.put("size", ListDirectorySize(new File(PATH + faf.getId())));
 		return map;
@@ -105,6 +115,7 @@ public class FolderServiceImpl implements FolderService{
 	
 	@Override
 	public List<FancyTree> musicFolder(FolderAndFile faf) {
+		System.out.println(PATH + faf.getId() + MUSIC_PATH);
 		return ListDirectory(new File(PATH + faf.getId() + MUSIC_PATH));
 	}
 	

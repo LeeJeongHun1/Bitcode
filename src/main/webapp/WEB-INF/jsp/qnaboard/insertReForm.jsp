@@ -82,7 +82,6 @@
 	$(".editSubmit").click(function() {
 		// 답글알림을 받기 위한 원글 아이디 전송
 		if(loginId){
-			alert(11);
 			ws.send("notice:" + "${list.qna.id}");
 		}
 		// 서브밋
