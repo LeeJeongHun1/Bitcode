@@ -32,6 +32,9 @@ delete from tb_news_comment;
 -- delete Q&A 게시판
 delete from tb_qna_board
 	where no = 47;
+	
+delete from tb_code_board
+	where no = 325;
 
 -- update 유저
 update tb_user
